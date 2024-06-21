@@ -114,6 +114,6 @@ AddGMCommand("Role",
 		Tools.changeClothByRole(roleElements[Tools.getRandomInt(0, roleElements.length - 1)], player.character);
 	},
 	(player, value) => {
-		ModuleService.getModule(PlayerModuleS).changeGold(player, Number(value));
+		// ModuleService.getModule(PlayerModuleS).changeGold(player, Number(value));
 	}
 )

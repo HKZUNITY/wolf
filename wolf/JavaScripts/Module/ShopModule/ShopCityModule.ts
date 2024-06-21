@@ -6,15 +6,15 @@
  * @FilePath     : \murdermystery3\JavaScripts\Module\ShopModule\ShopCityModule.ts
  * @Description  : 修改描述
  */
-import { SpawnManager,SpawnInfo, } from '../../Modified027Editor/ModifiedSpawn';
-﻿/*
- * @Author: ziwei.shen
- * @Date: 2022-08-05 18:25:56
- * @LastEditors: tianran.shi
- * @LastEditTime: 2023-02-01 14:17:01
- * @FilePath: \townmystery\JavaScripts\Module\ShopModule\ShopCityModule.ts
- * @Description: 
- */
+import { SpawnManager, SpawnInfo, } from '../../Modified027Editor/ModifiedSpawn';
+/*
+* @Author: ziwei.shen
+* @Date: 2022-08-05 18:25:56
+* @LastEditors: tianran.shi
+* @LastEditTime: 2023-02-01 14:17:01
+* @FilePath: \townmystery\JavaScripts\Module\ShopModule\ShopCityModule.ts
+* @Description: 
+*/
 import { oTraceError, oTrace, oTraceWarning, LogManager, AnalyticsUtil, IFightRole, AIMachine, AIState } from "odin";
 import { MGSHome } from "../../MGSHome";
 import { GameConfig } from "../../Tables/GameConfig";
@@ -32,18 +32,18 @@ import { GameModuleS } from "../GameModule/GameModuleS";
 import { PlayerModuleC } from "../PlayerModule/PlayerModuleC";
 import { GeneralManager } from '../../Modified027Editor/ModifiedStaticAPI';
 
-export class ShopModuleC extends ModuleC<ShopModuleS, ShopModuleData>{
+export class ShopModuleC extends ModuleC<ShopModuleS, ShopModuleData> {
 	private panel: ShopPanel = null;//主界面
 	onStart() {
-        InputUtil.onKeyDown(Keys.J, ()=>{
-            if (this.panel) {
-                this.ShopOpen(true, true);
+		InputUtil.onKeyDown(Keys.J, () => {
+			if (this.panel) {
+				this.ShopOpen(true, true);
 				this.panel.showItemShop(10034);
-            }
-        })
+			}
+		})
 	}
-	/**获取拥有的物品列表 */	
-	public getHaveArray(){
+	/**获取拥有的物品列表 */
+	public getHaveArray() {
 		if (this.panel == null) {
 			this.data.initShopData();
 		}
@@ -52,8 +52,8 @@ export class ShopModuleC extends ModuleC<ShopModuleS, ShopModuleData>{
 			if (!shopList) {
 				return;
 			}
-			shopList.state.forEach((value, index)=>{
-				if(value == ItemState.Own){
+			shopList.state.forEach((value, index) => {
+				if (value == ItemState.Own) {
 					res.push(shopList.listId[index]);
 				}
 			})
@@ -113,13 +113,13 @@ export class ShopModuleC extends ModuleC<ShopModuleS, ShopModuleData>{
 		return panel;
 	}
 
-	public selectTargetItem(itemId: number){
+	public selectTargetItem(itemId: number) {
 		this.ShopOpen(true, true);
 		this.panel.showItemShop(itemId);
-		
+
 	}
 
-	public getShopRemainTime(itemId: number){
+	public getShopRemainTime(itemId: number) {
 		return this.data.getShopRemainTime(itemId);
 	}
 
@@ -135,7 +135,7 @@ export class ShopModuleC extends ModuleC<ShopModuleS, ShopModuleData>{
 		}
 		this.panel.changeDiamond(num);
 	}
-	public changeAdvToken(num: number){
+	public changeAdvToken(num: number) {
 		if (this.panel == null) {
 			return;
 		}
@@ -151,8 +151,7 @@ export class ShopModuleC extends ModuleC<ShopModuleS, ShopModuleData>{
 		}
 	}
 
-	public getItem(id:number)
-	{
+	public getItem(id: number) {
 		this.server.net_GetItem(id)
 	}
 	public previewCloth(id: number, isPreview: boolean) {
@@ -164,7 +163,7 @@ export class ShopModuleC extends ModuleC<ShopModuleS, ShopModuleData>{
 
 	}
 }
-export class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData>{
+export class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData> {
 	private effectPropMap: Map<number, number> = new Map();
 	private itemMap: Map<number, mw.GameObject> = new Map();
 	private playerTimeShopItemMap: Map<number, Map<number, any>> = new Map<number, Map<number, any>>();
@@ -182,30 +181,30 @@ export class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData>{
 		})
 	}
 
-	public initShopItem(player: mw.Player){
+	public initShopItem(player: mw.Player) {
 		this.checkTimeShopItem(player);
 		let useArray = this.getPlayerData(player).usingItems;
 		let isCold: boolean = false;
 		let isHot: boolean = false;
-		useArray.forEach((value)=>{
+		useArray.forEach((value) => {
 			let kind = (value - value % 10000) / 10000;
 			this.useItem(player, value, true, true);
 			if (kind == 1) {
 				isCold = true;
 			}
-			else if(kind == 2){
+			else if (kind == 2) {
 				isHot = true;
 			}
 		})
 		if (!isCold) {
 			this.useItem(player, 10000, true, true);
 		}
-		if (!isHot){
+		if (!isHot) {
 			this.useItem(player, 20000, true, true);
 		}
 	}
 
-	
+
 
 	net_UseItem(id: number, isUse: boolean) {
 		if (isUse) {
@@ -215,7 +214,7 @@ export class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData>{
 		this.useItem(this.currentPlayer, id, isUse, false);
 	}
 
-	public useItem(player: mw.Player, id: number, isUse: boolean, isInit: boolean){
+	public useItem(player: mw.Player, id: number, isUse: boolean, isInit: boolean) {
 		let kind = (id - id % 10000) / 10000;
 		if (isUse) {
 			if (isInit == false && this.getPlayerData(player).getItemState(id) == ItemState.NotOwn) {
@@ -254,17 +253,17 @@ export class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData>{
 			}
 		}
 	}
-	async equipDecoration(player: mw.Player, id: number){
+	async equipDecoration(player: mw.Player, id: number) {
 		this.getPlayerData(player).setUsingItem(id);
 		this.getPlayerData(player).save(true);
 		let playerId = player.playerId;
-		if (id% 10000 == 0) {
+		if (id % 10000 == 0) {
 			this.destroyDecorator(playerId);
 		}
-		else{
+		else {
 			this.destroyDecorator(playerId);
 			let dataInfo = GameConfig.Shop.getElement(id);
-			let obj = await SpawnManager.asyncSpawn({guid: dataInfo.ModelGuid, replicates: true});
+			let obj = await SpawnManager.asyncSpawn({ guid: dataInfo.ModelGuid, replicates: true });
 			obj.setCollision(mw.CollisionStatus.Off, true);
 			player.character.attachToSlot(obj, dataInfo.RabbetPart);
 			obj.localTransform.position = dataInfo.Offset.clone();
@@ -283,7 +282,7 @@ export class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData>{
 			ModuleService.getModule(BagModuleS).equipHotWeapon(player, id + 1);
 		}
 		else {
-			ModuleService.getModule(BagModuleS).equipColdWeapon(player, id + 1 );
+			ModuleService.getModule(BagModuleS).equipColdWeapon(player, id + 1);
 		}
 	}
 	useEffect(player: mw.Player, id: number) {
@@ -305,17 +304,17 @@ export class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData>{
 		let cloth = 0;
 		if (id == 40000) {//脱下
 			cloth = DataCenterS.getData(player, PlayerModuleData).getPlayerOrginRole();
-		}
-		else
+		} else {
 			cloth = GameConfig.Shop.getElement(id).SuitItems[0];
+		}
 		ModuleService.getModule(PlayerModuleS).net_SetPlayerModel(player.playerId, Number(cloth), true);
 	}
 	/**本来隐身不需要隐藏玩家身上道具，编辑器有问题绕一下 */
-	stealHideEquipItem(player: mw.Player, isActive: boolean){
+	stealHideEquipItem(player: mw.Player, isActive: boolean) {
 		let playerId = player.playerId;
 		let decoration = this.itemMap.get(playerId);
 		if (decoration) {
-			let isShow = isActive? mw.PropertyStatus.On : mw.PropertyStatus.Off;
+			let isShow = isActive ? mw.PropertyStatus.On : mw.PropertyStatus.Off;
 			decoration.setVisibility(isShow, true);
 		}
 
@@ -324,26 +323,26 @@ export class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData>{
 			EffectService.stop(effectId);
 			this.effectPropMap.delete(playerId);
 		}
-		else if(isActive){
+		else if (isActive) {
 			let data = this.getPlayerData(playerId);
-			data.usingItems.forEach((value)=>{
+			data.usingItems.forEach((value) => {
 				let type = Math.floor(value / 10000);
 				if (type == 3) {
 					this.useEffect(player, value);
 				}
 			})
 		}
-		
+
 	}
 
-	clearShopItem(playerId: number){
+	clearShopItem(playerId: number) {
 		this.resetEffect(playerId);
 		this.destroyDecorator(playerId);
 		this.deleteTimeShopTimer(playerId);
 		this.deleteWaitUnequipItem(playerId);
 	}
 
-	destroyDecorator(playerId: number){
+	destroyDecorator(playerId: number) {
 		if (this.itemMap.has(playerId)) {
 			let id = this.itemMap.get(playerId);
 			id.destroy();
@@ -357,31 +356,31 @@ export class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData>{
 		}
 	}
 
-	public unequipWaitItem(player: mw.Player){
+	public unequipWaitItem(player: mw.Player) {
 		let playerId = player.playerId;
 		let unequipItems = this.waitUnequipMap.get(playerId);
 		if (!unequipItems) {
 			return;
 		}
-		unequipItems.forEach((value, index)=>{
+		unequipItems.forEach((value, index) => {
 			this.useItem(player, value, false, false);
 		})
 	}
 
-	private deleteWaitUnequipItem(playerId: number){
+	private deleteWaitUnequipItem(playerId: number) {
 		if (this.waitUnequipMap.has(playerId)) {
 			this.waitUnequipMap.delete(playerId);
 		}
 	}
 
 	/**增加带时间限制的物品 */
-	private addTimeSheapItem(player: mw.Player, itemId: number, lastTime: number){
+	private addTimeSheapItem(player: mw.Player, itemId: number, lastTime: number) {
 		let timeOutTime = this.getPlayerData(player).addShopTimeItem(itemId, lastTime);
 		this.addShopTimeItemTimer(player, itemId, timeOutTime);
 	}
 
 	/**添加一个时限物品的监听*/
-	private addShopTimeItemTimer(player: mw.Player, itemId: number, timeOut: number){
+	private addShopTimeItemTimer(player: mw.Player, itemId: number, timeOut: number) {
 		let playerId: number = player.playerId;
 		let playerMap = this.playerTimeShopItemMap.get(playerId);
 		if (!playerMap) {
@@ -392,20 +391,20 @@ export class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData>{
 			clearTimeout(playerMap.get(itemId));
 			playerMap.delete(itemId);
 		}
-		let timer = setTimeout(()=>{
+		let timer = setTimeout(() => {
 			playerMap = this.playerTimeShopItemMap.get(playerId);
 			if (!playerMap) return;
 			playerMap.delete(itemId);
 			this.getPlayerData(player).deleteShopTimeItem(itemId);
 			/**先把数据卸了，物品等玩家回来再说 */
-			if (this.getPlayerData(player).usingItems.includes(itemId)){
-				let isHall = GameGlobals.hallPlayer.find((value)=>{
+			if (this.getPlayerData(player).usingItems.includes(itemId)) {
+				let isHall = GameGlobals.hallPlayer.find((value) => {
 					return value.playerId == playerId;
 				})
 				if (isHall) {
 					this.useItem(player, itemId, false, false);
 				}
-				else{
+				else {
 					this.addWaitUnEquipItem(playerId, itemId);
 				}
 			}
@@ -413,7 +412,7 @@ export class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData>{
 			this.getPlayerData(player).setUsingItem(itemType);
 			this.getClient(playerId).net_RefreshUI(itemId);
 			//需不需要加一个通知，告诉玩家当前道具已经过期了;
-		}, timeOut* 1000);
+		}, timeOut * 1000);
 		playerMap.set(itemId, timer);
 	}
 
@@ -427,21 +426,21 @@ export class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData>{
 	}
 
 	/**玩家退出 */
-	private deleteTimeShopTimer(playerId: number){
+	private deleteTimeShopTimer(playerId: number) {
 		let playerMap = this.playerTimeShopItemMap.get(playerId);
 		if (!playerMap) {
 			return;
 		}
-		playerMap.forEach((value, key)=>{
+		playerMap.forEach((value, key) => {
 			clearTimeout(value);
 		})
 		this.playerTimeShopItemMap.delete(playerId);
 	}
 	/**玩家上线了，需要检查一下物品是否到期 */
-	private checkTimeShopItem(player: mw.Player){
+	private checkTimeShopItem(player: mw.Player) {
 		let playerData = this.getPlayerData(player);
 		let haveTimes = playerData.getHaveTimeItems();
-		haveTimes.forEach((value, index)=>{
+		haveTimes.forEach((value, index) => {
 			let nowTime = TimeUtil.time();
 			let endTime = value.haveTime + value.lastTime;
 
@@ -451,22 +450,22 @@ export class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData>{
 					this.useItem(player, value.itemId, false, false);
 				}
 			}
-			else{
+			else {
 				let remainTime = endTime - nowTime;
 				this.addShopTimeItemTimer(player, value.itemId, remainTime);
 			}
 		})
-		playerData.usingItems.forEach((useItem, index)=>{
+		playerData.usingItems.forEach((useItem, index) => {
 			if (useItem) {
 				let state = playerData.getItemState(useItem);
 				if (state != ItemState.Using) {
-					playerData.usingItems = playerData.usingItems.filter((value)=>{value != useItem});
+					playerData.usingItems = playerData.usingItems.filter((value) => { value != useItem });
 				}
 			}
 		})
 	}
 	//直接添加物品，gm以及购买大会员礼包会用到
-	addItem(player: mw.Player, itemId: number, lastTime: number){
+	addItem(player: mw.Player, itemId: number, lastTime: number) {
 		let dataInfo = GameConfig.Shop.getElement(itemId);
 		if (!dataInfo) {
 			return;
@@ -474,14 +473,14 @@ export class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData>{
 		if (lastTime < 0) {
 			this.getPlayerData(player).setItemState(itemId, ItemState.Own);
 		}
-		else{
+		else {
 			this.addTimeSheapItem(player, itemId, lastTime);
 		}
 		this.getClient(player).net_RefreshUI(itemId);
 	}
 
 	//根据商店的id添加物品，兑换使用
-	buyItemByShopId(player: mw.Player, shopId: number){
+	buyItemByShopId(player: mw.Player, shopId: number) {
 		let dataInfo = GameConfig.Shop.getElement(shopId);
 		let res = false;
 		if (!dataInfo) {
@@ -492,16 +491,16 @@ export class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData>{
 		if (costType == CurrencyType.Gold) {
 			res = ModuleService.getModule(PlayerModuleS).tryDesGold(player, money);
 		}
-		else if (costType == CurrencyType.Diamond){
+		else if (costType == CurrencyType.Diamond) {
 			res = ModuleService.getModule(PlayerModuleS).tryDesDiamond(player, money);
 		}
-		else if (costType == CurrencyType.AdvToken){
+		else if (costType == CurrencyType.AdvToken) {
 			res = ModuleService.getModule(PlayerModuleS).changeAdvToken(player, -money);
 			if (res == true) {
 				this.sendShopMGS(player, shopId);
 			}
 		}
-		
+
 		if (res) {
 			this.getPlayerData(player).setItemState(shopId, ItemState.Own);
 			this.getClient(player).net_RefreshUI(shopId);
@@ -511,9 +510,9 @@ export class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData>{
 		return res;
 	}
 
-	sendShopMGS(player: mw.Player, itemId: number){
+	sendShopMGS(player: mw.Player, itemId: number) {
 		let res = -1;
-		GameConfig.Exchange.getAllElement().forEach((value, index)=>{
+		GameConfig.Exchange.getAllElement().forEach((value, index) => {
 			if (value.ShopItem == itemId) {
 				res = value.ID;
 			}
@@ -542,7 +541,7 @@ export class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData>{
 
 }
 /**货币类型 */
-export enum CurrencyType{
+export enum CurrencyType {
 	Gold = 0,
 	Diamond = 1,
 	Draw = 2,

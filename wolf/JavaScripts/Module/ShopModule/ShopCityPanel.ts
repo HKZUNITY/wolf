@@ -18,6 +18,7 @@ import { ShopItem } from "./ShopCityUI";
 import { ItemState, ShopModuleData } from "./ShopData";
 import Action2 = mw.Action2;
 import SoundManager = mw.SoundService;
+import AdsPanel from '../../AdsPanel';
 export interface IShopBaseItemView extends mw.UIScript {
 	mImage_Items: mw.Image;
 	mText_Items: mw.TextBlock;
@@ -33,7 +34,6 @@ export interface IShopBaseItemView extends mw.UIScript {
 	mCanvas_Price_L: mw.Canvas
 	mCanvas_Price_AdCoupon: mw.Canvas
 	mTextBlock: mw.TextBlock
-
 }
 export interface IShopBasePanelView extends mw.UIScript {
 	mBtn_ShopClose: mw.StaleButton;
@@ -92,6 +92,9 @@ export interface IShopBasePanelView extends mw.UIScript {
 	mImage_ItemPrice_Ad: mw.Image;//兑换券
 	/**Item信息 */
 	mCanvas_ItemShow: mw.Canvas;
+
+	mAddCoinButton: mw.Button
+	mAddCouponButton: mw.Button
 }
 export class ShopBaseItem<T extends IShopBaseItemView> extends BaseUI<T> {
 	public itemId: number;
@@ -299,6 +302,17 @@ export class ShopBasePanel<T extends IShopBasePanelView> extends BaseUI<T> {
 			this.showGoods(this.currentTabIndex);
 		},
 			this);
+
+		this.view.mAddCoinButton.onClicked.add(() => {
+			UIService.getUI(AdsPanel).showRewardAd(() => {
+				ModuleService.getModule(PlayerModuleC).addAdvToken(2);
+			}, "免费领取2张广告券", "取消", "领取");
+		});
+		this.view.mAddCouponButton.onClicked.add(() => {
+			UIService.getUI(AdsPanel).showRewardAd(() => {
+				ModuleService.getModule(PlayerModuleC).addAdvToken(2);
+			}, "免费领取2张广告券", "取消", "领取");
+		});
 	}
 	/**购买物品界面 */
 	private showBuyInfo() {
