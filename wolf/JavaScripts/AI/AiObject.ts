@@ -587,7 +587,7 @@ export class AiObject {
         console.error(`wfz - wfz - moveTo`);
         Navigation.navigateTo(this.aiModel, target, 5,
             () => {
-
+                if (this.moveAni) this.moveAni.stop();
             },
             () => {
                 if (this.moveAni) this.moveAni.stop();
@@ -611,7 +611,8 @@ export class AiObject {
     public get isArrived() {
         if (this.location == null) return false;
         if (this.location.subtract(this.aiModel.worldTransform.clone().position).length <= 150) {
-            //console.warn("到达目标点");
+            console.warn("到达目标点");
+            if (this.moveAni) this.moveAni.stop();
             return true;
         } else {
             return false;
