@@ -17,6 +17,7 @@ import { PlayerModuleC } from "../PlayerModule/PlayerModuleC";
 import P_Hall from "../../UILogic/Hall/P_Hall";
 import AttributeManager, { Attribute, AttributeType } from "../SVipModule/AttributeManager";
 import { AiModuleS } from "../../AI/AiModule";
+import AdsPanel from '../../AdsPanel';
 
 export class CalculateModuleC extends ModuleC<CalculateModuleS, null> {
     private _gold = 0;
@@ -86,15 +87,12 @@ export class CalculateModuleC extends ModuleC<CalculateModuleS, null> {
         this.canWtachAD = true
         let calcRewardEvent = () => {
             if (!this.canWtachAD) return
-            console.error(`wfz - cal - ads`);
-            IAAUtils.showRewardAd(() => {//TODO:WFZ
+            UIService.getUI(AdsPanel).showRewardAd(() => {
                 ModuleService.getModule(PlayerModuleC).addAdvToken(1);
                 ModuleService.getModule(PlayerModuleC).net_RewardGold(gold)
                 this.canWtachAD = false
                 MGSHome.msgCalculate(this.enterGamePlayerCount, true);
-            }, () => {
-                // P_Tips.show("稍等一下!");
-            })
+            }, "免费领取奖励\n再送一张广告券", "取消", "领取");
         }
         P_Account.instance.setMButtonWatchADEvent(calcRewardEvent.bind(this))
         P_Account.showAccountUI(dataStr, isSvip);

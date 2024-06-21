@@ -26,6 +26,7 @@ import SVIPModuleC from "../SVipModule/SVIPModuleC";
 import { PlayerModuleData } from "./PlayerData";
 import { PlayerModuleS } from "./PlayerModuleS";
 import { ShopModuleC } from "../ShopModule/ShopCityModule";
+import AdsPanel from "../../AdsPanel";
 
 export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
     private _todayFreeReward: number = 0;
@@ -47,7 +48,6 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
         this._mText_ADTime = P_Hall.instance.mText_ADTime;
         this._mImage_RedPoint = P_Hall.instance.mImage_RedPoint;
         P_Hall.instance.mBtn_AD.onClicked.add(() => {
-            console.error(`wfz - Hall - ads`);
             MGSHome.mgsWorldId(2);
             this.checkHallAd();
         });
@@ -581,52 +581,39 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
                 P_Tips.show(GameConfig.Tips.getElement(20003).Content);
             }
             else {
-                console.error(`wfz - Hall - adsa`);
                 this.rewardAd();
             }
         }
     }
     private rewardAd() {
-        //TODO:广告 大厅金币激励广告
-        mw.AdsService.isReady(mw.AdsType.Reward, async (isReady: boolean) => {
-            console.warn("kang log isready 大厅金币激励广告", isReady);
-            // if (isReady) {
-            //     MGSHome.mgsSceneId(2);
-            // }
-            //广告准备好
-
-            IAAUtils.showRewardAd(async () => {//TODO:WFZ
-                console.warn("kang log 大厅金币激励广告播放成功");
-                MGSHome.mgsSceneId(2);
-                console.warn("kang log 大厅金币激励广告播放完成，给奖励");
-                //弹出奖励界面
-                let rewardPopup = UiManager.instance.getUIRewardPopup();
-                rewardPopup.show();
-                let numA = GameConfig.Rule.getElement(30004).Num;
-                let numB = await this.server.net_getHallAdNum(0);
-                let numN = GameConfig.Rule.getElement(30005).Num;
-                oTrace("kang log numA=" + numA + " numB=" + numB + " numN=" + numN);
-                //N=A+n*B
-                let num = numA + numB * numN;
-                rewardPopup.refreshText(num);
-                this.server.net_ChangeGold(num);
-                let nu = await this.getHallAdNum(1);
-                oTrace("kang log 已经观看了" + nu + "次广告");
-                //是否满足
-                if (nu >= this._numL) {
-                    this._mText_ADTime.visibility = (mw.SlateVisibility.Collapsed);
-                    this._mImage_RedPoint.visibility = (mw.SlateVisibility.Collapsed);
-                }
-                else {
-                    //继续开始倒计时
-                    this.setCountDown(GameConfig.Rule.getElement(30006).Time);
-                    this._mImage_RedPoint.visibility = (mw.SlateVisibility.Collapsed);
-                }
-
-            }, () => {
-                console.warn("kang log 大厅金币激励广告播放失败");
-            });
-        });
+        UIService.getUI(AdsPanel).showRewardAd(async () => {
+            console.warn("kang log 大厅金币激励广告播放成功");
+            MGSHome.mgsSceneId(2);
+            console.warn("kang log 大厅金币激励广告播放完成，给奖励");
+            //弹出奖励界面
+            let rewardPopup = UiManager.instance.getUIRewardPopup();
+            rewardPopup.show();
+            let numA = GameConfig.Rule.getElement(30004).Num;
+            let numB = await this.server.net_getHallAdNum(0);
+            let numN = GameConfig.Rule.getElement(30005).Num;
+            oTrace("kang log numA=" + numA + " numB=" + numB + " numN=" + numN);
+            //N=A+n*B
+            let num = numA + numB * numN;
+            rewardPopup.refreshText(num);
+            this.server.net_ChangeGold(num);
+            let nu = await this.getHallAdNum(1);
+            oTrace("kang log 已经观看了" + nu + "次广告");
+            //是否满足
+            if (nu >= this._numL) {
+                this._mText_ADTime.visibility = (mw.SlateVisibility.Collapsed);
+                this._mImage_RedPoint.visibility = (mw.SlateVisibility.Collapsed);
+            }
+            else {
+                //继续开始倒计时
+                this.setCountDown(GameConfig.Rule.getElement(30006).Time);
+                this._mImage_RedPoint.visibility = (mw.SlateVisibility.Collapsed);
+            }
+        }, "免费领取奖励", "取消", "领取");
     }
     private async setHallAd() {
         //获取当前玩家观看大厅广告次数

@@ -6,11 +6,13 @@
  * @FilePath: \townmystery\JavaScripts\UILogic\Hall\P_Hall.ts
  * @Description: 
  */
+import AdsPanel from "../../AdsPanel";
 import { Globals } from "../../Globals";
 import { MGSHome } from "../../MGSHome";
 import { BubbleModuleC } from "../../Module/bubbleModule/BubbleModule";
 import ExchangeModuleC from "../../Module/ExchangeModule/ExchangeModuleC";
 import { LotteryModuleC } from "../../Module/LotteryModule/LotteryModuleC";
+import { PlayerModuleC } from "../../Module/PlayerModule/PlayerModuleC";
 import { WatchModuleC } from "../../Module/ProcModule/WatchModule";
 import { ShopModuleC } from "../../Module/ShopModule/ShopCityModule";
 import { SkillModuleC } from "../../Module/SkillModule/SkillModuleC";
@@ -50,15 +52,16 @@ export default class P_Hall extends MainMenu {
         this.mBtn_lottery.onClicked.add(() => {
             ModuleService.getModule(LotteryModuleC).lotteryOpen(true)
             MGSHome.mgsResource3(2, true);
-        })
+        });
         this.mBtn_Skill.onClicked.add(() => {
             ModuleService.getModule(SkillModuleC).isOpenSkillShopPanel(true);
             MGSHome.mgsResource3(3, true);
         })
         this.mBtn_Member.onClicked.add(() => {
             // ModuleService.getModule(SVIPModuleC).isOpenBuySvipPanel(true);
-            //TODOwfz - ads get ads
-            console.error(`wfz - ads get ads`);
+            UIService.getUI(AdsPanel).showRewardAd(() => {
+                ModuleService.getModule(PlayerModuleC).addAdvToken(2);
+            }, "免费领取2张广告券", "取消", "领取");
             MGSHome.mgsResource3(4, true);
         })
         this.mBtn_Exchange.onClicked.add(() => {

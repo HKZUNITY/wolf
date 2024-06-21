@@ -8,29 +8,30 @@ export class ts_game_start extends AnalyticsUtil {
     desc: string = '对局正式开始';
     data: { player_num: number, game_mode: number };
 }
-export class ts_action_buy_plane extends AnalyticsUtil{
+export class ts_action_buy_plane extends AnalyticsUtil {
     desc: string = "玩家购买能力";
-    data: {plane_id: number};
+    data: { plane_id: number };
 }
 export class ts_game_result extends AnalyticsUtil {
     desc: string = '玩家个人结算';
     data: { recover: number, camp: number, round: number, box: number, attack: number, switch: number };
 }
-export class ts_game_launch_end extends AnalyticsUtil{
+export class ts_game_launch_end extends AnalyticsUtil {
     desc: string = "大厅按钮点击率";
-    data: {play_type: number, end_type: number, launch_time: number};
+    data: { play_type: number, end_type: number, launch_time: number };
 }
-export class ts_action_open_box extends AnalyticsUtil{
+export class ts_action_open_box extends AnalyticsUtil {
     desc: string = "抽奖按钮点击率";
-    data: {box_id: number, isfirstopen: string,
-            box_num: number, rebirth_num: number,
-            lifetime: number,      
+    data: {
+        box_id: number, isfirstopen: string,
+        box_num: number, rebirth_num: number,
+        lifetime: number,
     }
 }
 
-export class ts_action_hit extends AnalyticsUtil{
+export class ts_action_hit extends AnalyticsUtil {
     desc: string = "点击结算双倍金币";
-    data: {skill_id: number, stage_level: number}
+    data: { skill_id: number, stage_level: number }
 }
 
 export class ts_game_over extends AnalyticsUtil {
@@ -78,62 +79,70 @@ export class ts_action_use_item extends AnalyticsUtil {
     data: { item_id: number };
 }
 
-export class ts_interact_dj extends AnalyticsUtil{
+export class ts_interact_dj extends AnalyticsUtil {
     desc: string = "玩家使用快捷短语";
-    data: {play_type: number, role_id: number,    
+    data: {
+        play_type: number, role_id: number,
     };
 }
 
-export class ts_task extends AnalyticsUtil{
+export class ts_task extends AnalyticsUtil {
     desc: string = "玩家选择那张地图"
-    data: {taskid: number};
+    data: { taskid: number };
 }
 
-export class ts_action_buy_storage extends AnalyticsUtil{
+export class ts_action_buy_storage extends AnalyticsUtil {
     desc: string = "玩家使用广告券购买物品"
-    data: {storage_id: number};
+    data: { storage_id: number };
 }
 
-export class ts_action_buy_rocket extends AnalyticsUtil{
+export class ts_action_buy_rocket extends AnalyticsUtil {
     desc: string = "玩家购买大会员礼包"
-    data: {rocket_id: number};
+    data: { rocket_id: number };
 }
 export class MGSHome {
     public static msgBuyItem(player: mw.Player, itemID: number) {
+        return;
         let msg = AnalyticsUtil.get(ts_action_buy_item);
         msg.data.item_id = itemID;
         msg.send(player);
     }
     public static msgUseItem(player: mw.Player, itemID: number) {
+        return;
         let msg = AnalyticsUtil.get(ts_action_use_item);
         msg.data.item_id = itemID;
         msg.send(player);
     }
     public static coreStart(player: mw.Player) {
+        return;
         let msg = AnalyticsUtil.get(ts_coregameplay_start);
         msg.send(player);
     }
     public static coreEnd(player: mw.Player) {
+        return;
         let msg = AnalyticsUtil.get(ts_coregameplay_end);
         msg.send(player);
     }
     public static coreStep(player: mw.Player, num: number) {
+        return;
         let msg = AnalyticsUtil.get(ts_coregameplay_step);
         msg.data.coregameplay_step = num;
         msg.send(player);
     }
     /**gamestart埋点 */
     public static mgsStart(player: mw.Player) {
+        return;
         let msg = AnalyticsUtil.get(ts_game_start);
         msg.data.player_num = GameGlobals.readyPlayers.length;
         msg.data.game_mode = GameGlobals.curMapID;
         console.error("开始数据", JSON.stringify(msg.data));
-        
+
         msg.send(player);//发送埋点
     }
 
     /**gameresult埋点 */
     public static mgsResult(player: mw.Player) {
+        return;
         let msg = AnalyticsUtil.get(ts_game_result);
         msg.data.recover = DataCenterS.getData(player, GameModuleData).getGold();
         msg.data.camp = DataCenterS.getData(player, GameModuleData).getPlayerCamp();
@@ -144,6 +153,7 @@ export class MGSHome {
         msg.send(player);
     }
     public static mgsOver(player: mw.Player) {
+        return;
         let msg = AnalyticsUtil.get(ts_game_over);
         msg.data.round_length = MGSDataInfo.round_length;
         msg.data.totalnum = GameGlobals.readyPlayers.length;
@@ -156,6 +166,7 @@ export class MGSHome {
         msg.send(player);
     }
     public static msgBtnClick(num: number) {
+        return;
         let msg = AnalyticsUtil.get(ts_action_click);
         msg.data.resource_1 = 0;
         msg.data.resource_2 = 0;
@@ -174,6 +185,7 @@ export class MGSHome {
     //     msg.send();
     // }
     public static msgTutorStep(num: number) {
+        return;
         let msg = AnalyticsUtil.get(ts_tutorial_step);
         msg.data.tutorial_step = num;
         msg.send();
@@ -185,6 +197,7 @@ export class MGSHome {
 
     //玩家点击各个激励广告播放按钮次数（播放成功和失败都计算）
     public static mgsWorldId(value: number) {
+        return;
         let msg = AnalyticsUtil.get(ts_action_click);
         switch (value) {
             case 0:
@@ -204,17 +217,19 @@ export class MGSHome {
      * @param firstId 一级id
      * @param secondId 二级id
      */
-    public static mgsSendChatMsg(firstId: number, secondId: number){
+    public static mgsSendChatMsg(firstId: number, secondId: number) {
+        return;
         let msg = AnalyticsUtil.get(ts_interact_dj);
         msg.data.play_type = firstId;
         msg.data.role_id = secondId;
-        msg.send(); 
+        msg.send();
     }
     /**
      * 
      * @param value 0为抽奖，1为商店，2为弹窗
      */
-    public static mgsHallBtnClick(value: number){
+    public static mgsHallBtnClick(value: number) {
+        return;
         let msg = AnalyticsUtil.get(ts_game_launch_end);
         msg.data.end_type = 0;
         msg.data.play_type = 0;
@@ -233,7 +248,8 @@ export class MGSHome {
         msg.send();
     }
     /**抽奖相关埋点 */
-    public static msgDraw(isFirst: boolean, boxId: number, isUseMoney: boolean, lifeTime: number){
+    public static msgDraw(isFirst: boolean, boxId: number, isUseMoney: boolean, lifeTime: number) {
+        return;
         let msg = AnalyticsUtil.get(ts_action_open_box);
         msg.data.isfirstopen = "no";
         msg.data.lifetime = lifeTime;
@@ -244,7 +260,7 @@ export class MGSHome {
             msg.data.box_num = 1;
             msg.data.rebirth_num = 0;
         }
-        else{
+        else {
             msg.data.box_num = 0;
             msg.data.rebirth_num = 1;
         }
@@ -253,14 +269,16 @@ export class MGSHome {
     }
 
     //玩家结算界面统计
-    public static msgCalculate(peopleNum: number, isClickDouble: boolean){
+    public static msgCalculate(peopleNum: number, isClickDouble: boolean) {
+        return;
         let msg = AnalyticsUtil.get(ts_action_hit);
         msg.data.stage_level = peopleNum;
-        msg.data.skill_id = isClickDouble? 1: 0;
+        msg.data.skill_id = isClickDouble ? 1 : 0;
         msg.send();
     }
     //玩家点击各个激励广告播放按钮次数（仅计算播放成功的广告）
     public static mgsSceneId(value: number) {
+        return;
         let msg = AnalyticsUtil.get(ts_action_click);
         switch (value) {
             case 0:
@@ -277,6 +295,7 @@ export class MGSHome {
     }
     //主界面按钮普及率
     public static mgsResource3(value: number, isUI: boolean) {
+        return;
         let msg = AnalyticsUtil.get(ts_action_click);
         switch (value) {
             case 0:
@@ -298,46 +317,51 @@ export class MGSHome {
                 msg.data.resource_3 = 5;
                 break;
         }
-        msg.data.resource_4 = isUI? 0: 1;
+        msg.data.resource_4 = isUI ? 0 : 1;
         msg.send();
     }
     // 能力商店
-    public static mgsSkillShop(player: mw.Player, skillId: number){
-        
+    public static mgsSkillShop(player: mw.Player, skillId: number) {
+        return;
+
         let msg = AnalyticsUtil.get(ts_action_buy_plane);
         msg.data.plane_id = skillId;
         msg.send(player);
     }
     //选择地图
-    public static chooseMap(mapId: number){
+    public static chooseMap(mapId: number) {
+        return;
         let msg = AnalyticsUtil.get(ts_task);
         msg.data.taskid = mapId;
         msg.send();
     }
     //兑换物品
-    public static exchangeItem(player: mw.Player, itemId: number){
+    public static exchangeItem(player: mw.Player, itemId: number) {
+        return;
         let msg = AnalyticsUtil.get(ts_action_buy_storage);
         msg.data.storage_id = itemId;
         msg.send(player);
     }
     //购买大会员礼包
-    public static buyVipGift_S(player: mw.Player, itemId: number){
+    public static buyVipGift_S(player: mw.Player, itemId: number) {
+        return;
         let msg = AnalyticsUtil.get(ts_action_buy_rocket);
         if (itemId == SVIPGiftType.NormalGift) {
             msg.data.rocket_id = 0;
         }
-        else if(itemId == SVIPGiftType.GoldenKeyGift){
+        else if (itemId == SVIPGiftType.GoldenKeyGift) {
             msg.data.rocket_id = 1;
         }
         msg.send(player);
     }
 
-    public static buyVipGift_C(itemId: SVIPGiftType){
+    public static buyVipGift_C(itemId: SVIPGiftType) {
+        return;
         let msg = AnalyticsUtil.get(ts_action_buy_rocket);
         if (itemId == SVIPGiftType.NormalGift) {
             msg.data.rocket_id = 0;
         }
-        else if(itemId == SVIPGiftType.GoldenKeyGift){
+        else if (itemId == SVIPGiftType.GoldenKeyGift) {
             msg.data.rocket_id = 1;
         }
         msg.send();

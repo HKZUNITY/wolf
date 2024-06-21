@@ -14,6 +14,7 @@ import { ShopModuleData } from "../ShopModule/ShopData";
 import P_CoinGet from "../../UILogic/Game/P_CoinGet";
 import { BaseUI, Class } from "../../BaseUI";
 import { PlayerModuleC } from "../PlayerModule/PlayerModuleC";
+import AdsPanel from "../../AdsPanel";
 
 
 export interface ILotteryBaseItemView extends mw.UIScript {
@@ -227,22 +228,19 @@ export class LotteryInsideBasePanel<T extends ILotteryInsideBasePanelView> exten
         })
         this.view.mMaskButton_AD.pressedDelegate.clear();
         this.view.mMaskButton_AD.pressedDelegate.add(() => {
-            console.error(`wfz - lott - ads`);
             let data = DataCenterC.getData(PlayerModuleData)
             if (data.getLotteryWatchAdCountDown(curLotteryIndex) > 0) {
                 P_Tips.show("广告冷却中！");
             }
             else {
-                IAAUtils.showRewardAd(() => {//TODO:WFZ
+                UIService.getUI(AdsPanel).showRewardAd(() => {
                     ModuleService.getModule(PlayerModuleC).addAdvToken(1);
                     ModuleService.getModule(LotteryModuleC).setLotteryWatchAdTime(curLotteryIndex);
                     if (this.countDownInterval == null) {
                         this.setLotteryAd(true);
                     }
                     this.saleLottery(0);
-                }, () => {
-                    P_Tips.show("稍等一下!");
-                });
+                }, "免费领取奖励\n再送一张广告券", "取消", "领取");
             }
 
         })
