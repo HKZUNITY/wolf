@@ -1,0 +1,41 @@
+**************************************************
+--开始检查项目资源
+--项目路径:C:\Users\admin\AppData\MetaApp\Editor_Win64\meta\MetaWorldSaved\Saved\MetaWorld\Project\Edit\wolf\wolf
+**************************************************
+**************************************************
+--项目资源检查结束，耗时:1.406
+**************************************************
+-------------------------------------------
+--需要修改的脚本[.ts文件]：26
+[C:/Users/admin/AppData/MetaApp/Editor_Win64/meta/MetaWorldSaved/Saved/MetaWorld/Project/Edit/wolf/wolf/JavaScripts/Tables/Role.ts]使用到ID[ 22848 ]确定这是资源ID？可替换=>[ 73211 ]
+[C:/Users/admin/AppData/MetaApp/Editor_Win64/meta/MetaWorldSaved/Saved/MetaWorld/Project/Edit/wolf/wolf/JavaScripts/Tables/Role.ts]使用到ID[ 22849 ]确定这是资源ID？可替换=>[ 75663 ]
+[C:/Users/admin/AppData/MetaApp/Editor_Win64/meta/MetaWorldSaved/Saved/MetaWorld/Project/Edit/wolf/wolf/JavaScripts/Tables/Role.ts]使用到ID[ 22860 ]确定这是资源ID？可替换=>[ 76618 ]
+[C:/Users/admin/AppData/MetaApp/Editor_Win64/meta/MetaWorldSaved/Saved/MetaWorld/Project/Edit/wolf/wolf/JavaScripts/Tables/Role.ts]使用到ID[ 22868 ]确定这是资源ID？可替换=>[ 65661 ]
+[C:/Users/admin/AppData/MetaApp/Editor_Win64/meta/MetaWorldSaved/Saved/MetaWorld/Project/Edit/wolf/wolf/JavaScripts/Tables/Role.ts]使用到ID[ 26040 ]确定这是资源ID？可替换=>[ 65656 ]
+[C:/Users/admin/AppData/MetaApp/Editor_Win64/meta/MetaWorldSaved/Saved/MetaWorld/Project/Edit/wolf/wolf/JavaScripts/Tables/Role.ts]使用到ID[ 26045 ]确定这是资源ID？可替换=>[ 65657 ]
+[C:/Users/admin/AppData/MetaApp/Editor_Win64/meta/MetaWorldSaved/Saved/MetaWorld/Project/Edit/wolf/wolf/JavaScripts/Tables/Role.ts]使用到ID[ 26047 ]确定这是资源ID？可替换=>[ 64727 ]
+[C:/Users/admin/AppData/MetaApp/Editor_Win64/meta/MetaWorldSaved/Saved/MetaWorld/Project/Edit/wolf/wolf/JavaScripts/Tables/Role.ts]使用到ID[ 26051 ]确定这是资源ID？可替换=>[ 65664 ]
+[C:/Users/admin/AppData/MetaApp/Editor_Win64/meta/MetaWorldSaved/Saved/MetaWorld/Project/Edit/wolf/wolf/JavaScripts/Tables/Role.ts]使用到ID[ 26056 ]确定这是资源ID？可替换=>[ 73212 ]
+[C:/Users/admin/AppData/MetaApp/Editor_Win64/meta/MetaWorldSaved/Saved/MetaWorld/Project/Edit/wolf/wolf/JavaScripts/Tables/Role.ts]使用到ID[ 26058 ]确定这是资源ID？可替换=>[ 65978 ]
+[C:/Users/admin/AppData/MetaApp/Editor_Win64/meta/MetaWorldSaved/Saved/MetaWorld/Project/Edit/wolf/wolf/JavaScripts/Tables/Role.ts]使用到ID[ 26063 ]确定这是资源ID？可替换=>[ 65665 ]
+[C:/Users/admin/AppData/MetaApp/Editor_Win64/meta/MetaWorldSaved/Saved/MetaWorld/Project/Edit/wolf/wolf/JavaScripts/Tables/Role.ts]使用到ID[ 26064 ]确定这是资源ID？可替换=>[ 64729 ]
+[C:/Users/admin/AppData/MetaApp/Editor_Win64/meta/MetaWorldSaved/Saved/MetaWorld/Project/Edit/wolf/wolf/JavaScripts/Tables/Role.ts]使用到ID[ 30452 ]确定这是资源ID？可替换=>[ 64803 ]
+[C:/Users/admin/AppData/MetaApp/Editor_Win64/meta/MetaWorldSaved/Saved/MetaWorld/Project/Edit/wolf/wolf/JavaScripts/Tables/Role.ts]使用到ID[ 30454 ]确定这是资源ID？可替换=>[ 76619 ]
+[C:/Users/admin/AppData/MetaApp/Editor_Win64/meta/MetaWorldSaved/Saved/MetaWorld/Project/Edit/wolf/wolf/JavaScripts/Tables/Role.ts]使用到ID[ 30459 ]确定这是资源ID？可替换=>[ 64715 ]
+[C:/Users/admin/AppData/MetaApp/Editor_Win64/meta/MetaWorldSaved/Saved/MetaWorld/Project/Edit/wolf/wolf/JavaScripts/Tables/Role.ts]使用到ID[ 30460 ]确定这是资源ID？可替换=>[ 64719 ]
+[C:/Users/admin/AppData/MetaApp/Editor_Win64/meta/MetaWorldSaved/Saved/MetaWorld/Project/Edit/wolf/wolf/JavaScripts/Tables/Role.ts]使用到ID[ 30461 ]确定这是资源ID？可替换=>[ 75664 ]
+[C:/Users/admin/AppData/MetaApp/Editor_Win64/meta/MetaWorldSaved/Saved/MetaWorld/Project/Edit/wolf/wolf/JavaScripts/Tables/Role.ts]使用到ID[ 30465 ]确定这是资源ID？可替换=>[ 63680 ]
+[C:/Users/admin/AppData/MetaApp/Editor_Win64/meta/MetaWorldSaved/Saved/MetaWorld/Project/Edit/wolf/wolf/JavaScripts/Tables/Role.ts]使用到ID[ 35165 ]确定这是资源ID？可替换=>[ 63686 ]
+[C:/Users/admin/AppData/MetaApp/Editor_Win64/meta/MetaWorldSaved/Saved/MetaWorld/Project/Edit/wolf/wolf/JavaScripts/Tables/Role.ts]使用到ID[ 35168 ]确定这是资源ID？可替换=>[ 66597 ]
+[C:/Users/admin/AppData/MetaApp/Editor_Win64/meta/MetaWorldSaved/Saved/MetaWorld/Project/Edit/wolf/wolf/JavaScripts/Tables/Role.ts]使用到ID[ 35170 ]确定这是资源ID？可替换=>[ 63885 ]
+[C:/Users/admin/AppData/MetaApp/Editor_Win64/meta/MetaWorldSaved/Saved/MetaWorld/Project/Edit/wolf/wolf/JavaScripts/Tables/Role.ts]使用到ID[ 35177 ]确定这是资源ID？可替换=>[ 66594 ]
+[C:/Users/admin/AppData/MetaApp/Editor_Win64/meta/MetaWorldSaved/Saved/MetaWorld/Project/Edit/wolf/wolf/JavaScripts/Tables/Role.ts]使用到ID[ 35179 ]确定这是资源ID？可替换=>[ 66595 ]
+[C:/Users/admin/AppData/MetaApp/Editor_Win64/meta/MetaWorldSaved/Saved/MetaWorld/Project/Edit/wolf/wolf/JavaScripts/Tables/Role.ts]使用到ID[ 35184 ]确定这是资源ID？可替换=>[ 64631 ]
+[C:/Users/admin/AppData/MetaApp/Editor_Win64/meta/MetaWorldSaved/Saved/MetaWorld/Project/Edit/wolf/wolf/JavaScripts/Tables/Role.ts]使用到ID[ 35192 ]确定这是资源ID？可替换=>[ 63915 ]
+[C:/Users/admin/AppData/MetaApp/Editor_Win64/meta/MetaWorldSaved/Saved/MetaWorld/Project/Edit/wolf/wolf/JavaScripts/Tables/Weapon.ts]使用到ID[ 39049 ]确定这是资源ID？可替换=>[ 66425 ]
+=>请修改上述ts文件，如果提示ID不是资源请忽略
+=>如果是配置文件转换的ts文件，请修改对应的配置表
+-------------------------------------------
+=>资源替换0处
+=>还有26个目标需要处理
+=========================================================

@@ -1,0 +1,35 @@
+﻿{
+	"name": "wolf",
+	"packageName": "0342A7D74976AB95AD9385966277FABE",
+	"foldername": "wolf",
+	"mainScene": 1,
+	"scenePublic": 1,
+	"intro": "1",
+	"notes": "1",
+	"editorVersion": "v0.34.0.3",
+	"parentGameIdentity": "",
+	"parentGameId": "",
+	"extra": "{\"attribute\":2,\"IsHorizontal\":true,\"useAvatar\":0}",
+	"devEnv": 3,
+	"needToMgs": 0,
+	"attribute": 2,
+	"autoSubmitAudit": false,
+	"ignore": [
+		"game.desc",
+		"Asset_Data_List"
+	],
+	"files": [
+		{
+			"type": "Game_Thumbnail",
+			"path": "Pictures/Game_Thumbnail.jpg"
+		},
+		{
+			"type": "GameSetting",
+			"path": "Config/GameSetting.ini"
+		},
+		{
+			"type": "Asset_Data_List",
+			"path": "Asset_Data_List"
+		}
+	]
+}
