@@ -1,4 +1,4 @@
-import {  oTrace } from 'odin';
+import { oTrace } from 'odin';
 import { PlayerModuleC } from '../../Module/PlayerModule/PlayerModuleC';
 import { GameConfig } from '../../Tables/GameConfig';
 import RewardPopup from '../../uiTemplate/Hall/RewardPopup';
@@ -38,9 +38,9 @@ export default class P_RewardPopup extends RewardPopup_Generate {
         mw.UIService.hideUI(this);
     }
 
-    showRewardItem(rewardType: SVIPGiftType){
+    showRewardItem(rewardType: SVIPGiftType) {
         this.resetUsedItem();
-        GameConfig.Member.getAllElement().forEach((value, index)=>{
+        GameConfig.Member.getAllElement().forEach((value, index) => {
             if (value.MemberType == rewardType) {
                 let item = this.getRewardItem();
                 this.usedPool.push(item);
@@ -56,21 +56,21 @@ export default class P_RewardPopup extends RewardPopup_Generate {
         this.show();
     }
 
-    refreshText(gold: number){
+    refreshText(gold: number) {
         this.resetUsedItem();
         let item = this.getRewardItem();
         this.usedPool.push(item);
         item.uiObject.size = item.rootCanvas.size;
         this.mCanvas_Content.addChild(item.uiObject);
-        item.mImage_Icon.imageGuid = GameConfig.Rule.getElement("10042").Num.toString();
+        // item.mImage_Icon.imageGuid = GameConfig.Rule.getElement("10042").Num.toString();
         item.mText_RewardNum.text = "金币";
         item.mText_Num.text = gold.toString();
         item.mText_Num.visibility = mw.SlateVisibility.SelfHitTestInvisible;
         item.setVisible(true);
     }
 
-    private resetUsedItem(){
-        this.usedPool.forEach((value, index)=>{
+    private resetUsedItem() {
+        this.usedPool.forEach((value, index) => {
             this.unUsedPool.push(value);
             value.setVisible(false);
         })
