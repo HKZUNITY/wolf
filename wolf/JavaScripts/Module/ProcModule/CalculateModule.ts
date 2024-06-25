@@ -21,7 +21,7 @@ import AdsPanel from '../../AdsPanel';
 
 export class CalculateModuleC extends ModuleC<CalculateModuleS, null> {
     private _gold = 0;
-    private canWtachAD: boolean = false
+    // private canWtachAD: boolean = false
     /**进入游戏的玩家数量 */
     private enterGamePlayerCount: number = -1
     onStart(): void {
@@ -67,9 +67,9 @@ export class CalculateModuleC extends ModuleC<CalculateModuleS, null> {
     /**关闭结算界面发送埋点 */
     closeCalculateUIMgs() {
         /**看过广告就不发送了 */
-        if (!this.canWtachAD) {
-            return
-        }
+        // if (!this.canWtachAD) {
+        //     return
+        // }
         MGSHome.msgCalculate(this.enterGamePlayerCount, false);
     }
 
@@ -84,15 +84,15 @@ export class CalculateModuleC extends ModuleC<CalculateModuleS, null> {
         }
         this.enterGamePlayerCount = enterPlayerNum
         let dataStr = JSON.stringify(newobj);
-        this.canWtachAD = true
         let calcRewardEvent = () => {
-            if (!this.canWtachAD) return
+            // if (!this.canWtachAD) return
             UIService.getUI(AdsPanel).showRewardAd(() => {
                 ModuleService.getModule(PlayerModuleC).addAdvToken(1);
                 ModuleService.getModule(PlayerModuleC).net_RewardGold(gold)
-                this.canWtachAD = false
+                // this.canWtachAD = false
                 MGSHome.msgCalculate(this.enterGamePlayerCount, true);
-            }, "免费领取奖励\n再送一张广告券", "取消", "领取");
+                P_Account.closeAccountUI();
+            }, "免费领取双倍金币\n再送一张广告券", "取消", "领取");
         }
         P_Account.instance.setMButtonWatchADEvent(calcRewardEvent.bind(this))
         P_Account.showAccountUI(dataStr, isSvip);

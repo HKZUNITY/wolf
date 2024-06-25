@@ -392,8 +392,12 @@ export class Tools {
     }
 
     public static async changeClothByRole(modelInfo: IRoleElement, model: mw.Character) {
-        if (!modelInfo || !model) return;
+        if (!model) return;
         await model.asyncReady();
+        if (!modelInfo) {
+            AccountService.downloadData(model);
+            model.syncDescription();
+        }
         console.error(`change :: model${model.gameObjectId} data: ${JSON.stringify(modelInfo)} `);
         let advance = model?.description?.advance;
         if (!advance) return;

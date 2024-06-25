@@ -49,6 +49,8 @@ export default class Shop_Generate extends mw.UIScript {
     public mUIText20013_btn: mw.StaleButton = undefined;
     @UIWidgetBind('RootCanvas/mCanvas_Shop/mCanvas_ItemChoose/mCanvas_ItemTypes/mUIText20012_btn')
     public mUIText20012_btn: mw.StaleButton = undefined;
+    @UIWidgetBind('RootCanvas/mCanvas_Shop/mCanvas_ItemChoose/mCanvas_ItemTypes/mUITextSuit_btn')
+    public mUITextSuit_btn: mw.StaleButton = undefined;
     @UIWidgetBind('RootCanvas/mCanvas_Shop/mCanvas_Money')
     public mCanvas_Money: mw.Canvas = undefined;
     @UIWidgetBind('RootCanvas/mCanvas_Shop/mCanvas_Money/mImage_ShopMoney')
@@ -202,6 +204,11 @@ export default class Shop_Generate extends mw.UIScript {
         this.initLanguage(this.mUIText20012_btn);
         this.mUIText20012_btn.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
 
+        this.mUITextSuit_btn.onClicked.add(() => {
+            Event.dispatchToLocal("PlayButtonClick", "mUITextSuit_btn");
+        })
+        this.initLanguage(this.mUITextSuit_btn);
+        this.mUITextSuit_btn.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
 
         this.mUIText20015_btn.onClicked.add(() => {
             Event.dispatchToLocal("PlayButtonClick", "mUIText20015_btn");

@@ -169,13 +169,13 @@ export class PlayerModuleS extends ModuleS<PlayerModuleC, PlayerModuleData> {
     //     ModuleService.getModule(BagModuleS).equipHotWeapon(player, hot);
     // }
     public changeModel(player: mw.Player, character: mw.Character | mw.Character, roleID: number) {
-        return;//TODO:wfz:暂时不用
+        // return;//TODO:wfz:暂时不用
         this.getClient(player).net_changeModel(roleID, character.gameObjectId);
     }
     public net_SetPlayerModel(playerId: number, roleId: number, isSave: boolean) {
         let player = Player.getPlayer(playerId);
         if (roleId == 0) return;
-        if (isSave == true) {
+        if (isSave == true && roleId != 40000) {
             let curRole = this.getPlayerData(player).setPlayerRoleId(roleId);
             if (curRole != 0) {
                 this.getPlayerData(player).save(true);

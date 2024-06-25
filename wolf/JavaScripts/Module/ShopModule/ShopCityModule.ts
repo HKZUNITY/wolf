@@ -155,7 +155,7 @@ export class ShopModuleC extends ModuleC<ShopModuleS, ShopModuleData> {
 		this.server.net_GetItem(id)
 	}
 	public previewCloth(id: number, isPreview: boolean) {
-		this.server.net_previewCloth(id, isPreview);
+		// this.server.net_previewCloth(id, isPreview);//TODO:WFZ
 	}
 	public net_RefreshUI(id: number) {
 		if (this.panel)
@@ -175,7 +175,7 @@ export class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData> {
 		cfg.forEach(value => {
 			if (value.ID > 40000 && value.ID < 50000) {
 				if (value.SuitItems[0] == roleID) {
-					this.useCloth(player, value.ID);
+					// this.useCloth(player, value.ID);
 				}
 			}
 		})
@@ -188,7 +188,7 @@ export class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData> {
 		let isHot: boolean = false;
 		useArray.forEach((value) => {
 			let kind = (value - value % 10000) / 10000;
-			this.useItem(player, value, true, true);
+			if (kind != 4) this.useItem(player, value, true, true);
 			if (kind == 1) {
 				isCold = true;
 			}
@@ -216,6 +216,7 @@ export class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData> {
 
 	public useItem(player: mw.Player, id: number, isUse: boolean, isInit: boolean) {
 		let kind = (id - id % 10000) / 10000;
+		console.error(`kind:${kind} isUse:${isUse}`);
 		if (isUse) {
 			if (isInit == false && this.getPlayerData(player).getItemState(id) == ItemState.NotOwn) {
 				return;
@@ -237,6 +238,9 @@ export class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData> {
 			else if (kind == 5) {
 				this.equipDecoration(player, id);
 			}
+			else if (kind == 4) {
+				this.useCloth(player, id);
+			}
 		}
 		else {
 			if (kind == 1) {
@@ -250,6 +254,9 @@ export class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData> {
 			}
 			else if (kind == 5) {
 				this.equipDecoration(player, 50000);
+			}
+			else if (kind == 4) {
+				this.useCloth(player, 40000);
 			}
 		}
 	}
@@ -303,7 +310,8 @@ export class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData> {
 		this.getClient(player).net_RefreshUI(id);
 		let cloth = 0;
 		if (id == 40000) {//脱下
-			cloth = DataCenterS.getData(player, PlayerModuleData).getPlayerOrginRole();
+			// cloth = DataCenterS.getData(player, PlayerModuleData).getPlayerOrginRole();
+			cloth = id;
 		} else {
 			cloth = GameConfig.Shop.getElement(id).SuitItems[0];
 		}

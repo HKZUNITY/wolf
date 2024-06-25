@@ -120,7 +120,7 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
                 console.error(`changeCloth ==== 模型 1 roleID : ${roleID} :: modelGuid ${modelGuid}`);
             } else {
                 console.error(`changeCloth ==== 玩家 1 roleID : ${roleID} :: modelGuid ${modelGuid}`);
-                return;
+                // return;
             }
             if (!model) return;
             Tools.changeClothByRole(modelInfo, model);
@@ -575,17 +575,24 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
                 P_Tips.show(GameConfig.Tips.getElement(20004).Content);
                 return;
             }
+            this.rewardAd();
+            return;
             //是否正在倒计时
             if (this._mText_ADTime.text != "") {
                 oTrace("kang log 正在倒计时");
                 P_Tips.show(GameConfig.Tips.getElement(20003).Content);
             }
             else {
-                this.rewardAd();
             }
         }
     }
-    private rewardAd() {
+    private async rewardAd() {
+        let numA = GameConfig.Rule.getElement(30004).Num;
+        let numB = await this.server.net_getHallAdNum(0);
+        let numN = GameConfig.Rule.getElement(30005).Num;
+        oTrace("kang log numA=" + numA + " numB=" + numB + " numN=" + numN);
+        //N=A+n*B
+        let num = numA + numB * numN;
         UIService.getUI(AdsPanel).showRewardAd(async () => {
             console.warn("kang log 大厅金币激励广告播放成功");
             MGSHome.mgsSceneId(2);
@@ -593,12 +600,7 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
             //弹出奖励界面
             let rewardPopup = UiManager.instance.getUIRewardPopup();
             rewardPopup.show();
-            let numA = GameConfig.Rule.getElement(30004).Num;
-            let numB = await this.server.net_getHallAdNum(0);
-            let numN = GameConfig.Rule.getElement(30005).Num;
-            oTrace("kang log numA=" + numA + " numB=" + numB + " numN=" + numN);
-            //N=A+n*B
-            let num = numA + numB * numN;
+
             rewardPopup.refreshText(num);
             this.server.net_ChangeGold(num);
             let nu = await this.getHallAdNum(1);
@@ -613,7 +615,7 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
                 this.setCountDown(GameConfig.Rule.getElement(30006).Time);
                 this._mImage_RedPoint.visibility = (mw.SlateVisibility.Collapsed);
             }
-        }, "免费领取奖励", "取消", "领取");
+        }, `免费领取${num}金币`, "取消", "领取");
     }
     private async setHallAd() {
         //获取当前玩家观看大厅广告次数

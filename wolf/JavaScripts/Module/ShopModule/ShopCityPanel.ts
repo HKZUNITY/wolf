@@ -51,6 +51,7 @@ export interface IShopBasePanelView extends mw.UIScript {
 	mUIText20029_btn: mw.StaleButton;//枪
 	mUIText20013_btn: mw.StaleButton;//特效
 	mUIText20014_btn: mw.StaleButton;//套装
+	mUITextSuit_btn: mw.StaleButton;//套装
 
 	/**分类提示 */
 	mUIText20010_txt: mw.TextBlock;//黑手党
@@ -293,9 +294,9 @@ export class ShopBasePanel<T extends IShopBasePanelView> extends BaseUI<T> {
 		this.tabGroup = new mw.TabGroup(this.mTabGroupBtns);
 		this.tabGroup.init((btn: mw.StaleButton, isSelect: boolean) => {
 			if (isSelect) {
-				btn.size = (new mw.Vector2(200, 120));
+				btn.size = (new mw.Vector2(170, 120));
 			} else {
-				btn.size = (new mw.Vector2(200, 100));
+				btn.size = (new mw.Vector2(170, 100));
 			}
 		}, (selectIndex: number) => {
 			this.currentTabIndex = selectIndex;
@@ -634,6 +635,7 @@ export class ShopBasePanel<T extends IShopBasePanelView> extends BaseUI<T> {
 		this.view.mUIText20029_btn.text = (GameConfig.Text.getElement(20029).Content);
 		this.view.mUIText20013_btn.text = (GameConfig.Text.getElement(20013).Content);
 		this.view.mUIText20014_btn.text = (GameConfig.Text.getElement(20014).Content);
+		this.view.mUITextSuit_btn.text = `皮肤`;
 
 		/**阵营 */
 		this.view.mUIText20010_txt.text = (GameConfig.Text.getElement(20010).Content);

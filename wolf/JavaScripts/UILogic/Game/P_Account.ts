@@ -221,10 +221,10 @@ export default class P_Account extends Clearing {
                         this.coinTween.stop();
                         this.coinTween = null;
                     }).start();
-                let keepTime = GameConfig.Rule.getElement(10030).Time;
+                // let keepTime = GameConfig.Rule.getElement(10030).Time;
                 setTimeout(() => {
                     P_Account.closeAccountUI();
-                }, keepTime * 1000);
+                }, 30 * 1000);
             }
             time++;
         }, 1);
