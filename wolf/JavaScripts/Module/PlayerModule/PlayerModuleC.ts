@@ -153,6 +153,7 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
         this.changePlayerAppear(this.localPlayer.character);
         this.clearSceneNpcName();
         this.initSceneTrigger();
+        P_Hall.setHallHeadImg(10001);
     }
     private lotteryBlock: boolean = false;
     private svipBlock: boolean = false;
