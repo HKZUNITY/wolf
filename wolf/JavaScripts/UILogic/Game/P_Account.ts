@@ -3,6 +3,7 @@ import { GameConfig } from "../../Tables/GameConfig";
 import Clearing from "../../uiTemplate/Clearing/Clearing";
 import { CalculateModuleC, calculateData } from "../../Module/ProcModule/CalculateModule";
 import { IAAUtils } from "../../IAAUtils";
+import P_Tips from "../../CommonUI/P_Tips";
 
 export default class P_Account extends Clearing {
     private static _instance: P_Account;
@@ -49,6 +50,7 @@ export default class P_Account extends Clearing {
         P_Account.instance.accountDetail(dataStr);
         P_Account.instance.mText_Member.visibility = isSvip ? mw.SlateVisibility.SelfHitTestInvisible : mw.SlateVisibility.Collapsed;
         UIService.show(this);
+        P_Tips.show("开始结算");
     }
     public static closeAccountUI() {
         UIService.hide(this);
