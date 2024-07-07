@@ -411,6 +411,9 @@ export class Tools {
         advance.clothing.gloves.style = modelInfo.Gloves.toString();
         await model.asyncReady();
         await model.syncDescription();
+        if (PlayerManagerExtesion.isNpc(model)) {
+            model.worldTransform.scale = new mw.Vector(0.8, 0.8, 0.8);
+        }
         // if (modelInfo.Gender == 1) {
         //     // v2.description.advance.base.characterSetting.somatotype = (mw.SomatotypeV2.AnimeMale, false);
         //     v2.setSuit(mw.SomatotypeV2.AnimeMale, modelInfo.Head.toString(),

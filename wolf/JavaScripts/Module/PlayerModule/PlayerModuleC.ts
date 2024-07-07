@@ -115,13 +115,6 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
         let modelInfo = GameConfig.Role.getElement(roleID);
         GameObject.asyncFindGameObjectById(modelGuid).then((obj) => {
             let model = obj as mw.Character;
-            if (PlayerManagerExtesion.isNpc(model)) {
-                model.worldTransform.scale = new mw.Vector(0.8, 0.8, 0.8);
-                console.error(`changeCloth ==== 模型 1 roleID : ${roleID} :: modelGuid ${modelGuid}`);
-            } else {
-                console.error(`changeCloth ==== 玩家 1 roleID : ${roleID} :: modelGuid ${modelGuid}`);
-                // return;
-            }
             if (!model) return;
             Tools.changeClothByRole(modelInfo, model);
         })
