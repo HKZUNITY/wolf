@@ -1,12 +1,12 @@
 ﻿{
-	"name": "狼人杀模拟器",
+	"name": "暑假狼人杀模拟器",
 	"packageName": "DD784217459EECD6CEF4BFB13091EC1D",
 	"foldername": "wolf",
 	"mainScene": 1,
 	"scenePublic": 1,
-	"intro": "修改UI",
-	"notes": "修改UI",
-	"editorVersion": "v0.34.0.3",
+	"intro": "更新游戏",
+	"notes": "更新游戏",
+	"editorVersion": "v0.39.0.4",
 	"parentGameIdentity": "",
 	"parentGameId": "",
 	"extra": "{\"attribute\":2,\"IsHorizontal\":true,\"useAvatar\":1}",
@@ -31,5 +31,23 @@
 			"type": "Asset_Data_List",
 			"path": "Asset_Data_List"
 		}
-	]
+	],
+	"lightZipIgnore":
+	{
+		"suffixMatches": [
+			".meta",
+			".ts",
+			".ui",
+			".uimap",
+			".mat"
+		],
+		"fullMatches": [
+			"Asset_Data_List"
+		],
+		"prefixMatches": [
+			"AutoBackup/",
+			"JavaScripts/",
+			"Plugins/"
+		]
+	}
 }

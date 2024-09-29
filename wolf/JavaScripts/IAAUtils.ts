@@ -1,9 +1,9 @@
 import { GeneralManager, } from './Modified027Editor/ModifiedStaticAPI';
 import { Globals } from "./Globals";
 
-declare namespace puerts {
-    const argv: any;
-}
+// declare namespace puerts {
+//     const argv: any;
+// }
 /** 
  * @Author       : lei.zhao
  * @Date         : 2022-12-30 15:09:19
@@ -17,7 +17,7 @@ export namespace IAAUtils {
     /**
      * 是否是手机平台
      */
-    const IS_MOBILE_PLATFORM = (puerts.argv.getByName("Proxy") as any).ProjectDir.indexOf(":") < 0;
+    // const IS_MOBILE_PLATFORM = (puerts.argv.getByName("Proxy") as any).ProjectDir.indexOf(":") < 0;
     /**
      * 播放超时时间，广告超时认为平台版本号过低
      */
@@ -65,19 +65,19 @@ export namespace IAAUtils {
      * 此开关由广告平台控制，游戏根据返回结果来显示/关闭广告相关的功能
      * @life 客户端
      */
-    export function isRewardOpen() {
-        if (!IS_MOBILE_PLATFORM) return Globals.isShowAdv;
-        return mw.AdsService.isActive(mw.AdsType.Reward);
-    }
+    // export function isRewardOpen() {
+    //     if (!IS_MOBILE_PLATFORM) return Globals.isShowAdv;
+    //     return mw.AdsService.isActive(mw.AdsType.Reward);
+    // }
     /**
      * 全屏广告是否打开
      * 此开关由广告平台控制，游戏根据返回结果来显示/关闭广告相关的功能
      * @life 客户端
      */
-    export function isInterstitialOpen() {
-        if (!IS_MOBILE_PLATFORM) return PIE_INTERSTITIAL_ACTIVE;
-        return mw.AdsService.isActive(mw.AdsType.Interstitial);
-    }
+    // export function isInterstitialOpen() {
+    //     if (!IS_MOBILE_PLATFORM) return PIE_INTERSTITIAL_ACTIVE;
+    //     return mw.AdsService.isActive(mw.AdsType.Interstitial);
+    // }
     /**
      * 延时调用，避免UI刷新问题
      * @param callback 
@@ -103,24 +103,24 @@ export namespace IAAUtils {
      * @param onFail 失败
      * @param onPlatformVersionError 播放超时,一版是233版本过低，广告无法播放
      */
-    export function showRewardAd(onSuccess: () => void, onFail: () => void, onPlatformVersionError?: () => void) {
-        if (mw.SystemUtil.isServer()) {
-            console.warn(new Error("服务端不能播放广告").stack);
-            return;
-        }
-        if (!IS_MOBILE_PLATFORM) {
-            //PIE直接成功
-            onSuccess();
-            return;
-        }
+    // export function showRewardAd(onSuccess: () => void, onFail: () => void, onPlatformVersionError?: () => void) {
+    //     if (mw.SystemUtil.isServer()) {
+    //         console.warn(new Error("服务端不能播放广告").stack);
+    //         return;
+    //     }
+    //     if (!IS_MOBILE_PLATFORM) {
+    //         //PIE直接成功
+    //         onSuccess();
+    //         return;
+    //     }
 
-        if (last_ad_play_time >= Date.now() - AD_INTERVAL) {
-            onFail();
-            return;
-        }
-        last_ad_play_time = Date.now() + 60000;//默认1分钟,根据广告关闭刷新
-        _showRewardAd(onSuccess, onFail, onPlatformVersionError, false);
-    }
+    //     if (last_ad_play_time >= Date.now() - AD_INTERVAL) {
+    //         onFail();
+    //         return;
+    //     }
+    //     last_ad_play_time = Date.now() + 60000;//默认1分钟,根据广告关闭刷新
+    //     _showRewardAd(onSuccess, onFail, onPlatformVersionError, false);
+    // }
 
     /**
      * 
@@ -196,23 +196,23 @@ export namespace IAAUtils {
      * @param onFail 失败
      * @param onPlatformVersionError 播放超时,一版是233版本过低，广告无法播放
      */
-    export function showInterstitialAd(onSuccess: () => void, onFail: () => void, onPlatformVersionError?: () => void) {
-        if (mw.SystemUtil.isServer()) {
-            console.warn(new Error("服务端不能播放广告").stack);
-            return;
-        }
-        if (last_ad_play_time >= Date.now() - AD_INTERVAL) {
-            onFail();
-            return;
-        }
-        if (!IS_MOBILE_PLATFORM) {
-            //PIE直接成功
-            onSuccess();
-            return;
-        }
-        last_ad_play_time = Date.now() + 60000;//默认1分钟,根据广告关闭刷新
-        _showInterstitialAd(onSuccess, onFail, onPlatformVersionError, false);
-    }
+    // export function showInterstitialAd(onSuccess: () => void, onFail: () => void, onPlatformVersionError?: () => void) {
+    //     if (mw.SystemUtil.isServer()) {
+    //         console.warn(new Error("服务端不能播放广告").stack);
+    //         return;
+    //     }
+    //     if (last_ad_play_time >= Date.now() - AD_INTERVAL) {
+    //         onFail();
+    //         return;
+    //     }
+    //     if (!IS_MOBILE_PLATFORM) {
+    //         //PIE直接成功
+    //         onSuccess();
+    //         return;
+    //     }
+    //     last_ad_play_time = Date.now() + 60000;//默认1分钟,根据广告关闭刷新
+    //     _showInterstitialAd(onSuccess, onFail, onPlatformVersionError, false);
+    // }
     /**
      * 
      * @param onSuccess 
