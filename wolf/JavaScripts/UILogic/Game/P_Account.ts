@@ -42,7 +42,7 @@ export default class P_Account extends Clearing {
         //     this.mBtn_ClearingAD.visibility = (mw.SlateVisibility.Collapsed);
         // }
         this.layer = mw.UILayerMiddle;
-        this.mCanvas_AD.visibility = mw.SlateVisibility.SelfHitTestInvisible;
+        // this.mCanvas_AD.visibility = mw.SlateVisibility.SelfHitTestInvisible;//TODO-WFZ
     }
 
     public static showAccountUI(dataStr: string, isSvip: boolean) {

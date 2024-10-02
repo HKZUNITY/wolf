@@ -47,6 +47,7 @@ import { AutoAimModuleS } from "./Module/Weapon/Aim/AutoAimModuleS";
 import { GMBasePanelUI } from "./UILogic/UIGM";
 import P_Notice from "./uiTemplate/Common/P_Notice";
 import { Tools } from "./Tools";
+import { TrampolineModuleC, TrampolineModuleS } from "./Module/TrampolineModule/TrampolineModule";
 
 @Component
 export default class GameStart extends mw.Script {
@@ -118,6 +119,7 @@ export default class GameStart extends mw.Script {
         //     }
         // })
         ModuleService.registerModule(ExchangeModuleS, ExchangeModuleC, null);
+        ModuleService.registerModule(TrampolineModuleS, TrampolineModuleC, null);
 
         if (mw.SystemUtil.isClient() && this.isGM) {
             new GMBasePanelUI().show();

@@ -30,10 +30,10 @@ export default class P_Hall extends MainMenu {
     }
     onStart() {
         if (Tools.isRewardActive()) {
-            this.mCanvas_AD.visibility = (mw.SlateVisibility.Visible);
+            this.mCanvas_AD.visibility = (mw.SlateVisibility.Visible);//TODO-WFZ
         }
         else {
-            this.mCanvas_AD.visibility = (mw.SlateVisibility.Collapsed);
+            this.mCanvas_AD.visibility = (mw.SlateVisibility.Collapsed);//TODO-WFZ
         }
         // this.mCanvas_Member.visibility = (mw.SlateVisibility.Collapsed);
         this.mBtn_Jump.focusable = (false);

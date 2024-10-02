@@ -1,36 +1,34 @@
-// import * as UE from "ue";
-// import * as puerts from "puerts";
+﻿
+@Component
+export default class ChangeClothes extends Script {
 
-// @MWCore.MWClass
-// class ClothTest extends MWCore.MWScript
-// {
-//     OnLoad(): void
-//     {
-//         mw.AddPlayerJoinedListener((player: GamePlay.Player) => {
-//             this.RandomChangeCloth(player);
-//         });
-//     }
+    /** 当脚本被实例后，会在第一帧更新前调用此函数 */
+    protected onStart(): void {
+        if (mw.SystemUtil.isClient()) {
+            let trigger = this.gameObject as mw.Trigger;
+            trigger.onEnter.add((char: mw.Character) => {
+                if (char.gameObjectId != Player.localPlayer.character.gameObjectId) return;
+                let npc = trigger.parent as mw.Character;
+                char.setDescription(npc.getDescription());
+                char.asyncReady().then(() => {
+                    char.syncDescription();
+                });
+            });
 
-//     RandomChangeCloth(player: GamePlay.Player): void
-//     {
-//         // let fashionID = this.GetRandomNum(0, 9);
-//         // player.Character.SetCloth(GamePlay.HumanFashionType.HumanTemp_Body, fashionID);
-//         // console.log("Character Body changed to " + fashionID);
+        }
+    }
 
-//         // fashionID = this.GetRandomNum(10, 13)
-//         // player.Character.SetCloth(GamePlay.HumanFashionType.HumanTemp_Face, fashionID);
-//         // console.log("Character Face changed to " + fashionID);
+    /**
+     * 周期函数 每帧执行
+     * 此函数执行需要将this.useUpdate赋值为true
+     * @param dt 当前帧与上一帧的延迟 / 秒
+     */
+    protected onUpdate(dt: number): void {
 
-//         // fashionID = this.GetRandomNum(14, 23)
-//         // player.Character.SetCloth(GamePlay.HumanFashionType.HumanTemp_Hair, fashionID);
-//         // console.log("Character Hair changed to " + fashionID);
-//     }
+    }
 
-//     GetRandomNum(Min, Max): number {
-//         var Range = Max - Min;
-//         var Rand = Math.random();
-//         return (Min + Math.round(Rand * Range));
-//     }
-// }
+    /** 脚本被销毁时最后一帧执行完调用此函数 */
+    protected onDestroy(): void {
 
-// export default ClothTest;
+    }
+}
