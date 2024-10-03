@@ -84,7 +84,6 @@ export default class Trampoline extends mw.Script {
         // this.loadRescourseC();
         this.findGameObjectsC();
         this.playerC = await Player.asyncGetLocalPlayer();
-        this.playerC.character.driftControl = 0.5;
     }
 
     /**加载资源（客户端） */
@@ -214,7 +213,7 @@ export default class Trampoline extends mw.Script {
     private showRadiusUIC(playerId: number, number: number): void {
         if (!this.playersRadiusUI.has(playerId)) this.createRadiusUIC(playerId);
         let radiusUI = this.playersRadiusUI.get(playerId);
-        radiusUI.worldTransform.scale = mw.Vector.one.multiply(number * 2 / 100);
+        radiusUI.worldTransform.scale = mw.Vector.one.multiply(number * 2 / 200);
         radiusUI.setVisibility(mw.PropertyStatus.Off);
     }
 

@@ -77,10 +77,15 @@ export default class P_Hall extends MainMenu {
     public static showHallUI() {
         UIService.show(this, mw.UILayerMiddle);
         ModuleService.getModule(BubbleModuleC).refreshBubble();
-
+        Player.localPlayer.character.driftControl = 0.5;
+        Player.localPlayer.character.gravityScale = 1;
+        console.error(`嘿嘿`);
     }
     public static closeHallUI() {
         UIService.hide(this);
+        Player.localPlayer.character.driftControl = 1;
+        Player.localPlayer.character.gravityScale = 3;
+        console.error(`哈哈`);
     }
     public showShop() {
         this.mCanvas_Watch.visibility = (mw.SlateVisibility.Collapsed);
