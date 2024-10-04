@@ -161,13 +161,13 @@ export default class P_Account extends Clearing {
         //===================step1
         //右侧杀手
         this.mText_Detective.text = GameConfig.Identity.getElement(10002).IdentityName;
-        this.mImg_PlayerIcon_Detective.imageGuid = GameConfig.Role.getElement(data.spyRoleId).Image.toString();
+        this.mImg_PlayerIcon_Detective.imageGuid = (GameConfig.Role.findElement(`ID`, data.spyRoleId) ? GameConfig.Role.getElement(data.spyRoleId).Image.toString() : GameConfig.Role.getElement(10001).Image.toString());
         this.mImg_WeaponIcon_Detective.imageGuid = GameConfig.Weapon.getElement(data.spyWeaponId).IconGUID.toString()
         this.mText_WeaponName_Detective.text = GameConfig.Weapon.getElement(data.spyWeaponId).WeaponName;
         this.mText_PlayerName_Detective.text = data.spyName;
         //左侧其他
         this.mText_Maffia.text = GameConfig.Identity.getElement(maffiaId).IdentityName;
-        this.mImg_PlayerIcon_Maffia.imageGuid = GameConfig.Role.getElement(data.otherRoleId).Image.toString();
+        this.mImg_PlayerIcon_Maffia.imageGuid = (GameConfig.Role.findElement(`ID`, data.otherRoleId) ? GameConfig.Role.getElement(data.otherRoleId).Image.toString() : GameConfig.Role.getElement(10001).Image.toString());
         this.mImg_WeaponIcon_Maffia.imageGuid = GameConfig.Weapon.getElement(data.otherWeaponId).IconGUID.toString()
         this.mText_WeaponName_Maffia.text = GameConfig.Weapon.getElement(data.otherWeaponId).WeaponName
         this.mText_PlayerName_Maffia.text = data.otherName;

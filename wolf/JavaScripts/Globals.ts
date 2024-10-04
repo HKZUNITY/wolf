@@ -15,7 +15,7 @@ export class Globals {
     /**大厅出生点父物体guid */
     public static hallBornGuid: string = "2C4F453B";
     /**游戏出生点父物体guid */
-    public static gameBornGuid: string = "6A4B9B76";
+    public static gameBornGuid: string = "6A4B9B76";//走配表了
     /**断线重连出生点 */
     public static reBornGuid: string = "5E181623";
     ///////////////////////////////////////////游戏时间配置/////////////////////////////////////////////////////////
