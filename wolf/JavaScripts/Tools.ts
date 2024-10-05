@@ -652,6 +652,15 @@ export class Tools {
             await AssetUtil.asyncDownloadAsset(InAssetId);
         }
     }
+
+    /**得到今天日期 */
+    public static getDay(): string {
+        let day: string = "";
+        day += new Date().getFullYear();
+        day += (new Date().getMonth() + 1);
+        day += new Date().getDate();
+        return day;
+    }
 }
 
 export enum Visibility {

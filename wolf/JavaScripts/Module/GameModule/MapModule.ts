@@ -6,7 +6,7 @@
  * @FilePath: \townmystery\JavaScripts\Module\GameModule\MapModule.ts
  * @Description: 
  */
-import { oTraceError, oTrace, oTraceWarning, LogManager ,AnalyticsUtil, IFightRole, AIMachine, AIState} from "odin";
+import { oTraceError, oTrace, oTraceWarning, LogManager, AnalyticsUtil, IFightRole, AIMachine, AIState } from "odin";
 import { GameGlobals } from "../../Globals";
 import { GameConfig } from "../../Tables/GameConfig";
 import { Tools } from "../../Tools";
@@ -18,8 +18,11 @@ import { LotteryModuleC } from "../LotteryModule/LotteryModuleC";
 import { SkillModuleC } from "../SkillModule/SkillModuleC";
 import ExchangeModuleC from "../ExchangeModule/ExchangeModuleC";
 import { MGSHome } from "../../MGSHome";
+import { ArkPanel } from "../ArkModule/ArkModule";
+import { SetPanel } from "../SetModule/SetModule";
+import AdsPanel from "../../AdsPanel";
 
-export class MapModuleC extends ModuleC<MapModuleS, null>{
+export class MapModuleC extends ModuleC<MapModuleS, null> {
 	private nowSelect: number = -1;
 	chooseMap(index: number, isFirst: boolean, preSelect: number) {
 		this.nowSelect = index;
@@ -32,6 +35,9 @@ export class MapModuleC extends ModuleC<MapModuleS, null>{
 		ModuleService.getModule(ShopModuleC).ShopOpen(false);
 		ModuleService.getModule(SkillModuleC).isOpenSkillShopPanel(false);
 		ModuleService.getModule(ExchangeModuleC).isOpenExchangePanel(false);
+		if (mw.UIService.getUI(ArkPanel, false)?.visible) mw.UIService.getUI(ArkPanel).hide();
+		if (mw.UIService.getUI(SetPanel, false)?.visible) mw.UIService.getUI(SetPanel).hide();
+		if (mw.UIService.getUI(AdsPanel, false)?.visible) mw.UIService.getUI(AdsPanel).hide();
 		if (UiManager.instance.getUIRewardPopup()) {
 			UiManager.instance.getUIRewardPopup().hide();
 		}
@@ -48,7 +54,7 @@ export class MapModuleC extends ModuleC<MapModuleS, null>{
 		MGSHome.chooseMap(res);
 	}
 }
-export class MapModuleS extends ModuleS<MapModuleC, null>{
+export class MapModuleS extends ModuleS<MapModuleC, null> {
 	private voteInfoMap: Map<number, number> = new Map();
 	private voteNumInfo: Map<number, number> = new Map();
 	/**分配地图 */

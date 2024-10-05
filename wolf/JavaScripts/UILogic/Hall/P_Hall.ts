@@ -7,19 +7,21 @@
  * @Description: 
  */
 import AdsPanel from "../../AdsPanel";
+import P_Tips from "../../CommonUI/P_Tips";
 import { Globals } from "../../Globals";
 import { MGSHome } from "../../MGSHome";
+import { ArkModuleC } from "../../Module/ArkModule/ArkModule";
 import { BubbleModuleC } from "../../Module/bubbleModule/BubbleModule";
 import ExchangeModuleC from "../../Module/ExchangeModule/ExchangeModuleC";
 import { LotteryModuleC } from "../../Module/LotteryModule/LotteryModuleC";
 import { PlayerModuleC } from "../../Module/PlayerModule/PlayerModuleC";
 import { WatchModuleC } from "../../Module/ProcModule/WatchModule";
+import { SetPanel } from "../../Module/SetModule/SetModule";
 import { ShopModuleC } from "../../Module/ShopModule/ShopCityModule";
 import { SkillModuleC } from "../../Module/SkillModule/SkillModuleC";
 import { GameConfig } from "../../Tables/GameConfig";
-import { Tools } from '../../Tools';
-import MainMenu from "../../uiTemplate/Hall/MainMenu";
-export default class P_Hall extends MainMenu {
+import MainMenu_Generate from "../../ui-generate/uiTemplate/Hall/MainMenu_generate";
+export default class P_Hall extends MainMenu_Generate {
     private static _instance: P_Hall;
     public static get instance(): P_Hall {
         if (this._instance == null) {
@@ -29,12 +31,6 @@ export default class P_Hall extends MainMenu {
         return this._instance;
     }
     onStart() {
-        if (Tools.isRewardActive()) {
-            this.mCanvas_AD.visibility = (mw.SlateVisibility.Visible);//TODO-WFZ
-        }
-        else {
-            this.mCanvas_AD.visibility = (mw.SlateVisibility.Collapsed);//TODO-WFZ
-        }
         // this.mCanvas_Member.visibility = (mw.SlateVisibility.Collapsed);
         this.mBtn_Jump.focusable = (false);
         this.mBtn_Jump.onPressed.add(() => {
@@ -57,18 +53,29 @@ export default class P_Hall extends MainMenu {
             ModuleService.getModule(SkillModuleC).isOpenSkillShopPanel(true);
             MGSHome.mgsResource3(3, true);
         })
+        let advCount: number = 1;
+        this.mText_Member.text = `领券`;
         this.mBtn_Member.onClicked.add(() => {
-            // ModuleService.getModule(SVIPModuleC).isOpenBuySvipPanel(true);
-            UIService.getUI(AdsPanel).showRewardAd(() => {
-                ModuleService.getModule(PlayerModuleC).addAdvToken(2);
-            }, "免费领取2张广告券", "取消", "领取");
-            MGSHome.mgsResource3(4, true);
+            if (mw.SystemUtil.isPIE) {
+                ModuleService.getModule(PlayerModuleC).addAdvToken(advCount);
+                P_Tips.show(`恭喜获得${advCount}张券`);
+            } else {
+                UIService.getUI(AdsPanel).showRewardAd(() => {
+                    ModuleService.getModule(PlayerModuleC).addAdvToken(advCount);
+                    P_Tips.show(`恭喜获得${advCount}张券`);
+                }, `免费领取${advCount}张广告券`, `取消`, `领取`);
+            }
         })
         this.mBtn_Exchange.onClicked.add(() => {
             ModuleService.getModule(ExchangeModuleC).isOpenExchangePanel(true);
             MGSHome.mgsResource3(5, true);
         })
-
+        this.mBtn_Ark.onClicked.add(() => {
+            ModuleService.getModule(ArkModuleC).addOpenArkPanel();
+        });
+        this.mBtn_Set.onClicked.add(() => {
+            UIService.getUI(SetPanel).show();
+        });
     }
     setText() {
         this.mText_Watch.text = (GameConfig.Text.getElement(20003).Content);
@@ -98,6 +105,9 @@ export default class P_Hall extends MainMenu {
         this.mCanvas_Skill.visibility = (mw.SlateVisibility.Collapsed);
         this.mCanvas_Member.visibility = (mw.SlateVisibility.Collapsed);
         this.mCanvas_Exchange.visibility = (mw.SlateVisibility.Collapsed);
+        this.mCanvas_AD.visibility = (mw.SlateVisibility.Collapsed);
+        this.mCanvas_Ark.visibility = (mw.SlateVisibility.Collapsed);
+        this.mCanvas_Set.visibility = (mw.SlateVisibility.Collapsed);
     }
     public hideShop() {
         this.mCanvas_Watch.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
@@ -109,6 +119,9 @@ export default class P_Hall extends MainMenu {
         this.mCanvas_lottery.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
         this.mCanvas_Member.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
         this.mCanvas_Exchange.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
+        this.mCanvas_AD.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
+        this.mCanvas_Ark.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
+        this.mCanvas_Set.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
     }
     public showLottery() {
         this.mCanvas_Watch.visibility = (mw.SlateVisibility.Collapsed);
@@ -121,6 +134,9 @@ export default class P_Hall extends MainMenu {
         this.mCanvas_Skill.visibility = (mw.SlateVisibility.Collapsed);
         this.mCanvas_Member.visibility = (mw.SlateVisibility.Collapsed);
         this.mCanvas_Exchange.visibility = (mw.SlateVisibility.Collapsed);
+        this.mCanvas_AD.visibility = (mw.SlateVisibility.Collapsed);
+        this.mCanvas_Ark.visibility = (mw.SlateVisibility.Collapsed);
+        this.mCanvas_Set.visibility = (mw.SlateVisibility.Collapsed);
     }
     public hideLottery() {
         this.mCanvas_Watch.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
@@ -132,6 +148,9 @@ export default class P_Hall extends MainMenu {
         this.mCanvas_lottery.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
         this.mCanvas_Member.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
         this.mCanvas_Exchange.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
+        this.mCanvas_AD.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
+        this.mCanvas_Ark.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
+        this.mCanvas_Set.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
     }
     public static setHallTime(stime: string) {
         P_Hall.instance.mText_CountDown.text = (stime);
@@ -159,7 +178,8 @@ export default class P_Hall extends MainMenu {
     public static setHallAdvNum(num: number) {
         ModuleService.getModule(ShopModuleC).changeAdvToken(num);
         ModuleService.getModule(ExchangeModuleC).refreshExchangeItem();
-        //还差一个兑换券
+        P_Hall.instance.mText_DiamondNumber.text = num.toString();
+        Event.dispatchToLocal(`UpdateAdv`, num);
     }
     public static setHallPlayerName(name: string) {
         P_Hall.instance.mText_PlayerName.text = name;

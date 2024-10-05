@@ -1,4 +1,6 @@
-﻿
+﻿import AdsPanel from "./AdsPanel";
+import P_Tips from "./CommonUI/P_Tips";
+
 @Component
 export default class ChangeClothes extends Script {
 
@@ -9,10 +11,22 @@ export default class ChangeClothes extends Script {
             trigger.onEnter.add((char: mw.Character) => {
                 if (char.gameObjectId != Player.localPlayer.character.gameObjectId) return;
                 let npc = trigger.parent as mw.Character;
-                char.setDescription(npc.getDescription());
-                char.asyncReady().then(() => {
-                    char.syncDescription();
-                });
+                if (mw.SystemUtil.isPIE) {
+                    char.setDescription(npc.getDescription());
+                    char.asyncReady().then(() => {
+                        char.syncDescription();
+                    });
+                    P_Tips.show(`换装成功`);
+                } else {
+                    mw.UIService.getUI(AdsPanel).showRewardAd(() => {
+                        char.setDescription(npc.getDescription());
+                        char.asyncReady().then(() => {
+                            char.syncDescription();
+                        });
+                        P_Tips.show(`换装成功`);
+                    }, `看广告免费试穿`, `取消`, `免费试穿`);
+                }
+
             });
 
         }

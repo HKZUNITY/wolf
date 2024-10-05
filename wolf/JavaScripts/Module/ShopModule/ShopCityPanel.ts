@@ -305,14 +305,26 @@ export class ShopBasePanel<T extends IShopBasePanelView> extends BaseUI<T> {
 			this);
 
 		this.view.mAddCoinButton.onClicked.add(() => {
-			UIService.getUI(AdsPanel).showRewardAd(() => {
-				ModuleService.getModule(PlayerModuleC).addAdvToken(2);
-			}, "免费领取2张广告券", "取消", "领取");
+			if (mw.SystemUtil.isPIE) {
+				ModuleService.getModule(PlayerModuleC).addCoin(100);
+				P_Tips.show(`恭喜获得${100}金币`);
+			} else {
+				mw.UIService.getUI(AdsPanel).showRewardAd(() => {
+					ModuleService.getModule(PlayerModuleC).addCoin(100);
+					P_Tips.show(`恭喜获得${100}金币`);
+				}, `看广告免费领取${100}金币`, `取消`, `免费领取`);
+			}
 		});
 		this.view.mAddCouponButton.onClicked.add(() => {
-			UIService.getUI(AdsPanel).showRewardAd(() => {
-				ModuleService.getModule(PlayerModuleC).addAdvToken(2);
-			}, "免费领取2张广告券", "取消", "领取");
+			if (mw.SystemUtil.isPIE) {
+				ModuleService.getModule(PlayerModuleC).addAdvToken(1);
+				P_Tips.show(`恭喜获得${1}张券`);
+			} else {
+				UIService.getUI(AdsPanel).showRewardAd(() => {
+					ModuleService.getModule(PlayerModuleC).addAdvToken(1);
+					P_Tips.show(`恭喜获得${1}张券`);
+				}, `免费领取${1}张广告券`, `取消`, `领取`);
+			}
 		});
 	}
 	/**购买物品界面 */

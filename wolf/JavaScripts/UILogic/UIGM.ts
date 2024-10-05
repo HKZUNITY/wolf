@@ -39,6 +39,13 @@ export class GMBasePanelUI extends GMBasePanel<GMHUD, GMItem> {
 		super(GMHUD, GMItem);
 	}
 }
+AddGMCommand("改变背景音效",
+	(player, value) => {
+		SoundService.BGMVolumeScale = Number(value);
+	},
+	(player, value) => {
+	}
+)
 
 AddGMCommand("增加金币",
 	(player, value) => {

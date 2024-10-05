@@ -29,10 +29,6 @@ import { ShopModuleC } from "../ShopModule/ShopCityModule";
 import AdsPanel from "../../AdsPanel";
 
 export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
-    private _todayFreeReward: number = 0;
-    private _mText_ADTime: mw.TextBlock;
-    private _mImage_RedPoint;
-    private _numL;
     /**玩家等级列表 */
     private playerLevelMap: Map<number, number> = new Map<number, number>()
     /**在大厅的玩家 */
@@ -44,15 +40,35 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
     /**玩家是否初始化过 */
     private isInit: boolean = false
     onStart(): void {
-        this._numL = GameConfig.Rule.getElement(30007).Num;//上限ADS
-        this._mText_ADTime = P_Hall.instance.mText_ADTime;
-        this._mImage_RedPoint = P_Hall.instance.mImage_RedPoint;
-        P_Hall.instance.mBtn_AD.onClicked.add(() => {
-            MGSHome.mgsWorldId(2);
-            this.checkHallAd();
-        });
+        this.initCoinAds();
+
         ModifiedCameraSystem.followTargetInterpSpeed = 0;
         mw.UIService.show(P_Reset);
+    }
+
+    private _mText_ADTime: mw.TextBlock;
+    private mUIText20030_txt: mw.TextBlock;
+    private getCoinCount: number = 100;
+    private initCoinAds(): void {
+        this.mUIText20030_txt = P_Hall.instance.mUIText20030_txt;
+        this.mUIText20030_txt.text = `领金币`;
+        this._mText_ADTime = P_Hall.instance.mText_ADTime;
+        this._mText_ADTime.visibility = mw.SlateVisibility.Collapsed;
+        P_Hall.instance.mBtn_AD.onClicked.add(() => {
+            if (mw.SystemUtil.isPIE) {
+                this.server.net_ChangeGold(this.getCoinCount);
+                P_Tips.show(`恭喜获得${this.getCoinCount}金币`);
+            } else {
+                mw.UIService.getUI(AdsPanel).showRewardAd(() => {
+                    this.server.net_ChangeGold(this.getCoinCount);
+                    P_Tips.show(`恭喜获得${this.getCoinCount}金币`);
+                }, `看广告免费领取${this.getCoinCount}金币`, `取消`, `免费领取`);
+            }
+        });
+    }
+
+    public addCoin(coin: number): void {
+        this.server.net_ChangeGold(coin);
     }
 
     public onResetPlayerCamera() {
@@ -146,7 +162,7 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
         //优先走断线重连逻辑，之后才是玩家进入要不会出问题
         ModuleService.getModule(FSMModuleC).reconnect();
         this.isFirstIn();
-        this.setHallAd();
+        // this.setHallAd();
         // Camera.currentCamera.enableMovementCollisionDetection = false;
         Camera.currentCamera.springArm.collisionInterpSpeed = 0;
         mw.UIService.show(P_Info);
@@ -227,7 +243,7 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
 
     public addAdvToken(num: number) {
         this.server.net_changeAdvToken(num);
-        P_Tips.show(GameConfig.Tips.getElement(20019).Content);
+        // P_Tips.show(GameConfig.Tips.getElement(20019).Content);
     }
 
     public async changePlayerAppear(character: mw.Character | mw.Character) {
@@ -552,117 +568,117 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
         }
     }
 
-    private async checkHallAd() {
-        this._todayFreeReward = await this.server.net_getTodayFreeReward(0);
-        console.error("kang log 获取当前玩家免费观看大厅广告次数:" + this._todayFreeReward);
-        if (this._todayFreeReward == 0) {
-            //直接获得奖励
-            let rewardPopup = UiManager.instance.getUIRewardPopup();
-            rewardPopup.show();
-            this.server.net_getTodayFreeReward(1);
-            let gold = GameConfig.Rule.getElement(30004).Num
-            this.server.net_ChangeGold(gold);
-            rewardPopup.refreshText(gold);
-            //TODO:开始倒计时
-            this._mImage_RedPoint.visibility = (mw.SlateVisibility.Collapsed);
-            oTrace("kang log 今日首次领取奖励后开始倒计时");
-            let time = GameConfig.Rule.getElement(30006).Time;
-            this._mText_ADTime.visibility = (mw.SlateVisibility.HitTestInvisible);
-            this.setCountDown(time);
-        }
-        else {
-            if (await this.getHallAdNum(0) >= this._numL) {
-                oTrace("kang log 已经达到上限");
-                P_Tips.show(GameConfig.Tips.getElement(20004).Content);
-                return;
-            }
-            this.rewardAd();
-            return;
-            //是否正在倒计时
-            if (this._mText_ADTime.text != "") {
-                oTrace("kang log 正在倒计时");
-                P_Tips.show(GameConfig.Tips.getElement(20003).Content);
-            }
-            else {
-            }
-        }
-    }
-    private async rewardAd() {
-        let numA = GameConfig.Rule.getElement(30004).Num;
-        let numB = await this.server.net_getHallAdNum(0);
-        let numN = GameConfig.Rule.getElement(30005).Num;
-        oTrace("kang log numA=" + numA + " numB=" + numB + " numN=" + numN);
-        //N=A+n*B
-        let num = numA + numB * numN;
-        UIService.getUI(AdsPanel).showRewardAd(async () => {
-            console.warn("kang log 大厅金币激励广告播放成功");
-            MGSHome.mgsSceneId(2);
-            console.warn("kang log 大厅金币激励广告播放完成，给奖励");
-            //弹出奖励界面
-            let rewardPopup = UiManager.instance.getUIRewardPopup();
-            rewardPopup.show();
+    // private async checkHallAd() {
+    //     this._todayFreeReward = await this.server.net_getTodayFreeReward(0);
+    //     console.error("kang log 获取当前玩家免费观看大厅广告次数:" + this._todayFreeReward);
+    //     if (this._todayFreeReward == 0) {
+    //         //直接获得奖励
+    //         let rewardPopup = UiManager.instance.getUIRewardPopup();
+    //         rewardPopup.show();
+    //         this.server.net_getTodayFreeReward(1);
+    //         let gold = GameConfig.Rule.getElement(30004).Num
+    //         this.server.net_ChangeGold(gold);
+    //         rewardPopup.refreshText(gold);
+    //         //TODO:开始倒计时
+    //         this._mImage_RedPoint.visibility = (mw.SlateVisibility.Collapsed);
+    //         oTrace("kang log 今日首次领取奖励后开始倒计时");
+    //         let time = GameConfig.Rule.getElement(30006).Time;
+    //         this._mText_ADTime.visibility = (mw.SlateVisibility.HitTestInvisible);
+    //         this.setCountDown(time);
+    //     }
+    //     else {
+    //         if (await this.getHallAdNum(0) >= this._numL) {
+    //             oTrace("kang log 已经达到上限");
+    //             P_Tips.show(GameConfig.Tips.getElement(20004).Content);
+    //             return;
+    //         }
+    //         this.rewardAd();
+    //         return;
+    //         //是否正在倒计时
+    //         if (this._mText_ADTime.text != "") {
+    //             oTrace("kang log 正在倒计时");
+    //             P_Tips.show(GameConfig.Tips.getElement(20003).Content);
+    //         }
+    //         else {
+    //         }
+    //     }
+    // }
+    // private async rewardAd() {
+    //     let numA = GameConfig.Rule.getElement(30004).Num;
+    //     let numB = await this.server.net_getHallAdNum(0);
+    //     let numN = GameConfig.Rule.getElement(30005).Num;
+    //     oTrace("kang log numA=" + numA + " numB=" + numB + " numN=" + numN);
+    //     //N=A+n*B
+    //     let num = numA + numB * numN;
+    //     UIService.getUI(AdsPanel).showRewardAd(async () => {
+    //         console.warn("kang log 大厅金币激励广告播放成功");
+    //         MGSHome.mgsSceneId(2);
+    //         console.warn("kang log 大厅金币激励广告播放完成，给奖励");
+    //         //弹出奖励界面
+    //         let rewardPopup = UiManager.instance.getUIRewardPopup();
+    //         rewardPopup.show();
 
-            rewardPopup.refreshText(num);
-            this.server.net_ChangeGold(num);
-            let nu = await this.getHallAdNum(1);
-            oTrace("kang log 已经观看了" + nu + "次广告");
-            //是否满足
-            if (nu >= this._numL) {
-                this._mText_ADTime.visibility = (mw.SlateVisibility.Collapsed);
-                this._mImage_RedPoint.visibility = (mw.SlateVisibility.Collapsed);
-            }
-            else {
-                //继续开始倒计时
-                this.setCountDown(GameConfig.Rule.getElement(30006).Time);
-                this._mImage_RedPoint.visibility = (mw.SlateVisibility.Collapsed);
-            }
-        }, `免费领取${num}金币`, "取消", "领取");
-    }
-    private async setHallAd() {
-        //获取当前玩家观看大厅广告次数
-        this._todayFreeReward = await this.server.net_getTodayFreeReward(0);
-        this._todayFreeReward == 0 ? this._mText_ADTime.visibility = (mw.SlateVisibility.Collapsed)
-            : this._mText_ADTime.visibility = (mw.SlateVisibility.HitTestInvisible);
-        //大厅激励-广告上限L
-        oTrace("kang log 当前玩家观看大厅广告次数:" + this._todayFreeReward + "大厅观看次数累计" + await this.getHallAdNum(0) + "  大厅激励-广告上限L:" + this._numL);
-        if (this._todayFreeReward != 0) {
-            let time = await this.server.net_WatchAdCountDown(0);
-            oTrace("kang log 正在倒计时 " + time);
-            //TODO:是否有倒计时，有的话继续倒计时
-            if (await this.getHallAdNum(0) >= this._numL) {
-                this._mImage_RedPoint.visibility = (mw.SlateVisibility.Collapsed);
-            }
-            else if (time > 0) {
-                this.setCountDown(time);
-                this._mImage_RedPoint.visibility = (mw.SlateVisibility.Collapsed);
-            }
-        }
-    }
+    //         rewardPopup.refreshText(num);
+    //         this.server.net_ChangeGold(num);
+    //         let nu = await this.getHallAdNum(1);
+    //         oTrace("kang log 已经观看了" + nu + "次广告");
+    //         //是否满足
+    //         if (nu >= this._numL) {
+    //             this._mText_ADTime.visibility = (mw.SlateVisibility.Collapsed);
+    //             this._mImage_RedPoint.visibility = (mw.SlateVisibility.Collapsed);
+    //         }
+    //         else {
+    //             //继续开始倒计时
+    //             this.setCountDown(GameConfig.Rule.getElement(30006).Time);
+    //             this._mImage_RedPoint.visibility = (mw.SlateVisibility.Collapsed);
+    //         }
+    //     }, `免费领取${num}金币`, "取消", "领取");
+    // }
+    // private async setHallAd() {
+    //     //获取当前玩家观看大厅广告次数
+    //     this._todayFreeReward = await this.server.net_getTodayFreeReward(0);
+    //     this._todayFreeReward == 0 ? this._mText_ADTime.visibility = (mw.SlateVisibility.Collapsed)
+    //         : this._mText_ADTime.visibility = (mw.SlateVisibility.HitTestInvisible);
+    //     //大厅激励-广告上限L
+    //     oTrace("kang log 当前玩家观看大厅广告次数:" + this._todayFreeReward + "大厅观看次数累计" + await this.getHallAdNum(0) + "  大厅激励-广告上限L:" + this._numL);
+    //     if (this._todayFreeReward != 0) {
+    //         let time = await this.server.net_WatchAdCountDown(0);
+    //         oTrace("kang log 正在倒计时 " + time);
+    //         //TODO:是否有倒计时，有的话继续倒计时
+    //         if (await this.getHallAdNum(0) >= this._numL) {
+    //             this._mImage_RedPoint.visibility = (mw.SlateVisibility.Collapsed);
+    //         }
+    //         else if (time > 0) {
+    //             this.setCountDown(time);
+    //             this._mImage_RedPoint.visibility = (mw.SlateVisibility.Collapsed);
+    //         }
+    //     }
+    // }
 
     //倒计时
-    private setCountDown(time: number) {
-        this._mText_ADTime.visibility = (mw.SlateVisibility.HitTestInvisible);
-        TimerPlugin.timer(time, 1, (timer: number) => {
-            //倒计时
-            this._mText_ADTime.text = (Tools.changeSecond2Minus((time - timer)));
-            // if ((time - timer) % 5 == 0) {
-            // oTrace("kang log 保存看广告倒计时=" + (time - timer))
-            this.server.net_WatchAdCountDown(time - timer);
-            // }
-        })
-            .then((result) => {
-                if (result) {
-                    oTrace("kang log 倒计时结束");
-                    this._mText_ADTime.text = ("");
-                    this._mText_ADTime.visibility = (mw.SlateVisibility.Collapsed);
-                    this._mImage_RedPoint.visibility = (mw.SlateVisibility.HitTestInvisible);
-                }
-            })
-            ;
-    }
-    private async getHallAdNum(num: number) {
-        return await this.server.net_getHallAdNum(num);
-    }
+    // private setCountDown(time: number) {
+    //     this._mText_ADTime.visibility = (mw.SlateVisibility.HitTestInvisible);
+    //     TimerPlugin.timer(time, 1, (timer: number) => {
+    //         //倒计时
+    //         this._mText_ADTime.text = (Tools.changeSecond2Minus((time - timer)));
+    //         // if ((time - timer) % 5 == 0) {
+    //         // oTrace("kang log 保存看广告倒计时=" + (time - timer))
+    //         this.server.net_WatchAdCountDown(time - timer);
+    //         // }
+    //     })
+    //         .then((result) => {
+    //             if (result) {
+    //                 oTrace("kang log 倒计时结束");
+    //                 this._mText_ADTime.text = ("");
+    //                 this._mText_ADTime.visibility = (mw.SlateVisibility.Collapsed);
+    //                 this._mImage_RedPoint.visibility = (mw.SlateVisibility.HitTestInvisible);
+    //             }
+    //         })
+    //         ;
+    // }
+    // private async getHallAdNum(num: number) {
+    //     return await this.server.net_getHallAdNum(num);
+    // }
     public net_SetHallTip(state: number) {
         if (state == GamingState.InitState) {
             P_Hall.setHallTip(10001);

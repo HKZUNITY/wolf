@@ -48,6 +48,7 @@ import { GMBasePanelUI } from "./UILogic/UIGM";
 import P_Notice from "./uiTemplate/Common/P_Notice";
 import { Tools } from "./Tools";
 import { TrampolineModuleC, TrampolineModuleS } from "./Module/TrampolineModule/TrampolineModule";
+import { ArkData, ArkModuleC, ArkModuleS } from "./Module/ArkModule/ArkModule";
 
 @Component
 export default class GameStart extends mw.Script {
@@ -120,6 +121,7 @@ export default class GameStart extends mw.Script {
         // })
         ModuleService.registerModule(ExchangeModuleS, ExchangeModuleC, null);
         ModuleService.registerModule(TrampolineModuleS, TrampolineModuleC, null);
+        ModuleService.registerModule(ArkModuleS, ArkModuleC, ArkData);
 
         if (mw.SystemUtil.isClient() && this.isGM) {
             new GMBasePanelUI().show();
