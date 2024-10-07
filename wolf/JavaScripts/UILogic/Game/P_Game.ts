@@ -1,13 +1,10 @@
-import { oTraceError, oTrace, oTraceWarning, LogManager ,AnalyticsUtil, IFightRole, AIMachine, AIState} from "odin";
-import { Camp, GamingState, ColdWeaponAttackMode, Globals, PlayerWeaponState } from "../../Globals";
+import { Camp, PlayerWeaponState } from "../../Globals";
 import { GameModuleC } from "../../Module/GameModule/GameModuleC";
 import { WatchModuleC } from "../../Module/ProcModule/WatchModule";
+import { SkillModuleC } from "../../Module/SkillModule/SkillModuleC";
 import { GameConfig } from "../../Tables/GameConfig";
 import { Tools } from "../../Tools";
 import GameBattle from "../../uiTemplate/Inside/GameBattle";
-import { MGSHome } from "../../MGSHome";
-import { ColdWeaponModuleC } from "../../Module/Weapon/ColdWeapon/ColdWeaponModuleC";
-import { SkillModuleC } from "../../Module/SkillModule/SkillModuleC";
 
 export default class P_Game extends GameBattle {
     private civilGoal: number = GameConfig.PropsGenerate.getElement(9997).Num;
@@ -53,7 +50,11 @@ export default class P_Game extends GameBattle {
         this.mBtn_Jump_Inside.onPressed.add(() => {
             if (Player.localPlayer.character.isJumping) return;
             Player.localPlayer.character.jump();
+            if (Player.localPlayer.character.driftControl != 1) Player.localPlayer.character.driftControl = 1;
+            if (Player.localPlayer.character.gravityScale != 3) Player.localPlayer.character.driftControl = 3;
+            if (!Player.localPlayer.character.movementEnabled) Player.localPlayer.character.movementEnabled = true;
         })
+        this.mBtn_Jump_Inside.size = new mw.Vector2(200, 200);
         this.mBtn_Swith.onPressed.add(() => {
             ModuleService.getModule(GameModuleC).clickWeaponBtn();
         })
@@ -84,19 +85,19 @@ export default class P_Game extends GameBattle {
         this.mBtn_Throw.onClicked.add(() => {
             ModuleService.getModule(GameModuleC).clickThrowKnifeBtn()
         })
-        this.mBtn_Skill.onPressed.add(()=>{
+        this.mBtn_Skill.onPressed.add(() => {
             this.pressTimer = setTimeout(() => {
                 this.mCanvas_Skill_Des.visibility = mw.SlateVisibility.SelfHitTestInvisible;
-            }, this.pressTime* 1000);
+            }, this.pressTime * 1000);
         })
-        this.mBtn_Skill.onReleased.add(()=>{
+        this.mBtn_Skill.onReleased.add(() => {
             if (this.pressTimer) {
                 clearTimeout(this.pressTimer);
                 this.pressTimer = null;
             }
             this.mCanvas_Skill_Des.visibility = mw.SlateVisibility.Collapsed;
         })
-        this.mBtn_Skill.onClicked.add(()=>{
+        this.mBtn_Skill.onClicked.add(() => {
             ModuleService.getModule(SkillModuleC).activeSkill();
         })
         this.civilGoal = GameConfig.PropsGenerate.getElement(9997).Num;
@@ -140,7 +141,7 @@ export default class P_Game extends GameBattle {
         P_Game.instance.mText_CionsCollect.text = ("" + num + "/" + P_Game.instance.maxCoin);
         /**如果有加成，显示特权 */
         if (num == 0) {
-            P_Game.instance.mText_Coins_Member.visibility = P_Game.instance.maxCoin > P_Game.instance.normalMaxCoin ? mw.SlateVisibility.SelfHitTestInvisible: mw.SlateVisibility.Collapsed;
+            P_Game.instance.mText_Coins_Member.visibility = P_Game.instance.maxCoin > P_Game.instance.normalMaxCoin ? mw.SlateVisibility.SelfHitTestInvisible : mw.SlateVisibility.Collapsed;
         }
     }
     public static setTitle(id: number) {//11001,11002
@@ -161,15 +162,15 @@ export default class P_Game extends GameBattle {
 
     private skillTimer;
 
-    public useSkill(skillId: number){
+    public useSkill(skillId: number) {
         let dataInfo = GameConfig.Skill.getElement(skillId);
         let useTime = dataInfo.Duration;
         this.mImg_Skill_Mask.visibility = mw.SlateVisibility.SelfHitTestInvisible;
         this.mText_SkillCD.visibility = mw.SlateVisibility.SelfHitTestInvisible;
         this.mText_SkillCD.text = (useTime.toString());
         this.mBtn_Skill.enable = false;
-        this.skillTimer = TimeUtil.setInterval(()=>{
-            useTime --;
+        this.skillTimer = TimeUtil.setInterval(() => {
+            useTime--;
             this.mText_SkillCD.text = (useTime.toString());
             if (useTime <= 0) {
                 if (this.skillTimer) {
@@ -182,7 +183,7 @@ export default class P_Game extends GameBattle {
         }, 1)
     }
 
-    public skillInCool(skillId){
+    public skillInCool(skillId) {
         if (this.skillTimer) {
             TimeUtil.clearInterval(this.skillTimer);
             this.skillTimer = null;
@@ -193,8 +194,8 @@ export default class P_Game extends GameBattle {
         this.mText_SkillCD.visibility = mw.SlateVisibility.SelfHitTestInvisible;
         this.mText_SkillCD.text = (useTime.toString());
         this.mBtn_Skill.enable = false;
-        this.skillTimer = TimeUtil.setInterval(()=>{
-            useTime --;
+        this.skillTimer = TimeUtil.setInterval(() => {
+            useTime--;
             this.mText_SkillCD.text = (useTime.toString());
             if ((useTime <= 0)) {
                 this.mText_SkillCD.visibility = mw.SlateVisibility.Collapsed;
@@ -207,7 +208,7 @@ export default class P_Game extends GameBattle {
         }, 1)
     }
 
-    public updateInGameSkill(camp: number, skillId: number){
+    public updateInGameSkill(camp: number, skillId: number) {
         if (camp != Camp.Spy) {
             this.mCanvas_Skill.visibility = mw.SlateVisibility.Collapsed;
             return;
@@ -225,17 +226,17 @@ export default class P_Game extends GameBattle {
             this.mBtn_Skill.enable = true;
             this.mCanvas_Skill_Des.visibility = mw.SlateVisibility.Collapsed;
         }
-        else{
+        else {
             this.mCanvas_Skill.visibility = mw.SlateVisibility.Collapsed;
         }
         this.mText_SkillCD.visibility = mw.SlateVisibility.Collapsed;
     }
 
-    public updateSkillIsActive(isActive: boolean){
+    public updateSkillIsActive(isActive: boolean) {
         if (isActive) {
             this.mImg_Skill_Mask.visibility = mw.SlateVisibility.SelfHitTestInvisible;
         }
-        else{
+        else {
             this.mImg_Skill_Mask.visibility = mw.SlateVisibility.Collapsed;
         }
 

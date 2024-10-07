@@ -127,14 +127,14 @@ export default class Trampoline extends mw.Script {
 
     /**客户端的Update */
     private onUpdateC(dt: number): void {
-        try {
-            this.playersRadiusUI.forEach((value, key) => {
-                let player = Player.getPlayer(key);
-                if (!player || !player.character || player.character.velocity.z >= 0) return;
-                this.lineTraceCheck(player, value);
-            });
-        } catch (error) {
-        }
+        // try {
+        this.playersRadiusUI.forEach((value, key) => {
+            let player = Player.getPlayer(key);
+            if (!player || !player.character || player.character.velocity.z >= 0) return;
+            this.lineTraceCheck(player, value);
+        });
+        // } catch (error) {
+        // }
     }
 
     /**射线检测更新世界UI位置(客户端) */
@@ -190,6 +190,9 @@ export default class Trampoline extends mw.Script {
                     let worldScale = new mw.Vector(baseScale.x, baseScale.y, baseScale.z + z);
                     this.trampolineModelsC[triggerIndex].worldTransform.scale = worldScale;
                 })
+                .onComplete(() => {
+                    this.trampolineModelsC[triggerIndex].worldTransform.scale = mw.Vector.one;
+                })
                 .start();
         } else {
             let curTrampolinePos = this.trampolineModelsC[triggerIndex];
@@ -204,6 +207,9 @@ export default class Trampoline extends mw.Script {
                     let y = this.shakeFunc(obj.time, 100, 6, 5) * 100 * changeRot.x;
                     let rot = new mw.Rotation(x, y, changeRot.z);
                     this.trampolineModelsC[triggerIndex].localTransform.rotation = (rot);
+                })
+                .onComplete(() => {
+                    this.trampolineModelsC[triggerIndex].worldTransform.scale = mw.Vector.one;
                 })
                 .start();
         }

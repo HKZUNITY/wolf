@@ -1,4 +1,4 @@
-import { SpawnManager,SpawnInfo, } from '../../../Modified027Editor/ModifiedSpawn';
+import { SpawnManager, SpawnInfo, } from '../../../Modified027Editor/ModifiedSpawn';
 import { PlayerManagerExtesion, } from '../../../Modified027Editor/ModifiedPlayer';
 import { oTraceError, oTrace, oTraceWarning, LogManager, AnalyticsUtil, IFightRole, AIMachine, AIState } from "odin";
 import { GameConfig } from "../../../Tables/GameConfig";
@@ -61,33 +61,33 @@ export class AutoAimModuleC extends ModuleC<AutoAimModuleS, null> {
         this.touch = new mw.TouchInput();
         this.foresightUI = UiManager.instance.getUIForesight();
         await this.initTrigger();
-        this.slowUpdate = TimeUtil.setInterval(()=>{
+        this.slowUpdate = TimeUtil.setInterval(() => {
             this.updateShootUI();
         }, 0.2)
     }
-    async startLineTrace(callBack: (a: Vector)=>void){
+    async startLineTrace(callBack: (a: Vector) => void) {
         this.btnClickHandler.clear();
         this.touch.onTouchBegin.clear();
         this.touch.onTouchEnd.clear();
         if (ModuleService.getModule(GameModuleC).getPlayerCamp() == Camp.Spy) {
             this.btnClickHandler.add(callBack);
         }
-        else{
-            this.touch.onTouchBegin.add((index, loc, touchType)=>{
+        else {
+            this.touch.onTouchBegin.add((index, loc, touchType) => {
                 if (this.timer) {
                     clearTimeout(this.timer);
                     this.timer = setTimeout(() => {
                         clearTimeout(this.timer);
                         this.canClickShoot = false;
-                        this.timer = null;  
-                    }, this.shootClickTime* 1000);
+                        this.timer = null;
+                    }, this.shootClickTime * 1000);
 
-                    
+
                 }
                 this.startClickPos = loc.clone();
                 this.canClickShoot = true;
             })
-            this.touch.onTouchEnd.add((index, loc, touchType)=>{
+            this.touch.onTouchEnd.add((index, loc, touchType) => {
                 if (this.timer) {
                     clearTimeout(this.timer);
                     this.timer = null;
@@ -99,20 +99,20 @@ export class AutoAimModuleC extends ModuleC<AutoAimModuleS, null> {
                 if (clickDis > this.rotateDis) {
                     return;
                 }
-                
+
                 if (!Tools.getPlayerCanShoot(this.localPlayer)) {
                     return;
                 }
 
                 let nowSpeed = this.localPlayer.character.velocity;
-                if ((Math.abs(nowSpeed.x)+ Math.abs(nowSpeed.y )+ Math.abs(nowSpeed.z)) > 0) {
-                    return;
+                if ((Math.abs(nowSpeed.x) + Math.abs(nowSpeed.y) + Math.abs(nowSpeed.z)) > 0) {
+                    return;//TODO-警察移动不可射击
                 }
                 let v3 = InputUtil.convertScreenLocationToWorldSpace(loc.x, loc.y);
                 let forward = v3.worldDirection.normalized;
                 let endPosition = v3.worldPosition.clone().add(forward.multiply(3000));
                 let hitResult = QueryUtil.lineTrace(v3.worldPosition, endPosition, true, Globals.isShowLineTrace, [], false, false, this.localPlayer.character);
-                hitResult = hitResult.filter((value)=>{
+                hitResult = hitResult.filter((value) => {
                     if (value.gameObject instanceof mw.Trigger) {
                         return false;
                     }
@@ -120,7 +120,7 @@ export class AutoAimModuleC extends ModuleC<AutoAimModuleS, null> {
                 })
                 if (hitResult && hitResult.length > 0) {
                     let res = hitResult[hitResult.length - 1].position;
-                    hitResult.forEach((value)=>{
+                    hitResult.forEach((value) => {
                         if ((PlayerManagerExtesion.isCharacter(value.gameObject) || PlayerManagerExtesion.isNpc(value.gameObject))) {
                             res = value.position;
                         }
@@ -130,25 +130,25 @@ export class AutoAimModuleC extends ModuleC<AutoAimModuleS, null> {
                     })
                     callBack(res.clone());
                 }
-                else{
+                else {
                     callBack(endPosition.clone());
                 }
-    
+
             })
         }
     }
 
-    public addStealthPlayer(player: mw.Player){
+    public addStealthPlayer(player: mw.Player) {
         this.stealthMap.set(player.character.gameObjectId, true);
         this.updataOnePlayerButton(player.character);
     }
 
-    public deleteStealthPlayer(player: mw.Player){
+    public deleteStealthPlayer(player: mw.Player) {
         this.stealthMap.delete(player.character.gameObjectId);
         this.updataOnePlayerButton(player.character);
     }
 
-    endLineTrace(){
+    endLineTrace() {
         if (!this.touch) {
             return;
         }
@@ -156,7 +156,7 @@ export class AutoAimModuleC extends ModuleC<AutoAimModuleS, null> {
         this.touch.onTouchBegin.clear();
     }
 
-    endAutoAnimTrigger(){
+    endAutoAnimTrigger() {
         if (!this.trigger) {
             return;
         }
@@ -166,16 +166,16 @@ export class AutoAimModuleC extends ModuleC<AutoAimModuleS, null> {
 
     onUpdate(dt: number): void {
         if (!this.isActive) {
-            return;   
+            return;
         }
-        this.shootMap.forEach((value, index)=>{
+        this.shootMap.forEach((value, index) => {
             this.setShootBtnPosition(value, index);
 
         })
     }
 
     /**更新一个玩家的瞄准按钮 */
-    public updataOnePlayerButton(obj: mw.GameObject){
+    public updataOnePlayerButton(obj: mw.GameObject) {
         if (this.trigger && this.trigger.checkInArea(obj)) {
             console.error("重置准星展示");
             this.clearOneButton(obj.gameObjectId);
@@ -187,7 +187,7 @@ export class AutoAimModuleC extends ModuleC<AutoAimModuleS, null> {
         this.curPlayer = await Player.asyncGetLocalPlayer()
     }
 
-    private async initTrigger(){
+    private async initTrigger() {
         this.trigger = await SpawnManager.wornAsyncSpawn("Trigger") as mw.Trigger;
         this.trigger.enabled = (false);
         this.trigger.shape = mw.TriggerShapeType.Sphere;
@@ -227,10 +227,10 @@ export class AutoAimModuleC extends ModuleC<AutoAimModuleS, null> {
             if (!enterMap.has(obj.gameObjectId) && !enterMap.has(guid)) {
                 isShow = true;
             }
-            else if(enterMap.has(obj.gameObjectId) && enterMap.has(guid)){
+            else if (enterMap.has(obj.gameObjectId) && enterMap.has(guid)) {
                 isShow = true;
             }
-            
+
             if (isShow == true) {
                 res.every((hit, index) => {
                     if (!hit.blockingHit) {
@@ -330,19 +330,19 @@ export class AutoAimModuleC extends ModuleC<AutoAimModuleS, null> {
                 return;
             }
             let button = this.foresightUI.getIdleButton();
-            
+
             if (ModuleService.getModule(GameModuleC).getPlayerCamp() == Camp.Spy) {
                 button.enable = true;
                 button.onPressed.add(() => {
                     let nowSpeed = this.localPlayer.character.velocity;
-                    if ((Math.abs(nowSpeed.x)+ Math.abs(nowSpeed.y )+ Math.abs(nowSpeed.z)) > 0) {
-                        return;
+                    if ((Math.abs(nowSpeed.x) + Math.abs(nowSpeed.y) + Math.abs(nowSpeed.z)) > 0) {
+                        return;//TODO-凶手移动不可攻击
                     }
                     let dir = obj.worldTransform.position.clone().subtract(this.curPlayer.character.worldTransform.position).normalize();
                     this.btnClickHandler.call(dir);
                 })
             }
-            else{
+            else {
                 button.enable = false;
             }
             this.shootMap.set(obj, button);

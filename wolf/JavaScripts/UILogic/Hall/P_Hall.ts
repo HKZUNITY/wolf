@@ -36,6 +36,9 @@ export default class P_Hall extends MainMenu_Generate {
         this.mBtn_Jump.onPressed.add(() => {
             if (Player.localPlayer.character.isJumping) return;
             Player.localPlayer.character.jump();
+            if (Player.localPlayer.character.driftControl != 0.5) Player.localPlayer.character.driftControl = 0.5;
+            if (Player.localPlayer.character.gravityScale != 1) Player.localPlayer.character.driftControl = 1;
+            if (!Player.localPlayer.character.movementEnabled) Player.localPlayer.character.movementEnabled = true;
         })
         this.mBtn_Watch.onClicked.add(() => {
             ModuleService.getModule(WatchModuleC).watchOther();
@@ -86,12 +89,24 @@ export default class P_Hall extends MainMenu_Generate {
         ModuleService.getModule(BubbleModuleC).refreshBubble();
         Player.localPlayer.character.driftControl = 0.5;
         Player.localPlayer.character.gravityScale = 1;
+        Player.localPlayer.character.movementEnabled = true;
+        while (Player.localPlayer.character.driftControl != 0.5 || Player.localPlayer.character.gravityScale != 1 || Player.localPlayer.character.movementEnabled != true) {
+            Player.localPlayer.character.driftControl = 0.5;
+            Player.localPlayer.character.gravityScale = 1;
+            Player.localPlayer.character.movementEnabled = true;
+        }
         console.error(`嘿嘿`);
     }
     public static closeHallUI() {
         UIService.hide(this);
         Player.localPlayer.character.driftControl = 1;
         Player.localPlayer.character.gravityScale = 3;
+        Player.localPlayer.character.movementEnabled = true;
+        while (Player.localPlayer.character.driftControl != 1 || Player.localPlayer.character.gravityScale != 3 || Player.localPlayer.character.movementEnabled != true) {
+            Player.localPlayer.character.driftControl = 1;
+            Player.localPlayer.character.gravityScale = 3;
+            Player.localPlayer.character.movementEnabled = true;
+        }
         console.error(`哈哈`);
     }
     public showShop() {
