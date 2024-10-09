@@ -100,7 +100,12 @@ export class insideItemBaseItem<T extends IInsideItemBaseItemView> extends BaseU
         this.view.mImage_BG.imageColor = new mw.LinearColor(caseColor.x / 255, caseColor.y / 255, caseColor.z / 255)
         this.view.mText_Items.fontColor = new mw.LinearColor(casewordsColor.x / 255, casewordsColor.y / 255, casewordsColor.z / 255)
         this.view.mText_Items_1.fontColor = new mw.LinearColor(casewordsColor.x / 255, casewordsColor.y / 255, casewordsColor.z / 255)
-        this.view.mImage_Items.imageGuid = (info.IconGuid.toString());
+        // this.view.mImage_Items.imageGuid = (info.IconGuid.toString());
+        if (info.IconGuid && info.IconGuid[0] == `m`) {
+            Tools.setImageByAssetIconData(this.view.mImage_Items, info.IconGuid.split(`_`)[1]);
+        } else {
+            this.view.mImage_Items.imageGuid = (info.IconGuid.toString());
+        }
         this.view.mText_Items.text = (info.Name);
         this.view.mText_Items_1.text = (rate * 100 + "%");
     }
@@ -120,7 +125,12 @@ export class ScrollItemBaseItem<T extends IScrollItemBaseItemView> extends BaseU
         let slotwordsColor = GameConfig.Color.getElement(10001 + info.Rarity).Slotwords
         this.view.mImage_BG.imageColor = new mw.LinearColor(slotColor.x / 255, slotColor.y / 255, slotColor.z / 255)
         this.view.mText_Items.fontColor = new mw.LinearColor(slotwordsColor.x / 255, slotwordsColor.y / 255, slotwordsColor.z / 255)
-        this.view.mImage_Items.imageGuid = (info.IconGuid.toString());
+        // this.view.mImage_Items.imageGuid = (info.IconGuid.toString());
+        if (info.IconGuid && info.IconGuid[0] == `m`) {
+            Tools.setImageByAssetIconData(this.view.mImage_Items, info.IconGuid.split(`_`)[1]);
+        } else {
+            this.view.mImage_Items.imageGuid = (info.IconGuid.toString());
+        }
         this.view.mText_Items.text = info.Name;
     }
 }
@@ -271,7 +281,12 @@ export class LotteryInsideBasePanel<T extends ILotteryInsideBasePanelView> exten
         let index = (curWeaponId - curWeaponId % 10000) / 10000;
         let itemInfo = DataCenterC.getData(ShopModuleData).getShopDataByMap(index);
         let cfg = GameConfig.Shop.getElement(curWeaponId);
-        this.view.mImage_weapon.imageGuid = cfg.IconGuid;
+        // this.view.mImage_weapon.imageGuid = cfg.IconGuid;
+        if (cfg.IconGuid && cfg.IconGuid[0] == `m`) {
+            Tools.setImageByAssetIconData(this.view.mImage_weapon, cfg.IconGuid.split(`_`)[1]);
+        } else {
+            this.view.mImage_weapon.imageGuid = (cfg.IconGuid.toString());
+        }
         if (itemInfo.state[itemInfo.listId.indexOf(curWeaponId)] != 1) {
             this.view.mCanvas_first.visibility = mw.SlateVisibility.Collapsed;
             this.view.mCanvas_repeat.visibility = mw.SlateVisibility.SelfHitTestInvisible;

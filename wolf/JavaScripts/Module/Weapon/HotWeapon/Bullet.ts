@@ -1,5 +1,5 @@
 import { GeneralManager, } from '../../../Modified027Editor/ModifiedStaticAPI';
-import { SpawnManager,SpawnInfo, } from '../../../Modified027Editor/ModifiedSpawn';
+import { SpawnManager, SpawnInfo, } from '../../../Modified027Editor/ModifiedSpawn';
 import { PlayerManagerExtesion, } from '../../../Modified027Editor/ModifiedPlayer';
 import { oTraceError, oTrace, oTraceWarning, LogManager, AnalyticsUtil, IFightRole, AIMachine, AIState } from "odin";
 import { AiObject } from "../../../AI/AiObject";
@@ -43,7 +43,7 @@ export class Projectile {
     private bulletEffectRot: mw.Rotation;
     /**子弹特效偏移 */
     private bulletEffectLoc: mw.Vector = new mw.Vector(0, 0, 0);
-    
+
     private startPos: Vector;
     /**击中特效 */
     private hitEffect: string;
@@ -94,7 +94,7 @@ export class Projectile {
     private knifeSpeed = GameConfig.Rule.getElement(20002).Num;
     /**初始化热武器投掷物模块 */
     public async initBullet() {
-        this.bulletMesh =  await SpawnManager.asyncSpawn({guid: this.bulletGuid, replicates: true});//子弹模型
+        this.bulletMesh = await SpawnManager.asyncSpawn({ guid: this.bulletGuid, replicates: true });//子弹模型
         this.bulletMesh.setCollision(mw.CollisionStatus.QueryOnly, true);
         this.bulletMesh.localTransform.position = (mw.Vector.zero);
         this.bulletMesh.localTransform.rotation = (new mw.Rotation(0, 90, 0));
@@ -105,13 +105,14 @@ export class Projectile {
     }
     /**初始化冷兵器投掷物模块 */
     public async initColdWeapon() {
-        this.timer = TimeUtil.setInterval(()=>{
+        this.timer = TimeUtil.setInterval(() => {
             if (this.weaponMesh && this.weaponMesh.worldTransform.rotation) {
                 let rot = this.weaponMesh.localTransform.rotation.clone()
                 let quaternion = rot.toQuaternion();
                 quaternion = mw.Quaternion.rotateY(quaternion, this.rotateSpeed * 0.05);
                 this.weaponMesh.localTransform.rotation = quaternion.toRotation();
-    }}, 0.05)
+            }
+        }, 0.05)
         let trigger = await mw.GameObject.asyncSpawn("Trigger");
         trigger.worldTransform.scale = new Vector(0.2, 0.1, 0.3);
         trigger.worldTransform.position = this.weaponMesh.worldTransform.position;
@@ -168,9 +169,9 @@ export class Projectile {
         let coldId = ModuleService.getModule(BagModuleS).getColdWeaponId(this.owner.playerId);
         let coldWeapon = ModuleService.getModule(BagModuleS).getColdWeaponObj(this.owner);
         let modelGuid = GameConfig.Weapon.getElement(coldId).ModleGUID;
-        this.weaponMesh = await SpawnManager.asyncSpawn({guid: modelGuid, replicates: true});
-        this.weaponMesh.setCollision(mw.CollisionStatus.QueryOnly, true);
-        this.weaponMesh.worldTransform = coldWeapon.worldTransform
+        this.weaponMesh = await SpawnManager.asyncSpawn({ guid: modelGuid, replicates: true });
+        this.weaponMesh.worldTransform = coldWeapon.worldTransform;
+        (this.weaponMesh as mw.Model).setCollision(mw.CollisionStatus.QueryOnly, true);
         if (isReal == AiOrPlayer.RealPlayer) {
             let weaponId = DataCenterS.getData(player, BagModuleData).getCurColdWeapon()
             let dataInfo = GameConfig.Weapon.getElement(weaponId)
@@ -191,7 +192,7 @@ export class Projectile {
         await this.initColdWeapon()
     }
 
-    private getFlySpeed(){
+    private getFlySpeed() {
         let res = this.knifeSpeed;
         if (this.owner) {
             res = AttributeManager.instance.getAttributeValue(this.owner.playerId, AttributeType.FlyKnifeSpeed);
@@ -290,7 +291,7 @@ export class Projectile {
                 oTrace("击中自己")
                 return false;
             }
-            else if(ai.aiGameState == PlayerGameState.Die || ai.aiGameState == PlayerGameState.Back || ai.aiGameState == PlayerGameState.Leave ){
+            else if (ai.aiGameState == PlayerGameState.Die || ai.aiGameState == PlayerGameState.Back || ai.aiGameState == PlayerGameState.Leave) {
                 return false;
             }
         }
@@ -300,7 +301,7 @@ export class Projectile {
             if (player == this.owner) {
                 return false;
             }
-            else if(state == PlayerGameState.Die || state == PlayerGameState.Back || state == PlayerGameState.Leave ){
+            else if (state == PlayerGameState.Die || state == PlayerGameState.Back || state == PlayerGameState.Leave) {
                 return false;
             }
             if (this.owner && !ModuleService.getModule(ShelterModuleS).canHitPlayer(this.owner.character.gameObjectId, hitActor.gameObjectId)) {
@@ -426,7 +427,7 @@ export class Projectile {
         this.projectile.initialSpeed = this.speed;
         // this.projectile.collisionLength = GameConfig.Weapon.getElement(20001).Distance;
         // this.projectile.collisionRadius = GameConfig.Weapon.getElement(20001).Distance;
-        this.projectile.lifeSpan = this.distance/ this.speed;
+        this.projectile.lifeSpan = this.distance / this.speed;
         this.projectile.getRelatedGameObject().worldTransform.position = pos;
         this.projectile.getRelatedGameObject().worldTransform.rotation = dir.toRotation();
         // if (player) {
@@ -441,15 +442,15 @@ export class Projectile {
             rot = rot.add(new mw.Rotation(0, -90, 0));
             this.weaponMesh.worldTransform.rotation = rot;
             let config = GameConfig.Sound.getElement(10022);
-            SoundService.play3DSound(this.bulletLauchSound, pos, config.Count, config.Rate, { radius: config.InnerRadius, falloffDistance: config.FalloffDistance})
+            SoundService.play3DSound(this.bulletLauchSound, pos, config.Count, config.Rate, { radius: config.InnerRadius, falloffDistance: config.FalloffDistance })
             this.maxLastTimer = setTimeout(() => {
                 this.destroy(true)
             }, this.maxLastTime * 1000);
         }
-        else{
+        else {
             GeneralManager.rpcPlayEffectAtLocation(this.gunEffect, this.startPos, 1, this.gunEffectRot.toRotation(), this.gunEffectScale);
             let config = GameConfig.Sound.getElement(10020);
-            SoundService.play3DSound(this.bulletLauchSound, this.startPos, config.Count, config.Rate, { radius: config.InnerRadius, falloffDistance: config.FalloffDistance})
+            SoundService.play3DSound(this.bulletLauchSound, this.startPos, config.Count, config.Rate, { radius: config.InnerRadius, falloffDistance: config.FalloffDistance })
 
         }
     }

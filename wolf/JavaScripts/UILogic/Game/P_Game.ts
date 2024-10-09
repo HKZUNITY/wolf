@@ -48,11 +48,12 @@ export default class P_Game extends GameBattle {
         this.canUpdate = true;
         this.mBtn_Jump_Inside.focusable = (false);
         this.mBtn_Jump_Inside.onPressed.add(() => {
+            // if (Player.localPlayer.character.driftControl != 1) Player.localPlayer.character.driftControl = 1;
+            // if (Player.localPlayer.character.gravityScale != 3) Player.localPlayer.character.driftControl = 3;
+            // if (!Player.localPlayer.character.movementEnabled) Player.localPlayer.character.movementEnabled = true;
+            // if (Player.localPlayer.character.getCurrentState() != mw.CharacterStateType.Running) Player.localPlayer.character.changeState(mw.CharacterStateType.Running);
             if (Player.localPlayer.character.isJumping) return;
             Player.localPlayer.character.jump();
-            if (Player.localPlayer.character.driftControl != 1) Player.localPlayer.character.driftControl = 1;
-            if (Player.localPlayer.character.gravityScale != 3) Player.localPlayer.character.driftControl = 3;
-            if (!Player.localPlayer.character.movementEnabled) Player.localPlayer.character.movementEnabled = true;
         })
         this.mBtn_Jump_Inside.size = new mw.Vector2(200, 200);
         this.mBtn_Swith.onPressed.add(() => {

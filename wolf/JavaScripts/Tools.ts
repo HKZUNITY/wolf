@@ -23,6 +23,21 @@ export enum SoundType {
 }
 export class Tools {
 
+    private static assetIconDataMap: Map<string, mw.AssetIconData> = new Map<string, mw.AssetIconData>();
+    public static setImageByAssetIconData(image: mw.Image, icon: string): void {
+        if (this.assetIconDataMap.has(icon)) {
+            image.setImageByAssetIconData(this.assetIconDataMap.get(icon));
+        } else {
+            mw.assetIDChangeIconUrlRequest([icon]).then(() => {
+                try {
+                    let assetIconData = mw.getAssetIconDataByAssetID(icon);
+                    image.setImageByAssetIconData(assetIconData);
+                    this.assetIconDataMap.set(icon, assetIconData);
+                } catch (error) { }
+            });
+        }
+    }
+
     /**
      * 播放音效
      * @param confId 配置表id

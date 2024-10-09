@@ -4,6 +4,7 @@ import Clearing from "../../uiTemplate/Clearing/Clearing";
 import { CalculateModuleC, calculateData } from "../../Module/ProcModule/CalculateModule";
 import { IAAUtils } from "../../IAAUtils";
 import P_Tips from "../../CommonUI/P_Tips";
+import { Tools } from "../../Tools";
 
 export default class P_Account extends Clearing {
     private static _instance: P_Account;
@@ -162,13 +163,28 @@ export default class P_Account extends Clearing {
         //右侧杀手
         this.mText_Detective.text = GameConfig.Identity.getElement(10002).IdentityName;
         this.mImg_PlayerIcon_Detective.imageGuid = (GameConfig.Role.findElement(`ID`, data.spyRoleId) ? GameConfig.Role.getElement(data.spyRoleId).Image.toString() : GameConfig.Role.getElement(10001).Image.toString());
-        this.mImg_WeaponIcon_Detective.imageGuid = GameConfig.Weapon.getElement(data.spyWeaponId).IconGUID.toString()
+        // this.mImg_WeaponIcon_Detective.imageGuid = GameConfig.Weapon.getElement(data.spyWeaponId).IconGUID.toString()
+
+        let weaponIcon = GameConfig.Weapon.getElement(data.spyWeaponId).IconGUID;
+        if (weaponIcon && weaponIcon[0] == `m`) {
+            Tools.setImageByAssetIconData(this.mImg_WeaponIcon_Detective, weaponIcon.split(`_`)[1]);
+        } else {
+            this.mImg_WeaponIcon_Detective.imageGuid = weaponIcon;
+        }
         this.mText_WeaponName_Detective.text = GameConfig.Weapon.getElement(data.spyWeaponId).WeaponName;
         this.mText_PlayerName_Detective.text = data.spyName;
         //左侧其他
         this.mText_Maffia.text = GameConfig.Identity.getElement(maffiaId).IdentityName;
         this.mImg_PlayerIcon_Maffia.imageGuid = (GameConfig.Role.findElement(`ID`, data.otherRoleId) ? GameConfig.Role.getElement(data.otherRoleId).Image.toString() : GameConfig.Role.getElement(10001).Image.toString());
-        this.mImg_WeaponIcon_Maffia.imageGuid = GameConfig.Weapon.getElement(data.otherWeaponId).IconGUID.toString()
+        // this.mImg_WeaponIcon_Maffia.imageGuid = GameConfig.Weapon.getElement(data.otherWeaponId).IconGUID.toString()
+
+        let weaponIcon1 = GameConfig.Weapon.getElement(data.otherWeaponId).IconGUID;
+        if (weaponIcon1 && weaponIcon1[0] == `m`) {
+            Tools.setImageByAssetIconData(this.mImg_WeaponIcon_Maffia, weaponIcon1.split(`_`)[1]);
+        } else {
+            this.mImg_WeaponIcon_Maffia.imageGuid = weaponIcon1;
+        }
+
         this.mText_WeaponName_Maffia.text = GameConfig.Weapon.getElement(data.otherWeaponId).WeaponName
         this.mText_PlayerName_Maffia.text = data.otherName;
         //===================step2

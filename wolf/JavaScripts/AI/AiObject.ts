@@ -734,7 +734,7 @@ export class AiObject {
         obj.localTransform.position = (objInfo.WeaponPosition);
         obj.localTransform.rotation = (new mw.Rotation(objInfo.WeaponRotation));
         obj.worldTransform.scale = objInfo.WeaponScale;
-        obj.setCollision(mw.PropertyStatus.Off, true);
+        (obj as mw.Model).setCollision(mw.PropertyStatus.Off, true);
         return obj;
     }
     public setAiName(str: string) {

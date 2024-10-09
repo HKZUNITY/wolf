@@ -114,7 +114,13 @@ export class ShopBaseItem<T extends IShopBaseItemView> extends BaseUI<T> {
 		this.itemId = itemId;
 		this.itemState = itemState;
 		let info = GameConfig.Shop.getElement(itemId);
-		this.view.mImage_Items.imageGuid = (info.IconGuid.toString());
+		// this.view.mImage_Items.imageGuid = (info.IconGuid.toString());
+		if (info.IconGuid && info.IconGuid[0] == `m`) {
+			Tools.setImageByAssetIconData(this.view.mImage_Items, info.IconGuid.split(`_`)[1]);
+		} else {
+			this.view.mImage_Items.imageGuid = (info.IconGuid.toString());
+		}
+
 		this.view.mText_Items.text = (info.Name);
 		this.view.mText_ItemsPrice.text = (info.Price.toString());
 		let shopColor = GameConfig.Color.getElement(10001 + info.Rarity).Shop
@@ -330,7 +336,12 @@ export class ShopBasePanel<T extends IShopBasePanelView> extends BaseUI<T> {
 	/**购买物品界面 */
 	private showBuyInfo() {
 		let info = GameConfig.Shop.getElement(this.curItem.itemId);
-		this.view.mImage_ItemIcon.imageGuid = (info.IconGuid);
+		// this.view.mImage_ItemIcon.imageGuid = (info.IconGuid);
+		if (info.IconGuid && info.IconGuid[0] == `m`) {
+			Tools.setImageByAssetIconData(this.view.mImage_ItemIcon, info.IconGuid.split(`_`)[1]);
+		} else {
+			this.view.mImage_ItemIcon.imageGuid = (info.IconGuid.toString());
+		}
 		this.view.mText_ItemName.text = (info.Name);
 		this.view.mText_ItemPrice.text = (info.Price.toString());
 		this.view.mCanvas_Verification.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
@@ -338,7 +349,12 @@ export class ShopBasePanel<T extends IShopBasePanelView> extends BaseUI<T> {
 	private showBuySuccess() {
 		this.view.mCanvas_Verification.visibility = (mw.SlateVisibility.Collapsed);
 		let info = GameConfig.Shop.getElement(this.curItem.itemId);
-		this.view.mImage_ItemGet.imageGuid = (info.IconGuid);
+		// this.view.mImage_ItemGet.imageGuid = (info.IconGuid);
+		if (info.IconGuid && info.IconGuid[0] == `m`) {
+			Tools.setImageByAssetIconData(this.view.mImage_ItemGet, info.IconGuid.split(`_`)[1]);
+		} else {
+			this.view.mImage_ItemGet.imageGuid = (info.IconGuid.toString());
+		}
 		this.view.mText_ResultName.text = (info.Name);
 		this.view.mCanvas_Result.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
 	}
@@ -346,7 +362,12 @@ export class ShopBasePanel<T extends IShopBasePanelView> extends BaseUI<T> {
 	private showItemDetail(id: number, state: ItemState) {
 
 		let info = GameConfig.Shop.getElement(id);
-		this.view.mImage_ItemShow.imageGuid = (info.IconGuid);
+		// this.view.mImage_ItemShow.imageGuid = (info.IconGuid);
+		if (info.IconGuid && info.IconGuid[0] == `m`) {
+			Tools.setImageByAssetIconData(this.view.mImage_ItemShow, info.IconGuid.split(`_`)[1]);
+		} else {
+			this.view.mImage_ItemShow.imageGuid = (info.IconGuid.toString());
+		}
 		this.view.mText_ItemShowName.text = (info.Name);
 		if (this.remainTimer) {
 			TimeUtil.clearInterval(this.remainTimer);

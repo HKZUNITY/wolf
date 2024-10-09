@@ -1,14 +1,14 @@
 import { GeneralManager, } from '../../Modified027Editor/ModifiedStaticAPI';
-import { SpawnManager,SpawnInfo, } from '../../Modified027Editor/ModifiedSpawn';
+import { SpawnManager, SpawnInfo, } from '../../Modified027Editor/ModifiedSpawn';
 import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
-﻿/** 
- * @Author       : songyang.xie
- * @Date         : 2023-02-02 15:56:34
- * @LastEditors  : Songyang.Xie
- * @LastEditTime : 2023-08-14 17:31:42
- * @FilePath     : \murdermystery3\JavaScripts\Module\BagModule\BagModuleS.ts
- * @Description  : 修改描述
- */
+/** 
+* @Author       : songyang.xie
+* @Date         : 2023-02-02 15:56:34
+* @LastEditors  : Songyang.Xie
+* @LastEditTime : 2023-08-14 17:31:42
+* @FilePath     : \murdermystery3\JavaScripts\Module\BagModule\BagModuleS.ts
+* @Description  : 修改描述
+*/
 import { oTraceError, oTrace, oTraceWarning, LogManager, AnalyticsUtil, IFightRole, AIMachine, AIState } from "odin";
 import { AiState } from "../../AI/AiStateMachine";
 import { GameGlobals, Globals, PlayerGameState, PlayerWeaponState } from "../../Globals";
@@ -22,7 +22,7 @@ import { GameCache } from "../../GameCache";
 import { Tools } from "../../Tools";
 import { GameModuleS } from "../GameModule/GameModuleS";
 
-export class BagModuleS extends ModuleS<BagModuleC, BagModuleData>{
+export class BagModuleS extends ModuleS<BagModuleC, BagModuleData> {
     public hotWeaponMap: Map<number, mw.GameObject> = new Map();
     public coldWeaponMap: Map<number, mw.GameObject> = new Map();
 
@@ -129,11 +129,11 @@ export class BagModuleS extends ModuleS<BagModuleC, BagModuleData>{
                     this.openCold.set(playerId, true);
                 }
             }
-            else{
+            else {
                 this.getClient(player).net_contorlCold(true, this.useCold.get(playerId).CD);
                 this.openCold.set(playerId, true);
             }
-        } 
+        }
         else {
             if (this.openCold.has(playerId)) {
                 if (this.openCold.get(playerId)) {
@@ -141,9 +141,9 @@ export class BagModuleS extends ModuleS<BagModuleC, BagModuleData>{
                     this.openCold.set(playerId, false);
                 }
             }
-            else{
-                    this.getClient(player).net_contorlCold(false);
-                    this.openCold.set(playerId, false);
+            else {
+                this.getClient(player).net_contorlCold(false);
+                this.openCold.set(playerId, false);
             }
 
         }
@@ -155,12 +155,12 @@ export class BagModuleS extends ModuleS<BagModuleC, BagModuleData>{
     public equipHotWeapon(player: mw.Player, weaponId: number) {
 
         let objInfo = GameConfig.Weapon.getElement(weaponId);
-        SpawnManager.asyncSpawn({guid: objInfo.ModleGUID.toString()}).then((obj) => {
-            obj.setCollision(mw.PropertyStatus.Off, true);
+        SpawnManager.asyncSpawn({ guid: objInfo.ModleGUID.toString() }).then((obj) => {
             player.character.attachToSlot(obj, objInfo.RabbetPart);
             obj.localTransform.position = (objInfo.WeaponPosition);
             obj.localTransform.rotation = (new mw.Rotation(objInfo.WeaponRotation));
             obj.worldTransform.scale = objInfo.WeaponScale;
+            (obj as mw.Model).setCollision(mw.PropertyStatus.Off, true);
 
             if (this.hotWeaponMap.get(player.playerId) != undefined) {
                 // if (this.hotWeaponEff.has(player.playerId)) {
@@ -190,12 +190,12 @@ export class BagModuleS extends ModuleS<BagModuleC, BagModuleData>{
     */
     public equipColdWeapon(player: mw.Player, weaponId: number) {
         let objInfo = GameConfig.Weapon.getElement(weaponId);
-        SpawnManager.asyncSpawn({guid: objInfo.ModleGUID.toString()}).then((obj) => {
-            obj.setCollision(mw.PropertyStatus.Off, true);
+        SpawnManager.asyncSpawn({ guid: objInfo.ModleGUID.toString() }).then((obj) => {
             player.character.attachToSlot(obj, objInfo.RabbetPart);
             obj.localTransform.position = (objInfo.WeaponPosition);
             obj.localTransform.rotation = (new mw.Rotation(objInfo.WeaponRotation));
             obj.worldTransform.scale = objInfo.WeaponScale;
+            (obj as mw.Model).setCollision(mw.PropertyStatus.Off, true);
 
             if (this.coldWeaponMap.get(player.playerId) != undefined) {
                 // if (this.coldWeaponEff.has(player.playerId)) {
@@ -267,7 +267,7 @@ export class BagModuleS extends ModuleS<BagModuleC, BagModuleData>{
         let weaponId = this.getHotWeaponId(playerId)
         let dataInfo = GameConfig.Weapon.getElement(weaponId)
         let animObj = PlayerManagerExtesion.loadAnimationExtesion(player.character, dataInfo.BufferActionGUID.toString())
-        animObj.speed = animObj.length/ this.hotReloadTime;
+        animObj.speed = animObj.length / this.hotReloadTime;
         animObj.slot = AnimSlot.Upper;
         animObj.play();
         this.playerHotReloadAnimObjMap.set(playerId, animObj)
@@ -289,15 +289,15 @@ export class BagModuleS extends ModuleS<BagModuleC, BagModuleData>{
         let stance = PlayerManagerExtesion.loadStanceExtesion(player.character, objInfo.HoldPosture.toString());
         if (stance) {
             stance.play();
-            this.playerColdStance.set(player.playerId, stance);  
+            this.playerColdStance.set(player.playerId, stance);
         }
-        
+
 
         weapon.localTransform.position = (objInfo.HoldOffset);
         weapon.localTransform.rotation = (new mw.Rotation(objInfo.HoldRotation));
         weapon.worldTransform.scale = objInfo.HoldScale;
         this.useCold.set(player.playerId, objInfo);
-        
+
         // oTraceError(`distance ==== 装备武器  ${player.playerId}`)
     }
     /**
@@ -377,7 +377,7 @@ export class BagModuleS extends ModuleS<BagModuleC, BagModuleData>{
     /**取消冷兵器换弹动画 */
     public cancelColdWeaponReload(player: mw.Player) {
         let playerId = player.playerId;
-        if(!this.playerReloadAnimObjMap.get(playerId)){
+        if (!this.playerReloadAnimObjMap.get(playerId)) {
             return;
         }
         let reloadTimer = this.playerReloadTimerMap.get(playerId)
@@ -395,7 +395,7 @@ export class BagModuleS extends ModuleS<BagModuleC, BagModuleData>{
     /**取消热兵器换弹动画 */
     public cancelHotWeaponReload(player: mw.Player) {
         let playerId = player.playerId
-        PlayerManagerExtesion.stopStanceExtesion(player.character, );
+        PlayerManagerExtesion.stopStanceExtesion(player.character,);
         if (this.playerHotReloadAnimObjMap.has(playerId)) {
             let animObj = this.playerHotReloadAnimObjMap.get(playerId)
             animObj.stop()

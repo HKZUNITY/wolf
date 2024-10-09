@@ -1,7 +1,7 @@
 import { GeneralManager, } from '../../Modified027Editor/ModifiedStaticAPI';
-import { SpawnManager,SpawnInfo, } from '../../Modified027Editor/ModifiedSpawn';
+import { SpawnManager, SpawnInfo, } from '../../Modified027Editor/ModifiedSpawn';
 import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
-﻿import { oTrace } from "odin";
+import { oTrace } from "odin";
 import { AiObject } from "../../AI/AiObject";
 import { AiOrPlayer, Camp, GameGlobals, GamingState, KillType, PlayerGameState } from "../../Globals";
 import { GameConfig } from "../../Tables/GameConfig";
@@ -67,13 +67,13 @@ export default class BoomKnife implements BaseBullet {
         }
         this.owner = player;
 
-        
+
         let coldId = ModuleService.getModule(BagModuleS).getColdWeaponId(this.owner.playerId);
         let coldWeapon = ModuleService.getModule(BagModuleS).getColdWeaponObj(this.owner);
         let modelGuid = GameConfig.Weapon.getElement(coldId).ModleGUID;
-        this.weaponMesh = await SpawnManager.asyncSpawn({guid: modelGuid, replicates: true});
-        this.weaponMesh.setCollision(mw.CollisionStatus.QueryOnly, true);
-        this.weaponMesh.worldTransform = coldWeapon.worldTransform
+        this.weaponMesh = await SpawnManager.asyncSpawn({ guid: modelGuid, replicates: true });
+        this.weaponMesh.worldTransform = coldWeapon.worldTransform;
+        (this.weaponMesh as mw.Model).setCollision(mw.CollisionStatus.QueryOnly, true);
         if (isReal == AiOrPlayer.RealPlayer) {
             let weaponId = DataCenterS.getData(player, BagModuleData).getCurColdWeapon()
             let dataInfo = GameConfig.Weapon.getElement(weaponId);
@@ -91,13 +91,14 @@ export default class BoomKnife implements BaseBullet {
 
     /**初始化冷兵器投掷物模块 */
     public async initColdWeapon() {
-        this.timer = TimeUtil.setInterval(()=>{
+        this.timer = TimeUtil.setInterval(() => {
             if (this.weaponMesh && this.weaponMesh.worldTransform.rotation) {
                 let rot = this.weaponMesh.localTransform.rotation.clone()
                 let quaternion = rot.toQuaternion();
                 quaternion = mw.Quaternion.rotateY(quaternion, this.rotateSpeed * 0.05);
                 this.weaponMesh.localTransform.rotation = quaternion.toRotation();
-        }}, 0.05)
+            }
+        }, 0.05)
         let trigger = await mw.GameObject.asyncSpawn("Trigger");
         trigger.worldTransform.scale = new Vector(0.2, 0.1, 0.3);
         trigger.worldTransform.position = this.weaponMesh.worldTransform.position;
@@ -113,7 +114,7 @@ export default class BoomKnife implements BaseBullet {
             this.projectile = new mw.ProjectileMovement(obj.parent);
             this.projectile.onProjectileHit.add((hitActor: mw.GameObject, sweepResult: mw.HitResult) => {
                 console.error("投掷物命中物体01");
-                
+
                 if (!this.isFire) return;
                 console.error("投掷物命中物体01");
                 this.hit(hitActor, sweepResult);
@@ -177,7 +178,7 @@ export default class BoomKnife implements BaseBullet {
                 oTrace("击中自己")
                 return false;
             }
-            else if(ai.aiGameState == PlayerGameState.Die || ai.aiGameState == PlayerGameState.Back || ai.aiGameState == PlayerGameState.Leave ){
+            else if (ai.aiGameState == PlayerGameState.Die || ai.aiGameState == PlayerGameState.Back || ai.aiGameState == PlayerGameState.Leave) {
                 return false;
             }
         }
@@ -187,7 +188,7 @@ export default class BoomKnife implements BaseBullet {
             if (player == this.owner) {
                 return false;
             }
-            else if(state == PlayerGameState.Die || state == PlayerGameState.Back || state == PlayerGameState.Leave ){
+            else if (state == PlayerGameState.Die || state == PlayerGameState.Back || state == PlayerGameState.Leave) {
                 return false;
             }
             if (this.owner && !ModuleService.getModule(ShelterModuleS).canHitPlayer(this.owner.character.gameObjectId, hitActor.gameObjectId)) {
@@ -203,17 +204,17 @@ export default class BoomKnife implements BaseBullet {
         if (!isPlayer && hit) {
             this.createBoomPrefab(hit, null);
         }
-        else if(PlayerManagerExtesion.isNpc(hitActor) && hit){
+        else if (PlayerManagerExtesion.isNpc(hitActor) && hit) {
             let npc = hitActor as mw.Character
             this.createBoomPrefab(hit, npc);
         }
-        else if(PlayerManagerExtesion.isCharacter(hitActor) && hit){
+        else if (PlayerManagerExtesion.isCharacter(hitActor) && hit) {
             this.createBoomPrefab(hit, hitActor);
         }
-        return isPlayer;    
+        return isPlayer;
     }
 
-    private boomHitPlayer(hitActor: mw.GameObject, boomPosition: Vector){
+    private boomHitPlayer(hitActor: mw.GameObject, boomPosition: Vector) {
         let dataInfo = GameConfig.Skill.getElement(this.skillId);
         let isPlayer = this.isHitPlayer(hitActor, true);
         if (isPlayer) {
@@ -221,14 +222,14 @@ export default class BoomKnife implements BaseBullet {
             let startPos = new mw.Vector2(boomPosition.x, boomPosition.y);
             let tempDir = endPos.clone().subtract(startPos).normalized;
             let dir = new Vector(tempDir.x, tempDir.y, 0);
-            let power = dir.multiply(dataInfo.HorizontalImpulse).add(new mw.Vector(0,0, dataInfo.VerticalImpulse));
+            let power = dir.multiply(dataInfo.HorizontalImpulse).add(new mw.Vector(0, 0, dataInfo.VerticalImpulse));
             if (hitActor instanceof mw.Character) {
                 hitActor.addImpulse(power, true);
             }
         }
     }
 
-    private isHitPlayer(hitActor: mw.GameObject, isHit: boolean){
+    private isHitPlayer(hitActor: mw.GameObject, isHit: boolean) {
         let isPlayer: boolean = false;
         if (this.ownAi == null) {
             if (PlayerManagerExtesion.isNpc(hitActor)) {
@@ -244,7 +245,7 @@ export default class BoomKnife implements BaseBullet {
             if (PlayerManagerExtesion.isCharacter(hitActor)) {//都是真人
                 oTrace("子弹击中人1");
                 let victim = (hitActor as mw.Character).player;
-                if (isHit){ModuleService.getModule(GameModuleS).serverChangeHp(this.dataInfo.ID, AiOrPlayer.RealPlayer, Camp.Spy, KillType.Shoot, victim, null)                }
+                if (isHit) { ModuleService.getModule(GameModuleS).serverChangeHp(this.dataInfo.ID, AiOrPlayer.RealPlayer, Camp.Spy, KillType.Shoot, victim, null) }
                 isPlayer = true;
             }
         }
@@ -253,7 +254,7 @@ export default class BoomKnife implements BaseBullet {
                 if (Tools.isAiPlayer(hitActor as mw.Character)) {
                     oTrace("子弹击中人机2");
                     let victim = Tools.getAiObj(hitActor as mw.Character);
-                    if(isHit){ModuleService.getModule(GameModuleS).serverChangeHp(this.dataInfo.ID, AiOrPlayer.AiPlayer, Camp.Spy, KillType.Shoot, null, victim)                    }
+                    if (isHit) { ModuleService.getModule(GameModuleS).serverChangeHp(this.dataInfo.ID, AiOrPlayer.AiPlayer, Camp.Spy, KillType.Shoot, null, victim) }
                 }
                 isPlayer = true;
             }
@@ -270,10 +271,10 @@ export default class BoomKnife implements BaseBullet {
         return isPlayer;
     }
 
-    private async createBoomPrefab(hit: mw.HitResult, char: mw.Character){
+    private async createBoomPrefab(hit: mw.HitResult, char: mw.Character) {
         let rot = hit.impactNormal.toRotation();
         rot.y -= 90;
-        this.boomObj = await SpawnManager.asyncSpawn({guid: this.boomGuid, replicates: true});
+        this.boomObj = await SpawnManager.asyncSpawn({ guid: this.boomGuid, replicates: true });
         this.boomObj.setCollision(mw.CollisionStatus.Off, true);
         let dataInfo = GameConfig.Skill.getElement(this.skillId);
         if (char) {
@@ -283,12 +284,12 @@ export default class BoomKnife implements BaseBullet {
             if (PlayerManagerExtesion.isCharacter(char)) {
                 ModuleService.getModule(SkillModuleS).createBoomDelayUI(char.player.playerId, this.boomDelay);
             }
-            else{
+            else {
                 let npc = char as mw.Character
                 ModuleService.getModule(SkillModuleS).createBoomDelayUI_NPC(npc.gameObjectId, this.boomDelay);
             }
         }
-        else{
+        else {
             this.boomObj.worldTransform.position = hit.position;
             this.boomObj.worldTransform.rotation = rot;
         }
@@ -297,7 +298,7 @@ export default class BoomKnife implements BaseBullet {
             let hitResult = QueryUtil.sphereOverlap(this.boomObj.worldTransform.position, dataInfo.HitDistance, true);
             let attack = this.owner || this.ownAi.aiModel;
             hitResult = hitResult.filter(value => value instanceof mw.Character && value != attack);
-            hitResult.forEach((value)=>{
+            hitResult.forEach((value) => {
                 if (!this.isHitEffectiveTarget(value)) {
                     return;
                 }
@@ -305,7 +306,7 @@ export default class BoomKnife implements BaseBullet {
             })
             Tools.playSound(dataInfo.HitSound, this.boomObj.worldTransform.position);
             this.boomObj.destroy();
-        }, dataInfo.Delay* 1000);
+        }, dataInfo.Delay * 1000);
     }
 
     public destroy(immediate: boolean = false) {
@@ -341,7 +342,7 @@ export default class BoomKnife implements BaseBullet {
         }
     }
 
-    private getFlySpeed(){
+    private getFlySpeed() {
         let res = this.speed;
         if (this.owner) {
             res = AttributeManager.instance.getAttributeValue(this.owner.playerId, AttributeType.FlyKnifeSpeed);
@@ -360,7 +361,7 @@ export default class BoomKnife implements BaseBullet {
         this.projectile.getRelatedGameObject().worldTransform.rotation = dir.toRotation();
         // this.projectile.collisionLength = GameConfig.Weapon.getElement(20001).Distance;
         // this.projectile.collisionRadius = GameConfig.Weapon.getElement(20001).Distance;
-        this.projectile.lifeSpan = this.distance/ this.speed;
+        this.projectile.lifeSpan = this.distance / this.speed;
         // if (player) {
         //     this.projectile.bindPlayer(player);
         // }
@@ -374,7 +375,7 @@ export default class BoomKnife implements BaseBullet {
         console.warn("传入的值" + pos + "===" + rot);
         console.warn("位置和旋转" + this.projectile.getRelatedGameObject().worldTransform.position + "===" + this.projectile.getRelatedGameObject().worldTransform.rotation);
         let config = GameConfig.Sound.getElement(10022);
-        SoundService.play3DSound(this.knifeLauchSound, pos, config.Count, config.Rate, { radius: config.InnerRadius, falloffDistance: config.FalloffDistance})
+        SoundService.play3DSound(this.knifeLauchSound, pos, config.Count, config.Rate, { radius: config.InnerRadius, falloffDistance: config.FalloffDistance })
         this.maxLastTimer = setTimeout(() => {
             this.destroy(true)
         }, this.maxLastTime * 1000);
