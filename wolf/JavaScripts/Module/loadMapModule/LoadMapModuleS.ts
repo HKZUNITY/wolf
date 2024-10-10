@@ -19,11 +19,11 @@ export default class LoadMapModuleS extends ModuleS<LoadMapModuleC, null> {
 
     }
 
-    public setPlayerEnterScene(){
+    public setPlayerEnterScene() {
         this.loadGameBornPlace();
         console.error("玩家数量", GameGlobals.enterGameNormalPlayers.length);
         console.error("出书点数量", GameGlobals.gameBornList.length);
-        GameGlobals.enterGameNormalPlayers.forEach((player)=>{
+        GameGlobals.enterGameNormalPlayers.forEach((player) => {
             this.initPlayerGamePos(AiOrPlayer.RealPlayer, player);
         })
     }
@@ -69,6 +69,11 @@ export default class LoadMapModuleS extends ModuleS<LoadMapModuleC, null> {
         let loc = new mw.Vector(bornobj.worldTransform.position.x, bornobj.worldTransform.position.y, bornobj.worldTransform.position.z + 80);
         if (isRealPlayer == AiOrPlayer.RealPlayer) {
             curplayer.character.worldTransform.position = loc;
+            curplayer.character.driftControl = 1;
+            curplayer.character.gravityScale = 3;
+            curplayer.character.movementEnabled = true;
+            curplayer.character.collisionWithOtherCharacterEnabled = true;
+            if (curplayer.character.getCurrentState() != mw.CharacterStateType.Running) curplayer.character.changeState(mw.CharacterStateType.Running);
         }
         else {
             ai.worldTransform.position = loc;
@@ -95,7 +100,7 @@ export default class LoadMapModuleS extends ModuleS<LoadMapModuleC, null> {
     //         return value != playerId;
     //     })
     //     console.error("玩家断线后数组", this.loadingFinishPlayer.length);
-        
+
     // }
     /**
      * 周期函数 每帧执行
