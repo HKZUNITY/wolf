@@ -2,7 +2,7 @@
 import P_Tips from "../../CommonUI/P_Tips";
 import { Globals } from "../../Globals";
 import { ArkModuleC } from "../../Module/ArkModule/ArkModule";
-import { BubbleModuleC } from "../../Module/bubbleModule/BubbleModule";
+import DanMuModuleC from "../../Module/DanMuModule/DanMuModuleC";
 import ExchangeModuleC from "../../Module/ExchangeModule/ExchangeModuleC";
 import { LotteryModuleC } from "../../Module/LotteryModule/LotteryModuleC";
 import { PlayerModuleC } from "../../Module/PlayerModule/PlayerModuleC";
@@ -69,7 +69,7 @@ export default class P_Hall extends MainMenu_Generate {
     }
     public static showHallUI() {
         UIService.show(this, mw.UILayerMiddle);
-        ModuleService.getModule(BubbleModuleC).refreshBubble();
+        ModuleService.getModule(DanMuModuleC).refreshBubble();
     }
     public static closeHallUI() {
         UIService.hide(this);

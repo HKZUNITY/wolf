@@ -4,7 +4,6 @@ import {AIDataConfig} from "./AIData";
 import {AIWayPointConfig} from "./AIWayPoint";
 import {AssetsConfig} from "./Assets";
 import {BuffConfig} from "./Buff";
-import {ChatExtensionConfig} from "./ChatExtension";
 import {ChatConfig} from "./Chat";
 import {CoinsGenerateConfig} from "./CoinsGenerate";
 import {ColorConfig} from "./Color";
@@ -52,7 +51,6 @@ export class GameConfig{
 	public static get AIWayPoint():AIWayPointConfig{ return this.getConfig(AIWayPointConfig) };
 	public static get Assets():AssetsConfig{ return this.getConfig(AssetsConfig) };
 	public static get Buff():BuffConfig{ return this.getConfig(BuffConfig) };
-	public static get ChatExtension():ChatExtensionConfig{ return this.getConfig(ChatExtensionConfig) };
 	public static get Chat():ChatConfig{ return this.getConfig(ChatConfig) };
 	public static get CoinsGenerate():CoinsGenerateConfig{ return this.getConfig(CoinsGenerateConfig) };
 	public static get Color():ColorConfig{ return this.getConfig(ColorConfig) };

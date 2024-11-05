@@ -6,7 +6,6 @@ import { GeneralManager } from '../../Modified027Editor/ModifiedStaticAPI';
 import BedTrigger from "../../Prefabs/床01/Script/BedTrigger";
 import { GameConfig } from "../../Tables/GameConfig";
 import { Tools } from "../../Tools";
-import Game_HUD_Chat_Generate from "../../ui-generate/uiTemplate/bubbleModule/Game_HUD_Chat_generate";
 import WinWatch_Generate from "../../ui-generate/uiTemplate/Hall/WinWatch_generate";
 import P_Allot from "../../UILogic/Game/P_Allot";
 import P_CoinGet from "../../UILogic/Game/P_CoinGet";
@@ -26,6 +25,7 @@ import { HotWeaponModuleC } from "../Weapon/HotWeapon/HotWeaponModuleC";
 import { GameModuleData } from "./GameData";
 import { GameModuleS } from "./GameModuleS";
 import SoundManager = mw.SoundService;
+import ChatPanel from "../DanMuModule/ui/ChatPanel";
 
 export class GameModuleC extends ModuleC<GameModuleS, GameModuleData> {
     private curCamp: Camp;
@@ -379,13 +379,20 @@ export class GameModuleC extends ModuleC<GameModuleS, GameModuleData> {
         }
     }
 
+    private chatPanel: ChatPanel = null;
+    private get getChatPanel(): ChatPanel {
+        if (!this.chatPanel) {
+            this.chatPanel = mw.UIService.getUI(ChatPanel);
+        }
+        return this.chatPanel;
+    }
     net_setEndState(modelGuid: string, bo: boolean, name: string = ``): void {
         if (bo) {
             GameObject.asyncFindGameObjectById(modelGuid).then((obj) => {
                 mw.UIService.hide(P_Die);
                 P_Hall.closeHallUI();
                 P_Game.closeGameUI();
-                mw.UIService.hide(Game_HUD_Chat_Generate);
+                if (mw.UIService.getUI(ChatPanel, false)?.visible) this.getChatPanel.hide();
                 mw.UIService.show(WinWatch_Generate);
                 mw.UIService.getUI(WinWatch_Generate).mText_WinWatch_1.text = GameConfig.Text.getElement(20034).Content;
                 mw.UIService.getUI(WinWatch_Generate).mText_WinWatch_2.text = name;
@@ -396,7 +403,7 @@ export class GameModuleC extends ModuleC<GameModuleS, GameModuleData> {
         } else {
             console.warn(`Camera :: ===== 相机设置2`);
             P_Hall.showHallUI();
-            mw.UIService.show(Game_HUD_Chat_Generate);
+            this.getChatPanel.show();
             // P_Game.showGameUI();
             mw.UIService.hide(WinWatch_Generate);
             ModuleService.getModule(WatchModuleC).changeWatchTarget(this.localPlayer.character);

@@ -1,37 +1,20 @@
 ﻿{
+	"IsHorizontal": true,
 	"name": "谁是凶手(简洁版)",
 	"packageName": "DD784217459EECD6CEF4BFB13091EC1D",
 	"foldername": "wolf",
 	"mainScene": 1,
 	"scenePublic": 1,
-	"intro": "修复蹦床报错，新增拖尾，挂件，降低部分派对币武器价格",
-	"notes": "修复蹦床报错，新增拖尾，挂件，降低部分派对币武器价格",
-	"editorVersion": "v0.39.0.4",
+	"intro": "重写所有功能代码(细节待完善) 测试MGS弹幕气泡",
+	"notes": "重写所有功能代码(细节待完善) 测试MGS弹幕气泡",
+	"editorVersion": "v0.40.0.3",
 	"parentGameIdentity": "",
 	"parentGameId": "",
-	"extra": "{\"attribute\":2,\"IsHorizontal\":true,\"useAvatar\":1}",
+	"extra": "{\"attribute\":2,\"IsHorizontal\":true,\"useAvatar\":0}",
 	"devEnv": 4,
 	"needToMgs": 0,
 	"attribute": 2,
 	"autoSubmitAudit": false,
-	"ignore": [
-		"game.desc",
-		"Asset_Data_List"
-	],
-	"files": [
-		{
-			"type": "Game_Thumbnail",
-			"path": "Pictures/Game_Thumbnail.jpg"
-		},
-		{
-			"type": "GameSetting",
-			"path": "Config/GameSetting.ini"
-		},
-		{
-			"type": "Asset_Data_List",
-			"path": "Asset_Data_List"
-		}
-	],
 	"lightZipIgnore":
 	{
 		"suffixMatches": [
@@ -49,5 +32,19 @@
 			"JavaScripts/",
 			"Plugins/"
 		]
-	}
+	},
+	"files": [
+		{
+			"type": "Game_Thumbnail",
+			"path": "Pictures/Game_Thumbnail.jpg"
+		},
+		{
+			"type": "GameSetting",
+			"path": "Config/GameSetting.ini"
+		},
+		{
+			"type": "Asset_Data_List",
+			"path": "Asset_Data_List"
+		}
+	]
 }

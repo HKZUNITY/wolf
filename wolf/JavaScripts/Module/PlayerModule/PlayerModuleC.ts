@@ -12,7 +12,7 @@ import P_GameFinal from "../../UILogic/Game/P_GameFinal";
 import P_Hall from "../../UILogic/Hall/P_Hall";
 import P_Reset from "../../UILogic/Hall/P_Reset";
 import P_Info from "../../uiTemplate/Common/P_Info";
-import { BubbleModuleC } from "../bubbleModule/BubbleModule";
+import DanMuModuleC from "../DanMuModule/DanMuModuleC";
 import { FSMModuleC } from "../FSMModule";
 import { GameModuleC } from "../GameModule/GameModuleC";
 import { LotteryModuleC } from "../LotteryModule/LotteryModuleC";
@@ -336,7 +336,7 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
         P_Hall.showHallUI();
         console.warn(`Camera :: ===== 相机重置前判断:: ${bo}`);
         if (bo) {
-            ModuleService.getModule(BubbleModuleC).initMainPanel();
+            ModuleService.getModule(DanMuModuleC).initShowChatPanel();
         }
 
     }

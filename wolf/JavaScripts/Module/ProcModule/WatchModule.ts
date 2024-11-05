@@ -9,7 +9,7 @@ import P_Game from "../../UILogic/Game/P_Game";
 import P_GameFinal from "../../UILogic/Game/P_GameFinal";
 import P_Hall from "../../UILogic/Hall/P_Hall";
 import P_Default from "../../UILogic/P_Default";
-import Game_HUD_Chat_Generate from "../../ui-generate/uiTemplate/bubbleModule/Game_HUD_Chat_generate";
+import ChatPanel from "../DanMuModule/ui/ChatPanel";
 import { GameModuleData } from "../GameModule/GameData";
 import { GameModuleS } from "../GameModule/GameModuleS";
 import { PlayerModuleC } from "../PlayerModule/PlayerModuleC";
@@ -21,6 +21,13 @@ export class WatchModuleC extends ModuleC<WatchModuleS, null> {
     private watchObj: mw.GameObject;
     private myCamera: Camera;
     private cameraTransform: mw.Transform;
+    private chatPanel: ChatPanel = null;
+    private get getChatPanel(): ChatPanel {
+        if (!this.chatPanel) {
+            this.chatPanel = mw.UIService.getUI(ChatPanel);
+        }
+        return this.chatPanel;
+    }
     onEnterScene(sceneType: number): void {
         this.curPlayer = Player.localPlayer;
         this.ui = mw.UIService.getUI(P_Default);
@@ -52,7 +59,7 @@ export class WatchModuleC extends ModuleC<WatchModuleS, null> {
         P_Hall.showHallUI();
         P_Die.closeDieEffecUI();
         ModuleService.getModule(PlayerModuleC).exitWatch()
-        mw.UIService.show(Game_HUD_Chat_Generate);
+        this.getChatPanel.show();
         this.server.net_EndWatch();
         this.joyOpen(true);
     }
@@ -72,7 +79,7 @@ export class WatchModuleC extends ModuleC<WatchModuleS, null> {
     }
     net_WatchOther(id: string, camp: number, showNum: number, total: number, name: string) {
         ModuleService.getModule(PlayerModuleC).enterWatch()
-        mw.UIService.hide(Game_HUD_Chat_Generate);
+        if (mw.UIService.getUI(ChatPanel, false)?.visible) this.getChatPanel.hide();
         console.warn("客户端：开始观战");
         GameObject.asyncFindGameObjectById(id).then(go => {
             if (go) {

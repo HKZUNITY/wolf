@@ -4,7 +4,8 @@ import { ArkData, ArkModuleC, ArkModuleS } from "./Module/ArkModule/ArkModule";
 import { BagModuleData } from "./Module/BagModule/BagData";
 import { BagModuleC } from "./Module/BagModule/BagModuleC";
 import { BagModuleS } from "./Module/BagModule/BagModuleS";
-import { BubbleModuleC, BubbleModuleS } from "./Module/bubbleModule/BubbleModule";
+import DanMuModuleC from "./Module/DanMuModule/DanMuModuleC";
+import DanMuModuleS from "./Module/DanMuModule/DanMuModuleS";
 import { DoorModuleC } from "./Module/door/DoorModuleC";
 import { DoorModuleS } from "./Module/door/DoorModuleS";
 import ExchangeModuleC from "./Module/ExchangeModule/ExchangeModuleC";
@@ -112,7 +113,7 @@ export default class GameStart extends mw.Script {
         ModuleService.registerModule(WalkModuleS, WalkModuleC, null);
         ModuleService.registerModule(DoorModuleS, DoorModuleC, null);
         ModuleService.registerModule(LotteryModuleS, LotteryModuleC, null);
-        ModuleService.registerModule(BubbleModuleS, BubbleModuleC, null)
+        ModuleService.registerModule(DanMuModuleS, DanMuModuleC, null);
         ModuleService.registerModule(ShelterModuleS, ShelterModuleC, null)
         ModuleService.registerModule(LoadMapModuleS, LoadMapModuleC, null)
         ModuleService.registerModule(SkillModuleS, SkillModuleC, SkillData);
