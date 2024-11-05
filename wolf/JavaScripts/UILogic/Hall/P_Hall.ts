@@ -1,15 +1,6 @@
-﻿/*
- * @Author: ZiweiShen
- * @Date: 2022-07-08 14:19:17
- * @LastEditors: xicun.kang
- * @LastEditTime: 2022-12-08 15:38:21
- * @FilePath: \townmystery\JavaScripts\UILogic\Hall\P_Hall.ts
- * @Description: 
- */
-import AdsPanel from "../../AdsPanel";
+﻿import AdsPanel from "../../AdsPanel";
 import P_Tips from "../../CommonUI/P_Tips";
 import { Globals } from "../../Globals";
-import { MGSHome } from "../../MGSHome";
 import { ArkModuleC } from "../../Module/ArkModule/ArkModule";
 import { BubbleModuleC } from "../../Module/bubbleModule/BubbleModule";
 import ExchangeModuleC from "../../Module/ExchangeModule/ExchangeModuleC";
@@ -39,19 +30,15 @@ export default class P_Hall extends MainMenu_Generate {
         });
         this.mBtn_Watch.onClicked.add(() => {
             ModuleService.getModule(WatchModuleC).watchOther();
-            MGSHome.mgsResource3(0, true);
         })
         this.mBtn_Shop.onClicked.add(() => {
             ModuleService.getModule(ShopModuleC).ShopOpen(true);
-            MGSHome.mgsResource3(1, true);
         })
         this.mBtn_lottery.onClicked.add(() => {
             ModuleService.getModule(LotteryModuleC).lotteryOpen(true)
-            MGSHome.mgsResource3(2, true);
         });
         this.mBtn_Skill.onClicked.add(() => {
             ModuleService.getModule(SkillModuleC).isOpenSkillShopPanel(true);
-            MGSHome.mgsResource3(3, true);
         })
         let advCount: number = 1;
         this.mText_Member.text = `领券`;
@@ -68,7 +55,6 @@ export default class P_Hall extends MainMenu_Generate {
         })
         this.mBtn_Exchange.onClicked.add(() => {
             ModuleService.getModule(ExchangeModuleC).isOpenExchangePanel(true);
-            MGSHome.mgsResource3(5, true);
         })
         this.mBtn_Ark.onClicked.add(() => {
             ModuleService.getModule(ArkModuleC).addOpenArkPanel();

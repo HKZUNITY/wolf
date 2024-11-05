@@ -1,10 +1,4 @@
-﻿
-/** 
- * AUTHOR: 达瓦里氏
- * TIME: 2023.07.26-18.07.53
- */
-
-import AllTips_Generate from "../../ui-generate/uiTemplate/3DUI/AllTips_generate";
+﻿import AllTips_Generate from "../../ui-generate/uiTemplate/3DUI/AllTips_generate";
 
 export default class P_AllTips extends AllTips_Generate {
 
@@ -19,7 +13,7 @@ export default class P_AllTips extends AllTips_Generate {
 	}
 
 	private addListenser() {
-		Event.addLocalListener("MutiLanguage", ()=>{
+		Event.addLocalListener("MutiLanguage", () => {
 			this.initButtons();
 		})
 	}
@@ -129,11 +123,11 @@ export default class P_AllTips extends AllTips_Generate {
 	 */
 	//protected onDragLeave(InDragDropEvent:mw.PointerEvent,InDragDropOperation:mw.DragDropOperation) {
 	//}
-	
+
 	/**
 	 * 拖拽操作生成事件触发后，没有完成完成的拖拽事件而取消时触发
 	 */
 	//protected onDragCancelled(InDragDropEvent:mw.PointerEvent,InDragDropOperation:mw.DragDropOperation) {
 	//}
-	
+
 }

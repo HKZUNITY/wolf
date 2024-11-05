@@ -1,30 +1,18 @@
-/** 
- * @Author       : Songyang.Xie
- * @Date         : 2023-06-27 09:38:44
- * @LastEditors  : Songyang.Xie
- * @LastEditTime : 2023-07-28 15:20:03
- * @FilePath     : \murdermystery3\JavaScripts\Module\ProcModule\ChooseModule.ts
- * @Description  : 修改描述
- */
-import { oTraceError, oTrace, oTraceWarning, LogManager ,AnalyticsUtil, IFightRole, AIMachine, AIState} from "odin";
-import FSMManager from "../../FSM/FSMManager";
+import { AiObject } from "../../AI/AiObject";
 import FSM_GameReadyState from "../../FSM/FSM_GameReadyState";
+import FSMManager from "../../FSM/FSMManager";
 import { Camp, GameGlobals, Globals } from "../../Globals";
 import { GameConfig } from "../../Tables/GameConfig";
 import { Tools } from "../../Tools";
 import P_Allot from "../../UILogic/Game/P_Allot";
-import P_Loading from "../../UILogic/Hall/P_Loading";
 import { GameModuleData } from "../GameModule/GameData";
 import { GameModuleS } from "../GameModule/GameModuleS";
 import { PlayerModuleData } from "../PlayerModule/PlayerData";
-import LoadMapModuleS from "../loadMapModule/LoadMapModuleS";
 import { PlayerModuleS } from "../PlayerModule/PlayerModuleS";
-import { AiObject } from "../../AI/AiObject";
-import { MGSDataInfo } from "../../MGSHome";
 import { SkillModuleS } from "../SkillModule/SkillModuleS";
 import AttributeManager, { AttributeType } from "../SVipModule/AttributeManager";
 
-export class ChooseModuleC extends ModuleC<ChooseModuleS, null>{
+export class ChooseModuleC extends ModuleC<ChooseModuleS, null> {
     onStart(): void {
 
     }
@@ -33,7 +21,7 @@ export class ChooseModuleC extends ModuleC<ChooseModuleS, null>{
     }
     net_ShowRandomUI(showNum: number, isSvip: boolean) {
         P_Allot.showAllotUI(showNum, isSvip);
-        
+
     }
     net_KeepShowCamp(camp: number) {
         P_Allot.showCamp(camp);
@@ -43,7 +31,7 @@ export class ChooseModuleC extends ModuleC<ChooseModuleS, null>{
     }
 
 }
-export class ChooseModuleS extends ModuleS<ChooseModuleC, null>{
+export class ChooseModuleS extends ModuleS<ChooseModuleC, null> {
     /**初始权重 2*/
     private initialProb: number = GameConfig.Rule.getElement(10006).Weight;
     /**增加权重 2*/
@@ -62,7 +50,7 @@ export class ChooseModuleS extends ModuleS<ChooseModuleC, null>{
             let playerId = player.playerId;
             let myWeight = weightInfo.weightMap.get(playerId);
             let subRate = AttributeManager.instance.getAttributeValue(playerId, AttributeType.SpyRate);
-            let percent = (myWeight.Max - myWeight.Min)/ allWeight;
+            let percent = (myWeight.Max - myWeight.Min) / allWeight;
             let res = Number(percent.toFixed(2));
             this.getClient(player).net_ShowRandomUI(res, subRate > 0);
         })
@@ -75,7 +63,7 @@ export class ChooseModuleS extends ModuleS<ChooseModuleC, null>{
         setTimeout(() => {
             //停止随机，显示玩家身份
             GameGlobals.readyPlayers.forEach((player) => {
-                let camp = DataCenterS.getData(player,GameModuleData).getPlayerCamp();
+                let camp = DataCenterS.getData(player, GameModuleData).getPlayerCamp();
                 this.getClient(player).net_KeepShowCamp(camp);
             })
         }, time1);
@@ -87,7 +75,7 @@ export class ChooseModuleS extends ModuleS<ChooseModuleC, null>{
     }
     /**计算显示的黑手党概率 */
     private calShowProbability(player: mw.Player) {
-        let curRound = DataCenterS.getData(player,PlayerModuleData).getNoSpyNum();
+        let curRound = DataCenterS.getData(player, PlayerModuleData).getNoSpyNum();
         let initialNum = GameConfig.Rule.getElement(10008).Prob;
         let rate = GameConfig.Rule.getElement(10009).Prob;
         let showNum = initialNum + rate * curRound;
@@ -117,19 +105,19 @@ export class ChooseModuleS extends ModuleS<ChooseModuleC, null>{
         tempArr.forEach((player) => {
             loadingFinishPlayer.push(player.playerId);
         })
-        
+
         for (let i = 0; i < 2; i++) {
             let temp = this.getWeightMap(loadingFinishPlayer);
             let weightMap = temp.weightMap;
             let totalWeight = temp.totalWeight;
             if (loadingFinishPlayer.length > 0 && this.getIdentity() != Camp.Civilian) {
                 let playerId = this.randomPlayerCamp(weightMap, totalWeight);
-                loadingFinishPlayer = loadingFinishPlayer.filter((value, index)=>{
+                loadingFinishPlayer = loadingFinishPlayer.filter((value, index) => {
                     return value != playerId;
                 })
-            } 
+            }
         }
-        
+
         loadingFinishPlayer.forEach((value, key) => {
             let player = Player.getPlayer(value);
             if (player) {
@@ -170,13 +158,13 @@ export class ChooseModuleS extends ModuleS<ChooseModuleC, null>{
         let identity = this.getIdentity();
         if (identity == Camp.Spy) {
             GameGlobals.spyAi = GameGlobals.aiPlayer[0];
-            GameGlobals.isSpyReal= false;
+            GameGlobals.isSpyReal = false;
         }
-        else if(identity == Camp.Police){
+        else if (identity == Camp.Police) {
             GameGlobals.policeAi = GameGlobals.aiPlayer[0];
             GameGlobals.isPoliceReal = false;
         }
-        GameGlobals.aiPlayer.forEach((ai: AiObject, index: number)=>{
+        GameGlobals.aiPlayer.forEach((ai: AiObject, index: number) => {
             if (index != 0 || identity == Camp.Civilian) {
                 GameGlobals.odinaryAi.push(ai);
             }
@@ -186,7 +174,6 @@ export class ChooseModuleS extends ModuleS<ChooseModuleC, null>{
             if (skillId == -1) {
                 skillId = 0;
             }
-            MGSDataInfo.skillId = skillId;
         }
 
         console.error("黑手党", GameGlobals.spyPlayer, GameGlobals.spyAi);
@@ -194,8 +181,8 @@ export class ChooseModuleS extends ModuleS<ChooseModuleC, null>{
         console.error("平民数量", GameGlobals.odinaryAi.length, GameGlobals.odinaryPlayer.length);
     }
     //随机玩家阵营，ai不用随机
-    private randomPlayerCamp(weightMap: Map<number, Range>, totalWeight: number){
-        let randomNum = Tools.getRandomInt(0, totalWeight - 1);
+    private randomPlayerCamp(weightMap: Map<number, Range>, totalWeight: number) {
+        let randomNum = Tools.randomInt(0, totalWeight - 1);
         let res = 0;
         weightMap.forEach((range, playerId) => {
             if (randomNum >= range.Min && randomNum < range.Max) {
@@ -205,7 +192,7 @@ export class ChooseModuleS extends ModuleS<ChooseModuleC, null>{
                     GameGlobals.spyPlayer = player;
                     GameGlobals.isSpyReal = true;
                 }
-                else if(identity == Camp.Police){
+                else if (identity == Camp.Police) {
                     GameGlobals.policePlayer = player;
                     GameGlobals.isPoliceReal = true;
                 }
@@ -215,19 +202,19 @@ export class ChooseModuleS extends ModuleS<ChooseModuleC, null>{
         return res;
     }
 
-    private getIdentity(){
+    private getIdentity() {
         let haveSpy = GameGlobals.spyPlayer || GameGlobals.spyAi;
         let havePolice = GameGlobals.policePlayer || GameGlobals.policeAi;
         if (haveSpy && havePolice) {
             return Camp.Civilian;
         }
-        else if(haveSpy){
+        else if (haveSpy) {
             return Camp.Police;
         }
-        else if(havePolice){
+        else if (havePolice) {
             return Camp.Spy;
         }
-        else{
+        else {
             return Camp.Spy;
         }
     }
@@ -238,13 +225,13 @@ export class ChooseModuleS extends ModuleS<ChooseModuleC, null>{
         playerArr.forEach((playerId) => {
             let addCount = ModuleService.getModule(PlayerModuleS).getNoSpyNum(playerId);
             let subRate = 1 + AttributeManager.instance.getAttributeValue(playerId, AttributeType.SpyRate);
-            let weight = (this.initialProb + this.addRate * addCount)*subRate;
+            let weight = (this.initialProb + this.addRate * addCount) * subRate;
             weight *= 100;
-            let range = new Range(totalWeight, totalWeight+weight);
+            let range = new Range(totalWeight, totalWeight + weight);
             totalWeight += weight;
             weightMap.set(playerId, range);
         })
-        return {weightMap: weightMap, totalWeight: totalWeight};
+        return { weightMap: weightMap, totalWeight: totalWeight };
     }
 }
 export class Range {

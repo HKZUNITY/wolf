@@ -1,12 +1,11 @@
-import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
-import { oTraceError, oTrace, oTraceWarning, LogManager, AnalyticsUtil, IFightRole, AIMachine, AIState } from "odin";
-import { Door } from "./Door";
-import { GameConfig } from "../../Tables/GameConfig";
-import { DoorModuleC } from "./DoorModuleC";
-import { AutoDoor } from "./AutoDoor";
-import { GameModuleData } from "../GameModule/GameData";
 import { GameGlobals, GamingState, PlayerGameState } from "../../Globals";
+import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
+import { GameConfig } from "../../Tables/GameConfig";
 import { Tools } from "../../Tools";
+import { GameModuleData } from "../GameModule/GameData";
+import { AutoDoor } from "./AutoDoor";
+import { Door } from "./Door";
+import { DoorModuleC } from "./DoorModuleC";
 
 export class DoorModuleS extends ModuleS<DoorModuleC, null> {
     private doorManage: Array<Door> = new Array<Door>();
@@ -51,7 +50,7 @@ export class DoorModuleS extends ModuleS<DoorModuleC, null> {
             let playId = char.player.playerId;
             state = DataCenterS.getData(playId, GameModuleData).getState();
         } else if (PlayerManagerExtesion.isNpc(char)) {
-            let ai = Tools.getAiObj(char);
+            let ai = Tools.getAiObject(char);
             if (ai) {
                 state = ai.aiGameState;
             }

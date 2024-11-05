@@ -1,35 +1,15 @@
-﻿/** 
- * @Author       : songyang.xie
- * @Date         : 2023-02-20 10:24:47
- * @LastEditors  : Songyang.Xie
- * @LastEditTime : 2023-08-09 14:58:44
- * @LastEditTime : 2023-07-28 17:07:04
- * @FilePath     : \murdermystery3\JavaScripts\UILogic\UIGM.ts
- * @Description  : 修改描述
- */
-/*
- * @Author: zhaolei
- * @Date: 2022-05-29 09:17:30
- * @LastEditors: zhangqing.fang
- * @Description: file content
- */
-
-import { AddGMCommand, GMBasePanel, IGMItem } from "module_gm";
-import { oTraceError, oTrace, oTraceWarning, LogManager, AnalyticsUtil, IFightRole, AIMachine, AIState } from "odin";
-import { PlayerModuleS } from "../Module/PlayerModule/PlayerModuleS";
-import GMHUD from "../uiTemplate/gmModule/GMHUD";
-import GMItem from "../uiTemplate/gmModule/GMItem";
-import P_Loading from "./Hall/P_Loading";
-import { ShopModuleS } from "../Module/ShopModule/ShopCityModule";
+﻿import { AddGMCommand, GMBasePanel } from "module_gm";
+import { GameGlobals, GamingState, Globals } from "../Globals";
+import { BagModuleS } from "../Module/BagModule/BagModuleS";
+import { FSMModuleS } from "../Module/FSMModule";
 import { GameModuleS } from "../Module/GameModule/GameModuleS";
 import { LotteryModuleS } from "../Module/LotteryModule/LotteryModuleS";
-import { GameGlobals, GamingState, Globals } from "../Globals";
-import { FSMModuleS } from "../Module/FSMModule";
-import { GameConfig } from "../Tables/GameConfig";
+import { PlayerModuleS } from "../Module/PlayerModule/PlayerModuleS";
 import { SkillModuleS } from "../Module/SkillModule/SkillModuleS";
-import { BagModuleS } from "../Module/BagModule/BagModuleS";
+import { GameConfig } from "../Tables/GameConfig";
 import { Tools } from "../Tools";
-import { IRoleElement } from "../Tables/Role";
+import GMHUD from "../uiTemplate/gmModule/GMHUD";
+import GMItem from "../uiTemplate/gmModule/GMItem";
 
 
 
@@ -118,7 +98,7 @@ AddGMCommand("切换热武器，对局内使用",
 AddGMCommand("Role",
 	(player, value) => {
 		let roleElements = GameConfig.Role.getAllElement();
-		Tools.changeClothByRole(roleElements[Tools.getRandomInt(0, roleElements.length - 1)], player.character);
+		Tools.changeClothByRole(roleElements[Tools.randomInt(0, roleElements.length - 1)], player.character);
 	},
 	(player, value) => {
 		// ModuleService.getModule(PlayerModuleS).changeGold(player, Number(value));

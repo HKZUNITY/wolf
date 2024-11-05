@@ -1,16 +1,7 @@
-﻿/*
- * @Author: ziwei.shen
- * @Date: 2022-11-10 11:18:30
- * @LastEditors: ziwei.shen
- * @LastEditTime: 2022-11-10 11:22:46
- * @FilePath: \townmystery\JavaScripts\UILogic\Game\P_Allot.ts
- * @Description: 
- */
+﻿import { Camp } from "../../Globals";
 import { GameConfig } from "../../Tables/GameConfig";
 import Allot from "../../uiTemplate/Inside/Allot";
 import SoundManager = mw.SoundService;
-import { oTraceError, oTrace, oTraceWarning, LogManager ,AnalyticsUtil, IFightRole, AIMachine, AIState} from "odin";
-import { Camp } from "../../Globals";
 export default class P_Allot extends Allot {
     private static _instance: P_Allot;
     private changeIntervel: number = GameConfig.Rule.getElement(10004).Time;
@@ -24,12 +15,12 @@ export default class P_Allot extends Allot {
         return this._instance;
     }
     public static showAllotUI(showNum: number, isSvip: boolean) {
-        let showString = (showNum* 100).toFixed(0);
+        let showString = (showNum * 100).toFixed(0);
         P_Allot.instance.mText_ProbNumber.text = ("" + showString + "%");
         P_Allot.instance.changeVisible(0);
         UIService.show(this);
         P_Allot.instance.beginChange();
-        P_Allot.instance.mText_Member.visibility = isSvip ? mw.SlateVisibility.SelfHitTestInvisible: mw.SlateVisibility.Collapsed;
+        P_Allot.instance.mText_Member.visibility = isSvip ? mw.SlateVisibility.SelfHitTestInvisible : mw.SlateVisibility.Collapsed;
     }
     public static showCamp(camp: number) {
         TimeUtil.clearInterval(P_Allot.instance.s_time);
@@ -37,7 +28,7 @@ export default class P_Allot extends Allot {
         if (camp == Camp.Police) {
             readySound = GameConfig.Sound.getElement("10005").Guid
         }
-        else if(camp == Camp.Spy){
+        else if (camp == Camp.Spy) {
             readySound = GameConfig.Sound.getElement("10004").Guid
         }
         SoundService.playSound(readySound);

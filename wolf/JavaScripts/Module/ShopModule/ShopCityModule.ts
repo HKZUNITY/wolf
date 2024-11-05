@@ -1,36 +1,16 @@
-/** 
- * @Author       : Songyang.Xie
- * @Date         : 2023-08-22 15:07:34
- * @LastEditors  : Songyang.Xie
- * @LastEditTime : 2023-08-23 19:04:07
- * @FilePath     : \murdermystery3\JavaScripts\Module\ShopModule\ShopCityModule.ts
- * @Description  : 修改描述
- */
-import { SpawnManager, SpawnInfo, } from '../../Modified027Editor/ModifiedSpawn';
-/*
-* @Author: ziwei.shen
-* @Date: 2022-08-05 18:25:56
-* @LastEditors: tianran.shi
-* @LastEditTime: 2023-02-01 14:17:01
-* @FilePath: \townmystery\JavaScripts\Module\ShopModule\ShopCityModule.ts
-* @Description: 
-*/
-import { oTraceError, oTrace, oTraceWarning, LogManager, AnalyticsUtil, IFightRole, AIMachine, AIState } from "odin";
-import { MGSHome } from "../../MGSHome";
+import { SpawnManager } from '../../Modified027Editor/ModifiedSpawn';
+import P_Tips from "../../CommonUI/P_Tips";
+import { GameGlobals } from "../../Globals";
+import { GeneralManager } from '../../Modified027Editor/ModifiedStaticAPI';
 import { GameConfig } from "../../Tables/GameConfig";
 import { Tools } from "../../Tools";
 import P_Hall from "../../UILogic/Hall/P_Hall";
 import { BagModuleS } from "../BagModule/BagModuleS";
 import { PlayerModuleData } from "../PlayerModule/PlayerData";
+import { PlayerModuleC } from "../PlayerModule/PlayerModuleC";
 import { PlayerModuleS } from "../PlayerModule/PlayerModuleS";
 import { ShopPanel } from "./ShopCityUI";
 import { ItemState, ShopModuleData } from "./ShopData";
-import P_Tips from "../../CommonUI/P_Tips";
-import { GameGlobals, GamingState, Globals, PlayerGameState } from "../../Globals";
-import { GameModuleData } from "../GameModule/GameData";
-import { GameModuleS } from "../GameModule/GameModuleS";
-import { PlayerModuleC } from "../PlayerModule/PlayerModuleC";
-import { GeneralManager } from '../../Modified027Editor/ModifiedStaticAPI';
 
 export class ShopModuleC extends ModuleC<ShopModuleS, ShopModuleData> {
 	private panel: ShopPanel = null;//主界面
@@ -207,10 +187,6 @@ export class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData> {
 
 
 	net_UseItem(id: number, isUse: boolean) {
-		if (isUse) {
-			//埋点
-			MGSHome.msgUseItem(this.currentPlayer, id);
-		}
 		this.useItem(this.currentPlayer, id, isUse, false);
 	}
 
@@ -504,28 +480,13 @@ export class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData> {
 		}
 		else if (costType == CurrencyType.AdvToken) {
 			res = ModuleService.getModule(PlayerModuleS).changeAdvToken(player, -money);
-			if (res == true) {
-				this.sendShopMGS(player, shopId);
-			}
 		}
 
 		if (res) {
 			this.getPlayerData(player).setItemState(shopId, ItemState.Own);
 			this.getClient(player).net_RefreshUI(shopId);
-			//埋点
-			MGSHome.msgBuyItem(player, shopId);
 		}
 		return res;
-	}
-
-	sendShopMGS(player: mw.Player, itemId: number) {
-		let res = -1;
-		GameConfig.Exchange.getAllElement().forEach((value, index) => {
-			if (value.ShopItem == itemId) {
-				res = value.ID;
-			}
-		})
-		MGSHome.exchangeItem(player, res);
 	}
 
 	net_BuyItem(id: number) {

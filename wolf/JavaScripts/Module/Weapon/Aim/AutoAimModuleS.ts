@@ -1,7 +1,6 @@
-import { oTraceError, oTrace, oTraceWarning, LogManager ,AnalyticsUtil, IFightRole, AIMachine, AIState} from "odin";
+import { GameGlobals } from "../../../Globals";
+import { Tools } from "../../../Tools";
 import { AutoAimModuleC } from "./AutoAimModuleC";
-import { GameGlobals, Globals } from "../../../Globals";
-import { ecodeType, Tools } from "../../../Tools";
 
 export class AutoAimModuleS extends ModuleS<AutoAimModuleC, null> {
 
@@ -44,8 +43,8 @@ export class AutoAimModuleS extends ModuleS<AutoAimModuleC, null> {
             readAi.set(value.aiModel.gameObjectId, true)
         })
 
-        let readycharacter = Tools.encoderMapToArr3(readyPlayer);
-        let readyai = Tools.encoderMapToArr3(readAi);
+        let readycharacter = Tools.fromMapToArr(readyPlayer);
+        let readyai = Tools.fromMapToArr(readAi);
         Player.getAllPlayers().forEach((value) => {
             this.getClient(value).net_initGameData(readycharacter.key, readycharacter.value,
                 readyai.key, readyai.value);

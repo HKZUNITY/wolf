@@ -1,9 +1,8 @@
-﻿import { LotteryModuleC } from "./LotteryModuleC";
-import { PlayerModuleData } from "../PlayerModule/PlayerData";
+﻿import { PlayerModuleData } from "../PlayerModule/PlayerData";
 import { PlayerModuleS } from "../PlayerModule/PlayerModuleS";
-import { GameConfig } from "../../Tables/GameConfig";
+import { LotteryModuleC } from "./LotteryModuleC";
 
-export class LotteryModuleS extends ModuleS<LotteryModuleC, null>{
+export class LotteryModuleS extends ModuleS<LotteryModuleC, null> {
 
     net_ChangeGold(playerId: number, cost: number) {
         ModuleService.getModule(PlayerModuleS).changeGold(this.currentPlayer, cost);
@@ -16,7 +15,7 @@ export class LotteryModuleS extends ModuleS<LotteryModuleC, null>{
     /**gm用的别调用 */
     gmLotterySaleTimes(playerId: number) {
         let data = DataCenterS.getData(playerId, PlayerModuleData);
-        data.lotterySaleTimesArr.forEach((value, index)=>{
+        data.lotterySaleTimesArr.forEach((value, index) => {
             data.lotterySaleTimesArr[index] = 100;
         })
     }
@@ -24,11 +23,11 @@ export class LotteryModuleS extends ModuleS<LotteryModuleC, null>{
         let data = DataCenterS.getData(playerId, PlayerModuleData);
         data.setLotteryWatchAdTime(lotteryIndex);
     }
-    net_startLottery(boxId: number, isUseMoney: boolean){
+    net_startLottery(boxId: number, isUseMoney: boolean) {
         if (isUseMoney) {
             ModuleService.getModule(PlayerModuleS).playerUseMoneyDraw(this.currentPlayerId, boxId);
         }
-        else{
+        else {
             ModuleService.getModule(PlayerModuleS).playerWatchAdDraw(this.currentPlayerId, boxId);
         }
 

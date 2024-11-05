@@ -1,23 +1,16 @@
-import { GeneralManager, } from '../../Modified027Editor/ModifiedStaticAPI';
-import { oTraceError, oTrace, oTraceWarning, LogManager, AnalyticsUtil, IFightRole, AIMachine, AIState } from "odin";
+import { AiModuleS } from "../../AI/AiModule";
+import AdsPanel from '../../AdsPanel';
 import { GameCache } from "../../GameCache";
-import { CalculateState, Camp, GameGlobals, GamingState, Globals, PlayerGameState } from "../../Globals";
-import { MGSDataInfo, MGSHome } from "../../MGSHome";
+import { CalculateState, Camp, GameGlobals, GamingState, PlayerGameState } from "../../Globals";
 import { GameConfig } from '../../Tables/GameConfig';
-import { Tools } from "../../Tools";
-import { UiManager } from '../../UI/UiManager';
+import { IexpRuleElement } from "../../Tables/expRule";
 import P_Account from "../../UILogic/Game/P_Account";
 import { GameModuleData } from "../GameModule/GameData";
 import { GameModuleS } from "../GameModule/GameModuleS";
 import { PlayerModuleData } from "../PlayerModule/PlayerData";
-import { PlayerModuleS } from "../PlayerModule/PlayerModuleS";
-import { IexpRuleElement } from "../../Tables/expRule";
-import { IAAUtils } from "../../IAAUtils";
 import { PlayerModuleC } from "../PlayerModule/PlayerModuleC";
-import P_Hall from "../../UILogic/Hall/P_Hall";
-import AttributeManager, { Attribute, AttributeType } from "../SVipModule/AttributeManager";
-import { AiModuleS } from "../../AI/AiModule";
-import AdsPanel from '../../AdsPanel';
+import { PlayerModuleS } from "../PlayerModule/PlayerModuleS";
+import AttributeManager, { AttributeType } from "../SVipModule/AttributeManager";
 
 export class CalculateModuleC extends ModuleC<CalculateModuleS, null> {
     private _gold = 0;
@@ -25,52 +18,10 @@ export class CalculateModuleC extends ModuleC<CalculateModuleS, null> {
     /**进入游戏的玩家数量 */
     private enterGamePlayerCount: number = -1
     onStart(): void {
-        // P_Account.instance.mBtn_ClearingAD.onClicked.add(() => {
-        //     oTrace("kang log 奖励金币=" + this._gold);
-        //     MGSHome.mgsWorldId(1);
-        //     if (this._gold == 0)
-        //         return;
-        //     //TODO:广告 结算激励广告
-        //     mw.AdsService.isReady(mw.AdsType.Reward, (isReady: boolean) => {
-        //         console.warn("kang log isready 结算激励广告", isReady)
-        //         // if (isReady) {
-        //         //     MGSHome.mgsSceneId(1);
-        //         // }
-        //         //广告准备好
-        //         GeneralManager.modifyShowAd(mw.AdsType.Reward, (state: mw.AdsState) => {
-        //             console.warn("kang log state", state)
-        //             if (state == mw.AdsState.Success) {
-        //                 MGSHome.mgsSceneId(1);
-        //                 console.warn("kang log 结算激励广告播放成功")
-        //             }
-        //             else if (state == mw.AdsState.Reward) {
-        //                 MGSHome.mgsResource3(1);
-        //                 console.warn("kang log 结算激励广告播放完成给奖励");
-        //                 //弹出奖励界面
-        //                 let rewardPopup = UiManager.instance.getUIRewardPopup();
-        //                 rewardPopup.show();
-        //                 let num = GameConfig.Rule.getElement(30003).Num;
-        //                 //(参与对局奖励+拾取金币奖励）*奖励倍数
-        //                 rewardPopup.refreshText((this._gold) * num);
-        //                 this._gold = 0;
-        //             } else if (state == mw.AdsState.Fail) {
-        //                 //广告加载或者播放失败，在此处理
-        //                 console.warn("kang log 结算激励广告播放失败");
-        //             }
-        //         });
-        //     });
-        // })
+
     }
     onEnterScene(sceneType: number): void {
 
-    }
-    /**关闭结算界面发送埋点 */
-    closeCalculateUIMgs() {
-        /**看过广告就不发送了 */
-        // if (!this.canWtachAD) {
-        //     return
-        // }
-        MGSHome.msgCalculate(this.enterGamePlayerCount, false);
     }
 
     net_ShowCalAccount(camp, calState, spyName, rightName, spyWeapon, rightWeapon,
@@ -85,12 +36,9 @@ export class CalculateModuleC extends ModuleC<CalculateModuleS, null> {
         this.enterGamePlayerCount = enterPlayerNum
         let dataStr = JSON.stringify(newobj);
         let calcRewardEvent = () => {
-            // if (!this.canWtachAD) return
             UIService.getUI(AdsPanel).showRewardAd(() => {
                 ModuleService.getModule(PlayerModuleC).addAdvToken(1);
                 ModuleService.getModule(PlayerModuleC).net_RewardGold(gold)
-                // this.canWtachAD = false
-                MGSHome.msgCalculate(this.enterGamePlayerCount, true);
                 P_Account.closeAccountUI();
             }, "免费领取双倍金币\n再送一张广告券", "取消", "领取");
         }
@@ -106,7 +54,7 @@ export class CalculateModuleC extends ModuleC<CalculateModuleS, null> {
         // if (isInterstitialActive) {
         //     //TODO:广告 结算插屏广告
         //     let time1 = GameConfig.Rule.getElement(30008).Num;
-        //     oTrace("kang log 结算插屏，当天进行的场数：" + todayGameRound + "，配置的场数：" + time1);
+        //     console.warn("kang log 结算插屏，当天进行的场数：" + todayGameRound + "，配置的场数：" + time1);
         //     if (todayGameRound >= time1) {
         //         mw.AdsService.isReady(mw.AdsType.Interstitial, (isReady: boolean) => {
         //             console.warn("kang log isready 结算插屏广告", isReady)
@@ -216,7 +164,6 @@ export class CalculateModuleS extends ModuleS<CalculateModuleC, null> {
                 }
             }
         }
-        MGSDataInfo.game_mode = calState;
         this.removePlayer();
 
         let civilianNum = ModuleService.getModule(GameModuleS).getCivilianNum(Camp.Civilian);
@@ -291,7 +238,6 @@ export class CalculateModuleS extends ModuleS<CalculateModuleC, null> {
             let todayGameRound = data.addTodayGameRound(1);
             data.setExp(exp, player.playerId);
             if (round == 1) {
-                MGSHome.coreEnd(player);
                 let num = -1;
                 let camp = DataCenterS.getData(player, GameModuleData).getPlayerCamp();
                 if (camp == Camp.Civilian) {
@@ -318,9 +264,6 @@ export class CalculateModuleS extends ModuleS<CalculateModuleC, null> {
                         num = 3;
                     }
                 }
-                if (num >= 0) {
-                    MGSHome.coreStep(player, num);
-                }
             }
             // let newobj: calculateData = {
             //     camp: camp, calState: calState, spyName: spyName, otherName: rightName,
@@ -332,9 +275,7 @@ export class CalculateModuleS extends ModuleS<CalculateModuleC, null> {
             this.getClient(player).net_ShowCalAccount(camp, calState, spyName, rightName, spyWeapon, rightWeapon,
                 spyRole, rightRole, gold, baseExp, isWin, GameGlobals.dieNum, gameData.getLiveTimeNum(), civilianNum, GameGlobals.readyPlayers.length, subRate > 0
             );
-            MGSHome.mgsResult(player);
         })
-        MGSHome.mgsOver(GameGlobals.readyPlayers[0]);
     }
     removePlayer() {
         for (let i = 0; i < GameGlobals.readyPlayers.length; i++) {
@@ -353,7 +294,7 @@ export class CalculateModuleS extends ModuleS<CalculateModuleC, null> {
     //重置当天进行的场数
     public net_resetTodayGameRound() {
         DataCenterS.getData(this.currentPlayer, PlayerModuleData).clearTodayGameRoundAndTime();
-        oTrace("kang log 重置当天进行的场数");
+        console.warn("kang log 重置当天进行的场数");
     }
 
     /**判断是否胜利 */

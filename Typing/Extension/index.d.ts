@@ -17,6 +17,7 @@ declare namespace mwext {
 
 declare namespace mwext {
     /**
+     * @author lei.zhao
      * @groups 拓展/背包
      * @networkStatus 双端
      * @description 背包数据结构
@@ -40,6 +41,7 @@ declare namespace mwext {
 
 declare namespace mwext {
     /**
+    * @author lei.zhao
     * @groups 拓展/背包
     * @networkStatus usage:双端
     * @description 背包实例
@@ -74,6 +76,7 @@ declare namespace mwext {
     class BagModule {
         /**
          * @groups 拓展/背包
+        * @author lei.zhao
         * @description 设置背包皮肤
         * @effect 只在客户端调用生效
         * @param bagSkin usage:背包UI皮肤,null为默认皮肤
@@ -106,6 +109,7 @@ declare namespace mwext {
         static skin(bagSkin: new (...args: any[]) => mwext.IBagSkin, itemSkin: new (...args: any[]) => mwext.IBagItemSkin, itemBgSkin: new (...args: any[]) => mw.UIScript, deleteDialogSkin: new (...args: any[]) => mwext.IItemDeleteSkin): typeof BagModule;
         /**
          * @groups 拓展/背包
+        * @author lei.zhao
         * @description 打开背包界面
         * @effect 调用端生效
         * @param player usage:背包的所有者 default:服务端填写，客户端不填写
@@ -114,6 +118,7 @@ declare namespace mwext {
         static open(player?: mw.Player): typeof BagModule;
         /**
          * @groups 拓展/背包
+         * @author lei.zhao
          * @description 是否可以拖拽
          * @effect 只在客户端调用生效
          * @param isDragable usage:是否可以拖拽
@@ -121,6 +126,7 @@ declare namespace mwext {
         static set dragEnabled(isDragable: boolean);
         /**
          * @groups 拓展/背包
+         * @author lei.zhao
          * @description 是否可以拖拽
          * @effect 只在客户端调用生效
          * @returns 返回是否可以拖拽
@@ -128,6 +134,7 @@ declare namespace mwext {
         static get dragEnabled(): boolean;
         /**
          * @groups 拓展/背包
+        * @author lei.zhao
         * @description 物品名称是否可见
         * @effect 只在客户端调用生效
         * @param labelVisible usage:是否可见
@@ -135,6 +142,7 @@ declare namespace mwext {
         static set labelVisible(isLabelVisible: boolean);
         /**
          * @groups 拓展/背包
+         * @author lei.zhao
          * @description 物品名称是否可见
          * @effect 只在客户端调用生效
          * @returns 返回物品名称是否可见
@@ -142,6 +150,7 @@ declare namespace mwext {
         static get labelVisible(): boolean;
         /**
          * @groups 拓展/背包
+        * @author lei.zhao
         * @description 背包容量
         * @effect 只在客户端调用生效
         * @param capacity usage:背包容量 <br> range: [1,128]
@@ -149,6 +158,7 @@ declare namespace mwext {
         static set capacity(capacity: number);
         /**
          * @groups 拓展/背包
+         * @author lei.zhao
          * @description 背包容量
          * @effect 只在客户端调用生效
          * @returns 背包容量
@@ -156,6 +166,7 @@ declare namespace mwext {
         static get capacity(): number;
         /**
          * @groups 拓展/背包
+        * @author lei.zhao
         * @description 是否显示搜索框
         * @effect 只在客户端调用生效
         * @param isSearchEnabled usage:是否显示搜索框
@@ -163,6 +174,7 @@ declare namespace mwext {
         static set searchEnabled(isSearchEnabled: boolean);
         /**
          * @groups 拓展/背包
+         * @author lei.zhao
          * @description 是否显示搜索框
          * @effect 只在客户端调用生效
          * @returns 返回是否显示搜索框
@@ -170,6 +182,7 @@ declare namespace mwext {
         static get searchEnabled(): boolean;
         /**
          * @groups 拓展/背包
+         * @author lei.zhao
          * @description 背包注册道具信息，道具需要在客户端注册
          * @effect 调用端生效
          * @param itemId usage:道具ID <br> range: 根据道具ID确定  type: 整数
@@ -198,6 +211,7 @@ declare namespace mwext {
         static registerItem(itemId: number, icon: string, name: string, quality?: mwext.ItemQuality, stackCount?: number, customData?: any): typeof BagModule;
         /**
          * @groups 拓展/背包
+         * @author lei.zhao
          * @description 获取背包指定道具数量
          * @effect 调用端生效
          * @param itemId usage:道具ID <br> range: 根据道具ID确定  type: 整数
@@ -207,6 +221,7 @@ declare namespace mwext {
         static getItemCount(itemId: number, player?: mw.Player): number;
         /**
          * @groups 拓展/背包
+         * @author lei.zhao
          * @description 添加道具
          * @effect 调用端生效
          * @param itemId usage:道具ID <br> range: 不做限制  type: 整数
@@ -231,6 +246,7 @@ declare namespace mwext {
         static addItem(itemId: number, count?: number, player?: mw.Player): Promise<number>;
         /**
          * @groups 拓展/背包
+         * @author lei.zhao
          * @description 删除道具
          * @effect 调用端生效
          * @param itemId usage:道具ID <br> range: 根据道具ID确定  type: 整数
@@ -241,6 +257,7 @@ declare namespace mwext {
         static removeItem(itemId: number, count?: number, player?: mw.Player): typeof BagModule;
         /**
          * @groups 拓展/背包
+         * @author lei.zhao
          * @description 关闭背包界面
          * @effect 调用端生效
          * @param player usage:服务端调用时需要传入player default:服务端必传入
@@ -249,6 +266,7 @@ declare namespace mwext {
         static close(player?: mw.Player): typeof BagModule;
         /**
          * @groups 拓展/背包
+         * @author lei.zhao
          * @description 增加道具点击回调
          * @effect 只在客户端调用生效
          * @param clickCallback usage:点击回调
@@ -258,6 +276,7 @@ declare namespace mwext {
         static addItemClickListener(clickCallback: (cfg: mwext.ItemConfig) => void, thisObject: any): typeof BagModule;
         /**
          * @groups 拓展/背包
+         * @author lei.zhao
          * @description 移除道具点击回调
          * @effect 只在客户端调用生效
          * @param clickCallback usage:点击回调
@@ -289,6 +308,7 @@ declare namespace mwext {
 
 declare namespace mwext {
     /**
+    * @author lei.zhao
     * @groups 拓展/背包
     * @networkStatus 双端
     * @description 道具配置
@@ -319,6 +339,7 @@ declare namespace mwext {
  */
 declare namespace mwext {
     /**
+    * @author lei.zhao
     * @groups 拓展/背包
     * @networkStatus 双端
     * @description 道具品质
@@ -361,6 +382,7 @@ declare namespace mwext {
 
 declare namespace mwext {
     /**
+    * @author lei.zhao
     * @groups 拓展/背包
     * @networkStatus usage:客户端
     * @description 背包道具父类,继承这个类来实现自己的道具格子界面，使用BagModule.skin来指定皮肤
@@ -382,6 +404,7 @@ declare namespace mwext {
          */
         abstract get nameText(): mw.TextBlock;
         /**
+         * @author lei.zhao
          * @description 界面创建时被调用
          * @effect 只在客户端调用生效
          */
@@ -391,6 +414,7 @@ declare namespace mwext {
 
 declare namespace mwext {
     /**
+     * @author lei.zhao
      * @groups 拓展/背包
      * @networkStatus usage:客户端
      * @description 背包界面父类,继承这个类来实现自己的背包界面，使用BagModule.skin来指定皮肤
@@ -436,6 +460,7 @@ declare namespace mwext {
  */
 declare namespace mwext {
     /**
+    * @author lei.zhao
     * @groups 拓展/背包
     * @networkStatus usage:客户端
     * @description 背包删除界面父类,继承这个类来实现自己的道具删除界面，使用BagModule.skin来指定皮肤
@@ -494,6 +519,7 @@ declare namespace mwext {
  */
 declare namespace mwext {
     /**
+    * @author lei.zhao
     * @groups 拓展/背包
     * @networkStatus usage:客户端
     * @description 格子皮肤
@@ -530,6 +556,7 @@ declare namespace mwext {
  */
 declare namespace mwext {
     /**
+    * @author lei.zhao
     * @groups 拓展/背包
     * @networkStatus usage:客户端
     * @description 背包皮肤
@@ -572,6 +599,7 @@ declare namespace mwext {
  */
 declare namespace mwext {
     /**
+    * @author lei.zhao
     * @groups 拓展/背包
     * @networkStatus usage:客户端
     * @description 道具删除皮肤
@@ -616,14 +644,15 @@ declare namespace mwext {
 declare namespace mwext {
     /**
      * @instance
-     * @groups 界面/排行榜
+     * @author shilong.wang
+     * @groups 拓展/排行榜
      * @description 编辑器内置排行榜
      * @networkStatus usage: 双端
      */
     class LeaderboardModule {
         /**
          * @description 添加一个字段
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @effect 只在客户端调用生效
          * @param fieldId usage: 字段 ID  range: 依据 ID 长度而定  type:
          * @param fieldName usage: 字段名 range:不做限制
@@ -633,7 +662,7 @@ declare namespace mwext {
         static addField(fieldId: number, fieldName: string, valueStyle?: string): typeof LeaderboardModule;
         /**
          * @description 显示排名
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @effect 只在客户端调用生效
          * @param fieldName usage: 字段名   range: 依据 ID 长度而定  type:
          * @param valueStyle usage: 字段值样式 default: null   range:不做限制
@@ -643,7 +672,7 @@ declare namespace mwext {
         static showRankField(fieldName: string, valueStyle?: string, notListed?: string): typeof LeaderboardModule;
         /**
          * @description 设置样式
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @effect 只在客户端调用生效
          * @param title usage: 界面标题  range: UI 标题信息
          * @param fieldsAutoLayout usage: 字段是否自动布局，均匀分布
@@ -654,7 +683,7 @@ declare namespace mwext {
         static setStyle(title: string, fieldsAutoLayout: boolean, showPlayerNum: number, itemSpacing: number): typeof LeaderboardModule;
         /**
          * @description 设置排序字段
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 可以设置多字段排序，只支持从大到小排序。
          * @effect 只在客户端调用生效
          * @param fieldIds usage: 排序字段 <br> range: 长度不做限制
@@ -663,7 +692,7 @@ declare namespace mwext {
         static setSortFields(...fieldIds: number[]): typeof LeaderboardModule;
         /**
          * @description 设置排序的方法
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @effect 只在客户端调用生效
          * @param fn usage: 方法
          * @returns 返回自己，可用于链式调用
@@ -671,20 +700,20 @@ declare namespace mwext {
         static setSortMethod(fn: (dataList: LeaderboardPlayerData[]) => LeaderboardPlayerData[]): typeof LeaderboardModule;
         /**
          * @description 显示 UI
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @effect 只在客户端调用生效
          * @param hideCallback usage: Panel关闭的回调 default: null
          */
         static showPanel(hideCallback?: () => void): void;
         /**
          * @description 隐藏UI
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @effect 只在客户端调用生效
          */
         static hidePanel(): void;
         /**
          * @description 向排行榜添加一个玩家
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @effect 只在服务端调用生效
          * @param player usage: 玩家对象|玩家id <br> range: 根据 ID 长度而定
          * @param data usage: 玩家数据  default: {}
@@ -692,14 +721,14 @@ declare namespace mwext {
         static addPlayer(player: mw.Player | number, data?: any): void;
         /**
          * @description 从排行榜移除一个玩家
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @effect 只在服务端调用生效
          * @param player usage: 玩家对象|玩家id <br> range: 根据 ID 长度而定
          */
         static removePlayer(player: mw.Player | number): void;
         /**
          * @description 设置一个玩家的一个字段值
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @effect 只在服务端调用生效
          * @param player usage: 玩家对象|玩家id  <br> range: 根据 ID 长度而定
          * @param fieldId usage: 字段的ID  <br> range: 根据 ID 长度而定    type:整数
@@ -708,7 +737,7 @@ declare namespace mwext {
         static setPlayerValue(player: mw.Player | number, fieldId: number, value: number | string): void;
         /**
          * @description 清除排行榜
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @effect 只在服务端调用生效
          */
         static clear(): void;
@@ -717,7 +746,8 @@ declare namespace mwext {
 
 declare namespace mwext {
     /**
-    * @groups 界面/排行榜
+    * @author shilong.wang
+    * @groups 拓展/排行榜
     * @description 排行榜玩家数据类型
     * @networkStatus usage: 双端
     */
@@ -730,57 +760,61 @@ declare namespace mwext {
         };
     };
     /**
+    * @author shilong.wang
     * @description 排行榜模块-服务端
-    * @groups 界面/排行榜
+    * @groups 拓展/排行榜
     */
     type LeaderboardModuleTypeS = LeaderboardModuleBaseS<any>;
     /**
+    * @author shilong.wang
     * @description 排行榜模块-客户端
-    * @groups 界面/排行榜
+    * @groups 拓展/排行榜
     */
     type LeaderboardModuleTypeC = LeaderboardModuleBaseC<any>;
     /**
-    * @groups 界面/排行榜
+    * @author shilong.wang
+    * @groups 拓展/排行榜
     * @description 排行榜模块-客户端
     * @networkStatus usage: 客户端
     */
     abstract class LeaderboardModuleBaseC<T extends LeaderboardModuleTypeS> extends ModuleC<T, any> {
         /**
          * @description 创建排行榜UI面板
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @effect 只在客户端调用生效
          * @returns 排行榜UI面板
          */
         protected abstract creatPanel(): mwext.LeaderboardMainPanelBase<any>;
         /**
          * @description 排行榜的UI面板
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @effect 只在客户端调用生效
          * @returns 一条排行信息的item子UI
          */
         protected get panel(): mwext.LeaderboardMainPanelBase<any>;
         /**
          * @description 显示UI面板
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @effect 只在客户端调用生效
          */
         showPanel(): void;
         /**
          * @description 隐藏UI面板
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @effect 只在客户端调用生效
          */
         protected hidePanel(): void;
     }
     /**
-    * @groups 界面/排行榜
+    * @author shilong.wang
+    * @groups 拓展/排行榜
     * @description 排行榜模块-服务端
     * @networkStatus usage: 服务端
     */
     abstract class LeaderboardModuleBaseS<T extends LeaderboardModuleTypeC> extends ModuleS<T, any> {
         /**
          * @description 向排行榜添加一个玩家
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @effect 只在服务端调用生效
          * @param player usage: 玩家对象|玩家id
          * @param data usage: 玩家数据
@@ -791,7 +825,7 @@ declare namespace mwext {
         }): boolean;
         /**
          * @description 从排行榜移除一个玩家
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @effect 只在服务端调用生效
          * @param player usage: 玩家对象|玩家id
          * @returns 是否成功
@@ -799,7 +833,7 @@ declare namespace mwext {
         protected removePlayer(player: mw.Player | number): boolean;
         /**
          * @description 设置玩家的一个字段值
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @effect 只在服务端调用生效
          * @param player usage: 玩家对象|玩家id  <br> range: 根据 ID 长度而定
          * @param fieldId usage: 字段ID  <br> range: 根据 ID 长度而定    type:整数
@@ -808,7 +842,7 @@ declare namespace mwext {
         protected setPlayerValue(player: mw.Player | number, fieldId: number, value: number | string): void;
         /**
          * @description 清除排行榜
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @effect 只在服务端调用生效
          */
         protected clear(): void;
@@ -817,7 +851,8 @@ declare namespace mwext {
 
 declare namespace mwext {
     /**
-     * @groups 界面/排行榜
+     * @author shilong.wang
+     * @groups 拓展/排行榜
      * @description 排行榜面板一条数据的UI结构接口
      * @networkStatus usage: 客户端
      */
@@ -828,58 +863,60 @@ declare namespace mwext {
         mContent: mw.Canvas;
     }
     /**
-     * @groups 界面/排行榜
+     * @author shilong.wang
+     * @groups 拓展/排行榜
      * @description 排行榜面板的UI结构接口
      * @networkStatus usage: 客户端
      */
     interface ILeaderboardPanelView extends mw.UIScript {
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 标题
          */
         mTitle_txt: mw.TextBlock;
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 字段名节点画布
          */
         mFieldName: mw.Canvas;
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 显示条目节点画布
          */
         mContent: mw.Canvas;
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 自己排行信息节点画布
          */
         mSelfList: mw.Canvas;
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 关闭按钮
          */
         mClose_btn: mw.StaleButton;
     }
     /**
-     * @groups 界面/排行榜
+     * @author shilong.wang
+     * @groups 拓展/排行榜
      * @description 排行榜主界面中的子UI，用来显示一条记录
      * @networkStatus usage: 客户端
      */
     abstract class LeaderboardItemPanelBase<T extends ILeaderboardItemView> extends mwext.BasePanel<T> {
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 构造方法
          * @param viewClass usage: 界面类
          */
         protected constructor(viewClass: mw.TypeName<T>);
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 当创建时调用
          * @precautions 如果要复写此方法，记得调用super.onAwake()
          * @effect 只在客户端调用生效
          */
         protected onAwake(): void;
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 显示在画布上调用，需要请复写
          * @effect 只在客户端调用生效
          * @param playerId usage: 玩家 id  range: 依据玩家 ID 而定  type:整数
@@ -887,7 +924,7 @@ declare namespace mwext {
          */
         protected onAddToCanvas(playerId: number, rankIndex: number): void;
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 设置字段内容后调用，需要请复写
          * @effect 只在客户端调用生效
          * @param playerId usage: 玩家id  <br> range: 根据 ID 长度而定    type:整数
@@ -899,14 +936,15 @@ declare namespace mwext {
          */
         protected onFieldSet(playerId: number, rankIndex: number, fieldId: number, fieldValue: string | number, textBlockIndex: number, textBlock: mw.TextBlock): void;
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 当前显示对象的playerId
          * @effect 只在客户端调用生效
          */
         protected get playerId(): number;
     }
     /**
-    * @groups 界面/排行榜
+    * @author shilong.wang
+    * @groups 拓展/排行榜
     * @description 排行榜主界面
     * @networkStatus usage: 客户端
     */
@@ -916,7 +954,7 @@ declare namespace mwext {
          */
         readonly onClose: mw.Action;
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 设置排行榜样式
          * @effect 只在客户端调用生效
          * @param title usage: UI 标题  range: UI 标题信息
@@ -927,7 +965,7 @@ declare namespace mwext {
          */
         setStyle(title: string, fieldsAutoLayout: boolean, showPlayerNum: number, itemSpacing: number): this;
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 显示"名次"字段，并进行设置，默认不显示
          * @effect 只在客户端调用生效
          * @param fieldName usage: 字段标题   range: 依据 ID 长度而定  type:
@@ -937,7 +975,7 @@ declare namespace mwext {
          */
         showRankField(fieldName: string, valueStyle?: string, notListed?: string): this;
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 添加一个字段
          * @effect 只在客户端调用生效
          * @param fieldId usage: 字段 ID  range: 依据 ID 长度而定  type:
@@ -947,7 +985,7 @@ declare namespace mwext {
          */
         addField(fieldId: number, fieldName: string, valueStyle?: string): this;
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 设置排序字段ID，可以设置多字段排序，只支持从大到小排序
          * @effect 只在客户端调用生效
          * @param fieldIds usage: 排序字段
@@ -958,19 +996,19 @@ declare namespace mwext {
          * @description 当UI显示调用
          * @precautions 如果要复写此方法，记得调用super.onShow()
          * @effect 只在客户端调用生效
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @param playerDataList usage: 玩家数据列表
          */
         protected onShow(playerDataList: Array<LeaderboardPlayerData>): void;
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 当UI隐藏调用
          * @precautions 如果要复写此方法，记得调用super.onHide()
          * @effect 只在客户端调用生效
          */
         protected onHide(): void;
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 排序的时候调用，需要请重写
          * @effect 只在客户端调用生效
          * @param dataList usage: 排行数据数组
@@ -978,7 +1016,7 @@ declare namespace mwext {
          */
         protected onSort(dataList: LeaderboardPlayerData[]): LeaderboardPlayerData[];
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 设置自己(界面最下面那一行)的字段内容后调用，需要请复写
          * @effect 只在客户端调用生效
          * @param rankIndex usage: 名次索引(0开始)  range: 合理即可，不做限制  type: 整数
@@ -989,7 +1027,7 @@ declare namespace mwext {
          */
         protected onSelfFieldSet(rankIndex: number, fieldId: number, fieldValue: string | number, textBlockIndex: number, textBlock: mw.TextBlock): void;
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 创建用于显示一条排行信息的item子UI
          * @effect 只在客户端调用生效
          * @returns 一条排行信息的item子UI
@@ -1002,6 +1040,7 @@ declare namespace mwext {
 
 declare namespace mwext {
     /**
+     * @author shilong.wang
      * @groups 基类/数据拓展
      * @description 数据控制类的基类
      * @description 1. 为什么需要数据控制中心？
@@ -1138,6 +1177,7 @@ declare namespace mwext {
 
 declare namespace mwext {
     /**
+     * @author shilong.wang
      * @groups 基类/数据拓展
      * @description 客户端数据中心，里面存放着当前玩家的数据
      * @networkStatus usage: 客户端
@@ -1226,6 +1266,7 @@ declare namespace mwext {
 
 declare namespace mwext {
     /**
+     * @author shilong.wang
      * @groups 基类/数据拓展
      * @description 服务端数据中心，管理所有玩家的数据。
      * @networkStatus usage: 服务端
@@ -1386,6 +1427,7 @@ declare namespace mwext {
 
 declare namespace mwext {
     /**
+     * @author shilong.wang
      * @groups 基类/C&S拓展
      * @description 客户端模块的基类
      * @description 所有的客户端模块都必须继承这个类，才能被 ModuleService 管理。
@@ -1541,6 +1583,7 @@ declare namespace mwext {
 
 declare namespace mwext {
     /**
+     * @author shilong.wang
      * @groups 基类/C&S拓展
      * @description 服务端模块的基类
      * @description 所有的服务端模块都必须继承这个类，才能被 ModuleService 管理。
@@ -1548,8 +1591,6 @@ declare namespace mwext {
      * @description 在 Script 类中说过，继承自 Script 的类享受onStart()、onUpdate()、onDestroy() 脚本的生命周期，在此基础之上，当在onStart()函数中注册了客户端服务端以及数据模块之后
      * @description ModuleService.registerModule(YourModS, YourModC, YourData);
      * @description 继承自 ModuleS 的类也封装了一套生命周期。
-     * @description 继承自 ModuleS 的生命周期为：
-     * @description ![Module](https://cdn.233xyx.com/online/CnYyNlTulPcV1701529193879.png)
      * @networkStatus usage: 双端
      * @example
      * 使用示例:创建一个名为ModuleSExample的脚本，放置在对象栏中，打开脚本，将原本内容修改为如下内容，保存并运行游戏，服务端日志会输出player模块每个生命周期执行的日志，按下F键你将在服务端日志中看到玩家等级的信息。
@@ -1728,27 +1769,24 @@ declare namespace mwext {
 
 declare namespace mwext {
     /**
+     * @author shilong.wang
      * @groups 基类/C&S拓展
      * @description 服务端客户端及数据模块管理
-     * @description 当你真正使用口袋方舟开始开发一个联机游戏时发现，客户端服务端总是需要你去考虑的。多人游戏的实现并不简单，如果你想在游戏中加入多人游戏，应该尽早在设计和开发中考虑妥当。
+     * @description 当你真正开始开发一个联机游戏时发现，客户端服务端总是需要你去考虑的。多人游戏的实现并不简单，如果你想在游戏中加入多人游戏，应该尽早在设计和开发中考虑妥当。
      * @description 1. 为什么要分为客户端服务端？
      * @description 在游戏开发中，将游戏分为客户端和服务端有以下几个主要原因：
-     * @description ![Module](https://cdn.233xyx.com/online/Ny9vZo8dRAHV1701435586204.png)
      * @description - 分工合作：客户端和服务端各自负责不同的任务和功能。客户端主要处理玩家的输入、渲染和展示游戏画面，而服务端负责处理游戏的逻辑、数据存储和多玩家之间的通信。这种分工合作可以提高游戏的性能和效率。
      * @description - 安全性和防作弊：将游戏逻辑和关键数据处理放在服务端可以提高游戏的安全性。客户端只负责输入和显示，而服务端拥有最终决策权，可以防止客户端作弊和修改游戏规则。通过服务端验证和控制玩家的操作，可以维护游戏的公平性和防止外挂的出现。
      * @description - 同步和协调：服务端作为游戏的主控制中心，负责同步和协调多个客户端之间的状态和行为。通过服务端的统一控制，可以确保多个客户端之间的游戏体验始终保持一致性。例如，在多人对战游戏中，服务端负责接收和处理玩家的操作，并将结果广播给所有客户端，从而实现玩家之间的同步和互动。
      * @description - 网络通信：客户端和服务端之间通过网络进行通信，实现玩家之间的互动。服务端充当中间人的角色，接收和处理客户端的请求，并将相应的信息传递给其他客户端，实现玩家之间的实时交流和互动。通过服务端的网络架构，可以确保游戏在不同玩家之间的流畅运行，并处理网络延迟和连接问题。
      * @description - 扩展性和灵活性：将游戏逻辑和数据处理分离到服务端，可以使游戏具有更好的扩展性和灵活性。通过对服务端进行修改和增强，可以轻松地引入新的功能和扩展游戏的规模。客户端可以更专注于用户界面和交互体验，而服务端则负责处理游戏的核心逻辑和数据管理。
      * @description 2. 客户端和服务端之间如何通信？
-     * @description 编辑器默认为多人游戏。并采用客户端-服务器模型运行。口袋方舟服务器是维护体验状态的最终权威，负责将所有连接的客户端与服务器保持同步。
+     * @description 编辑器默认为多人游戏。并采用客户端-服务器模型运行。服务器是维护体验状态的最终权威，负责将所有连接的客户端与服务器保持同步。
      * @description - 从服务器到一个特定客户端的通信。例如，新玩家加入游戏，服务器会用一组物品填充该玩家的背包。
-     * @description ![Module](https://cdn.233xyx.com/online/wVrPfW2rClRK1701435672610.png)
      * @description - 从任何客户端到服务器的通信。例如，玩家按P键喝下隐形药水，并告诉服务器使该玩家的角色对所有其他玩家隐形。
-     * @description ![Module](https://cdn.233xyx.com/online/vZeLfP3Ex5yG1701435716734.png)
      * @description - 服务器和所有连接的客户端之间的通信。例如，服务端会通知所有玩家某个玩家使用了隐形药水。
-     * @description ![Module](https://cdn.233xyx.com/online/dgEIk8mdMj461701435757560.png)
      * @description 这里不需要你考虑HTTP、websocket或RPC等复杂的通信方式，只需要按照一定的格式搭建你的客户端服务端代码即可。
-     * @description 服务端开发费用通常是多人游戏开发成本的重要组成部分，可能占到总体开发费用的30%到50%甚至更多，具体比例会因游戏的特点而有所不同，口袋方舟会免费为您提供多人游戏服务器。
+     * @description 服务端开发费用通常是多人游戏开发成本的重要组成部分，可能占到总体开发费用的30%到50%甚至更多，具体比例会因游戏的特点而有所不同，我们会免费为您提供多人游戏服务器。
      * @description 3. 哪些逻辑写在客户端哪些逻辑写在服务端？
      * @description 当新建一个脚本时，默认是双端的，也就是说，你在 onStart() 中写一段代码，服务端也会执行，客户端也会执行。刚开始时，你可能没有意识到需要调用 if(SystemUtil.isClient()){...} 或 if(SystemUtil.isServer()){...} 。这是用来选择你的代码是在服务端还是客户端执行的一种手段。
      * @description 客户端只负责渲染画面。客户端接收着服务端传来的数据，包含玩家角色的各种属性和状态，如施放技能、移动、血量、魔法值等。然而，客户端只是根据服务端发送的消息来重放这些属性数值变化。
@@ -1798,7 +1836,6 @@ declare namespace mwext {
      * }
      * ```
      * @description 以下一个非常简单例子，告诉你 ModuleService 如何管理 C&S 代码。
-     * @description ![Module](https://cdn.233xyx.com/online/oJafgxHSRWF31701254464484.png)
      * @example
      * 使用示例: C&S 代码示例。
      * ```ts
@@ -2074,42 +2111,43 @@ declare namespace mwext {
 
 declare namespace mwext {
     /**
+     * @author shilong.wang
      * @description 面板类的基类，可用于控制一个界面
-     * @groups 界面/排行榜
+     * @groups 拓展/排行榜
      * @networkStatus usage: 客户端
      * @precautions 注意：如子类重写onAwake，onAdded方法，请调用super的对应方法
      */
     class BasePanel<T extends mw.UIScript> extends mwext.BaseView {
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 构造方法
          * @param viewClass usage: 界面类
          */
         protected constructor(viewClass: mw.TypeName<T>);
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 面板所控制的界面
          */
         protected get view(): T;
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 生命周期方法-构建面板自动触发，只会调用一次
          * @effect 只在客户端调用生效
          */
         protected onAwake(): void;
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 生命周期-被添加到父节点时候触发，可能会多次调用
          * @effect 只在客户端调用生效
          */
         protected onAdded(): void;
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 面板尺寸
          */
         get size(): mw.Vector2;
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 面板尺寸
          */
         set size(value: mw.Vector2);
@@ -2118,13 +2156,14 @@ declare namespace mwext {
 
 declare namespace mwext {
     /**
-     * @groups 界面/排行榜
+     * @author shilong.wang
+     * @groups 拓展/排行榜
      * @description 界面类的基类
      * @networkStatus usage: 客户端
      */
     class BaseView extends mw.UIScript {
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 显示全局唯一界面
          * @precautions 这种方式会先创建一个全局唯一界面
          * @effect 只在客户端调用生效
@@ -2132,43 +2171,43 @@ declare namespace mwext {
          */
         static show(...params: any[]): void;
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 关闭全局唯一界面
          * @effect 只在客户端调用生效
          */
         static hide(): void;
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 创建界面
          * @effect 只在客户端调用生效
          * @returns 界面对象
          */
         static create<T extends mw.UIScript>(): T;
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 显示界面
          * @effect 只在客户端调用生效
          * @param params usage: 参数序列,参数会传到界面的onShow生命周期方法中
          */
         show(...params: any[]): void;
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 关闭界面
          * @effect 只在客户端调用生效
          */
         hide(): void;
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 判断界面是否处于显示状态
          */
         get isShow(): boolean;
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 是否阻挡场景点击
          */
         protected set holdBackTouch(value: boolean);
         /**
-         * @groups 界面/排行榜
+         * @groups 拓展/排行榜
          * @description 根据类型获取画布下子对象序列
          * @effect 只在客户端调用生效
          * @param canvas usage: 当前组件
@@ -2186,6 +2225,7 @@ declare namespace mwext {
     namespace Decorator {
         /**
          * @description 类装饰器-自动执行某个方法
+         * @author shilong.wang
          * @groups 拓展
          * @precautions 调用发生在所有游戏脚本的生命周期之前
          * @effect 调用端生效
@@ -2194,6 +2234,7 @@ declare namespace mwext {
          */
         function autoExecute(fnName: string): (target?: unknown) => void;
         /**
+         * @author shilong.wang
          * @groups 拓展
          * @description 属性注解-持久化存储属性
          * @precautions 用于设置数据类(继承Subdata的类)哪些属性是要永久存储的
@@ -2203,6 +2244,7 @@ declare namespace mwext {
          */
         function persistence(name?: string): (target: mwext.Subdata, propertyKey: string) => void;
         /**
+         * @author shilong.wang
          * @groups 拓展
          * @description 方法注解-被注解的net方法不需要回复客户端
          * @effect 只在服务端调用生效
@@ -2214,6 +2256,7 @@ declare namespace mwext {
 
 declare namespace mwext {
     /**
+     * @author shilong.wang
      * @description GameObject对象池资源来源类型，不同类型的资源创建方式不一样，需要正确选择
      * @groups 基类/对象池
      */
@@ -2226,6 +2269,7 @@ declare namespace mwext {
         Prefab = 2
     }
     /**
+     * @author shilong.wang
      * @groups 基类/对象池
      * @description 用于缓存GameObject的对象池，适用资源库资源、场景对象、预制体的复用缓存
      * @networkStatus usage: 双端
@@ -2453,6 +2497,7 @@ declare namespace mwext {
         static clearAll(): void;
     }
     /**
+     * @author shilong.wang
      * @groups 基类/对象池
      * @description 通用对象池，可用于各种类型对象的复用
      * @networkStatus usage: 双端

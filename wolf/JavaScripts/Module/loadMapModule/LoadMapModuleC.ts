@@ -1,17 +1,8 @@
-﻿/** 
- * @Author       : Songyang.Xie
- * @Date         : 2023-07-25 10:41:27
- * @LastEditors  : Songyang.Xie
- * @LastEditTime : 2023-07-27 18:59:10
- * @FilePath     : \murdermystery3\JavaScripts\Module\loadMapModule\LoadMapModuleC.ts
- * @Description  : 修改描述
- */
-import { Globals } from "../../Globals";
+﻿import { Globals } from "../../Globals";
 import P_Hall from "../../UILogic/Hall/P_Hall";
 import P_Loading from "../../UILogic/Hall/P_Loading";
 import P_Map from "../../UILogic/Hall/P_Map";
 import P_Notice from "../../uiTemplate/Common/P_Notice";
-import SVIPModuleC from "../SVipModule/SVIPModuleC";
 import LoadMapModuleS from "./LoadMapModuleS";
 
 export default class LoadMapModuleC extends ModuleC<LoadMapModuleS, null> {
@@ -28,24 +19,23 @@ export default class LoadMapModuleC extends ModuleC<LoadMapModuleS, null> {
         mw.UIService.hide(P_Notice);
         P_Map.instance.hide();
         ModuleService.getModule(LoadMapModuleC).showLoadingPanel();
-        ModuleService.getModule(SVIPModuleC).isOpenBuySvipPanel(false);
     }
 
-    public closeLoadingPanel(){
+    public closeLoadingPanel() {
         P_Loading.closeLoadingUI();
     }
 
-    public showLoadingPanel(){
+    public showLoadingPanel() {
         P_Loading.showLoadingUI();
         if (this.timer) {
             clearTimeout(this.timer);
         }
         this.timer = setTimeout(() => {
             this.checkLoadingFinish();
-        }, this.loadingTime* 1000)
+        }, this.loadingTime * 1000)
     }
 
-    private checkLoadingFinish(){
+    private checkLoadingFinish() {
         this.closeLoadingPanel();
     }
 

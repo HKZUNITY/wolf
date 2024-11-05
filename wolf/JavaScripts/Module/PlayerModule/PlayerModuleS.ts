@@ -1,27 +1,21 @@
-import { SpawnManager, SpawnInfo, } from '../../Modified027Editor/ModifiedSpawn';
-import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
-import { oTraceError, oTrace, oTraceWarning, LogManager, AnalyticsUtil, IFightRole, AIMachine, AIState } from "odin";
-import FSMManager from "../../FSM/FSMManager";
+import { AiModuleS } from "../../AI/AiModule";
+import FSM_GamingFinish from "../../FSM/FSM_GamingFinish";
 import FSM_WaitState from "../../FSM/FSM_WaitState";
-import { Camp, GameGlobals, GamingState, Globals, PlayerGameState } from "../../Globals";
+import FSMManager from "../../FSM/FSMManager";
+import { GameGlobals, GamingState, Globals, PlayerGameState } from "../../Globals";
 import { GameConfig } from "../../Tables/GameConfig";
-import { ecodeType, Tools } from "../../Tools";
+import { Tools } from "../../Tools";
 import { BagModuleData } from "../BagModule/BagData";
 import { BagModuleS } from "../BagModule/BagModuleS";
 import { FSMModuleS } from "../FSMModule";
 import { GameModuleData } from "../GameModule/GameData";
 import { GameModuleS } from "../GameModule/GameModuleS";
+import ShelterModuleS from "../shelterModule/ShelterModuleS";
 import { ShopModuleS } from "../ShopModule/ShopCityModule";
 import { ShopModuleData } from "../ShopModule/ShopData";
+import AttributeManager, { AttributeType } from "../SVipModule/AttributeManager";
 import { PlayerModuleData } from "./PlayerData";
 import { PlayerModuleC } from "./PlayerModuleC";
-import { AiModuleS } from "../../AI/AiModule";
-import { WalkModuleS } from "../walkModule/WalkModuleS";
-import FSM_GamingFinish from "../../FSM/FSM_GamingFinish";
-import { MGSHome } from "../../MGSHome";
-import ShelterModuleS from "../shelterModule/ShelterModuleS";
-import SVIPModuleS from "../SVipModule/SVIPModuleS";
-import AttributeManager, { AttributeType } from "../SVipModule/AttributeManager";
 
 export class PlayerModuleS extends ModuleS<PlayerModuleC, PlayerModuleData> {
     onStart(): void {
@@ -65,19 +59,13 @@ export class PlayerModuleS extends ModuleS<PlayerModuleC, PlayerModuleData> {
     /**玩家金币抽奖开始埋点 */
     public playerUseMoneyDraw(playerId: number, boxId: number) {
         let data = this.getPlayerData(playerId);
-        let useDraw = data.getUseDraw();
         data.setUseDraw(true);
         this.updatePlayTime(playerId);
-        let playTime = data.playTime;
-        MGSHome.msgDraw(!useDraw, boxId, true, playTime);
     }
 
     /**玩家看广告抽奖 */
     public playerWatchAdDraw(playerId: number, boxId: number) {
-        let data = this.getPlayerData(playerId);
         this.updatePlayTime(playerId);
-        let playTime = data.playTime;
-        MGSHome.msgDraw(false, boxId, false, playTime);
     }
 
     public initPlayerData(player: mw.Player) {
@@ -159,7 +147,6 @@ export class PlayerModuleS extends ModuleS<PlayerModuleC, PlayerModuleData> {
         this.currentData.save(true);
         //特效
         ModuleService.getModule(ShopModuleS).initShopItem(this.currentPlayer);
-        ModuleService.getModule(SVIPModuleS).initPlayerSVIPRight(this.currentPlayer);
     }
     // public net_EquipInitialWeapon(playerId: number) {
     //     let player = Player.getPlayer(playerId);
@@ -342,7 +329,7 @@ export class PlayerModuleS extends ModuleS<PlayerModuleC, PlayerModuleData> {
 
     public initReconnectPos(curplayer: mw.Player) {
         this.loadReconnectPlace();
-        let index = Tools.getRandomInt(1, GameGlobals.reConnectBornList.length) - 1;
+        let index = Tools.randomInt(1, GameGlobals.reConnectBornList.length) - 1;
         let bornobj = GameGlobals.reConnectBornList[index];
         let loc = new mw.Vector(bornobj.worldTransform.position.x, bornobj.worldTransform.position.y, bornobj.worldTransform.position.z);
         curplayer.character.worldTransform.position = loc;
@@ -350,10 +337,10 @@ export class PlayerModuleS extends ModuleS<PlayerModuleC, PlayerModuleData> {
     }
     public initPlayerHallPos(curplayer: mw.Player, isFirst: boolean = false) {
         this.loadHallBornPlace();
-        let index = Tools.getRandomInt(1, GameGlobals.hallBornList.length) - 1;
+        let index = Tools.randomInt(1, GameGlobals.hallBornList.length) - 1;
         let bornobj = GameGlobals.hallBornList[index];
         let loc = new mw.Vector(bornobj.worldTransform.position.x, bornobj.worldTransform.position.y, bornobj.worldTransform.position.z + 80);
-        oTrace(`BGM ==== 大厅`);
+        console.warn(`BGM ==== 大厅`);
         this.getClient(curplayer).net_playerHallBGM();
         curplayer.character.worldTransform.position = loc;
         GameGlobals.hallBornList.splice(index, 1);
@@ -375,7 +362,7 @@ export class PlayerModuleS extends ModuleS<PlayerModuleC, PlayerModuleData> {
         if (!isExist) {
             GameGlobals.currentAllPlayers.push(curplayer);
         }
-        oTrace("ssssssss当前currentPlayer人数" + GameGlobals.currentAllPlayers.length);
+        console.warn("ssssssss当前currentPlayer人数" + GameGlobals.currentAllPlayers.length);
     }
     private loadHallBornPlace() {
         if (GameGlobals.hallBornList.length != 0) return;
@@ -408,7 +395,6 @@ export class PlayerModuleS extends ModuleS<PlayerModuleC, PlayerModuleData> {
         this.initPlayerHallPos(player);
         ModuleService.getModule(GameModuleS).playerStateChange(player, PlayerGameState.Back, null);
         ModuleService.getModule(ShopModuleS).unequipWaitItem(player);
-        ModuleService.getModule(SVIPModuleS).unequipWaitItem(player);
         this.getClient(player).net_BackToHall(state, FSM_GamingFinish.runFinsh);
         if (GameGlobals.curGameState != GamingState.GamingFinish) {
             player.character.movementEnabled = true;
@@ -474,9 +460,9 @@ export class PlayerModuleS extends ModuleS<PlayerModuleC, PlayerModuleData> {
         let t_startTimeStamp = t_startTime.getSeconds();
         let t_startAll = t_startHours * 60 * 60 + t_startMinu * 60 + t_startTimeStamp;
         let t_overTime = (24 * 60 * 60) - t_startAll;
-        // oTrace("kang log 初始化今日参加场数时间=" + t_overTime + " 24点=" + (24 * 60 * 60) + " t_startAll=" + t_startAll);
+        // console.warn("kang log 初始化今日参加场数时间=" + t_overTime + " 24点=" + (24 * 60 * 60) + " t_startAll=" + t_startAll);
         this.mInitKey = setTimeout(() => {
-            oTrace("kang log 倒计时到第二天了，刷新今日参加场数！！！！！！！！");
+            console.warn("kang log 倒计时到第二天了，刷新今日参加场数！！！！！！！！");
             this.clear_initKey();
             this.clear_gameRoundAll();
             this.init_gameRoundTime();

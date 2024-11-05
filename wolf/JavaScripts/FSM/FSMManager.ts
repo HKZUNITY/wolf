@@ -1,13 +1,4 @@
-﻿/*
- * @Author: your name
- * @Date: 2022-03-10 10:56:06
- * @LastEditTime: 2022-03-10 11:13:41
- * @LastEditors: Please set LastEditors
- * @Description: 打开koroFileHeader查看配置 进行设置: https://github.com/OBKoro1/koro1FileHeader/wiki/%E9%85%8D%E7%BD%AE
- * @FilePath: \JavaScripts\FSM\FSMManager.ts
- */
-import { GamingState } from "../Globals";
-import { IFSMState } from "./IFSMState";
+﻿import { IFSMState } from "./IFSMState";
 export default class FSMManager {
     private static _mInstance: FSMManager;
     public static get Instance(): FSMManager {

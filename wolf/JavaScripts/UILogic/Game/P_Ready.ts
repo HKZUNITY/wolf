@@ -1,18 +1,4 @@
-﻿/** 
- * @Author       : Songyang.Xie
- * @Date         : 2023-06-27 09:38:44
- * @LastEditors  : Songyang.Xie
- * @LastEditTime : 2023-07-19 23:22:13
- * @FilePath     : \murdermystery3\JavaScripts\UILogic\Game\P_Ready.ts
- * @Description  : 修改描述
- */
-
-/** 
- * AUTHOR: STR
- * TIME: 2023.02.07-13.06.06
- */
-
-import { GameConfig } from "../../Tables/GameConfig";
+﻿import { GameConfig } from "../../Tables/GameConfig";
 import { Tools } from "../../Tools";
 import Ready_Generate from "../../ui-generate/uiTemplate/Inside/Ready_generate";
 
@@ -40,7 +26,7 @@ export default class P_Ready extends Ready_Generate {
 
 	/**准备倒计时 */
 	public static setGameTime(time: number) {
-		P_Ready.instance.mText_Time.text = (Tools.changeSecond2Minus(time));
+		P_Ready.instance.mText_Time.text = (Tools.formatTime_1(time));
 	}
 
 	show() {

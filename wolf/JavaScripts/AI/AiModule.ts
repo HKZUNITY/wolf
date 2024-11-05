@@ -1,4 +1,3 @@
-import { oTrace } from "odin";
 import { AiOrPlayer, Camp, GameGlobals, GamingState, KillType, PlayerGameState } from "../Globals";
 import { PlayerManagerExtesion, } from '../Modified027Editor/ModifiedPlayer';
 import { GeneralManager, } from '../Modified027Editor/ModifiedStaticAPI';
@@ -15,7 +14,7 @@ import { AiObject } from "./AiObject";
 import { AiManager, AiState } from "./AiStateMachine";
 export class AiModuleC extends ModuleC<AiModuleS, null> {
     net_changeCloth(roleID: number, modelGuid: string) {
-        // oTraceError(`changeCloth ==== AI roleID: ${roleID} modelGuid: ${modelGuid}`)
+        // console.warn(`changeCloth ==== AI roleID: ${roleID} modelGuid: ${modelGuid}`)
         ModuleService.getModule(PlayerModuleC).net_changeModel(roleID, modelGuid);
     }
     async net_changeNpcName(guid: string) {
@@ -147,7 +146,7 @@ export class AiModuleS extends ModuleS<AiModuleC, null> {
         this.getAllClient().net_changeCloth(roleID, roleGuid);
     }
     createDeathModel(obj: mw.Character, weaponId: number) {
-        let player = Tools.getAiObj(obj);
+        let player = Tools.getAiObject(obj);
         let roleId = player.roleId;
         let deathModel: mw.Character;
         deathModel = GameGlobals.deathModelList[0];
@@ -189,7 +188,7 @@ export class AiModuleS extends ModuleS<AiModuleC, null> {
         this.createDeathModel(ai.aiModel, weaponId);
         ai.changeAiState(AiState.NotActive);
         ai.stopMove();
-        Tools.deathAIAim(true, ai.aiModel);
+        Tools.playAIDeathAnimation(true, ai.aiModel);
 
         if (GameConfig.Sound.getElement(10007).Guid) {
             let area = { radius: GameConfig.Sound.getElement(10007).InnerRadius, falloffDistance: GameConfig.Sound.getElement(10007).FalloffDistance };
@@ -208,7 +207,7 @@ export class AiModuleS extends ModuleS<AiModuleC, null> {
         setTimeout(() => {
             ModuleService.getModule(WatchModuleS).someoneDieOnWatch(ai.aiModel);
             loc = ai.aiModel.worldTransform.clone().position;
-            loc.z -= Tools.getHumanHeight(ai.aiModel);
+            loc.z -= Tools.getCharacterHeight(ai.aiModel);
 
             if (this.deathModelMap.has(ai.aiModel)) {
                 let loc1 = loc.add(new mw.Vector(0, 0, 30));
@@ -217,12 +216,12 @@ export class AiModuleS extends ModuleS<AiModuleC, null> {
                 let deathGuid = GameConfig.Assets.getElement(14003).Guid;
                 let aim = PlayerManagerExtesion.rpcPlayAnimation(this.deathModelMap.get(ai.aiModel), deathGuid, 0);
                 this.deathaim.set(ai.aiModel, aim);
-                oTrace(`Death :: AI ${ai.aiModel.gameObjectId} 死亡模型 ==== 播放动作 Deathmodel: ${this.deathModelMap.get(ai.aiModel).gameObjectId} ain: ${deathGuid}`)
+                console.warn(`Death :: AI ${ai.aiModel.gameObjectId} 死亡模型 ==== 播放动作 Deathmodel: ${this.deathModelMap.get(ai.aiModel).gameObjectId} ain: ${deathGuid}`)
             }
             setTimeout(() => {
                 let index = AiModuleS.aiObjList.indexOf(ai);
                 ai.changeAiLocation(new mw.Vector(index * 200, 0, -1500));
-                Tools.deathAIAim(false, ai.aiModel);
+                Tools.playAIDeathAnimation(false, ai.aiModel);
             }, 100);
         }, 6000);
         if (GameGlobals.curGameState == GamingState.GamingState) {

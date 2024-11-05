@@ -1,10 +1,4 @@
-﻿
-/** 
- * AUTHOR: 达瓦里氏
- * TIME: 2023.07.12-15.29.41
- */
-
-import Kill_Generate from "../../ui-generate/uiTemplate/Inside/Kill_generate";
+﻿import Kill_Generate from "../../ui-generate/uiTemplate/Inside/Kill_generate";
 
 export default class P_Kill extends Kill_Generate {
 
@@ -121,11 +115,11 @@ export default class P_Kill extends Kill_Generate {
 	 */
 	//protected onDragLeave(InDragDropEvent:mw.PointerEvent,InDragDropOperation:mw.DragDropOperation) {
 	//}
-	
+
 	/**
 	 * 拖拽操作生成事件触发后，没有完成完成的拖拽事件而取消时触发
 	 */
 	//protected onDragCancelled(InDragDropEvent:mw.PointerEvent,InDragDropOperation:mw.DragDropOperation) {
 	//}
-	
+
 }

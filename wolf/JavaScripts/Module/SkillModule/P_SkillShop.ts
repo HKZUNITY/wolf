@@ -1,18 +1,4 @@
-﻿/** 
- * @Author       : Songyang.Xie
- * @Date         : 2023-07-17 10:26:56
- * @LastEditors  : Songyang.Xie
- * @LastEditTime : 2023-07-17 13:30:44
- * @FilePath     : \murdermystery3\JavaScripts\Module\SkillModule\P_SkillShop.ts
- * @Description  : 修改描述
- */
-
-/** 
- * AUTHOR: 达瓦里氏
- * TIME: 2023.07.17-10.27.11
- */
-
-import { GameConfig } from "../../Tables/GameConfig";
+﻿import { GameConfig } from "../../Tables/GameConfig";
 import Skill_Generate from "../../ui-generate/uiTemplate/Hall/Skill_generate";
 import P_SkillShopItem from "./P_SkillShopItem";
 import P_SkillShopItemDesc from "./P_SkillShopItemDesc";
@@ -31,47 +17,47 @@ export default class P_SkillShop extends Skill_Generate {
 		this.canUpdate = false;
 		this.layer = mw.UILayerMiddle;
 		this.initMultiScroll();
-		this.mBtn_Close.onClicked.add(()=>{
+		this.mBtn_Close.onClicked.add(() => {
 			ModuleService.getModule(SkillModuleC).isOpenSkillShopPanel(false);
 		})
 	}
 	/**初始化辅助模块 */
-	private initMultiScroll(){
+	private initMultiScroll() {
 		this._mScroll = new UIMultiScroller(this.mScrollBox, this.mCanvas_Content, P_SkillShopItem, 5, 30, 20, 180, 220, 3, 20, 20);
 		this._mScroll.ItemCallback.add(this.onRefreshItem, this);
 		this._mScroll.InitCallback.add(this.onInitItem, this);
 	}
 
-	public refreshSkillShop(showList: Array<SkillShopData>){
+	public refreshSkillShop(showList: Array<SkillShopData>) {
 		this.showList = showList;
 		this._mScroll.setData(showList);
 	}
 
-	private onRefreshItem(index: number, renderItem: P_SkillShopItem){
+	private onRefreshItem(index: number, renderItem: P_SkillShopItem) {
 		let data = this.showList[index];
 		renderItem.setData(data);
 		renderItem["setData_data"] = data;
 	}
 
-	private onInitItem(index: number, renderItem: IItemRender){
-        let btn = renderItem.clickObj;
-        if (btn) {
-            btn.onClicked.add(() => {
-                let data = renderItem["setData_data"];
+	private onInitItem(index: number, renderItem: IItemRender) {
+		let btn = renderItem.clickObj;
+		if (btn) {
+			btn.onClicked.add(() => {
+				let data = renderItem["setData_data"];
 				P_SkillShopItemDesc.instance.showSkillDesc(data);
-            })
-        }
+			})
+		}
 	}
 
 }
 
-export class SkillShopData{
+export class SkillShopData {
 	public skillId: number;
 	public isBuy: boolean;
 	public showIndex: number;
 	public isUse: boolean;
 	public remainTime: number;
-	constructor(skillId, isBuy, isUse, remainTime: number){
+	constructor(skillId, isBuy, isUse, remainTime: number) {
 		this.skillId = skillId;
 		this.isBuy = isBuy;
 		this.isUse = isUse;

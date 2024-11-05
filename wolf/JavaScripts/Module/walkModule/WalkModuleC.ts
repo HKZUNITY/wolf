@@ -1,14 +1,5 @@
-﻿/*
- * @Author: tianran.shi
- * @Date: 2023-02-05 14:26:05
- * @LastEditors: tianran.shi
- * @LastEditTime: 2023-02-05 15:34:59
- * @FilePath: \murdermystery3\JavaScripts\Module\walkModule\walkModuleC.ts
- * @Description: 
- */
-import { oTraceError, oTrace, oTraceWarning, LogManager ,AnalyticsUtil, IFightRole, AIMachine, AIState} from "odin";
+﻿import { GameConfig } from "../../Tables/GameConfig";
 import { WalkModuleS, walkInfo } from "./WalkModuleS";
-import { GameConfig } from "../../Tables/GameConfig";
 
 export class WalkModuleC extends ModuleC<WalkModuleS, null> {
 
@@ -17,12 +8,12 @@ export class WalkModuleC extends ModuleC<WalkModuleS, null> {
         this.server.net_playerEnter();
     }
 
-    net_initWalk(keyArray: Array<string>, valueArray: Array<walkInfo>){
+    net_initWalk(keyArray: Array<string>, valueArray: Array<walkInfo>) {
         let length = keyArray.length;;
         for (let i = 0; i < length; i++) {
             this.net_creatWalk(keyArray[i], valueArray[i].isAi, valueArray[i].objGuid);
         }
-        
+
     }
 
     //AI模型guid和身上的武器guid

@@ -1,23 +1,13 @@
-﻿/*
- * @Author: tianran.shi
- * @Date: 2023-02-09 18:51:10
- * @LastEditors: tianran.shi
- * @LastEditTime: 2023-02-13 17:24:01
- * @FilePath: \murdermystery3\JavaScripts\Module\walkModule\WalkModuleS.ts
- * @Description: 
- */
-import { oTraceError, oTrace, oTraceWarning, LogManager ,AnalyticsUtil, IFightRole, AIMachine, AIState} from "odin";
-import { GameConfig } from "../../Tables/GameConfig";
-import { WalkModuleC, walk } from "./WalkModuleC";
+﻿import { WalkModuleC } from "./WalkModuleC";
 
 export class WalkModuleS extends ModuleS<WalkModuleC, null> {
     private playerIdMap: Map<string, walkInfo> = new Map<string, walkInfo>();
 
-    public net_playerEnter(){
+    public net_playerEnter() {
         let keyArray = new Array<string>();
         let valueArray = new Array<walkInfo>();
         if (this.playerIdMap.size > 0) {
-            this.playerIdMap.forEach((value, index)=>{
+            this.playerIdMap.forEach((value, index) => {
                 keyArray.push(index);
                 valueArray.push(value);
             })

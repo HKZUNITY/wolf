@@ -1,8 +1,8 @@
-﻿/** @hidden */
-declare namespace mw {
+﻿declare namespace mw {
     /**
-     * @hidden
-     * @description GameObject的基类
+     * @groups 基类
+     * @author si.wu
+     * @description GameObject和Script的基类，定义基础能力
      * @networkStatus usage:双端
      */
     class Base {
@@ -51,36 +51,42 @@ declare namespace mw {
     class FunctionOption {
     }
     /**
+     * @author xiangkun.sun
      * @groups 基础类型
      * @description 多播
      * @effect 调用端生效
      */
     const Multicast: FunctionOption;
     /**
+     * @author xiangkun.sun
      * @groups 基础类型
      * @description 客户端
      * @effect 调用端生效
      */
     const Client: FunctionOption;
     /**
+     * @author xiangkun.sun
      * @groups 基础类型
      * @description 服务端
      * @effect 调用端生效
      */
     const Server: FunctionOption;
     /**
+     * @author xiangkun.sun
      * @groups 基础类型
      * @description 与Client Server配合实现RPC函数返回值
      * @effect 调用端生效
      */
     const Result: FunctionOption;
     /**
+     * @author xiangkun.sun
      * @groups 基础类型
      * @description 不可靠rpc
      * @effect 调用端生效
      */
     const Unreliable: FunctionOption;
     /**
+     * @author xiangkun.sun
      * @groups 基础类型
      * @description 将类声明为mwclass
      * @effect 调用端生效
@@ -89,6 +95,7 @@ declare namespace mw {
      */
     function Component<T extends typeof mw.Script>(component: T): T;
     /**
+     * @author xiangkun.sun
      * @groups 基础类型
      * @description 类型支持属性同步
      * @effect 调用端生效
@@ -97,6 +104,7 @@ declare namespace mw {
      */
     function Serializable<T extends ConstructorType>(type: T): T;
     /**
+     * @author xiangkun.sun
      * @groups 基础类型
      * @description 函数支持Rpc调用
      * @effect 调用端生效
@@ -105,6 +113,7 @@ declare namespace mw {
      */
     function RemoteFunction(...options: FunctionOption[]): (target: unknown, propertyKey: string, descriptor: PropertyDescriptor) => void;
     /**
+     * @author xiangkun.sun
      * @groups 基础类型
      * @description 属性支持同步
      * @effect 调用端生效
@@ -116,6 +125,7 @@ declare namespace mw {
 
 declare namespace mw {
     /**
+     * @author xiangkun.sun
      * @groups 基类/场景所有物体基类
      * @description 场景中所有实体的基类
      * @description Model、Pawn、Camera、AdvancedVehicle、BlockingVolume等逻辑对象均继承自GameObject。
@@ -782,6 +792,7 @@ declare namespace mw {
 declare namespace mw {
     /**
      * @hidden
+     * @author zhaoyang.hou
      * @groups 基类
      * @description 脚本管理类
      * @networkStatus usage:双端
@@ -801,17 +812,14 @@ declare namespace mw {
         static asyncFindScript(guid: string): Promise<Script>;
     }
     /**
+     * @author zhaoyang.hou
      * @groups 基类
      * @description 脚本的基类
      * @description -----------------------------
-     * @description 当你想从无到有开始做一个好玩的游戏时，便开始构思要做一个什么样子的游戏，首先游戏内容一定是丰富多彩的，有各种各样的人物、物品和场景等等...如何填充你的游戏内容呢？
-     * @description 1. 如何填充游戏内容？
-     * @description ![Script](https://cdn.233xyx.com/online/Mksjb6ptJ2dg1701241789942.png)
-     * @description 2. 脚本是什么？
+     * @description 1. 脚本是什么？
      * @description 挂载的脚本就像是给游戏对象赋予了特殊能力或行为。正如灵魂赋予人类生命和个性一样，脚本赋予游戏对象生命和行为。它们定义了游戏对象的特殊能力、动作模式、智能决策和与玩家的互动方式。
      * @description 你可以编写脚本来实现角色的控制逻辑，敌人的行为模式，道具的效果，关卡的触发条件等等。通过挂载不同的脚本，你可以赋予对象不同的行为和能力，创造出各种有趣和多样化的游戏。
-     * @description ![Script](https://cdn.233xyx.com/online/G0qhbLnwXxTn1701241805135.png)
-     * @description 3. 脚本的分类
+     * @description 2. 脚本的分类
      * @description 可以大致分为两类：
      * @description - :mushroom: 继承自 Script 的脚本类，享受编辑器赋予的默认生命周期。
      * @description 当在编辑器中点击新建脚本时，会默认生成一个继承自 Script 的脚本类：
@@ -858,10 +866,9 @@ declare namespace mw {
      *
      * }
      * ```
-     * @description 4. 脚本是如何工作的？
+     * @description 3. 脚本是如何工作的？
      * @description - :mushroom: 继承自 Script 的脚本类。
      * @description 继承自 Script 的脚本类可以复写 onStart(), onUpdate(), 和 onDestroy() 方法。当你的脚本放在对象管理器中之后，编辑器会自动帮你调用这些函数。
-     * @description ![Script](https://cdn.233xyx.com/online/Qwy7xPkAm45J1701529114891.png)
      * @description 脚本的生命周期中的 onStart、onUpdate 和 onDestroy 方法可以比喻为一个植物的生长过程：
      * @description onStart 为植物的种子开始发芽的过程。当继承自 Script 的脚本放置在游戏对象中，脚本被创建并启动时，onStart 方法会在脚本加载后立即执行。
      * @description onUpdate 植物的生长和成熟阶段。在游戏运行期间，onUpdate 方法会在每一帧都被调用，在这个阶段，可以编写逻辑代码来控制游戏对象的行为、状态和与其他对象的交互。
@@ -993,6 +1000,7 @@ declare namespace mw {
         isRunningClient(): boolean;
     }
     /**
+     * @author zhaoyang.hou
      * @groups 基类
      * @description main脚本的基类
      */
@@ -1008,6 +1016,7 @@ declare namespace mw {
     /**
      * @hidden
      * @groups 基础类型
+     * @author xiangkun.sun
      * @description 游戏窗口被激活事件
      * @effect 只在客户端调用生效
      * @param callback usage:回调事件
@@ -1016,6 +1025,7 @@ declare namespace mw {
     /**
      * @hidden
      * @groups 基础类型
+     * @author xiangkun.sun
      * @description 游戏窗口被挂起事件
      * @effect 只在客户端调用生效
      * @param callback usage:回调事件
@@ -1024,6 +1034,7 @@ declare namespace mw {
     /**
      * @hidden
      * @groups 基础类型
+     * @author xiangkun.sun
      * @description 获取游戏窗口激活状态
      * @effect 只在客户端调用生效
      * @returns 是否激活
@@ -1041,6 +1052,7 @@ declare namespace mw {
     /**
      * @hidden
      * @groups 基础类型
+     * @author xiangkun.sun
      * @description 用户属性范围和是否显示滑块
      */
     interface IRangeOptions {
@@ -1063,6 +1075,7 @@ declare namespace mw {
     }
     /**
      * @hidden
+     * @author xiangkun.sun
      * @groups 基础类型
      * @description 用户属性标记的参数选项
      */
@@ -1157,6 +1170,7 @@ declare namespace mw {
         value: unknown;
     }
     /**
+     * @author xiangkun.sun
      * @description 是否在编辑器里隐藏
      * @groups 基础类型
      */

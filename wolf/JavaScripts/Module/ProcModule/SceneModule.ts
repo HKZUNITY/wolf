@@ -1,23 +1,18 @@
-import { SpawnManager,SpawnInfo, } from '../../Modified027Editor/ModifiedSpawn';
-import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
-import { oTraceError, oTrace, oTraceWarning, LogManager, AnalyticsUtil, IFightRole, AIMachine, AIState } from "odin";
 import { AiModuleS } from "../../AI/AiModule";
-import { AiOrPlayer, Camp, GameGlobals, GamingState, Globals, PlayerGameState, SoundGlobals } from "../../Globals";
+import { GameCache } from "../../GameCache";
+import { Camp, GameGlobals, GamingState, PlayerGameState, SoundGlobals } from "../../Globals";
+import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
+import { SpawnManager } from '../../Modified027Editor/ModifiedSpawn';
+import { GeneralManager } from '../../Modified027Editor/ModifiedStaticAPI';
+import Gold from "../../Prefabs/CoinPoint/Script/GoldRotate";
 import { GameConfig } from "../../Tables/GameConfig";
 import { Tools } from "../../Tools";
-import P_Hall from "../../UILogic/Hall/P_Hall";
-import P_Loading from "../../UILogic/Hall/P_Loading";
-import P_Map from "../../UILogic/Hall/P_Map";
 import { GameModuleData } from "../GameModule/GameData";
 import { GameModuleS } from "../GameModule/GameModuleS";
-import { CoinObj } from "./CoinObj";
-import Gold from "../../Prefabs/CoinPoint/Script/GoldRotate";
 import { PlayerModuleS } from "../PlayerModule/PlayerModuleS";
 import { DoorModuleS } from "../door/DoorModuleS";
-import LoadMapModuleC from "../loadMapModule/LoadMapModuleC";
-import { GameCache } from "../../GameCache";
-import { GeneralManager } from '../../Modified027Editor/ModifiedStaticAPI';
-export class SceneModuleC extends ModuleC<SceneModuleS, null>{
+import { CoinObj } from "./CoinObj";
+export class SceneModuleC extends ModuleC<SceneModuleS, null> {
     // deathModelList: Array<mw.Character> = new Array<mw.Character>()
     onStart(): void {
 
@@ -42,7 +37,7 @@ export class SceneModuleC extends ModuleC<SceneModuleS, null>{
     //     return false
     // }
     net_changeBGM(mapId: number): void {
-        oTrace(`BGM ==== Map :${mapId}`);
+        console.warn(`BGM ==== Map :${mapId}`);
         mw.SoundService.stopBGM();
         switch (mapId) {
             case 10001:
@@ -84,7 +79,7 @@ export class SceneModuleC extends ModuleC<SceneModuleS, null>{
         }
     }
 }
-export class SceneModuleS extends ModuleS<SceneModuleC, null>{
+export class SceneModuleS extends ModuleS<SceneModuleC, null> {
     private weaponBox: mw.Trigger;
     private gunObj: mw.GameObject;
     private leaveEffectId: number = -1;
@@ -111,7 +106,7 @@ export class SceneModuleS extends ModuleS<SceneModuleC, null>{
 
     }
     activeCoin() {
-        oTrace("激活金币")
+        console.warn("激活金币")
         let headIndex = (GameGlobals.curMapID % 10000) * 10000;
         let tableIdNum = GameConfig.CoinsGenerate.getElement(headIndex).Quantity;
         let coinIndex = 0;
@@ -124,7 +119,7 @@ export class SceneModuleS extends ModuleS<SceneModuleC, null>{
         }
     }
     destroyCoin() {
-        oTrace("销毁金币")
+        console.warn("销毁金币")
         this.coinObjArr.forEach((obj) => {
             obj.destroy();
         })
@@ -166,7 +161,7 @@ export class SceneModuleS extends ModuleS<SceneModuleC, null>{
         if (PlayerManagerExtesion.isNpc(char)) {
             let aiModel = char as mw.Character;
             if (Tools.isAiPlayer(aiModel)) {
-                let ai = Tools.getAiObj(aiModel);
+                let ai = Tools.getAiObject(aiModel);
                 let camp = ai.camp;
                 if (camp == Camp.Spy || camp == Camp.Police || camp == Camp.Hero) return;
                 let state = ai.aiGameState;
@@ -179,13 +174,13 @@ export class SceneModuleS extends ModuleS<SceneModuleC, null>{
         else if (PlayerManagerExtesion.isCharacter(char)) {
             let player = (char as mw.Character).player;
             if (DataCenterS.getReadyPlayerIds().indexOf(player.playerId) == -1) {
-                oTrace("SZW得不到玩家数据");
+                console.warn("SZW得不到玩家数据");
                 return;
             }
-            if (GameCache.gamePlayersInfo.get(player) == undefined){
-                oTraceError("不是对局中的玩家");
+            if (GameCache.gamePlayersInfo.get(player) == undefined) {
+                console.warn("不是对局中的玩家");
                 return;
-            } 
+            }
             let camp = DataCenterS.getData(player, GameModuleData).getPlayerCamp();
             if (camp == Camp.Spy || camp == Camp.Police || camp == Camp.Hero) return;
             let state = DataCenterS.getData(player, GameModuleData).getState();
@@ -199,7 +194,7 @@ export class SceneModuleS extends ModuleS<SceneModuleC, null>{
     resetBoxLocation(loc: mw.Vector) {
         GameGlobals.gunLeaveLoc = new mw.Vector(0, 0, 0);
         this.weaponBox.worldTransform.position = loc;
-        oTrace("遗留枪的位置发生改变" + loc);
+        console.warn("遗留枪的位置发生改变" + loc);
         if (this.leaveEffectId == -1) return;
         EffectService.stop(this.leaveEffectId);
         this.leaveEffectId = -1;
@@ -220,7 +215,7 @@ export class SceneModuleS extends ModuleS<SceneModuleC, null>{
         this.initDeathModelList();
         GameGlobals.readyPlayers.forEach((player) => {
             //初始化玩家在游戏中的位置
-            oTrace(`BGM ==== 地图选择`)
+            console.warn(`BGM ==== 地图选择`)
             this.getClient(player).net_changeBGM(GameGlobals.curMapID);
             GameGlobals.hallPlayer = GameGlobals.hallPlayer.filter(item => item.playerId != player.playerId)
         })

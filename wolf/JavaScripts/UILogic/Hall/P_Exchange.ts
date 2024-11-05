@@ -1,11 +1,4 @@
-﻿
-/** 
- * AUTHOR: 达瓦里氏
- * TIME: 2023.08.01-17.36.56
- */
-
-import ExchangeModuleC from "../../Module/ExchangeModule/ExchangeModuleC";
-import { ExchangeGoldType } from "../../Module/ExchangeModule/ExchangeModuleS";
+﻿import ExchangeModuleC from "../../Module/ExchangeModule/ExchangeModuleC";
 import { PlayerModuleC } from "../../Module/PlayerModule/PlayerModuleC";
 import { ShopModuleC } from "../../Module/ShopModule/ShopCityModule";
 import { SkillModuleC } from "../../Module/SkillModule/SkillModuleC";
@@ -25,8 +18,8 @@ export default class P_Exchange extends Exchange_Generate {
 		this.refreshPanel();
 	}
 
-	private initPanel(){
-		this.mBtn_Close.onClicked.add(()=>{
+	private initPanel() {
+		this.mBtn_Close.onClicked.add(() => {
 			ModuleService.getModule(ExchangeModuleC).isOpenExchangePanel(false);
 		})
 		GameConfig.Exchange.getAllElement().forEach(dataInfo => {
@@ -42,29 +35,29 @@ export default class P_Exchange extends Exchange_Generate {
 			item.mText_Num.text = getText.toString();
 			item.mImg_AdCoupon.imageGuid = GameConfig.Rule.getElement(10044).Num.toString();
 			item.mText_Tip_2.text = dataInfo.ConsumeNum.toString();
-			if(dataInfo.ShopItem > 0){
+			if (dataInfo.ShopItem > 0) {
 				item.mText_Tip_2.text = GameConfig.Shop.getElement(dataInfo.ShopItem).Price.toString();
 			}
-			else if(dataInfo.SkillShopItem > 0){
+			else if (dataInfo.SkillShopItem > 0) {
 				item.mText_Tip_2.text = GameConfig.SkillShop.getElement(dataInfo.SkillShopItem).PriceNum[0].toString();
 			}
 			if (dataInfo.GetType > 0) {
 				item.mBtn_Exchange.text = GameConfig.Text.getElement(20052).Content;
 			}
-			else{
+			else {
 				item.mBtn_Exchange.text = GameConfig.Text.getElement(20053).Content;
 			}
-			item.mBtn_Exchange.onClicked.add(()=>{
+			item.mBtn_Exchange.onClicked.add(() => {
 				/**兑换是直接走购买申请，其他的是走各自模块的逻辑，这里加一下货币检测 */
 				if (dataInfo.GetType > 0) {
 					ModuleService.getModule(ExchangeModuleC).exchangeItem(dataInfo.ID);
 				}
-				else if(dataInfo.ShopItem > 0){
+				else if (dataInfo.ShopItem > 0) {
 					ModuleService.getModule(ExchangeModuleC).isOpenExchangePanel(false);
 					ModuleService.getModule(ShopModuleC).selectTargetItem(dataInfo.ShopItem);
 
 				}
-				else if(dataInfo.SkillShopItem > 0){
+				else if (dataInfo.SkillShopItem > 0) {
 					ModuleService.getModule(ExchangeModuleC).isOpenExchangePanel(false);
 					ModuleService.getModule(SkillModuleC).isOpenSkillShopPanel(true);
 				}
@@ -81,7 +74,7 @@ export default class P_Exchange extends Exchange_Generate {
 	protected onAdded() {
 	}
 
-	public refreshPanel(){
+	public refreshPanel() {
 		this.mText_AdCouponNumber.text = ModuleService.getModule(PlayerModuleC).getPlayerAdvToken().toString();
 	}
 
@@ -181,13 +174,13 @@ export default class P_Exchange extends Exchange_Generate {
 	 */
 	//protected onDragLeave(InDragDropEvent:mw.PointerEvent,InDragDropOperation:mw.DragDropOperation) {
 	//}
-	
+
 	/**
 	 * 拖拽操作生成事件触发后，没有完成完成的拖拽事件而取消时触发
 	 */
 	//protected onDragCancelled(InDragDropEvent:mw.PointerEvent,InDragDropOperation:mw.DragDropOperation) {
 	//}
-	
+
 }
 
 

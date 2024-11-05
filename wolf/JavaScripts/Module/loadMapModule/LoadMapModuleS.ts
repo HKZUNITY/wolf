@@ -1,12 +1,4 @@
-﻿/** 
- * @Author       : Songyang.Xie
- * @Date         : 2023-07-20 14:58:00
- * @LastEditors  : Songyang.Xie
- * @LastEditTime : 2023-08-14 16:09:51
- * @FilePath     : \murdermystery3\JavaScripts\Module\loadMapModule\LoadMapModuleS.ts
- * @Description  : 修改描述
- */
-import { AiOrPlayer, GameGlobals, GamingState } from "../../Globals";
+﻿import { AiOrPlayer, GameGlobals } from "../../Globals";
 import { GameConfig } from "../../Tables/GameConfig";
 import { Tools } from "../../Tools";
 import LoadMapModuleC from "./LoadMapModuleC";
@@ -62,7 +54,7 @@ export default class LoadMapModuleS extends ModuleS<LoadMapModuleC, null> {
     public initPlayerGamePos(isRealPlayer: AiOrPlayer, curplayer?: mw.Player, ai?: mw.Character) {
         let bornobj = this.defaultObj;
         if (GameGlobals.gameBornList.length > 0) {
-            let index = Tools.getRandomInt(1, GameGlobals.gameBornList.length) - 1;
+            let index = Tools.randomInt(1, GameGlobals.gameBornList.length) - 1;
             bornobj = GameGlobals.gameBornList[index];
             GameGlobals.gameBornList.splice(index, 1);
         }

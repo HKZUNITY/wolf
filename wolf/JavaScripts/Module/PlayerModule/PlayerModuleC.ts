@@ -1,15 +1,11 @@
-import { oTrace } from "odin";
+import AdsPanel from "../../AdsPanel";
 import P_Tips from '../../CommonUI/P_Tips';
 import { GamingState, SoundGlobals } from "../../Globals";
-import { IAAUtils } from "../../IAAUtils";
-import { MGSHome } from '../../MGSHome';
 import { ModifiedCameraSystem } from '../../Modified027Editor/ModifiedCamera';
 import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
 import { GeneralManager, } from '../../Modified027Editor/ModifiedStaticAPI';
 import { GameConfig } from "../../Tables/GameConfig";
-import { TimerPlugin } from '../../TimerPlugin';
 import { Tools } from "../../Tools";
-import { UiManager } from '../../UI/UiManager';
 import P_CoinGet from "../../UILogic/Game/P_CoinGet";
 import P_Game from "../../UILogic/Game/P_Game";
 import P_GameFinal from "../../UILogic/Game/P_GameFinal";
@@ -22,11 +18,9 @@ import { GameModuleC } from "../GameModule/GameModuleC";
 import { LotteryModuleC } from "../LotteryModule/LotteryModuleC";
 import { WatchModuleC } from "../ProcModule/WatchModule";
 import ShelterModuleC from "../shelterModule/ShelterModuleC";
-import SVIPModuleC from "../SVipModule/SVIPModuleC";
+import { ShopModuleC } from "../ShopModule/ShopCityModule";
 import { PlayerModuleData } from "./PlayerData";
 import { PlayerModuleS } from "./PlayerModuleS";
-import { ShopModuleC } from "../ShopModule/ShopCityModule";
-import AdsPanel from "../../AdsPanel";
 
 export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
     /**玩家等级列表 */
@@ -185,7 +179,6 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
                         return;
                     }
                     ModuleService.getModule(LotteryModuleC).lotteryOpen(true);
-                    MGSHome.mgsResource3(2, false);
                     this.lotteryBlock = true;
                 }
             })
@@ -212,7 +205,6 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
                     }
                     // ModuleService.getModule(SVIPModuleC).isOpenBuySvipPanel(true);//TODO:
                     ModuleService.getModule(ShopModuleC).ShopOpen(true);
-                    MGSHome.mgsResource3(4, false);
                     this.svipBlock = true;
                 }
             })
@@ -264,19 +256,17 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
     }
 
     public async isFirstIn() {
-        /**优先等待服务器初始化vip数据，完成之后再设置名字 */
-        await ModuleService.getModule(SVIPModuleC).initVIPInfo();
         this.server.net_SetPlayerName(mw.AccountService.getNickName());
         let roleId: number = this.data.getPlayerRoleId();
         if (roleId == 0) {//第一次进入
-            let ranNum = Tools.getRandomInt(0, 3);
+            let ranNum = Tools.randomInt(0, 3);
             if (ranNum <= 1) {
                 ranNum += 10001;
             }
             else {
                 ranNum += 20001 - 2;
             }
-            oTrace("随机的角色id为:" + ranNum);
+            console.warn("随机的角色id为:" + ranNum);
             this.firstEnterHall(ranNum);
         }
         else {
@@ -344,7 +334,7 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
             P_Hall.setHallTip(10002);
         }
         P_Hall.showHallUI();
-        oTrace(`Camera :: ===== 相机重置前判断:: ${bo}`);
+        console.warn(`Camera :: ===== 相机重置前判断:: ${bo}`);
         if (bo) {
             ModuleService.getModule(BubbleModuleC).initMainPanel();
         }
@@ -492,15 +482,20 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
         }
         let levelText = canvas.getChildAt(1) as mw.TextBlock
         levelText.text = level.toString()
-        GameConfig.Rank.getAllElement().every((value, index) => {
-            if (value.Level == level) {
-                let image = value.BgID.toString()
-                let imageUI = canvas.getChildAt(0) as mw.Image
-                imageUI.imageGuid = image
-                return false
-            }
-            return true
-        })
+        if (level <= 70) {
+            GameConfig.Rank.getAllElement().every((value, index) => {
+                if (value.Level == level) {
+                    let image = value.BgID.toString()
+                    let imageUI = canvas.getChildAt(0) as mw.Image
+                    imageUI.imageGuid = image
+                    return false
+                }
+                return true
+            });
+        } else {
+            let imageUI = canvas.getChildAt(0) as mw.Image
+            imageUI.imageGuid = `128708`;
+        }
     }
     /**获取玩家头顶的等级ui */
     private async getPlayerHeadUI(playerId: number) {
@@ -581,14 +576,14 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
     //         rewardPopup.refreshText(gold);
     //         //TODO:开始倒计时
     //         this._mImage_RedPoint.visibility = (mw.SlateVisibility.Collapsed);
-    //         oTrace("kang log 今日首次领取奖励后开始倒计时");
+    //         console.warn("kang log 今日首次领取奖励后开始倒计时");
     //         let time = GameConfig.Rule.getElement(30006).Time;
     //         this._mText_ADTime.visibility = (mw.SlateVisibility.HitTestInvisible);
     //         this.setCountDown(time);
     //     }
     //     else {
     //         if (await this.getHallAdNum(0) >= this._numL) {
-    //             oTrace("kang log 已经达到上限");
+    //             console.warn("kang log 已经达到上限");
     //             P_Tips.show(GameConfig.Tips.getElement(20004).Content);
     //             return;
     //         }
@@ -596,7 +591,7 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
     //         return;
     //         //是否正在倒计时
     //         if (this._mText_ADTime.text != "") {
-    //             oTrace("kang log 正在倒计时");
+    //             console.warn("kang log 正在倒计时");
     //             P_Tips.show(GameConfig.Tips.getElement(20003).Content);
     //         }
     //         else {
@@ -607,7 +602,7 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
     //     let numA = GameConfig.Rule.getElement(30004).Num;
     //     let numB = await this.server.net_getHallAdNum(0);
     //     let numN = GameConfig.Rule.getElement(30005).Num;
-    //     oTrace("kang log numA=" + numA + " numB=" + numB + " numN=" + numN);
+    //     console.warn("kang log numA=" + numA + " numB=" + numB + " numN=" + numN);
     //     //N=A+n*B
     //     let num = numA + numB * numN;
     //     UIService.getUI(AdsPanel).showRewardAd(async () => {
@@ -621,7 +616,7 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
     //         rewardPopup.refreshText(num);
     //         this.server.net_ChangeGold(num);
     //         let nu = await this.getHallAdNum(1);
-    //         oTrace("kang log 已经观看了" + nu + "次广告");
+    //         console.warn("kang log 已经观看了" + nu + "次广告");
     //         //是否满足
     //         if (nu >= this._numL) {
     //             this._mText_ADTime.visibility = (mw.SlateVisibility.Collapsed);
@@ -640,10 +635,10 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
     //     this._todayFreeReward == 0 ? this._mText_ADTime.visibility = (mw.SlateVisibility.Collapsed)
     //         : this._mText_ADTime.visibility = (mw.SlateVisibility.HitTestInvisible);
     //     //大厅激励-广告上限L
-    //     oTrace("kang log 当前玩家观看大厅广告次数:" + this._todayFreeReward + "大厅观看次数累计" + await this.getHallAdNum(0) + "  大厅激励-广告上限L:" + this._numL);
+    //     console.warn("kang log 当前玩家观看大厅广告次数:" + this._todayFreeReward + "大厅观看次数累计" + await this.getHallAdNum(0) + "  大厅激励-广告上限L:" + this._numL);
     //     if (this._todayFreeReward != 0) {
     //         let time = await this.server.net_WatchAdCountDown(0);
-    //         oTrace("kang log 正在倒计时 " + time);
+    //         console.warn("kang log 正在倒计时 " + time);
     //         //TODO:是否有倒计时，有的话继续倒计时
     //         if (await this.getHallAdNum(0) >= this._numL) {
     //             this._mImage_RedPoint.visibility = (mw.SlateVisibility.Collapsed);
@@ -662,13 +657,13 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
     //         //倒计时
     //         this._mText_ADTime.text = (Tools.changeSecond2Minus((time - timer)));
     //         // if ((time - timer) % 5 == 0) {
-    //         // oTrace("kang log 保存看广告倒计时=" + (time - timer))
+    //         // console.warn("kang log 保存看广告倒计时=" + (time - timer))
     //         this.server.net_WatchAdCountDown(time - timer);
     //         // }
     //     })
     //         .then((result) => {
     //             if (result) {
-    //                 oTrace("kang log 倒计时结束");
+    //                 console.warn("kang log 倒计时结束");
     //                 this._mText_ADTime.text = ("");
     //                 this._mText_ADTime.visibility = (mw.SlateVisibility.Collapsed);
     //                 this._mImage_RedPoint.visibility = (mw.SlateVisibility.HitTestInvisible);
@@ -715,7 +710,7 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
         this.server.net_ChangeGold(gold);
     }
     net_playerHallBGM(): void {
-        oTrace(`BGM ==== Hall`);
+        console.warn(`BGM ==== Hall`);
         let bgm = SoundGlobals.BGM2[0];
         mw.SoundService.stopBGM();
         mw.SoundService.playBGM(bgm.Guid, bgm.Rate);

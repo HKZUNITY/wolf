@@ -1,13 +1,4 @@
-﻿/*
- * @Author: zhangqing.fang
- * @Date: 2022-11-02 09:55:51
- * @LastEditors: zhangqing.fang
- * @LastEditTime: 2022-11-02 10:29:15
- * @FilePath: \townmysteryAPIReview\JavaScripts\GameCache.ts
- * @Description: 
- */
-import { oTraceError, oTrace, oTraceWarning, LogManager, AnalyticsUtil, IFightRole, AIMachine, AIState } from "odin";
-import { Camp, GameGlobals, PlayerGameState } from "./Globals";
+﻿import { Camp, GameGlobals, PlayerGameState } from "./Globals";
 import { BagModuleData } from "./Module/BagModule/BagData";
 import { GameModuleData } from "./Module/GameModule/GameData";
 import { PlayerModuleData } from "./Module/PlayerModule/PlayerData";

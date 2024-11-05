@@ -1,10 +1,4 @@
-﻿
-/** 
- * AUTHOR: 达瓦里氏
- * TIME: 2023.07.17-10.30.57
- */
-
-import { GameConfig } from "../../Tables/GameConfig";
+﻿import { GameConfig } from "../../Tables/GameConfig";
 import SkillItem_Generate from "../../ui-generate/uiTemplate/Hall/SkillItem_generate";
 import { SkillShopData } from "./P_SkillShop";
 import { IItemRender } from "./SuperScrollView";
@@ -30,7 +24,7 @@ export default class P_SkillShopItem extends SkillItem_Generate implements IItem
 		if (dataInfo.Max > 0 && data.remainTime > 0) {
 			this.mText_Num.visibility = mw.SlateVisibility.SelfHitTestInvisible;
 		}
-		else{
+		else {
 			this.mText_Num.visibility = mw.SlateVisibility.Collapsed;
 		}
 		this.mText_Num.text = data.remainTime.toString();
@@ -43,15 +37,15 @@ export default class P_SkillShopItem extends SkillItem_Generate implements IItem
 
 	}
 
-	setEquip(bool: boolean){
+	setEquip(bool: boolean) {
 		if (bool) {
 			this.mImg_Equip.visibility = mw.SlateVisibility.HitTestInvisible;
 		}
-		else{
+		else {
 			this.mImg_Equip.visibility = mw.SlateVisibility.Collapsed;
 		}
 	}
 
 
-	
+
 }

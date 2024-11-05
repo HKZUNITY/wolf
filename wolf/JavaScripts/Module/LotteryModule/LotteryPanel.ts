@@ -1,20 +1,19 @@
-﻿import { GameConfig } from "../../Tables/GameConfig";
-import { PlayerModuleData } from "../PlayerModule/PlayerData";
+﻿import AdsPanel from "../../AdsPanel";
+import { BaseUI, Class } from "../../BaseUI";
 import P_Tips from "../../CommonUI/P_Tips";
-import Lottery from "../../uiTemplate/Hall/Lottery";
-import { LotteryModuleC } from "./LotteryModuleC";
-import LotteryInside from "../../uiTemplate/Hall/LotteryInside";
+import { GameConfig } from "../../Tables/GameConfig";
 import { Tools } from "../../Tools";
-import { IAAUtils } from "../../IAAUtils";
+import P_CoinGet from "../../UILogic/Game/P_CoinGet";
+import Lottery from "../../uiTemplate/Hall/Lottery";
+import LotteryInside from "../../uiTemplate/Hall/LotteryInside";
 import LotteryItem_1 from "../../uiTemplate/Hall/LotteryItem_1";
 import LotteryItem_3 from "../../uiTemplate/Hall/LotteryItem_3";
 import LotteryItem_5 from "../../uiTemplate/Hall/LotteryItem_5";
 import LotterySlot_4 from "../../uiTemplate/Hall/LotterySlot_4";
-import { ShopModuleData } from "../ShopModule/ShopData";
-import P_CoinGet from "../../UILogic/Game/P_CoinGet";
-import { BaseUI, Class } from "../../BaseUI";
+import { PlayerModuleData } from "../PlayerModule/PlayerData";
 import { PlayerModuleC } from "../PlayerModule/PlayerModuleC";
-import AdsPanel from "../../AdsPanel";
+import { ShopModuleData } from "../ShopModule/ShopData";
+import { LotteryModuleC } from "./LotteryModuleC";
 
 
 export interface ILotteryBaseItemView extends mw.UIScript {
@@ -309,7 +308,7 @@ export class LotteryInsideBasePanel<T extends ILotteryInsideBasePanelView> exten
             coundDown = data.getLotteryWatchAdCountDown(this.curLotteryIndex);
             this.view.mMaskButton_AD.fanShapedValue = 1 - coundDown / 300
         }
-        this.view.mTextBlock_Time.text = (Tools.changeSecond2Minus(coundDown));
+        this.view.mTextBlock_Time.text = (Tools.formatTime_1(coundDown));
         //TODO:是否有倒计时，有的话继续倒计时
         if (coundDown > 0) {
             this.setCountDown();
@@ -321,7 +320,7 @@ export class LotteryInsideBasePanel<T extends ILotteryInsideBasePanelView> exten
         this.countDownInterval = TimeUtil.setInterval(() => {
             let data = DataCenterC.getData(PlayerModuleData);
             let coundDown = data.getLotteryWatchAdCountDown(this.curLotteryIndex);
-            this.view.mTextBlock_Time.text = (Tools.changeSecond2Minus(coundDown));
+            this.view.mTextBlock_Time.text = (Tools.formatTime_1(coundDown));
             this.view.mMaskButton_AD.fanShapedValue = 1 - coundDown / 300
             if (coundDown <= 0) {
                 this.stopCountDown();

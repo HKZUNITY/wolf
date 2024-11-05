@@ -1,15 +1,13 @@
+import { ColdWeaponAttackMode, GameGlobals, PlayerWeaponState } from "../../../Globals";
 import { PlayerManagerExtesion, } from '../../../Modified027Editor/ModifiedPlayer';
-import { oTraceError, oTrace, oTraceWarning, LogManager ,AnalyticsUtil, IFightRole, AIMachine, AIState} from "odin";
-import { ColdWeaponModuleS } from "./ColdWeaponModuleS";
-import { ColdWeaponAttackMode, GameGlobals, KillType, PlayerWeaponState } from "../../../Globals";
 import { GameConfig } from "../../../Tables/GameConfig";
-import { AutoAimModuleC } from "../Aim/AutoAimModuleC";
+import { Tools } from "../../../Tools";
 import P_Game from "../../../UILogic/Game/P_Game";
 import { BagModuleC } from "../../BagModule/BagModuleC";
-import { GameModuleC } from "../../GameModule/GameModuleC";
-import { Tools } from "../../../Tools";
+import { AutoAimModuleC } from "../Aim/AutoAimModuleC";
+import { ColdWeaponModuleS } from "./ColdWeaponModuleS";
 
-export class ColdWeaponModuleC extends ModuleC<ColdWeaponModuleS, null>{
+export class ColdWeaponModuleC extends ModuleC<ColdWeaponModuleS, null> {
     public weaponMode: ColdWeaponAttackMode = ColdWeaponAttackMode.Normal
     /**飞刀冷却时间 */
     private coolTime: number
@@ -47,7 +45,7 @@ export class ColdWeaponModuleC extends ModuleC<ColdWeaponModuleS, null>{
     }
 
     async initAutoAimMoudule() {
-        await ModuleService.getModule(AutoAimModuleC).startLineTrace((endPos:mw.Vector)=>{this.onAutoShootBtnHandler(endPos)})
+        await ModuleService.getModule(AutoAimModuleC).startLineTrace((endPos: mw.Vector) => { this.onAutoShootBtnHandler(endPos) })
         ModuleService.getModule(AutoAimModuleC).initAutoModule(this.findEnemyScale, true)
     }
 
@@ -81,10 +79,10 @@ export class ColdWeaponModuleC extends ModuleC<ColdWeaponModuleS, null>{
         }, this.preAttackTime * 1000);
     }
     /**获取是否能够射击 */
-    getIsCanShoot(){
+    getIsCanShoot() {
         return this.canShoot && this.weaponMode == ColdWeaponAttackMode.FlyKnife;
     }
-    
+
 
     /**判断当前是否能够射击 */
     shoot(endPos: Vector) {
@@ -101,9 +99,9 @@ export class ColdWeaponModuleC extends ModuleC<ColdWeaponModuleS, null>{
                 }
             }, this.coolTime * 1000);
         }
-        
+
         this.server.net_throwColdWeapon(endPos.normalized);
-        Tools.playShakeEffect(this.localPlayer, true);
+        Tools.cameraShake(true);
         ModuleService.getModule(BagModuleC).showPlayerColdWeapon()
         P_Game.instance.showShootCd()
         this.timer = null
@@ -149,7 +147,7 @@ export class ColdWeaponModuleC extends ModuleC<ColdWeaponModuleS, null>{
             obj.setVisibility(mw.PropertyStatus.On)
         })
     }
-    net_playHitPlayerEffect(){
-        Tools.playShakeEffect(this.localPlayer, true);
+    net_playHitPlayerEffect() {
+        Tools.cameraShake(true);
     }
 }

@@ -1,11 +1,10 @@
-import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
-import { oTraceError, oTrace, oTraceWarning, LogManager, AnalyticsUtil, IFightRole, AIMachine, AIState } from "odin";
 import { GameGlobals, GamingState } from "../../Globals";
+import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
+import Gold from "../../Prefabs/CoinPoint/Script/GoldRotate";
 import { GameConfig } from "../../Tables/GameConfig";
 import { Tools } from "../../Tools";
 import { GameModuleS } from "../GameModule/GameModuleS";
 import SoundManager = mw.SoundService;
-import Gold from "../../Prefabs/CoinPoint/Script/GoldRotate";
 export class CoinObj {
     private coinModel: mw.GameObject;
     private coinTrigger: mw.Trigger;
@@ -51,7 +50,7 @@ export class CoinObj {
         if (PlayerManagerExtesion.isNpc(char)) {
             let aiModel = char as mw.Character;
             if (Tools.isAiPlayer(aiModel)) {
-                let ai = Tools.getAiObj(aiModel);
+                let ai = Tools.getAiObject(aiModel);
                 let istrue = ai.changeCoin(1);
                 if (!istrue) {
                     return;
@@ -81,8 +80,8 @@ export class CoinObj {
         let x = GameConfig.CoinsGenerate.getElement(this.tableId).Scale[0] * 100;
         let y = GameConfig.CoinsGenerate.getElement(this.tableId).Scale[1] * 100;
         let z = locCenter.z;;
-        let randomX = Tools.getRandomInt(-x / 2, x / 2);
-        let randomY = Tools.getRandomInt(-y / 2, y / 2);
+        let randomX = Tools.randomInt(-x / 2, x / 2);
+        let randomY = Tools.randomInt(-y / 2, y / 2);
         this.curLoc = new mw.Vector(locCenter.x + randomX, locCenter.y + locCenter.y + randomY, z);
         this.coinTrigger.worldTransform.position = this.curLoc;
     }

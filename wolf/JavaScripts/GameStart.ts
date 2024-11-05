@@ -1,11 +1,23 @@
 import { AiModuleC, AiModuleS } from "./AI/AiModule";
+import { Globals } from "./Globals";
+import { ArkData, ArkModuleC, ArkModuleS } from "./Module/ArkModule/ArkModule";
 import { BagModuleData } from "./Module/BagModule/BagData";
 import { BagModuleC } from "./Module/BagModule/BagModuleC";
 import { BagModuleS } from "./Module/BagModule/BagModuleS";
+import { BubbleModuleC, BubbleModuleS } from "./Module/bubbleModule/BubbleModule";
+import { DoorModuleC } from "./Module/door/DoorModuleC";
+import { DoorModuleS } from "./Module/door/DoorModuleS";
+import ExchangeModuleC from "./Module/ExchangeModule/ExchangeModuleC";
+import ExchangeModuleS from "./Module/ExchangeModule/ExchangeModuleS";
 import { FSMModuleC, FSMModuleS } from "./Module/FSMModule";
 import { GameModuleData } from "./Module/GameModule/GameData";
 import { GameModuleC } from "./Module/GameModule/GameModuleC";
 import { GameModuleS } from "./Module/GameModule/GameModuleS";
+import { MapModuleC, MapModuleS } from "./Module/GameModule/MapModule";
+import LoadMapModuleC from "./Module/loadMapModule/LoadMapModuleC";
+import LoadMapModuleS from "./Module/loadMapModule/LoadMapModuleS";
+import { LotteryModuleC } from "./Module/LotteryModule/LotteryModuleC";
+import { LotteryModuleS } from "./Module/LotteryModule/LotteryModuleS";
 import { PlayerModuleData } from "./Module/PlayerModule/PlayerData";
 import { PlayerModuleC } from "./Module/PlayerModule/PlayerModuleC";
 import { PlayerModuleS } from "./Module/PlayerModule/PlayerModuleS";
@@ -13,23 +25,6 @@ import { CalculateModuleC, CalculateModuleS } from "./Module/ProcModule/Calculat
 import { ChooseModuleC, ChooseModuleS } from "./Module/ProcModule/ChooseModule";
 import { SceneModuleC, SceneModuleS } from "./Module/ProcModule/SceneModule";
 import { WatchModuleC, WatchModuleS } from "./Module/ProcModule/WatchModule";
-import { ColdWeaponModuleC } from "./Module/Weapon/ColdWeapon/ColdWeaponModuleC";
-import { ColdWeaponModuleS } from "./Module/Weapon/ColdWeapon/ColdWeaponModuleS";
-import { HotWeaponModuleC } from "./Module/Weapon/HotWeapon/HotWeaponModuleC";
-import { HotWeaponModuleS } from "./Module/Weapon/HotWeapon/HotWeaponModuleS";
-import { GameConfig } from "./Tables/GameConfig";
-
-import { Globals } from "./Globals";
-import { BubbleModuleC, BubbleModuleS } from "./Module/bubbleModule/BubbleModule";
-import { DoorModuleC } from "./Module/door/DoorModuleC";
-import { DoorModuleS } from "./Module/door/DoorModuleS";
-import ExchangeModuleC from "./Module/ExchangeModule/ExchangeModuleC";
-import ExchangeModuleS from "./Module/ExchangeModule/ExchangeModuleS";
-import { MapModuleC, MapModuleS } from "./Module/GameModule/MapModule";
-import LoadMapModuleC from "./Module/loadMapModule/LoadMapModuleC";
-import LoadMapModuleS from "./Module/loadMapModule/LoadMapModuleS";
-import { LotteryModuleC } from "./Module/LotteryModule/LotteryModuleC";
-import { LotteryModuleS } from "./Module/LotteryModule/LotteryModuleS";
 import ShelterModuleC from "./Module/shelterModule/ShelterModuleC";
 import ShelterModuleS from "./Module/shelterModule/ShelterModuleS";
 import { ShopModuleC, ShopModuleS } from "./Module/ShopModule/ShopCityModule";
@@ -37,61 +32,69 @@ import { ShopModuleData } from "./Module/ShopModule/ShopData";
 import { SkillData } from "./Module/SkillModule/SkillData";
 import { SkillModuleC } from "./Module/SkillModule/SkillModuleC";
 import { SkillModuleS } from "./Module/SkillModule/SkillModuleS";
-import SVIPData from "./Module/SVipModule/SVIPData";
-import SVIPModuleC from "./Module/SVipModule/SVIPModuleC";
-import SVIPModuleS from "./Module/SVipModule/SVIPModuleS";
+import { TrampolineModuleC, TrampolineModuleS } from "./Module/TrampolineModule/TrampolineModule";
 import { WalkModuleC } from "./Module/walkModule/WalkModuleC";
 import { WalkModuleS } from "./Module/walkModule/WalkModuleS";
 import { AutoAimModuleC } from "./Module/Weapon/Aim/AutoAimModuleC";
 import { AutoAimModuleS } from "./Module/Weapon/Aim/AutoAimModuleS";
+import { ColdWeaponModuleC } from "./Module/Weapon/ColdWeapon/ColdWeaponModuleC";
+import { ColdWeaponModuleS } from "./Module/Weapon/ColdWeapon/ColdWeaponModuleS";
+import { HotWeaponModuleC } from "./Module/Weapon/HotWeapon/HotWeaponModuleC";
+import { HotWeaponModuleS } from "./Module/Weapon/HotWeapon/HotWeaponModuleS";
+import { GameConfig } from "./Tables/GameConfig";
+import { Tools } from "./Tools";
 import { GMBasePanelUI } from "./UILogic/UIGM";
 import P_Notice from "./uiTemplate/Common/P_Notice";
-import { Tools } from "./Tools";
-import { TrampolineModuleC, TrampolineModuleS } from "./Module/TrampolineModule/TrampolineModule";
-import { ArkData, ArkModuleC, ArkModuleS } from "./Module/ArkModule/ArkModule";
 
 @Component
 export default class GameStart extends mw.Script {
-    @mw.Property()
+    @mw.Property({ displayName: "是否开启GM", group: "脚本设置" })
     private isGM: boolean = false;
-    @mw.Property({ displayName: "是否显示射线" })
+    @mw.Property({ displayName: "是否显示射线", group: "脚本设置" })
     private isLineTrace = false;
-    @mw.Property({ displayName: "是否显示公告" })
+    @mw.Property({ displayName: "是否显示公告", group: "脚本设置" })
     private isShowNotice = false;
+    @mw.Property({ displayName: "多语言", group: "脚本设置", enumType: { "系统默认": -1, "英语": 0, "简体中文": 1, "繁体中文": 2, "日语": 3, "韩语": 4 } })
+    private languageId: number = -1;
 
+    /** 当脚本被实例后，会在第一帧更新前调用此函数 */
     protected onStart(): void {
+        this.onStartCS();
+        if (mw.SystemUtil.isClient()) {
+            this.onStartC();
+        } else if (mw.SystemUtil.isServer()) {
+            this.onStartS();
+        }
+    }
+
+    /**
+     * 周期函数 每帧执行
+     * 此函数执行需要将this.useUpdate赋值为true
+     * @param dt 当前帧与上一帧的延迟 / 秒
+     */
+    protected onUpdate(dt: number): void {
+        this.onUpdateCS(dt);
+        if (mw.SystemUtil.isClient()) {
+            this.onUpdateC(dt);
+        } else if (mw.SystemUtil.isServer()) {
+            this.onUpdateS(dt);
+        }
+    }
+
+    private onStartCS(): void {
+        this.useUpdate = true;
+        this.downloadAsset();
+        this.onRegisterModule();
+    }
+
+    private downloadAsset(): void {
+        AssetUtil.asyncDownloadAsset("145932");
         GameConfig.Assets.getAllElement().forEach((value) => {
             if (value.Guid) Tools.asyncDownloadAsset(value.Guid);
         });
-        this.onRegisterModule();
-        console.warn("kang log gamestart onstart")
-        //初始化表格语言
-        if (SystemUtil.isClient()) {
-            GameConfig.initLanguage(-1, (key) => {
-                let ele = GameConfig.Language.getElement(key);
-                if (ele == null)
-                    return "unknow_" + key;
-                return ele.Value;
-            })
-        }
-
-        DataStorage.setTemporaryStorage(mw.SystemUtil.isPIE);
-
-        mw.UIScript.addBehavior("lan", (ui: mw.StaleButton | mw.TextBlock) => {
-            let key: string = ui.text;
-            if (key) {
-                let lan = GameConfig.Language.getElement(key);
-                if (lan) {
-                    ui.text = (lan.Value);
-                }
-            }
-        })
-        this.useUpdate = true;
-        AssetUtil.asyncDownloadAsset("145932");
     }
-    //当注册模块
-    onRegisterModule(): void {
-        console.warn("kang log gamestart onRegisterModule")
+
+    private onRegisterModule(): void {
         ModuleService.registerModule(PlayerModuleS, PlayerModuleC, PlayerModuleData);
         ModuleService.registerModule(GameModuleS, GameModuleC, GameModuleData);
         ModuleService.registerModule(FSMModuleS, FSMModuleC, null);
@@ -113,31 +116,80 @@ export default class GameStart extends mw.Script {
         ModuleService.registerModule(ShelterModuleS, ShelterModuleC, null)
         ModuleService.registerModule(LoadMapModuleS, LoadMapModuleC, null)
         ModuleService.registerModule(SkillModuleS, SkillModuleC, SkillData);
-        ModuleService.registerModule(SVIPModuleS, SVIPModuleC, SVIPData)
-        // GM.checkAuthority(showGM =>{
-        //     if ((showGM || this.isGM) && SystemUtil.isClient()) {
-        //         GM.start(GMBasePanelUI)
-        //     }
-        // })
         ModuleService.registerModule(ExchangeModuleS, ExchangeModuleC, null);
         ModuleService.registerModule(TrampolineModuleS, TrampolineModuleC, null);
         ModuleService.registerModule(ArkModuleS, ArkModuleC, ArkData);
-
-        if (mw.SystemUtil.isClient() && this.isGM) {
-            new GMBasePanelUI().show();
-        }
-        if (SystemUtil.isClient()) {
-            Globals.isShowLineTrace = this.isLineTrace;
-            if (this.isShowNotice) {
-                mw.UIService.show(P_Notice);
-            }
-        }
-        // if (SystemUtil.isPIE) {
-        //     EventsTool.start();
-        // }
     }
-    onUpdate(dt: number): void {
 
+    private onUpdateCS(dt: number): void {
         mw.TweenUtil.TWEEN.update();
     }
+
+    /**--------------------------------【客户端】-------------------------------- */
+    /**客户端的onStart */
+    private onStartC(): void {
+        this.initLanguage();
+        this.initData();
+    }
+
+    private initLanguage(): void {
+        let language = LocaleUtil.getDefaultLocale().toString().toLowerCase();
+        console.error(`wfz - language:${language}`);
+
+        let languageId: number = -1;
+        if (mw.SystemUtil.isPIE && this.languageId >= 0) {
+            languageId = this.languageId;
+        } else {
+            if (!!language.match("en")) {
+                languageId = 0;
+            } else if (!!language.match("zh")) {//简体
+                languageId = 1;
+            } else if (!!language.match("ja")) {
+                languageId = 3;
+            } else if (!!language.match("ko")) {
+                languageId = 4;
+            } else {//繁体
+                languageId = 2;
+            }
+        }
+        Globals.languageId = languageId;
+        console.error(`wfz - languageId:${languageId}`);
+
+        GameConfig.initLanguage(languageId, (key) => {
+            let ele = GameConfig.Language.getElement(key);
+            if (ele == null) return "unknow_" + key;
+            return ele.Value;
+        });
+        mw.UIScript.addBehavior("lan", (ui: mw.StaleButton | mw.TextBlock) => {
+            let key: string = ui.text;
+            if (!key) return;
+            let languageElement = GameConfig.Language.getElement(key);
+            if (languageElement) ui.text = languageElement.Value;
+        });
+    }
+
+    private initData(): void {
+        Globals.isShowLineTrace = this.isLineTrace;
+
+        if (mw.SystemUtil.isPIE && this.isGM) new GMBasePanelUI().show();
+        if (this.isShowNotice) mw.UIService.show(P_Notice);//TODO:WFZ
+    }
+
+    /**客户端的onUpdate */
+    private onUpdateC(dt: number): void {
+
+    }
+    /**--------------------------------【客户端】-------------------------------- */
+
+    /**--------------------------------【服务端】-------------------------------- */
+    /**服务端的onStart */
+    private onStartS(): void {
+        DataStorage.setTemporaryStorage(mw.SystemUtil.isPIE);
+    }
+
+    /**服务端的onUpdate */
+    private onUpdateS(dt: number): void {
+
+    }
+    /**--------------------------------【服务端】-------------------------------- */
 }

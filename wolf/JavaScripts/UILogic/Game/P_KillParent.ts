@@ -1,74 +1,68 @@
-﻿
-/** 
- * AUTHOR: 达瓦里氏
- * TIME: 2023.07.12-16.01.38
- */
-
-import { GameConfig } from "../../Tables/GameConfig";
+﻿import { GameConfig } from "../../Tables/GameConfig";
 import KillParent_Generate from "../../ui-generate/uiTemplate/Inside/KillParent_generate";
 import P_Kill from "./P_Kill";
 
 export default class P_KillParent extends KillParent_Generate {
-    private idlePool: Array<mw.UserWidget> = new Array<mw.UserWidget>();
-    private offsetX: number = GameConfig.Rule.getElement(60012).Num;
-    private offsetY: number = GameConfig.Rule.getElement(60013).Num;
-    // private upDistance: number = GameConfig.Rule.getElement(60011).Weight;
-    private upDistance: number = -200;
-    private tweenTime: number = GameConfig.Rule.getElement(60010).Time;
+	private idlePool: Array<mw.UserWidget> = new Array<mw.UserWidget>();
+	private offsetX: number = GameConfig.Rule.getElement(60012).Num;
+	private offsetY: number = GameConfig.Rule.getElement(60013).Num;
+	// private upDistance: number = GameConfig.Rule.getElement(60011).Weight;
+	private upDistance: number = -200;
+	private tweenTime: number = GameConfig.Rule.getElement(60010).Time;
 	protected onStart() {
 		//设置能否每帧触发onUpdate
 		this.canUpdate = true;
 		this.layer = mw.UILayerMiddle;
 	}
 
-    public addKillUI(pos: Vector){
-        let idleUI = this.getIdleObj();
-        let text = idleUI.findChildByPath("RootCanvas/mText_1") as mw.TextBlock;
-        this.updateKillUI(text, pos);
-        idleUI.visibility=  mw.SlateVisibility.HitTestInvisible;
-        let tween = new mw.Tween({ y: 0}).to({ y: this.upDistance }, this.tweenTime* 1000)
-        .onUpdate((data)=>{
-            this.updateKillUI(text, pos);
-            text.position = text.position.clone().add(new Vector2(0, data.y));
-        })
-        .onComplete(()=>{
-            this.addIdleObj(idleUI);
-        })
-        .start();
-    }
+	public addKillUI(pos: Vector) {
+		let idleUI = this.getIdleObj();
+		let text = idleUI.findChildByPath("RootCanvas/mText_1") as mw.TextBlock;
+		this.updateKillUI(text, pos);
+		idleUI.visibility = mw.SlateVisibility.HitTestInvisible;
+		let tween = new mw.Tween({ y: 0 }).to({ y: this.upDistance }, this.tweenTime * 1000)
+			.onUpdate((data) => {
+				this.updateKillUI(text, pos);
+				text.position = text.position.clone().add(new Vector2(0, data.y));
+			})
+			.onComplete(() => {
+				this.addIdleObj(idleUI);
+			})
+			.start();
+	}
 
-    private updateKillUI(text: mw.TextBlock, pos: Vector){
-        let screenResult = InputUtil.projectWorldPositionToWidgetPosition(pos);
-        let originPos = screenResult.screenPosition.clone()
-        if (originPos.x == 0 && originPos.y == 0) {
-            originPos = new mw.Vector2(-10000, -10000)
-        }
-        else{
-            originPos.add(new Vector2(this.offsetX, this.offsetY));
-        }
-        text.position = originPos;
-        
-    }
+	private updateKillUI(text: mw.TextBlock, pos: Vector) {
+		let screenResult = InputUtil.projectWorldPositionToWidgetPosition(pos);
+		let originPos = screenResult.screenPosition.clone()
+		if (originPos.x == 0 && originPos.y == 0) {
+			originPos = new mw.Vector2(-10000, -10000)
+		}
+		else {
+			originPos.add(new Vector2(this.offsetX, this.offsetY));
+		}
+		text.position = originPos;
+
+	}
 
 
 
-    private getIdleObj() {
-        let res: mw.UserWidget = null;
-        if (this.idlePool.length <= 0) {
-            res = mw.UIService.create(P_Kill).uiWidgetBase;
-            res.visibility = mw.SlateVisibility.Collapsed;
-            this.rootCanvas.addChild(res);
-        }
-        else{
-            res = this.idlePool.pop();
-        }
-        return res;
-    }
+	private getIdleObj() {
+		let res: mw.UserWidget = null;
+		if (this.idlePool.length <= 0) {
+			res = mw.UIService.create(P_Kill).uiWidgetBase;
+			res.visibility = mw.SlateVisibility.Collapsed;
+			this.rootCanvas.addChild(res);
+		}
+		else {
+			res = this.idlePool.pop();
+		}
+		return res;
+	}
 
-    private addIdleObj(obj: mw.UserWidget){
-        obj.visibility = mw.SlateVisibility.Collapsed;
-        this.idlePool.push(obj);
-    }
+	private addIdleObj(obj: mw.UserWidget) {
+		obj.visibility = mw.SlateVisibility.Collapsed;
+		this.idlePool.push(obj);
+	}
 
 	/** 
 	 * 构造UI文件成功后，onStart之后 
@@ -174,11 +168,11 @@ export default class P_KillParent extends KillParent_Generate {
 	 */
 	//protected onDragLeave(InDragDropEvent:mw.PointerEvent,InDragDropOperation:mw.DragDropOperation) {
 	//}
-	
+
 	/**
 	 * 拖拽操作生成事件触发后，没有完成完成的拖拽事件而取消时触发
 	 */
 	//protected onDragCancelled(InDragDropEvent:mw.PointerEvent,InDragDropOperation:mw.DragDropOperation) {
 	//}
-	
+
 }

@@ -1,22 +1,7 @@
-﻿/*
- * @Author: tianran.shi
- * @Date: 2023-02-14 11:14:49
- * @LastEditors: tianran.shi
- * @LastEditTime: 2023-02-20 11:14:34
- * @FilePath: \murdermystery3\JavaScripts\Module\door\doorUI\P_KeyUI.ts
- * @Description: 
- */
-
-/** 
- * AUTHOR: STR
- * TIME: 2023.02.14-11.14.55
- */
-
-import { oTraceError, oTrace, oTraceWarning, LogManager ,AnalyticsUtil, IFightRole, AIMachine, AIState} from "odin";
+﻿import P_Tips from "../../../CommonUI/P_Tips";
+import { GameConfig } from "../../../Tables/GameConfig";
 import PwUI_Generate from "../../../ui-generate/PwUI_generate";
 import { DoorModuleC } from "../DoorModuleC";
-import P_Tips from "../../../CommonUI/P_Tips";
-import { GameConfig } from "../../../Tables/GameConfig";
 
 export default class P_KeyUI extends PwUI_Generate {
 	/**当前密码 */

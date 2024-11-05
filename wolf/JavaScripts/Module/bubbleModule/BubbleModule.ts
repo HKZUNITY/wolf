@@ -4,16 +4,7 @@ import { GameConfig } from "../../Tables/GameConfig";
 import Game_HUD_Chat_Generate from "../../ui-generate/uiTemplate/bubbleModule/Game_HUD_Chat_generate";
 import Word_Generate from "../../ui-generate/uiTemplate/bubbleModule/Word_generate";
 import { ChatUIExtension } from "../../uiTemplate/bubbleModule/ChatUIExtension";
-import { MGSHome } from "../../MGSHome";
 
-/** 
- * @Author       : Songyang.Xie
- * @Date         : 2023-06-21 16:31:43
- * @LastEditors  : Songyang.Xie
- * @LastEditTime : 2023-08-10 09:28:00
- * @FilePath     : \murdermystery3\JavaScripts\Module\bubbleModule\BubbleModule.ts
- * @Description  : 修改描述
- */
 export class BubbleModuleC extends ModuleC<BubbleModuleS, null> {
     public chatConfig: IChatElement[];
     /**主界面 */
@@ -25,7 +16,7 @@ export class BubbleModuleC extends ModuleC<BubbleModuleS, null> {
 
     }
 
-    public async initMainPanel(){
+    public async initMainPanel() {
         if (this.isInit) {
             await Player.asyncGetLocalPlayer();
             this.chatConfig = GameConfig.Chat.getAllElement();
@@ -37,7 +28,7 @@ export class BubbleModuleC extends ModuleC<BubbleModuleS, null> {
 
     /**初始化UI */
     private initMain() {
-        this._main = mw.UIService.show(Game_HUD_Chat_Generate, mw.UILayerTop- 10);
+        this._main = mw.UIService.show(Game_HUD_Chat_Generate, mw.UILayerTop - 10);
         this._main.canvas_word.visibility = mw.SlateVisibility.Collapsed;
         this._main.wordBtn.onClicked.add(() => {
             this._main.canvas_word.visibility = (this._main.canvas_word.visible ? mw.SlateVisibility.Collapsed : mw.SlateVisibility.Visible);
@@ -45,7 +36,7 @@ export class BubbleModuleC extends ModuleC<BubbleModuleS, null> {
     }
 
     /**刷新一下 */
-    public refreshBubble(){
+    public refreshBubble() {
         if (this._main) {
             mw.UIService.hideUI(this._main);
             setTimeout(() => {
@@ -87,7 +78,6 @@ export class BubbleModuleC extends ModuleC<BubbleModuleS, null> {
                     sec = ChatUIExtension.getTextIdByText(temp.res);
                 }
                 this._main.canvas_word.visibility = mw.SlateVisibility.Collapsed;
-                MGSHome.mgsSendChatMsg(firstId, sec);
                 this.showText(myString);
 
             });
@@ -105,11 +95,11 @@ export class BubbleModuleC extends ModuleC<BubbleModuleS, null> {
             Bubble.showBubble(0, text, this.localPlayer.character.gameObjectId, false);
         }
     }
-    
-    
+
+
 
 }
 
 export class BubbleModuleS extends ModuleS<BubbleModuleS, null> {
-    
+
 }

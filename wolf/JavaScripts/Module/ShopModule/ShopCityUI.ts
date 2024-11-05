@@ -1,16 +1,8 @@
-﻿/*
- * @Author: ziwei.shen
- * @Date: 2022-08-31 13:00:01
- * @LastEditors: zhangqing.fang
- * @LastEditTime: 2022-11-03 18:19:21
- * @FilePath: \townmysteryAPI\JavaScripts\Module\ShopModule\ShopCityUI.ts
- * @Description: 
- */
-import Items from "../../uiTemplate/Hall/Items";
+﻿import Items from "../../uiTemplate/Hall/Items";
 import Shop from "../../uiTemplate/Hall/Shop";
 import { ShopBaseItem, ShopBasePanel } from "./ShopCityPanel";
 
-export class ShopItem extends ShopBaseItem<Items>{
+export class ShopItem extends ShopBaseItem<Items> {
 	constructor() {
 		super(Items);
 	}
@@ -19,7 +11,7 @@ export class ShopItem extends ShopBaseItem<Items>{
 	}
 
 }
-export class ShopPanel extends ShopBasePanel<Shop>{
+export class ShopPanel extends ShopBasePanel<Shop> {
 	constructor() {
 		super(Shop);
 	}

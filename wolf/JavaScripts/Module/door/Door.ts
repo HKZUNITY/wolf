@@ -1,8 +1,7 @@
 import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
-import { oTraceError, oTrace, oTraceWarning, LogManager ,AnalyticsUtil, IFightRole, AIMachine, AIState} from "odin";
-import { DoorModuleS } from "./DoorModuleS";
-import { GameConfig } from "../../Tables/GameConfig";
 import { IDoorElement } from "../../Tables/Door";
+import { GameConfig } from "../../Tables/GameConfig";
+import { DoorModuleS } from "./DoorModuleS";
 
 export enum DoorState {
     /**开启 */

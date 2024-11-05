@@ -1,26 +1,12 @@
-import { GeneralManager, } from '../../Modified027Editor/ModifiedStaticAPI';
-import { SpawnManager, SpawnInfo, } from '../../Modified027Editor/ModifiedSpawn';
-import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
-/** 
-* @Author       : songyang.xie
-* @Date         : 2023-02-02 15:56:34
-* @LastEditors  : Songyang.Xie
-* @LastEditTime : 2023-08-14 17:31:42
-* @FilePath     : \murdermystery3\JavaScripts\Module\BagModule\BagModuleS.ts
-* @Description  : 修改描述
-*/
-import { oTraceError, oTrace, oTraceWarning, LogManager, AnalyticsUtil, IFightRole, AIMachine, AIState } from "odin";
 import { AiState } from "../../AI/AiStateMachine";
-import { GameGlobals, Globals, PlayerGameState, PlayerWeaponState } from "../../Globals";
+import { GameGlobals, PlayerWeaponState } from "../../Globals";
+import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
+import { SpawnManager } from '../../Modified027Editor/ModifiedSpawn';
 import { GameConfig } from "../../Tables/GameConfig";
 import { IWeaponElement } from "../../Tables/Weapon";
-import { GameModuleData } from "../GameModule/GameData";
+import { GameModuleS } from "../GameModule/GameModuleS";
 import { BagModuleData } from "./BagData";
 import { BagModuleC } from "./BagModuleC";
-import { HotWeaponModuleS } from "../Weapon/HotWeapon/HotWeaponModuleS";
-import { GameCache } from "../../GameCache";
-import { Tools } from "../../Tools";
-import { GameModuleS } from "../GameModule/GameModuleS";
 
 export class BagModuleS extends ModuleS<BagModuleC, BagModuleData> {
     public hotWeaponMap: Map<number, mw.GameObject> = new Map();
@@ -58,7 +44,7 @@ export class BagModuleS extends ModuleS<BagModuleC, BagModuleData> {
         this.useCold.forEach((config, playerId) => {
             let player = Player.getPlayer(playerId);
             let bo = this.isNearby(player, this.distance)
-            // oTrace(`distance ==== 开始循环遍历 : ${playerId} 是否距离内 : ${bo} 距离判定 :${config.Distance}`);
+            // console.warn(`distance ==== 开始循环遍历 : ${playerId} 是否距离内 : ${bo} 距离判定 :${config.Distance}`);
             if (bo) {
                 this.controlUseCold(player, true);
             } else {
@@ -69,7 +55,7 @@ export class BagModuleS extends ModuleS<BagModuleC, BagModuleData> {
         // this.frame += dt;
         // if (this.frame > 0.2) {
         //     this.frame = 0;
-        // oTraceError(`distance ==== 开始距离判定 `)
+        // console.warn(`distance ==== 开始距离判定 `)
         // }
 
     }
@@ -94,7 +80,7 @@ export class BagModuleS extends ModuleS<BagModuleC, BagModuleData> {
         GameGlobals.aiPlayer.forEach((ai) => {
             if (ai.curAIState == AiState.NotActive) return;
             let dis = mw.Vector.distance(ai.aiModel.worldTransform.position, curPlayer.character.worldTransform.position);
-            // oTrace(`distance ==== 距离 ai :: ${dis}`);
+            // console.warn(`distance ==== 距离 ai :: ${dis}`);
             if (dis < distance) {
                 bo = true;
             }
@@ -104,7 +90,7 @@ export class BagModuleS extends ModuleS<BagModuleC, BagModuleData> {
                 let pos = player.character.worldTransform.position;
                 if (pos) {
                     let dis = mw.Vector.distance(player.character.worldTransform.position, curPlayer.character.worldTransform.position);
-                    // oTrace(`distance ==== 距离 玩家 :: ${dis}`);
+                    // console.warn(`distance ==== 距离 玩家 :: ${dis}`);
                     if (dis < distance) {
                         bo = true;
                     }
@@ -120,7 +106,7 @@ export class BagModuleS extends ModuleS<BagModuleC, BagModuleData> {
      * @param bo 开关
      */
     controlUseCold(player: mw.Player, bo: boolean): void {
-        // oTrace(`distance ==== 控制自动使用冷兵器 ::${bo}`)
+        // console.warn(`distance ==== 控制自动使用冷兵器 ::${bo}`)
         let playerId = player.playerId;
         if (bo) {
             if (this.openCold.has(playerId)) {
@@ -298,7 +284,7 @@ export class BagModuleS extends ModuleS<BagModuleC, BagModuleData> {
         weapon.worldTransform.scale = objInfo.HoldScale;
         this.useCold.set(player.playerId, objInfo);
 
-        // oTraceError(`distance ==== 装备武器  ${player.playerId}`)
+        // console.warn(`distance ==== 装备武器  ${player.playerId}`)
     }
     /**
      * 切换投掷冷兵器
@@ -328,7 +314,7 @@ export class BagModuleS extends ModuleS<BagModuleC, BagModuleData> {
     public notUseColdWeapon(player: mw.Player) {
         this.cancelColdWeaponReload(player)
         this.notUseColdWeaponData(player)
-        // oTraceError(`distance ==== 卸下武器  ${player.playerId}`)
+        // console.warn(`distance ==== 卸下武器  ${player.playerId}`)
 
     }
     private notUseColdWeaponData(player: mw.Player) {

@@ -94,7 +94,7 @@ export class AiObject {
         this.aiModel.asyncReady().then((v) => {
             // let ran = Tools.getRandomInt(0, 3);
             let roleElements = GameConfig.Role.getAllElement();
-            this.roleId = roleElements[Tools.getRandomInt(0, roleElements.length - 1)].ID;
+            this.roleId = roleElements[Tools.randomInt(0, roleElements.length - 1)].ID;
             this.aiChangeClothes(this.roleId, v);
         })
     }
@@ -257,7 +257,7 @@ export class AiObject {
         let res = this.getIdentityExist(playerList);
         if (this.camp == Camp.Spy) {
             if (res.inSightNum != 0) {
-                let lucky = Tools.getRandomInt(0, res.inSightNum - 1);
+                let lucky = Tools.randomInt(0, res.inSightNum - 1);
                 this.target = playerList[lucky];
                 this.changeAiState(AiState.Follow);
             }
@@ -273,7 +273,7 @@ export class AiObject {
                     if (!this.isAttackCivilian) return;
                     this.isAttackCivilian = false;
                     if (ran < 0.2) {
-                        let lucky = Tools.getRandomInt(0, res.inSightNum - 1);
+                        let lucky = Tools.randomInt(0, res.inSightNum - 1);
                         this.target = playerList[lucky];
                         this.changeAiState(AiState.Follow);
                     }
@@ -334,7 +334,7 @@ export class AiObject {
             this.changeAiState(AiState.Still);
         }
         if (PlayerManagerExtesion.isNpc(this.target)) {
-            let aiobj = Tools.getAiObj(this.target as mw.Character);
+            let aiobj = Tools.getAiObject(this.target as mw.Character);
             if (aiobj.aiGameState != PlayerGameState.Normal && aiobj.aiGameState != PlayerGameState.Protect) {
                 this.changeAiState(AiState.Still);
                 return;
@@ -404,7 +404,7 @@ export class AiObject {
                 loc = this.getRandomBoxLoc();
                 break;
             case 2://道具点
-                let ran = Tools.getRandomInt(10001, 10021);
+                let ran = Tools.randomInt(10001, 10021);
                 loc = GameConfig.PropsGenerate.getElement(ran).GeneratePoint;
                 break;
             case 3://武器掉落点
@@ -420,12 +420,12 @@ export class AiObject {
     }
     private getRandomBoxLoc() {
         let loc: mw.Vector = new mw.Vector(0, 0, 0);
-        let ran = Tools.getRandomInt(this.headIndex + 1, this.headIndex + this.total);
+        let ran = Tools.randomInt(this.headIndex + 1, this.headIndex + this.total);
         let info = GameConfig.AIWayPoint.getElement(ran);
         let xRange = info.Scale.x * 100 / 2 - 50;
         let yRange = info.Scale.y * 100 / 2 - 50;
-        let randomX = Tools.getRandomInt(-xRange, xRange);
-        let randomY = Tools.getRandomInt(-yRange, yRange);
+        let randomX = Tools.randomInt(-xRange, xRange);
+        let randomY = Tools.randomInt(-yRange, yRange);
         loc.x = info.Location.x + randomX;
         loc.y = info.Location.y + randomY;
         loc.z = info.Location.z + 50;
@@ -441,7 +441,7 @@ export class AiObject {
         let policeExist: boolean = false;
         playerList.forEach((obj) => {
             if (PlayerManagerExtesion.isNpc(obj)) {
-                let aiobj = Tools.getAiObj(obj as mw.Character);
+                let aiobj = Tools.getAiObject(obj as mw.Character);
                 if (aiobj.camp == Camp.Spy && aiobj.aiWeaponState == PlayerWeaponState.Knife) {
                     spyExist = true;
                 }

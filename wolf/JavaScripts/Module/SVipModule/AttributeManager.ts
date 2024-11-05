@@ -1,5 +1,4 @@
-﻿import { oTraceWarning } from "odin";
-import { GameConfig } from "../../Tables/GameConfig";
+﻿import { GameConfig } from "../../Tables/GameConfig";
 
 export default class AttributeManager {
     private static _instance: AttributeManager;
@@ -14,11 +13,11 @@ export default class AttributeManager {
 
     public setAttributeValue(playerId: number, attributeName: AttributeType, param: number) {
         /**为了避免离开的玩家还能够设置数据，导致服务端存储无用数据这里加一个判断 */
-        let playerIndex = Player.getAllPlayers().findIndex((value)=>{
+        let playerIndex = Player.getAllPlayers().findIndex((value) => {
             return value.playerId == playerId;
         })
         if (playerIndex < 0) {
-            oTraceWarning("oTraceWarning: setAttributeValue player is not in game", playerId);
+            console.warn("oTraceWarning: setAttributeValue player is not in game", playerId);
             return;
         }
         let attribute = this.getAttribute(playerId);
@@ -39,40 +38,13 @@ export default class AttributeManager {
                 attribute.showSpecialName = param;
         }
     }
-    /**把属性重置回去 */
-    public resetAttributeValue(playerId: number, attributeName: AttributeType){
-        let playerIndex = Player.getAllPlayers().findIndex((value)=>{
-            return value.playerId == playerId;
-        })
-        if (playerIndex < 0) {
-            oTraceWarning("oTraceWarning: setAttributeValue player is not in game", playerId);
-            return;
-        }
-        let attribute = this.getAttribute(playerId);
-        switch (attributeName) {
-            case AttributeType.SpyRate:
-                attribute.spyRate = 0;
-                break;
-            case AttributeType.GoldContainer:
-                attribute.goldContainer = 0;
-                break;
-            case AttributeType.CalculateGoldAdd:
-                attribute.calculateGoldAdd = 0;
-                break;
-            case AttributeType.FlyKnifeSpeed:
-                attribute.flySpeed = GameConfig.Rule.getElement(20002).Num;
-                break;
-            case AttributeType.ShowSpecialName:
-                attribute.showSpecialName = 0;
-        }
-    }
 
     public getAttributeValue(playerId: number, attributeName: AttributeType) {
-        let playerIndex = Player.getAllPlayers().findIndex((value)=>{
+        let playerIndex = Player.getAllPlayers().findIndex((value) => {
             return value.playerId == playerId;
         })
         if (playerIndex < 0) {
-            oTraceWarning("oTraceWarning: setAttributeValue player is not in game", playerId);
+            console.warn("oTraceWarning: setAttributeValue player is not in game", playerId);
             return -1;
         }
         let attribute = this.getAttribute(playerId);
@@ -90,7 +62,7 @@ export default class AttributeManager {
         }
     }
 
-    private getAttribute(playerId: number){
+    private getAttribute(playerId: number) {
         let attribute = this.attributeMap.get(playerId);
         if (!attribute) {
             attribute = new Attribute();
@@ -99,7 +71,7 @@ export default class AttributeManager {
         return attribute;
     }
 
-    public deleteAttribute(playerId: number){
+    public deleteAttribute(playerId: number) {
         if (this.attributeMap.has(playerId)) {
             this.attributeMap.delete(playerId);
         }
@@ -112,7 +84,7 @@ export class Attribute {
     public calculateGoldAdd: number = 0;
     public flySpeed: number = 0;
     public showSpecialName: number = 0;
-    constructor(){
+    constructor() {
         this.spyRate = 0;
         this.goldContainer = 0;
         this.calculateGoldAdd = 0;

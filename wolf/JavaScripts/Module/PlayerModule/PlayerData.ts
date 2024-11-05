@@ -1,21 +1,4 @@
-﻿/** 
- * @Author       : Songyang.Xie
- * @Date         : 2023-04-25 16:14:32
- * @LastEditors  : Songyang.Xie
- * @LastEditTime : 2023-08-02 18:02:02
- * @FilePath     : \murdermystery3\JavaScripts\Module\PlayerModule\PlayerData.ts
- * @Description  : 修改描述
- */
-/*
- * @Author: zhangqing.fang
- * @Date: 2022-09-09 11:02:07
- * @LastEditors: tianran.shi
- * @LastEditTime: 2023-02-08 13:57:40
- * @FilePath: \murdermystery3\JavaScripts\Module\PlayerModule\PlayerData.ts
- * @Description: 
- */
-import { oTraceError, oTrace, oTraceWarning, LogManager, AnalyticsUtil, IFightRole, AIMachine, AIState } from "odin";
-import { Camp } from "../../Globals";
+﻿import { Camp } from "../../Globals";
 import { GameConfig } from "../../Tables/GameConfig";
 import { PlayerModuleS } from "./PlayerModuleS";
 export class PlayerModuleData extends Subdata {
@@ -189,7 +172,7 @@ export class PlayerModuleData extends Subdata {
     }
     public setDiamond(change: number) {
         if ((this.diamond + change) < 0) {
-            oTrace("钻石数量不足");
+            console.warn("钻石数量不足");
             return -1;
         }
         else {
@@ -200,7 +183,7 @@ export class PlayerModuleData extends Subdata {
     }
     public setGold(change: number) {
         if ((this.gold + change) < 0) {
-            oTrace("金币数量不足");
+            console.warn("金币数量不足");
             return -1;
         }
         else {
@@ -215,7 +198,7 @@ export class PlayerModuleData extends Subdata {
 
     public setAdvToken(change: number) {
         if ((this.advToken + change) < 0) {
-            oTrace("广告券数量不足");
+            console.warn("广告券数量不足");
             return -1;
         }
         else {
@@ -235,14 +218,15 @@ export class PlayerModuleData extends Subdata {
     }
     private updateLevel(playerId: number) {
         let exp = this.exp
-        let dataInfo = GameConfig.Rank.getAllElement()
-        for (let i = dataInfo.length - 1; i >= 0; i--) {
-            let value = dataInfo[i].Exp
-            if (exp >= value) {
-                this.level = dataInfo[i].Level
-                break
-            }
-        }
+        // let dataInfo = GameConfig.Rank.getAllElement()
+        // for (let i = dataInfo.length - 1; i >= 0; i--) {
+        //     let value = dataInfo[i].Exp
+        //     if (exp >= value) {
+        //         this.level = dataInfo[i].Level
+        //         break
+        //     }
+        // }
+        this.level = Math.floor(exp / 1000);
         this.save(false)
         ModuleService.getModule(PlayerModuleS).updatePlayerLevel(playerId, this.level)
     }

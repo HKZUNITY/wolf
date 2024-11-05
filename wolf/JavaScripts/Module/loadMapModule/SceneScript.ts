@@ -1,16 +1,4 @@
-﻿/** 
- * @Author       : Songyang.Xie
- * @Date         : 2023-07-09 17:26:26
- * @LastEditors  : Songyang.Xie
- * @LastEditTime : 2023-07-25 10:57:02
- * @FilePath     : \murdermystery3\JavaScripts\Module\loadMapModule\SceneScript.ts
- * @Description  : 修改描述
- */
-
-import { Tools } from "../../Tools";
-import LoadMapModuleC from "./LoadMapModuleC";
-
-@Component
+﻿@Component
 export default class SceneScript extends mw.Script {
     private nowState: SceneState = SceneState.Loading;
     private timer;

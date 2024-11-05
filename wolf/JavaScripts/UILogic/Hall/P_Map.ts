@@ -1,13 +1,4 @@
-﻿/*
- * @Author: ZiweiShen
- * @Date: 2022-08-21 10:22:11
- * @LastEditors: xicun.kang
- * @LastEditTime: 2023-02-07 14:26:23
- * @FilePath: \murdermystery3\JavaScripts\UILogic\Hall\P_Map.ts
- * @Description: 
- */
-import { oTraceError, oTrace, oTraceWarning, LogManager ,AnalyticsUtil, IFightRole, AIMachine, AIState} from "odin";
-import { Globals } from "../../Globals";
+﻿import { Globals } from "../../Globals";
 import { MapModuleC } from "../../Module/GameModule/MapModule";
 import { GameConfig } from "../../Tables/GameConfig";
 import MapChoose from "../../uiTemplate/Hall/MapChoose";

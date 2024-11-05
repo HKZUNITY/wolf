@@ -1,19 +1,18 @@
-import { GeneralManager, } from '../../Modified027Editor/ModifiedStaticAPI';
-import { SpawnManager, SpawnInfo, } from '../../Modified027Editor/ModifiedSpawn';
-import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
-import { oTrace } from "odin";
 import { AiObject } from "../../AI/AiObject";
 import { AiOrPlayer, Camp, GameGlobals, GamingState, KillType, PlayerGameState } from "../../Globals";
+import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
+import { SpawnManager } from '../../Modified027Editor/ModifiedSpawn';
+import { GeneralManager, } from '../../Modified027Editor/ModifiedStaticAPI';
 import { GameConfig } from "../../Tables/GameConfig";
+import { IWeaponElement } from "../../Tables/Weapon";
 import { Tools } from "../../Tools";
 import { BagModuleData } from "../BagModule/BagData";
 import { BagModuleS } from "../BagModule/BagModuleS";
-import { BaseBullet } from "./BaseBullet";
 import { GameModuleS } from "../GameModule/GameModuleS";
 import ShelterModuleS from "../shelterModule/ShelterModuleS";
-import { IWeaponElement } from "../../Tables/Weapon";
+import AttributeManager, { AttributeType } from "../SVipModule/AttributeManager";
+import { BaseBullet } from "./BaseBullet";
 import { SkillModuleS } from "./SkillModuleS";
-import AttributeManager, { Attribute, AttributeType } from "../SVipModule/AttributeManager";
 
 export default class BoomKnife implements BaseBullet {
     /**玩家手上的冷兵器 */
@@ -146,12 +145,12 @@ export default class BoomKnife implements BaseBullet {
         }
 
         if (PlayerManagerExtesion.isCharacter(hitActor)) {
-            oTrace("击中角色");
+            console.warn("击中角色");
             let player = (hitActor as mw.Character).player;
             if (player == this.owner) {
                 this.isFire = false;
                 this.destroy(true);
-                oTrace("击中自己");
+                console.warn("击中自己");
                 return false;
             }
         }
@@ -161,21 +160,21 @@ export default class BoomKnife implements BaseBullet {
     }
 
     private isHitEffectiveTarget(hitActor: mw.GameObject) {
-        oTrace("击中目标");
+        console.warn("击中目标");
         if (GameGlobals.curGameState != GamingState.GamingState) return false;
-        oTrace("击中目标" + hitActor + "id" + hitActor.gameObjectId);
+        console.warn("击中目标" + hitActor + "id" + hitActor.gameObjectId);
         if (Tools.isTrigger(hitActor)) return false;
-        oTrace("人形对象" + (PlayerManagerExtesion.isNpc(hitActor)))
-        oTrace("角色" + (PlayerManagerExtesion.isCharacter(hitActor)))
+        console.warn("人形对象" + (PlayerManagerExtesion.isNpc(hitActor)))
+        console.warn("角色" + (PlayerManagerExtesion.isCharacter(hitActor)))
 
         if (PlayerManagerExtesion.isNpc(hitActor)) {
-            let ai = Tools.getAiObj(hitActor as mw.Character);
+            let ai = Tools.getAiObject(hitActor as mw.Character);
             if (!ai) {
-                oTrace("ai不存在");
+                console.warn("ai不存在");
                 return false;
             }
             if (ai == this.ownAi) {
-                oTrace("击中自己")
+                console.warn("击中自己")
                 return false;
             }
             else if (ai.aiGameState == PlayerGameState.Die || ai.aiGameState == PlayerGameState.Back || ai.aiGameState == PlayerGameState.Leave) {
@@ -234,8 +233,8 @@ export default class BoomKnife implements BaseBullet {
         if (this.ownAi == null) {
             if (PlayerManagerExtesion.isNpc(hitActor)) {
                 if (Tools.isAiPlayer(hitActor as mw.Character)) {
-                    oTrace("子弹击中人机1");
-                    let victim = Tools.getAiObj(hitActor as mw.Character);
+                    console.warn("子弹击中人机1");
+                    let victim = Tools.getAiObject(hitActor as mw.Character);
                     if (isHit) {
                         ModuleService.getModule(GameModuleS).serverChangeHp(this.dataInfo.ID, AiOrPlayer.AiPlayer, Camp.Spy, KillType.Shoot, null, victim)
                     }
@@ -243,7 +242,7 @@ export default class BoomKnife implements BaseBullet {
                 isPlayer = true;
             }
             if (PlayerManagerExtesion.isCharacter(hitActor)) {//都是真人
-                oTrace("子弹击中人1");
+                console.warn("子弹击中人1");
                 let victim = (hitActor as mw.Character).player;
                 if (isHit) { ModuleService.getModule(GameModuleS).serverChangeHp(this.dataInfo.ID, AiOrPlayer.RealPlayer, Camp.Spy, KillType.Shoot, victim, null) }
                 isPlayer = true;
@@ -252,14 +251,14 @@ export default class BoomKnife implements BaseBullet {
         else {
             if (PlayerManagerExtesion.isNpc(hitActor)) {
                 if (Tools.isAiPlayer(hitActor as mw.Character)) {
-                    oTrace("子弹击中人机2");
-                    let victim = Tools.getAiObj(hitActor as mw.Character);
+                    console.warn("子弹击中人机2");
+                    let victim = Tools.getAiObject(hitActor as mw.Character);
                     if (isHit) { ModuleService.getModule(GameModuleS).serverChangeHp(this.dataInfo.ID, AiOrPlayer.AiPlayer, Camp.Spy, KillType.Shoot, null, victim) }
                 }
                 isPlayer = true;
             }
             if (PlayerManagerExtesion.isCharacter(hitActor)) {//都是真人
-                oTrace("子弹击中人2");
+                console.warn("子弹击中人2");
                 let victim = (hitActor as mw.Character).player;
                 if (isHit) {
                     ModuleService.getModule(GameModuleS).serverChangeHp(this.dataInfo.ID, AiOrPlayer.RealPlayer, Camp.Spy, KillType.Shoot, victim, null)

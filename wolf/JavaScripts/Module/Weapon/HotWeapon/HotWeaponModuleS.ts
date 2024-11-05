@@ -1,24 +1,6 @@
-﻿/** 
- * @Author       : songyang.xie
- * @Date         : 2023-02-02 15:56:34
- * @LastEditors  : Songyang.Xie
- * @LastEditTime : 2023-08-23 13:39:21
- * @FilePath     : \murdermystery3\JavaScripts\Module\Weapon\HotWeapon\HotWeaponModuleS.ts
- * @Description  : 修改描述
- */
-/*
- * @Author: ZiweiShen
- * @Date: 2022-07-08 14:19:17
- * @LastEditors: zhangqing.fang
- * @LastEditTime: 2022-11-10 13:08:45
- * @FilePath: \townmysteryAPI\JavaScripts\Module\Weapon\HotWeapon\HotWeaponModuleS.ts
- * @Description: 
- */
-import { oTraceError, oTrace, oTraceWarning, LogManager, AnalyticsUtil, IFightRole, AIMachine, AIState } from "odin";
-import { AiModuleS } from "../../../AI/AiModule";
+﻿import { AiModuleS } from "../../../AI/AiModule";
 import { AiObject } from "../../../AI/AiObject";
-import { AiOrPlayer, Camp, GameGlobals, GamingState, Globals, KillType, PlayerGameState } from "../../../Globals";
-import { MGSDataInfo, ts_coregameplay_step } from "../../../MGSHome";
+import { AiOrPlayer, Camp, GameGlobals, GamingState, KillType, PlayerGameState } from "../../../Globals";
 import { GameConfig } from "../../../Tables/GameConfig";
 import { IWeaponElement } from "../../../Tables/Weapon";
 import { BagModuleData } from "../../BagModule/BagData";
@@ -28,7 +10,7 @@ import { GameModuleS } from "../../GameModule/GameModuleS";
 import { Projectile } from "./Bullet";
 import { HotWeaponModuleC } from "./HotWeaponModuleC";
 import SoundManager = mw.SoundService;
-export class HotWeaponModuleS extends ModuleS<HotWeaponModuleC, null>{
+export class HotWeaponModuleS extends ModuleS<HotWeaponModuleC, null> {
     onStart(): void {
     }
     beAttackByBullet(config: IWeaponElement, attIsReal: AiOrPlayer, vicIsReal: AiOrPlayer, attacker?: mw.Player,
@@ -60,12 +42,11 @@ export class HotWeaponModuleS extends ModuleS<HotWeaponModuleC, null>{
             }
             else {
                 if (attIsReal == AiOrPlayer.RealPlayer) {
-                    ModuleService.getModule(GameModuleS).serverChangeHp(config.ID, AiOrPlayer.RealPlayer, Camp.Police, KillType.Suicide,  attacker);
+                    ModuleService.getModule(GameModuleS).serverChangeHp(config.ID, AiOrPlayer.RealPlayer, Camp.Police, KillType.Suicide, attacker);
                 } else {
                     ModuleService.getModule(GameModuleS).serverChangeHp(config.ID, AiOrPlayer.AiPlayer, Camp.Police, KillType.Suicide, null, attAi);
                 }
             }
-            MGSDataInfo.suicide++;
         }
         else {
             if (vicIsReal == AiOrPlayer.RealPlayer) {

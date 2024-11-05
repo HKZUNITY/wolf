@@ -1,36 +1,7 @@
-import { oTraceError, oTrace, oTraceWarning, LogManager, AnalyticsUtil, IFightRole, AIMachine, AIState } from "odin";
 import { Camp, PlayerGameState, PlayerWeaponState } from "../../Globals";
 import { GameConfig } from "../../Tables/GameConfig";
 import AttributeManager, { AttributeType } from "../SVipModule/AttributeManager";
 
-// export class GameDataInfo extends Subdata {
-//     /**玩家阵营 */
-//     playerCamp: Camp = Camp.Civilian;
-//     /**玩家生命值 */
-//     playerHp: number = 0;
-//     /**玩家速度 */
-//     playerSpeed: number = 0;
-//     /**玩家跳跃高度 */
-//     playerJumpHeight: number = 0;
-//     /**玩家最大的金币收集数量 */
-//     maxCoinNum: number = 0;
-//     /**本局收集的金币 */
-//     gameGold: number = 0;
-//     /**玩家状态 */
-//     curState: PlayerGameState = PlayerGameState.Ready;
-//     /**玩家武器状态 */
-//     curWeaponState: PlayerWeaponState = PlayerWeaponState.UnEquip;
-//     /**当前收集的道具数量 */
-//     curPropNum: number = 0;
-//     /**攻击按钮的次数 */
-//     attackNum: number = 0;
-//     /**切换按钮的次数 */
-//     switchNum: number = 0;
-//     /**当局经验 */
-//     expNum: number = 0;
-//     /**本局存活时间 */
-//     liveNum: number = 0;
-// }
 export class GameModuleData extends Subdata {
 
     /**玩家阵营 */
@@ -74,9 +45,7 @@ export class GameModuleData extends Subdata {
     liveNum: number = 0;
 
     public static maxPropNum = GameConfig.PropsGenerate.getElement(9997).Num;
-    // public constructor() {
-    //     super(GameDataInfo);
-    // }
+
     public get dataName(): string {
         return "GameDataInfo";
     }
@@ -155,7 +124,7 @@ export class GameModuleData extends Subdata {
     }
     public setGold(change: number) {
         if ((this.gameGold + change) > this.maxCoinNum) {
-            oTrace("金币已达上限");
+            console.warn("金币已达上限");
             this.gameGold = this.maxCoinNum;
             return -1;
         }

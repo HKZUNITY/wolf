@@ -1,21 +1,4 @@
-﻿/** 
- * @Author       : Songyang.Xie
- * @Date         : 2023-06-27 09:38:44
- * @LastEditors  : Songyang.Xie
- * @LastEditTime : 2023-06-30 13:24:17
- * @FilePath     : \murdermystery3\JavaScripts\UILogic\Game\P_GameFinal.ts
- * @Description  : 修改描述
- */
-/*
- * @Author: zhangqing.fang
- * @Date: 2022-11-02 09:55:51
- * @LastEditors: zhangqing.fang
- * @LastEditTime: 2022-11-04 13:12:15
- * @FilePath: \townmysteryAPI\JavaScripts\UILogic\Game\P_GameFinal.ts
- * @Description: 
- */
-import { oTraceError, oTrace, oTraceWarning, LogManager ,AnalyticsUtil, IFightRole, AIMachine, AIState} from "odin"
-import { GameConfig } from "../../Tables/GameConfig";
+﻿import { GameConfig } from "../../Tables/GameConfig";
 import Congratulation from "../../uiTemplate/Inside/Congratulation";
 export default class P_GameFinal extends Congratulation {
     private static _instance: P_GameFinal;

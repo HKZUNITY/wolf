@@ -1,24 +1,15 @@
-﻿/*
- * @Author: ziwei.shen
- * @Date: 2022-08-05 18:25:56
- * @LastEditors: xicun.kang
- * @LastEditTime: 2023-03-08 16:18:38
- * @FilePath: \murdermystery3\JavaScripts\Module\ShopModule\ShopCityPanel.ts
- * @Description: 
- */
+﻿import AdsPanel from '../../AdsPanel';
 import { BaseUI } from '../../BaseUI';
 import P_Tips from "../../CommonUI/P_Tips";
 import { GameConfig } from "../../Tables/GameConfig";
 import { Tools } from "../../Tools";
 import { PlayerModuleData } from "../PlayerModule/PlayerData";
 import { PlayerModuleC } from "../PlayerModule/PlayerModuleC";
-import SVIPModuleC from "../SVipModule/SVIPModuleC";
 import { ShopModuleC } from "./ShopCityModule";
 import { ShopItem } from "./ShopCityUI";
 import { ItemState, ShopModuleData } from "./ShopData";
 import Action2 = mw.Action2;
 import SoundManager = mw.SoundService;
-import AdsPanel from '../../AdsPanel';
 export interface IShopBaseItemView extends mw.UIScript {
 	mImage_Items: mw.Image;
 	mText_Items: mw.TextBlock;
@@ -247,7 +238,6 @@ export class ShopBasePanel<T extends IShopBasePanelView> extends BaseUI<T> {
 			}
 			else if (money == 3 || money == 4) {
 				ModuleService.getModule(ShopModuleC).ShopOpen(false);
-				ModuleService.getModule(SVIPModuleC).isOpenBuySvipPanel(true);
 			}
 		})
 		this.view.mUIText20016_btn.onClicked.add(() => {//使用
@@ -442,7 +432,7 @@ export class ShopBasePanel<T extends IShopBasePanelView> extends BaseUI<T> {
 			this.view.mText_Time.text = StringUtil.format(GameConfig.Text.getElement("20058").Content, Math.floor(remainTime / 86400));
 		}
 		else if (remainTime < 86400 && remainTime > 0) {
-			this.view.mText_Time.text = StringUtil.format(GameConfig.Text.getElement("20055").Content, Tools.changeSecond2Minus2(remainTime));
+			this.view.mText_Time.text = StringUtil.format(GameConfig.Text.getElement("20055").Content, Tools.formatTime_2(remainTime));
 		}
 		else {
 			this.view.mText_Time.text = "";

@@ -132,7 +132,7 @@ export default class P_Game extends GameBattle {
     }
     public static setGameTime(time: number) {
         P_Game.instance.timeNum = time
-        P_Game.instance.mText_CountDown.text = (Tools.changeSecond2Minus(time));
+        P_Game.instance.mText_CountDown.text = (Tools.formatTime_1(time));
     }
     public static setCoin(num: number) {
         P_Game.instance.mText_CionsCollect.text = ("" + num + "/" + P_Game.instance.maxCoin);

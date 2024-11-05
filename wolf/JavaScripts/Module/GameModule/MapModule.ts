@@ -1,26 +1,13 @@
-﻿/*
- * @Author: ZiweiShen
- * @Date: 2022-08-07 16:07:15
- * @LastEditors: xicun.kang
- * @LastEditTime: 2022-10-27 17:12:18
- * @FilePath: \townmystery\JavaScripts\Module\GameModule\MapModule.ts
- * @Description: 
- */
-import { oTraceError, oTrace, oTraceWarning, LogManager, AnalyticsUtil, IFightRole, AIMachine, AIState } from "odin";
+﻿import AdsPanel from "../../AdsPanel";
 import { GameGlobals } from "../../Globals";
 import { GameConfig } from "../../Tables/GameConfig";
-import { Tools } from "../../Tools";
-import { UiManager } from '../../UI/UiManager';
-import P_Hall from "../../UILogic/Hall/P_Hall";
 import P_Map from "../../UILogic/Hall/P_Map";
-import { ShopModuleC } from "../ShopModule/ShopCityModule";
-import { LotteryModuleC } from "../LotteryModule/LotteryModuleC";
-import { SkillModuleC } from "../SkillModule/SkillModuleC";
-import ExchangeModuleC from "../ExchangeModule/ExchangeModuleC";
-import { MGSHome } from "../../MGSHome";
 import { ArkPanel } from "../ArkModule/ArkModule";
+import ExchangeModuleC from "../ExchangeModule/ExchangeModuleC";
+import { LotteryModuleC } from "../LotteryModule/LotteryModuleC";
 import { SetPanel } from "../SetModule/SetModule";
-import AdsPanel from "../../AdsPanel";
+import { ShopModuleC } from "../ShopModule/ShopCityModule";
+import { SkillModuleC } from "../SkillModule/SkillModuleC";
 
 export class MapModuleC extends ModuleC<MapModuleS, null> {
 	private nowSelect: number = -1;
@@ -38,9 +25,6 @@ export class MapModuleC extends ModuleC<MapModuleS, null> {
 		if (mw.UIService.getUI(ArkPanel, false)?.visible) mw.UIService.getUI(ArkPanel).hide();
 		if (mw.UIService.getUI(SetPanel, false)?.visible) mw.UIService.getUI(SetPanel).hide();
 		if (mw.UIService.getUI(AdsPanel, false)?.visible) mw.UIService.getUI(AdsPanel).hide();
-		if (UiManager.instance.getUIRewardPopup()) {
-			UiManager.instance.getUIRewardPopup().hide();
-		}
 	}
 	net_UpdateChoose(infoList: Array<number>) {
 		P_Map.instance.updateChoose(infoList);
@@ -51,7 +35,6 @@ export class MapModuleC extends ModuleC<MapModuleS, null> {
 		if (this.nowSelect >= 0) {
 			res = GameConfig.Level.getAllElement()[this.nowSelect + 1].ID;
 		}
-		MGSHome.chooseMap(res);
 	}
 }
 export class MapModuleS extends ModuleS<MapModuleC, null> {

@@ -1,15 +1,5 @@
-﻿/*
- * @Author: ziwei.shen
- * @Date: 2022-07-08 14:19:17
- * @LastEditors: zhangqing.fang
- * @LastEditTime: 2022-11-02 15:05:38
- * @FilePath: \townmysteryAPIReview\JavaScripts\Module\GameModule\PropObj.ts
- * @Description: 
- */
-import { oTraceError, oTrace, oTraceWarning, LogManager ,AnalyticsUtil, IFightRole, AIMachine, AIState} from "odin";
-import { GameGlobals } from "../../Globals";
+﻿import { GameGlobals } from "../../Globals";
 import { GameConfig } from "../../Tables/GameConfig";
-import { PropsGenerateConfig } from "../../Tables/PropsGenerate";
 import { Tools } from "../../Tools";
 import { GameModuleS } from "./GameModuleS";
 
@@ -69,7 +59,7 @@ export class PropObj {
     getRandomTableId() {
         let headIndex = (GameGlobals.curMapID % 10000) * 10000;
         let total = GameConfig.PropsGenerate.getElement(headIndex).Num;
-        let rand = Tools.getRandomInt(headIndex + 1, headIndex + total);
+        let rand = Tools.randomInt(headIndex + 1, headIndex + total);
         let isLoop = true;
         while (isLoop) {
             let existSame: boolean = false;

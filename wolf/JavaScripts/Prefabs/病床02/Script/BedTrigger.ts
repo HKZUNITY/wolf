@@ -1,13 +1,4 @@
 import { PlayerManagerExtesion, } from '../../../Modified027Editor/ModifiedPlayer';
-﻿/** 
- * @Author       : songyang.xie
- * @Date         : 2023-02-13 12:20:08
- * @LastEditors  : songyang.xie
- * @LastEditTime : 2023-02-20 11:56:34
- * @FilePath     : \murdermystery3\Prefabs\病床02\Script\BedTrigger.ts
- * @Description  : 修改描述
- */
-
 import { UiManager } from "../../../../JavaScripts/UI/UiManager"
 import P_Action from "../../../../JavaScripts/UILogic/Game/P_Action"
 
@@ -18,8 +9,6 @@ export enum HospitalBed {
     /**占用 */
     Occupy
 }
-
-
 
 @Component
 export default class BedTrigger extends mw.Script {
@@ -57,10 +46,10 @@ export default class BedTrigger extends mw.Script {
     @mw.Property({ displayName: "玩家交互姿势" })
     private lieAnim = "14503"
     /**相对位移 */
-    @mw.Property({displayName: "相对偏移"})
+    @mw.Property({ displayName: "相对偏移" })
     private relativePosition: mw.Vector = new mw.Vector(30, 10, 200)
     /**相对旋转 */
-    @mw.Property({displayName: "相对旋转"})
+    @mw.Property({ displayName: "相对旋转" })
     private relativeRotation: mw.Rotation = new mw.Rotation(0, 0, 90)
     /**计时器*/
     private timer: number = null
@@ -112,7 +101,7 @@ export default class BedTrigger extends mw.Script {
         this.state = state
         if (this.usedPlayer) {
             this.usedPlayer.character.jumpEnabled = true
-            PlayerManagerExtesion.changeStanceExtesion(this.usedPlayer.character,"")
+            PlayerManagerExtesion.changeStanceExtesion(this.usedPlayer.character, "")
             if (this.playerAnim) {
                 this.playerAnim.stop()
             }

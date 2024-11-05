@@ -1,70 +1,45 @@
 import { PlayerManagerExtesion, } from '../Modified027Editor/ModifiedPlayer';
-/** 
- * @Author       : Songyang.Xie
- * @Date         : 2023-06-27 09:38:44
- * @LastEditors  : Songyang.Xie
- * @LastEditTime : 2023-08-07 15:58:27
- * @FilePath     : \murdermystery3\JavaScripts\Module\FSMModule.ts
- * @Description  : 修改描述
- */
-import { oTraceError, oTrace, oTraceWarning, LogManager ,AnalyticsUtil, IFightRole, AIMachine, AIState} from "odin";
-import FSMManager from "../FSM/FSMManager";
+import P_BlackMask from "../CommonUI/P_BlackMask";
 import FSM_CalculateState from "../FSM/FSM_CalculateState";
 import FSM_GamingState from "../FSM/FSM_GamingState";
-import FSM_InitGameState from "../FSM/FSM_InitGameState";
 import FSM_InitState from "../FSM/FSM_InitState";
+import FSM_LoadingGameState from "../FSM/FSM_LoadingState";
 import { FSM_MapState } from "../FSM/FSM_MapState";
 import FSM_ReadyState from "../FSM/FSM_ReadyState";
 import FSM_WaitState from "../FSM/FSM_WaitState";
+import FSMManager from "../FSM/FSMManager";
 import { GameCache } from "../GameCache";
-import { Camp, GameGlobals, GamingState, Globals, leaveInfo, PlayerGameState } from "../Globals";
-import { MGSDataInfo } from "../MGSHome";
+import { GameGlobals, GamingState, Globals, PlayerGameState } from "../Globals";
 import { Tools } from "../Tools";
 import P_Game from "../UILogic/Game/P_Game";
+import P_Ready from "../UILogic/Game/P_Ready";
 import P_Hall from "../UILogic/Hall/P_Hall";
 import P_Map from "../UILogic/Hall/P_Map";
-import { BagModuleData } from "./BagModule/BagData";
 import { BagModuleS } from "./BagModule/BagModuleS";
-import { GameModuleData } from "./GameModule/GameData";
 import { GameModuleS } from "./GameModule/GameModuleS";
 import { MapModuleS } from "./GameModule/MapModule";
-import { PlayerModuleData } from "./PlayerModule/PlayerData";
 import { PlayerModuleS } from "./PlayerModule/PlayerModuleS";
 import { WatchModuleS } from "./ProcModule/WatchModule";
-import { ShopModuleS } from "./ShopModule/ShopCityModule";
-import P_Ready from "../UILogic/Game/P_Ready";
-import { ColdWeaponModuleS } from "./Weapon/ColdWeapon/ColdWeaponModuleS";
-import FSM_GamingFinish from "../FSM/FSM_GamingFinish";
-import P_BlackMask from "../CommonUI/P_BlackMask";
-import { AutoAimModuleS } from "./Weapon/Aim/AutoAimModuleS";
 import ShelterModuleS from "./shelterModule/ShelterModuleS";
-import FSM_LoadingGameState from "../FSM/FSM_LoadingState";
-import LoadMapModuleS from "./loadMapModule/LoadMapModuleS";
+import { ShopModuleS } from "./ShopModule/ShopCityModule";
 import { SkillModuleS } from "./SkillModule/SkillModuleS";
 import AttributeManager from "./SVipModule/AttributeManager";
-import SVIPModuleS from "./SVipModule/SVIPModuleS";
+import { AutoAimModuleS } from "./Weapon/Aim/AutoAimModuleS";
+import { ColdWeaponModuleS } from "./Weapon/ColdWeapon/ColdWeaponModuleS";
 
-export class FSMModuleC extends ModuleC<FSMModuleS, null>{
+export class FSMModuleC extends ModuleC<FSMModuleS, null> {
     onStart(): void {
-        // Player.onPlayerReconnect.add(() => {
-        //     //Global.back注释ToLobby();;
 
-        // })
-        // mw.addOnReconnectDSFailedListener(() => {
-        //     //Global.back注释ToLobby();;
-        // })
     }
     onEnterScene(sceneType: number): void {
-        //调用动画模块，播放旋转动画
-        //调用Player模块，显示开始界面UI
     }
 
-    public async reconnect(){
+    public async reconnect() {
         await this.server.net_CheckIsReConnect();
     }
 
     public net_UpdateHallTime(curtime: number) {
-        P_Hall.setHallTime(Tools.changeSecond2Minus(curtime));
+        P_Hall.setHallTime(Tools.formatTime_1(curtime));
         P_Hall.setHallTip(10003);
     }
     public net_UpdateGameTime(curtime: number, currState: number) {
@@ -73,7 +48,7 @@ export class FSMModuleC extends ModuleC<FSMModuleS, null>{
         } else if (currState == GamingState.GamingState) {
             P_Game.setGameTime(curtime);
         }
-        P_Hall.setHallTime(Tools.changeSecond2Minus(curtime));
+        P_Hall.setHallTime(Tools.formatTime_1(curtime));
     }
     net_UpdateMapTime(time: number) {
         P_Map.instance.updateTime(time);
@@ -83,7 +58,7 @@ export class FSMModuleC extends ModuleC<FSMModuleS, null>{
         P_BlackMask.instance.showMask(time, null)
     }
 }
-export class FSMModuleS extends ModuleS<FSMModuleC, null>{
+export class FSMModuleS extends ModuleS<FSMModuleC, null> {
     private _STimer: number;
     onStart(): void {
         FSMManager.Instance.ChangeState(FSM_InitState);
@@ -92,10 +67,10 @@ export class FSMModuleS extends ModuleS<FSMModuleC, null>{
             ModuleService.getModule(PlayerModuleS).initPlayerData(player);
         }, this);
         DataCenterS.onPlayerLeave.add((player) => {
-            try{
+            try {
                 this.playerLeaveCheck(player);
             }
-            catch(e){
+            catch (e) {
                 throw new console.error(e);
             }
         }, this);
@@ -192,7 +167,6 @@ export class FSMModuleS extends ModuleS<FSMModuleC, null>{
     // }
 
     public beginGameTime(time: number) {
-        MGSDataInfo.round_length = 0;
         TimeUtil.clearInterval(this._STimer);
         this._STimer = TimeUtil.setInterval(() => {
             if (GameGlobals.curGameState != GamingState.GamingState) {
@@ -206,7 +180,6 @@ export class FSMModuleS extends ModuleS<FSMModuleC, null>{
             }
             else if (time > 0) {
                 time--;
-                MGSDataInfo.round_length++;
                 this.updateGameTime(time);
             }
         }, 1)
@@ -277,7 +250,6 @@ export class FSMModuleS extends ModuleS<FSMModuleC, null>{
         ModuleService.getModule(AutoAimModuleS).playerLeaveGame(player)
         ModuleService.getModule(GameModuleS).clearPlayerActionInfo(player.playerId);
         ModuleService.getModule(SkillModuleS).deleteOnPlayerSkill(player.playerId);
-        ModuleService.getModule(SVIPModuleS).clearSVIPInfo(player.playerId);
         if (GameGlobals.curGameState == GamingState.InitState) {
             this.initPlayerCheck();
         } else if (GameGlobals.curGameState == GamingState.WaitingState) {
@@ -301,7 +273,7 @@ export class FSMModuleS extends ModuleS<FSMModuleC, null>{
     public net_CheckIsReConnect() {
         GameGlobals.currentAllPlayers.forEach((player) => {
             if (player.playerId == this.currentPlayer.playerId) {
-                PlayerManagerExtesion.stopStanceExtesion(this.currentPlayer.character, );
+                PlayerManagerExtesion.stopStanceExtesion(this.currentPlayer.character,);
                 // this.currentPlayer.character.displayName = "";
                 this.playerLeaveCheck(player);
                 ModuleService.getModule(PlayerModuleS).initReconnectPos(this.currentPlayer);
@@ -339,20 +311,17 @@ export class FSMModuleS extends ModuleS<FSMModuleC, null>{
         this.setPlayerLeave(player);
     }
     private gamingPlayerCheck(player: mw.Player) {
-        oTrace("FSM游戏中有玩家离开" + player.playerId);
+        console.warn("FSM游戏中有玩家离开" + player.playerId);
         this.setPlayerLeave(player);
         ModuleService.getModule(GameModuleS).playerLeave(player);
     }
     private setPlayerLeave(player: mw.Player) {
-        oTrace("暂时存储玩家数据1")
+        console.warn("暂时存储玩家数据1")
         //将玩家游戏数据置为离开
         GameCache.gamePlayersInfo.forEach((info) => {
             if (info.playerId == player.playerId) {
-                if (info.state != PlayerGameState.Leave) {
-                    MGSDataInfo.exit_num++;
-                }
                 info.state = PlayerGameState.Leave;
-                oTrace("暂时存储玩家数据2")
+                console.warn("暂时存储玩家数据2")
             }
         })
     }
@@ -361,7 +330,7 @@ export class FSMModuleS extends ModuleS<FSMModuleC, null>{
     }
 
     private gameEndPlayerCheck(player: mw.Player): void {
-        oTraceError("FSM游戏结束中有玩家离开" + player.playerId);
+        console.warn("FSM游戏结束中有玩家离开" + player.playerId);
         this.setPlayerLeave(player);
         ModuleService.getModule(GameModuleS).playerLeave(player);
         ModuleService.getModule(GameModuleS).playerLeaveCampCheck(player);

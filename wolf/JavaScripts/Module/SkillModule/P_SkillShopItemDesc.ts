@@ -1,18 +1,4 @@
-﻿/** 
- * @Author       : Songyang.Xie
- * @Date         : 2023-08-04 22:00:52
- * @LastEditors  : Songyang.Xie
- * @LastEditTime : 2023-08-06 18:25:23
- * @FilePath     : \murdermystery3\JavaScripts\Module\SkillModule\P_SkillShopItemDesc.ts
- * @Description  : 修改描述
- */
-
-/** 
- * AUTHOR: 达瓦里氏
- * TIME: 2023.07.17-11.28.05
- */
-
-import { GameConfig } from "../../Tables/GameConfig";
+﻿import { GameConfig } from "../../Tables/GameConfig";
 import SkillDes_Generate from "../../ui-generate/uiTemplate/Hall/SkillDes_generate";
 import { SkillShopData } from "./P_SkillShop";
 import { SkillModuleC } from "./SkillModuleC";
@@ -21,10 +7,10 @@ import { GoldType } from "./SkillModuleS";
 export default class P_SkillShopItemDesc extends SkillDes_Generate {
 	private static _instance: P_SkillShopItemDesc;
 	public skillShopData: SkillShopData;
-	public static get instance(): P_SkillShopItemDesc{
+	public static get instance(): P_SkillShopItemDesc {
 		if (!this._instance) {
 			this._instance = mw.UIService.create(P_SkillShopItemDesc)
-		}	
+		}
 		return this._instance;
 	}
 	/** 
@@ -34,27 +20,27 @@ export default class P_SkillShopItemDesc extends SkillDes_Generate {
 		//设置能否每帧触发onUpdate
 		this.canUpdate = false;
 		this.layer = mw.UILayerMiddle;
-		this.mBtn_Price1_Buy.onClicked.add(()=>{
+		this.mBtn_Price1_Buy.onClicked.add(() => {
 			if (this.skillShopData) {
 				ModuleService.getModule(SkillModuleC).buySkill(this.skillShopData.skillId, GoldType.Gold);
 			}
 		})
-		this.mBtn_Price2_Buy.onClicked.add(()=>{
+		this.mBtn_Price2_Buy.onClicked.add(() => {
 			if (this.skillShopData) {
 				ModuleService.getModule(SkillModuleC).buySkill(this.skillShopData.skillId, GoldType.Diamond);
 			}
 		})
-		this.mBtn_Close.onClicked.add(()=>{
+		this.mBtn_Close.onClicked.add(() => {
 			mw.UIService.hideUI(P_SkillShopItemDesc.instance);
 		})
-		this.mBtn_Price3_Buy.onClicked.add(()=>{
+		this.mBtn_Price3_Buy.onClicked.add(() => {
 			if (this.skillShopData) {
 				ModuleService.getModule(SkillModuleC).buySkill(this.skillShopData.skillId, GoldType.Adv);
 			}
 		})
 	}
 
-	public showSkillDesc(data: SkillShopData){
+	public showSkillDesc(data: SkillShopData) {
 		this.skillShopData = data;
 		let dataInfo = GameConfig.SkillShop.getElement(data.skillId);
 		this.mImg_Icon.imageGuid = dataInfo.IconGUID.toString();
@@ -63,11 +49,11 @@ export default class P_SkillShopItemDesc extends SkillDes_Generate {
 		if (dataInfo.Max > 0 && data.remainTime > 0) {
 			this.mText_Num.visibility = mw.SlateVisibility.SelfHitTestInvisible;
 		}
-		else{
+		else {
 			this.mText_Num.visibility = mw.SlateVisibility.Collapsed;
 		}
 		this.mText_Num.text = data.remainTime.toString();
-		if(data.isBuy == false || dataInfo.Max > 0){
+		if (data.isBuy == false || dataInfo.Max > 0) {
 			this.mCanvas_Price.visibility = mw.SlateVisibility.SelfHitTestInvisible;
 			this.mCanvas_Own.visibility = mw.SlateVisibility.Collapsed;
 			let costArr = dataInfo.PriceType;
@@ -76,18 +62,18 @@ export default class P_SkillShopItemDesc extends SkillDes_Generate {
 			this.mBtn_Price1_Buy.visibility = mw.SlateVisibility.Collapsed;
 			this.mBtn_Price2_Buy.visibility = mw.SlateVisibility.Collapsed;
 			this.mCanvas_Exchange.visibility = mw.SlateVisibility.Collapsed;
-			costArr.forEach((value, index)=>{
+			costArr.forEach((value, index) => {
 				if (value == GoldType.Gold) {
 					this.mCanvas_Price_1.visibility = mw.SlateVisibility.SelfHitTestInvisible;
 					this.mText_Price_1.text = dataInfo.PriceNum[index].toString();
 					this.mBtn_Price1_Buy.visibility = mw.SlateVisibility.Visible;
 				}
-				else if(value == GoldType.Diamond){
+				else if (value == GoldType.Diamond) {
 					this.mCanvas_Price_2.visibility = mw.SlateVisibility.SelfHitTestInvisible;
 					this.mText_Price_2.text = dataInfo.PriceNum[index].toString();
 					this.mBtn_Price2_Buy.visibility = mw.SlateVisibility.Visible;
 				}
-				else if(value == GoldType.Adv){
+				else if (value == GoldType.Adv) {
 					this.mCanvas_Exchange.visibility = mw.SlateVisibility.SelfHitTestInvisible;
 					this.mText_Price_3.text = dataInfo.PriceNum[index].toString();
 					this.mText_Price_3.visibility = mw.SlateVisibility.Visible;
@@ -100,7 +86,7 @@ export default class P_SkillShopItemDesc extends SkillDes_Generate {
 			if (dataInfo.Max > 0) {
 				this.mCanvas_Exchange.visibility = mw.SlateVisibility.SelfHitTestInvisible;
 			}
-			else{
+			else {
 				this.mCanvas_Exchange.visibility = mw.SlateVisibility.Collapsed;
 			}
 
@@ -109,7 +95,7 @@ export default class P_SkillShopItemDesc extends SkillDes_Generate {
 				this.mCanvas_Equip.visibility = mw.SlateVisibility.SelfHitTestInvisible;
 				this.mText_Own.visibility = mw.SlateVisibility.Collapsed;
 			}
-			else{
+			else {
 				this.mCanvas_Equip.visibility = mw.SlateVisibility.Collapsed;
 				this.mText_Own.visibility = mw.SlateVisibility.SelfHitTestInvisible;
 			}
@@ -117,17 +103,17 @@ export default class P_SkillShopItemDesc extends SkillDes_Generate {
 		this.changeEquipButton();
 		mw.UIService.showUI(P_SkillShopItemDesc.instance);
 	}
-	
-	private changeEquipButton(){
+
+	private changeEquipButton() {
 		this.mBtn_Use.onClicked.clear();
 		if (this.skillShopData.isUse) {
-			this.mBtn_Use.onClicked.add(()=>{
+			this.mBtn_Use.onClicked.add(() => {
 				ModuleService.getModule(SkillModuleC).unequipSkill(this.skillShopData.skillId);
 			})
 			this.mBtn_Use.text = GameConfig.Text.getElement("12030").Content;
 		}
-		else{
-			this.mBtn_Use.onClicked.add(()=>{
+		else {
+			this.mBtn_Use.onClicked.add(() => {
 				ModuleService.getModule(SkillModuleC).equipSkill(this.skillShopData.skillId);
 			})
 			this.mBtn_Use.text = GameConfig.Text.getElement("12029").Content;

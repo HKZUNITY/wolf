@@ -1,17 +1,6 @@
-﻿/** 
- * @Author       : Songyang.Xie
- * @Date         : 2023-06-27 09:38:44
- * @LastEditors  : Songyang.Xie
- * @LastEditTime : 2023-06-30 10:00:17
- * @FilePath     : \murdermystery3\JavaScripts\UILogic\Game\P_Die.ts
- * @Description  : 修改描述
- */
-import { GameConfig } from "../../Tables/GameConfig";
-import { oTraceError, oTrace, oTraceWarning, LogManager ,AnalyticsUtil, IFightRole, AIMachine, AIState} from "odin";
-import { MGSHome } from "../../MGSHome";
-import { UiManager } from '../../UI/UiManager';
-import Dead from "../../uiTemplate/Inside/Dead";
+﻿import { GameConfig } from "../../Tables/GameConfig";
 import { Tools } from '../../Tools';
+import Dead from "../../uiTemplate/Inside/Dead";
 
 export default class P_Die extends Dead {
     private static _instance: P_Die;
@@ -85,7 +74,7 @@ export default class P_Die extends Dead {
 
         this.dieTween = new mw.Tween({ x: staticX, y: -240 }).to({ x: staticX, y: 300 }, 2000).onUpdate((v) => {
             this.mText_Die.position = (new mw.Vector2(v.x, v.y));
-            
+
         }).onComplete(() => {
             if (this.dieTween != null) {
                 this.dieTween.stop();
@@ -94,7 +83,7 @@ export default class P_Die extends Dead {
             this.mImg_Die.visibility = (mw.SlateVisibility.Visible);
             this.imgTweenBegin();
         }).start();
-        
+
         this.s_Time = TimeUtil.setInterval(() => {
             if (this.count >= this.maxcount) {
                 TimeUtil.clearInterval(this.s_Time);
@@ -135,7 +124,6 @@ export default class P_Die extends Dead {
 
     public static showDieExplain() {
         P_Die.instance.mCanvas_Explaine.visibility = (mw.SlateVisibility.Visible);
-        MGSHome.msgTutorStep(60001);
         setTimeout(() => {
             P_Die.instance.mCanvas_Explaine.visibility = (mw.SlateVisibility.Collapsed);
         }, GameConfig.Guide.getElement(60001).GuideTime * 1000);

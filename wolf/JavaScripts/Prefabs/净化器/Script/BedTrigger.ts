@@ -1,13 +1,4 @@
 import { PlayerManagerExtesion, } from '../../../Modified027Editor/ModifiedPlayer';
-﻿/** 
- * @Author       : songyang.xie
- * @Date         : 2023-02-13 12:20:08
- * @LastEditors  : songyang.xie
- * @LastEditTime : 2023-02-19 11:08:11
- * @FilePath     : \murdermystery3\Prefabs\净化器\Script\BedTrigger.ts
- * @Description  : 修改描述
- */
-
 import { UiManager } from "../../../../JavaScripts/UI/UiManager"
 import P_Action from "../../../../JavaScripts/UILogic/Game/P_Action"
 
@@ -18,8 +9,6 @@ export enum HospitalBed {
     /**占用 */
     Occupy
 }
-
-
 
 @Component
 export default class BedTrigger extends mw.Script {
@@ -108,7 +97,7 @@ export default class BedTrigger extends mw.Script {
         this.state = state
         if (this.usedPlayer) {
             this.usedPlayer.character.jumpEnabled = true
-            PlayerManagerExtesion.changeStanceExtesion(this.usedPlayer.character,"")
+            PlayerManagerExtesion.changeStanceExtesion(this.usedPlayer.character, "")
             if (this.playerAnim) {
                 this.playerAnim.stop()
             }

@@ -1,15 +1,6 @@
 ﻿import { Tools, Visibility } from '../Tools';
-import { oTraceError, oTrace, oTraceWarning, LogManager ,AnalyticsUtil, IFightRole, AIMachine, AIState} from "odin";
-import { GameConfig } from '../Tables/GameConfig';
 import TipsInGame from '../uiTemplate/Common/TipsInGame';
-/*
- * @Autor: kang
- * @Date: 2022-04-26 14:54:37
- * @Description: 用于局内固定显示的统一提示
- * @LastEditors: zhangqing.fang
- * @LastEditTime: 2022-11-09 11:01:04
- * @FilePath: \townmysteryAPI\JavaScripts\CommonUI\UITipsInGame.ts
- */
+
 /**UI类型枚举 */
 export enum UITipsInGameType {
     /**阶段性提示 例如：门打开了*/
@@ -31,11 +22,6 @@ export default class P_TipsInGame extends TipsInGame {
 
 
     onStart() {
-        // oTrace("TipsInGame onStart");
-        // mw.AddServerListener("Event_ShowInGame", (content: string, tipsInGameType: UITipsInGameType, imgGuid: string) => {
-        //     oTrace("TipsInGame Event_ShowInGame");
-        //     TipsInGame.show(content, tipsInGameType, imgGuid);
-        // });
         this.layer = mw.UILayerTop;
     }
 
@@ -49,21 +35,10 @@ export default class P_TipsInGame extends TipsInGame {
      * @param imgGuid 图片guid 如果是运镜提示，则不需要传
      */
     public static show(msg: string, tipsInGameType: UITipsInGameType, imgGuid: string = "") {
-        // TipsInGame.instance.show();
-        // TipsInGame.instance.showMsg(msg, imgGuid, tipsInGameType);
         /**可能会出现同时显示的情况 */
         P_TipsInGame.instance.showMsg(msg, tipsInGameType, imgGuid);
     }
-    // /**
-    //  * 服务端调用-给客户端发消息，在客户端显示---暂不支持
-    //  * @param player 玩家
-    //  * @param content 内容
-    //  * @param tipsInGameType 提示框类型
-    //  * @param imgGuid 图片guid 如果是运镜提示，则不需要传
-    //  */
-    // public static showToClient(player: GamePlay.Player, content: string, tipsInGameType: UITipsInGameType, imgGuid: string = "") {
-    //     mw.DispatchToClient(player, "Event_ShowInGame", content, tipsInGameType, imgGuid);
-    // }
+
     private showMsg(content: string, tipsInGameType: UITipsInGameType, imgGuid: string) {
         mw.UIService.showUI(this);
         let time = 1;
@@ -90,7 +65,7 @@ export default class P_TipsInGame extends TipsInGame {
         if (imgGuid != "")
             this.mImg_StageIcon.imageGuid = imgGuid;
         else {
-            oTrace("没有传入图片guid");
+            console.warn("没有传入图片guid");
             Tools.setVisible(this.mImg_StageIcon, Visibility.Hidden);
         }
 
@@ -108,7 +83,7 @@ export default class P_TipsInGame extends TipsInGame {
         if (imgGuid != "")
             this.mImg_GuideIcon.imageGuid = imgGuid;
         else {
-            oTrace("没有传入图片guid");
+            console.warn("没有传入图片guid");
             Tools.setVisible(this.mImg_GuideIcon, Visibility.Hidden);
         }
     }

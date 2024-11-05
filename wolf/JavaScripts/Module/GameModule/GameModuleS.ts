@@ -1,21 +1,14 @@
-import { GeneralManager, } from '../../Modified027Editor/ModifiedStaticAPI';
-import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
-﻿/*
- * @Author: tianran.shi
- * @Date: 2023-02-05 18:38:47
- * @LastEditors: xicun.kang
- * @LastEditTime: 2023-03-08 14:20:43
- * @FilePath: \murdermystery3\JavaScripts\Module\GameModule\GameModuleS.ts
- * @Description: 
- */
-import { oTraceError, oTrace, oTraceWarning, LogManager, AnalyticsUtil, IFightRole, AIMachine, AIState } from "odin";
 import { AiModuleS } from "../../AI/AiModule";
 import { AiObject } from "../../AI/AiObject";
+import { AiState } from "../../AI/AiStateMachine";
 import FSMManager from "../../FSM/FSMManager";
 import FSM_CalculateState from "../../FSM/FSM_CalculateState";
+import FSM_GamingFinish from "../../FSM/FSM_GamingFinish";
 import { GameCache, PlayerGamingInfo } from "../../GameCache";
 import { AiOrPlayer, Camp, GameGlobals, GamingState, Globals, KillType, PlayerGameState, PlayerWeaponState, SoundGlobals } from "../../Globals";
-import { MGSHome } from "../../MGSHome";
+import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
+import { GeneralManager, } from '../../Modified027Editor/ModifiedStaticAPI';
+import BedTrigger, { HospitalBed } from "../../Prefabs/床01/Script/BedTrigger";
 import { GameConfig } from "../../Tables/GameConfig";
 import { Tools } from "../../Tools";
 import { BagModuleData } from "../BagModule/BagData";
@@ -24,26 +17,20 @@ import { PlayerModuleData } from "../PlayerModule/PlayerData";
 import { PlayerModuleS } from "../PlayerModule/PlayerModuleS";
 import { SceneModuleS } from "../ProcModule/SceneModule";
 import { WatchModuleS } from "../ProcModule/WatchModule";
+import { SkillModuleS } from "../SkillModule/SkillModuleS";
+import { AutoAimModuleS } from "../Weapon/Aim/AutoAimModuleS";
 import { GameModuleData } from "./GameData";
 import { GameModuleC } from "./GameModuleC";
 import { PropObj, PropState } from "./PropObj";
 import SoundManager = mw.SoundService;
-import { AutoAimModuleS } from "../Weapon/Aim/AutoAimModuleS";
-import { IWeaponElement } from "../../Tables/Weapon";
-import BedTrigger, { HospitalBed } from "../../Prefabs/床01/Script/BedTrigger";
-import FSM_GamingFinish from "../../FSM/FSM_GamingFinish";
-import { AiState } from "../../AI/AiStateMachine";
-import { SkillModuleS } from "../SkillModule/SkillModuleS";
-import { GuideConfig } from "../../Tables/Guide";
-import AttributeManager, { Attribute, AttributeType } from "../SVipModule/AttributeManager";
-export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
+export class GameModuleS extends ModuleS<GameModuleC, GameModuleData> {
     private propObjMap: Map<number, PropObj> = new Map<number, PropObj>();
     private protectCoverMap: Map<mw.Player, number> = new Map<mw.Player, number>();
     private deathModelMap: Map<mw.Player, mw.Character> = new Map<mw.Player, mw.Character>();
     private deathAnimArray: Array<mw.Animation> = new Array<mw.Animation>();
     /** 死亡模型, 特效 */
-    private girlDieEffectId= "157253";
-    private boyDieEffectId= "157254";
+    private girlDieEffectId = "157253";
+    private boyDieEffectId = "157254";
     private killedSoundId: number = 10025;
     /**玩家死亡并且留在场上的时间 */
     private dieTime = 6;
@@ -87,11 +74,11 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
         })
     }
 
-    public getPlayerCamp(player: number|mw.Player){
+    public getPlayerCamp(player: number | mw.Player) {
         return this.getPlayerData(player).getPlayerCamp();
     }
 
-    public getPlayerWeaponState(player: number|mw.Player){
+    public getPlayerWeaponState(player: number | mw.Player) {
         return this.getPlayerData(player).getWeaponState();
     }
 
@@ -99,7 +86,7 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
         if (PlayerManagerExtesion.isNpc(char)) {
             let aiModel = char as mw.Character;
             if (Tools.isAiPlayer(aiModel)) {
-                let ai = Tools.getAiObj(aiModel);
+                let ai = Tools.getAiObject(aiModel);
                 let camp = ai.camp;
                 if (camp != Camp.Civilian) return;
                 let res = ai.changeProp(1);
@@ -113,7 +100,7 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
 
         }
         else if (PlayerManagerExtesion.isCharacter(char)) {
-            oTrace("有玩家进入了道具触发器" + index);
+            console.warn("有玩家进入了道具触发器" + index);
             if (this.propObjMap.get(index).propState != PropState.Active) return;
             let player = (char as mw.Character).player;
             let camp = this.getPlayerData(player).getPlayerCamp();
@@ -172,7 +159,7 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
             this.getPlayerData(player).initPlayerGameData(camp, player.playerId);
             DataCenterS.getData(player, PlayerModuleData).addNoSpyNum(camp);
             DataCenterS.getData(player, PlayerModuleData).save(true);
-            oTrace("ChooseReal" + camp + player.playerId);
+            console.warn("ChooseReal" + camp + player.playerId);
         })
         GameCache.initAll();
         GameGlobals.aiPlayer.forEach((aiobj) => {
@@ -183,16 +170,12 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
                 camp = Camp.Police;
             }
             aiobj.camp = camp;
-            oTrace("ChooseAi" + camp + aiobj.aiName);
+            console.warn("ChooseAi" + camp + aiobj.aiName);
         })
         ModuleService.getModule(AutoAimModuleS).onInitData()
     }
     gameReady() {
         GameGlobals.readyPlayers.forEach((player) => {
-            let isfirstround = DataCenterS.getData(player, PlayerModuleData).addGameRound(0);
-            if (isfirstround == 0) {
-                MGSHome.coreStart(player);
-            }
             let camp = this.getPlayerData(player).getPlayerCamp();
             let coolTime = 0
             if (camp == Camp.Spy) {
@@ -271,7 +254,7 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
         return num;
     }
 
-    gameForceEnd(){
+    gameForceEnd() {
         GameGlobals.readyPlayers.forEach((player) => {
             this.getClient(player).net_HideTitle();
         })
@@ -293,7 +276,7 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
         })
     }
     /**根据击中方式在尸体位置播放特效 */
-    public playDeadEffect(character: mw.Character|mw.Character, attackStaus: KillType, isFinal: boolean) {
+    public playDeadEffect(character: mw.Character | mw.Character, attackStaus: KillType, isFinal: boolean) {
         let pos = character.worldTransform.position;
         let isMale = this.getPlayerSex(character);
         if (!isFinal) {
@@ -301,15 +284,15 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
                 let config = GameConfig.Rule.getElement(60003);
                 GeneralManager.rpcPlayEffectAtLocation(config.Guid, pos.clone().add(config.Pos), 1, Rotation.zero, config.Scale);
             }
-            else if(attackStaus == KillType.Knife){
+            else if (attackStaus == KillType.Knife) {
                 let config = GameConfig.Rule.getElement(60002);
                 GeneralManager.rpcPlayEffectAtLocation(config.Guid, pos.clone().add(config.Pos), 1, Rotation.zero, config.Scale);
             }
-            else{
+            else {
                 let config = GameConfig.Rule.getElement(60015);
                 GeneralManager.rpcPlayEffectAtLocation(config.Guid, pos.clone().add(config.Pos), 1, Rotation.zero, config.Scale);
             }
-            
+
             setTimeout(() => {
                 if (!character.worldTransform) {
                     return;
@@ -318,36 +301,36 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
                 if (afterPos) {
                     pos = afterPos.clone();
                 }
-                
-                let dataInfo = GameConfig.Rule.getElement(60004);    
+
+                let dataInfo = GameConfig.Rule.getElement(60004);
                 if (isMale) {
                     GeneralManager.rpcPlayEffectAtLocation(this.boyDieEffectId, pos.clone().add(dataInfo.Pos), -dataInfo.Time, Rotation.zero, dataInfo.Scale);
                 }
                 else {
                     GeneralManager.rpcPlayEffectAtLocation(this.girlDieEffectId, pos.clone().add(dataInfo.Pos), -dataInfo.Time, Rotation.zero, dataInfo.Scale);
                 }
-            }, (this.dieTime- 1)* 1000);
+            }, (this.dieTime - 1) * 1000);
         }
-        else{
+        else {
             let config = GameConfig.Rule.getElement(60014);
             GeneralManager.rpcPlayEffectAtLocation(config.Guid, pos.clone().add(config.Pos), 1, Rotation.zero, config.Scale);
         }
 
     }
 
-    private getPlayerSex(character: mw.Character){
+    private getPlayerSex(character: mw.Character) {
         let somaType = character.description.advance.base.characterSetting.somatotype;
         let isMale = somaType == mw.SomatotypeV2.AnimeMale || somaType == mw.SomatotypeV2.CartoonyMale || somaType == mw.SomatotypeV2.LowpolyAdultMale || somaType == mw.SomatotypeV2.RealisticAdultMale;
         return isMale;
     }
     /**攻击方展示消灭飘字 */
-    public showAttackTip(character: mw.Character| mw.Character, attackStaus: Camp){
+    public showAttackTip(character: mw.Character | mw.Character, attackStaus: Camp) {
         let police = GameGlobals.policePlayer || GameGlobals.heroPlayer;
         let pos = character.worldTransform.position.clone()
         if (attackStaus == Camp.Spy && GameGlobals.spyPlayer) {
             this.getClient(GameGlobals.spyPlayer).net_showAttackTip(pos);
         }
-        else if(attackStaus == Camp.Police && police){
+        else if (attackStaus == Camp.Police && police) {
             this.getClient(police).net_showAttackTip(pos);
         }
     }
@@ -368,7 +351,7 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
             else if (attackStaus == Camp.Police && haveGun) {
                 this.getClient(diePlayerId).net_ShowTip(20010);
             }
-            else if(attackStaus == Camp.Police && !haveGun){
+            else if (attackStaus == Camp.Police && !haveGun) {
                 this.getClient(diePlayerId).net_ShowTip(20011);
             }
         }
@@ -417,7 +400,7 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
         // this.deathAim.forEach((aim, playerId) => {
         //     aim.stop();
         // })
-        this.deathAnimArray.forEach((value)=>{
+        this.deathAnimArray.forEach((value) => {
             value.stop();
         })
         this.deathAnimArray.length = 0;
@@ -436,11 +419,11 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
         ModuleService.getModule(AutoAimModuleS).onCreateDeathModel(deathModel.gameObjectId);
     }
 
-    public changeDeathModelAppearance(){
+    public changeDeathModelAppearance() {
         this.deathModelMap.clear();
         console.error("模型数量", GameGlobals.deathModelList.length);
         console.error("玩家数量", GameGlobals.enterGameNormalPlayers.length);
-        GameGlobals.enterGameNormalPlayers.forEach((player)=>{
+        GameGlobals.enterGameNormalPlayers.forEach((player) => {
             let deathModel = GameGlobals.deathModelList[0];
             GameGlobals.deathModelList.splice(0, 1);
             if (!deathModel) {
@@ -451,15 +434,15 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
         })
     }
 
-    public recoverDeathModelAppearance(){
+    public recoverDeathModelAppearance() {
         let guidArr: Array<string> = new Array<string>();
-        this.deathModelMap.forEach((value)=>{
+        this.deathModelMap.forEach((value) => {
             guidArr.push(value.gameObjectId);
         })
         let index = 0;
         this.getClient(Player.getAllPlayers()[index]).net_recoverDeathModelAppear(guidArr);
         index++;
-        this.clearTimer = TimeUtil.setInterval(()=>{
+        this.clearTimer = TimeUtil.setInterval(() => {
             if (index >= Player.getAllPlayers().length) {
                 console.error("所有玩家都挂起了先停止吧");
                 if (this.clearTimer) {
@@ -473,7 +456,7 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
         }, 2);
     }
 
-    public net_isRecover(){
+    public net_isRecover() {
         if (this.clearTimer) {
             TimeUtil.clearInterval(this.clearTimer);
             this.clearTimer = null;
@@ -483,39 +466,39 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
     playerLeaveBeforeStart(player: mw.Player, info: PlayerGamingInfo) {
         if (info.isFirstLeave == false) return;
         info.isFirstLeave = false;
-        oTrace("有玩家游戏前离开");
+        console.warn("有玩家游戏前离开");
         ModuleService.getModule(WatchModuleS).rpcEffect(player.character, 0);
         GameGlobals.livePlayers = GameGlobals.livePlayers.filter(item => item != player);
         ModuleService.getModule(WatchModuleS).rpcToWatch(2);
         if (info.camp == Camp.Hero || info.camp == Camp.Police) {
             //留下枪械
-            oTrace("警察留下枪械");
+            console.warn("警察留下枪械");
             ModuleService.getModule(SceneModuleS).changeBoxLocationToDeath(new mw.Vector(-80, 2265, 800));
         }
         setTimeout(() => {
             ModuleService.getModule(WatchModuleS).someoneDieOnWatch(player.character);
-        }, this.dieTime* 1000);
+        }, this.dieTime * 1000);
         if (GameGlobals.curGameState == GamingState.GamingState) {
             this.gamePlayerCheck();
         }
     }
     playerLeave(player: mw.Player) {
-        oTrace("有玩家离开");
+        console.warn("有玩家离开");
         let info = GameCache.gamePlayersInfo.get(player);
         let playerId = player.playerId;
         if (info == undefined) {
-            oTrace("找不到玩家信息playerleave")
+            console.warn("找不到玩家信息playerleave")
             return;
         }
         if (info.isFirstLeave == false) {
-            oTrace("玩家不是第一次离开当局游戏")
+            console.warn("玩家不是第一次离开当局游戏")
             return;
         }
         info.isFirstLeave = false;
         let state = this.getPlayerData(player).getState();
         if (state == PlayerGameState.Back || state == PlayerGameState.Die) {
             this.playerGameOverDelay(player, false)
-            oTrace("玩家已经死亡过了")
+            console.warn("玩家已经死亡过了")
             return;
         }
 
@@ -529,7 +512,7 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
             this.playerGameOverDelay(player, false);
             let pos = player.character.worldTransform.position;
             let isMale = this.getPlayerSex(player.character);
-            let dataInfo = GameConfig.Rule.getElement(60004);    
+            let dataInfo = GameConfig.Rule.getElement(60004);
             if (isMale) {
                 GeneralManager.rpcPlayEffectAtLocation(this.boyDieEffectId, pos.clone().add(dataInfo.Pos), -dataInfo.Time, Rotation.zero, dataInfo.Scale);
             }
@@ -544,7 +527,7 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
         let camp = this.getPlayerData(player).getPlayerCamp();
         if (camp == Camp.Hero || camp == Camp.Police) {
             //留下枪械
-            oTrace("警察或英雄死亡，留下枪械" + loc);
+            console.warn("警察或英雄死亡，留下枪械" + loc);
             ModuleService.getModule(SceneModuleS).changeBoxLocationToDeath(loc);
         }
         ModuleService.getModule(WatchModuleS).someoneDieOnWatch(player.character);
@@ -555,16 +538,16 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
     }
 
     playerGameOver(player: mw.Player, weaponId: number, attackCamp: Camp, killType: KillType) {
-        // oTraceError(`Death :: 玩家 本体模型 ==== 玩家死亡 playerID:${player.playerId} weaponId:${weaponId}`);
+        // console.warn(`Death :: 玩家 本体模型 ==== 玩家死亡 playerID:${player.playerId} weaponId:${weaponId}`);
         ModuleService.getModule(BagModuleS).hideAutoModule(player);
-        PlayerManagerExtesion.changeStanceExtesion(player.character,``);
+        PlayerManagerExtesion.changeStanceExtesion(player.character, ``);
 
         setTimeout(() => {
-            Tools.deathAim(true, player.playerId);
+            Tools.playCharacterDeathAnimation(true, player.playerId);
         }, 60);
         let loc = player.character.worldTransform.position;
 
-        oTraceError(`DeathModel  4::: ${player.character.worldTransform.position}`);
+        console.warn(`DeathModel  4::: ${player.character.worldTransform.position}`);
 
         let config = GameConfig.Weapon.getElement(weaponId);
         if (config.Type == 0) {
@@ -592,7 +575,7 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
         let camp = this.getPlayerData(player).getPlayerCamp();
         if (camp == Camp.Hero || camp == Camp.Police) {
             //留下枪械
-            oTrace("警察或英雄死亡，留下枪械" + loc);
+            console.warn("警察或英雄死亡，留下枪械" + loc);
             ModuleService.getModule(SceneModuleS).changeBoxLocationToDeath(loc);
             this.tipOnWeaponLeave();
             //
@@ -614,7 +597,7 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
                 if (res == false) {
                     return
                 }
-                Tools.deathAim(false, player.playerId);
+                Tools.playCharacterDeathAnimation(false, player.playerId);
             }, time * 1000);
         }
         /**暂时只有黑手党有技能 */
@@ -640,8 +623,8 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
             let loc2 = loc.add(new mw.Vector(0, 0, 60));
             this.deathModelMap.get(player).worldTransform.position = loc2;
             this.deathModelMap.get(player).worldTransform.rotation = roc;
-            oTraceError(`DeathModel  51::: ${loc1}`);
-            oTraceError(`DeathModel  6::: ${this.deathModelMap.get(player).worldTransform.position}`);
+            console.warn(`DeathModel  51::: ${loc1}`);
+            console.warn(`DeathModel  6::: ${this.deathModelMap.get(player).worldTransform.position}`);
         }
 
         //回到大厅:位置，UI的显示,局内游戏数据的设置
@@ -672,7 +655,7 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
             let camp;
             let info = GameCache.gamePlayersInfo.get(player);
             if (info == undefined) {
-                oTrace("gameplayerCheck:找不到info" + player.playerId);
+                console.warn("gameplayerCheck:找不到info" + player.playerId);
                 state = 3//this.getPlayerData(player).getState();
                 camp = 2//this.getPlayerData(player).getPlayerCamp();
             } else {
@@ -703,8 +686,8 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
             }
         }
         this.showRoleNum();
-        oTrace("当前死亡总人数" + dieNum);
-        oTrace(`Death ::当前死亡人数 ${dieNum} 黑手党是否存活 ${spyExist}`);
+        console.warn("当前死亡总人数" + dieNum);
+        console.warn(`Death ::当前死亡人数 ${dieNum} 黑手党是否存活 ${spyExist}`);
         if (dieNum == GameGlobals.startMax - 1 || !spyExist) {
             // FSM_CalculateState.timeIsOut = false;
             this.getAllClient().net_stopExp();
@@ -724,7 +707,7 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
         }
         if (beforeState == PlayerGameState.Normal && state == PlayerGameState.Protect) {
             //保护罩出现，提示获得了保护壳
-            oTrace("生成保护壳")
+            console.warn("生成保护壳")
             let effectId = GeneralManager.rpcPlayEffectOnPlayer(GameConfig.Assets.getElement(12001).Guid, player, this.protectSocket, -50, this.protectPos, this.protectRot.toRotation(), this.protectScale);
             this.protectCoverMap.set(player, effectId);
             this.getClient(player).net_ShowTip(10005);
@@ -769,7 +752,7 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
     public serverChangeHp(configId: number, isReal: AiOrPlayer, attackCamp: Camp, killType: KillType, player?: mw.Player, ai?: AiObject) {
         let config = GameConfig.Weapon.getElement(configId);
         if (isReal == AiOrPlayer.RealPlayer) {
-            oTrace("玩家受到伤害" + player.playerId);
+            console.warn("玩家受到伤害" + player.playerId);
             let state = this.getPlayerData(player).getState();
             if (state != PlayerGameState.Normal && state != PlayerGameState.Protect) return -1;
             if (state == PlayerGameState.Protect) {
@@ -784,7 +767,7 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
             return hp;
         }
         else {
-            oTrace("人机受到伤害" + ai.aiName);
+            console.warn("人机受到伤害" + ai.aiName);
             let state = ai.aiGameState;
             if (state != PlayerGameState.Normal && state != PlayerGameState.Protect) return -1;
             if (state == PlayerGameState.Protect) {
@@ -801,7 +784,7 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
 
     }
 
-    public getPlayerGameState(playerId: number){
+    public getPlayerGameState(playerId: number) {
         return this.getPlayerData(playerId).getState();
     }
 
@@ -809,7 +792,7 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
         this.changePlayerWeaponState(this.currentPlayer, weaState)
     }
 
-    public changeWeaponState(player: mw.Player| number, state: PlayerWeaponState){
+    public changeWeaponState(player: mw.Player | number, state: PlayerWeaponState) {
         let data = this.getPlayerData(player);
         if (!data) {
             return;
@@ -844,7 +827,7 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
         let player = Player.getPlayer(playerId);
         this.changePlayerWeaponState(player, PlayerWeaponState.UnEquip)
         console.error("玩家进入交互物体");
-        
+
         this.playerToBedMap.set(player.playerId, scriptId)
     }
     /**玩家离开交互物 */
@@ -906,7 +889,7 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
             });
             if (GameGlobals.isTerminatorReal == true) {
                 // this.getClient(GameGlobals.terminatorPlayer).net_MaskUI(true);
-                
+
                 //动作
                 ModuleService.getModule(BagModuleS).hideAutoModule(GameGlobals.terminatorPlayer);
                 //特效
@@ -952,14 +935,14 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
                     } else {
                         this.getClient(player).net_setEndState(GameGlobals.terminatorAI.aiModel.gameObjectId, false);
                     }
-                    oTrace(`关闭玩家 =====${player.playerId}`);
+                    console.warn(`关闭玩家 =====${player.playerId}`);
                 });
                 if (GameGlobals.isTerminatorReal) {
                     // this.getClient(GameGlobals.terminatorPlayer).net_MaskUI(false);
-                    PlayerManagerExtesion.changeStanceExtesion(GameGlobals.terminatorPlayer.character,``);
+                    PlayerManagerExtesion.changeStanceExtesion(GameGlobals.terminatorPlayer.character, ``);
                 } else {
                 }
-                oTrace(`BGM ==== stopGame start Hall`);
+                console.warn(`BGM ==== stopGame start Hall`);
             }
 
             //特效
@@ -986,45 +969,45 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
             } else if (GameGlobals.isPoliceReal == false) {
                 if (GameGlobals.policeAi && GameGlobals.policeAi.curAIState != AiState.NotActive) {
                     curTarget = GameGlobals.policeAi;
-                    oTrace(`confirmTerminator: 警探 AI   ====== ${GameGlobals.policeAi.aiModel.gameObjectId}`);
+                    console.warn(`confirmTerminator: 警探 AI   ====== ${GameGlobals.policeAi.aiModel.gameObjectId}`);
                 }
             }
         } catch (error) {
-            oTraceError(`confirmTerminator: 警探 ==== 报错`);
+            console.warn(`confirmTerminator: 警探 ==== 报错`);
         }
         //黑手党判断
         try {
             if (GameGlobals.isSpyReal == true) {
                 let state = GameCache.gamePlayersInfo.get(GameGlobals.spyPlayer).state
                 if (state && state != PlayerGameState.Leave && this.livePlayerInclude(GameGlobals.spyPlayer)) {
-                    oTrace(`confirmTerminator: 黑手党 真人 ====== ${GameGlobals.spyPlayer.playerId}`);
+                    console.warn(`confirmTerminator: 黑手党 真人 ====== ${GameGlobals.spyPlayer.playerId}`);
                     curTarget = GameGlobals.spyPlayer.character;
                 }
             } else if (GameGlobals.isSpyReal == false) {
                 if (GameGlobals.spyAi && GameGlobals.spyAi.curAIState != AiState.NotActive) {
                     curTarget = GameGlobals.spyAi;
-                    oTrace(`confirmTerminator: 黑手党 AI   ====== ${GameGlobals.spyAi.aiModel.gameObjectId}`);
+                    console.warn(`confirmTerminator: 黑手党 AI   ====== ${GameGlobals.spyAi.aiModel.gameObjectId}`);
                 }
             }
         } catch (error) {
-            oTraceError(`confirmTerminator: 黑手党 ==== 报错`);
+            console.warn(`confirmTerminator: 黑手党 ==== 报错`);
         }
         try {
             //英雄判断
             if (GameGlobals.isHeroReal == true) {
                 let state = GameCache.gamePlayersInfo.get(GameGlobals.heroPlayer).state
                 if (state && state != PlayerGameState.Leave && this.livePlayerInclude(GameGlobals.heroPlayer)) {
-                    oTrace(`confirmTerminator: 英雄 真人 ====== ${GameGlobals.heroPlayer.playerId}`);
+                    console.warn(`confirmTerminator: 英雄 真人 ====== ${GameGlobals.heroPlayer.playerId}`);
                     curTarget = GameGlobals.heroPlayer.character;
                 }
             } else if (GameGlobals.isHeroReal == false) {
                 if (GameGlobals.heroAi && GameGlobals.heroAi.curAIState != AiState.NotActive) {
-                    oTrace(`confirmTerminator: 英雄 AI   ====== ${GameGlobals.heroAi.aiModel.gameObjectId}`);
+                    console.warn(`confirmTerminator: 英雄 AI   ====== ${GameGlobals.heroAi.aiModel.gameObjectId}`);
                     curTarget = GameGlobals.heroAi;
                 }
             }
         } catch (error) {
-            oTraceError(`confirmTerminator: 英雄 ==== 报错`);
+            console.warn(`confirmTerminator: 英雄 ==== 报错`);
         }
 
         if (curTarget) {
@@ -1039,7 +1022,7 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
             //没有终结者 直接结束比赛
             FSM_CalculateState.timeIsOut = true;
             FSMManager.Instance.ChangeState(FSM_CalculateState);
-            oTraceError(`confirmTerminator: 终结者 ==== 没有`)
+            console.warn(`confirmTerminator: 终结者 ==== 没有`)
         }
     }
 
@@ -1062,7 +1045,7 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
      */
     playerLeaveCampCheck(player: mw.Player): void {
         if (GameGlobals.terminatorPlayer && GameGlobals.terminatorPlayer.playerId == player.playerId) {
-            oTraceError(`leave :: 离线玩家 ==== 终结者`);
+            console.warn(`leave :: 离线玩家 ==== 终结者`);
             this.curStateCheck(false);
             GameGlobals.isTerminatorReal = null;
             GameGlobals.terminatorPlayer = null;
@@ -1071,7 +1054,7 @@ export class GameModuleS extends ModuleS<GameModuleC, GameModuleData>{
             FSMManager.Instance.ChangeState(FSM_CalculateState);
             this.playerLeave(player);
         } else {
-            oTraceError(`leave :: 离线玩家 ==== 不是终结者`);
+            console.warn(`leave :: 离线玩家 ==== 不是终结者`);
             this.playerLeave(player);
         }
     }

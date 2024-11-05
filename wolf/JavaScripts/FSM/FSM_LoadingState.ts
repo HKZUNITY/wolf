@@ -1,15 +1,13 @@
-﻿import { oTrace, oTraceError } from "odin";
-import { IFSMState } from "./IFSMState";
-import { GameGlobals, GamingState, Globals } from "../Globals";
+﻿import { GameGlobals, GamingState, Globals } from "../Globals";
 import LoadMapModuleS from "../Module/loadMapModule/LoadMapModuleS";
 import FSMManager from "./FSMManager";
 import FSM_InitGameState from "./FSM_InitGameState";
-import { GameModuleS } from "../Module/GameModule/GameModuleS";
+import { IFSMState } from "./IFSMState";
 
 export default class FSM_LoadingGameState implements IFSMState {
     private timer;
     Enter(): void {
-        oTraceError("fsm 3：LoadingGameState");
+        console.warn("fsm 3：LoadingGameState");
         GameGlobals.curGameState = GamingState.LoadingSceneState;
         GameGlobals.allGamePlayers.splice(0, GameGlobals.allGamePlayers.length);
         GameGlobals.enterGameNormalPlayers.length = 0;

@@ -1,10 +1,9 @@
-import { CalculateState, Camp } from "../../Globals";
-import { GameConfig } from "../../Tables/GameConfig";
-import Clearing from "../../uiTemplate/Clearing/Clearing";
-import { CalculateModuleC, calculateData } from "../../Module/ProcModule/CalculateModule";
-import { IAAUtils } from "../../IAAUtils";
 import P_Tips from "../../CommonUI/P_Tips";
+import { CalculateState, Camp } from "../../Globals";
+import { calculateData } from "../../Module/ProcModule/CalculateModule";
+import { GameConfig } from "../../Tables/GameConfig";
 import { Tools } from "../../Tools";
+import Clearing from "../../uiTemplate/Clearing/Clearing";
 
 export default class P_Account extends Clearing {
     private static _instance: P_Account;
@@ -58,7 +57,6 @@ export default class P_Account extends Clearing {
         if (P_Account.instance.coinSound) {
             mw.SoundService.stopSound(P_Account.instance.coinSound);
         }
-        ModuleService.getModule(CalculateModuleC).closeCalculateUIMgs()
     }
     private initUI() {
         this.mCanvas_Step1.visibility = mw.SlateVisibility.Collapsed;

@@ -1,21 +1,18 @@
-import { GeneralManager, } from '../../../Modified027Editor/ModifiedStaticAPI';
-import { SpawnManager, SpawnInfo, } from '../../../Modified027Editor/ModifiedSpawn';
-import { PlayerManagerExtesion, } from '../../../Modified027Editor/ModifiedPlayer';
-import { oTraceError, oTrace, oTraceWarning, LogManager, AnalyticsUtil, IFightRole, AIMachine, AIState } from "odin";
 import { AiObject } from "../../../AI/AiObject";
 import { AiOrPlayer, Camp, GameGlobals, GamingState, KillType, PlayerGameState } from "../../../Globals";
+import { PlayerManagerExtesion, } from '../../../Modified027Editor/ModifiedPlayer';
+import { SpawnManager } from '../../../Modified027Editor/ModifiedSpawn';
+import { GeneralManager, } from '../../../Modified027Editor/ModifiedStaticAPI';
 import { GameConfig } from "../../../Tables/GameConfig";
 import { IWeaponElement } from "../../../Tables/Weapon";
 import { Tools } from "../../../Tools";
+import { BagModuleData } from "../../BagModule/BagData";
+import { BagModuleS } from "../../BagModule/BagModuleS";
+import { GameModuleS } from "../../GameModule/GameModuleS";
+import ShelterModuleS from "../../shelterModule/ShelterModuleS";
+import AttributeManager, { AttributeType } from "../../SVipModule/AttributeManager";
 import { HotWeaponModuleS } from "./HotWeaponModuleS";
 import SoundManager = mw.SoundService;
-import { BagModuleS } from "../../BagModule/BagModuleS";
-import { AiModuleS } from "../../../AI/AiModule";
-import { GameModuleS } from "../../GameModule/GameModuleS";
-import { BagModuleData } from "../../BagModule/BagData";
-import ShelterModuleS from "../../shelterModule/ShelterModuleS";
-import { SkillModuleS } from "../../SkillModule/SkillModuleS";
-import AttributeManager, { AttributeType } from "../../SVipModule/AttributeManager";
 
 export class Projectile {
     /**子弹模型 */
@@ -228,7 +225,7 @@ export class Projectile {
         if (this.isHitEffectiveTarget(hitActor) == false) {
             return
         }
-        oTrace("子弹击中物体")
+        console.warn("子弹击中物体")
         this.isFire = false;
         GeneralManager.rpcPlayEffectAtLocation(this.hitEffect, sweepResult.position, 1, this.hitEffectRot.toRotation(), this.hitEffectScale);//后期可能加上偏移
         SoundService.play3DSound(this.bulletHitSound, sweepResult.position);
@@ -248,12 +245,12 @@ export class Projectile {
         }
 
         if (PlayerManagerExtesion.isCharacter(hitActor)) {
-            oTrace("击中角色");
+            console.warn("击中角色");
             let player = (hitActor as mw.Character).player;
             if (player == this.owner) {
                 this.isFire = false;
                 this.destroy(true);
-                oTrace("击中自己");
+                console.warn("击中自己");
                 return false;
             }
         }
@@ -262,7 +259,7 @@ export class Projectile {
         let isAi = null
         if (PlayerManagerExtesion.isNpc(hitActor)) {
             let npc = hitActor as mw.Character;
-            isAi = Tools.getAiObj(npc)
+            isAi = Tools.getAiObject(npc)
         }
         if (isAi != null || PlayerManagerExtesion.isCharacter(hitActor)) {
             this.destroy(true);
@@ -274,21 +271,21 @@ export class Projectile {
 
     /**是否击中有效目标 */
     private isHitEffectiveTarget(hitActor: mw.GameObject) {
-        oTrace("击中目标");
+        console.warn("击中目标");
         if (GameGlobals.curGameState != GamingState.GamingState) return false;
-        oTrace("击中目标" + hitActor + "id" + hitActor.gameObjectId);
+        console.warn("击中目标" + hitActor + "id" + hitActor.gameObjectId);
         if (Tools.isTrigger(hitActor)) return false;
-        oTrace("人形对象" + (PlayerManagerExtesion.isNpc(hitActor)))
-        oTrace("角色" + (PlayerManagerExtesion.isCharacter(hitActor)))
+        console.warn("人形对象" + (PlayerManagerExtesion.isNpc(hitActor)))
+        console.warn("角色" + (PlayerManagerExtesion.isCharacter(hitActor)))
 
         if (PlayerManagerExtesion.isNpc(hitActor)) {
-            let ai = Tools.getAiObj(hitActor as mw.Character);
+            let ai = Tools.getAiObject(hitActor as mw.Character);
             if (!ai) {
-                oTrace("ai不存在");
+                console.warn("ai不存在");
                 return false;
             }
             if (ai == this.ownAi) {
-                oTrace("击中自己")
+                console.warn("击中自己")
                 return false;
             }
             else if (ai.aiGameState == PlayerGameState.Die || ai.aiGameState == PlayerGameState.Back || ai.aiGameState == PlayerGameState.Leave) {
@@ -316,8 +313,8 @@ export class Projectile {
         if (this.ownAi == null) {
             if (PlayerManagerExtesion.isNpc(hitActor)) {
                 if (Tools.isAiPlayer(hitActor as mw.Character)) {
-                    oTrace("子弹击中人机1");
-                    let victim = Tools.getAiObj(hitActor as mw.Character);
+                    console.warn("子弹击中人机1");
+                    let victim = Tools.getAiObject(hitActor as mw.Character);
                     if (this.weaponMesh) {
                         ModuleService.getModule(GameModuleS).serverChangeHp(this.bulletConfig.ID, AiOrPlayer.AiPlayer, Camp.Spy, KillType.Shoot, null, victim)
                     }
@@ -328,7 +325,7 @@ export class Projectile {
                 isPlayer = true;
             }
             if (PlayerManagerExtesion.isCharacter(hitActor)) {//都是真人
-                oTrace("子弹击中人1");
+                console.warn("子弹击中人1");
                 let victim = (hitActor as mw.Character).player;
                 if (this.weaponMesh) {
                     ModuleService.getModule(GameModuleS).serverChangeHp(this.bulletConfig.ID, AiOrPlayer.RealPlayer, Camp.Spy, KillType.Shoot, victim, null)
@@ -342,8 +339,8 @@ export class Projectile {
         else {
             if (PlayerManagerExtesion.isNpc(hitActor)) {
                 if (Tools.isAiPlayer(hitActor as mw.Character)) {
-                    oTrace("子弹击中人机2");
-                    let victim = Tools.getAiObj(hitActor as mw.Character);
+                    console.warn("子弹击中人机2");
+                    let victim = Tools.getAiObject(hitActor as mw.Character);
                     if (this.weaponMesh) {
                         ModuleService.getModule(GameModuleS).serverChangeHp(this.bulletConfig.ID, AiOrPlayer.AiPlayer, Camp.Spy, KillType.Shoot, null, victim)
                     }
@@ -354,7 +351,7 @@ export class Projectile {
                 isPlayer = true;
             }
             if (PlayerManagerExtesion.isCharacter(hitActor)) {//都是真人
-                oTrace("子弹击中人2");
+                console.warn("子弹击中人2");
                 let victim = (hitActor as mw.Character).player;
                 if (this.weaponMesh) {
                     ModuleService.getModule(GameModuleS).serverChangeHp(this.bulletConfig.ID, AiOrPlayer.RealPlayer, Camp.Spy, KillType.Shoot, victim, null)

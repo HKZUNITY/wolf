@@ -1,18 +1,4 @@
-﻿/** 
- * @Author       : songyang.xie
- * @Date         : 2023-02-13 13:09:42
- * @LastEditors  : songyang.xie
- * @LastEditTime : 2023-02-21 09:30:16
- * @FilePath     : \murdermystery3\JavaScripts\UILogic\Game\P_Action.ts
- * @Description  : 修改描述
- */
-
-import ActionUI_Generate from "../../ui-generate/ActionUI_generate";
-
-/** 
- * AUTHOR: 可可果嘟
- * TIME: 2023.02.13-13.09.53
- */
+﻿import ActionUI_Generate from "../../ui-generate/ActionUI_generate";
 
 export default class P_Action extends ActionUI_Generate {
 	private action: Action = new Action()
@@ -47,7 +33,7 @@ export default class P_Action extends ActionUI_Generate {
 
 	}
 	/**设置玩家进入的交互物guid */
-	public setActionGuid(guid: string){
+	public setActionGuid(guid: string) {
 		let index = this.actionGuidList.indexOf(guid)
 		if (index > -1) {
 			return
@@ -55,11 +41,11 @@ export default class P_Action extends ActionUI_Generate {
 		this.actionGuidList.push(guid)
 	}
 	/**设置玩家进入交互物 */
-	public setPlayerInAction(isUse: boolean){
+	public setPlayerInAction(isUse: boolean) {
 		this.isUse = isUse
 	}
 	/**删除玩家进入的交互物guid */
-	public deleteActionGuid(guid: string){
+	public deleteActionGuid(guid: string) {
 		let index = this.actionGuidList.indexOf(guid)
 		if (index > -1) {
 			this.actionGuidList.splice(index, 1)

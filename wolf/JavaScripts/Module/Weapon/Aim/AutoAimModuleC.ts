@@ -1,15 +1,13 @@
-import { SpawnManager, SpawnInfo, } from '../../../Modified027Editor/ModifiedSpawn';
+import { Camp, Globals } from "../../../Globals";
 import { PlayerManagerExtesion, } from '../../../Modified027Editor/ModifiedPlayer';
-import { oTraceError, oTrace, oTraceWarning, LogManager, AnalyticsUtil, IFightRole, AIMachine, AIState } from "odin";
+import { SpawnManager } from '../../../Modified027Editor/ModifiedSpawn';
 import { GameConfig } from "../../../Tables/GameConfig";
+import { Tools } from "../../../Tools";
 import { UiManager } from "../../../UI/UiManager";
 import P_Foresight from "../../../UILogic/Game/P_Foresight";
-import { SceneItemConfig } from "../../../Tables/SceneItem";
-import { AutoAimModuleS } from "./AutoAimModuleS";
-import { Tools } from "../../../Tools";
-import { Camp, Globals } from "../../../Globals";
 import { GameModuleC } from "../../GameModule/GameModuleC";
 import ShelterModuleC from "../../shelterModule/ShelterModuleC";
+import { AutoAimModuleS } from "./AutoAimModuleS";
 export class AutoAimModuleC extends ModuleC<AutoAimModuleS, null> {
     private curPlayer: mw.Player;
     /**设置一个触发器，往进入触发器的敌人发送射线 */
@@ -369,8 +367,8 @@ export class AutoAimModuleC extends ModuleC<AutoAimModuleS, null> {
         let readyPlayer: Map<string, boolean> = new Map();
         let readAi: Map<string, boolean> = new Map();
 
-        readyPlayer = Tools.decoderArrToMap3(readyStr, readeyBo) as Map<string, boolean>;
-        readAi = Tools.decoderArrToMap3(readyAiSrt, readyAiBo) as Map<string, boolean>;
+        readyPlayer = Tools.fromArrToMap(readyStr, readeyBo) as Map<string, boolean>;
+        readAi = Tools.fromArrToMap(readyAiSrt, readyAiBo) as Map<string, boolean>;
 
         this.readyModelMap.clear()
         this.readyPlayerMap.clear()

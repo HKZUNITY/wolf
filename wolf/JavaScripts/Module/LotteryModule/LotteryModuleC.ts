@@ -1,12 +1,11 @@
-﻿import P_Hall from "../../UILogic/Hall/P_Hall";
+﻿import { GameConfig } from "../../Tables/GameConfig";
+import { Tools } from "../../Tools";
+import P_Hall from "../../UILogic/Hall/P_Hall";
+import { PlayerModuleC } from "../PlayerModule/PlayerModuleC";
+import { ShopModuleC } from "../ShopModule/ShopCityModule";
+import { ShopModuleData } from "../ShopModule/ShopData";
 import { LotteryModuleS } from "./LotteryModuleS";
 import { LotteryInsidePanel, LotteryPanel, LotteryScrollPanel } from "./LotteryPanel";
-import { GameConfig } from "../../Tables/GameConfig";
-import { ShopModuleC } from "../ShopModule/ShopCityModule";
-import { PlayerModuleC } from "../PlayerModule/PlayerModuleC";
-import { PlayerModuleData } from "../PlayerModule/PlayerData";
-import { ShopModuleData } from "../ShopModule/ShopData";
-import { Tools } from "../../Tools";
 
 export class LotteryModuleC extends ModuleC<LotteryModuleS, null> {
     // 主界面
@@ -106,7 +105,7 @@ export class LotteryModuleC extends ModuleC<LotteryModuleS, null> {
         }
     }
     /**开始抽奖，给埋点的 */
-    startLottery(boxId: number, isUseMoney: boolean){
+    startLottery(boxId: number, isUseMoney: boolean) {
         this.server.net_startLottery(boxId, isUseMoney);
     }
     //创建UI
@@ -153,33 +152,33 @@ export class LotteryModuleC extends ModuleC<LotteryModuleS, null> {
         }
     }
 
-    private getRandomMaxRateIndex(lotteryIndex: number){
+    private getRandomMaxRateIndex(lotteryIndex: number) {
         let itemArr = GameConfig.Lottery.getElement(lotteryIndex).Item;
         let resArr = new Array<RandomItem>();
-        itemArr.forEach((value, index)=>{
+        itemArr.forEach((value, index) => {
             let shopInfo = GameConfig.Shop.getElement(value);
-            if(shopInfo.Rarity == 0){
+            if (shopInfo.Rarity == 0) {
                 resArr.push(new RandomItem(value, index));
             }
         })
         if (resArr.length == 0) {
             console.error("没有找到稀有物品");
-            return;   
+            return;
         }
         let haveArr = ModuleService.getModule(ShopModuleC).getHaveArray();
         let notHaveDrawArr = new Array<RandomItem>();
-        resArr.forEach((value, index)=>{
+        resArr.forEach((value, index) => {
             if (haveArr.includes(value.itemId) == false) {
                 notHaveDrawArr.push(value);
             }
         })
         //优先获得未拥有的
         if (notHaveDrawArr.length > 0) {
-            let randomIndex = Tools.getRandomInt(0, notHaveDrawArr.length - 1);
+            let randomIndex = Tools.randomInt(0, notHaveDrawArr.length - 1);
             return notHaveDrawArr[randomIndex].lotteryIndex;
         }
-        else{
-            let randomIndex = Tools.getRandomInt(0, resArr.length - 1);
+        else {
+            let randomIndex = Tools.randomInt(0, resArr.length - 1);
             return resArr[randomIndex].lotteryIndex;
         }
     }
@@ -236,20 +235,20 @@ export class LotteryModuleC extends ModuleC<LotteryModuleS, null> {
 
     }
 
-    private showResPanel(itemId: number){
+    private showResPanel(itemId: number) {
         if (!this.insidePanel.getView().visible) {
             this.insidePanel.getView().mCanvas_lottery0.visibility = mw.SlateVisibility.Collapsed
             mw.UIService.showUI(this.insidePanel.getView())
         }
         this.insidePanel.showResPanel(itemId)
     }
-    
+
 }
 
-class RandomItem{
+class RandomItem {
     public itemId: number;
     public lotteryIndex: number;
-    constructor(itemId: number, lotteryIndex: number){
+    constructor(itemId: number, lotteryIndex: number) {
         this.itemId = itemId;
         this.lotteryIndex = lotteryIndex;
     }

@@ -1,14 +1,4 @@
-/*
- * @Author: ZiweiShen
- * @Date: 2022-07-08 14:19:17
- * @LastEditors: zhangqing.fang
- * @LastEditTime: 2022-11-04 11:13:53
- * @FilePath: \townmysteryAPI\JavaScripts\CommonUI\UIRoot.ts
- * @Description: 
- */
-
 import UIRoot from "../uiTemplate/Common/UIRoot";
-
 
 export default class P_UIRoot extends UIRoot {
     private selfShow: boolean = false;//姿势是否处于显示状态

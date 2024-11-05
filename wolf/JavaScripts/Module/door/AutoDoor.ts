@@ -1,4 +1,3 @@
-import { oTraceError, oTrace, oTraceWarning, LogManager ,AnalyticsUtil, IFightRole, AIMachine, AIState} from "odin";
 import { IDoorElement } from "../../Tables/Door";
 import { GameConfig } from "../../Tables/GameConfig";
 import { DoorModuleS } from "./DoorModuleS";

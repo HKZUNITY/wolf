@@ -45,7 +45,7 @@ export default class ${ClassName}_Generate extends ${SuperClassName} {
 		${TextBlock_HideEnd}
 	}
 	
-	/**初始化多语言*/
+	/*初始化多语言*/
 	private initLanguage(ui: mw.StaleButton | mw.TextBlock) {
         let call = mw.UIScript.getBehavior("lan");
         if (call && ui) {
@@ -55,12 +55,12 @@ export default class ${ClassName}_Generate extends ${SuperClassName} {
 
 	protected onShow(...params: any[]): void {};
 
-	/**显示panel*/
+	/*显示panel*/
     public show(...param): void {
 		mw.UIService.showUI(this, this.layer, ...param);
 	}
 
-	/**隐藏panel*/
+	/*隐藏panel*/
     public hide(): void {
 		mw.UIService.hideUI(this);
 	}

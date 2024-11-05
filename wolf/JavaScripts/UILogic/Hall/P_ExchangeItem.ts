@@ -1,10 +1,4 @@
-﻿
-/** 
- * AUTHOR: 达瓦里氏
- * TIME: 2023.08.01-17.40.30
- */
-
-import ExchangeItems_Generate from "../../ui-generate/uiTemplate/Hall/Exchange/ExchangeItems_generate";
+﻿import ExchangeItems_Generate from "../../ui-generate/uiTemplate/Hall/Exchange/ExchangeItems_generate";
 
 export default class P_ExchangeItem extends ExchangeItems_Generate {
 
@@ -121,11 +115,11 @@ export default class P_ExchangeItem extends ExchangeItems_Generate {
 	 */
 	//protected onDragLeave(InDragDropEvent:mw.PointerEvent,InDragDropOperation:mw.DragDropOperation) {
 	//}
-	
+
 	/**
 	 * 拖拽操作生成事件触发后，没有完成完成的拖拽事件而取消时触发
 	 */
 	//protected onDragCancelled(InDragDropEvent:mw.PointerEvent,InDragDropOperation:mw.DragDropOperation) {
 	//}
-	
+
 }

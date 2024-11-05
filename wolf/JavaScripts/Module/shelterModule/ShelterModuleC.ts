@@ -1,5 +1,4 @@
 import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
-﻿
 import { AutoAimModuleC } from "../Weapon/Aim/AutoAimModuleC";
 import ShelterModuleS from "./ShelterModuleS";
 export default class ShelterModuleC extends ModuleC<ShelterModuleS, null> {
@@ -10,26 +9,26 @@ export default class ShelterModuleC extends ModuleC<ShelterModuleS, null> {
         this.initShelterTrigger();
     }
 
-    public setActive(active: boolean){
+    public setActive(active: boolean) {
         this.isActive = active;
         this.enterPlayerMap.clear();
     }
 
-    public async initShelterTrigger(){
+    public async initShelterTrigger() {
         let parent = await GameObject.asyncFindGameObjectById("39CE2491");
         if (parent == null) {
             console.error("初始化遮蔽物失败");
             return;
         }
-        parent.getChildren().forEach((map)=>{
-            map.getChildren().forEach((shelter)=>{
+        parent.getChildren().forEach((map) => {
+            map.getChildren().forEach((shelter) => {
                 if (shelter instanceof mw.Trigger) {
-                    shelter.onEnter.add((other: mw.GameObject)=>{
+                    shelter.onEnter.add((other: mw.GameObject) => {
                         if (PlayerManagerExtesion.isCharacter(other) && this.isActive) {
                             this.enterPlayerMap.set(other.gameObjectId, true);
                         }
                     })
-                    shelter.onLeave.add((other: mw.GameObject)=>{
+                    shelter.onLeave.add((other: mw.GameObject) => {
                         if (PlayerManagerExtesion.isCharacter(other) && this.isActive) {
                             if (this.enterPlayerMap.has(other.gameObjectId)) {
                                 this.enterPlayerMap.delete(other.gameObjectId);
@@ -41,7 +40,7 @@ export default class ShelterModuleC extends ModuleC<ShelterModuleS, null> {
         })
     }
 
-    public getEnterPlayerMap(){
+    public getEnterPlayerMap() {
         return this.enterPlayerMap;
     }
 

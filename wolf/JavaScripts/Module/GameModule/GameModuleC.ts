@@ -1,36 +1,33 @@
-import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
-import { oTraceError, oTrace, oTraceWarning, LogManager ,AnalyticsUtil, IFightRole, AIMachine, AIState} from "odin";
 import P_Tips from "../../CommonUI/P_Tips";
 import P_TipsInGame, { UITipsInGameType } from "../../CommonUI/UITipsInGame";
-import { Camp, ColdWeaponAttackMode, Globals, KillType, PlayerWeaponState } from "../../Globals";
+import { Camp, ColdWeaponAttackMode, Globals, PlayerWeaponState } from "../../Globals";
+import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
+import { GeneralManager } from '../../Modified027Editor/ModifiedStaticAPI';
+import BedTrigger from "../../Prefabs/床01/Script/BedTrigger";
 import { GameConfig } from "../../Tables/GameConfig";
+import { Tools } from "../../Tools";
+import Game_HUD_Chat_Generate from "../../ui-generate/uiTemplate/bubbleModule/Game_HUD_Chat_generate";
+import WinWatch_Generate from "../../ui-generate/uiTemplate/Hall/WinWatch_generate";
 import P_Allot from "../../UILogic/Game/P_Allot";
 import P_CoinGet from "../../UILogic/Game/P_CoinGet";
 import P_Die from "../../UILogic/Game/P_Die";
 import P_Game from "../../UILogic/Game/P_Game";
 import P_GameFinal from "../../UILogic/Game/P_GameFinal";
+import P_KillParent from "../../UILogic/Game/P_KillParent";
+import P_Ready from "../../UILogic/Game/P_Ready";
+import P_Hall from "../../UILogic/Hall/P_Hall";
+import LoadMapModuleC from "../loadMapModule/LoadMapModuleC";
+import { PlayerModuleC } from "../PlayerModule/PlayerModuleC";
+import { WatchModuleC } from "../ProcModule/WatchModule";
+import { SkillModuleC } from "../SkillModule/SkillModuleC";
+import { AutoAimModuleC } from "../Weapon/Aim/AutoAimModuleC";
 import { ColdWeaponModuleC } from "../Weapon/ColdWeapon/ColdWeaponModuleC";
 import { HotWeaponModuleC } from "../Weapon/HotWeapon/HotWeaponModuleC";
 import { GameModuleData } from "./GameData";
 import { GameModuleS } from "./GameModuleS";
 import SoundManager = mw.SoundService;
-import P_Ready from "../../UILogic/Game/P_Ready";
-import BedTrigger from "../../Prefabs/床01/Script/BedTrigger";
-import WinWatch_Generate from "../../ui-generate/uiTemplate/Hall/WinWatch_generate";
-import P_Hall from "../../UILogic/Hall/P_Hall";
-import Lucency_Generate from "../../ui-generate/uiTemplate/Hall/Lucency_generate";
-import { AutoAimModuleC } from "../Weapon/Aim/AutoAimModuleC";
-import { Tools } from "../../Tools";
-import P_Kill from "../../UILogic/Game/P_Kill";
-import P_KillParent from "../../UILogic/Game/P_KillParent";
-import LoadMapModuleC from "../loadMapModule/LoadMapModuleC";
-import { PlayerModuleC } from "../PlayerModule/PlayerModuleC";
-import { SkillModuleC } from "../SkillModule/SkillModuleC";
-import Game_HUD_Chat_Generate from "../../ui-generate/uiTemplate/bubbleModule/Game_HUD_Chat_generate";
-import { WatchModuleC } from "../ProcModule/WatchModule";
-import { GeneralManager } from '../../Modified027Editor/ModifiedStaticAPI';
 
-export class GameModuleC extends ModuleC<GameModuleS, GameModuleData>{
+export class GameModuleC extends ModuleC<GameModuleS, GameModuleData> {
     private curCamp: Camp;
     private curWeaponState: PlayerWeaponState;
     private propEffectMap: Map<number, number> = new Map<number, number>();
@@ -58,16 +55,16 @@ export class GameModuleC extends ModuleC<GameModuleS, GameModuleData>{
         Event.addLocalListener(BedTrigger.subBedEnterClientEvent, this.onPlayerEnterHandler.bind(this))
         Event.addLocalListener(BedTrigger.subBedLeaveClientEvent, this.onPlayerLeaveHandler.bind(this))
     }
-    net_recoverDeathModelAppear(guidArr: Array<string>){
+    net_recoverDeathModelAppear(guidArr: Array<string>) {
         this.server.net_isRecover();
-        guidArr.forEach(async (value)=>{
+        guidArr.forEach(async (value) => {
             let npc = await GameObject.asyncFindGameObjectById(value) as mw.Character;
             if (npc) {
                 npc.description.advance.base.characterSetting.somatotype = mw.SomatotypeV2.AnimeFemale;
-                if(npc.isDescriptionReady){
+                if (npc.isDescriptionReady) {
                     AccountService.uploadData(npc);
-                }else{
-                    let fuc = ()=>{
+                } else {
+                    let fuc = () => {
                         npc.onDescriptionComplete.remove(fuc);
                         AccountService.uploadData(npc);
                     };
@@ -134,7 +131,7 @@ export class GameModuleC extends ModuleC<GameModuleS, GameModuleData>{
 
     }
     /**更改尸体外形 */
-    async net_changModelAppearance(modelGuid: string){
+    async net_changModelAppearance(modelGuid: string) {
         let model = await GameObject.asyncFindGameObjectById(modelGuid);
         if (model && PlayerManagerExtesion.isNpc(model)) {
             let npc = model as mw.Character;
@@ -160,7 +157,7 @@ export class GameModuleC extends ModuleC<GameModuleS, GameModuleData>{
         }
     }
     /**如果关键人物没有进入的时候需要把ui关了,还需要加一个提示 */
-    net_HideTitle(){
+    net_HideTitle() {
         P_Ready.instance.hide();
         P_Tips.show("有玩家没有成功进入场景，游戏重新开始");
     }
@@ -189,7 +186,7 @@ export class GameModuleC extends ModuleC<GameModuleS, GameModuleData>{
         this.clearAutoAnim(true);
     }
     /**展示消灭敌人的ui */
-    net_showAttackTip(pos: Vector){
+    net_showAttackTip(pos: Vector) {
         if (!this.killParentUI) {
             this.killParentUI = mw.UIService.show(P_KillParent);
         }
@@ -243,7 +240,7 @@ export class GameModuleC extends ModuleC<GameModuleS, GameModuleData>{
     }
 
     knifeAttack() {
-        // oTraceError(`distance ==== auto 彻底开启自动攻击`)
+        // console.warn(`distance ==== auto 彻底开启自动攻击`)
         if (this.curWeaponState != PlayerWeaponState.Knife) {
             //提示刀拿在手上才可以攻击
             // P_Tips.show(GameConfig.Tips.getElement(10001).Content);
@@ -257,7 +254,7 @@ export class GameModuleC extends ModuleC<GameModuleS, GameModuleData>{
         if (!isKnife) {
             return;
         }
-        
+
         ModuleService.getModule(ColdWeaponModuleC).beginKnifeAttack();
 
     }
@@ -360,7 +357,7 @@ export class GameModuleC extends ModuleC<GameModuleS, GameModuleData>{
     net_DieEffect() {
         P_Die.showDieEffectUI();
         let id = mw.SoundService.playSound(GameConfig.Assets.getElement(10010).Guid, 0, 6);
-        Tools.playShakeEffect(this.localPlayer, false);
+        Tools.cameraShake(false);
         setTimeout(() => {
             mw.SoundService.stopSound(id);
         }, GameConfig.Rule.getElement(10010).Time * 1000);
@@ -393,11 +390,11 @@ export class GameModuleC extends ModuleC<GameModuleS, GameModuleData>{
                 mw.UIService.getUI(WinWatch_Generate).mText_WinWatch_1.text = GameConfig.Text.getElement(20034).Content;
                 mw.UIService.getUI(WinWatch_Generate).mText_WinWatch_2.text = name;
                 ModuleService.getModule(WatchModuleC).changeWatchTarget(obj);
-                oTrace(`Camera :: ===== 相机设置1`);
+                console.warn(`Camera :: ===== 相机设置1`);
                 this.curPlayer.character.movementEnabled = false;
             })
         } else {
-            oTrace(`Camera :: ===== 相机设置2`);
+            console.warn(`Camera :: ===== 相机设置2`);
             P_Hall.showHallUI();
             mw.UIService.show(Game_HUD_Chat_Generate);
             // P_Game.showGameUI();

@@ -1,28 +1,16 @@
 import { PlayerManagerExtesion, } from '../../../Modified027Editor/ModifiedPlayer';
-﻿/*
- * @Author: ZiweiShen
- * @Date: 2022-07-08 14:19:17
- * @LastEditors: ziwei.shen
- * @LastEditTime: 2022-12-25 16:41:58
- * @FilePath: \townmystery\JavaScripts\Module\Weapon\ColdWeapon\ColdWeaponModuleS.ts
- * @Description: 
- */
-import { oTraceError, oTrace, oTraceWarning, LogManager, AnalyticsUtil, IFightRole, AIMachine, AIState } from "odin";
-import { AiOrPlayer, Camp, ColdWeaponAttackMode, GameGlobals, GamingState, KillType } from "../../../Globals";
-import { MGSDataInfo } from "../../../MGSHome";
+import { AiOrPlayer, Camp, GameGlobals, GamingState, KillType } from "../../../Globals";
+import { GeneralManager } from '../../../Modified027Editor/ModifiedStaticAPI';
 import { GameConfig } from "../../../Tables/GameConfig";
-import { IWeaponElement } from "../../../Tables/Weapon";
 import { Tools } from "../../../Tools";
 import { BagModuleData } from "../../BagModule/BagData";
 import { BagModuleS } from "../../BagModule/BagModuleS";
 import { GameModuleData } from "../../GameModule/GameData";
 import { GameModuleS } from "../../GameModule/GameModuleS";
-import { ColdWeaponModuleC } from "./ColdWeaponModuleC";
-import { Projectile } from "../HotWeapon/Bullet";
 import { SkillModuleS } from "../../SkillModule/SkillModuleS";
-import { SkillBulletParam } from "../../SkillModule/InGameSkill";
-import { GeneralManager } from '../../../Modified027Editor/ModifiedStaticAPI';
-export class ColdWeaponModuleS extends ModuleS<ColdWeaponModuleC, null>{
+import { Projectile } from "../HotWeapon/Bullet";
+import { ColdWeaponModuleC } from "./ColdWeaponModuleC";
+export class ColdWeaponModuleS extends ModuleS<ColdWeaponModuleC, null> {
     private effectdelay: number = GameConfig.Rule.getElement(10022).Time * 1000;
     private reloadMap: Map<number, number> = new Map<number, number>()
     private rotateTime: number = 0.1
@@ -55,36 +43,33 @@ export class ColdWeaponModuleS extends ModuleS<ColdWeaponModuleC, null>{
         targets = targetTrigger.filter(value => (PlayerManagerExtesion.isNpc(value) || PlayerManagerExtesion.isCharacter(value)) && value != attack);
         targets.forEach(target => {
             let res: number;
-            oTrace("目标类型" + (PlayerManagerExtesion.isNpc(target)))
+            console.warn("目标类型" + (PlayerManagerExtesion.isNpc(target)))
             let v2ToVec = new Vector2(target.worldTransform.position.x, target.worldTransform.position.y);
             let v2foVec = new Vector2(attack.worldTransform.position.x, attack.worldTransform.position.y);
             let dir = v2ToVec.subtract(v2foVec).normalize();
             let v3Forward = attack.worldTransform.getForwardVector().normalize();
             let v2Forward = new Vector2(v3Forward.x, v3Forward.y);
             let angle = Math.abs(Vector2.angle(v2Forward, dir));
-            // oTraceError(`angle 真人 ==== foVec ${foVec}`);
-            // oTraceError(`angle 真人 ==== toVec ${toVec}`);
-            // oTraceError(`angle 真人 ==== angle ${angle}`);
+            // console.warn(`angle 真人 ==== foVec ${foVec}`);
+            // console.warn(`angle 真人 ==== toVec ${toVec}`);
+            // console.warn(`angle 真人 ==== angle ${angle}`);
 
-            if (Math.abs(angle) > this.attackAngle/2) return;
-            
+            if (Math.abs(angle) > this.attackAngle / 2) return;
+
             let foZ = this.getHumanRootPosition(attack).z;
             let toZ = this.getHumanRootPosition(target).z;
             let height = foZ - toZ;
             if (height > this.attackMaxHeight || height < this.attackMinHeight) return;
             if (Tools.isAiPlayer(target as mw.Character)) {
-                let aiobj = Tools.getAiObj(target as mw.Character);
+                let aiobj = Tools.getAiObject(target as mw.Character);
                 if (aiobj == null) return;
                 res = ModuleService.getModule(GameModuleS).serverChangeHp(configId, AiOrPlayer.AiPlayer, Camp.Spy, KillType.Knife, null, aiobj);
             }
-            else if(PlayerManagerExtesion.isCharacter(target) && GameGlobals.livePlayers.includes(target.player)) {
+            else if (PlayerManagerExtesion.isCharacter(target) && GameGlobals.livePlayers.includes(target.player)) {
                 res = ModuleService.getModule(GameModuleS).serverChangeHp(configId, AiOrPlayer.RealPlayer, Camp.Spy, KillType.Knife, (target as mw.Character).player);
             }
-            else{
+            else {
                 return;
-            }
-            if (res == 0) {
-                MGSDataInfo.kill_player++;
             }
             Tools.playHitSound(1, target);
             if (PlayerManagerExtesion.isCharacter(attack)) {
@@ -94,15 +79,15 @@ export class ColdWeaponModuleS extends ModuleS<ColdWeaponModuleC, null>{
         })
     }
 
-    public getHumanRootPosition(human: mw.Character| mw.Character){
+    public getHumanRootPosition(human: mw.Character | mw.Character) {
         return human.getSlotWorldPosition(mw.HumanoidSlotType.Root);
     }
 
     public net_KnifeAttack() {
-        // oTrace(`distance ==== 开始小刀攻击`)
+        // console.warn(`distance ==== 开始小刀攻击`)
         DataCenterS.getData(this.currentPlayer, GameModuleData).addAttackNum(1);
         let player = this.currentPlayer;
-        // oTrace("玩家挥刀攻击" + this.currentPlayer.playerId);
+        // console.warn("玩家挥刀攻击" + this.currentPlayer.playerId);
 
         let weaponId = ModuleService.getModule(BagModuleS).getColdWeaponId(player.playerId);
         let config = GameConfig.Weapon.getElement(weaponId);
@@ -120,12 +105,12 @@ export class ColdWeaponModuleS extends ModuleS<ColdWeaponModuleC, null>{
             this.checkTarget(curColdWeapon, player.character);
         }, config.AttackLatency * 1000);
     }
-    private playRandomAnimation(player: mw.Player){
-        let index = Tools.getRandomInt(0, this.actionArr.length - 1);
+    private playRandomAnimation(player: mw.Player) {
+        let index = Tools.randomInt(0, this.actionArr.length - 1);
         let actionId = this.actionArr[index];
         let anim = PlayerManagerExtesion.loadAnimationExtesion(player.character, actionId);
         let length = anim.length;
-        let playRate = length/ this.actionTime;
+        let playRate = length / this.actionTime;
         anim.slot = AnimSlot.Upper;
         anim.speed = playRate;
         anim.play();
@@ -135,7 +120,7 @@ export class ColdWeaponModuleS extends ModuleS<ColdWeaponModuleC, null>{
     public async net_throwColdWeapon(forward: mw.Vector) {
         //换弹计时
         console.error("服务器接受飞刀");
-        
+
         this.addPlayerReload(this.currentPlayer)
         let weapon = ModuleService.getModule(BagModuleS).getColdWeaponObj(this.currentPlayer)
         let vec = forward;
@@ -147,9 +132,9 @@ export class ColdWeaponModuleS extends ModuleS<ColdWeaponModuleC, null>{
         let weaponGuid = ModuleService.getModule(BagModuleS).getColdWeaponId(this.currentPlayerId);
         let skill = ModuleService.getModule(SkillModuleS).getBulletSkill(this.currentPlayerId);
         if (skill) {
-            skill.fireBullet({weaponId: weaponGuid, startPos: loc, dir: dir});
+            skill.fireBullet({ weaponId: weaponGuid, startPos: loc, dir: dir });
         }
-        else{
+        else {
             let bulletObj = new Projectile();
             await bulletObj.coldWeaponChange(weaponGuid, this.currentPlayer, AiOrPlayer.RealPlayer);
             bulletObj.fire(this.currentPlayer, loc, dir);

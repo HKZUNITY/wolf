@@ -1,9 +1,8 @@
-import { oTraceError, oTrace, oTraceWarning, LogManager ,AnalyticsUtil, IFightRole, AIMachine, AIState} from "odin";
+import { UiManager } from "../../UI/UiManager";
+import P_Action from "../../UILogic/Game/P_Action";
+import P_Game from "../../UILogic/Game/P_Game";
 import { DoorModuleS } from "./DoorModuleS";
 import P_KeyUI from "./doorUI/P_KeyUI";
-import { UiManager } from "../../UI/UiManager";
-import P_Game from "../../UILogic/Game/P_Game";
-import P_Action from "../../UILogic/Game/P_Action";
 
 export class DoorModuleC extends ModuleC<DoorModuleS, null> {
     private keyUI: P_KeyUI;

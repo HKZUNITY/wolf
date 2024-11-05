@@ -3,19 +3,14 @@ import { GameConfig } from "./Tables/GameConfig";
 import { ISoundElement } from "./Tables/Sound";
 
 export class Globals {
+    public static languageId: number = -1;
     public static isDebug: boolean = false;
     public static isShowLineTrace: boolean = false;
     public static pieIsVip: boolean = false;
     public static pieGoldKey: number = 2;
     ///////////////////////////////////////////物体guid////////////////////////////////////////////////////////////
-    /**摄像机绑定物体的guid */
-    public static anim_CameraGuid: string = "81CC7E21";
-    /**是否在pc上面展示广告 */
-    public static isShowAdv: boolean = false;
     /**大厅出生点父物体guid */
     public static hallBornGuid: string = "2C4F453B";
-    /**游戏出生点父物体guid */
-    public static gameBornGuid: string = "6A4B9B76";//走配表了
     /**断线重连出生点 */
     public static reBornGuid: string = "5E181623";
     ///////////////////////////////////////////游戏时间配置/////////////////////////////////////////////////////////
@@ -34,8 +29,6 @@ export class Globals {
     public static gameReadyTime: number = Globals.isDebug ? 3 : GameConfig.Rule.getElement(10019).Time;
     /**游戏时间 */
     public static gameTime: number = Globals.isDebug ? 20 : GameConfig.Rule.getElement(10002).Time;
-    /**结算UI显示时间 */
-    public static calTime: number = 14;
     /**黑幕时间 */
     public static blackTime: number = Globals.isDebug ? 1 : GameConfig.Rule.getElement(50001).Time;
     /**游戏终结展示时间 */
@@ -85,14 +78,8 @@ export class GameGlobals {
     /**游戏出生点数组 */
     public static gameBornList: Array<mw.GameObject> = new Array<mw.GameObject>();
 
-    /**死亡血迹数组 */
-    public static deathHudList: Array<mw.GameObject> = new Array<mw.GameObject>();
-
     /**死亡人物AI模型数组 */
     public static deathModelList: Array<mw.Character> = new Array<mw.Character>();
-
-    /** 死亡尸体  */
-    public static deathCorpseList: Array<mw.Character> = new Array();
 
     /**警探 */
     public static policePlayer: mw.Player;
@@ -149,17 +136,28 @@ export class leaveInfo {
     coldId: number;
 }
 export enum GamingState {
-    InitState,//0初始化游戏，此时还没有玩家进入
-    WaitingState,//1等待玩家加入
-    ReadyState,//2准备阶段，即将开始游戏
-    MapState,//2.1选择地图阶段
-    LoadingSceneState,//2.2加载场景阶段
-    InitGameState,//3初始化游戏场景阶段
-    ChooseState,//4选择阵营阶段
-    GameReadyState,//5游戏准备阶段
-    GamingState,//6游戏阶段
-    GamingFinish, //7游戏终结展示阶段
-    CalculateState//8结算阶段
+    /**0初始化游戏，此时还没有玩家进入 */
+    InitState,
+    /**1等待玩家加入 */
+    WaitingState,
+    /**2准备阶段，即将开始游戏 */
+    ReadyState,
+    /**2.1选择地图阶段 */
+    MapState,
+    /**2.2加载场景阶段 */
+    LoadingSceneState,
+    /**3初始化游戏场景阶段 */
+    InitGameState,
+    /**4选择阵营阶段 */
+    ChooseState,
+    /**5游戏准备阶段 */
+    GameReadyState,
+    /**6游戏阶段 */
+    GamingState,
+    /**7游戏终结展示阶段 */
+    GamingFinish,
+    /**8结算阶段 */
+    CalculateState
 }
 
 /** 全局音效 */

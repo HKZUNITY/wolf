@@ -1,11 +1,4 @@
-﻿
-/** 
- * AUTHOR: 达瓦里氏
- * TIME: 2023.07.23-19.58.54
- */
-
-import { PlayerModuleC } from "../../Module/PlayerModule/PlayerModuleC";
-import { SceneModuleC } from "../../Module/ProcModule/SceneModule";
+﻿import { PlayerModuleC } from "../../Module/PlayerModule/PlayerModuleC";
 import Reset_Generate from "../../ui-generate/uiTemplate/Reset_generate";
 
 export default class P_Reset extends Reset_Generate {
@@ -21,7 +14,7 @@ export default class P_Reset extends Reset_Generate {
 	}
 
 	private initBtnHandler() {
-		this.mBtn_Reset.onClicked.add(()=>{
+		this.mBtn_Reset.onClicked.add(() => {
 			ModuleService.getModule(PlayerModuleC).onResetPlayerCamera();
 		})
 	}
@@ -130,11 +123,11 @@ export default class P_Reset extends Reset_Generate {
 	 */
 	//protected onDragLeave(InDragDropEvent:mw.PointerEvent,InDragDropOperation:mw.DragDropOperation) {
 	//}
-	
+
 	/**
 	 * 拖拽操作生成事件触发后，没有完成完成的拖拽事件而取消时触发
 	 */
 	//protected onDragCancelled(InDragDropEvent:mw.PointerEvent,InDragDropOperation:mw.DragDropOperation) {
 	//}
-	
+
 }

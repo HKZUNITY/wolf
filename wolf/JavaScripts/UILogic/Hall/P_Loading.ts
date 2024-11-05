@@ -1,13 +1,4 @@
-﻿
-/*
- * @Author: zhangqing.fang
- * @Date: 2022-11-02 09:55:51
- * @LastEditors: zhangqing.fang
- * @LastEditTime: 2022-11-03 10:08:21
- * @FilePath: \townmysteryAPIReview\JavaScripts\UILogic\Hall\P_Loading.ts
- * @Description: 
- */
-import { Globals } from "../../Globals";
+﻿import { Globals } from "../../Globals";
 import { GameConfig } from "../../Tables/GameConfig";
 import LoadingScene from "../../uiTemplate/Hall/LoadingScene";
 export default class P_Loading extends LoadingScene {
