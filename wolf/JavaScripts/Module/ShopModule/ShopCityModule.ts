@@ -20,8 +20,34 @@ export class ShopModuleC extends ModuleC<ShopModuleS, ShopModuleData> {
 				this.ShopOpen(true, true);
 				this.panel.showItemShop(10034);
 			}
-		})
+		});
+		this.initShopCamera();
 	}
+
+	public onSwitchCameraAction: Action1<number> = new Action1<number>();
+	private async initShopCamera(): Promise<void> {
+		let myCamera = Camera.currentCamera;
+		let shopCamera: mw.Camera = await GameObject.asyncSpawn<mw.Camera>(`Camera`);
+		shopCamera.parent = Player.localPlayer.character;
+		shopCamera.localTransform.position = new mw.Vector(200, -10, 30);
+		shopCamera.localTransform.rotation = new mw.Rotation(0, -5, 200);
+		this.onSwitchCameraAction.add((cameraType: number) => {
+			if (cameraType == 0) {
+				Camera.switch(myCamera);
+			} else {
+				Camera.switch(shopCamera, 0.5, mw.CameraSwitchBlendFunction.Linear);
+			}
+		});
+	}
+
+	private openShop(isOpen: boolean): void {
+		if (isOpen) {
+			this.onSwitchCameraAction.call(1);
+		} else {
+			this.onSwitchCameraAction.call(0);
+		}
+	}
+
 	/**获取拥有的物品列表 */
 	public getHaveArray() {
 		if (this.panel == null) {
@@ -59,31 +85,31 @@ export class ShopModuleC extends ModuleC<ShopModuleS, ShopModuleData> {
 			//其他UI隐藏
 			P_Hall.instance.showShop();
 			//摄像机
-			this.cameraSet(true)
+			this.openShop(true);
 		}
 		else {
 			UIService.hideUI(this.panel.getView());
 			this.previewCloth(null, false);
 			P_Hall.instance.hideShop();
 			//摄像机
-			this.cameraSet(false)
+			this.openShop(false);
 			this.panel.onHide();
 		}
 	}
-	cameraSet(value: boolean) {
-		//摄像机
-		let char = Player.localPlayer.character;
-		if (value) {
-			char.movementEnabled = false;
-			char.jumpEnabled = false;
-			Tools.setPlayerCloseup(true, 0.18, -20, 40);
-		}
-		else {
-			char.movementEnabled = true;
-			char.jumpEnabled = true;
-			Tools.setPlayerCloseup(false);
-		}
-	}
+	// cameraSet(value: boolean) {
+	// 	//摄像机
+	// 	let char = Player.localPlayer.character;
+	// 	if (value) {
+	// 		char.movementEnabled = false;
+	// 		char.jumpEnabled = false;
+	// 		Tools.setPlayerCloseup(true, 0.18, -20, 40);
+	// 	}
+	// 	else {
+	// 		char.movementEnabled = true;
+	// 		char.jumpEnabled = true;
+	// 		Tools.setPlayerCloseup(false);
+	// 	}
+	// }
 
 	//创建UI
 	private creatPanel(): ShopPanel {

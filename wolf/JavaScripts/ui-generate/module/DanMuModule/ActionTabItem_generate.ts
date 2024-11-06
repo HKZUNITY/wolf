@@ -2,18 +2,25 @@
  * AUTO GENERATE BY UI EDITOR.
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
- * UI: UI/module/DanMuModule/ChatItem2.ui
+ * UI: UI/module/DanMuModule/ActionTabItem.ui
  * TIME: 2024.11.06-21.03.37
  */
  
-@UIBind('UI/module/DanMuModule/ChatItem2.ui')
-export default class ChatItem2_Generate extends UIScript {
-		private mClickButton_Internal: mw.StaleButton
-	public get mClickButton(): mw.StaleButton {
+@UIBind('UI/module/DanMuModule/ActionTabItem.ui')
+export default class ActionTabItem_Generate extends UIScript {
+		private mClickButton_Internal: mw.Button
+	public get mClickButton(): mw.Button {
 		if(!this.mClickButton_Internal&&this.uiWidgetBase) {
-			this.mClickButton_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mClickButton') as mw.StaleButton
+			this.mClickButton_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mClickButton') as mw.Button
 		}
 		return this.mClickButton_Internal
+	}
+	private mTabNameTextBlock_Internal: mw.TextBlock
+	public get mTabNameTextBlock(): mw.TextBlock {
+		if(!this.mTabNameTextBlock_Internal&&this.uiWidgetBase) {
+			this.mTabNameTextBlock_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mClickButton/mTabNameTextBlock') as mw.TextBlock
+		}
+		return this.mTabNameTextBlock_Internal
 	}
 
 
@@ -26,19 +33,21 @@ export default class ChatItem2_Generate extends UIScript {
 	protected initButtons() {
 		//按钮添加点击
 		
+		//按钮添加点击
+		
 		this.mClickButton.onClicked.add(()=>{
 			Event.dispatchToLocal("PlayButtonClick", "mClickButton");
 		});
-		this.initLanguage(this.mClickButton);
 		this.mClickButton.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
 		
 	
-		//按钮添加点击
-		
 		//按钮多语言
 		
 		//文本多语言
 		
+		this.initLanguage(this.mTabNameTextBlock)
+		
+	
 		//文本多语言
 		
 	}

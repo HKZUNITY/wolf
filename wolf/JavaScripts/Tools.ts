@@ -36,6 +36,10 @@ export class Tools {
         }
     }
 
+    public static setWidgetVisibility(ui: mw.Widget, visibility: mw.SlateVisibility): void {
+        if (ui.visibility != visibility) ui.visibility = visibility;
+    }
+
     /**
      * 播放音效
      * @param confId 配置表id

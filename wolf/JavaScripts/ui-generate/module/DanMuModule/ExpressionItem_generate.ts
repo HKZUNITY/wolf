@@ -2,18 +2,25 @@
  * AUTO GENERATE BY UI EDITOR.
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
- * UI: UI/module/DanMuModule/DanMuPanel.ui
+ * UI: UI/module/DanMuModule/ExpressionItem.ui
  * TIME: 2024.11.06-21.03.37
  */
  
-@UIBind('UI/module/DanMuModule/DanMuPanel.ui')
-export default class DanMuPanel_Generate extends UIScript {
-		private mDanMuCanvas_Internal: mw.Canvas
-	public get mDanMuCanvas(): mw.Canvas {
-		if(!this.mDanMuCanvas_Internal&&this.uiWidgetBase) {
-			this.mDanMuCanvas_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mDanMuCanvas') as mw.Canvas
+@UIBind('UI/module/DanMuModule/ExpressionItem.ui')
+export default class ExpressionItem_Generate extends UIScript {
+		private mClickButton_Internal: mw.Button
+	public get mClickButton(): mw.Button {
+		if(!this.mClickButton_Internal&&this.uiWidgetBase) {
+			this.mClickButton_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mClickButton') as mw.Button
 		}
-		return this.mDanMuCanvas_Internal
+		return this.mClickButton_Internal
+	}
+	private mIconImage_Internal: mw.Image
+	public get mIconImage(): mw.Image {
+		if(!this.mIconImage_Internal&&this.uiWidgetBase) {
+			this.mIconImage_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mIconImage') as mw.Image
+		}
+		return this.mIconImage_Internal
 	}
 
 
@@ -28,6 +35,12 @@ export default class DanMuPanel_Generate extends UIScript {
 		
 		//按钮添加点击
 		
+		this.mClickButton.onClicked.add(()=>{
+			Event.dispatchToLocal("PlayButtonClick", "mClickButton");
+		});
+		this.mClickButton.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
+		
+	
 		//按钮多语言
 		
 		//文本多语言

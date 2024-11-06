@@ -1,14 +1,18 @@
-﻿import { IChatElement } from "../../Tables/Chat";
+﻿import { IActionConfigElement } from "../../Tables/ActionConfig";
+import { IChatElement } from "../../Tables/Chat";
+import { IExpressionElement } from "../../Tables/Expression";
 import { GameConfig } from "../../Tables/GameConfig";
+import { Tools } from "../../Tools";
 import BubbleItem_Generate from "../../ui-generate/module/DanMuModule/BubbleItem_generate";
 import { Bubble } from "./Bubble";
-import { ChatData } from "./DanMuData";
+import { ChatData, ActionData } from "./DanMuData";
 import DanMuModuleS from "./DanMuModuleS";
 import ChatPanel from "./ui/ChatPanel";
 import DanMuPanel from "./ui/DanMuPanel";
 
 export const DanmuSyncServer = "DanmuSyncServer";
 export const DanmuSyncClient = "DanmuSyncClient";
+export const StopAction = "StopAction";
 export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
     private danMuPanel: DanMuPanel = null;
     private get getDanMuPanel(): DanMuPanel {
@@ -29,6 +33,11 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
     public onOpenChatAction: Action = new Action();
     public onClickChatItem1Action: Action1<number> = new Action1<number>();
     public onClickChatItem2Action: Action2<number, number> = new Action2<number, number>();
+    public onOpenExpressionAction: Action = new Action();
+    public onClickExpressionItemAction: Action1<number> = new Action1<number>();
+    public onOpenActionAction: Action = new Action();
+    public onClickActionTabAction: Action1<number> = new Action1<number>();
+    public onClickActionItemAction: Action1<number> = new Action1<number>();
 
     protected onStart(): void {
         this.bindEvent();
@@ -64,6 +73,12 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
         this.onOpenChatAction.add(this.addOpenChatAction.bind(this));
         this.onClickChatItem1Action.add(this.addClickChatItem1Action.bind(this));
         this.onClickChatItem2Action.add(this.addClickChatItem2Action.bind(this));
+        this.onOpenExpressionAction.add(this.addOpenExpressionAction.bind(this));
+        this.onClickExpressionItemAction.add(this.addClickExpressionItemAction.bind(this));
+        this.onOpenActionAction.add(this.addOpenActionAction.bind(this));
+        this.onClickActionTabAction.add(this.addClickActionTabAction.bind(this));
+        this.onClickActionItemAction.add(this.addClickActionItemAction.bind(this));
+        Event.addLocalListener(StopAction, this.addStopAction.bind(this));
     }
 
     //#region  弹幕
@@ -128,7 +143,7 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
         } else {
             Event.dispatchToLocal(DanmuSyncServer, chatData.chats[1]);
             this.showBubbleText(chatData.chats[1]);
-            this.getChatPanel.closeChatList1();
+            // this.getChatPanel.closeChatList1List2();
         }
     }
 
@@ -141,7 +156,7 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
             text = StringUtil.format(chatData.chats[1], text);//TODO:LanguageId
             Event.dispatchToLocal(DanmuSyncServer, text);
             this.showBubbleText(text);
-            this.getChatPanel.closeChatList1();
+            // this.getChatPanel.closeChatList1List2();
         }
     }
     //#endregion
@@ -237,6 +252,137 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
                 i--;
             }
         }
+    }
+    //#endregion
+
+    //#region 表情
+    private expressionAssets: string[] = [];
+    public net_initExpressionDatas(expressionAssets: string[]): void {
+        this.expressionAssets = expressionAssets;
+        console.error(JSON.stringify(expressionAssets));
+    }
+
+    private isAlreadyInitExpressionDatas: boolean = false;
+    private addOpenExpressionAction(): void {
+        if (!this.isAlreadyInitExpressionDatas) {
+            if (!this.expressionAssets || this.expressionAssets.length == 0) {
+                this.expressionAssets = [];
+                GameConfig.Expression.getAllElement().forEach((value: IExpressionElement) => {
+                    this.expressionAssets.push(value.AssetId);
+                });
+            }
+            this.getChatPanel.showExpressionList(this.expressionAssets, this.isAlreadyInitExpressionDatas);
+            this.isAlreadyInitExpressionDatas = true;
+        } else {
+            this.getChatPanel.showExpressionList(this.expressionAssets, this.isAlreadyInitExpressionDatas);
+        }
+    }
+
+    private addClickExpressionItemAction(index: number): void {
+        if (this.expressionAssets.length <= index) return;
+        let assetId = this.expressionAssets[index];
+        if (!assetId || assetId == "") return;
+        // this.getChatPanel.closeExpressionList();
+        this.server.net_playExpression(assetId);
+    }
+
+    private expressionMap: Map<number, { playId: number, timeoutId: any }> = new Map<number, { playId: number, timeoutId: any }>();
+    public net_playExpression(playerId: number, assetId: string): void {
+        let player = Player.getPlayer(playerId);
+        if (!player) return;
+        Tools.asyncDownloadAsset(assetId).then(() => {
+            if (this.expressionMap.has(playerId)) {
+                let expression = this.expressionMap.get(playerId);
+                if (expression.playId) {
+                    EffectService.stop(expression.playId);
+                    expression.playId = null;
+                }
+                if (expression.timeoutId) {
+                    clearTimeout(expression.timeoutId);
+                    expression.timeoutId = null;
+                }
+            }
+            let playId = EffectService.playOnGameObject(assetId, player.character, { slotType: mw.HumanoidSlotType.Root, loopCount: 0, position: new mw.Vector(0, 0, 200) });
+            let timeoutId = setTimeout(() => {
+                if (this.expressionMap.has(playerId)) {
+                    let expression = this.expressionMap.get(playerId);
+                    if (expression.playId) {
+                        EffectService.stop(expression.playId);
+                        expression.playId = null;
+                    }
+                    if (expression.timeoutId) {
+                        clearTimeout(expression.timeoutId);
+                        expression.timeoutId = null;
+                    }
+                }
+            }, 5 * 1000);
+            this.expressionMap.set(playerId, { playId: playId, timeoutId: timeoutId });
+        });
+    }
+    //#endregion
+
+    //#region 动作
+    private actionDatas: ActionData[] = [];
+    private actionDataMap: Map<number, ActionData[]> = new Map<number, ActionData[]>();
+    public net_initActionDatas(actionDatas: ActionData[]): void {
+        this.actionDatas = actionDatas;
+        console.error(JSON.stringify(actionDatas));
+        this.actionDataMap.clear();
+        actionDatas.forEach((value: ActionData) => {
+            if (this.actionDataMap.has(value.tab)) {
+                let actionDatas = this.actionDataMap.get(value.tab);
+                actionDatas.push(value);
+            } else {
+                this.actionDataMap.set(value.tab, [value]);
+            }
+        });
+    }
+
+    private isAlreadyInitActionDatas: boolean = false;
+    private addOpenActionAction(): void {
+        if (!this.isAlreadyInitActionDatas) {
+            if (!this.actionDataMap || this.actionDataMap.size == 0) {
+                this.actionDataMap = new Map<number, ActionData[]>();
+                this.actionDataMap.clear();
+                GameConfig.ActionConfig.getAllElement().forEach((value: IActionConfigElement) => {
+                    let actionData = new ActionData();
+                    actionData.tab = value.Tab;
+                    actionData.icon = value.Icon;
+                    actionData.assetId = value.ActionId;
+                    actionData.names = value.Names;
+                    actionData.loop = value.Loop;
+                    if (this.actionDataMap.has(actionData.tab)) {
+                        let actionDatas = this.actionDataMap.get(actionData.tab);
+                        actionDatas.push(actionData);
+                    } else {
+                        this.actionDataMap.set(actionData.tab, [actionData]);
+                    }
+                });
+            }
+            this.getChatPanel.showActionList(this.actionDataMap, this.isAlreadyInitActionDatas);
+            this.isAlreadyInitActionDatas = true;
+        } else {
+            this.getChatPanel.showActionList(this.actionDataMap, this.isAlreadyInitActionDatas);
+        }
+    }
+
+    private actionTabIndex: number = 0;
+    private addClickActionTabAction(index: number): void {
+        if (this.actionTabIndex == index) return;
+        this.actionTabIndex = index;
+        this.getChatPanel.showActionItemList(this.actionTabIndex);
+    }
+
+    private addClickActionItemAction(index: number): void {
+        if (!this.actionDataMap.has(this.actionTabIndex)) return;
+        let actionDatas = this.actionDataMap.get(this.actionTabIndex);
+        if (!actionDatas || actionDatas.length == 0 || index >= actionDatas.length) return;
+        let actionData = actionDatas[index];
+        this.server.net_playAction(true, actionData);
+    }
+
+    private addStopAction(): void {
+        this.server.net_playAction(false, null);
     }
     //#endregion
 }

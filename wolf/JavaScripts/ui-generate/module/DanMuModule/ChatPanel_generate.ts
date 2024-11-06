@@ -3,7 +3,7 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/module/DanMuModule/ChatPanel.ui
- * TIME: 2024.11.05-20.13.04
+ * TIME: 2024.11.06-21.03.37
  */
  
 @UIBind('UI/module/DanMuModule/ChatPanel.ui')
@@ -99,6 +99,125 @@ export default class ChatPanel_Generate extends UIScript {
 		}
 		return this.mCloseChatList2Button_Internal
 	}
+	private mOpenExpressionCanvas_Internal: mw.Canvas
+	public get mOpenExpressionCanvas(): mw.Canvas {
+		if(!this.mOpenExpressionCanvas_Internal&&this.uiWidgetBase) {
+			this.mOpenExpressionCanvas_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenExpressionCanvas') as mw.Canvas
+		}
+		return this.mOpenExpressionCanvas_Internal
+	}
+	private mOpenExpressionBgImage_Internal: mw.Image
+	public get mOpenExpressionBgImage(): mw.Image {
+		if(!this.mOpenExpressionBgImage_Internal&&this.uiWidgetBase) {
+			this.mOpenExpressionBgImage_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenExpressionCanvas/mOpenExpressionBgImage') as mw.Image
+		}
+		return this.mOpenExpressionBgImage_Internal
+	}
+	private mOpenExpressionButton_Internal: mw.StaleButton
+	public get mOpenExpressionButton(): mw.StaleButton {
+		if(!this.mOpenExpressionButton_Internal&&this.uiWidgetBase) {
+			this.mOpenExpressionButton_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenExpressionCanvas/mOpenExpressionButton') as mw.StaleButton
+		}
+		return this.mOpenExpressionButton_Internal
+	}
+	private mExpressionListCanvas_Internal: mw.Canvas
+	public get mExpressionListCanvas(): mw.Canvas {
+		if(!this.mExpressionListCanvas_Internal&&this.uiWidgetBase) {
+			this.mExpressionListCanvas_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mExpressionListCanvas') as mw.Canvas
+		}
+		return this.mExpressionListCanvas_Internal
+	}
+	private mExpressionBgImage_Internal: mw.Image
+	public get mExpressionBgImage(): mw.Image {
+		if(!this.mExpressionBgImage_Internal&&this.uiWidgetBase) {
+			this.mExpressionBgImage_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mExpressionListCanvas/ExpressionListCanvas/mExpressionBgImage') as mw.Image
+		}
+		return this.mExpressionBgImage_Internal
+	}
+	private mExpressionScrollBox_Internal: mw.ScrollBox
+	public get mExpressionScrollBox(): mw.ScrollBox {
+		if(!this.mExpressionScrollBox_Internal&&this.uiWidgetBase) {
+			this.mExpressionScrollBox_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mExpressionListCanvas/ExpressionListCanvas/mExpressionScrollBox') as mw.ScrollBox
+		}
+		return this.mExpressionScrollBox_Internal
+	}
+	private mExpressionListContentCanvas_Internal: mw.Canvas
+	public get mExpressionListContentCanvas(): mw.Canvas {
+		if(!this.mExpressionListContentCanvas_Internal&&this.uiWidgetBase) {
+			this.mExpressionListContentCanvas_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mExpressionListCanvas/ExpressionListCanvas/mExpressionScrollBox/mExpressionListContentCanvas') as mw.Canvas
+		}
+		return this.mExpressionListContentCanvas_Internal
+	}
+	private mCloseExpressionListButton_Internal: mw.Button
+	public get mCloseExpressionListButton(): mw.Button {
+		if(!this.mCloseExpressionListButton_Internal&&this.uiWidgetBase) {
+			this.mCloseExpressionListButton_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mExpressionListCanvas/ExpressionListCanvas/mCloseExpressionListButton') as mw.Button
+		}
+		return this.mCloseExpressionListButton_Internal
+	}
+	private mOpenActionCanvas_Internal: mw.Canvas
+	public get mOpenActionCanvas(): mw.Canvas {
+		if(!this.mOpenActionCanvas_Internal&&this.uiWidgetBase) {
+			this.mOpenActionCanvas_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenActionCanvas') as mw.Canvas
+		}
+		return this.mOpenActionCanvas_Internal
+	}
+	private mOpenActionBgImage_Internal: mw.Image
+	public get mOpenActionBgImage(): mw.Image {
+		if(!this.mOpenActionBgImage_Internal&&this.uiWidgetBase) {
+			this.mOpenActionBgImage_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenActionCanvas/mOpenActionBgImage') as mw.Image
+		}
+		return this.mOpenActionBgImage_Internal
+	}
+	private mOpenActionButton_Internal: mw.StaleButton
+	public get mOpenActionButton(): mw.StaleButton {
+		if(!this.mOpenActionButton_Internal&&this.uiWidgetBase) {
+			this.mOpenActionButton_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenActionCanvas/mOpenActionButton') as mw.StaleButton
+		}
+		return this.mOpenActionButton_Internal
+	}
+	private mActionListCanvas_Internal: mw.Canvas
+	public get mActionListCanvas(): mw.Canvas {
+		if(!this.mActionListCanvas_Internal&&this.uiWidgetBase) {
+			this.mActionListCanvas_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mActionListCanvas') as mw.Canvas
+		}
+		return this.mActionListCanvas_Internal
+	}
+	private mActionBgImage_Internal: mw.Image
+	public get mActionBgImage(): mw.Image {
+		if(!this.mActionBgImage_Internal&&this.uiWidgetBase) {
+			this.mActionBgImage_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mActionListCanvas/ActionListCanvas/mActionBgImage') as mw.Image
+		}
+		return this.mActionBgImage_Internal
+	}
+	private mActionTabListCanvas_Internal: mw.Canvas
+	public get mActionTabListCanvas(): mw.Canvas {
+		if(!this.mActionTabListCanvas_Internal&&this.uiWidgetBase) {
+			this.mActionTabListCanvas_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mActionListCanvas/ActionListCanvas/mActionTabListCanvas') as mw.Canvas
+		}
+		return this.mActionTabListCanvas_Internal
+	}
+	private mActionScrollBox_Internal: mw.ScrollBox
+	public get mActionScrollBox(): mw.ScrollBox {
+		if(!this.mActionScrollBox_Internal&&this.uiWidgetBase) {
+			this.mActionScrollBox_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mActionListCanvas/ActionListCanvas/mActionScrollBox') as mw.ScrollBox
+		}
+		return this.mActionScrollBox_Internal
+	}
+	private mActionListContentCanvas_Internal: mw.Canvas
+	public get mActionListContentCanvas(): mw.Canvas {
+		if(!this.mActionListContentCanvas_Internal&&this.uiWidgetBase) {
+			this.mActionListContentCanvas_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mActionListCanvas/ActionListCanvas/mActionScrollBox/mActionListContentCanvas') as mw.Canvas
+		}
+		return this.mActionListContentCanvas_Internal
+	}
+	private mCloseActionListButton_Internal: mw.Button
+	public get mCloseActionListButton(): mw.Button {
+		if(!this.mCloseActionListButton_Internal&&this.uiWidgetBase) {
+			this.mCloseActionListButton_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mActionListCanvas/ActionListCanvas/mCloseActionListButton') as mw.Button
+		}
+		return this.mCloseActionListButton_Internal
+	}
 
 
 	protected onAwake() {
@@ -117,6 +236,20 @@ export default class ChatPanel_Generate extends UIScript {
 		this.mOpenChatButton.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
 		
 	
+		this.mOpenExpressionButton.onClicked.add(()=>{
+			Event.dispatchToLocal("PlayButtonClick", "mOpenExpressionButton");
+		});
+		this.initLanguage(this.mOpenExpressionButton);
+		this.mOpenExpressionButton.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
+		
+	
+		this.mOpenActionButton.onClicked.add(()=>{
+			Event.dispatchToLocal("PlayButtonClick", "mOpenActionButton");
+		});
+		this.initLanguage(this.mOpenActionButton);
+		this.mOpenActionButton.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
+		
+	
 		//按钮添加点击
 		
 		this.mCloseChatList1Button.onClicked.add(()=>{
@@ -129,6 +262,18 @@ export default class ChatPanel_Generate extends UIScript {
 			Event.dispatchToLocal("PlayButtonClick", "mCloseChatList2Button");
 		});
 		this.mCloseChatList2Button.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
+		
+	
+		this.mCloseExpressionListButton.onClicked.add(()=>{
+			Event.dispatchToLocal("PlayButtonClick", "mCloseExpressionListButton");
+		});
+		this.mCloseExpressionListButton.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
+		
+	
+		this.mCloseActionListButton.onClicked.add(()=>{
+			Event.dispatchToLocal("PlayButtonClick", "mCloseActionListButton");
+		});
+		this.mCloseActionListButton.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
 		
 	
 		//按钮多语言

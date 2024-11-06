@@ -1,5 +1,6 @@
 import {ConfigBase, IElementBase} from "./ConfigBase";
 import {AccountStageConfig} from "./AccountStage";
+import {ActionConfigConfig} from "./ActionConfig";
 import {AIDataConfig} from "./AIData";
 import {AIWayPointConfig} from "./AIWayPoint";
 import {AssetsConfig} from "./Assets";
@@ -9,6 +10,7 @@ import {CoinsGenerateConfig} from "./CoinsGenerate";
 import {ColorConfig} from "./Color";
 import {DoorConfig} from "./Door";
 import {ExchangeConfig} from "./Exchange";
+import {ExpressionConfig} from "./Expression";
 import {expRuleConfig} from "./expRule";
 import {GuideConfig} from "./Guide";
 import {IdentityConfig} from "./Identity";
@@ -47,6 +49,7 @@ export class GameConfig{
 		return this.configMap.get(ConfigClass.name) as T;
 	}
 	public static get AccountStage():AccountStageConfig{ return this.getConfig(AccountStageConfig) };
+	public static get ActionConfig():ActionConfigConfig{ return this.getConfig(ActionConfigConfig) };
 	public static get AIData():AIDataConfig{ return this.getConfig(AIDataConfig) };
 	public static get AIWayPoint():AIWayPointConfig{ return this.getConfig(AIWayPointConfig) };
 	public static get Assets():AssetsConfig{ return this.getConfig(AssetsConfig) };
@@ -56,6 +59,7 @@ export class GameConfig{
 	public static get Color():ColorConfig{ return this.getConfig(ColorConfig) };
 	public static get Door():DoorConfig{ return this.getConfig(DoorConfig) };
 	public static get Exchange():ExchangeConfig{ return this.getConfig(ExchangeConfig) };
+	public static get Expression():ExpressionConfig{ return this.getConfig(ExpressionConfig) };
 	public static get expRule():expRuleConfig{ return this.getConfig(expRuleConfig) };
 	public static get Guide():GuideConfig{ return this.getConfig(GuideConfig) };
 	public static get Identity():IdentityConfig{ return this.getConfig(IdentityConfig) };
