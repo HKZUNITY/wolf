@@ -1,26 +1,25 @@
-import AdsPanel from "../../AdsPanel";
-import P_Tips from '../../CommonUI/P_Tips';
+import { Notice } from "../../CommonUI/notice/Notice";
 import { GamingState, SoundGlobals } from "../../Globals";
 import { ModifiedCameraSystem } from '../../Modified027Editor/ModifiedCamera';
 import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
 import { GeneralManager, } from '../../Modified027Editor/ModifiedStaticAPI';
 import { GameConfig } from "../../Tables/GameConfig";
 import { Tools } from "../../Tools";
-import P_CoinGet from "../../UILogic/Game/P_CoinGet";
-import P_Game from "../../UILogic/Game/P_Game";
-import P_GameFinal from "../../UILogic/Game/P_GameFinal";
-import P_Hall from "../../UILogic/Hall/P_Hall";
-import P_Reset from "../../UILogic/Hall/P_Reset";
-import P_Info from "../../uiTemplate/Common/P_Info";
+import AdsPanel from "../AdsModule/ui/AdsPanel";
 import DanMuModuleC from "../DanMuModule/DanMuModuleC";
-import { FSMModuleC } from "../FSMModule";
+import FSMModuleC from "../FSMModule/FSMModuleC";
 import { GameModuleC } from "../GameModule/GameModuleC";
+import CongratulationPanel from "../GameModule/ui/CongratulationPanel";
+import GameBattlePanel from "../GameModule/ui/GameBattlePanel";
+import GetCoinPanel from "../GameModule/ui/GetCoinPanel";
+import ResetPanel from "../GameModule/ui/ResetPanel";
 import { LotteryModuleC } from "../LotteryModule/LotteryModuleC";
 import { WatchModuleC } from "../ProcModule/WatchModule";
 import ShelterModuleC from "../shelterModule/ShelterModuleC";
-import { ShopModuleC } from "../ShopModule/ShopCityModule";
+import ShopModuleC from "../ShopModule/ShopModuleC";
 import { PlayerModuleData } from "./PlayerData";
 import { PlayerModuleS } from "./PlayerModuleS";
+import HUDPanel from "./ui/HUDPanel";
 
 export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
     /**玩家等级列表 */
@@ -33,29 +32,70 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
     private isWatch: boolean = false
     /**玩家是否初始化过 */
     private isInit: boolean = false
+
+    private resetPanel: ResetPanel = null;
+    private get getResetPanel(): ResetPanel {
+        if (!this.resetPanel) {
+            this.resetPanel = mw.UIService.getUI(ResetPanel);
+        }
+        return this.resetPanel;
+    }
+
+    private getCoinPanel: GetCoinPanel = null;
+    private get getGetCoinPanel(): GetCoinPanel {
+        if (!this.getCoinPanel) {
+            this.getCoinPanel = mw.UIService.getUI(GetCoinPanel);
+        }
+        return this.getCoinPanel;
+    }
+
+    private congratulationPanel: CongratulationPanel = null;
+    private get getCongratulationPanel(): CongratulationPanel {
+        if (!this.congratulationPanel) {
+            this.congratulationPanel = mw.UIService.getUI(CongratulationPanel);
+        }
+        return this.congratulationPanel;
+    }
+
+    private gameBattlePanel: GameBattlePanel = null;
+    private get getGameBattlePanel(): GameBattlePanel {
+        if (!this.gameBattlePanel) {
+            this.gameBattlePanel = UIService.getUI(GameBattlePanel);
+        }
+        return this.gameBattlePanel;
+    }
+
+    private hudPanel: HUDPanel = null;
+    private get getHUDPanel(): HUDPanel {
+        if (!this.hudPanel) {
+            this.hudPanel = UIService.getUI(HUDPanel);
+        }
+        return this.hudPanel;
+    }
+
     onStart(): void {
         this.initCoinAds();
 
         ModifiedCameraSystem.followTargetInterpSpeed = 0;
-        mw.UIService.show(P_Reset);
+        this.getResetPanel.show();
     }
 
     private _mText_ADTime: mw.TextBlock;
     private mUIText20030_txt: mw.TextBlock;
     private getCoinCount: number = 100;
     private initCoinAds(): void {
-        this.mUIText20030_txt = P_Hall.instance.mUIText20030_txt;
+        this.mUIText20030_txt = this.getHUDPanel.mUIText20030_txt;
         this.mUIText20030_txt.text = `领金币`;
-        this._mText_ADTime = P_Hall.instance.mText_ADTime;
+        this._mText_ADTime = this.getHUDPanel.mText_ADTime;
         this._mText_ADTime.visibility = mw.SlateVisibility.Collapsed;
-        P_Hall.instance.mBtn_AD.onClicked.add(() => {
+        this.getHUDPanel.mBtn_AD.onClicked.add(() => {
             if (mw.SystemUtil.isPIE) {
                 this.server.net_ChangeGold(this.getCoinCount);
-                P_Tips.show(`恭喜获得${this.getCoinCount}金币`);
+                Notice.showDownNotice(`恭喜获得${this.getCoinCount}金币`);
             } else {
                 mw.UIService.getUI(AdsPanel).showRewardAd(() => {
                     this.server.net_ChangeGold(this.getCoinCount);
-                    P_Tips.show(`恭喜获得${this.getCoinCount}金币`);
+                    Notice.showDownNotice(`恭喜获得${this.getCoinCount}金币`);
                 }, `看广告免费领取${this.getCoinCount}金币`, `取消`, `免费领取`);
             }
         });
@@ -138,19 +178,19 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
 
     }
     net_changeDiamond(num: number) {
-        P_Hall.setHallDiamondNum(num);
+        this.getHUDPanel.setHallDiamondNum(num);
     }
     net_changeAdvToken(num: number) {
-        P_Hall.setHallAdvNum(num);
+        this.getHUDPanel.setHallAdvNum(num);
     }
     net_changeGold(num: number) {
-        P_Hall.setHallGoldNum(num);
+        this.getHUDPanel.setHallGoldNum(num);
     }
     net_changeRole(roleid: number) {
-        P_Hall.setHallHeadImg(roleid);
+        this.getHUDPanel.setHallHeadImg(roleid);
     }
     net_changeName(name: string) {
-        P_Hall.setHallPlayerName(name);
+        this.getHUDPanel.setHallPlayerName(name);
     }
     onEnterScene(sceneType: number) {
         //优先走断线重连逻辑，之后才是玩家进入要不会出问题
@@ -159,11 +199,10 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
         // this.setHallAd();
         // Camera.currentCamera.enableMovementCollisionDetection = false;
         Camera.currentCamera.springArm.collisionInterpSpeed = 0;
-        mw.UIService.show(P_Info);
         this.changePlayerAppear(this.localPlayer.character);
         this.clearSceneNpcName();
         this.initSceneTrigger();
-        P_Hall.setHallHeadImg(10001);
+        this.getHUDPanel.setHallHeadImg(10001);
     }
     private lotteryBlock: boolean = false;
     private svipBlock: boolean = false;
@@ -235,7 +274,7 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
 
     public addAdvToken(num: number) {
         this.server.net_changeAdvToken(num);
-        // P_Tips.show(GameConfig.Tips.getElement(20019).Content);
+        // Notice.showDownNotice(GameConfig.Tips.getElement(20019).Content);
     }
 
     public async changePlayerAppear(character: mw.Character | mw.Character) {
@@ -323,17 +362,17 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
 
     public net_FirstInitHallUI(state: number, bo: boolean = true) {
         if (state == GamingState.InitState) {
-            P_Hall.setHallTip(10001);
-            P_Hall.setHallWaitNum(1);
+            this.getHUDPanel.setHallTip(10001);
+            this.getHUDPanel.setHallWaitNum(1);
         } else if (state == GamingState.WaitingState) {
-            P_Hall.setHallTip(10001);
+            this.getHUDPanel.setHallTip(10001);
         }
         else if (state == GamingState.ReadyState) {
-            P_Hall.setHallTip(10003);
+            this.getHUDPanel.setHallTip(10003);
         } else {
-            P_Hall.setHallTip(10002);
+            this.getHUDPanel.setHallTip(10002);
         }
-        P_Hall.showHallUI();
+        this.getHUDPanel.showHallUI();
         console.warn(`Camera :: ===== 相机重置前判断:: ${bo}`);
         if (bo) {
             ModuleService.getModule(DanMuModuleC).initShowChatPanel();
@@ -584,7 +623,7 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
     //     else {
     //         if (await this.getHallAdNum(0) >= this._numL) {
     //             console.warn("kang log 已经达到上限");
-    //             P_Tips.show(GameConfig.Tips.getElement(20004).Content);
+    //             Notice.showDownNotice(GameConfig.Tips.getElement(20004).Content);
     //             return;
     //         }
     //         this.rewardAd();
@@ -592,7 +631,7 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
     //         //是否正在倒计时
     //         if (this._mText_ADTime.text != "") {
     //             console.warn("kang log 正在倒计时");
-    //             P_Tips.show(GameConfig.Tips.getElement(20003).Content);
+    //             Notice.showDownNotice(GameConfig.Tips.getElement(20003).Content);
     //         }
     //         else {
     //         }
@@ -676,29 +715,29 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
     // }
     public net_SetHallTip(state: number) {
         if (state == GamingState.InitState) {
-            P_Hall.setHallTip(10001);
-            P_Hall.setHallWaitNum(1);
+            this.getHUDPanel.setHallTip(10001);
+            this.getHUDPanel.setHallWaitNum(1);
         } else if (state == GamingState.WaitingState) {
-            P_Hall.setHallTip(10001);
+            this.getHUDPanel.setHallTip(10001);
         }
         else if (state == GamingState.ReadyState) {
-            P_Hall.setHallTip(10003);
+            this.getHUDPanel.setHallTip(10003);
         } else if (state == GamingState.MapState) {
-            P_Hall.setHallTip(20028);
+            this.getHUDPanel.setHallTip(20028);
         }
         else {
-            P_Hall.setHallTip(10002);
+            this.getHUDPanel.setHallTip(10002);
         }
     }
     public net_SetHallWaitNum(num: number) {
-        P_Hall.setHallWaitNum(num);
-        P_Hall.setHallTip(10001);
+        this.getHUDPanel.setHallWaitNum(num);
+        this.getHUDPanel.setHallTip(10001);
     }
     public net_BackToHall(state: GamingState, bo: boolean) {
-        P_Game.closeGameUI();
-        P_GameFinal.closeGameFinal();
+        this.getGameBattlePanel.closeGameUI();
+        this.getCongratulationPanel.closeGameFinal();
         this.net_FirstInitHallUI(state, !bo);
-        P_CoinGet.closeCoinUi();
+        this.getGetCoinPanel.closeCoinUi();
         ModuleService.getModule(GameModuleC).backToHall();
         ModuleService.getModule(ShelterModuleC).setActive(false);
         setTimeout(() => {

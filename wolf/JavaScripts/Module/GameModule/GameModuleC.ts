@@ -1,4 +1,4 @@
-import P_Tips from "../../CommonUI/P_Tips";
+import { Notice } from "../../CommonUI/notice/Notice";
 import P_TipsInGame, { UITipsInGameType } from "../../CommonUI/UITipsInGame";
 import { Camp, ColdWeaponAttackMode, Globals, PlayerWeaponState } from "../../Globals";
 import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
@@ -6,17 +6,10 @@ import { GeneralManager } from '../../Modified027Editor/ModifiedStaticAPI';
 import BedTrigger from "../../Prefabs/床01/Script/BedTrigger";
 import { GameConfig } from "../../Tables/GameConfig";
 import { Tools } from "../../Tools";
-import WinWatch_Generate from "../../ui-generate/uiTemplate/Hall/WinWatch_generate";
-import P_Allot from "../../UILogic/Game/P_Allot";
-import P_CoinGet from "../../UILogic/Game/P_CoinGet";
-import P_Die from "../../UILogic/Game/P_Die";
-import P_Game from "../../UILogic/Game/P_Game";
-import P_GameFinal from "../../UILogic/Game/P_GameFinal";
-import P_KillParent from "../../UILogic/Game/P_KillParent";
-import P_Ready from "../../UILogic/Game/P_Ready";
-import P_Hall from "../../UILogic/Hall/P_Hall";
+import ChatPanel from "../DanMuModule/ui/ChatPanel";
 import LoadMapModuleC from "../loadMapModule/LoadMapModuleC";
 import { PlayerModuleC } from "../PlayerModule/PlayerModuleC";
+import HUDPanel from "../PlayerModule/ui/HUDPanel";
 import { WatchModuleC } from "../ProcModule/WatchModule";
 import { SkillModuleC } from "../SkillModule/SkillModuleC";
 import { AutoAimModuleC } from "../Weapon/Aim/AutoAimModuleC";
@@ -24,8 +17,15 @@ import { ColdWeaponModuleC } from "../Weapon/ColdWeapon/ColdWeaponModuleC";
 import { HotWeaponModuleC } from "../Weapon/HotWeapon/HotWeaponModuleC";
 import { GameModuleData } from "./GameData";
 import { GameModuleS } from "./GameModuleS";
+import AllotPanel from "./ui/AllotPanel";
+import CongratulationPanel from "./ui/CongratulationPanel";
+import DeadPanel from "./ui/DeadPanel";
+import GameBattlePanel from "./ui/GameBattlePanel";
+import GetCoinPanel from "./ui/GetCoinPanel";
+import KillPanel from "./ui/KillPanel";
+import ReadyPanel from "./ui/ReadyPanel";
+import WinWatchPanel from "./ui/WinWatchPanel";
 import SoundManager = mw.SoundService;
-import ChatPanel from "../DanMuModule/ui/ChatPanel";
 
 export class GameModuleC extends ModuleC<GameModuleS, GameModuleData> {
     private curCamp: Camp;
@@ -43,7 +43,79 @@ export class GameModuleC extends ModuleC<GameModuleS, GameModuleData> {
     private isBegin: boolean = false;
     private curPlayer: mw.Player;
     private oldState: PlayerWeaponState = PlayerWeaponState.UnEquip;
-    private killParentUI: P_KillParent;
+
+    private killPanel: KillPanel = null;
+    private get getKillPanel(): KillPanel {
+        if (!this.killPanel) {
+            this.killPanel = mw.UIService.getUI(KillPanel);
+        }
+        return this.killPanel;
+    }
+
+    private allotPanel: AllotPanel = null;
+    private get getAllotPanel(): AllotPanel {
+        if (!this.allotPanel) {
+            this.allotPanel = mw.UIService.getUI(AllotPanel);
+        }
+        return this.allotPanel;
+    }
+
+    private getCoinPanel: GetCoinPanel = null;
+    private get getGetCoinPanel(): GetCoinPanel {
+        if (!this.getCoinPanel) {
+            this.getCoinPanel = mw.UIService.getUI(GetCoinPanel);
+        }
+        return this.getCoinPanel;
+    }
+
+    private congratulationPanel: CongratulationPanel = null;
+    private get getCongratulationPanel(): CongratulationPanel {
+        if (!this.congratulationPanel) {
+            this.congratulationPanel = mw.UIService.getUI(CongratulationPanel);
+        }
+        return this.congratulationPanel;
+    }
+
+    private deadPanel: DeadPanel = null;
+    private get getDeadPanel(): DeadPanel {
+        if (!this.deadPanel) {
+            this.deadPanel = mw.UIService.getUI(DeadPanel);
+        }
+        return this.deadPanel;
+    }
+
+    private gameBattlePanel: GameBattlePanel = null;
+    private get getGameBattlePanel(): GameBattlePanel {
+        if (!this.gameBattlePanel) {
+            this.gameBattlePanel = UIService.getUI(GameBattlePanel);
+        }
+        return this.gameBattlePanel;
+    }
+
+    private readyPanel: ReadyPanel = null;
+    private get getReadyPanel(): ReadyPanel {
+        if (!this.readyPanel) {
+            this.readyPanel = UIService.getUI(ReadyPanel);
+        }
+        return this.readyPanel;
+    }
+
+    private hudPanel: HUDPanel = null;
+    private get getHUDPanel(): HUDPanel {
+        if (!this.hudPanel) {
+            this.hudPanel = UIService.getUI(HUDPanel);
+        }
+        return this.hudPanel;
+    }
+
+    private winWatchPanel: WinWatchPanel = null;
+    private get getWinWatchPanel(): WinWatchPanel {
+        if (!this.winWatchPanel) {
+            this.winWatchPanel = UIService.getUI(WinWatchPanel);
+        }
+        return this.winWatchPanel;
+    }
+
     onStart(): void {
         this.openEffect = GameObject.findGameObjectById("B3F7925A") as mw.Effect;
     }
@@ -75,41 +147,40 @@ export class GameModuleC extends ModuleC<GameModuleS, GameModuleData> {
 
     }
     net_getCoin(num: number) {
-        P_Game.setCoin(num);
-        if (num > 0)
-            P_CoinGet.show();
+        this.getGameBattlePanel.setCoin(num);
+        if (num > 0) this.getGetCoinPanel.show();
     }
     net_ShowGameUI(camp: number, num: number, cd: number, maxCoin: number) {
-        P_Allot.closeAllotUI();
-        P_Game.disableBtn();
+        this.getAllotPanel.closeAllotUI();
+        this.getGameBattlePanel.disableBtn();
         this.curCamp = camp;
         ModuleService.getModule(SkillModuleC).updateInGameSkill();
         if (camp == Camp.Civilian) {
-            P_Game.showCivilianUI(cd, maxCoin);
+            this.getGameBattlePanel.showCivilianUI(cd, maxCoin);
         } else if (camp == Camp.Police) {
-            P_Game.showPoliceUI(cd, maxCoin);
+            this.getGameBattlePanel.showPoliceUI(cd, maxCoin);
             ModuleService.getModule(HotWeaponModuleC).initAutoAimMoudule()
         } else if (camp == Camp.Spy) {
-            P_Game.showSpyUI(num, cd, maxCoin);
+            this.getGameBattlePanel.showSpyUI(num, cd, maxCoin);
             ModuleService.getModule(ColdWeaponModuleC).initAutoAimMoudule()
         }
-        P_Game.iSountDownUI(false);
-        P_Ready.instance.show()
+        this.getGameBattlePanel.iSountDownUI(false);
+        this.getReadyPanel.show()
         this.curWeaponState = PlayerWeaponState.UnEquip;
         this.setCampTarget(camp);
     }
     /**局内人数 */
     net_ShowLiveNum(num: number, allNum: number, bool: boolean) {
-        P_Game.updateLiveNum(num, allNum, bool);
+        this.getGameBattlePanel.updateLiveNum(num, allNum, bool);
     }
     /**分配阵营时更新目标ui */
     private setCampTarget(camp: Camp) {
-        P_Game.instance.setCampTarget(camp);
+        this.getGameBattlePanel.setCampTarget(camp);
     }
     /**玩家进入交互物事件 */
     private onPlayerEnterHandler() {
         this.oldState = this.curWeaponState
-        P_Game.instance.hideRightPartUI()
+        this.getGameBattlePanel.hideRightPartUI()
         if (this.curWeaponState == PlayerWeaponState.UnEquip) {
             return
         }
@@ -118,7 +189,7 @@ export class GameModuleC extends ModuleC<GameModuleS, GameModuleData> {
     }
     /**玩家离开交互物事件 */
     private onPlayerLeaveHandler() {
-        P_Game.instance.showRightPartUI()
+        this.getGameBattlePanel.showRightPartUI()
         if (this.oldState == PlayerWeaponState.UnEquip) {
             return
         }
@@ -142,24 +213,24 @@ export class GameModuleC extends ModuleC<GameModuleS, GameModuleData> {
     net_ShowHeroUI(cd: number) {
         this.curCamp = Camp.Hero;
         this.curWeaponState = PlayerWeaponState.UnEquip;
-        P_Game.showHeroUI(cd);
+        this.getGameBattlePanel.showHeroUI(cd);
         ModuleService.getModule(HotWeaponModuleC).initAutoAimMoudule()
-        P_Tips.show(GameConfig.Tips.getElement(10002).Content);
+        Notice.showDownNotice(GameConfig.Tips.getElement(10002).Content);
         this.setCampTarget(Camp.Hero);
     }
     net_ChangeTitle(id: number) {
-        P_Game.setTitle(id);
+        this.getGameBattlePanel.setTitle(id);
         if (id == 11002) {
-            P_Game.enableBtn();
-            P_Game.iSountDownUI(true);
-            P_Ready.instance.hide();
+            this.getGameBattlePanel.enableBtn();
+            this.getGameBattlePanel.iSountDownUI(true);
+            this.getReadyPanel.hide();
             P_TipsInGame.show("GO", UITipsInGameType.MirrorTips);
         }
     }
     /**如果关键人物没有进入的时候需要把ui关了,还需要加一个提示 */
     net_HideTitle() {
-        P_Ready.instance.hide();
-        P_Tips.show("有玩家没有成功进入场景，游戏重新开始");
+        this.getReadyPanel.hide();
+        Notice.showDownNotice("有玩家没有成功进入场景，游戏重新开始");
     }
     /**隐藏自动瞄准 */
     public clearAutoAnim(backToHall: boolean) {
@@ -187,12 +258,8 @@ export class GameModuleC extends ModuleC<GameModuleS, GameModuleData> {
     }
     /**展示消灭敌人的ui */
     net_showAttackTip(pos: Vector) {
-        if (!this.killParentUI) {
-            this.killParentUI = mw.UIService.show(P_KillParent);
-        }
-        this.killParentUI.addKillUI(pos);
+        this.getKillPanel.addKillUI(pos);
     }
-
 
     clickWeaponBtn() {
         if (this.curCamp == Camp.Police || this.curCamp == Camp.Hero) {
@@ -211,7 +278,7 @@ export class GameModuleC extends ModuleC<GameModuleS, GameModuleData> {
         }
         else if (this.curCamp == Camp.Spy) {
             if (this.curWeaponState == PlayerWeaponState.UnEquip || this.curWeaponState == PlayerWeaponState.ThrowKnife) {
-                P_Game.instance.isEnableChangeWeaponBtn(false)
+                this.getGameBattlePanel.isEnableChangeWeaponBtn(false)
                 this.server.net_ChangeWeapon(PlayerWeaponState.Knife);
                 setTimeout(() => {
                     this.curWeaponState = PlayerWeaponState.Knife;
@@ -243,7 +310,7 @@ export class GameModuleC extends ModuleC<GameModuleS, GameModuleData> {
         // console.warn(`distance ==== auto 彻底开启自动攻击`)
         if (this.curWeaponState != PlayerWeaponState.Knife) {
             //提示刀拿在手上才可以攻击
-            // P_Tips.show(GameConfig.Tips.getElement(10001).Content);
+            // Notice.showDownNotice(GameConfig.Tips.getElement(10001).Content);
             return;
         }
         let isKnife = false;
@@ -265,11 +332,11 @@ export class GameModuleC extends ModuleC<GameModuleS, GameModuleData> {
         return this.curCamp
     }
     net_UpdateKillNum(num: number, total: number) {
-        P_Game.updateKillNum(num, total);
+        this.getGameBattlePanel.updateKillNum(num, total);
     }
     net_UpdatePropNum(num: number, tableId: number) {
-        P_Tips.show(GameConfig.Tips.getElement(10003).Content);
-        P_Game.updatePropNum(num);
+        Notice.showDownNotice(GameConfig.Tips.getElement(10003).Content);
+        this.getGameBattlePanel.updatePropNum(num);
         //播放得到道具的特效
         let boxloc = GameConfig.PropsGenerate.getElement(tableId).GeneratePoint;
         this.centerX = boxloc.x;
@@ -335,10 +402,10 @@ export class GameModuleC extends ModuleC<GameModuleS, GameModuleData> {
     net_ShowTip(id: number, addstr?: string) {
         if (id != 0) {
             let str = GameConfig.Tips.getElement(id).Content;
-            P_Tips.show(str);
+            Notice.showDownNotice(str);
         }
         else {
-            P_Tips.show("玩家" + addstr + "死亡了");
+            Notice.showDownNotice("玩家" + addstr + "死亡了");
         }
     }
     //To do
@@ -355,7 +422,7 @@ export class GameModuleC extends ModuleC<GameModuleS, GameModuleData> {
         }
     }
     net_DieEffect() {
-        P_Die.showDieEffectUI();
+        this.getDeadPanel.showDieEffectUI();
         let id = mw.SoundService.playSound(GameConfig.Assets.getElement(10010).Guid, 0, 6);
         Tools.cameraShake(false);
         setTimeout(() => {
@@ -364,7 +431,7 @@ export class GameModuleC extends ModuleC<GameModuleS, GameModuleData> {
         this.endExp()
     }
     net_FinalEffect(isWin: boolean) {
-        P_GameFinal.showGameFinal(isWin);
+        this.getCongratulationPanel.showGameFinal(isWin);
         this.endExp()
     }
     //特殊展示时停止
@@ -373,9 +440,9 @@ export class GameModuleC extends ModuleC<GameModuleS, GameModuleData> {
     }
 
     endExp() {
-        let bool = P_Game.instance.stopAddEXP();
+        let bool = this.getGameBattlePanel.stopAddEXP();
         if (bool) {
-            this.server.net_setExp(P_Game.instance.expNum, P_Game.instance.timeNum);
+            this.server.net_setExp(this.getGameBattlePanel.expNum, this.getGameBattlePanel.timeNum);
         }
     }
 
@@ -389,23 +456,23 @@ export class GameModuleC extends ModuleC<GameModuleS, GameModuleData> {
     net_setEndState(modelGuid: string, bo: boolean, name: string = ``): void {
         if (bo) {
             GameObject.asyncFindGameObjectById(modelGuid).then((obj) => {
-                mw.UIService.hide(P_Die);
-                P_Hall.closeHallUI();
-                P_Game.closeGameUI();
+                this.getDeadPanel.hide();
+                this.getHUDPanel.closeHallUI();
+                this.getGameBattlePanel.closeGameUI();
                 if (mw.UIService.getUI(ChatPanel, false)?.visible) this.getChatPanel.hide();
-                mw.UIService.show(WinWatch_Generate);
-                mw.UIService.getUI(WinWatch_Generate).mText_WinWatch_1.text = GameConfig.Text.getElement(20034).Content;
-                mw.UIService.getUI(WinWatch_Generate).mText_WinWatch_2.text = name;
+                this.getWinWatchPanel.show();
+                this.getWinWatchPanel.mText_WinWatch_1.text = GameConfig.Text.getElement(20034).Content;
+                this.getWinWatchPanel.mText_WinWatch_2.text = name;
                 ModuleService.getModule(WatchModuleC).changeWatchTarget(obj);
                 console.warn(`Camera :: ===== 相机设置1`);
                 this.curPlayer.character.movementEnabled = false;
             })
         } else {
             console.warn(`Camera :: ===== 相机设置2`);
-            P_Hall.showHallUI();
+            this.getHUDPanel.showHallUI();
             this.getChatPanel.show();
-            // P_Game.showGameUI();
-            mw.UIService.hide(WinWatch_Generate);
+            // this.getGameBattlePanel.showGameUI();
+            this.getWinWatchPanel.hide();
             ModuleService.getModule(WatchModuleC).changeWatchTarget(this.localPlayer.character);
             this.curPlayer.character.movementEnabled = true;
         }

@@ -1,6 +1,5 @@
+import ActionUIPanel from "../../../CommonUI/ActionUIPanel";
 import { PlayerManagerExtesion, } from '../../../Modified027Editor/ModifiedPlayer';
-import { UiManager } from "../../../../JavaScripts/UI/UiManager"
-import P_Action from "../../../../JavaScripts/UILogic/Game/P_Action"
 
 /**当前病房状态 */
 export enum HospitalBed {
@@ -17,8 +16,13 @@ export default class BedTrigger extends mw.Script {
     state: HospitalBed = HospitalBed.Idle
     /**当前是否初始化完成 */
     isInit: boolean = false
-    /**交互ui */
-    actionUI: P_Action
+    private actionUIPanel: ActionUIPanel = null;
+    private get getActionUIPanel(): ActionUIPanel {
+        if (!this.actionUIPanel) {
+            this.actionUIPanel = UIService.getUI(ActionUIPanel);
+        }
+        return this.actionUIPanel;
+    }
     /**点击进入床的事件名称 */
     clickEnterBtnEventName: string = "ClickEnterBtnEvent"
     /**点击离开床的事件名称 */
@@ -53,7 +57,6 @@ export default class BedTrigger extends mw.Script {
     /**相对旋转 */
     private relativeRotation: mw.Rotation = new mw.Rotation(0, 0, -180)
     protected onStart(): void {
-        this.actionUI = UiManager.instance.getActionUI()
         this.clickEnterBtnEventName = this.clickEnterBtnEventName + "_" + this.gameObject.gameObjectId
         this.clickLeaveBtnEventName = this.clickLeaveBtnEventName + "_" + this.gameObject.gameObjectId
         this.bedUesdEventName = this.bedUesdEventName + "_" + this.gameObject.gameObjectId
@@ -198,10 +201,10 @@ export default class BedTrigger extends mw.Script {
             if (char != mine || this.state != HospitalBed.Idle) {
                 return
             }
-            this.actionUI.setActionGuid(this.gameObject.gameObjectId)
-            if (this.gameObject.gameObjectId == this.actionUI.actionGuidList[0]) {
-                this.actionUI.hide()
-                this.actionUI.setBtnEventAndShow(this.onClickEnterHandler.bind(this))
+            this.getActionUIPanel.setActionGuid(this.gameObject.gameObjectId)
+            if (this.gameObject.gameObjectId == this.getActionUIPanel.actionGuidList[0]) {
+                this.getActionUIPanel.hide()
+                this.getActionUIPanel.setBtnEventAndShow(this.onClickEnterHandler.bind(this))
             }
         }
     }
@@ -216,15 +219,15 @@ export default class BedTrigger extends mw.Script {
             if (char != mine || this.state != HospitalBed.Idle) {
                 return
             }
-            this.actionUI.deleteActionGuid(this.gameObject.gameObjectId)
-            if (this.actionUI.isUse == true) {
+            this.getActionUIPanel.deleteActionGuid(this.gameObject.gameObjectId)
+            if (this.getActionUIPanel.isUse == true) {
                 return
             }
-            this.actionUI.hide()
-            if (this.actionUI.actionGuidList.length > 0) {
-                let guid = this.actionUI.actionGuidList[0]
+            this.getActionUIPanel.hide()
+            if (this.getActionUIPanel.actionGuidList.length > 0) {
+                let guid = this.getActionUIPanel.actionGuidList[0]
                 let eventName = "ClickEnterBtnEvent" + "_" + guid
-                this.actionUI.setBtnEventAndShow(() => {
+                this.getActionUIPanel.setBtnEventAndShow(() => {
                     Event.dispatchToServer(eventName)
                 })
             }
@@ -241,23 +244,23 @@ export default class BedTrigger extends mw.Script {
         }
         this.state = HospitalBed.Occupy
         this.trigger.enabled = (false)
-        let index = this.actionUI.actionGuidList.indexOf(this.gameObject.gameObjectId)
-        this.actionUI.deleteActionGuid(this.gameObject.gameObjectId)
+        let index = this.getActionUIPanel.actionGuidList.indexOf(this.gameObject.gameObjectId)
+        this.getActionUIPanel.deleteActionGuid(this.gameObject.gameObjectId)
         if (playerId == Player.localPlayer.playerId) {
-            this.actionUI.hide()
+            this.getActionUIPanel.hide()
             /**更新点击事件为离开病床 */
-            this.actionUI.setPlayerInAction(true)
-            this.actionUI.setBtnEventAndShow(this.onClickLeaveHandler.bind(this))
+            this.getActionUIPanel.setPlayerInAction(true)
+            this.getActionUIPanel.setBtnEventAndShow(this.onClickLeaveHandler.bind(this))
             Event.dispatchToLocal(BedTrigger.subBedEnterClientEvent)
         }
         else if (playerId != Player.localPlayer.playerId && index > -1) {
             /**如果是无关并且进入了该触发器 */
 
-            this.actionUI.hide()
-            if (this.actionUI.actionGuidList.length > 0) {
-                let guid = this.actionUI.actionGuidList[0]
+            this.getActionUIPanel.hide()
+            if (this.getActionUIPanel.actionGuidList.length > 0) {
+                let guid = this.getActionUIPanel.actionGuidList[0]
                 let eventName = "ClickEnterBtnEvent" + "_" + guid
-                this.actionUI.setBtnEventAndShow(() => {
+                this.getActionUIPanel.setBtnEventAndShow(() => {
                     Event.dispatchToServer(eventName)
                 })
 
@@ -286,7 +289,7 @@ export default class BedTrigger extends mw.Script {
         if (playerId != player.playerId) {
             return
         }
-        this.actionUI.setPlayerInAction(false)
+        this.getActionUIPanel.setPlayerInAction(false)
         Event.dispatchToLocal(BedTrigger.subBedLeaveClientEvent)
     }
     /**同步病床状态事件 */
@@ -298,14 +301,14 @@ export default class BedTrigger extends mw.Script {
         if (this.state == HospitalBed.Idle) {
             this.trigger.enabled = (true)
             if (playerId == Player.localPlayer.playerId) {
-                this.actionUI.hide()
+                this.getActionUIPanel.hide()
             }
         }
         else if (this.state == HospitalBed.Occupy) {
-            this.actionUI.hide()
+            this.getActionUIPanel.hide()
             this.trigger.enabled = (false)
         }
-        this.actionUI.setPlayerInAction(false)
+        this.getActionUIPanel.setPlayerInAction(false)
     }
 
 }

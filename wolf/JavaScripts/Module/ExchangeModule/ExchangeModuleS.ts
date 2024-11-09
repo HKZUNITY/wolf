@@ -1,6 +1,6 @@
 ﻿import { GameConfig } from "../../Tables/GameConfig";
 import { PlayerModuleS } from "../PlayerModule/PlayerModuleS";
-import { ShopModuleS } from "../ShopModule/ShopCityModule";
+import ShopModuleS from "../ShopModule/ShopModuleS";
 import { GoldType, SkillModuleS } from "../SkillModule/SkillModuleS";
 import ExchangeModuleC from "./ExchangeModuleC";
 

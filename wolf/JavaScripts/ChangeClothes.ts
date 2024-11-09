@@ -1,5 +1,5 @@
-﻿import AdsPanel from "./AdsPanel";
-import P_Tips from "./CommonUI/P_Tips";
+﻿import { Notice } from "./CommonUI/notice/Notice";
+import AdsPanel from "./Module/AdsModule/ui/AdsPanel";
 
 @Component
 export default class ChangeClothes extends Script {
@@ -16,14 +16,14 @@ export default class ChangeClothes extends Script {
                     char.asyncReady().then(() => {
                         char.syncDescription();
                     });
-                    P_Tips.show(`换装成功`);
+                    Notice.showDownNotice(`换装成功`);
                 } else {
                     mw.UIService.getUI(AdsPanel).showRewardAd(() => {
                         char.setDescription(npc.getDescription());
                         char.asyncReady().then(() => {
                             char.syncDescription();
                         });
-                        P_Tips.show(`换装成功`);
+                        Notice.showDownNotice(`换装成功`);
                     }, `看广告免费试穿`, `取消`, `免费试穿`);
                 }
 

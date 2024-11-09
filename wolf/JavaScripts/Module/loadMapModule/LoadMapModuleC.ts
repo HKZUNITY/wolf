@@ -1,11 +1,40 @@
-﻿import { Globals } from "../../Globals";
-import P_Hall from "../../UILogic/Hall/P_Hall";
-import P_Loading from "../../UILogic/Hall/P_Loading";
-import P_Map from "../../UILogic/Hall/P_Map";
-import P_Notice from "../../uiTemplate/Common/P_Notice";
+﻿import NoticePanel from "../../CommonUI/NoticePanel";
+import { Globals } from "../../Globals";
+import MapChoosePanel from "../GameModule/ui/MapChoosePanel";
+import HUDPanel from "../PlayerModule/ui/HUDPanel";
 import LoadMapModuleS from "./LoadMapModuleS";
+import LoadingPanel from "./ui/LoadingPanel";
 
 export default class LoadMapModuleC extends ModuleC<LoadMapModuleS, null> {
+    private noticePanel: NoticePanel = null;
+    private get getNoticePanel(): NoticePanel {
+        if (!this.noticePanel) {
+            this.noticePanel = mw.UIService.getUI(NoticePanel);
+        }
+        return this.noticePanel
+    }
+    private loadingPanel: LoadingPanel = null;
+    private get getLoadingPanel(): LoadingPanel {
+        if (!this.loadingPanel) {
+            this.loadingPanel = UIService.getUI(LoadingPanel);
+        }
+        return this.loadingPanel;
+    }
+    private hudPanel: HUDPanel = null;
+    private get getHUDPanel(): HUDPanel {
+        if (!this.hudPanel) {
+            this.hudPanel = UIService.getUI(HUDPanel);
+        }
+        return this.hudPanel;
+    }
+    private mapChoosePanel: MapChoosePanel = null;
+    private get getMapChoosePanel(): MapChoosePanel {
+        if (!this.mapChoosePanel) {
+            this.mapChoosePanel = UIService.getUI(MapChoosePanel);
+        }
+        return this.mapChoosePanel;
+    }
+
     private loadingTime: number = Globals.spawnSceneTime;
     //计时器
     private timer;
@@ -15,18 +44,18 @@ export default class LoadMapModuleC extends ModuleC<LoadMapModuleS, null> {
     }
 
     net_ShowLoadingUI() {
-        P_Hall.closeHallUI();
-        mw.UIService.hide(P_Notice);
-        P_Map.instance.hide();
+        this.getHUDPanel.closeHallUI();
+        if (mw.UIService.getUI(NoticePanel, false)?.visible) this.getNoticePanel.hide();
+        this.getMapChoosePanel.hide();
         ModuleService.getModule(LoadMapModuleC).showLoadingPanel();
     }
 
     public closeLoadingPanel() {
-        P_Loading.closeLoadingUI();
+        this.getLoadingPanel.closeLoadingUI();
     }
 
     public showLoadingPanel() {
-        P_Loading.showLoadingUI();
+        this.getLoadingPanel.showLoadingUI();
         if (this.timer) {
             clearTimeout(this.timer);
         }

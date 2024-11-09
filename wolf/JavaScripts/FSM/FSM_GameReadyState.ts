@@ -1,5 +1,5 @@
 import { GameGlobals, GamingState, Globals } from "../Globals";
-import { FSMModuleS } from "../Module/FSMModule";
+import FSMModuleS from "../Module/FSMModule/FSMModuleS";
 import { GameModuleS } from "../Module/GameModule/GameModuleS";
 import { SkillModuleS } from "../Module/SkillModule/SkillModuleS";
 import { IFSMState } from "./IFSMState";

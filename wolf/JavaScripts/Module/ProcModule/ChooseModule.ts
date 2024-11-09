@@ -4,15 +4,23 @@ import FSMManager from "../../FSM/FSMManager";
 import { Camp, GameGlobals, Globals } from "../../Globals";
 import { GameConfig } from "../../Tables/GameConfig";
 import { Tools } from "../../Tools";
-import P_Allot from "../../UILogic/Game/P_Allot";
 import { GameModuleData } from "../GameModule/GameData";
 import { GameModuleS } from "../GameModule/GameModuleS";
+import AllotPanel from "../GameModule/ui/AllotPanel";
 import { PlayerModuleData } from "../PlayerModule/PlayerData";
 import { PlayerModuleS } from "../PlayerModule/PlayerModuleS";
 import { SkillModuleS } from "../SkillModule/SkillModuleS";
 import AttributeManager, { AttributeType } from "../SVipModule/AttributeManager";
 
 export class ChooseModuleC extends ModuleC<ChooseModuleS, null> {
+    private allotPanel: AllotPanel = null;
+    private get getAllotPanel(): AllotPanel {
+        if (!this.allotPanel) {
+            this.allotPanel = mw.UIService.getUI(AllotPanel);
+        }
+        return this.allotPanel;
+    }
+
     onStart(): void {
 
     }
@@ -20,11 +28,11 @@ export class ChooseModuleC extends ModuleC<ChooseModuleS, null> {
 
     }
     net_ShowRandomUI(showNum: number, isSvip: boolean) {
-        P_Allot.showAllotUI(showNum, isSvip);
+        this.getAllotPanel.showAllotUI(showNum, isSvip);
 
     }
     net_KeepShowCamp(camp: number) {
-        P_Allot.showCamp(camp);
+        this.getAllotPanel.showCamp(camp);
     }
     net_CloseCampUI() {
 

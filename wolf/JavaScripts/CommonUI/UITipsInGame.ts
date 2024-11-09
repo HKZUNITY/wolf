@@ -1,5 +1,5 @@
 ﻿import { Tools, Visibility } from '../Tools';
-import TipsInGame from '../uiTemplate/Common/TipsInGame';
+import TipsInGame_Generate from '../ui-generate/common/TipsInGame_generate';
 
 /**UI类型枚举 */
 export enum UITipsInGameType {
@@ -10,7 +10,7 @@ export enum UITipsInGameType {
     /**运镜提示 例如：不同阵营每局开始提示*/
     MirrorTips = 3,
 }
-export default class P_TipsInGame extends TipsInGame {
+export default class P_TipsInGame extends TipsInGame_Generate {
 
     private static _instance: P_TipsInGame;
     private static get instance(): P_TipsInGame {

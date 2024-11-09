@@ -1,12 +1,12 @@
-﻿import P_Tips from "../../CommonUI/P_Tips";
+﻿import { Notice } from "../../CommonUI/notice/Notice";
 import { MapEx } from "../../MapEx";
 import { GeneralManager } from "../../Modified027Editor/ModifiedStaticAPI";
 import { Tools } from "../../Tools";
 import ArkItem_Generate from "../../ui-generate/module/ArkModule/ArkItem_generate";
 import ArkPanel_Generate from "../../ui-generate/module/ArkModule/ArkPanel_generate";
 import GiftBagPanel_Generate from "../../ui-generate/module/ArkModule/GiftBagPanel_generate";
-import P_Hall from "../../UILogic/Hall/P_Hall";
 import { PlayerModuleC } from "../PlayerModule/PlayerModuleC";
+import HUDPanel from "../PlayerModule/ui/HUDPanel";
 
 const rewardDiamond: Map<string, { isLimit: boolean, icon: string, rewardCount: number, price: number, itemPos: mw.Vector2 }> = new Map<string, { isLimit: boolean, icon: string, rewardCount: number, price: number, itemPos: mw.Vector2 }>();
 rewardDiamond.set("5pAdmFoKWQK0001Ps", { isLimit: false, icon: "159364", rewardCount: 100, price: 100, itemPos: new mw.Vector2(178, 0) });
@@ -72,6 +72,14 @@ export class ArkItem extends ArkItem_Generate {
 }
 
 export class ArkPanel extends ArkPanel_Generate {
+    private hudPanel: HUDPanel = null;
+    private get getHUDPanel(): HUDPanel {
+        if (!this.hudPanel) {
+            this.hudPanel = UIService.getUI(HUDPanel);
+        }
+        return this.hudPanel;
+    }
+
     protected onStart(): void {
         this.initUI();
         this.bindButton();
@@ -90,7 +98,7 @@ export class ArkPanel extends ArkPanel_Generate {
 
     private addCloseButton(): void {
         this.hide();
-        P_Hall.instance.hideShop();
+        this.getHUDPanel.hideShop();
     }
 
     private arkItems: ArkItem[] = [];
@@ -160,6 +168,13 @@ export class ArkModuleC extends ModuleC<ArkModuleS, ArkData> {
         return this.arkPanel;
     }
 
+    private hudPanel: HUDPanel = null;
+    private get getHUDPanel(): HUDPanel {
+        if (!this.hudPanel) {
+            this.hudPanel = UIService.getUI(HUDPanel);
+        }
+        return this.hudPanel;
+    }
 
     protected onStart(): void {
         this.bindAction();
@@ -184,18 +199,18 @@ export class ArkModuleC extends ModuleC<ArkModuleS, ArkData> {
 
     public addOpenArkPanel(): void {
         this.getArkPanel.show();
-        P_Hall.instance.showShop();
+        this.getHUDPanel.showShop();
         mw.PurchaseService.getArkBalance(); // 触发代币余额刷新。接收更新的值要用mw.PurchaseService.onArkBalanceUpdated
     }
 
     private isCanContinueClick: boolean = true;
     public placeOrder(commodityId: string, buySuccessCallback: () => void): void {
         if (rewardDiamond.get(commodityId).isLimit && this.isBuy(commodityId)) {
-            P_Tips.show(`今日已售空,请更换其他商品购买`);
+            Notice.showDownNotice(`今日已售空,请更换其他商品购买`);
             return;
         }
         if (!this.isCanContinueClick) {
-            P_Tips.show(`3秒冷却`);
+            Notice.showDownNotice(`3秒冷却`);
             return;
         }
         this.isCanContinueClick = false;
@@ -206,7 +221,7 @@ export class ArkModuleC extends ModuleC<ArkModuleS, ArkData> {
             if (rewardDiamond.get(commodityId).isLimit) this.setLimitStr(commodityId);
             if (buySuccessCallback) buySuccessCallback();
             let rewardCount = rewardDiamond.get(commodityId).rewardCount;
-            P_Tips.show(`广告券+${rewardCount}`);
+            Notice.showDownNotice(`广告券+${rewardCount}`);
             ModuleService.getModule(PlayerModuleC).addAdvToken(rewardCount);
         } else {
             mw.PurchaseService.placeOrder(commodityId, 1, (status, msg) => {
@@ -222,7 +237,7 @@ export class ArkModuleC extends ModuleC<ArkModuleS, ArkData> {
         //根据commodityId和amount来处理收货逻辑
         console.error(`ArkModuleC net_deliverGoods commodityId: ${commodityId}, amount: ${amount}`);
         let rewardCount = rewardDiamond.get(commodityId).rewardCount;
-        P_Tips.show(`广告券+${rewardCount}`);
+        Notice.showDownNotice(`广告券+${rewardCount}`);
         ModuleService.getModule(PlayerModuleC).addAdvToken(rewardCount);
     }
 
@@ -243,7 +258,7 @@ export class ArkModuleC extends ModuleC<ArkModuleS, ArkData> {
     private isCanGetGiftBag: boolean = true;
     public getGiftBag(coodStr: string): void {
         if (!this.isCanGetGiftBag) {
-            P_Tips.show(`冷却3秒`);
+            Notice.showDownNotice(`冷却3秒`);
             return;
         }
         this.isCanGetGiftBag = false;
@@ -253,24 +268,24 @@ export class ArkModuleC extends ModuleC<ArkModuleS, ArkData> {
 
     public net_getGiftBag(giftBagCood: GiftBagCood, messageJson: string): void {
         if (giftBagCood == GiftBagCood.Success) {
-            P_Tips.show(`兑换成功`);
+            Notice.showDownNotice(`兑换成功`);
             let message = JSON.parse(messageJson);
             let giftBagData = message as GiftBagData;
 
             if (giftBagData?.diamond && giftBagData?.diamond > 0) {
-                P_Tips.show(`广告券+${giftBagData.diamond}`);
+                Notice.showDownNotice(`广告券+${giftBagData.diamond}`);
                 ModuleService.getModule(PlayerModuleC).addAdvToken(giftBagData.diamond);
             }
 
             if (giftBagData?.lv && giftBagData?.lv > 0) {
-                P_Tips.show(`金币+${giftBagData.lv}`);
+                Notice.showDownNotice(`金币+${giftBagData.lv}`);
                 ModuleService.getModule(PlayerModuleC).addCoin(giftBagData.lv);
             }
         } else if (giftBagCood == GiftBagCood.Fail) {
-            P_Tips.show(`礼包兑换码错误`);
-            P_Tips.show(`领取失败`);
+            Notice.showDownNotice(`礼包兑换码错误`);
+            Notice.showDownNotice(`领取失败`);
         } else if (giftBagCood == GiftBagCood.Exchanged) {
-            P_Tips.show(`已兑换，无需重复兑换`);
+            Notice.showDownNotice(`已兑换，无需重复兑换`);
         }
     }
 
@@ -383,7 +398,7 @@ export class GiftBagPanel extends GiftBagPanel_Generate {
     private addGetButton(): void {
         let coodStr = this.mInputBox.text;
         if (!coodStr || coodStr == "") {
-            P_Tips.show(`请输入兑换码`);
+            Notice.showDownNotice(`请输入兑换码`);
             console.error(`请输入兑换码`);
             return;
         }

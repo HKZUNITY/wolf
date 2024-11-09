@@ -3,10 +3,9 @@ import { PlayerManagerExtesion, } from '../../../Modified027Editor/ModifiedPlaye
 import { SpawnManager } from '../../../Modified027Editor/ModifiedSpawn';
 import { GameConfig } from "../../../Tables/GameConfig";
 import { Tools } from "../../../Tools";
-import { UiManager } from "../../../UI/UiManager";
-import P_Foresight from "../../../UILogic/Game/P_Foresight";
 import { GameModuleC } from "../../GameModule/GameModuleC";
 import ShelterModuleC from "../../shelterModule/ShelterModuleC";
+import ForesightPanel from "../ui/ForesightPanel";
 import { AutoAimModuleS } from "./AutoAimModuleS";
 export class AutoAimModuleC extends ModuleC<AutoAimModuleS, null> {
     private curPlayer: mw.Player;
@@ -28,7 +27,13 @@ export class AutoAimModuleC extends ModuleC<AutoAimModuleS, null> {
     /**最远距离 */
     private maxFindDistace: number
     /**瞄准ui */
-    private foresightUI: P_Foresight
+    private foresightPanel: ForesightPanel = null;
+    private get getForesightPanel(): ForesightPanel {
+        if (!this.foresightPanel) {
+            this.foresightPanel = UIService.getUI(ForesightPanel);
+        }
+        return this.foresightPanel;
+    }
     /**玩家对应按钮 */
     private shootMap: Map<mw.GameObject, mw.Button> = new Map<mw.GameObject, mw.Button>()
     /**当前瞄准武器类型 */
@@ -57,7 +62,6 @@ export class AutoAimModuleC extends ModuleC<AutoAimModuleS, null> {
     async onStart() {
         await Player.asyncGetLocalPlayer();
         this.touch = new mw.TouchInput();
-        this.foresightUI = UiManager.instance.getUIForesight();
         await this.initTrigger();
         this.slowUpdate = TimeUtil.setInterval(() => {
             this.updateShootUI();
@@ -212,8 +216,6 @@ export class AutoAimModuleC extends ModuleC<AutoAimModuleS, null> {
         this.trigger.enabled = (true);
     }
 
-
-
     /**更新射击ui */
     private updateShootUI() {
         let enterMap = ModuleService.getModule(ShelterModuleC).getEnterPlayerMap();
@@ -253,7 +255,7 @@ export class AutoAimModuleC extends ModuleC<AutoAimModuleS, null> {
     private setShootBtnPosition(button: mw.Button, enemy: mw.GameObject) {
         let distance = mw.Vector.distance(this.curPlayer.character.worldTransform.position, enemy.worldTransform.position)
         let rate = this.minScale + (1 - (distance / this.findEnemyScale)) * (1 - this.minScale)
-        this.foresightUI.setShootScale(button, rate)
+        this.getForesightPanel.setShootScale(button, rate)
         let worldPosition = enemy.worldTransform.position
         let screenResult = InputUtil.projectWorldPositionToWidgetPosition(worldPosition)
         let originPos = screenResult.screenPosition.clone()
@@ -268,17 +270,17 @@ export class AutoAimModuleC extends ModuleC<AutoAimModuleS, null> {
 
     private triggerActive() {
         this.isActive = true;
-        this.foresightUI.show();
+        this.getForesightPanel.show();
     }
     private triggerDisable() {
         this.isActive = false;
-        this.foresightUI.hide();
+        this.getForesightPanel.hide();
     }
     /**清除所有按钮 */
     private clearButton() {
         this.shootMap.forEach((value, index) => {
             value.visibility = mw.SlateVisibility.Collapsed
-            this.foresightUI.addIdleButton(value);
+            this.getForesightPanel.addIdleButton(value);
             value.onPressed.clear();
             value.enable = true;
         })
@@ -291,7 +293,7 @@ export class AutoAimModuleC extends ModuleC<AutoAimModuleS, null> {
                 let button = this.shootMap.get(obj);
                 button.visibility = mw.SlateVisibility.Collapsed;
                 button.onPressed.clear();
-                this.foresightUI.addIdleButton(button)
+                this.getForesightPanel.addIdleButton(button)
                 this.shootMap.delete(obj);
                 button.enable = true;
             }
@@ -327,7 +329,7 @@ export class AutoAimModuleC extends ModuleC<AutoAimModuleS, null> {
             if (this.stealthMap.has(obj.gameObjectId)) {
                 return;
             }
-            let button = this.foresightUI.getIdleButton();
+            let button = this.getForesightPanel.getIdleButton();
 
             if (ModuleService.getModule(GameModuleC).getPlayerCamp() == Camp.Spy) {
                 button.enable = true;

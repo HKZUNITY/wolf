@@ -1,5 +1,5 @@
 ﻿import { GameGlobals, GamingState } from "../Globals";
-import { FSMModuleS } from "../Module/FSMModule";
+import FSMModuleS from "../Module/FSMModule/FSMModuleS";
 import { IFSMState } from "./IFSMState";
 /**
  * 第一个玩家进来，且房间人数还没到开局的最小人数

@@ -2,7 +2,7 @@
 import { GameGlobals, PlayerGameState } from "../../Globals";
 import { GameConfig } from "../../Tables/GameConfig";
 import { PlayerModuleS } from "../PlayerModule/PlayerModuleS";
-import { ShopModuleS } from "../ShopModule/ShopCityModule";
+import ShopModuleS from "../ShopModule/ShopModuleS";
 import InGameSkill, { SkillState } from "./InGameSkill";
 import { SkillData } from "./SkillData";
 import { SkillModuleC } from "./SkillModuleC";

@@ -1,11 +1,17 @@
 import { Tools } from "../../Tools";
-import P_Game from "../../UILogic/Game/P_Game";
 import { GameModuleC } from "../GameModule/GameModuleC";
+import GameBattlePanel from "../GameModule/ui/GameBattlePanel";
 import { BagModuleData } from "./BagData";
 import { BagModuleS } from "./BagModuleS";
 
 export class BagModuleC extends ModuleC<BagModuleS, BagModuleData> {
-
+    private gameBattlePanel: GameBattlePanel = null;
+    private get getGameBattlePanel(): GameBattlePanel {
+        if (!this.gameBattlePanel) {
+            this.gameBattlePanel = UIService.getUI(GameBattlePanel);
+        }
+        return this.gameBattlePanel;
+    }
     private frame: number = 0;
     private refreshCd: number = null;
     private control: boolean = false;
@@ -21,7 +27,7 @@ export class BagModuleC extends ModuleC<BagModuleS, BagModuleData> {
             this.frame += dt;
             if (this.frame > this.refreshCd) {
                 this.frame = 0;
-                P_Game.instance.autoCold(true);
+                this.getGameBattlePanel.autoCold(true);
             }
         }
     }

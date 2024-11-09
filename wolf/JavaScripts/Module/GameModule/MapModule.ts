@@ -1,15 +1,22 @@
-﻿import AdsPanel from "../../AdsPanel";
-import { GameGlobals } from "../../Globals";
+﻿import { GameGlobals } from "../../Globals";
 import { GameConfig } from "../../Tables/GameConfig";
-import P_Map from "../../UILogic/Hall/P_Map";
+import AdsPanel from "../AdsModule/ui/AdsPanel";
 import { ArkPanel } from "../ArkModule/ArkModule";
 import ExchangeModuleC from "../ExchangeModule/ExchangeModuleC";
 import { LotteryModuleC } from "../LotteryModule/LotteryModuleC";
 import { SetPanel } from "../SetModule/SetModule";
-import { ShopModuleC } from "../ShopModule/ShopCityModule";
+import ShopModuleC from "../ShopModule/ShopModuleC";
 import { SkillModuleC } from "../SkillModule/SkillModuleC";
+import MapChoosePanel from "./ui/MapChoosePanel";
 
 export class MapModuleC extends ModuleC<MapModuleS, null> {
+	private mapChoosePanel: MapChoosePanel = null;
+	private get getMapChoosePanel(): MapChoosePanel {
+		if (!this.mapChoosePanel) {
+			this.mapChoosePanel = UIService.getUI(MapChoosePanel);
+		}
+		return this.mapChoosePanel;
+	}
 	private nowSelect: number = -1;
 	chooseMap(index: number, isFirst: boolean, preSelect: number) {
 		this.nowSelect = index;
@@ -18,7 +25,7 @@ export class MapModuleC extends ModuleC<MapModuleS, null> {
 	net_ShowChooseMap(idList: Array<number>) {
 		this.nowSelect = -1;
 		ModuleService.getModule(LotteryModuleC).lotteryOpen(false)
-		P_Map.instance.showMapChooseUI(idList);
+		this.getMapChoosePanel.showMapChooseUI(idList);
 		ModuleService.getModule(ShopModuleC).ShopOpen(false);
 		ModuleService.getModule(SkillModuleC).isOpenSkillShopPanel(false);
 		ModuleService.getModule(ExchangeModuleC).isOpenExchangePanel(false);
@@ -27,10 +34,10 @@ export class MapModuleC extends ModuleC<MapModuleS, null> {
 		if (mw.UIService.getUI(AdsPanel, false)?.visible) mw.UIService.getUI(AdsPanel).hide();
 	}
 	net_UpdateChoose(infoList: Array<number>) {
-		P_Map.instance.updateChoose(infoList);
+		this.getMapChoosePanel.updateChoose(infoList);
 	}
 	net_ShowFinal(id: number, curMapID: number) {
-		P_Map.instance.showFinal(id);
+		this.getMapChoosePanel.showFinal(id);
 		let res = 0
 		if (this.nowSelect >= 0) {
 			res = GameConfig.Level.getAllElement()[this.nowSelect + 1].ID;

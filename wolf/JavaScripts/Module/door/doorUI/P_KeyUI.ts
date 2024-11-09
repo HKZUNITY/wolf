@@ -1,6 +1,6 @@
-﻿import P_Tips from "../../../CommonUI/P_Tips";
+﻿import { Notice } from "../../../CommonUI/notice/Notice";
 import { GameConfig } from "../../../Tables/GameConfig";
-import PwUI_Generate from "../../../ui-generate/PwUI_generate";
+import PwUI_Generate from "../../../ui-generate/module/DoorModule/PwUI_generate";
 import { DoorModuleC } from "../DoorModuleC";
 
 export default class P_KeyUI extends PwUI_Generate {
@@ -38,11 +38,11 @@ export default class P_KeyUI extends PwUI_Generate {
 			if (this.inputPassArr.length == this.currPassArr.length) {
 				ModuleService.getModule(DoorModuleC).openDoor();
 				this.hide();
-				P_Tips.show(GameConfig.Tips.getElement(20005).Content);
+				Notice.showDownNotice(GameConfig.Tips.getElement(20005).Content);
 			}
 		} else {//输入错的
 			this.exit()
-			P_Tips.show(GameConfig.Tips.getElement(20006).Content);
+			Notice.showDownNotice(GameConfig.Tips.getElement(20006).Content);
 		}
 
 	}

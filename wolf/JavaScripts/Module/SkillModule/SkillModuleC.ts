@@ -1,21 +1,59 @@
-import P_Tips from "../../CommonUI/P_Tips";
+import { Notice } from '../../CommonUI/notice/Notice';
 import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
 import { GeneralManager, } from '../../Modified027Editor/ModifiedStaticAPI';
 import { GameConfig } from "../../Tables/GameConfig";
-import P_Game from "../../UILogic/Game/P_Game";
-import P_Hall from "../../UILogic/Hall/P_Hall";
-import Ghost_Generate from "../../ui-generate/uiTemplate/Inside/Ghost_generate";
 import { GameModuleC } from "../GameModule/GameModuleC";
+import GameBattlePanel from '../GameModule/ui/GameBattlePanel';
+import GhostPanel from '../GameModule/ui/GhostPanel';
+import HUDPanel from '../PlayerModule/ui/HUDPanel';
 import { AutoAimModuleC } from "../Weapon/Aim/AutoAimModuleC";
-import P_SkillShop, { SkillShopData } from "./P_SkillShop";
-import P_SkillShopItemDesc from "./P_SkillShopItemDesc";
-import { SkillData } from "./SkillData";
+import { SkillData, SkillShopData } from "./SkillData";
 
 import { GoldType, SkillModuleS } from "./SkillModuleS";
+import SkillInfoPanel from './ui/SkillInfoPanel';
+import SkillPanel from './ui/SkillPanel';
 
 export class SkillModuleC extends ModuleC<SkillModuleS, SkillData> {
+    private gameBattlePanel: GameBattlePanel = null;
+    private get getGameBattlePanel(): GameBattlePanel {
+        if (!this.gameBattlePanel) {
+            this.gameBattlePanel = UIService.getUI(GameBattlePanel);
+        }
+        return this.gameBattlePanel;
+    }
+
+    private ghostPanel: GhostPanel = null;
+    private get getGhostPanel(): GhostPanel {
+        if (!this.ghostPanel) {
+            this.ghostPanel = UIService.getUI(GhostPanel);
+        }
+        return this.ghostPanel;
+    }
+
+    private hudPanel: HUDPanel = null;
+    private get getHUDPanel(): HUDPanel {
+        if (!this.hudPanel) {
+            this.hudPanel = UIService.getUI(HUDPanel);
+        }
+        return this.hudPanel;
+    }
+
     private skillShopData: Array<SkillShopData>;
-    private skillShopMainUI: P_SkillShop;
+    private skillPanel: SkillPanel = null;;
+    private get getSkillPanel(): SkillPanel {
+        if (!this.skillPanel) {
+            this.skillPanel = UIService.getUI(SkillPanel);
+        }
+        return this.skillPanel;
+    }
+
+    private skillInfoPanel: SkillInfoPanel = null;
+    private get getSkillInfoPanel(): SkillInfoPanel {
+        if (!this.skillInfoPanel) {
+            this.skillInfoPanel = UIService.getUI(SkillInfoPanel);
+        }
+        return this.skillInfoPanel;
+    }
     private timer;
     private boomDelayMap: Map<string, BoomInfo> = new Map<string, BoomInfo>();
     /**一个人就一个技能特效挂在身上 */
@@ -28,21 +66,16 @@ export class SkillModuleC extends ModuleC<SkillModuleS, SkillData> {
     public isOpenSkillShopPanel(isShow: boolean) {
         if (!this.skillShopData) {
             this.initSkillShopData();
-            this.skillShopMainUI = mw.UIService.create(P_SkillShop);
         }
         if (isShow) {
-            this.skillShopMainUI.refreshSkillShop(this.skillShopData);
-            mw.UIService.showUI(this.skillShopMainUI);
-            P_Hall.instance.showShop();
-
+            this.getSkillPanel.refreshSkillShop(this.skillShopData);
+            this.getSkillPanel.show();
+            this.getHUDPanel.showShop();
         }
         else {
-
-            if (this.skillShopMainUI) {
-                mw.UIService.hideUI(this.skillShopMainUI);
-            }
-            mw.UIService.hideUI(P_SkillShopItemDesc.instance);
-            P_Hall.instance.hideShop();
+            if (mw.UIService.getUI(SkillPanel, false)?.visible) this.getSkillPanel.hide();
+            this.getSkillInfoPanel.hide();
+            this.getHUDPanel.hideShop();
         }
     }
 
@@ -109,12 +142,11 @@ export class SkillModuleC extends ModuleC<SkillModuleS, SkillData> {
         this.skillShopData.sort((a, b) => {
             return this.sortFunc(a, b);
         })
-        if (this.skillShopMainUI) {
-            this.skillShopMainUI.refreshSkillShop(this.skillShopData);
+        if (mw.UIService.getUI(SkillPanel, false)?.visible) {
+            this.getSkillPanel.refreshSkillShop(this.skillShopData);
         }
-
-        if (P_SkillShopItemDesc.instance.visible && changeSkill) {
-            P_SkillShopItemDesc.instance.showSkillDesc(changeSkill);
+        if (mw.UIService.getUI(SkillInfoPanel, false)?.visible && changeSkill) {
+            this.getSkillInfoPanel.showSkillDesc(changeSkill);
         }
     }
 
@@ -131,9 +163,9 @@ export class SkillModuleC extends ModuleC<SkillModuleS, SkillData> {
             let res = this.sortFunc(a, b)
             return res;
         })
-        this.skillShopMainUI.refreshSkillShop(this.skillShopData);
-        if (P_SkillShopItemDesc.instance.visible && changeSkill) {
-            P_SkillShopItemDesc.instance.showSkillDesc(changeSkill);
+        this.getSkillPanel.refreshSkillShop(this.skillShopData);
+        if (mw.UIService.getUI(SkillInfoPanel, false)?.visible && changeSkill) {
+            this.getSkillInfoPanel.showSkillDesc(changeSkill);
         }
     }
 
@@ -149,9 +181,9 @@ export class SkillModuleC extends ModuleC<SkillModuleS, SkillData> {
             let res = this.sortFunc(a, b)
             return res;
         })
-        this.skillShopMainUI.refreshSkillShop(this.skillShopData);
-        if (P_SkillShopItemDesc.instance.visible && changeSkill) {
-            P_SkillShopItemDesc.instance.showSkillDesc(changeSkill);
+        this.getSkillPanel.refreshSkillShop(this.skillShopData);
+        if (mw.UIService.getUI(SkillInfoPanel, false)?.visible && changeSkill) {
+            this.getSkillInfoPanel.showSkillDesc(changeSkill);
         }
     }
 
@@ -174,9 +206,9 @@ export class SkillModuleC extends ModuleC<SkillModuleS, SkillData> {
             let res = this.sortFunc(a, b)
             return res;
         })
-        this.skillShopMainUI.refreshSkillShop(this.skillShopData);
-        if (P_SkillShopItemDesc.instance.visible && changeSkill) {
-            P_SkillShopItemDesc.instance.showSkillDesc(changeSkill);
+        this.getSkillPanel.refreshSkillShop(this.skillShopData);
+        if (mw.UIService.getUI(SkillInfoPanel, false)?.visible && changeSkill) {
+            this.getSkillInfoPanel.showSkillDesc(changeSkill);
         }
     }
 
@@ -199,26 +231,26 @@ export class SkillModuleC extends ModuleC<SkillModuleS, SkillData> {
     public updateInGameSkill() {
         let camp = ModuleService.getModule(GameModuleC).getPlayerCamp();
         let skillId = this.data.getEquipSkill();
-        P_Game.instance.updateInGameSkill(camp, skillId);
+        this.getGameBattlePanel.updateInGameSkill(camp, skillId);
     }
 
     public net_updateSkillIsAvtive(res: boolean) {
-        P_Game.instance.updateSkillIsActive(res);
+        this.getGameBattlePanel.updateSkillIsActive(res);
     }
 
     public async buySkill(skillId: number, costType: GoldType) {
         let dataInfo = GameConfig.SkillShop.getElement(skillId);
         let remain = this.data.getSkillRemainTime(skillId);
         if (dataInfo.Max > 0 && remain >= dataInfo.Max) {
-            P_Tips.show(GameConfig.Tips.getElement(20018).Content);
+            Notice.showDownNotice(GameConfig.Tips.getElement(20018).Content);
             return;
         }
         let res = await this.server.net_buySkill(skillId, costType);
         if (res) {
-            P_Tips.show(GameConfig.Tips.getElement(10011).Content);
+            Notice.showDownNotice(GameConfig.Tips.getElement(10011).Content);
         }
         else {
-            P_Tips.show(GameConfig.Tips.getElement(10012).Content);
+            Notice.showDownNotice(GameConfig.Tips.getElement(10012).Content);
         }
     }
 
@@ -303,8 +335,8 @@ export class SkillModuleC extends ModuleC<SkillModuleS, SkillData> {
             }
             GeneralManager.rpcPlayEffectAtLocation(dataInfo.CastEffect, this.localPlayer.character.worldTransform.position.clone().add(dataInfo.CastEffectPos), 1, Rotation.zero, dataInfo.CastEffectScale);
             this.skillEffect = GeneralManager.rpcPlayEffectOnPlayer(dataInfo.HitEffect, this.localPlayer, mw.HumanoidSlotType.Root, 0, dataInfo.HitEffectPosition, Rotation.zero, dataInfo.HitEffectScale);
-            mw.UIService.show(Ghost_Generate);
-            P_Game.instance.useSkill(skillId);
+            this.getGhostPanel.show();
+            this.getGameBattlePanel.useSkill(skillId);
 
         }
         else {
@@ -320,8 +352,8 @@ export class SkillModuleC extends ModuleC<SkillModuleS, SkillData> {
             if (this.skillEffect) {
                 EffectService.stop(this.skillEffect);
                 this.skillEffect = null;
-                mw.UIService.hide(Ghost_Generate);
-                P_Game.instance.skillInCool(skillId);
+                this.getGhostPanel.hide();
+                this.getGameBattlePanel.skillInCool(skillId);
             }
         }
         else {

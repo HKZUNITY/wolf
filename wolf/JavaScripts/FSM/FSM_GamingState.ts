@@ -1,6 +1,6 @@
 ﻿import { AiModuleS } from "../AI/AiModule";
 import { GameGlobals, GamingState, Globals } from "../Globals";
-import { FSMModuleS } from "../Module/FSMModule";
+import FSMModuleS from "../Module/FSMModule/FSMModuleS";
 import { GameModuleS } from "../Module/GameModule/GameModuleS";
 import FSM_CalculateState from "./FSM_CalculateState";
 import { IFSMState } from "./IFSMState";

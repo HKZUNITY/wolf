@@ -1,40 +1,50 @@
-﻿import P_Tips from "../../CommonUI/P_Tips";
+﻿import { Notice } from "../../CommonUI/notice/Notice";
 import { GameConfig } from "../../Tables/GameConfig";
-import P_Exchange from "../../UILogic/Hall/P_Exchange";
-import P_Hall from "../../UILogic/Hall/P_Hall";
+import HUDPanel from "../PlayerModule/ui/HUDPanel";
 import ExchangeModuleS from "./ExchangeModuleS";
-
+import ExchangePanel from "./ui/ExchangePanel";
 
 export default class ExchangeModuleC extends ModuleC<ExchangeModuleS, null> {
-    private exchangePanel: P_Exchange;
-    public isOpenExchangePanel(isOpen: boolean) {
+    private exchangePanel: ExchangePanel = null;
+    private get getExchangePanel(): ExchangePanel {
         if (!this.exchangePanel) {
-            this.exchangePanel = mw.UIService.create(P_Exchange);
+            this.exchangePanel = mw.UIService.create(ExchangePanel);
         }
+        return this.exchangePanel;
+    }
+
+    private hudPanel: HUDPanel = null;
+    private get getHUDPanel(): HUDPanel {
+        if (!this.hudPanel) {
+            this.hudPanel = UIService.getUI(HUDPanel);
+        }
+        return this.hudPanel;
+    }
+
+    public isOpenExchangePanel(isOpen: boolean) {
         if (isOpen) {
-            mw.UIService.showUI(this.exchangePanel);
-            P_Hall.instance.showShop();
+            this.getExchangePanel.show();
+            this.getHUDPanel.showShop();
         }
         else {
-            mw.UIService.hideUI(this.exchangePanel);
-            P_Hall.instance.hideShop();
+            this.getExchangePanel.hide();
+            this.getHUDPanel.hideShop();
         }
     }
 
     public async exchangeItem(id: number) {
         let res = await this.server.net_buyExchangeItem(id);
         if (res) {
-            P_Tips.show(GameConfig.Tips.getElement(10011).Content);
+            Notice.showDownNotice(GameConfig.Tips.getElement(10011).Content);
         }
         else {
-            P_Tips.show(GameConfig.Tips.getElement(10012).Content);
+            Notice.showDownNotice(GameConfig.Tips.getElement(10012).Content);
         }
     }
 
     public refreshExchangeItem() {
-        if (this.exchangePanel) {
-            this.exchangePanel.refreshPanel();
+        if (mw.UIService.getUI(ExchangePanel, false)?.visible) {
+            this.getExchangePanel.refreshPanel();
         }
     }
-
 }

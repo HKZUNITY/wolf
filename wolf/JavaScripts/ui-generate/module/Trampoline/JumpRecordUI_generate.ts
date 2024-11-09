@@ -3,7 +3,7 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/module/Trampoline/JumpRecordUI.ui
- * TIME: 2024.10.05-18.40.21
+ * TIME: 2024.11.09-14.30.15
  */
  
 @UIBind('UI/module/Trampoline/JumpRecordUI.ui')
@@ -63,7 +63,7 @@ export default class JumpRecordUI_Generate extends UIScript {
 		
 	}
 	
-	/**初始化多语言*/
+	/*初始化多语言*/
 	private initLanguage(ui: mw.StaleButton | mw.TextBlock) {
         let call = mw.UIScript.getBehavior("lan");
         if (call && ui) {
@@ -73,12 +73,12 @@ export default class JumpRecordUI_Generate extends UIScript {
 
 	protected onShow(...params: any[]): void {};
 
-	/**显示panel*/
+	/*显示panel*/
     public show(...param): void {
 		mw.UIService.showUI(this, this.layer, ...param);
 	}
 
-	/**隐藏panel*/
+	/*隐藏panel*/
     public hide(): void {
 		mw.UIService.hideUI(this);
 	}

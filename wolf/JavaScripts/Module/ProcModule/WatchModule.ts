@@ -1,22 +1,21 @@
 import { AiObject } from "../../AI/AiObject";
-import P_Tips from "../../CommonUI/P_Tips";
+import { Notice } from "../../CommonUI/notice/Notice";
 import { Camp, GameGlobals, GamingState } from "../../Globals";
 import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
 import { GameConfig } from "../../Tables/GameConfig";
 import { Tools } from "../../Tools";
-import P_Die from "../../UILogic/Game/P_Die";
-import P_Game from "../../UILogic/Game/P_Game";
-import P_GameFinal from "../../UILogic/Game/P_GameFinal";
-import P_Hall from "../../UILogic/Hall/P_Hall";
-import P_Default from "../../UILogic/P_Default";
 import ChatPanel from "../DanMuModule/ui/ChatPanel";
 import { GameModuleData } from "../GameModule/GameData";
 import { GameModuleS } from "../GameModule/GameModuleS";
+import CongratulationPanel from "../GameModule/ui/CongratulationPanel";
+import DeadPanel from "../GameModule/ui/DeadPanel";
+import GameBattlePanel from "../GameModule/ui/GameBattlePanel";
+import JoystickPanel from "../GameModule/ui/JoystickPanel";
 import { PlayerModuleC } from "../PlayerModule/PlayerModuleC";
+import HUDPanel from "../PlayerModule/ui/HUDPanel";
 
 export class WatchModuleC extends ModuleC<WatchModuleS, null> {
     private curPlayer: mw.Player;
-    private ui: P_Default;
     private initialCameraInfo: mw.Transform;
     private watchObj: mw.GameObject;
     private myCamera: Camera;
@@ -28,9 +27,49 @@ export class WatchModuleC extends ModuleC<WatchModuleS, null> {
         }
         return this.chatPanel;
     }
+    private joystickPanel: JoystickPanel = null;
+    private get getJoystickPanel(): JoystickPanel {
+        if (!this.joystickPanel) {
+            this.joystickPanel = mw.UIService.getUI(JoystickPanel);
+        }
+        return this.joystickPanel;
+    }
+
+    private congratulationPanel: CongratulationPanel = null;
+    private get getCongratulationPanel(): CongratulationPanel {
+        if (!this.congratulationPanel) {
+            this.congratulationPanel = mw.UIService.getUI(CongratulationPanel);
+        }
+        return this.congratulationPanel;
+    }
+
+    private deadPanel: DeadPanel = null;
+    private get getDeadPanel(): DeadPanel {
+        if (!this.deadPanel) {
+            this.deadPanel = mw.UIService.getUI(DeadPanel);
+        }
+        return this.deadPanel;
+    }
+
+    private gameBattlePanel: GameBattlePanel = null;
+    private get getGameBattlePanel(): GameBattlePanel {
+        if (!this.gameBattlePanel) {
+            this.gameBattlePanel = UIService.getUI(GameBattlePanel);
+        }
+        return this.gameBattlePanel;
+    }
+
+    private hudPanel: HUDPanel = null;
+    private get getHUDPanel(): HUDPanel {
+        if (!this.hudPanel) {
+            this.hudPanel = UIService.getUI(HUDPanel);
+        }
+        return this.hudPanel;
+    }
+
     onEnterScene(sceneType: number): void {
         this.curPlayer = Player.localPlayer;
-        this.ui = mw.UIService.getUI(P_Default);
+        this.getJoystickPanel.show();
         this.initialCameraInfo = Camera.currentCamera.localTransform.clone().clone();
         this.myCamera = Camera.currentCamera;
         this.cameraTransform = new mw.Transform(Vector.zero, Rotation.zero, Vector.one);
@@ -54,10 +93,10 @@ export class WatchModuleC extends ModuleC<WatchModuleS, null> {
     }
     net_EndWatch() {
         this.changeWatchTarget(this.localPlayer.character);
-        P_GameFinal.closeGameFinal();
-        P_Game.closeGameUI();
-        P_Hall.showHallUI();
-        P_Die.closeDieEffecUI();
+        this.getCongratulationPanel.closeGameFinal();
+        this.getGameBattlePanel.closeGameUI();
+        this.getHUDPanel.showHallUI();
+        this.getDeadPanel.closeDieEffecUI();
         ModuleService.getModule(PlayerModuleC).exitWatch()
         this.getChatPanel.show();
         this.server.net_EndWatch();
@@ -66,11 +105,11 @@ export class WatchModuleC extends ModuleC<WatchModuleS, null> {
 
     net_EndWatchByServer() {
         this.changeWatchTarget(this.curPlayer.character);
-        P_GameFinal.closeGameFinal();
-        P_Game.closeGameUI();
-        P_Hall.showHallUI();
+        this.getCongratulationPanel.closeGameFinal();
+        this.getGameBattlePanel.closeGameUI();
+        this.getHUDPanel.showHallUI();
         ModuleService.getModule(PlayerModuleC).exitWatch()
-        P_Die.closeDieEffecUI();
+        this.getDeadPanel.closeDieEffecUI();
         this.joyOpen(true);
     }
     /**-1:left,1:right */
@@ -84,8 +123,8 @@ export class WatchModuleC extends ModuleC<WatchModuleS, null> {
         GameObject.asyncFindGameObjectById(id).then(go => {
             if (go) {
                 this.changeWatchTarget(go);
-                P_Hall.closeHallUI();
-                P_Game.showWatch(camp, showNum, total, name);
+                this.getHUDPanel.closeHallUI();
+                this.getGameBattlePanel.showWatch(camp, showNum, total, name);
                 this.joyOpen(false);
             }
         })
@@ -93,23 +132,22 @@ export class WatchModuleC extends ModuleC<WatchModuleS, null> {
 
     joyOpen(bool: boolean) {
         if (bool) {
-            this.ui.mMWVirtualJoystickPanelDesigner.visibility = mw.SlateVisibility.Visible;
-            this.ui.mMWVirtualJoystickPanelDesigner.resetJoyStick();
+            this.getJoystickPanel.mMWVirtualJoystickPanelDesigner.visibility = mw.SlateVisibility.Visible;
+            this.getJoystickPanel.mMWVirtualJoystickPanelDesigner.resetJoyStick();
         } else {
-            this.ui.mMWVirtualJoystickPanelDesigner.visibility = mw.SlateVisibility.Collapsed;
+            this.getJoystickPanel.mMWVirtualJoystickPanelDesigner.visibility = mw.SlateVisibility.Collapsed;
         }
-
     }
 
     net_RpcDieEffect() {
-        P_Die.showDieEffectUI();
+        this.getDeadPanel.showDieEffectUI();
     }
     net_RpcFinalEffect(isWin: boolean) {
-        P_GameFinal.showGameFinal(isWin);
+        this.getCongratulationPanel.showGameFinal(isWin);
     }
     net_ShowTips(id: number) {
         let str = GameConfig.Tips.getElement(id).Content;
-        P_Tips.show(str);
+        Notice.showDownNotice(str);
     }
 }
 export class WatchModuleS extends ModuleS<WatchModuleC, null> {

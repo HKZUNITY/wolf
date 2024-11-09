@@ -1,19 +1,47 @@
 ﻿import { GameConfig } from "../../Tables/GameConfig";
 import { Tools } from "../../Tools";
-import P_Hall from "../../UILogic/Hall/P_Hall";
 import { PlayerModuleC } from "../PlayerModule/PlayerModuleC";
-import { ShopModuleC } from "../ShopModule/ShopCityModule";
-import { ShopModuleData } from "../ShopModule/ShopData";
+import HUDPanel from "../PlayerModule/ui/HUDPanel";
+import ShopModuleC from "../ShopModule/ShopModuleC";
+import ShopModuleData from "../ShopModule/ShopModuleData";
 import { LotteryModuleS } from "./LotteryModuleS";
-import { LotteryInsidePanel, LotteryPanel, LotteryScrollPanel } from "./LotteryPanel";
+import LotteryInPanel from "./ui/LotteryInPanel";
+import LotteryPanel from "./ui/LotteryPanel";
+import LotteryTypePanel from "./ui/LotteryTypePanel";
 
 export class LotteryModuleC extends ModuleC<LotteryModuleS, null> {
     // 主界面
-    private panel: LotteryPanel = null;
+    private lotteryPanel: LotteryPanel = null;
+    private get getLotteryPanel(): LotteryPanel {
+        if (this.lotteryPanel == null) {
+            this.lotteryPanel = mw.UIService.getUI(LotteryPanel);
+            this.lotteryPanel.init();
+        }
+        return this.lotteryPanel;
+    }
     // 武器箱内部界面
-    private insidePanel: LotteryInsidePanel = null;
+    private lotteryTypePanel: LotteryTypePanel = null;
+    private get getLotteryTypePanel(): LotteryTypePanel {
+        if (this.lotteryTypePanel == null) {
+            this.lotteryTypePanel = mw.UIService.getUI(LotteryTypePanel);
+        }
+        return this.lotteryTypePanel;
+    }
     // 滚动界面
-    private scrollPanel: LotteryScrollPanel = null;
+    private lotteryInPanel: LotteryInPanel = null;
+    private get getLotteryInPanel(): LotteryInPanel {
+        if (this.lotteryInPanel == null) {
+            this.lotteryInPanel = mw.UIService.getUI(LotteryInPanel);
+        }
+        return this.lotteryInPanel;
+    }
+    private hudPanel: HUDPanel = null;
+    private get getHUDPanel(): HUDPanel {
+        if (!this.hudPanel) {
+            this.hudPanel = UIService.getUI(HUDPanel);
+        }
+        return this.hudPanel;
+    }
 
     // 滚动动画
     private scrollTween: mw.Tween<{
@@ -40,91 +68,69 @@ export class LotteryModuleC extends ModuleC<LotteryModuleS, null> {
         return this.scrolling;
     }
     lotteryOpen(isOpen: boolean) {
-        if (this.panel == null) {
-            this.panel = this.creatPanel();
-        }
-        if (isOpen && this.panel.getView().visible == false) {
-            mw.UIService.showUI(this.panel.getView());
-            //TODO 默认展示
-            //其他UI隐藏
-            P_Hall.instance.showLottery();
-            this.panel.refreshLotteryPage();
-        }
-        else if (isOpen == false && this.panel.getView().visible == true) {
+        if (isOpen) {
+            this.getLotteryPanel.show();
+            this.getHUDPanel.showLottery();//其他UI隐藏
+            this.getLotteryPanel.refreshLotteryPage();
+        } else {
             this.lotteryInsideOpen(false);
-            mw.UIService.hideUI(this.panel.getView());
-            P_Hall.instance.hideLottery();
+            this.getLotteryPanel.hide();
+            this.getHUDPanel.hideLottery();
         }
     }
+
     lotteryInsideOpen(isOpen: boolean, curLotteryIndex?: number) {
-        if (this.insidePanel == null) {
-            this.insidePanel = this.creatInsidePanel();
-        }
+        if (this.lotteryTypePanel == null) this.lotteryTypePanel = mw.UIService.getUI(LotteryTypePanel);
+
         if (curLotteryIndex != undefined) {
             this.curLotteryIndex = curLotteryIndex
         }
+
         if (isOpen) {
-            mw.UIService.hideUI(this.panel.getView());
-            this.insidePanel.getView().mCanvas_lottery0.visibility = mw.SlateVisibility.SelfHitTestInvisible
-            mw.UIService.showUI(this.insidePanel.getView());
-            this.insidePanel.init(this.curLotteryIndex);
-            this.insidePanel.setLotteryAd(false);
-        }
-        else {
-            this.insidePanel.stopCountDown()
+            this.getLotteryPanel.hide();
+            this.getLotteryTypePanel.mCanvas_lottery0.visibility = mw.SlateVisibility.SelfHitTestInvisible
+            this.getLotteryTypePanel.show();
+            this.getLotteryTypePanel.init(this.curLotteryIndex);
+            this.getLotteryTypePanel.setLotteryAd(false);
+        } else {
+            this.getLotteryTypePanel.stopCountDown()
             if (this.resTimeout != null) {
                 clearTimeout(this.resTimeout);
-                this.insidePanel.closeResPanel();
+                this.getLotteryTypePanel.closeResPanel();
                 this.resTimeout = null;
             }
             this.lotteryScrollOpen(false);
             this.calcScrollResult(this.curLotteryIndex, false);
-            mw.UIService.showUI(this.panel.getView());
-            mw.UIService.hideUI(this.insidePanel.getView());
-            /**为了在游戏里面也能抽奖之个先不能置空 */
-            // this.curLotteryIndex = null
+            this.getLotteryPanel.show();
+            this.getLotteryTypePanel.hide();
         }
     }
     lotteryScrollOpen(isOpen: boolean) {
         if (this.scrolling) return;
         if (this.resTimeout != null) {
             clearTimeout(this.resTimeout);
-            this.insidePanel.closeResPanel();
+            this.getLotteryTypePanel.closeResPanel();
             this.resTimeout = null;
         }
-        if (this.scrollPanel == null) {
-            this.scrollPanel = this.createScrollPanel();
-        }
+
+        if (this.lotteryInPanel == null) this.lotteryInPanel = mw.UIService.getUI(LotteryInPanel);
+
         if (isOpen) {
             this.scrolling = true
-            mw.UIService.showUI(this.scrollPanel.getView());
-            this.scrollPanel.init(this.curLotteryIndex);
-        }
-        else {
-            mw.UIService.hideUI(this.scrollPanel.getView());
+            this.getLotteryInPanel.show();
+            this.getLotteryInPanel.init(this.curLotteryIndex);
+        } else {
+            this.getLotteryInPanel.hide();
         }
     }
     /**开始抽奖，给埋点的 */
     startLottery(boxId: number, isUseMoney: boolean) {
         this.server.net_startLottery(boxId, isUseMoney);
     }
-    //创建UI
-    private creatPanel(): LotteryPanel {
-        let panel: LotteryPanel = mw.UIService.create(LotteryPanel);
-        panel.init();
-        return panel;
-    }
-    private creatInsidePanel(): LotteryInsidePanel {
-        let panel: LotteryInsidePanel = mw.UIService.create(LotteryInsidePanel);
-        return panel;
-    }
-    private createScrollPanel(): LotteryScrollPanel {
-        let panel: LotteryScrollPanel = mw.UIService.create(LotteryScrollPanel);
-        return panel;
-    }
+
     public changeCoin(num: number) {
-        if (this.insidePanel == null) return
-        this.insidePanel.getView().mTextBlock_CoinNum.text = num.toString()
+        if (this.lotteryTypePanel == null) return
+        this.getLotteryTypePanel.mTextBlock_CoinNum.text = num.toString()
     }
     public changeGold(cost: number) {
         this.server.net_ChangeGold(this.localPlayer.playerId, cost);
@@ -183,23 +189,21 @@ export class LotteryModuleC extends ModuleC<LotteryModuleS, null> {
         }
     }
 
-
-
     public scroll(lotteryIndex: number, isEnd: boolean) {
         //TODO 滚动列表
         this.index = this.getRandomIndexRes(lotteryIndex, isEnd);
-        let chiledrenCount = this.scrollPanel.getView().mCanvas.getChildrenCount();
-        let oneLength = this.scrollPanel.getItemSize().x;
+        let chiledrenCount = this.getLotteryInPanel.mCanvas.getChildrenCount();
+        let oneLength = this.getLotteryInPanel.getItemSize().x;
         let randomValue = mw.MathUtil.randomInt(10, 30);
-        this.scrollDistance = oneLength * randomValue + this.scrollPanel.getStyle()[0] * (randomValue - 1);
+        this.scrollDistance = oneLength * randomValue + this.getLotteryInPanel.getStyle()[0] * (randomValue - 1);
         this.scrollStartSpeed = this.scrollDistance * 2 / this.scrollTime;
 
         this.scrollTween = new mw.Tween({ x: this.scrollStartSpeed })
             .to({ x: 0 }, this.scrollTime * 1000)
             .onUpdate((v) => {
-                this.scrollPanel.getView().mCanvas.position = mw.Vector2.add(this.scrollPanel.getView().mCanvas.position, new mw.Vector2(-v.x * TimeUtil.deltatime(), 0));
+                this.getLotteryInPanel.mCanvas.position = mw.Vector2.add(this.getLotteryInPanel.mCanvas.position, new mw.Vector2(-v.x * TimeUtil.deltatime(), 0));
                 //TODO 子物体改变位置  实现循环
-                this.scrollPanel.updateScrollItemPos(randomValue, this.index);
+                this.getLotteryInPanel.updateScrollItemPos(randomValue, this.index);
             })
             .onComplete(() => {
                 this.calcScrollResult(lotteryIndex);
@@ -217,7 +221,7 @@ export class LotteryModuleC extends ModuleC<LotteryModuleS, null> {
         if (isShowRes) {
             this.showResPanel(GameConfig.Lottery.getElement(lotteryIndex).Item[this.index])
             this.resTimeout = setTimeout(() => {
-                this.insidePanel.closeResPanel();
+                this.getLotteryTypePanel.closeResPanel();
             }, 3000);
         }
         let curWeaponId = GameConfig.Lottery.getElement(lotteryIndex).Item[this.index]
@@ -228,19 +232,17 @@ export class LotteryModuleC extends ModuleC<LotteryModuleS, null> {
         let reclaim = GameConfig.Shop.getElement(itemId).Reclaim;
         if (itemInfo.state[itemInfo.listId.indexOf(curWeaponId)] == 1) {
             ModuleService.getModule(ShopModuleC).getItem(itemId);
-        }
-        else {
+        } else {
             ModuleService.getModule(PlayerModuleC).net_RewardGold(reclaim);
         }
-
     }
 
     private showResPanel(itemId: number) {
-        if (!this.insidePanel.getView().visible) {
-            this.insidePanel.getView().mCanvas_lottery0.visibility = mw.SlateVisibility.Collapsed
-            mw.UIService.showUI(this.insidePanel.getView())
+        if (!this.lotteryTypePanel?.visible) {
+            this.getLotteryTypePanel.mCanvas_lottery0.visibility = mw.SlateVisibility.Collapsed
+            this.getLotteryTypePanel.show();
         }
-        this.insidePanel.showResPanel(itemId)
+        this.getLotteryTypePanel.showResPanel(itemId)
     }
 
 }

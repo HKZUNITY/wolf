@@ -1,18 +1,25 @@
 import { AiModuleS } from "../../AI/AiModule";
-import AdsPanel from '../../AdsPanel';
 import { GameCache } from "../../GameCache";
 import { CalculateState, Camp, GameGlobals, GamingState, PlayerGameState } from "../../Globals";
 import { GameConfig } from '../../Tables/GameConfig';
 import { IexpRuleElement } from "../../Tables/expRule";
-import P_Account from "../../UILogic/Game/P_Account";
+import AdsPanel from "../AdsModule/ui/AdsPanel";
 import { GameModuleData } from "../GameModule/GameData";
 import { GameModuleS } from "../GameModule/GameModuleS";
 import { PlayerModuleData } from "../PlayerModule/PlayerData";
 import { PlayerModuleC } from "../PlayerModule/PlayerModuleC";
 import { PlayerModuleS } from "../PlayerModule/PlayerModuleS";
 import AttributeManager, { AttributeType } from "../SVipModule/AttributeManager";
+import ClearingPanel from "./ui/ClearingPanel";
 
 export class CalculateModuleC extends ModuleC<CalculateModuleS, null> {
+    private clearingPanel: ClearingPanel = null;
+    private get getClearingPanel(): ClearingPanel {
+        if (this.clearingPanel == null) {
+            this.clearingPanel = UIService.getUI(ClearingPanel);
+        }
+        return this.clearingPanel;
+    }
     private _gold = 0;
     // private canWtachAD: boolean = false
     /**进入游戏的玩家数量 */
@@ -39,11 +46,11 @@ export class CalculateModuleC extends ModuleC<CalculateModuleS, null> {
             UIService.getUI(AdsPanel).showRewardAd(() => {
                 ModuleService.getModule(PlayerModuleC).addAdvToken(1);
                 ModuleService.getModule(PlayerModuleC).net_RewardGold(gold)
-                P_Account.closeAccountUI();
+                this.getClearingPanel.closeAccountUI();
             }, "免费领取双倍金币\n再送一张广告券", "取消", "领取");
         }
-        P_Account.instance.setMButtonWatchADEvent(calcRewardEvent.bind(this))
-        P_Account.showAccountUI(dataStr, isSvip);
+        this.getClearingPanel.setMButtonWatchADEvent(calcRewardEvent.bind(this))
+        this.getClearingPanel.showAccountUI(dataStr, isSvip);
         // P_Hall.instance.showLotteryADTip(true);
         // let time = Globals.calTime * 1000;
         // setTimeout(() => {

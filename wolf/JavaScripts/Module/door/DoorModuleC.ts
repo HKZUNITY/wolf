@@ -1,18 +1,34 @@
-import { UiManager } from "../../UI/UiManager";
-import P_Action from "../../UILogic/Game/P_Action";
-import P_Game from "../../UILogic/Game/P_Game";
+import ActionUIPanel from "../../CommonUI/ActionUIPanel";
+import GameBattlePanel from "../GameModule/ui/GameBattlePanel";
 import { DoorModuleS } from "./DoorModuleS";
 import P_KeyUI from "./doorUI/P_KeyUI";
 
 export class DoorModuleC extends ModuleC<DoorModuleS, null> {
     private keyUI: P_KeyUI;
-    private actionUI: P_Action;
+    private get getkeyUI(): P_KeyUI {
+        if (!this.keyUI) {
+            this.keyUI = UIService.getUI(P_KeyUI);
+        }
+        return this.keyUI;
+    }
+    private actionUIPanel: ActionUIPanel = null;
+    private get getActionUIPanel(): ActionUIPanel {
+        if (!this.actionUIPanel) {
+            this.actionUIPanel = UIService.getUI(ActionUIPanel);
+        }
+        return this.actionUIPanel;
+    }
+    private gameBattlePanel: GameBattlePanel = null;
+    private get getGameBattlePanel(): GameBattlePanel {
+        if (!this.gameBattlePanel) {
+            this.gameBattlePanel = UIService.getUI(GameBattlePanel);
+        }
+        return this.gameBattlePanel;
+    }
     private index: number;
 
 
     onStart(): void {
-        this.keyUI = UiManager.instance.getUIKey();
-        this.actionUI = UiManager.instance.getActionUI()
     }
 
     /**提示 */
@@ -28,38 +44,38 @@ export class DoorModuleC extends ModuleC<DoorModuleS, null> {
     //删除
     toDelect() {
         this.server.net_delect(this.index);
-        P_Game.showGameUI();
+        this.getGameBattlePanel.showGameUI();
     }
 
     net_showPassUI(index: number) {
         this.index = index;
-        this.actionUI.show();
-        this.actionUI.mStaleButton.onPressed.add(() => {
+        this.getActionUIPanel.show();
+        this.getActionUIPanel.mStaleButton.onPressed.add(() => {
             this.showPassUI()
         })
     }
 
 
     showPassUI() {
-        this.keyUI.show()
-        P_Game.closeGameUI()
+        this.getkeyUI.show()
+        this.getGameBattlePanel.closeGameUI()
         this.net_hideActionUI();
     }
 
     net_hidePassUI(bool: boolean) {
-        this.actionUI.mStaleButton.onPressed.clear();
-        this.actionUI.hide();
-        this.keyUI.hide()
+        this.getActionUIPanel.mStaleButton.onPressed.clear();
+        this.getActionUIPanel.hide();
+        this.getkeyUI.hide()
         if (bool) {
-            P_Game.showGameUI()
+            this.getGameBattlePanel.showGameUI()
         }
     }
 
 
     net_showActionUI(index: number) {
         this.index = index;
-        this.actionUI.show();
-        this.actionUI.mStaleButton.onPressed.add(() => {
+        this.getActionUIPanel.show();
+        this.getActionUIPanel.mStaleButton.onPressed.add(() => {
             this.net_hideActionUI();
             this.server.net_closeDoor(this.index);
         })
@@ -67,8 +83,8 @@ export class DoorModuleC extends ModuleC<DoorModuleS, null> {
 
 
     net_hideActionUI() {
-        this.actionUI.mStaleButton.onPressed.clear();
-        this.actionUI.hide();
+        this.getActionUIPanel.mStaleButton.onPressed.clear();
+        this.getActionUIPanel.hide();
     }
 
 

@@ -2,12 +2,19 @@ import { ColdWeaponAttackMode, GameGlobals, PlayerWeaponState } from "../../../G
 import { PlayerManagerExtesion, } from '../../../Modified027Editor/ModifiedPlayer';
 import { GameConfig } from "../../../Tables/GameConfig";
 import { Tools } from "../../../Tools";
-import P_Game from "../../../UILogic/Game/P_Game";
 import { BagModuleC } from "../../BagModule/BagModuleC";
+import GameBattlePanel from "../../GameModule/ui/GameBattlePanel";
 import { AutoAimModuleC } from "../Aim/AutoAimModuleC";
 import { ColdWeaponModuleS } from "./ColdWeaponModuleS";
 
 export class ColdWeaponModuleC extends ModuleC<ColdWeaponModuleS, null> {
+    private gameBattlePanel: GameBattlePanel = null;
+    private get getGameBattlePanel(): GameBattlePanel {
+        if (!this.gameBattlePanel) {
+            this.gameBattlePanel = UIService.getUI(GameBattlePanel);
+        }
+        return this.gameBattlePanel;
+    }
     public weaponMode: ColdWeaponAttackMode = ColdWeaponAttackMode.Normal
     /**飞刀冷却时间 */
     private coolTime: number
@@ -56,14 +63,14 @@ export class ColdWeaponModuleC extends ModuleC<ColdWeaponModuleS, null> {
     onChangeColdWeaponAttackMode(state: PlayerWeaponState) {
         if (state == PlayerWeaponState.ThrowKnife) {
             this.weaponMode = ColdWeaponAttackMode.FlyKnife
-            P_Game.instance.changeColdWeaponState(PlayerWeaponState.ThrowKnife)
+            this.getGameBattlePanel.changeColdWeaponState(PlayerWeaponState.ThrowKnife)
             if (this.canShoot == true) {
                 this.showColdWeaponAimBtn()
             }
         }
         else if (state == PlayerWeaponState.UnEquip) {
             this.weaponMode = ColdWeaponAttackMode.Normal
-            P_Game.instance.changeColdWeaponState(PlayerWeaponState.UnEquip)
+            this.getGameBattlePanel.changeColdWeaponState(PlayerWeaponState.UnEquip)
             this.hideColdWeaponAimBtn()
             this.cancelThrowKnife()
         }
@@ -103,21 +110,21 @@ export class ColdWeaponModuleC extends ModuleC<ColdWeaponModuleS, null> {
         this.server.net_throwColdWeapon(endPos.normalized);
         Tools.cameraShake(true);
         ModuleService.getModule(BagModuleC).showPlayerColdWeapon()
-        P_Game.instance.showShootCd()
+        this.getGameBattlePanel.showShootCd()
         this.timer = null
     }
     /**取消装备武器 */
     unequipWeapon() {
         this.hideColdWeaponAimBtn()
         this.weaponMode = ColdWeaponAttackMode.Normal
-        P_Game.instance.changeColdWeaponState(PlayerWeaponState.UnEquip)
+        this.getGameBattlePanel.changeColdWeaponState(PlayerWeaponState.UnEquip)
         this.cancelThrowKnife()
     }
     /**装备武器 */
     equipWeapon() {
         this.weaponMode = ColdWeaponAttackMode.Normal
-        P_Game.instance.isEnableChangeWeaponBtn(true)
-        P_Game.instance.changeColdWeaponState(PlayerWeaponState.Knife)
+        this.getGameBattlePanel.isEnableChangeWeaponBtn(true)
+        this.getGameBattlePanel.changeColdWeaponState(PlayerWeaponState.Knife)
         this.cancelThrowKnife()
         this.hideColdWeaponAimBtn()
     }

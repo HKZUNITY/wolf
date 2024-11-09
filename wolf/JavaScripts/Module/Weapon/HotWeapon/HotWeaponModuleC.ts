@@ -3,13 +3,20 @@ import { PlayerManagerExtesion, } from '../../../Modified027Editor/ModifiedPlaye
 import { GeneralManager, } from '../../../Modified027Editor/ModifiedStaticAPI';
 import { GameConfig } from "../../../Tables/GameConfig";
 import { Tools } from "../../../Tools";
-import P_Game from "../../../UILogic/Game/P_Game";
 import { BagModuleC } from "../../BagModule/BagModuleC";
 import { GameModuleC } from "../../GameModule/GameModuleC";
+import GameBattlePanel from "../../GameModule/ui/GameBattlePanel";
 import { AutoAimModuleC } from "../Aim/AutoAimModuleC";
 import { HotWeaponModuleS } from "./HotWeaponModuleS";
 
 export class HotWeaponModuleC extends ModuleC<HotWeaponModuleS, null> {
+    private gameBattlePanel: GameBattlePanel = null;
+    private get getGameBattlePanel(): GameBattlePanel {
+        if (!this.gameBattlePanel) {
+            this.gameBattlePanel = UIService.getUI(GameBattlePanel);
+        }
+        return this.gameBattlePanel;
+    }
     private curPlayer: mw.Player;
     /**索敌范围 */
     private findEnemyScale: number
@@ -54,13 +61,13 @@ export class HotWeaponModuleC extends ModuleC<HotWeaponModuleS, null> {
         if (this.canShoot) {
             ModuleService.getModule(AutoAimModuleC).startForesight()
         }
-        P_Game.instance.changeHotWeaponState(PlayerWeaponState.Gun)
+        this.getGameBattlePanel.changeHotWeaponState(PlayerWeaponState.Gun)
     }
 
     unequipWeapon() {
         ModuleService.getModule(AutoAimModuleC).endForesight()
         this.cancelAutoShoot()
-        P_Game.instance.changeHotWeaponState(PlayerWeaponState.UnEquip)
+        this.getGameBattlePanel.changeHotWeaponState(PlayerWeaponState.UnEquip)
 
     }
 
@@ -100,7 +107,7 @@ export class HotWeaponModuleC extends ModuleC<HotWeaponModuleS, null> {
                     }
                 }
             }, this._coolTime * 1000);
-            P_Game.instance.showShootCd();
+            this.getGameBattlePanel.showShootCd();
             let startPos = ModuleService.getModule(BagModuleC).getFirePos();
             this.server.net_autoShoot(startPos, endPos);
             this.net_createBulletEffect(startPos, endPos);

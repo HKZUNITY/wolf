@@ -21,18 +21,18 @@ export class SkillData extends Subdata {
             return;
         }
 
-        
+
         this.haveSkill = new Array<number>();
         this.timeSkillArr = new Array<TimeSkill>();
         this.haveSkill.push(10001);
         this.nowEquipSkill = 10001;
     }
 
-    public getHaveSkillArr(){
+    public getHaveSkillArr() {
         return this.haveSkill;
     }
-    
-    public buySkill(skillId: number, time: number){
+
+    public buySkill(skillId: number, time: number) {
         this.addTimeSkill(skillId, time);
         if (!this.haveSkill.includes(skillId)) {
             this.haveSkill.push(skillId);
@@ -41,25 +41,25 @@ export class SkillData extends Subdata {
         this.onHaveSkillChange.call(skillId);
     }
     /**只能给gm调用 */
-    private addTimeSkill(skillId: number, time: number){
+    private addTimeSkill(skillId: number, time: number) {
         let dataInfo = GameConfig.SkillShop.getElement(skillId);
-        if (dataInfo.Max > 0){
-            let index = this.timeSkillArr.findIndex((value)=>{
+        if (dataInfo.Max > 0) {
+            let index = this.timeSkillArr.findIndex((value) => {
                 return value.skillId == skillId;
             })
             if (index >= 0) {
                 this.timeSkillArr[index].time = this.timeSkillArr[index].time + time;
                 this.timeSkillArr[index].time = Math.min(this.timeSkillArr[index].time, dataInfo.Max);
             }
-            else{
+            else {
                 let timeSkill = new TimeSkill(skillId, dataInfo.Max);
                 this.timeSkillArr.push(timeSkill);
             }
         }
     }
 
-    public decTimeSkill(skillId: number){
-        let index = this.timeSkillArr.findIndex((value)=>{
+    public decTimeSkill(skillId: number) {
+        let index = this.timeSkillArr.findIndex((value) => {
             return value.skillId == skillId;
         })
         if (index < 0) {
@@ -68,10 +68,10 @@ export class SkillData extends Subdata {
         }
         this.timeSkillArr[index].time = this.timeSkillArr[index].time - 1;
         let remain = this.timeSkillArr[index].time;
-        
+
         if (remain <= 0) {
             this.timeSkillArr = this.timeSkillArr.splice(index, 1);
-            this.haveSkill = this.haveSkill.filter((value)=>{
+            this.haveSkill = this.haveSkill.filter((value) => {
                 return value != skillId;
             });
             if (this.nowEquipSkill == skillId) {
@@ -82,28 +82,28 @@ export class SkillData extends Subdata {
         this.onSkillTimeReduce.call(skillId);
     }
 
-    public equipSkill(skillId: number){
+    public equipSkill(skillId: number) {
         this.nowEquipSkill = skillId;
         this.save(true);
         this.onEquipSkillChange.call(skillId);
     }
 
-    public unequipSkill(skillId: number){
+    public unequipSkill(skillId: number) {
         this.nowEquipSkill = -1;
         this.save(true);
         this.onUnequipSkillChange.call(skillId);
     }
 
-    public getEquipSkill(){
+    public getEquipSkill() {
         return this.nowEquipSkill;
     }
 
-    public getTimeSkill(){
+    public getTimeSkill() {
         return this.timeSkillArr;
     }
-    
-    public getSkillRemainTime(skillId: number){
-        let index = this.timeSkillArr.findIndex((value)=>{
+
+    public getSkillRemainTime(skillId: number) {
+        let index = this.timeSkillArr.findIndex((value) => {
             return value.skillId == skillId;
         })
         if (index < 0) {
@@ -113,13 +113,29 @@ export class SkillData extends Subdata {
     }
 }
 
-export class TimeSkill{
+export class TimeSkill {
     skillId: number;
     time: number;
     maxTime: number;
-    constructor(skillId: number, maxTime: number){
+    constructor(skillId: number, maxTime: number) {
         this.skillId = skillId;
         this.time = 1;
         this.maxTime = maxTime;
+    }
+}
+
+export class SkillShopData {
+    public skillId: number;
+    public isBuy: boolean;
+    public showIndex: number;
+    public isUse: boolean;
+    public remainTime: number;
+    constructor(skillId, isBuy, isUse, remainTime: number) {
+        this.skillId = skillId;
+        this.isBuy = isBuy;
+        this.isUse = isUse;
+        let dataInfo = GameConfig.SkillShop.getElement(this.skillId);
+        this.showIndex = dataInfo.Sequence;
+        this.remainTime = remainTime;
     }
 }

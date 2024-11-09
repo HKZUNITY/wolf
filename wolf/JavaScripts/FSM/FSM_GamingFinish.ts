@@ -1,6 +1,6 @@
 import { GameGlobals, GamingState, Globals } from "../Globals";
 import { BagModuleS } from "../Module/BagModule/BagModuleS";
-import { FSMModuleS } from "../Module/FSMModule";
+import FSMModuleS from "../Module/FSMModule/FSMModuleS";
 import { GameModuleS } from "../Module/GameModule/GameModuleS";
 import { PlayerModuleS } from "../Module/PlayerModule/PlayerModuleS";
 import { WatchModuleS } from "../Module/ProcModule/WatchModule";

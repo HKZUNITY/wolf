@@ -1,4 +1,6 @@
 import { AiModuleC, AiModuleS } from "./AI/AiModule";
+import { update } from "./CommonUI/notice/Tween";
+import NoticePanel from "./CommonUI/NoticePanel";
 import { Globals } from "./Globals";
 import { ArkData, ArkModuleC, ArkModuleS } from "./Module/ArkModule/ArkModule";
 import { BagModuleData } from "./Module/BagModule/BagData";
@@ -10,7 +12,8 @@ import { DoorModuleC } from "./Module/door/DoorModuleC";
 import { DoorModuleS } from "./Module/door/DoorModuleS";
 import ExchangeModuleC from "./Module/ExchangeModule/ExchangeModuleC";
 import ExchangeModuleS from "./Module/ExchangeModule/ExchangeModuleS";
-import { FSMModuleC, FSMModuleS } from "./Module/FSMModule";
+import FSMModuleC from "./Module/FSMModule/FSMModuleC";
+import FSMModuleS from "./Module/FSMModule/FSMModuleS";
 import { GameModuleData } from "./Module/GameModule/GameData";
 import { GameModuleC } from "./Module/GameModule/GameModuleC";
 import { GameModuleS } from "./Module/GameModule/GameModuleS";
@@ -28,8 +31,9 @@ import { SceneModuleC, SceneModuleS } from "./Module/ProcModule/SceneModule";
 import { WatchModuleC, WatchModuleS } from "./Module/ProcModule/WatchModule";
 import ShelterModuleC from "./Module/shelterModule/ShelterModuleC";
 import ShelterModuleS from "./Module/shelterModule/ShelterModuleS";
-import { ShopModuleC, ShopModuleS } from "./Module/ShopModule/ShopCityModule";
-import { ShopModuleData } from "./Module/ShopModule/ShopData";
+import ShopModuleC from "./Module/ShopModule/ShopModuleC";
+import ShopModuleData from "./Module/ShopModule/ShopModuleData";
+import ShopModuleS from "./Module/ShopModule/ShopModuleS";
 import { SkillData } from "./Module/SkillModule/SkillData";
 import { SkillModuleC } from "./Module/SkillModule/SkillModuleC";
 import { SkillModuleS } from "./Module/SkillModule/SkillModuleS";
@@ -44,13 +48,9 @@ import { HotWeaponModuleC } from "./Module/Weapon/HotWeapon/HotWeaponModuleC";
 import { HotWeaponModuleS } from "./Module/Weapon/HotWeapon/HotWeaponModuleS";
 import { GameConfig } from "./Tables/GameConfig";
 import { Tools } from "./Tools";
-import { GMBasePanelUI } from "./UILogic/UIGM";
-import P_Notice from "./uiTemplate/Common/P_Notice";
 
 @Component
 export default class GameStart extends mw.Script {
-    @mw.Property({ displayName: "是否开启GM", group: "脚本设置" })
-    private isGM: boolean = false;
     @mw.Property({ displayName: "是否显示射线", group: "脚本设置" })
     private isLineTrace = false;
     @mw.Property({ displayName: "是否显示公告", group: "脚本设置" })
@@ -127,6 +127,14 @@ export default class GameStart extends mw.Script {
     }
 
     /**--------------------------------【客户端】-------------------------------- */
+    private noticePanel: NoticePanel = null;
+    private get getNoticePanel(): NoticePanel {
+        if (!this.noticePanel) {
+            this.noticePanel = mw.UIService.getUI(NoticePanel);
+        }
+        return this.noticePanel
+    }
+
     /**客户端的onStart */
     private onStartC(): void {
         this.initLanguage();
@@ -171,14 +179,12 @@ export default class GameStart extends mw.Script {
 
     private initData(): void {
         Globals.isShowLineTrace = this.isLineTrace;
-
-        if (mw.SystemUtil.isPIE && this.isGM) new GMBasePanelUI().show();
-        if (this.isShowNotice) mw.UIService.show(P_Notice);//TODO:WFZ
+        if (this.isShowNotice) this.getNoticePanel.show();
     }
 
     /**客户端的onUpdate */
     private onUpdateC(dt: number): void {
-
+        update();
     }
     /**--------------------------------【客户端】-------------------------------- */
 
