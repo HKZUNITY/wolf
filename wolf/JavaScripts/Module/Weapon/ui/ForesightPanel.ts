@@ -1,11 +1,4 @@
-﻿
-/** 
- * AUTHOR: 携一壶浊酒
- * TIME: 2024.11.08-18.33.30
- * ATTENTION: onStart 等UI脚本自带函数不可改写为异步执行，有需求的异步逻辑请使用函数封装，通过函数接口在内部使用
- */
-
-import { GameConfig } from "../../../Tables/GameConfig";
+﻿import { GameConfig } from "../../../Tables/GameConfig";
 import ForesightPanel_Generate from "../../../ui-generate/module/WeaponModule/ForesightPanel_generate";
 
 export default class ForesightPanel extends ForesightPanel_Generate {

@@ -1,4 +1,5 @@
-﻿import { IActionConfigElement } from "../../Tables/ActionConfig";
+﻿import { Globals } from "../../Globals";
+import { IActionConfigElement } from "../../Tables/ActionConfig";
 import { IChatElement } from "../../Tables/Chat";
 import { IExpressionElement } from "../../Tables/Expression";
 import { GameConfig } from "../../Tables/GameConfig";
@@ -141,9 +142,9 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
         if (chatData.chatChilds && chatData.chatChilds.length > 0) {
             this.getChatPanel.showChatList2(index, chatData.chatChilds);
         } else {
-            Event.dispatchToLocal(DanmuSyncServer, chatData.chats[1]);
-            this.showBubbleText(chatData.chats[1]);
-            // this.getChatPanel.closeChatList1List2();
+            Event.dispatchToLocal(DanmuSyncServer, chatData.chats[Globals.languageId]);
+            this.showBubbleText(chatData.chats[Globals.languageId]);
+            this.getChatPanel.closeChatList2(false);
         }
     }
 
@@ -152,8 +153,8 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
         let chatData = this.chatDatas[index];
         if (!chatData) return;
         if (chatData.chatChilds && chatData.chatChilds.length > childIndex) {
-            let text = chatData.chatChilds[childIndex][1];//TODO:LanguageId
-            text = StringUtil.format(chatData.chats[1], text);//TODO:LanguageId
+            let text = chatData.chatChilds[childIndex][Globals.languageId];
+            text = StringUtil.format(chatData.chats[Globals.languageId], text);
             Event.dispatchToLocal(DanmuSyncServer, text);
             this.showBubbleText(text);
             // this.getChatPanel.closeChatList1List2();

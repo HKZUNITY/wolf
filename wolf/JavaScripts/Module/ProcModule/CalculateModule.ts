@@ -1,4 +1,5 @@
 import { AiModuleS } from "../../AI/AiModule";
+import { Notice } from "../../CommonUI/notice/Notice";
 import { GameCache } from "../../GameCache";
 import { CalculateState, Camp, GameGlobals, GamingState, PlayerGameState } from "../../Globals";
 import { GameConfig } from '../../Tables/GameConfig';
@@ -25,7 +26,16 @@ export class CalculateModuleC extends ModuleC<CalculateModuleS, null> {
     /**进入游戏的玩家数量 */
     private enterGamePlayerCount: number = -1
     onStart(): void {
-
+        this.getClearingPanel.mAdsButton.text = GameConfig.Language.Text_Content_12017.Value;
+        this.getClearingPanel.mAdsButton.onClose.add((isSuccess: boolean) => {
+            if (!isSuccess) {
+                Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_2.Value, this.getClearingPanel.mAdsButton.text));
+                return;
+            }
+            ModuleService.getModule(PlayerModuleC).addAdvToken(1);
+            ModuleService.getModule(PlayerModuleC).net_RewardGold(this._gold)
+            this.getClearingPanel.closeAccountUI();
+        });
     }
     onEnterScene(sceneType: number): void {
 
@@ -42,14 +52,7 @@ export class CalculateModuleC extends ModuleC<CalculateModuleS, null> {
         }
         this.enterGamePlayerCount = enterPlayerNum
         let dataStr = JSON.stringify(newobj);
-        let calcRewardEvent = () => {
-            UIService.getUI(AdsPanel).showRewardAd(() => {
-                ModuleService.getModule(PlayerModuleC).addAdvToken(1);
-                ModuleService.getModule(PlayerModuleC).net_RewardGold(gold)
-                this.getClearingPanel.closeAccountUI();
-            }, "免费领取双倍金币\n再送一张广告券", "取消", "领取");
-        }
-        this.getClearingPanel.setMButtonWatchADEvent(calcRewardEvent.bind(this))
+        this._gold = gold;
         this.getClearingPanel.showAccountUI(dataStr, isSvip);
         // P_Hall.instance.showLotteryADTip(true);
         // let time = Globals.calTime * 1000;

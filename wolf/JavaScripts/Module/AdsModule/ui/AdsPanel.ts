@@ -6,13 +6,14 @@
  */
 
 import { Notice } from "../../../CommonUI/notice/Notice";
+import { GameConfig } from "../../../Tables/GameConfig";
 import AdPanel_Generate from "../../../ui-generate/module/AdsModule/AdPanel_generate";
 
 export default class AdsPanel extends AdPanel_Generate {
 	protected onStart(): void {
 		this.canUpdate = false;
 		this.layer = mw.UILayerDialog;
-
+		this.mTitleTxt.text = GameConfig.Language.Text_Ads_1.Value;
 		this.bindButtons();
 	}
 
@@ -23,7 +24,7 @@ export default class AdsPanel extends AdPanel_Generate {
 
 	private onClickYesButton(isSuccess: boolean): void {
 		if (!isSuccess) {
-			Notice.showDownNotice(`${this.mYesBtn.text}失败，请重试`);
+			Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_2.Value, this.mYesBtn.text));
 			return;
 		}
 		this.hide();
@@ -35,7 +36,7 @@ export default class AdsPanel extends AdPanel_Generate {
 	}
 
 	private callback: () => void = null;
-	public showRewardAd(callback: () => void, contentText: string, noText: string = "取消", yesText = "领取", isAuto: boolean = true): void {
+	public showRewardAd(callback: () => void, contentText: string, noText: string, yesText: string): void {
 		this.callback = callback;
 		this.mContentTxt.text = contentText;
 		this.mNoBtn.text = noText;

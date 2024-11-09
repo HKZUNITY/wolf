@@ -44,7 +44,8 @@ export default class SkillInfoPanel extends SkillInfoPanel_Generate {
 		this.skillShopData = data;
 		let dataInfo = GameConfig.SkillShop.getElement(data.skillId);
 		this.mImg_Icon.imageGuid = dataInfo.IconGUID.toString();
-		this.mText_Name.text = dataInfo.Name;
+		let name = dataInfo.Name;
+		this.mText_Name.text = name.replace(/[\r\n]/g, "");
 		this.mText_Des.text = dataInfo.Description;
 		if (dataInfo.Max > 0 && data.remainTime > 0) {
 			this.mText_Num.visibility = mw.SlateVisibility.SelfHitTestInvisible;

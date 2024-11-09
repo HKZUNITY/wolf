@@ -23,7 +23,11 @@ export default class ChatItem2 extends ChatItem2_Generate {
 		this.mClickButton.onClicked.add(this.addClickButton.bind(this));
 	}
 
+	private isCanClick: boolean = true;
 	private addClickButton(): void {
+		if (!this.isCanClick) return;
+		this.isCanClick = false;
+		TimeUtil.delaySecond(1).then(() => { this.isCanClick = true; });
 		this.getDanMuModuleC.onClickChatItem2Action.call(this.index, this.childIndex);
 	}
 

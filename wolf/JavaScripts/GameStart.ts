@@ -2,7 +2,6 @@ import { AiModuleC, AiModuleS } from "./AI/AiModule";
 import { update } from "./CommonUI/notice/Tween";
 import NoticePanel from "./CommonUI/NoticePanel";
 import { Globals } from "./Globals";
-import { ArkData, ArkModuleC, ArkModuleS } from "./Module/ArkModule/ArkModule";
 import { BagModuleData } from "./Module/BagModule/BagData";
 import { BagModuleC } from "./Module/BagModule/BagModuleC";
 import { BagModuleS } from "./Module/BagModule/BagModuleS";
@@ -119,7 +118,7 @@ export default class GameStart extends mw.Script {
         ModuleService.registerModule(SkillModuleS, SkillModuleC, SkillData);
         ModuleService.registerModule(ExchangeModuleS, ExchangeModuleC, null);
         ModuleService.registerModule(TrampolineModuleS, TrampolineModuleC, null);
-        ModuleService.registerModule(ArkModuleS, ArkModuleC, ArkData);
+        // ModuleService.registerModule(ArkModuleS, ArkModuleC, ArkData);
     }
 
     private onUpdateCS(dt: number): void {

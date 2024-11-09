@@ -1,5 +1,6 @@
 ﻿import { Notice } from "../../CommonUI/notice/Notice";
 import { GameConfig } from "../../Tables/GameConfig";
+import ChatPanel from "../DanMuModule/ui/ChatPanel";
 import HUDPanel from "../PlayerModule/ui/HUDPanel";
 import ExchangeModuleS from "./ExchangeModuleS";
 import ExchangePanel from "./ui/ExchangePanel";
@@ -21,14 +22,24 @@ export default class ExchangeModuleC extends ModuleC<ExchangeModuleS, null> {
         return this.hudPanel;
     }
 
+    private chatPanel: ChatPanel = null;
+    private get getChatPanel(): ChatPanel {
+        if (!this.chatPanel) {
+            this.chatPanel = UIService.getUI(ChatPanel);
+        }
+        return this.chatPanel;
+    }
+
     public isOpenExchangePanel(isOpen: boolean) {
         if (isOpen) {
             this.getExchangePanel.show();
             this.getHUDPanel.showShop();
+            this.getChatPanel.hide();
         }
         else {
             this.getExchangePanel.hide();
             this.getHUDPanel.hideShop();
+            this.getChatPanel.show();
         }
     }
 

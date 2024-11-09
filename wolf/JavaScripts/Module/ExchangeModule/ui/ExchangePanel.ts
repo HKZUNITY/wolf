@@ -1,4 +1,6 @@
-﻿import { GameConfig } from "../../../Tables/GameConfig";
+﻿import { Globals } from "../../../Globals";
+import { GameConfig } from "../../../Tables/GameConfig";
+import { Tools } from "../../../Tools";
 import ExchangePanel_Generate from "../../../ui-generate/module/ExchangeModule/ExchangePanel_generate";
 import { PlayerModuleC } from "../../PlayerModule/PlayerModuleC";
 import ShopModuleC from "../../ShopModule/ShopModuleC";
@@ -26,8 +28,19 @@ export default class ExchangePanel extends ExchangePanel_Generate {
 			let item = mw.UIService.create(ExchangeItem);
 			this.mCanvas_Content.addChild(item.uiObject);
 			item.uiObject.size = item.rootCanvas.size;
-			item.mImg_Icon.imageGuid = dataInfo.IconGUID.toString();
+
+			let iconStr = dataInfo.IconGUID;
+			if (iconStr && iconStr[0] == `m`) {
+				Tools.setImageByAssetIconData(item.mImg_Icon, iconStr.split(`_`)[1]);
+			} else {
+				item.mImg_Icon.imageGuid = dataInfo.IconGUID;
+			}
 			item.mText_Name.text = dataInfo.Name;
+			if (Globals.languageId == 0) {
+				item.mText_Name.fontSize = 12;
+			} else {
+				item.mText_Name.fontSize = 15;
+			}
 			let getText = dataInfo.GetNum;
 			if (getText == null || getText == 0) {
 				getText = 1;

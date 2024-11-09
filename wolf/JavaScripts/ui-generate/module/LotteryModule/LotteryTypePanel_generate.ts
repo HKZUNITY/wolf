@@ -3,7 +3,7 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/module/LotteryModule/LotteryTypePanel.ui
- * TIME: 2024.11.09-14.30.15
+ * TIME: 2024.11.09-23.55.57
  */
  
 @UIBind('UI/module/LotteryModule/LotteryTypePanel.ui')
@@ -78,40 +78,12 @@ export default class LotteryTypePanel_Generate extends UIScript {
 		}
 		return this.mText_Price_Internal
 	}
-	private mCanvas_AD_Internal: mw.Canvas
-	public get mCanvas_AD(): mw.Canvas {
-		if(!this.mCanvas_AD_Internal&&this.uiWidgetBase) {
-			this.mCanvas_AD_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_lottery0/mCanvas_AD') as mw.Canvas
+	private mAdsButton_Internal: mw.AdsButton
+	public get mAdsButton(): mw.AdsButton {
+		if(!this.mAdsButton_Internal&&this.uiWidgetBase) {
+			this.mAdsButton_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_lottery0/mAdsButton') as mw.AdsButton
 		}
-		return this.mCanvas_AD_Internal
-	}
-	private mMaskButton_AD_Internal: mw.MaskButton
-	public get mMaskButton_AD(): mw.MaskButton {
-		if(!this.mMaskButton_AD_Internal&&this.uiWidgetBase) {
-			this.mMaskButton_AD_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_lottery0/mCanvas_AD/mMaskButton_AD') as mw.MaskButton
-		}
-		return this.mMaskButton_AD_Internal
-	}
-	private mTextBlock_Time_Internal: mw.TextBlock
-	public get mTextBlock_Time(): mw.TextBlock {
-		if(!this.mTextBlock_Time_Internal&&this.uiWidgetBase) {
-			this.mTextBlock_Time_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_lottery0/mCanvas_AD/mTextBlock_Time') as mw.TextBlock
-		}
-		return this.mTextBlock_Time_Internal
-	}
-	private mCanvas_lotteryTimes_Internal: mw.Canvas
-	public get mCanvas_lotteryTimes(): mw.Canvas {
-		if(!this.mCanvas_lotteryTimes_Internal&&this.uiWidgetBase) {
-			this.mCanvas_lotteryTimes_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_lottery0/mCanvas_lotteryTimes') as mw.Canvas
-		}
-		return this.mCanvas_lotteryTimes_Internal
-	}
-	private mText_lotteryTimes_Internal: mw.TextBlock
-	public get mText_lotteryTimes(): mw.TextBlock {
-		if(!this.mText_lotteryTimes_Internal&&this.uiWidgetBase) {
-			this.mText_lotteryTimes_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_lottery0/mCanvas_lotteryTimes/mText_lotteryTimes') as mw.TextBlock
-		}
-		return this.mText_lotteryTimes_Internal
+		return this.mAdsButton_Internal
 	}
 	private mCanvas_Gain_Internal: mw.Canvas
 	public get mCanvas_Gain(): mw.Canvas {
@@ -192,12 +164,6 @@ export default class LotteryTypePanel_Generate extends UIScript {
 		this.initLanguage(this.mText_Price)
 		
 	
-		this.initLanguage(this.mTextBlock_Time)
-		
-	
-		this.initLanguage(this.mText_lotteryTimes)
-		
-	
 		this.initLanguage(this.mText_weaponName)
 		
 	
@@ -206,18 +172,6 @@ export default class LotteryTypePanel_Generate extends UIScript {
 	
 		//文本多语言
 		
-		this.initLanguage(this.uiWidgetBase.findChildByPath("RootCanvas/mCanvas_lottery0/mCanvas_AD/TextBlock_1") as any);
-		
-	
-		this.initLanguage(this.uiWidgetBase.findChildByPath("RootCanvas/mCanvas_lottery0/mCanvas_AD/TextBlock_1_1") as any);
-		
-	
-		this.initLanguage(this.uiWidgetBase.findChildByPath("RootCanvas/mCanvas_lottery0/mCanvas_lotteryTimes/TextBlock") as any);
-		
-	
-		this.initLanguage(this.uiWidgetBase.findChildByPath("RootCanvas/mCanvas_lottery0/mCanvas_lotteryTimes/TextBlock_1") as any);
-		
-	
 		this.initLanguage(this.uiWidgetBase.findChildByPath("RootCanvas/mCanvas_Gain/mCanvas_first/TextBlock_1") as any);
 		
 	

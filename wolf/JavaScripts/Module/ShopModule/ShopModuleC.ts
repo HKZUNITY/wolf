@@ -1,5 +1,6 @@
 ﻿import { Notice } from "../../CommonUI/notice/Notice";
 import { GameConfig } from "../../Tables/GameConfig";
+import ChatPanel from "../DanMuModule/ui/ChatPanel";
 import { PlayerModuleC } from "../PlayerModule/PlayerModuleC";
 import HUDPanel from "../PlayerModule/ui/HUDPanel";
 import ShopModuleData, { ItemState } from "./ShopModuleData";
@@ -31,6 +32,14 @@ export default class ShopModuleC extends ModuleC<ShopModuleS, ShopModuleData> {
             this.hudPanel = UIService.getUI(HUDPanel);
         }
         return this.hudPanel;
+    }
+
+    private chatPanel: ChatPanel = null;
+    private get getChatPanel(): ChatPanel {
+        if (!this.chatPanel) {
+            this.chatPanel = UIService.getUI(ChatPanel);
+        }
+        return this.chatPanel;
     }
 
     /** 当脚本被实例后，会在第一帧更新前调用此函数 */
@@ -93,11 +102,13 @@ export default class ShopModuleC extends ModuleC<ShopModuleS, ShopModuleData> {
                 this.getShopPanel.showDefaltDetail();
             }
             this.getHUDPanel.showShop();//其他UI隐藏
+            this.getChatPanel.hide();
             this.openShop(true);//摄像机
         } else {
             this.getShopPanel.hide();
             this.previewCloth(null, false);
             this.getHUDPanel.hideShop();
+            this.getChatPanel.show();
             this.openShop(false);//摄像机
         }
     }

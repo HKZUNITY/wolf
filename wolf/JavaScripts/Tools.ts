@@ -354,8 +354,10 @@ export class Tools {
         advance.clothing.lowerCloth.style = `${modelInfo.LowerCloth}`;
         advance.clothing.shoes.style = `${modelInfo.Shoes}`;
         advance.clothing.gloves.style = `${modelInfo.Gloves}`;
-        await model.asyncReady();
-        await model.syncDescription();
+        if (PlayerManagerExtesion.isCharacter(model)) {
+            await model.asyncReady();
+            await model.syncDescription();
+        }
     }
 
     /**激励广告是否激活 */

@@ -1,5 +1,5 @@
 import { Notice } from "../../CommonUI/notice/Notice";
-import { GamingState, SoundGlobals } from "../../Globals";
+import { GamingState, Globals, SoundGlobals } from "../../Globals";
 import { ModifiedCameraSystem } from '../../Modified027Editor/ModifiedCamera';
 import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
 import { GeneralManager, } from '../../Modified027Editor/ModifiedStaticAPI';
@@ -80,23 +80,20 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
         this.getResetPanel.show();
     }
 
-    private _mText_ADTime: mw.TextBlock;
-    private mUIText20030_txt: mw.TextBlock;
+    // private mUIText20030_txt: mw.TextBlock;
     private getCoinCount: number = 100;
     private initCoinAds(): void {
-        this.mUIText20030_txt = this.getHUDPanel.mUIText20030_txt;
-        this.mUIText20030_txt.text = `领金币`;
-        this._mText_ADTime = this.getHUDPanel.mText_ADTime;
-        this._mText_ADTime.visibility = mw.SlateVisibility.Collapsed;
+        // this.mUIText20030_txt = this.getHUDPanel.mUIText20030_txt;
+        // this.mUIText20030_txt.text = `领金币`;
         this.getHUDPanel.mBtn_AD.onClicked.add(() => {
             if (mw.SystemUtil.isPIE) {
                 this.server.net_ChangeGold(this.getCoinCount);
-                Notice.showDownNotice(`恭喜获得${this.getCoinCount}金币`);
+                Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_6.Value, this.getCoinCount));;
             } else {
                 mw.UIService.getUI(AdsPanel).showRewardAd(() => {
                     this.server.net_ChangeGold(this.getCoinCount);
-                    Notice.showDownNotice(`恭喜获得${this.getCoinCount}金币`);
-                }, `看广告免费领取${this.getCoinCount}金币`, `取消`, `免费领取`);
+                    Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_6.Value, this.getCoinCount));
+                }, StringUtil.format(GameConfig.Language.Text_Ads_7.Value, this.getCoinCount), GameConfig.Language.Text_Content_20022.Value, GameConfig.Language.Text_Content_20030.Value);
             }
         });
     }
@@ -165,13 +162,6 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
         let modelInfo = GameConfig.Role.getElement(roleID);
         GameObject.asyncFindGameObjectById(modelGuid).then((obj) => {
             let model = obj as mw.Character;
-            if (PlayerManagerExtesion.isNpc(model)) {
-                model.worldTransform.scale = new mw.Vector(0.8, 0.8, 0.8);
-                console.error(`changeCloth ==== 模型 1 roleID : ${roleID} :: modelGuid ${modelGuid}`);
-            } else {
-                console.error(`changeCloth ==== 玩家 1 roleID : ${roleID} :: modelGuid ${modelGuid}`);
-                // return;
-            }
             if (!model) return;
             Tools.changeClothByRole(modelInfo, model);
         })
@@ -203,6 +193,7 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
         this.clearSceneNpcName();
         this.initSceneTrigger();
         this.getHUDPanel.setHallHeadImg(10001);
+        this.registerGlobalClickSound();
     }
     private lotteryBlock: boolean = false;
     private svipBlock: boolean = false;
@@ -295,7 +286,9 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
     }
 
     public async isFirstIn() {
-        this.server.net_SetPlayerName(mw.AccountService.getNickName());
+        let nickName = mw.AccountService.getNickName();
+        nickName = nickName ? nickName : Globals.pieNickName[Globals.languageId];
+        this.server.net_SetPlayerName(nickName);
         let roleId: number = this.data.getPlayerRoleId();
         if (roleId == 0) {//第一次进入
             let ranNum = Tools.randomInt(0, 3);
@@ -763,6 +756,21 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
     }
     public getPlayerDiamond() {
         return this.data.getDiamond();
+    }
+
+    /**全局UI点击音效唯一标识 */
+    private uiClickSoundId: string = null;
+    /**注册全局点击音效 */
+    private registerGlobalClickSound(): void {
+        /**全局UI点击音效 */
+        Event.addLocalListener("PlayButtonClick", (v: string) => {
+            if (v == "mJumpButton") return;
+            if (this.uiClickSoundId) {
+                SoundService.stopSound(this.uiClickSoundId);
+                this.uiClickSoundId = null;
+            }
+            this.uiClickSoundId = SoundService.playSound(GameConfig.Assets.getElement(10001).Guid);
+        });
     }
 }
 

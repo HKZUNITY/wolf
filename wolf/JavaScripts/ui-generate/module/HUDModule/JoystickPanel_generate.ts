@@ -3,7 +3,7 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/module/HUDModule/JoystickPanel.ui
- * TIME: 2024.11.09-14.30.14
+ * TIME: 2024.11.09-23.55.56
  */
  
 @UIBind('UI/module/HUDModule/JoystickPanel.ui')

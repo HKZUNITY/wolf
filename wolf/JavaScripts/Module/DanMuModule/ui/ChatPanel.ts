@@ -24,7 +24,7 @@ export default class ChatPanel extends ChatPanel_Generate {
 	protected onStart() {
 		//设置能否每帧触发onUpdate
 		this.canUpdate = false;
-		this.layer = UILayerMiddle;
+		this.layer = UILayerTop;
 		this.initUI();
 		this.bindButton();
 	}

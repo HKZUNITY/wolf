@@ -3,7 +3,7 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/module/HUDModule/HUDPanel.ui
- * TIME: 2024.11.09-14.30.14
+ * TIME: 2024.11.09-23.55.56
  */
  
 @UIBind('UI/module/HUDModule/HUDPanel.ui')
@@ -29,33 +29,47 @@ export default class HUDPanel_Generate extends UIScript {
 		}
 		return this.mText_PlayerName_Internal
 	}
-	private mText_CoinsNumber_Internal: mw.TextBlock
-	public get mText_CoinsNumber(): mw.TextBlock {
-		if(!this.mText_CoinsNumber_Internal&&this.uiWidgetBase) {
-			this.mText_CoinsNumber_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_PlayerInf/mText_CoinsNumber') as mw.TextBlock
-		}
-		return this.mText_CoinsNumber_Internal
-	}
 	private mImg_CoinIcon_Internal: mw.Image
 	public get mImg_CoinIcon(): mw.Image {
 		if(!this.mImg_CoinIcon_Internal&&this.uiWidgetBase) {
-			this.mImg_CoinIcon_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_PlayerInf/mImg_CoinIcon') as mw.Image
+			this.mImg_CoinIcon_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_PlayerInf/AddCoinCanvas/mImg_CoinIcon') as mw.Image
 		}
 		return this.mImg_CoinIcon_Internal
+	}
+	private mText_CoinsNumber_Internal: mw.TextBlock
+	public get mText_CoinsNumber(): mw.TextBlock {
+		if(!this.mText_CoinsNumber_Internal&&this.uiWidgetBase) {
+			this.mText_CoinsNumber_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_PlayerInf/AddCoinCanvas/mText_CoinsNumber') as mw.TextBlock
+		}
+		return this.mText_CoinsNumber_Internal
+	}
+	private mAddCoinButton_Internal: mw.Button
+	public get mAddCoinButton(): mw.Button {
+		if(!this.mAddCoinButton_Internal&&this.uiWidgetBase) {
+			this.mAddCoinButton_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_PlayerInf/AddCoinCanvas/mAddCoinButton') as mw.Button
+		}
+		return this.mAddCoinButton_Internal
 	}
 	private mImg_DiamondNumber_Internal: mw.Image
 	public get mImg_DiamondNumber(): mw.Image {
 		if(!this.mImg_DiamondNumber_Internal&&this.uiWidgetBase) {
-			this.mImg_DiamondNumber_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_PlayerInf/mImg_DiamondNumber') as mw.Image
+			this.mImg_DiamondNumber_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_PlayerInf/AddAdsCanvas/mImg_DiamondNumber') as mw.Image
 		}
 		return this.mImg_DiamondNumber_Internal
 	}
 	private mText_DiamondNumber_Internal: mw.TextBlock
 	public get mText_DiamondNumber(): mw.TextBlock {
 		if(!this.mText_DiamondNumber_Internal&&this.uiWidgetBase) {
-			this.mText_DiamondNumber_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_PlayerInf/mText_DiamondNumber') as mw.TextBlock
+			this.mText_DiamondNumber_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_PlayerInf/AddAdsCanvas/mText_DiamondNumber') as mw.TextBlock
 		}
 		return this.mText_DiamondNumber_Internal
+	}
+	private mAddAdsButton_Internal: mw.Button
+	public get mAddAdsButton(): mw.Button {
+		if(!this.mAddAdsButton_Internal&&this.uiWidgetBase) {
+			this.mAddAdsButton_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_PlayerInf/AddAdsCanvas/mAddAdsButton') as mw.Button
+		}
+		return this.mAddAdsButton_Internal
 	}
 	private mImg_Jump_BG_Internal: mw.Image
 	public get mImg_Jump_BG(): mw.Image {
@@ -127,13 +141,6 @@ export default class HUDPanel_Generate extends UIScript {
 		}
 		return this.mUIText20030_txt_Internal
 	}
-	private mText_ADTime_Internal: mw.TextBlock
-	public get mText_ADTime(): mw.TextBlock {
-		if(!this.mText_ADTime_Internal&&this.uiWidgetBase) {
-			this.mText_ADTime_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_AD/mText_ADTime') as mw.TextBlock
-		}
-		return this.mText_ADTime_Internal
-	}
 	private mCanvas_Watch_Internal: mw.Canvas
 	public get mCanvas_Watch(): mw.Canvas {
 		if(!this.mCanvas_Watch_Internal&&this.uiWidgetBase) {
@@ -183,10 +190,10 @@ export default class HUDPanel_Generate extends UIScript {
 		}
 		return this.mCanvas_lottery_Internal
 	}
-	private mBtn_lottery_Internal: mw.StaleButton
-	public get mBtn_lottery(): mw.StaleButton {
+	private mBtn_lottery_Internal: mw.Button
+	public get mBtn_lottery(): mw.Button {
 		if(!this.mBtn_lottery_Internal&&this.uiWidgetBase) {
-			this.mBtn_lottery_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_lottery/mBtn_lottery') as mw.StaleButton
+			this.mBtn_lottery_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_lottery/mBtn_lottery') as mw.Button
 		}
 		return this.mBtn_lottery_Internal
 	}
@@ -341,13 +348,6 @@ export default class HUDPanel_Generate extends UIScript {
 		this.mBtn_Shop.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
 		
 	
-		this.mBtn_lottery.onClicked.add(()=>{
-			Event.dispatchToLocal("PlayButtonClick", "mBtn_lottery");
-		});
-		this.initLanguage(this.mBtn_lottery);
-		this.mBtn_lottery.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
-		
-	
 		this.mBtn_Skill.onClicked.add(()=>{
 			Event.dispatchToLocal("PlayButtonClick", "mBtn_Skill");
 		});
@@ -385,6 +385,24 @@ export default class HUDPanel_Generate extends UIScript {
 	
 		//按钮添加点击
 		
+		this.mAddCoinButton.onClicked.add(()=>{
+			Event.dispatchToLocal("PlayButtonClick", "mAddCoinButton");
+		});
+		this.mAddCoinButton.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
+		
+	
+		this.mAddAdsButton.onClicked.add(()=>{
+			Event.dispatchToLocal("PlayButtonClick", "mAddAdsButton");
+		});
+		this.mAddAdsButton.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
+		
+	
+		this.mBtn_lottery.onClicked.add(()=>{
+			Event.dispatchToLocal("PlayButtonClick", "mBtn_lottery");
+		});
+		this.mBtn_lottery.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
+		
+	
 		//按钮多语言
 		
 		//文本多语言
@@ -405,9 +423,6 @@ export default class HUDPanel_Generate extends UIScript {
 		
 	
 		this.initLanguage(this.mUIText20030_txt)
-		
-	
-		this.initLanguage(this.mText_ADTime)
 		
 	
 		this.initLanguage(this.mText_Watch)

@@ -230,7 +230,7 @@ export class GameModuleC extends ModuleC<GameModuleS, GameModuleData> {
     /**如果关键人物没有进入的时候需要把ui关了,还需要加一个提示 */
     net_HideTitle() {
         this.getReadyPanel.hide();
-        Notice.showDownNotice("有玩家没有成功进入场景，游戏重新开始");
+        Notice.showDownNotice(GameConfig.Language.Text_1.Value);
     }
     /**隐藏自动瞄准 */
     public clearAutoAnim(backToHall: boolean) {
@@ -405,7 +405,7 @@ export class GameModuleC extends ModuleC<GameModuleS, GameModuleData> {
             Notice.showDownNotice(str);
         }
         else {
-            Notice.showDownNotice("玩家" + addstr + "死亡了");
+            Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_PlayerIsDead.Value, addstr));
         }
     }
     //To do

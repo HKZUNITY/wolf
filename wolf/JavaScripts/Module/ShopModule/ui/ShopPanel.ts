@@ -65,10 +65,9 @@ export default class ShopPanel extends ShopPanel_Generate {
 
 		//初始化基础元素
 		this.mBtn_ShopClose.onClicked.add(() => {
-			UIService.hideUI(this);
+			this.hide();
 			this.curItem = null;
 			ModuleService.getModule(ShopModuleC).ShopOpen(false);
-			SoundService.playSound(GameConfig.Assets.getElement(10001).Guid, 1, 3);
 		});
 		this.mUIText20015_btn.onClicked.add(() => {//购买界面
 			let money = GameConfig.Shop.getElement(this.curItem.itemId).Money;
@@ -129,9 +128,9 @@ export default class ShopPanel extends ShopPanel_Generate {
 		this.tabGroup = new mw.TabGroup(this.mTabGroupBtns);
 		this.tabGroup.init((btn: mw.StaleButton, isSelect: boolean) => {
 			if (isSelect) {
-				btn.size = (new mw.Vector2(170, 120));
+				btn.size = (new mw.Vector2(155, 100));
 			} else {
-				btn.size = (new mw.Vector2(170, 100));
+				btn.size = (new mw.Vector2(155, 80));
 			}
 		}, (selectIndex: number) => {
 			this.currentTabIndex = selectIndex;
@@ -139,26 +138,28 @@ export default class ShopPanel extends ShopPanel_Generate {
 		},
 			this);
 
+		let addCoin: number = 100;
 		this.mAddCoinButton.onClicked.add(() => {
 			if (mw.SystemUtil.isPIE) {
-				ModuleService.getModule(PlayerModuleC).addCoin(100);
-				Notice.showDownNotice(`恭喜获得${100}金币`);
+				ModuleService.getModule(PlayerModuleC).addCoin(addCoin);
+				Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_6.Value, addCoin));
 			} else {
 				mw.UIService.getUI(AdsPanel).showRewardAd(() => {
-					ModuleService.getModule(PlayerModuleC).addCoin(100);
-					Notice.showDownNotice(`恭喜获得${100}金币`);
-				}, `看广告免费领取${100}金币`, `取消`, `免费领取`);
+					ModuleService.getModule(PlayerModuleC).addCoin(addCoin);
+					Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_6.Value, addCoin));
+				}, StringUtil.format(GameConfig.Language.Text_Ads_7.Value, addCoin), GameConfig.Language.Text_Content_20022.Value, GameConfig.Language.Text_Content_20030.Value);
 			}
 		});
+		let advCount: number = 1;
 		this.mAddCouponButton.onClicked.add(() => {
 			if (mw.SystemUtil.isPIE) {
-				ModuleService.getModule(PlayerModuleC).addAdvToken(1);
-				Notice.showDownNotice(`恭喜获得${1}张券`);
+				ModuleService.getModule(PlayerModuleC).addAdvToken(advCount);
+				Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_8.Value, advCount));
 			} else {
 				UIService.getUI(AdsPanel).showRewardAd(() => {
-					ModuleService.getModule(PlayerModuleC).addAdvToken(1);
-					Notice.showDownNotice(`恭喜获得${1}张券`);
-				}, `免费领取${1}张广告券`, `取消`, `领取`);
+					ModuleService.getModule(PlayerModuleC).addAdvToken(advCount);
+					Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_8.Value, advCount));
+				}, StringUtil.format(GameConfig.Language.Text_Ads_9.Value, advCount), GameConfig.Language.Text_Content_20022.Value, GameConfig.Language.Text_Content_20030.Value);
 			}
 		});
 	}
@@ -497,7 +498,7 @@ export default class ShopPanel extends ShopPanel_Generate {
 		this.mUIText20029_btn.text = (GameConfig.Text.getElement(20029).Content);
 		this.mUIText20013_btn.text = (GameConfig.Text.getElement(20013).Content);
 		this.mUIText20014_btn.text = (GameConfig.Text.getElement(20014).Content);
-		this.mUITextSuit_btn.text = `皮肤`;
+		this.mUITextSuit_btn.text = (GameConfig.Text.getElement(100005).Content);
 
 		/**阵营 */
 		this.mUIText20010_txt.text = (GameConfig.Text.getElement(20010).Content);

@@ -3,19 +3,12 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/module/ShopModule/ShopPanel.ui
- * TIME: 2024.11.09-14.30.15
+ * TIME: 2024.11.09-23.55.58
  */
  
 @UIBind('UI/module/ShopModule/ShopPanel.ui')
 export default class ShopPanel_Generate extends UIScript {
-		private mScrollBox_WholePro_Internal: mw.ScrollBox
-	public get mScrollBox_WholePro(): mw.ScrollBox {
-		if(!this.mScrollBox_WholePro_Internal&&this.uiWidgetBase) {
-			this.mScrollBox_WholePro_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mScrollBox_WholePro') as mw.ScrollBox
-		}
-		return this.mScrollBox_WholePro_Internal
-	}
-	private mCanvas_Shop_Internal: mw.Canvas
+		private mCanvas_Shop_Internal: mw.Canvas
 	public get mCanvas_Shop(): mw.Canvas {
 		if(!this.mCanvas_Shop_Internal&&this.uiWidgetBase) {
 			this.mCanvas_Shop_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_Shop') as mw.Canvas
@@ -154,13 +147,6 @@ export default class ShopPanel_Generate extends UIScript {
 			this.mCanvas_Money_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_Shop/mCanvas_Money') as mw.Canvas
 		}
 		return this.mCanvas_Money_Internal
-	}
-	private mImage_ShopMoney_Internal: mw.Image
-	public get mImage_ShopMoney(): mw.Image {
-		if(!this.mImage_ShopMoney_Internal&&this.uiWidgetBase) {
-			this.mImage_ShopMoney_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_Shop/mCanvas_Money/mImage_ShopMoney') as mw.Image
-		}
-		return this.mImage_ShopMoney_Internal
 	}
 	private mCanvas_Coin_Internal: mw.Canvas
 	public get mCanvas_Coin(): mw.Canvas {
@@ -358,26 +344,12 @@ export default class ShopPanel_Generate extends UIScript {
 		}
 		return this.mBtn_VerifyReturn_Internal
 	}
-	private mScrollBox_VerifyProtect_Internal: mw.ScrollBox
-	public get mScrollBox_VerifyProtect(): mw.ScrollBox {
-		if(!this.mScrollBox_VerifyProtect_Internal&&this.uiWidgetBase) {
-			this.mScrollBox_VerifyProtect_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_Verification/mScrollBox_VerifyProtect') as mw.ScrollBox
-		}
-		return this.mScrollBox_VerifyProtect_Internal
-	}
 	private mImage_VerifyBG_Internal: mw.Image
 	public get mImage_VerifyBG(): mw.Image {
 		if(!this.mImage_VerifyBG_Internal&&this.uiWidgetBase) {
 			this.mImage_VerifyBG_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_Verification/mImage_VerifyBG') as mw.Image
 		}
 		return this.mImage_VerifyBG_Internal
-	}
-	private mImage_VerifyTitle_Internal: mw.Image
-	public get mImage_VerifyTitle(): mw.Image {
-		if(!this.mImage_VerifyTitle_Internal&&this.uiWidgetBase) {
-			this.mImage_VerifyTitle_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_Verification/mImage_VerifyTitle') as mw.Image
-		}
-		return this.mImage_VerifyTitle_Internal
 	}
 	private mUIText20018_txt_Internal: mw.TextBlock
 	public get mUIText20018_txt(): mw.TextBlock {
@@ -392,13 +364,6 @@ export default class ShopPanel_Generate extends UIScript {
 			this.mCanvas_ItemDetails_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_Verification/mCanvas_ItemDetails') as mw.Canvas
 		}
 		return this.mCanvas_ItemDetails_Internal
-	}
-	private mImage_ItemIconBG_Internal: mw.Image
-	public get mImage_ItemIconBG(): mw.Image {
-		if(!this.mImage_ItemIconBG_Internal&&this.uiWidgetBase) {
-			this.mImage_ItemIconBG_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_Verification/mCanvas_ItemDetails/mImage_ItemIconBG') as mw.Image
-		}
-		return this.mImage_ItemIconBG_Internal
 	}
 	private mImage_ItemIcon_Internal: mw.Image
 	public get mImage_ItemIcon(): mw.Image {
@@ -532,13 +497,6 @@ export default class ShopPanel_Generate extends UIScript {
 			this.mText_ResultName_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_Result/mText_ResultName') as mw.TextBlock
 		}
 		return this.mText_ResultName_Internal
-	}
-	private mScrollBox_ResultProtect_Internal: mw.ScrollBox
-	public get mScrollBox_ResultProtect(): mw.ScrollBox {
-		if(!this.mScrollBox_ResultProtect_Internal&&this.uiWidgetBase) {
-			this.mScrollBox_ResultProtect_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_Result/mScrollBox_ResultProtect') as mw.ScrollBox
-		}
-		return this.mScrollBox_ResultProtect_Internal
 	}
 	private mUIText20025_btn_Internal: mw.StaleButton
 	public get mUIText20025_btn(): mw.StaleButton {

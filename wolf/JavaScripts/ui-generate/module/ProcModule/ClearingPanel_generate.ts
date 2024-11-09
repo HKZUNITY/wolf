@@ -3,7 +3,7 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/module/ProcModule/ClearingPanel.ui
- * TIME: 2024.11.09-14.30.15
+ * TIME: 2024.11.09-23.55.57
  */
  
 @UIBind('UI/module/ProcModule/ClearingPanel.ui')
@@ -274,12 +274,12 @@ export default class ClearingPanel_Generate extends UIScript {
 		}
 		return this.mText_WatchAD_Internal
 	}
-	private mButton_WatchAD_Internal: mw.StaleButton
-	public get mButton_WatchAD(): mw.StaleButton {
-		if(!this.mButton_WatchAD_Internal&&this.uiWidgetBase) {
-			this.mButton_WatchAD_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_reward/mCanvas_AD/mButton_WatchAD') as mw.StaleButton
+	private mAdsButton_Internal: mw.AdsButton
+	public get mAdsButton(): mw.AdsButton {
+		if(!this.mAdsButton_Internal&&this.uiWidgetBase) {
+			this.mAdsButton_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_reward/mCanvas_AD/mAdsButton') as mw.AdsButton
 		}
-		return this.mButton_WatchAD_Internal
+		return this.mAdsButton_Internal
 	}
 	private mCanvas_Dark_Internal: mw.Canvas
 	public get mCanvas_Dark(): mw.Canvas {
@@ -451,13 +451,6 @@ export default class ClearingPanel_Generate extends UIScript {
 		});
 		this.initLanguage(this.mBtn_Close);
 		this.mBtn_Close.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
-		
-	
-		this.mButton_WatchAD.onClicked.add(()=>{
-			Event.dispatchToLocal("PlayButtonClick", "mButton_WatchAD");
-		});
-		this.initLanguage(this.mButton_WatchAD);
-		this.mButton_WatchAD.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
 		
 	
 		this.mBtn_Click.onClicked.add(()=>{

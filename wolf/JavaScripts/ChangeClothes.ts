@@ -1,5 +1,6 @@
 ﻿import { Notice } from "./CommonUI/notice/Notice";
 import AdsPanel from "./Module/AdsModule/ui/AdsPanel";
+import { GameConfig } from "./Tables/GameConfig";
 
 @Component
 export default class ChangeClothes extends Script {
@@ -16,15 +17,15 @@ export default class ChangeClothes extends Script {
                     char.asyncReady().then(() => {
                         char.syncDescription();
                     });
-                    Notice.showDownNotice(`换装成功`);
+                    Notice.showDownNotice(GameConfig.Language.Text_Ads_3.Value);
                 } else {
                     mw.UIService.getUI(AdsPanel).showRewardAd(() => {
                         char.setDescription(npc.getDescription());
                         char.asyncReady().then(() => {
                             char.syncDescription();
                         });
-                        Notice.showDownNotice(`换装成功`);
-                    }, `看广告免费试穿`, `取消`, `免费试穿`);
+                        Notice.showDownNotice(GameConfig.Language.Text_Ads_3.Value);
+                    }, GameConfig.Language.Text_Ads_4.Value, GameConfig.Language.Text_Content_20022.Value, GameConfig.Language.Text_Ads_5.Value);
                 }
 
             });

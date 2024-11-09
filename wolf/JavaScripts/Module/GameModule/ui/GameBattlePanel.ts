@@ -9,11 +9,10 @@ import { GameModuleC } from "../GameModuleC";
 export default class GameBattlePanel extends GameBattlePanel_Generate {
 	private civilGoal: number = GameConfig.PropsGenerate.getElement(9997).Num;
 	private curWeaponCD: number = 0;
-	private normalMaxCoin: number = 60;
+	// private normalMaxCoin: number = 60;
 	private maxCoin: number = 60;
 	private lightTween: mw.Tween<{ alaf: number }>;
 	private cdInterval: number;
-	private timer: number
 	private expInterval: number;
 	public expNum: number = 0;
 	private canupdate: boolean = false;
@@ -121,9 +120,9 @@ export default class GameBattlePanel extends GameBattlePanel_Generate {
 	public setCoin(num: number) {
 		this.mText_CionsCollect.text = ("" + num + "/" + this.maxCoin);
 		/**如果有加成，显示特权 */
-		if (num == 0) {
-			this.mText_Coins_Member.visibility = this.maxCoin > this.normalMaxCoin ? mw.SlateVisibility.SelfHitTestInvisible : mw.SlateVisibility.Collapsed;
-		}
+		// if (num == 0) {
+		// 	this.mText_Coins_Member.visibility = this.maxCoin > this.normalMaxCoin ? mw.SlateVisibility.SelfHitTestInvisible : mw.SlateVisibility.Collapsed;
+		// }
 	}
 	public setTitle(id: number) {//11001,11002
 		let str = GameConfig.Text.getElement(id).Content;

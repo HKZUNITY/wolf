@@ -1,4 +1,6 @@
-﻿import TrampolineItem_Generate from "../../ui-generate/module/Trampoline/TrampolineItem_generate";
+﻿import { Globals } from "../../Globals";
+import { GameConfig } from "../../Tables/GameConfig";
+import TrampolineItem_Generate from "../../ui-generate/module/Trampoline/TrampolineItem_generate";
 import TrampolineRank_Generate from "../../ui-generate/module/Trampoline/TrampolineRank_generate";
 
 export class TranmpolineData {
@@ -32,9 +34,9 @@ export class TranmpolineRank extends TrampolineRank_Generate {
     }
 
     private initUI(): void {
-        this.mRankTextBlock.text = `排名`;
-        this.mNameTextBlock.text = `昵称`;
-        this.mCountTextBlock.text = `高度`;
+        this.mRankTextBlock.text = GameConfig.Language.Text_Ranking.Value;
+        this.mNameTextBlock.text = GameConfig.Language.Text_nickname.Value;
+        this.mCountTextBlock.text = GameConfig.Language.Text_Altitude.Value;
     }
 
     private trampolineItems: TrampolineItem[] = [];
@@ -89,7 +91,7 @@ export class TrampolineModuleC extends ModuleC<TrampolineModuleS, null> {
         mw.GameObject.asyncFindGameObjectById(rankWorldUIId).then((worldUI: mw.UIWidget) => {
             worldUI.setTargetUIWidget(this.getTranmpolineRank.uiWidgetBase);
             let nickName = mw.AccountService.getNickName();
-            this.server.net_onEnterScene(!nickName ? `谁是凶手？` : nickName);
+            this.server.net_onEnterScene(!nickName ? Globals.pieNickName[Globals.languageId] : nickName);
         });
     }
 

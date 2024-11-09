@@ -1,5 +1,6 @@
 ﻿import { GameConfig } from "../../Tables/GameConfig";
 import { Tools } from "../../Tools";
+import ChatPanel from "../DanMuModule/ui/ChatPanel";
 import { PlayerModuleC } from "../PlayerModule/PlayerModuleC";
 import HUDPanel from "../PlayerModule/ui/HUDPanel";
 import ShopModuleC from "../ShopModule/ShopModuleC";
@@ -42,6 +43,13 @@ export class LotteryModuleC extends ModuleC<LotteryModuleS, null> {
         }
         return this.hudPanel;
     }
+    private chatPanel: ChatPanel = null;
+    private get getChatPanel(): ChatPanel {
+        if (!this.chatPanel) {
+            this.chatPanel = UIService.getUI(ChatPanel);
+        }
+        return this.chatPanel;
+    }
 
     // 滚动动画
     private scrollTween: mw.Tween<{
@@ -72,10 +80,12 @@ export class LotteryModuleC extends ModuleC<LotteryModuleS, null> {
             this.getLotteryPanel.show();
             this.getHUDPanel.showLottery();//其他UI隐藏
             this.getLotteryPanel.refreshLotteryPage();
+            this.getChatPanel.hide();
         } else {
             this.lotteryInsideOpen(false);
             this.getLotteryPanel.hide();
             this.getHUDPanel.hideLottery();
+            this.getChatPanel.show();
         }
     }
 
@@ -91,7 +101,6 @@ export class LotteryModuleC extends ModuleC<LotteryModuleS, null> {
             this.getLotteryTypePanel.mCanvas_lottery0.visibility = mw.SlateVisibility.SelfHitTestInvisible
             this.getLotteryTypePanel.show();
             this.getLotteryTypePanel.init(this.curLotteryIndex);
-            this.getLotteryTypePanel.setLotteryAd(false);
         } else {
             this.getLotteryTypePanel.stopCountDown()
             if (this.resTimeout != null) {

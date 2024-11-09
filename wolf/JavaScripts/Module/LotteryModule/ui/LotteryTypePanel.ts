@@ -2,10 +2,8 @@
 import { GameConfig } from "../../../Tables/GameConfig";
 import { Tools } from "../../../Tools";
 import LotteryTypePanel_Generate from "../../../ui-generate/module/LotteryModule/LotteryTypePanel_generate";
-import AdsPanel from "../../AdsModule/ui/AdsPanel";
 import GetCoinPanel from "../../GameModule/ui/GetCoinPanel";
 import { PlayerModuleData } from "../../PlayerModule/PlayerData";
-import { PlayerModuleC } from "../../PlayerModule/PlayerModuleC";
 import ShopModuleData from "../../ShopModule/ShopModuleData";
 import { LotteryModuleC } from "../LotteryModuleC";
 import LotteryTypeItem from "./LotteryTypeItem";
@@ -46,8 +44,6 @@ export default class LotteryTypePanel extends LotteryTypePanel_Generate {
 		this.mImage_box.imageGuid = cfg.GUID.toString();
 		this.mTextBlock_CoinNum.text = DataCenterC.getData(PlayerModuleData).getGold().toString();
 		this.mText_Price.text = cfg.Price.toString();
-		this.mText_lotteryTimes.text = DataCenterC.getData(PlayerModuleData).getLotterySaleTimes(this.curLotteryIndex) + "/" + cfg.Times.toString();
-		this.mMaskButton_AD.fanShapedValue = 1
 		//初始化基础元素 绑定按钮事件
 		this.mBtn_Close_1.onClicked.clear();
 		this.mBtn_Close_1.onClicked.add(() => {
@@ -64,17 +60,14 @@ export default class LotteryTypePanel extends LotteryTypePanel_Generate {
 				Notice.showDownNotice(GameConfig.Tips.getElement(20002).Content);
 			}
 		})
-		this.mMaskButton_AD.pressedDelegate.clear();
-		this.mMaskButton_AD.pressedDelegate.add(() => {
-			UIService.getUI(AdsPanel).showRewardAd(() => {
-				ModuleService.getModule(PlayerModuleC).addAdvToken(1);
-				ModuleService.getModule(LotteryModuleC).setLotteryWatchAdTime(curLotteryIndex);
-				if (this.countDownInterval == null) {
-					this.setLotteryAd(true);
-				}
-				this.saleLottery(0);
-			}, "免费抽奖~\n再送一张广告券", "取消", "领取");
-		})
+		this.mAdsButton.text = GameConfig.Language.Text_FreeDraw.Value;
+		this.mAdsButton.onClose.add((isSuccess: boolean) => {
+			if (!isSuccess) {
+				Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_2.Value, this.mAdsButton.text));
+				return;
+			}
+			this.saleLottery(0);
+		});
 		this.refreshItemPage();
 	}
 	public refreshItemPage() {
@@ -121,32 +114,7 @@ export default class LotteryTypePanel extends LotteryTypePanel_Generate {
 	public closeResPanel() {
 		this.mCanvas_Gain.visibility = mw.SlateVisibility.Collapsed;
 	}
-	setLotteryAd(reset: boolean) {
-		let coundDown = 300
-		if (!reset) {
-			let data = DataCenterC.getData(PlayerModuleData);
-			coundDown = data.getLotteryWatchAdCountDown(this.curLotteryIndex);
-			this.mMaskButton_AD.fanShapedValue = 1 - coundDown / 300
-		}
-		this.mTextBlock_Time.text = (Tools.formatTime_1(coundDown));
-		//TODO:是否有倒计时，有的话继续倒计时
-		if (coundDown > 0) {
-			this.setCountDown();
-		}
-	}
 
-	//倒计时
-	private setCountDown() {
-		this.countDownInterval = TimeUtil.setInterval(() => {
-			let data = DataCenterC.getData(PlayerModuleData);
-			let coundDown = data.getLotteryWatchAdCountDown(this.curLotteryIndex);
-			this.mTextBlock_Time.text = (Tools.formatTime_1(coundDown));
-			this.mMaskButton_AD.fanShapedValue = 1 - coundDown / 300
-			if (coundDown <= 0) {
-				this.stopCountDown();
-			}
-		}, 1);
-	}
 	stopCountDown() {
 		if (this.countDownInterval != null) {
 			TimeUtil.clearInterval(this.countDownInterval);
@@ -167,12 +135,10 @@ export default class LotteryTypePanel extends LotteryTypePanel_Generate {
 		//判断是否为最后一抽
 		let cfg = GameConfig.Lottery.getElement(this.curLotteryIndex);
 		if (oldTiems >= cfg.Times) {
-			this.mText_lotteryTimes.text = 0 + "/" + cfg.Times.toString();
 			module.setLotterySaleTimes(this.curLotteryIndex, true);
 			module.scroll(this.curLotteryIndex, true);
 		}
 		else {
-			this.mText_lotteryTimes.text = (oldTiems + 1).toString() + "/" + cfg.Times.toString();
 			module.setLotterySaleTimes(this.curLotteryIndex, false);
 			module.scroll(this.curLotteryIndex, false);
 		}

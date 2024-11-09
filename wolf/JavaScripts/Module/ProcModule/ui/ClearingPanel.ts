@@ -40,7 +40,7 @@ export default class ClearingPanel extends ClearingPanel_Generate {
 		this.accountDetail(dataStr);
 		this.mText_Member.visibility = isSvip ? mw.SlateVisibility.SelfHitTestInvisible : mw.SlateVisibility.Collapsed;
 		this.show();
-		Notice.showDownNotice("开始结算");
+		Notice.showDownNotice(GameConfig.Language.Text_StartSettlement.Value);
 	}
 	public closeAccountUI() {
 		this.hide();
@@ -250,10 +250,5 @@ export default class ClearingPanel extends ClearingPanel_Generate {
 			.repeat(Infinity)
 			.yoyo(true)
 			.start();
-	}
-
-	public setMButtonWatchADEvent(event: () => {}) {
-		this.mButton_WatchAD.onClicked.clear()
-		this.mButton_WatchAD.onClicked.add(event)
 	}
 }

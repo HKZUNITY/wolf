@@ -111,7 +111,7 @@ AddGMCommand({
 @Component
 export default class GMService extends mw.Script {
     @mw.Property({ displayName: "是否开启GM", group: "Debug" })
-    public isOpen: boolean = true;
+    public isOpen: boolean = false;
 
     public static instance: GMService;
 
@@ -175,7 +175,7 @@ class GMBasePanel {
     dropDownList: DropdownList;
 
     constructor() {
-        this._view = mw.UIService.show(GMHUD_Generate);
+        this._view = mw.UIService.show(GMHUD_Generate, mw.UILayerTop);
         this.dropDownList = new DropdownList({ panel: this._view.dropList, button: this._view.oKbutton, label: this._view.cmdButton }, GMItem_Generate, (ui: GMItem_Generate, data) => {
             ui.button.onClicked.add(() => {
                 GMService.instance.cmd(Player.localPlayer, data, this._view.argText.text);

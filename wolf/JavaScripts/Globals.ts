@@ -49,6 +49,8 @@ export class Globals {
     public static goldenKeyIcon: string = GameConfig.Rule.getElement(10045).Num.toString();
     /**平台是否支持vip */
     public static isSuppertSvip: boolean = null;
+
+    public static pieNickName: string[] = [`Fat little guy who loves to play games`, `爱玩游戏的小胖子`];
 }
 export class GameGlobals {
     /**当前地图 */

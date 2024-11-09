@@ -3,12 +3,19 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/module/Trampoline/TrampolineRank.ui
- * TIME: 2024.11.09-14.30.15
+ * TIME: 2024.11.09-23.55.58
  */
  
 @UIBind('UI/module/Trampoline/TrampolineRank.ui')
 export default class TrampolineRank_Generate extends UIScript {
-		private mTitleRootCanvas_Internal: mw.Canvas
+		private mTitleTextBlock_Internal: mw.TextBlock
+	public get mTitleTextBlock(): mw.TextBlock {
+		if(!this.mTitleTextBlock_Internal&&this.uiWidgetBase) {
+			this.mTitleTextBlock_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/BgImage/mTitleTextBlock') as mw.TextBlock
+		}
+		return this.mTitleTextBlock_Internal
+	}
+	private mTitleRootCanvas_Internal: mw.Canvas
 	public get mTitleRootCanvas(): mw.Canvas {
 		if(!this.mTitleRootCanvas_Internal&&this.uiWidgetBase) {
 			this.mTitleRootCanvas_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/BgImage/mTitleRootCanvas') as mw.Canvas
@@ -60,6 +67,9 @@ export default class TrampolineRank_Generate extends UIScript {
 		
 		//文本多语言
 		
+		this.initLanguage(this.mTitleTextBlock)
+		
+	
 		this.initLanguage(this.mRankTextBlock)
 		
 	

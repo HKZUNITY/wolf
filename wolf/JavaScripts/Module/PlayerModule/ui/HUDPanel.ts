@@ -10,7 +10,6 @@ import { Globals } from "../../../Globals";
 import { GameConfig } from "../../../Tables/GameConfig";
 import HUDPanel_Generate from "../../../ui-generate/module/HUDModule/HUDPanel_generate";
 import AdsPanel from "../../AdsModule/ui/AdsPanel";
-import { ArkModuleC } from "../../ArkModule/ArkModule";
 import DanMuModuleC from "../../DanMuModule/DanMuModuleC";
 import ExchangeModuleC from "../../ExchangeModule/ExchangeModuleC";
 import { LotteryModuleC } from "../../LotteryModule/LotteryModuleC";
@@ -31,7 +30,6 @@ export default class HUDPanel extends HUDPanel_Generate {
 		this.layer = UILayerMiddle;
 		this.setText();
 
-		// this.mCanvas_Member.visibility = (mw.SlateVisibility.Collapsed);
 		this.mBtn_Jump.focusable = (false);
 		this.mBtn_Jump.onPressed.add(() => {
 			if (Player.localPlayer.character.isJumping) return;
@@ -50,23 +48,45 @@ export default class HUDPanel extends HUDPanel_Generate {
 			ModuleService.getModule(SkillModuleC).isOpenSkillShopPanel(true);
 		})
 		let advCount: number = 1;
-		this.mText_Member.text = `领券`;
 		this.mBtn_Member.onClicked.add(() => {
 			if (mw.SystemUtil.isPIE) {
 				ModuleService.getModule(PlayerModuleC).addAdvToken(advCount);
-				Notice.showDownNotice(`恭喜获得${advCount}张券`);
+				Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_8.Value, advCount));
 			} else {
 				UIService.getUI(AdsPanel).showRewardAd(() => {
 					ModuleService.getModule(PlayerModuleC).addAdvToken(advCount);
-					Notice.showDownNotice(`恭喜获得${advCount}张券`);
-				}, `免费领取${advCount}张广告券`, `取消`, `领取`);
+					Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_8.Value, advCount));
+				}, StringUtil.format(GameConfig.Language.Text_Ads_9.Value, advCount), GameConfig.Language.Text_Content_20022.Value, GameConfig.Language.Text_Content_20030.Value);
 			}
 		})
+		this.mAddAdsButton.onClicked.add(() => {
+			if (mw.SystemUtil.isPIE) {
+				ModuleService.getModule(PlayerModuleC).addAdvToken(advCount);
+				Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_8.Value, advCount));
+			} else {
+				UIService.getUI(AdsPanel).showRewardAd(() => {
+					ModuleService.getModule(PlayerModuleC).addAdvToken(advCount);
+					Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_8.Value, advCount));
+				}, StringUtil.format(GameConfig.Language.Text_Ads_9.Value, advCount), GameConfig.Language.Text_Content_20022.Value, GameConfig.Language.Text_Content_20030.Value);
+			}
+		});
+		let getCoinCount: number = 100;
+		this.mAddCoinButton.onClicked.add(() => {
+			if (mw.SystemUtil.isPIE) {
+				ModuleService.getModule(PlayerModuleC).addCoin(getCoinCount);
+				Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_6.Value, getCoinCount));
+			} else {
+				mw.UIService.getUI(AdsPanel).showRewardAd(() => {
+					ModuleService.getModule(PlayerModuleC).addCoin(getCoinCount);
+					Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_6.Value, getCoinCount));
+				}, StringUtil.format(GameConfig.Language.Text_Ads_7.Value, getCoinCount), GameConfig.Language.Text_Content_20022.Value, GameConfig.Language.Text_Content_20030.Value);
+			}
+		});
 		this.mBtn_Exchange.onClicked.add(() => {
 			ModuleService.getModule(ExchangeModuleC).isOpenExchangePanel(true);
 		})
 		this.mBtn_Ark.onClicked.add(() => {
-			ModuleService.getModule(ArkModuleC).addOpenArkPanel();
+			// ModuleService.getModule(ArkModuleC).addOpenArkPanel();
 		});
 		this.mBtn_Set.onClicked.add(() => {
 			UIService.getUI(SetPanel).show();
@@ -76,6 +96,9 @@ export default class HUDPanel extends HUDPanel_Generate {
 	setText() {
 		this.mText_Watch.text = (GameConfig.Text.getElement(20003).Content);
 		this.mUIText20009_txt.text = (GameConfig.Text.getElement(20009).Content);
+		if (Globals.languageId == 0) {
+			this.mText_Exchange.fontSize = 15;
+		}
 	}
 	public showHallUI() {
 		this.show();

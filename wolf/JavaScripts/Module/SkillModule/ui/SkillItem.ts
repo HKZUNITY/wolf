@@ -5,6 +5,7 @@
  * ATTENTION: onStart 等UI脚本自带函数不可改写为异步执行，有需求的异步逻辑请使用函数封装，通过函数接口在内部使用
  */
 
+import { Globals } from "../../../Globals";
 import { GameConfig } from "../../../Tables/GameConfig";
 import SkillItem_Generate from "../../../ui-generate/module/SkillModule/SkillItem_generate";
 import { SkillShopData } from "../SkillData";
@@ -25,6 +26,9 @@ export default class SkillItem extends SkillItem_Generate {
 		let dataInfo = GameConfig.SkillShop.getElement(data.skillId);
 		this.mImg_Icon.imageGuid = dataInfo.IconGUID.toString();
 		this.mText_Name.text = dataInfo.Name;
+		if (Globals.languageId == 0) {
+			this.mText_Name.fontSize = 12;
+		}
 		this.setEquip(data.isUse);
 		if (dataInfo.Max > 0 && data.remainTime > 0) {
 			this.mText_Num.visibility = mw.SlateVisibility.SelfHitTestInvisible;

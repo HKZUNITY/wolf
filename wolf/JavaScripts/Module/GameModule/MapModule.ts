@@ -1,7 +1,6 @@
 ﻿import { GameGlobals } from "../../Globals";
 import { GameConfig } from "../../Tables/GameConfig";
 import AdsPanel from "../AdsModule/ui/AdsPanel";
-import { ArkPanel } from "../ArkModule/ArkModule";
 import ExchangeModuleC from "../ExchangeModule/ExchangeModuleC";
 import { LotteryModuleC } from "../LotteryModule/LotteryModuleC";
 import { SetPanel } from "../SetModule/SetModule";
@@ -29,7 +28,7 @@ export class MapModuleC extends ModuleC<MapModuleS, null> {
 		ModuleService.getModule(ShopModuleC).ShopOpen(false);
 		ModuleService.getModule(SkillModuleC).isOpenSkillShopPanel(false);
 		ModuleService.getModule(ExchangeModuleC).isOpenExchangePanel(false);
-		if (mw.UIService.getUI(ArkPanel, false)?.visible) mw.UIService.getUI(ArkPanel).hide();
+		// if (mw.UIService.getUI(ArkPanel, false)?.visible) mw.UIService.getUI(ArkPanel).hide();
 		if (mw.UIService.getUI(SetPanel, false)?.visible) mw.UIService.getUI(SetPanel).hide();
 		if (mw.UIService.getUI(AdsPanel, false)?.visible) mw.UIService.getUI(AdsPanel).hide();
 	}
