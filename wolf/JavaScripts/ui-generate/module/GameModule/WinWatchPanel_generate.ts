@@ -3,7 +3,7 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/module/GameModule/WinWatchPanel.ui
- * TIME: 2024.11.09-23.55.59
+ * TIME: 2024.11.10-00.23.21
  */
  
 @UIBind('UI/module/GameModule/WinWatchPanel.ui')

@@ -3,12 +3,19 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/common/worldUI/ReturnImage.ui
- * TIME: 2024.11.09-23.55.55
+ * TIME: 2024.11.10-00.23.20
  */
  
 @UIBind('UI/common/worldUI/ReturnImage.ui')
 export default class ReturnImage_Generate extends UIScript {
-	
+		private mTextBlock_Internal: mw.TextBlock
+	public get mTextBlock(): mw.TextBlock {
+		if(!this.mTextBlock_Internal&&this.uiWidgetBase) {
+			this.mTextBlock_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mTextBlock') as mw.TextBlock
+		}
+		return this.mTextBlock_Internal
+	}
+
 
 	protected onAwake() {
 		//设置能否每帧触发onUpdate
@@ -25,11 +32,11 @@ export default class ReturnImage_Generate extends UIScript {
 		
 		//文本多语言
 		
-		//文本多语言
-		
-		this.initLanguage(this.uiWidgetBase.findChildByPath("RootCanvas/TextBlock") as any);
+		this.initLanguage(this.mTextBlock)
 		
 	
+		//文本多语言
+		
 	}
 	
 	/*初始化多语言*/

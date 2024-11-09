@@ -5,6 +5,7 @@ import { ISoundElement } from "./Tables/Sound";
 export class Globals {
     public static languageId: number = -1;
     public static isDebug: boolean = false;
+    public static isOpenIAA: boolean = true;
     public static isShowLineTrace: boolean = false;
     public static pieIsVip: boolean = false;
     public static pieGoldKey: number = 2;

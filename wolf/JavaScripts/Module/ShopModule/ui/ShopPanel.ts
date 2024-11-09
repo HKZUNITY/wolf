@@ -1,4 +1,5 @@
 ﻿import { Notice } from "../../../CommonUI/notice/Notice";
+import { Globals } from "../../../Globals";
 import { GameConfig } from "../../../Tables/GameConfig";
 import { Tools } from "../../../Tools";
 import ShopPanel_Generate from "../../../ui-generate/module/ShopModule/ShopPanel_generate";
@@ -140,7 +141,7 @@ export default class ShopPanel extends ShopPanel_Generate {
 
 		let addCoin: number = 100;
 		this.mAddCoinButton.onClicked.add(() => {
-			if (mw.SystemUtil.isPIE) {
+			if (!Globals.isOpenIAA) {
 				ModuleService.getModule(PlayerModuleC).addCoin(addCoin);
 				Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_6.Value, addCoin));
 			} else {
@@ -152,7 +153,7 @@ export default class ShopPanel extends ShopPanel_Generate {
 		});
 		let advCount: number = 1;
 		this.mAddCouponButton.onClicked.add(() => {
-			if (mw.SystemUtil.isPIE) {
+			if (!Globals.isOpenIAA) {
 				ModuleService.getModule(PlayerModuleC).addAdvToken(advCount);
 				Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_8.Value, advCount));
 			} else {

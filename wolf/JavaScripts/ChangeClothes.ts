@@ -1,4 +1,5 @@
 ﻿import { Notice } from "./CommonUI/notice/Notice";
+import { Globals } from "./Globals";
 import AdsPanel from "./Module/AdsModule/ui/AdsPanel";
 import { GameConfig } from "./Tables/GameConfig";
 
@@ -12,7 +13,7 @@ export default class ChangeClothes extends Script {
             trigger.onEnter.add((char: mw.Character) => {
                 if (char.gameObjectId != Player.localPlayer.character.gameObjectId) return;
                 let npc = trigger.parent as mw.Character;
-                if (mw.SystemUtil.isPIE) {
+                if (!Globals.isOpenIAA) {
                     char.setDescription(npc.getDescription());
                     char.asyncReady().then(() => {
                         char.syncDescription();

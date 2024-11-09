@@ -54,6 +54,8 @@ export default class GameStart extends mw.Script {
     private isLineTrace = false;
     @mw.Property({ displayName: "是否显示公告", group: "脚本设置" })
     private isShowNotice = false;
+    @mw.Property({ displayName: "是否开启广告", group: "脚本设置" })
+    private isOpenIAA = true;
     @mw.Property({ displayName: "多语言", group: "脚本设置", enumType: { "系统默认": -1, "英语": 0, "简体中文": 1, "繁体中文": 2, "日语": 3, "韩语": 4 } })
     private languageId: number = -1;
 
@@ -178,6 +180,7 @@ export default class GameStart extends mw.Script {
 
     private initData(): void {
         Globals.isShowLineTrace = this.isLineTrace;
+        Globals.isOpenIAA = !mw.SystemUtil.isPIE || this.isOpenIAA;
         if (this.isShowNotice) this.getNoticePanel.show();
     }
 

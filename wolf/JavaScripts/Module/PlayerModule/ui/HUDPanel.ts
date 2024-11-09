@@ -49,7 +49,7 @@ export default class HUDPanel extends HUDPanel_Generate {
 		})
 		let advCount: number = 1;
 		this.mBtn_Member.onClicked.add(() => {
-			if (mw.SystemUtil.isPIE) {
+			if (!Globals.isOpenIAA) {
 				ModuleService.getModule(PlayerModuleC).addAdvToken(advCount);
 				Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_8.Value, advCount));
 			} else {
@@ -60,7 +60,7 @@ export default class HUDPanel extends HUDPanel_Generate {
 			}
 		})
 		this.mAddAdsButton.onClicked.add(() => {
-			if (mw.SystemUtil.isPIE) {
+			if (!Globals.isOpenIAA) {
 				ModuleService.getModule(PlayerModuleC).addAdvToken(advCount);
 				Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_8.Value, advCount));
 			} else {
@@ -72,7 +72,7 @@ export default class HUDPanel extends HUDPanel_Generate {
 		});
 		let getCoinCount: number = 100;
 		this.mAddCoinButton.onClicked.add(() => {
-			if (mw.SystemUtil.isPIE) {
+			if (!Globals.isOpenIAA) {
 				ModuleService.getModule(PlayerModuleC).addCoin(getCoinCount);
 				Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_6.Value, getCoinCount));
 			} else {

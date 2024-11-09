@@ -86,7 +86,7 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
         // this.mUIText20030_txt = this.getHUDPanel.mUIText20030_txt;
         // this.mUIText20030_txt.text = `领金币`;
         this.getHUDPanel.mBtn_AD.onClicked.add(() => {
-            if (mw.SystemUtil.isPIE) {
+            if (!Globals.isOpenIAA) {
                 this.server.net_ChangeGold(this.getCoinCount);
                 Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_6.Value, this.getCoinCount));;
             } else {
