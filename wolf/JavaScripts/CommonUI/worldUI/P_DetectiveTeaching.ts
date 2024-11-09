@@ -14,13 +14,13 @@ export default class P_DetectiveTeaching extends DetectiveTeaching_Generate {
 	}
 
 	private addListenser() {
-		TimeUtil.delaySecond(5).then(() => {
-			this.mText_Title.text = GameConfig.Language.Text_Content_20040.Value;
-			this.mText_Content.text = GameConfig.Language.Text_World2.Value;
-			this.mText_1.text = GameConfig.Language.Text_Content_20045.Value;
-			this.mText_2.text = GameConfig.Language.Text_Content_20046.Value;
-			this.mText_3.text = GameConfig.Language.Text_Content_20047.Value;
-		});
+		let language = LocaleUtil.getDefaultLocale().toString().toLowerCase();
+		if (!(!!language.match("en"))) return;
+		this.mText_Title.text = GameConfig.Language.Text_Content_20040.Value;
+		this.mText_Content.text = GameConfig.Language.Text_World2.Value;
+		this.mText_1.text = GameConfig.Language.Text_Content_20045.Value;
+		this.mText_2.text = GameConfig.Language.Text_Content_20046.Value;
+		this.mText_3.text = GameConfig.Language.Text_Content_20047.Value;
 	}
 
 }

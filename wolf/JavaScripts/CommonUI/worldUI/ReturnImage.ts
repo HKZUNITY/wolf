@@ -21,8 +21,8 @@ export default class ReturnImage extends ReturnImage_Generate {
 	}
 
 	private addListenser() {
-		TimeUtil.delaySecond(5).then(() => {
-			this.mTextBlock.text = GameConfig.Language.Text_World4.Value;
-		});
+		let language = LocaleUtil.getDefaultLocale().toString().toLowerCase();
+		if (!(!!language.match("en"))) return;
+		this.mTextBlock.text = GameConfig.Language.Text_World4.Value;
 	}
 }

@@ -14,10 +14,10 @@ export default class P_AllTips extends AllTips_Generate {
 	}
 
 	private addListenser() {
-		TimeUtil.delaySecond(5).then(() => {
-			this.mText_Title.text = GameConfig.Language.Text_Content_20041.Value;
-			this.mText_Content.text = GameConfig.Language.Text_World1.Value;
-		});
+		let language = LocaleUtil.getDefaultLocale().toString().toLowerCase();
+		if (!(!!language.match("en"))) return;
+		this.mText_Title.text = GameConfig.Language.Text_Content_20041.Value;
+		this.mText_Content.text = GameConfig.Language.Text_World1.Value;
 	}
 
 }

@@ -5,6 +5,7 @@ import { IExpressionElement } from "../../Tables/Expression";
 import { GameConfig } from "../../Tables/GameConfig";
 import { Tools } from "../../Tools";
 import BubbleItem_Generate from "../../ui-generate/module/DanMuModule/BubbleItem_generate";
+import HUDPanel from "../PlayerModule/ui/HUDPanel";
 import { Bubble } from "./Bubble";
 import { ChatData, ActionData } from "./DanMuData";
 import DanMuModuleS from "./DanMuModuleS";
@@ -48,6 +49,10 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
         })
         InputUtil.onKeyDown(mw.Keys.O, () => {
             Event.dispatchToLocal(DanmuSyncServer, "测试弹幕");
+        })
+        InputUtil.onKeyDown(mw.Keys.NumPadEight, () => {
+            this.getChatPanel.hide();
+            UIService.getUI(HUDPanel).hide();
         })
     }
 

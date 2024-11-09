@@ -39,7 +39,7 @@ export default class FreeCamera extends Script {
         this.freeCamera.springArm.length = 0;
         this.freeCamera.springArm.collisionEnabled = false;
 
-        InputUtil.onKeyDown(Keys.F8, () => {
+        InputUtil.onKeyDown(mw.Keys.NumPadNine, () => {
             if (this.isFreeCamera) {
                 this.exitFreeCamera();
             } else {

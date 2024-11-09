@@ -15,17 +15,17 @@ export default class P_MurderTeaching extends MurderTeaching_Generate {
 	}
 
 	private addListenser() {
-		TimeUtil.delaySecond(5).then(() => {
-			let c = GameConfig.Language.Text_World3.Value;
-			if (c[0] == `W`) {
-				this.mText_Content.fontSize = 65;
-			}
-			this.mText_Title.text = GameConfig.Language.Text_Content_20039.Value;
-			this.mText_Content.text = c;
-			this.mText_1.text = GameConfig.Language.Text_Content_20048.Value;
-			this.mText_2.text = GameConfig.Language.Text_Content_20049.Value;
-			this.mText_3.text = GameConfig.Language.Text_Content_20039.Value;
-			this.mText_4.text = GameConfig.Language.Text_Content_20050.Value;
-		});
+		let language = LocaleUtil.getDefaultLocale().toString().toLowerCase();
+		if (!(!!language.match("en"))) return;
+		let c = GameConfig.Language.Text_World3.Value;
+		if (c[0] == `W`) {
+			this.mText_Content.fontSize = 65;
+		}
+		this.mText_Title.text = GameConfig.Language.Text_Content_20039.Value;
+		this.mText_Content.text = c;
+		this.mText_1.text = GameConfig.Language.Text_Content_20048.Value;
+		this.mText_2.text = GameConfig.Language.Text_Content_20049.Value;
+		this.mText_3.text = GameConfig.Language.Text_Content_20039.Value;
+		this.mText_4.text = GameConfig.Language.Text_Content_20050.Value;
 	}
 }
