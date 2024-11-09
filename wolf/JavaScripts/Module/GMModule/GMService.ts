@@ -110,9 +110,6 @@ AddGMCommand({
 
 @Component
 export default class GMService extends mw.Script {
-    @mw.Property({ displayName: "是否开启GM", group: "Debug" })
-    public isOpen: boolean = false;
-
     public static instance: GMService;
 
     /**
@@ -127,9 +124,18 @@ export default class GMService extends mw.Script {
     public override onStart() {
         GMService.instance = this;
 
-        if (mw.SystemUtil.isClient() && this.isOpen) {
-            console.log("[GM]：模块初始化")
-            new GMBasePanel();
+        if (mw.SystemUtil.isClient()) {
+            let isHasNewGM: boolean = false;
+            InputUtil.onKeyDown(mw.Keys.NumPadOne, () => {
+                if (!isHasNewGM) {
+                    new GMBasePanel();
+                    isHasNewGM = true;
+                }
+                OpenGMUI();
+            });
+            InputUtil.onKeyDown(mw.Keys.NumPadTwo, () => {
+                CloseGMUI();
+            });
         }
     }
 
@@ -198,7 +204,7 @@ export function OpenGMUI() {
 }
 
 export function CloseGMUI() {
-    mw.UIService.hide(GMHUD_Generate);
+    if (mw.UIService.getUI(GMHUD_Generate, false)?.visible) mw.UIService.hide(GMHUD_Generate);
 }
 
 class DropdownList {
