@@ -52,6 +52,10 @@ export class Globals {
     public static isSuppertSvip: boolean = null;
 
     public static pieNickName: string[] = [`Fat little guy who loves to play games`, `爱玩游戏的小胖子`];
+
+    public static coinIcon: string = `47608`;
+    public static coinCount: number = 1000;
+    public static onlineTimeConfig: number = 40;
 }
 export class GameGlobals {
     /**当前地图 */

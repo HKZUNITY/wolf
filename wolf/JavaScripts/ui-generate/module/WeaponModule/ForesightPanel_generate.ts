@@ -3,7 +3,7 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/module/WeaponModule/ForesightPanel.ui
- * TIME: 2024.11.10-00.23.22
+ * TIME: 2024.11.11-19.32.58
  */
  
 @UIBind('UI/module/WeaponModule/ForesightPanel.ui')

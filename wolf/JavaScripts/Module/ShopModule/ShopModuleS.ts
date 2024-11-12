@@ -368,11 +368,15 @@ export default class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData> {
             cloth = GameConfig.Shop.getElement(id).SuitItems[0];
         }
         else {//还原之前角色
+            return;
             cloth = DataCenterS.getData(this.currentPlayer, PlayerModuleData).getPlayerRoleId();
         }
         ModuleService.getModule(PlayerModuleS).net_SetPlayerModel(this.currentPlayer.playerId, Number(cloth), false);
     }
 
+    public award(player: mw.Player, shopId: number): void {
+        this.getPlayerData(player).setItemState(shopId, ItemState.Own);
+    }
 }
 /**货币类型 */
 export enum CurrencyType {

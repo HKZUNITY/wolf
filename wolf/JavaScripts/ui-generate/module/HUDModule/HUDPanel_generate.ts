@@ -3,7 +3,7 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/module/HUDModule/HUDPanel.ui
- * TIME: 2024.11.10-00.23.21
+ * TIME: 2024.11.11-19.32.57
  */
  
 @UIBind('UI/module/HUDModule/HUDPanel.ui')
@@ -309,6 +309,76 @@ export default class HUDPanel_Generate extends UIScript {
 		}
 		return this.mText_Ark_Internal
 	}
+	private mTaskCanvas_Internal: mw.Canvas
+	public get mTaskCanvas(): mw.Canvas {
+		if(!this.mTaskCanvas_Internal&&this.uiWidgetBase) {
+			this.mTaskCanvas_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mTaskCanvas') as mw.Canvas
+		}
+		return this.mTaskCanvas_Internal
+	}
+	private mTask1Canvas_Internal: mw.Canvas
+	public get mTask1Canvas(): mw.Canvas {
+		if(!this.mTask1Canvas_Internal&&this.uiWidgetBase) {
+			this.mTask1Canvas_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mTaskCanvas/mTask1Canvas') as mw.Canvas
+		}
+		return this.mTask1Canvas_Internal
+	}
+	private mTask1IconImage_Internal: mw.Image
+	public get mTask1IconImage(): mw.Image {
+		if(!this.mTask1IconImage_Internal&&this.uiWidgetBase) {
+			this.mTask1IconImage_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mTaskCanvas/mTask1Canvas/mTask1IconImage') as mw.Image
+		}
+		return this.mTask1IconImage_Internal
+	}
+	private mTask1NameTextBlock_Internal: mw.TextBlock
+	public get mTask1NameTextBlock(): mw.TextBlock {
+		if(!this.mTask1NameTextBlock_Internal&&this.uiWidgetBase) {
+			this.mTask1NameTextBlock_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mTaskCanvas/mTask1Canvas/mTask1NameTextBlock') as mw.TextBlock
+		}
+		return this.mTask1NameTextBlock_Internal
+	}
+	private mAward1NameTextBlock_Internal: mw.TextBlock
+	public get mAward1NameTextBlock(): mw.TextBlock {
+		if(!this.mAward1NameTextBlock_Internal&&this.uiWidgetBase) {
+			this.mAward1NameTextBlock_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mTaskCanvas/mTask1Canvas/mAward1NameTextBlock') as mw.TextBlock
+		}
+		return this.mAward1NameTextBlock_Internal
+	}
+	private mGetButton_Internal: mw.Button
+	public get mGetButton(): mw.Button {
+		if(!this.mGetButton_Internal&&this.uiWidgetBase) {
+			this.mGetButton_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mTaskCanvas/mTask1Canvas/mGetButton') as mw.Button
+		}
+		return this.mGetButton_Internal
+	}
+	private mGetTextBlock_Internal: mw.TextBlock
+	public get mGetTextBlock(): mw.TextBlock {
+		if(!this.mGetTextBlock_Internal&&this.uiWidgetBase) {
+			this.mGetTextBlock_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mTaskCanvas/mTask1Canvas/mGetButton/mGetTextBlock') as mw.TextBlock
+		}
+		return this.mGetTextBlock_Internal
+	}
+	private mTask2Canvas_Internal: mw.Canvas
+	public get mTask2Canvas(): mw.Canvas {
+		if(!this.mTask2Canvas_Internal&&this.uiWidgetBase) {
+			this.mTask2Canvas_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mTaskCanvas/mTask2Canvas') as mw.Canvas
+		}
+		return this.mTask2Canvas_Internal
+	}
+	private mTask2IconImage_Internal: mw.Image
+	public get mTask2IconImage(): mw.Image {
+		if(!this.mTask2IconImage_Internal&&this.uiWidgetBase) {
+			this.mTask2IconImage_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mTaskCanvas/mTask2Canvas/mTask2IconImage') as mw.Image
+		}
+		return this.mTask2IconImage_Internal
+	}
+	private mAward2NameTextBlock_Internal: mw.TextBlock
+	public get mAward2NameTextBlock(): mw.TextBlock {
+		if(!this.mAward2NameTextBlock_Internal&&this.uiWidgetBase) {
+			this.mAward2NameTextBlock_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mTaskCanvas/mTask2Canvas/mAward2NameTextBlock') as mw.TextBlock
+		}
+		return this.mAward2NameTextBlock_Internal
+	}
 
 
 	protected onAwake() {
@@ -403,6 +473,12 @@ export default class HUDPanel_Generate extends UIScript {
 		this.mBtn_lottery.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
 		
 	
+		this.mGetButton.onClicked.add(()=>{
+			Event.dispatchToLocal("PlayButtonClick", "mGetButton");
+		});
+		this.mGetButton.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
+		
+	
 		//按钮多语言
 		
 		//文本多语言
@@ -447,6 +523,18 @@ export default class HUDPanel_Generate extends UIScript {
 		
 	
 		this.initLanguage(this.mText_Ark)
+		
+	
+		this.initLanguage(this.mTask1NameTextBlock)
+		
+	
+		this.initLanguage(this.mAward1NameTextBlock)
+		
+	
+		this.initLanguage(this.mGetTextBlock)
+		
+	
+		this.initLanguage(this.mAward2NameTextBlock)
 		
 	
 		//文本多语言
