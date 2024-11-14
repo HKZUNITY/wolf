@@ -35,9 +35,9 @@ export default class ActionItem extends ActionItem_Generate {
 	}
 
 	private index: number = 0;
-	public setDatas(index: number, actionData: ActionData): void {
+	public setDatas(tabIndex: number, index: number, actionData: ActionData): void {
 		this.index = index;
-		this.mIconImage.imageGuid = actionData.icon;
+		this.mIconImage.imageGuid = tabIndex != 1 ? actionData.icon : actionData.icon.split('-')[1];
 		this.nNameTextBlock.text = actionData.names[Globals.languageId];
 	}
 }

@@ -3,7 +3,7 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/module/GameModule/CongratulationPanel.ui
- * TIME: 2024.11.11-19.32.57
+ * TIME: 2024.11.13-22.47.31
  */
  
 @UIBind('UI/module/GameModule/CongratulationPanel.ui')

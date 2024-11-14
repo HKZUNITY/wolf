@@ -94,9 +94,6 @@ export default class HUDPanel extends HUDPanel_Generate {
 		this.mBtn_Set.onClicked.add(() => {
 			UIService.getUI(SetPanel).show();
 		});
-		if (Globals.languageId == 0) {
-			this.mCanvas_Ark.visibility = mw.SlateVisibility.Collapsed;
-		}
 	}
 
 	setText() {
@@ -136,7 +133,7 @@ export default class HUDPanel extends HUDPanel_Generate {
 		this.mImg_Jump_BG.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
 		this.mCanvas_Shop.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
 		this.mCanvas_PlayerInf.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
-		if (Globals.languageId == 1) this.mTaskCanvas.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
+		this.mTaskCanvas.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
 		this.mCanvas_Skill.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
 		this.mCanvas_lottery.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
 		this.mCanvas_Member.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
@@ -167,7 +164,7 @@ export default class HUDPanel extends HUDPanel_Generate {
 		this.mImg_Jump_BG.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
 		this.mCanvas_Shop.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
 		this.mCanvas_PlayerInf.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
-		if (Globals.languageId == 1) this.mTaskCanvas.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
+		this.mTaskCanvas.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
 		this.mCanvas_Skill.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
 		this.mCanvas_lottery.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
 		this.mCanvas_Member.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
@@ -219,7 +216,6 @@ export default class HUDPanel extends HUDPanel_Generate {
 	}
 
 	public setTaskUI(firstShopId: number, secondShopId: number, onlineTime: number, isHasGetAward: boolean): void {
-		if (Globals.languageId == 0) return;
 		this.mTaskCanvas.visibility = mw.SlateVisibility.SelfHitTestInvisible;
 		if (isHasGetAward) {
 			this.mGetTextBlock.text = GameConfig.Language.Text_Task3.Value;
@@ -234,8 +230,8 @@ export default class HUDPanel extends HUDPanel_Generate {
 			} else {
 				this.mTask1IconImage.imageGuid = shopElement1.IconGuid;
 			}
-			let weaponStr = shopElement1.WeaponType == 1 ? `${GameConfig.Language.Text_Content_20010.Value}-{0}` : `${GameConfig.Language.Text_Content_20011.Value}-{0}`;
-			this.mAward1NameTextBlock.text = StringUtil.format(weaponStr, shopElement1.Name);
+			let weaponStr = shopElement1.WeaponType == 1 ? `${GameConfig.Language.Text_Content_20010.Value}{0}` : `${GameConfig.Language.Text_Content_20011.Value}{0}`;
+			this.mAward1NameTextBlock.text = StringUtil.format(weaponStr, Globals.languageId == 0 ? "" : `-${shopElement1.Name}`);
 		} else {
 			this.mTask1IconImage.imageGuid = Globals.coinIcon;
 			let weaponStr = `${GameConfig.Language.Text_Task4.Value}-{0}`;
@@ -249,8 +245,8 @@ export default class HUDPanel extends HUDPanel_Generate {
 			} else {
 				this.mTask2IconImage.imageGuid = shopElement2.IconGuid;
 			}
-			let weaponStr = shopElement2.WeaponType == 1 ? `${GameConfig.Language.Text_Task5.Value}：${GameConfig.Language.Text_Content_20010.Value}-{0}` : `${GameConfig.Language.Text_Task5.Value}：${GameConfig.Language.Text_Content_20011.Value}-{0}`;
-			this.mAward2NameTextBlock.text = StringUtil.format(weaponStr, shopElement2.Name);
+			let weaponStr = shopElement2.WeaponType == 1 ? `${GameConfig.Language.Text_Task5.Value}：${GameConfig.Language.Text_Content_20010.Value}{0}` : `${GameConfig.Language.Text_Task5.Value}：${GameConfig.Language.Text_Content_20011.Value}{0}`;
+			this.mAward2NameTextBlock.text = StringUtil.format(weaponStr, Globals.languageId == 0 ? "" : `-${shopElement2.Name}`);
 		} else {
 			this.mTask2IconImage.imageGuid = Globals.coinIcon;
 			let weaponStr = `${GameConfig.Language.Text_Task4.Value}：{0}`;

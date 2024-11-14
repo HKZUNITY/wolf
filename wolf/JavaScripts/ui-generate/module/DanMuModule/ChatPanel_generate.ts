@@ -3,7 +3,7 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/module/DanMuModule/ChatPanel.ui
- * TIME: 2024.11.11-19.32.57
+ * TIME: 2024.11.13-22.47.31
  */
  
 @UIBind('UI/module/DanMuModule/ChatPanel.ui')
@@ -176,6 +176,13 @@ export default class ChatPanel_Generate extends UIScript {
 		}
 		return this.mOpenActionButton_Internal
 	}
+	private mCloseActionButton_Internal: mw.Button
+	public get mCloseActionButton(): mw.Button {
+		if(!this.mCloseActionButton_Internal&&this.uiWidgetBase) {
+			this.mCloseActionButton_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenActionCanvas/mCloseActionButton') as mw.Button
+		}
+		return this.mCloseActionButton_Internal
+	}
 	private mActionListCanvas_Internal: mw.Canvas
 	public get mActionListCanvas(): mw.Canvas {
 		if(!this.mActionListCanvas_Internal&&this.uiWidgetBase) {
@@ -268,6 +275,12 @@ export default class ChatPanel_Generate extends UIScript {
 			Event.dispatchToLocal("PlayButtonClick", "mCloseExpressionListButton");
 		});
 		this.mCloseExpressionListButton.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
+		
+	
+		this.mCloseActionButton.onClicked.add(()=>{
+			Event.dispatchToLocal("PlayButtonClick", "mCloseActionButton");
+		});
+		this.mCloseActionButton.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
 		
 	
 		this.mCloseActionListButton.onClicked.add(()=>{

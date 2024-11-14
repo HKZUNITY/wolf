@@ -16,4 +16,7 @@ export class ActionData {
     public assetId: string;
     public names: string[];
     public loop: number;
+    public pos: mw.Vector;
+    public rot: mw.Rotation;
+    public type: number;
 }

@@ -40,6 +40,7 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
     public onOpenActionAction: Action = new Action();
     public onClickActionTabAction: Action1<number> = new Action1<number>();
     public onClickActionItemAction: Action1<number> = new Action1<number>();
+    public onCloseActionAction: Action = new Action();
 
     protected onStart(): void {
         this.bindEvent();
@@ -58,6 +59,7 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
 
     protected onEnterScene(sceneType: number): void {
         this.showPanels();
+        this.initDance();
     }
 
     protected onUpdate(dt: number): void {
@@ -84,6 +86,7 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
         this.onOpenActionAction.add(this.addOpenActionAction.bind(this));
         this.onClickActionTabAction.add(this.addClickActionTabAction.bind(this));
         this.onClickActionItemAction.add(this.addClickActionItemAction.bind(this));
+        this.onCloseActionAction.add(this.addStopAction.bind(this));
         Event.addLocalListener(StopAction, this.addStopAction.bind(this));
     }
 
@@ -357,6 +360,9 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
                     actionData.assetId = value.ActionId;
                     actionData.names = value.Names;
                     actionData.loop = value.Loop;
+                    actionData.pos = value.Pos;
+                    actionData.rot = new mw.Rotation(value.Rot);
+                    actionData.type = value.Type;
                     if (this.actionDataMap.has(actionData.tab)) {
                         let actionDatas = this.actionDataMap.get(actionData.tab);
                         actionDatas.push(actionData);
@@ -379,16 +385,62 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
         this.getChatPanel.showActionItemList(this.actionTabIndex);
     }
 
+    private isPlaying: boolean = false;
+    private isCanInteract: boolean = true;
     private addClickActionItemAction(index: number): void {
         if (!this.actionDataMap.has(this.actionTabIndex)) return;
         let actionDatas = this.actionDataMap.get(this.actionTabIndex);
         if (!actionDatas || actionDatas.length == 0 || index >= actionDatas.length) return;
         let actionData = actionDatas[index];
-        this.server.net_playAction(true, actionData);
+        if (!actionData) return;
+
+        if (!this.isCanInteract) {
+            console.error("交互还未准备完成");
+            return;
+        }
+        this.isCanInteract = false;
+        this.server.net_EnterInteract(actionData).then(() => {
+            this.isPlaying = true;
+            this.isCanInteract = true;
+        });
     }
 
     private addStopAction(): void {
-        this.server.net_playAction(false, null);
+        if (!this.isPlaying) return;
+        this.server.net_LeaveInteract().then(() => {
+            this.isPlaying = false;
+        });
     }
     //#endregion
+
+    //#region 跳舞交互
+    private initDance(): void {
+        danceInteracts.forEach(async (value: DanceInteract) => {
+            let npcs: mw.Character[] = [];
+            for (let i = 0; i < value.npcIds.length; ++i) {
+                let npc = await mw.GameObject.asyncFindGameObjectById(value.npcIds[i]) as mw.Character;
+                npc.collisionWithOtherCharacterEnabled = false;
+                await Tools.asyncDownloadAsset(value.danceIds[i]);
+                await npc.asyncReady();
+                npcs.push(npc);
+            }
+            for (let i = 0; i < npcs.length; ++i) {
+                npcs[i].loadSubStance(value.danceIds[i]).play();
+            }
+            // npcs[1].localTransform.position = npcs[0].localTransform.position;
+        });
+    }
+    //#endregion
+}
+
+const danceInteracts: DanceInteract[] = [
+    { npcIds: ["1D6BC608", "2D1D62C0"], danceIds: ["122807", "122806"] },
+    { npcIds: ["33292DC4", "286BB055"], danceIds: ["124192", "124194"] },
+    { npcIds: ["29450FE5", "29BED52B"], danceIds: ["122811", "122809"] },
+    { npcIds: ["04B28DAB", "0CC451CF"], danceIds: ["122808", "122810"] },
+]
+
+class DanceInteract {
+    public npcIds: string[];
+    public danceIds: string[];
 }

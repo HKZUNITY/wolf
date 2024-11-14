@@ -3,7 +3,7 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/common/worldUI/AllTips.ui
- * TIME: 2024.11.11-19.32.56
+ * TIME: 2024.11.13-22.47.31
  */
  
 @UIBind('UI/common/worldUI/AllTips.ui')

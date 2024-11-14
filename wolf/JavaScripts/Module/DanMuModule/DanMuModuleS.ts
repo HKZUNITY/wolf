@@ -71,7 +71,10 @@ export default class DanMuModuleS extends ModuleS<DanMuModuleC, null> {
                 icon: value.Icon,
                 assetId: value.ActionId,
                 names: value.Names,
-                loop: value.Loop
+                loop: value.Loop,
+                pos: value.Pos,
+                rot: new mw.Rotation(value.Rot),
+                type: value.Type
             });
         });
         this.setCustomData(WorldActionDatas, actionDatas);
@@ -82,10 +85,12 @@ export default class DanMuModuleS extends ModuleS<DanMuModuleC, null> {
         this.getAllClient().net_sendDanMu(this.currentPlayer.userId, msg, isActive);
     }
 
+    @Decorator.noReply()
     public async getCustomdata(key: string): Promise<any> {
         return (await DataStorage.asyncGetData(key)).data;
     }
 
+    @Decorator.noReply()
     public async setCustomData(saveKey: string, dataInfo: any): Promise<boolean> {
         let code: mw.DataStorageResultCode = null;
         code = await DataStorage.asyncSetData(saveKey, dataInfo);
@@ -118,22 +123,137 @@ export default class DanMuModuleS extends ModuleS<DanMuModuleC, null> {
         this.getAllClient().net_playExpression(this.currentPlayerId, assetId);
     }
 
-    private playerAnimationMap: Map<number, mw.Animation> = new Map<number, mw.Animation>();
-    public net_playAction(isPlay: boolean, actionData: ActionData): void {
+    private playerInteractMap: Map<number, PlayerInteract> = new Map<number, PlayerInteract>();
+    public async net_EnterInteract(actionData: ActionData): Promise<boolean> {
         let player = this.currentPlayer;
-        let playerId = this.currentPlayerId;
-        if (isPlay) {
-            Tools.asyncDownloadAsset(actionData.assetId).then(() => {
-                let animation = player.character.loadAnimation(actionData.assetId);
-                animation.loop = actionData.loop == 0 ? 1 : 0;
-                animation.play();
-                this.playerAnimationMap.set(playerId, animation);
-            });
-        } else {
-            if (this.playerAnimationMap.has(playerId)) {
-                this.playerAnimationMap.get(playerId).stop();
-                this.playerAnimationMap.delete(playerId);
-            }
+        return await this.enterInteract(player, actionData);
+    }
+
+    public async enterInteract(player: mw.Player, actionData: ActionData): Promise<boolean> {
+        let playerId = player.playerId;
+        if (!this.playerInteractMap.has(playerId)) {
+            this.playerInteractMap.set(playerId, new PlayerInteract());
         }
+        let playerInteract = this.playerInteractMap.get(playerId);
+        await playerInteract.clearInteractor(player);
+        if (actionData.type == 0) {
+            return await playerInteract.playSingleAni(player, actionData);
+        } else if (actionData.type == 1) {
+            return await playerInteract.interact(player, actionData);
+        } else if (actionData.type == 2) {
+            return await playerInteract.playDoubleAni(player, actionData);
+        }
+    }
+
+    public async net_LeaveInteract(): Promise<boolean> {
+        let player = this.currentPlayer;
+        return await this.leaveInteract(player);
+    }
+
+    public async leaveInteract(player: mw.Player): Promise<boolean> {
+        let playerId = player.playerId;
+        if (!this.playerInteractMap.has(playerId)) return true;
+        let playerInteract = this.playerInteractMap.get(playerId);
+        return await playerInteract.clearInteractor(player);
+    }
+}
+
+export class PlayerInteract {
+    public interactObj: mw.Interactor = null;
+    public npc: mw.Character = null;
+    public npcSubStance: mw.SubStance = null;
+    private async initNpc(): Promise<void> {
+        if (this.npc) return;
+        this.npc = await mw.GameObject.asyncSpawn("Character") as mw.Character;
+        this.npc.worldTransform.scale = mw.Vector.one.multiply(0.8);
+        this.npc.collisionWithOtherCharacterEnabled = false;
+        await this.npc.asyncReady();
+    }
+
+    public singleAni: mw.Animation = null;
+    public async playSingleAni(player: mw.Player, actionData: ActionData): Promise<boolean> {
+        await Tools.asyncDownloadAsset(actionData.assetId);
+        this.singleAni = player.character.loadAnimation(actionData.assetId);
+        this.singleAni.loop = actionData.loop == 0 ? 1 : 0;
+        let isPlaySuccess = this.singleAni.play();
+        console.error(`isPlaySuccess:${isPlaySuccess}`);
+        return isPlaySuccess;
+    }
+
+    public playerSubStance: mw.SubStance = null;
+    public async playDoubleAni(player: mw.Player, actionData: ActionData): Promise<boolean> {
+        await this.initNpc();
+        this.npc.setVisibility(true);
+        player.character.collisionWithOtherCharacterEnabled = false;
+        this.npc.worldTransform.position = player.character.worldTransform.position.add(actionData.pos);
+        let tmpRot = mw.Rotation.zero;
+        mw.Rotation.add(player.character.worldTransform.rotation, actionData.rot, tmpRot);
+        this.npc.worldTransform.rotation = tmpRot;
+        let aniStr = actionData.assetId.split('-');
+        await Tools.asyncDownloadAsset(aniStr[0]);
+        await Tools.asyncDownloadAsset(aniStr[1]);
+        this.playerSubStance = player.character.loadSubStance(aniStr[0]);
+        this.playerSubStance.play();
+        this.npcSubStance = this.npc.loadSubStance(aniStr[1]);
+        this.npcSubStance.play();
+        return true;
+    }
+
+    public async interact(player: mw.Player, actionData: ActionData): Promise<boolean> {
+        return new Promise<boolean>(async (resolve: (value: boolean) => void) => {
+            await this.initNpc();
+            this.npc.setVisibility(true);
+            player.character.collisionWithOtherCharacterEnabled = false;
+            this.interactObj = await mw.GameObject.asyncSpawn("Interactor") as mw.Interactor;
+            await this.interactObj.asyncReady();
+            player.character.attachToSlot(this.interactObj, mw.HumanoidSlotType.FaceOrnamental);
+            this.interactObj.onEnter.add(async () => {
+                let aniStr = actionData.assetId.split('-');
+                await Tools.asyncDownloadAsset(aniStr[0]);
+                await Tools.asyncDownloadAsset(aniStr[1]);
+                this.playerSubStance = player.character.loadSubStance(aniStr[0]);
+                this.playerSubStance.play();
+                this.npcSubStance = this.npc.loadSubStance(aniStr[1]);
+                this.npcSubStance.play();
+
+                this.interactObj.localTransform.position = actionData.pos;
+                this.interactObj.localTransform.rotation = actionData.rot;
+                return resolve(true);
+            });
+            this.interactObj.enter(this.npc, mw.HumanoidSlotType.Buttocks);
+        });
+    }
+
+    public async clearInteractor(player: mw.Player): Promise<boolean> {
+        if (this.singleAni) {
+            this.singleAni?.stop();
+            this.singleAni = null;
+        }
+        if (this.playerSubStance) {
+            this.playerSubStance.stop();
+            this.playerSubStance = null;
+        }
+        if (this.npcSubStance) {
+            this.npcSubStance.stop();
+            this.npcSubStance = null;
+        }
+        return await this.leaveInteract(player);
+    }
+
+    private async leaveInteract(player: mw.Player): Promise<boolean> {
+        return new Promise<boolean>((resolve: (value: boolean) => void) => {
+            if (!this.interactObj) return resolve(true);
+            this.interactObj.onLeave.add(async () => {
+                this.interactObj.parent = null;
+                this.interactObj.destroy();
+                this.interactObj = null;
+                this.npc.parent = null;
+                this.npc.setVisibility(false);
+                if (!player.character.collisionWithOtherCharacterEnabled) player.character.collisionWithOtherCharacterEnabled = true;
+                await TimeUtil.delaySecond(1);
+                return resolve(true);
+            });
+            this.interactObj.leave();
+        });
     }
 }

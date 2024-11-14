@@ -53,6 +53,8 @@ export default class ChatPanel extends ChatPanel_Generate {
 
 		this.mOpenActionButton.onClicked.add(this.addOpenActionButton.bind(this));
 		this.mCloseActionListButton.onClicked.add(this.addCloseActionListButton.bind(this));
+
+		this.mCloseActionButton.onClicked.add(this.addCloseActionButton.bind(this));
 	}
 
 	private addOpenChatButton(): void {
@@ -93,6 +95,10 @@ export default class ChatPanel extends ChatPanel_Generate {
 
 	private addCloseActionListButton(): void {
 		this.closeActionList(false);
+	}
+
+	private addCloseActionButton(): void {
+		this.getDanMuModuleC.onCloseActionAction.call();
 	}
 
 	//#region 聊天列表
@@ -223,18 +229,18 @@ export default class ChatPanel extends ChatPanel_Generate {
 		if (!actionDatas || actionDatas.length == 0) return;
 		if (actionDatas.length > this.actionItems.length) {
 			for (let i = 0; i < this.actionItems.length; ++i) {
-				this.actionItems[i].setDatas(i, actionDatas[i]);
+				this.actionItems[i].setDatas(tabIndex, i, actionDatas[i]);
 				Tools.setWidgetVisibility(this.actionItems[i].uiObject, mw.SlateVisibility.SelfHitTestInvisible);
 			}
 			for (let i = this.actionItems.length; i < actionDatas.length; ++i) {
 				let actionItem = mw.UIService.create(ActionItem);
-				actionItem.setDatas(i, actionDatas[i]);
+				actionItem.setDatas(tabIndex, i, actionDatas[i]);
 				this.mActionListContentCanvas.addChild(actionItem.uiObject);
 				this.actionItems.push(actionItem);
 			}
 		} else {
 			for (let i = 0; i < actionDatas.length; ++i) {
-				this.actionItems[i].setDatas(i, actionDatas[i]);
+				this.actionItems[i].setDatas(tabIndex, i, actionDatas[i]);
 				Tools.setWidgetVisibility(this.actionItems[i].uiObject, mw.SlateVisibility.SelfHitTestInvisible);
 			}
 			for (let i = actionDatas.length; i < this.actionItems.length; ++i) {
