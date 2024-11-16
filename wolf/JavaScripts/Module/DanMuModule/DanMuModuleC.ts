@@ -41,6 +41,10 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
     public onClickActionTabAction: Action1<number> = new Action1<number>();
     public onClickActionItemAction: Action1<number> = new Action1<number>();
     public onCloseActionAction: Action = new Action();
+    public onOpenBagAction: Action = new Action();
+    public onClickBagTabAction: Action1<number> = new Action1<number>();
+    public onClickBagItemAction: Action1<number> = new Action1<number>();
+    public onClickUnloadBagItemAction: Action = new Action();
 
     protected onStart(): void {
         this.bindEvent();
@@ -88,6 +92,10 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
         this.onClickActionItemAction.add(this.addClickActionItemAction.bind(this));
         this.onCloseActionAction.add(this.addStopAction.bind(this));
         Event.addLocalListener(StopAction, this.addStopAction.bind(this));
+        this.onOpenBagAction.add(this.addOpenBagAction.bind(this));
+        this.onClickBagTabAction.add(this.addClickBagTabAction.bind(this));
+        this.onClickBagItemAction.add(this.addClickBagItemAction.bind(this));
+        this.onClickUnloadBagItemAction.add(this.addClickUnloadBagItemAction.bind(this));
     }
 
     //#region  弹幕
@@ -406,9 +414,46 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
     }
 
     private addStopAction(): void {
+        if (!this.localPlayer.character.movementEnabled) this.localPlayer.character.movementEnabled = true;
         if (!this.isPlaying) return;
         this.server.net_LeaveInteract().then(() => {
             this.isPlaying = false;
+        });
+    }
+    //#endregion
+
+    //#region 背包
+    private addOpenBagAction(): void {
+        if (this.currentBagId == 0) {
+            this.getChatPanel.showBagCanvas();
+        } else {
+            let nextBagId = GameConfig.ActionProp.getElement(this.currentBagId).NextId;
+            this.addClickBagItemAction(nextBagId);
+        }
+    }
+
+    private bagTabIndex: number = 0;
+    private addClickBagTabAction(index: number): void {
+        if (this.bagTabIndex == index) return;
+        this.bagTabIndex = index;
+        this.getChatPanel.showBagItemList(this.bagTabIndex);
+    }
+
+    private currentBagId: number = 0;
+    private addClickBagItemAction(bagId: number): void {
+        console.error(`bagId:${bagId}`);
+        if (this.currentBagId == bagId) return;
+        this.getChatPanel.updateBagIcon(bagId);
+        this.server.net_useBag(bagId).then(() => {
+            this.currentBagId = bagId;
+        });
+    }
+
+    private addClickUnloadBagItemAction(): void {
+        if (this.currentBagId == 0) return;
+        this.server.net_unloadBag(this.currentBagId).then(() => {
+            this.currentBagId = 0;
+            this.getChatPanel.updateBagIcon(this.currentBagId);
         });
     }
     //#endregion

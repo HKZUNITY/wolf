@@ -3,12 +3,40 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/module/DanMuModule/ChatPanel.ui
- * TIME: 2024.11.13-22.47.31
+ * TIME: 2024.11.16-15.13.41
  */
  
 @UIBind('UI/module/DanMuModule/ChatPanel.ui')
 export default class ChatPanel_Generate extends UIScript {
-		private mOpenChatCanvas_Internal: mw.Canvas
+		private mOpenBagCanvas_Internal: mw.Canvas
+	public get mOpenBagCanvas(): mw.Canvas {
+		if(!this.mOpenBagCanvas_Internal&&this.uiWidgetBase) {
+			this.mOpenBagCanvas_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenBagCanvas') as mw.Canvas
+		}
+		return this.mOpenBagCanvas_Internal
+	}
+	private mOpenBagBgImage_Internal: mw.Image
+	public get mOpenBagBgImage(): mw.Image {
+		if(!this.mOpenBagBgImage_Internal&&this.uiWidgetBase) {
+			this.mOpenBagBgImage_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenBagCanvas/mOpenBagBgImage') as mw.Image
+		}
+		return this.mOpenBagBgImage_Internal
+	}
+	private mOpenBagButton_Internal: mw.StaleButton
+	public get mOpenBagButton(): mw.StaleButton {
+		if(!this.mOpenBagButton_Internal&&this.uiWidgetBase) {
+			this.mOpenBagButton_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenBagCanvas/mOpenBagButton') as mw.StaleButton
+		}
+		return this.mOpenBagButton_Internal
+	}
+	private mUnloadButton_Internal: mw.Button
+	public get mUnloadButton(): mw.Button {
+		if(!this.mUnloadButton_Internal&&this.uiWidgetBase) {
+			this.mUnloadButton_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenBagCanvas/mUnloadButton') as mw.Button
+		}
+		return this.mUnloadButton_Internal
+	}
+	private mOpenChatCanvas_Internal: mw.Canvas
 	public get mOpenChatCanvas(): mw.Canvas {
 		if(!this.mOpenChatCanvas_Internal&&this.uiWidgetBase) {
 			this.mOpenChatCanvas_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenChatCanvas') as mw.Canvas
@@ -225,6 +253,48 @@ export default class ChatPanel_Generate extends UIScript {
 		}
 		return this.mCloseActionListButton_Internal
 	}
+	private mBagCanvas_Internal: mw.Canvas
+	public get mBagCanvas(): mw.Canvas {
+		if(!this.mBagCanvas_Internal&&this.uiWidgetBase) {
+			this.mBagCanvas_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mBagCanvas') as mw.Canvas
+		}
+		return this.mBagCanvas_Internal
+	}
+	private mCloseBagButton_Internal: mw.StaleButton
+	public get mCloseBagButton(): mw.StaleButton {
+		if(!this.mCloseBagButton_Internal&&this.uiWidgetBase) {
+			this.mCloseBagButton_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mBagCanvas/mCloseBagButton') as mw.StaleButton
+		}
+		return this.mCloseBagButton_Internal
+	}
+	private mBagTabCanvas_Internal: mw.Canvas
+	public get mBagTabCanvas(): mw.Canvas {
+		if(!this.mBagTabCanvas_Internal&&this.uiWidgetBase) {
+			this.mBagTabCanvas_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mBagCanvas/mBagTabCanvas') as mw.Canvas
+		}
+		return this.mBagTabCanvas_Internal
+	}
+	private mBagScrollBox_Internal: mw.ScrollBox
+	public get mBagScrollBox(): mw.ScrollBox {
+		if(!this.mBagScrollBox_Internal&&this.uiWidgetBase) {
+			this.mBagScrollBox_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mBagCanvas/mBagScrollBox') as mw.ScrollBox
+		}
+		return this.mBagScrollBox_Internal
+	}
+	private mBagContentCanvas_Internal: mw.Canvas
+	public get mBagContentCanvas(): mw.Canvas {
+		if(!this.mBagContentCanvas_Internal&&this.uiWidgetBase) {
+			this.mBagContentCanvas_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mBagCanvas/mBagScrollBox/mBagContentCanvas') as mw.Canvas
+		}
+		return this.mBagContentCanvas_Internal
+	}
+	private mBackBagButton_Internal: mw.StaleButton
+	public get mBackBagButton(): mw.StaleButton {
+		if(!this.mBackBagButton_Internal&&this.uiWidgetBase) {
+			this.mBackBagButton_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mBagCanvas/mBackBagButton') as mw.StaleButton
+		}
+		return this.mBackBagButton_Internal
+	}
 
 
 	protected onAwake() {
@@ -236,6 +306,13 @@ export default class ChatPanel_Generate extends UIScript {
 	protected initButtons() {
 		//按钮添加点击
 		
+		this.mOpenBagButton.onClicked.add(()=>{
+			Event.dispatchToLocal("PlayButtonClick", "mOpenBagButton");
+		});
+		this.initLanguage(this.mOpenBagButton);
+		this.mOpenBagButton.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
+		
+	
 		this.mOpenChatButton.onClicked.add(()=>{
 			Event.dispatchToLocal("PlayButtonClick", "mOpenChatButton");
 		});
@@ -257,8 +334,28 @@ export default class ChatPanel_Generate extends UIScript {
 		this.mOpenActionButton.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
 		
 	
+		this.mCloseBagButton.onClicked.add(()=>{
+			Event.dispatchToLocal("PlayButtonClick", "mCloseBagButton");
+		});
+		this.initLanguage(this.mCloseBagButton);
+		this.mCloseBagButton.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
+		
+	
+		this.mBackBagButton.onClicked.add(()=>{
+			Event.dispatchToLocal("PlayButtonClick", "mBackBagButton");
+		});
+		this.initLanguage(this.mBackBagButton);
+		this.mBackBagButton.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
+		
+	
 		//按钮添加点击
 		
+		this.mUnloadButton.onClicked.add(()=>{
+			Event.dispatchToLocal("PlayButtonClick", "mUnloadButton");
+		});
+		this.mUnloadButton.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
+		
+	
 		this.mCloseChatList1Button.onClicked.add(()=>{
 			Event.dispatchToLocal("PlayButtonClick", "mCloseChatList1Button");
 		});

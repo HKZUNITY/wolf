@@ -1,10 +1,14 @@
 ﻿import { Globals } from "../../../Globals";
+import { IActionPropElement } from "../../../Tables/ActionProp";
+import { GameConfig } from "../../../Tables/GameConfig";
 import { Tools } from "../../../Tools";
 import ChatPanel_Generate from "../../../ui-generate/module/DanMuModule/ChatPanel_generate";
 import { ChatData, ActionData } from "../DanMuData";
 import DanMuModuleC from "../DanMuModuleC";
 import ActionItem from "./ActionItem";
 import ActionTabItem from "./ActionTabItem";
+import BagItem from "./BagItem";
+import BagTabItem from "./BagTabItem";
 import ChatItem1 from "./ChatItem1";
 import ChatItem2 from "./ChatItem2";
 import ExpressionItem from "./ExpressionItem";
@@ -41,6 +45,8 @@ export default class ChatPanel extends ChatPanel_Generate {
 		this.closeChatList1List2();
 		this.closeExpressionList(false);
 		this.closeActionList(false);
+		this.closeBagCanvas(false);
+		this.updateBagIcon(0);
 	}
 
 	private bindButton(): void {
@@ -55,6 +61,11 @@ export default class ChatPanel extends ChatPanel_Generate {
 		this.mCloseActionListButton.onClicked.add(this.addCloseActionListButton.bind(this));
 
 		this.mCloseActionButton.onClicked.add(this.addCloseActionButton.bind(this));
+
+		this.mOpenBagButton.onClicked.add(this.addOpenBagButton.bind(this));
+		this.mCloseBagButton.onClicked.add(this.addCloseBagButton.bind(this));
+		this.mBackBagButton.onClicked.add(this.addCloseBagButton.bind(this));
+		this.mUnloadButton.onClicked.add(this.addUnloadButton.bind(this));
 	}
 
 	private addOpenChatButton(): void {
@@ -99,6 +110,22 @@ export default class ChatPanel extends ChatPanel_Generate {
 
 	private addCloseActionButton(): void {
 		this.getDanMuModuleC.onCloseActionAction.call();
+	}
+
+	private addOpenBagButton(): void {
+		if (!this.mBagCanvas.visible) {
+			this.getDanMuModuleC.onOpenBagAction.call();
+		} else {
+			this.closeBagCanvas(false);
+		}
+	}
+
+	private addCloseBagButton(): void {
+		this.closeBagCanvas(false);
+	}
+
+	private addUnloadButton(): void {
+		this.getDanMuModuleC.onClickUnloadBagItemAction.call();
 	}
 
 	//#region 聊天列表
@@ -251,6 +278,100 @@ export default class ChatPanel extends ChatPanel_Generate {
 
 	public closeActionList(isOpen: boolean): void {
 		Tools.setWidgetVisibility(this.mActionListCanvas, isOpen ? mw.SlateVisibility.SelfHitTestInvisible : mw.SlateVisibility.Collapsed);
+	}
+	//#endregion
+
+	//#region 动作道具
+	public updateBagIcon(bagId: number): void {
+		if (bagId == 0) {
+			this.mUnloadButton.visibility = mw.SlateVisibility.Collapsed;
+			this.mOpenBagButton.normalImageGuid = `153892`;
+			this.mOpenBagButton.pressedImageGuid = `153892`;
+			this.mOpenBagButton.disableImageGuid = `153892`;
+		} else {
+			this.mUnloadButton.visibility = mw.SlateVisibility.Visible;
+			let bagIcon = GameConfig.ActionProp.getElement(bagId).ButtonIconId;
+			this.mOpenBagButton.normalImageGuid = bagIcon;
+			this.mOpenBagButton.pressedImageGuid = bagIcon;
+			this.mOpenBagButton.disableImageGuid = bagIcon;
+			this.closeBagCanvas(false);
+		}
+	}
+	private bagTabTexts: string[] = [
+		`Hot-热门`,
+		`Wing-翅膀`,
+		`Prop-道具`,
+		`Food-食品`,
+		`Other-烟花`
+	];//背包标签
+	private bagTabItems: BagTabItem[] = [];
+	private isInitBagUI: boolean = false;
+	public showBagCanvas(): void {
+		if (!this.isInitBagUI) {
+			this.isInitBagUI = true;
+			for (let i = 0; i < this.bagTabTexts.length; ++i) {
+				let bagTabItem = mw.UIService.create(BagTabItem);
+				bagTabItem.setDatas(i + 1, this.bagTabTexts[i]);
+				this.mBagTabCanvas.addChild(bagTabItem.uiObject);
+				this.bagTabItems.push(bagTabItem);
+			}
+			this.bagTabItems[1].uiObject.visibility = mw.SlateVisibility.Collapsed;
+			this.bagTabItems[4].uiObject.visibility = mw.SlateVisibility.Collapsed;
+			this.getDanMuModuleC.onClickBagTabAction.call(1);
+		}
+		this.closeBagCanvas(true);
+	}
+
+	private bagItems: BagItem[] = [];
+	public showBagItemList(index: number): void {
+		switch (index) {
+			case 1:
+				this.updatePropList(1);
+				break;
+			case 2:
+				this.updatePropList(2);
+				break;
+			case 3:
+				this.updatePropList(3);
+				break;
+			case 4:
+				this.updatePropList(4);
+				break;
+			case 5:
+				this.updatePropList(5);
+				break;
+		}
+	}
+
+	private updatePropList(tabIndex: number): void {
+		let actionPropElement: IActionPropElement[] = GameConfig.ActionProp.getAllElement();
+		actionPropElement = actionPropElement.filter((value: IActionPropElement) => { return value.AssetId && value.AssetId != "" && value.Tab == tabIndex; });
+		actionPropElement.sort((a: IActionPropElement, b: IActionPropElement) => { return a.Sort - b.Sort; });
+		// if (!actionPropElement || actionPropElement.length == 0) return;
+		if (actionPropElement.length > this.bagItems.length) {
+			for (let i = 0; i < this.bagItems.length; ++i) {
+				this.bagItems[i].setDatas(actionPropElement[i].ID);
+				Tools.setWidgetVisibility(this.bagItems[i].uiObject, mw.SlateVisibility.SelfHitTestInvisible);
+			}
+			for (let i = this.bagItems.length; i < actionPropElement.length; ++i) {
+				let bagItem = mw.UIService.create(BagItem);
+				bagItem.setDatas(actionPropElement[i].ID);
+				this.mBagContentCanvas.addChild(bagItem.uiObject);
+				this.bagItems.push(bagItem);
+			}
+		} else {
+			for (let i = 0; i < actionPropElement.length; ++i) {
+				this.bagItems[i].setDatas(actionPropElement[i].ID);
+				Tools.setWidgetVisibility(this.bagItems[i].uiObject, mw.SlateVisibility.SelfHitTestInvisible);
+			}
+			for (let i = actionPropElement.length; i < this.bagItems.length; ++i) {
+				Tools.setWidgetVisibility(this.bagItems[i].uiObject, mw.SlateVisibility.Collapsed);
+			}
+		}
+	}
+
+	public closeBagCanvas(isOpen: boolean): void {
+		Tools.setWidgetVisibility(this.mBagCanvas, isOpen ? mw.SlateVisibility.SelfHitTestInvisible : mw.SlateVisibility.Collapsed);
 	}
 	//#endregion
 }

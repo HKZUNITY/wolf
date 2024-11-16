@@ -156,6 +156,138 @@ export default class DanMuModuleS extends ModuleS<DanMuModuleC, null> {
         let playerInteract = this.playerInteractMap.get(playerId);
         return await playerInteract.clearInteractor(player);
     }
+
+    private playerBagMap: Map<number, PlayerBag> = new Map<number, PlayerBag>();
+    public async net_useBag(bagId: number): Promise<boolean> {
+        let player = this.currentPlayer;
+        if (!this.playerBagMap.has(player.playerId)) {
+            this.playerBagMap.set(player.playerId, new PlayerBag());
+        }
+        let playerBag = this.playerBagMap.get(player.playerId);
+        return await playerBag.equip(player, bagId);
+    }
+
+    public async net_unloadBag(bagId: number): Promise<boolean> {
+        let player = this.currentPlayer;
+        if (!this.playerBagMap.has(player.playerId)) return true;
+        let playerBag = this.playerBagMap.get(player.playerId);
+        return await playerBag.unEquip(player, bagId);
+    }
+}
+
+export class PlayerBag {
+    public async equip(player: mw.Player, bagId: number): Promise<boolean> {
+        let actionPropElement = GameConfig.ActionProp.getElement(bagId);
+        if (actionPropElement.AssetId && actionPropElement.AssetId.length > 0) {
+            this.recycleMode();
+            await this.spawnMode(player, actionPropElement.AssetId, actionPropElement.SlotType, actionPropElement.ModeOffsetParameter);
+        } else {
+            this.updateMode(player, actionPropElement.SlotType, actionPropElement.ModeOffsetParameter);
+        }
+
+        if (actionPropElement.AnimationId && actionPropElement.AnimationId.length > 0) {
+            await this.playAnimation(player, actionPropElement.AnimationId, actionPropElement.AnimationSlot, actionPropElement.AnimationParameter);
+        } else {
+            this.stopAnimation();
+        }
+
+        if (actionPropElement.EffectId && actionPropElement.EffectId.length > 0) {
+            this.stopEffect();
+            await this.playEffect(actionPropElement.EffectId, actionPropElement.EffectLoop, actionPropElement.EffectOffsetParameter);
+        } else {
+            this.stopEffect();
+        }
+
+        if (actionPropElement.SoundId && actionPropElement.SoundId.length > 0) {
+            this.stop3DSound();
+            await this.play3DSound(actionPropElement.SoundId, actionPropElement.SoundParameter);
+        } else {
+            this.stop3DSound();
+        }
+        await TimeUtil.delaySecond(0.1);
+        return true;
+    }
+
+    public async unEquip(player: mw.Player, bagId: number): Promise<boolean> {
+        this.stopEffect();
+        this.stop3DSound();
+        this.stopAnimation();
+        this.recycleMode();
+        await TimeUtil.delaySecond(0.1);
+        return true;
+    }
+
+    public mode: mw.GameObject = null;
+    public async spawnMode(player: mw.Player, assetId: string, slotType: mw.HumanoidSlotType, parameter: number[]): Promise<void> {
+        this.mode = await GameObjPool.asyncSpawn(assetId);
+        await this.mode.asyncReady();
+        this.mode.setCollision(mw.PropertyStatus.Off, true);
+        player.character.attachToSlot(this.mode, slotType);
+        this.mode.localTransform.position = new Vector(parameter[0], parameter[1], parameter[2]);
+        this.mode.localTransform.rotation = new Rotation(parameter[3], parameter[4], parameter[5]);
+        this.mode.localTransform.scale = new Vector(parameter[6], parameter[7], parameter[8]);
+    }
+
+    public recycleMode(): void {
+        if (!this.mode) return;
+        GameObjPool.despawn(this.mode);
+        this.mode = null;
+    }
+
+    public updateMode(player: mw.Player, slotType: mw.HumanoidSlotType, parameter: number[]): void {
+        if (!this.mode) return;
+        player.character.attachToSlot(this.mode, slotType);
+        this.mode.localTransform.position = new Vector(parameter[0], parameter[1], parameter[2]);
+        this.mode.localTransform.rotation = new Rotation(parameter[3], parameter[4], parameter[5]);
+        this.mode.localTransform.scale = new Vector(parameter[6], parameter[7], parameter[8]);
+    }
+
+    public animation: mw.Animation = null;
+    public async playAnimation(player: mw.Player, assetId: string, slotType: number, parameter: number[]): Promise<void> {
+        await Tools.asyncDownloadAsset(assetId);
+        this.animation = player.character.loadAnimation(assetId);
+        this.animation.slot = slotType;
+        this.animation.speed = parameter[0];
+        this.animation.loop = parameter[1];
+        this.animation.play();
+    }
+
+    public stopAnimation(): void {
+        if (!this.animation) return;
+        this.animation?.stop();
+        this.animation = null;
+    }
+
+    public effectId: number = null;
+    public async playEffect(assetId: string, loop: number, parameter: number[]): Promise<void> {
+        await Tools.asyncDownloadAsset(assetId);
+        this.effectId = EffectService.playOnGameObject(assetId,
+            this.mode,
+            {
+                loopCount: loop,
+                position: new mw.Vector(parameter[0], parameter[1], parameter[2]),
+                rotation: new mw.Rotation(parameter[3], parameter[4], parameter[5]),
+                scale: new mw.Vector(parameter[6], parameter[7], parameter[8])
+            });
+    }
+
+    public stopEffect(): void {
+        if (!this.effectId) return;
+        EffectService.stop(this.effectId);
+        this.effectId = null;
+    }
+
+    public soundId: number = null;
+    public async play3DSound(assetId: string, parameter: number[]): Promise<void> {
+        await Tools.asyncDownloadAsset(assetId);
+        this.soundId = SoundService.play3DSound(assetId, this.mode, parameter[2], parameter[1], { radius: parameter[0], falloffDistance: parameter[0] * 1.2 });
+    }
+
+    public stop3DSound(): void {
+        if (!this.soundId) return;
+        SoundService.stop3DSound(this.soundId);
+        this.soundId = null;
+    }
 }
 
 export class PlayerInteract {
@@ -185,6 +317,7 @@ export class PlayerInteract {
         await this.initNpc();
         this.npc.setVisibility(true);
         player.character.collisionWithOtherCharacterEnabled = false;
+        player.character.movementEnabled = false;
         this.npc.worldTransform.position = player.character.worldTransform.position.add(actionData.pos);
         let tmpRot = mw.Rotation.zero;
         mw.Rotation.add(player.character.worldTransform.rotation, actionData.rot, tmpRot);

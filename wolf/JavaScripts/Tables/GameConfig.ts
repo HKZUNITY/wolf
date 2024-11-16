@@ -1,6 +1,7 @@
 import {ConfigBase, IElementBase} from "./ConfigBase";
 import {AccountStageConfig} from "./AccountStage";
 import {ActionConfigConfig} from "./ActionConfig";
+import {ActionPropConfig} from "./ActionProp";
 import {AIDataConfig} from "./AIData";
 import {AIWayPointConfig} from "./AIWayPoint";
 import {AssetsConfig} from "./Assets";
@@ -50,6 +51,7 @@ export class GameConfig{
 	}
 	public static get AccountStage():AccountStageConfig{ return this.getConfig(AccountStageConfig) };
 	public static get ActionConfig():ActionConfigConfig{ return this.getConfig(ActionConfigConfig) };
+	public static get ActionProp():ActionPropConfig{ return this.getConfig(ActionPropConfig) };
 	public static get AIData():AIDataConfig{ return this.getConfig(AIDataConfig) };
 	public static get AIWayPoint():AIWayPointConfig{ return this.getConfig(AIWayPointConfig) };
 	public static get Assets():AssetsConfig{ return this.getConfig(AssetsConfig) };

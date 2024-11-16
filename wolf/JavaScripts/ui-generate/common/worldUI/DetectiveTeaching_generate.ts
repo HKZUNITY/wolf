@@ -3,7 +3,7 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/common/worldUI/DetectiveTeaching.ui
- * TIME: 2024.11.13-22.47.31
+ * TIME: 2024.11.16-15.13.40
  */
  
 @UIBind('UI/common/worldUI/DetectiveTeaching.ui')
