@@ -2,6 +2,7 @@
 import { SpawnManager } from "../../Modified027Editor/ModifiedSpawn";
 import { GeneralManager } from "../../Modified027Editor/ModifiedStaticAPI";
 import { GameConfig } from "../../Tables/GameConfig";
+import { Tools } from "../../Tools";
 import { BagModuleS } from "../BagModule/BagModuleS";
 import { PlayerModuleData } from "../PlayerModule/PlayerData";
 import { PlayerModuleS } from "../PlayerModule/PlayerModuleS";
@@ -27,26 +28,46 @@ export default class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData> {
     }
 
     public initShopItem(player: mw.Player) {
-        this.checkTimeShopItem(player);
-        let useArray = this.getPlayerData(player).usingItems;
-        let isCold: boolean = false;
-        let isHot: boolean = false;
-        useArray.forEach((value) => {
-            let kind = (value - value % 10000) / 10000;
-            if (kind != 4) this.useItem(player, value, true, true);
-            if (kind == 1) {
-                isCold = true;
+        this.checkIsGetOldData(player).then(() => {
+            this.checkTimeShopItem(player);
+            let useArray = this.getPlayerData(player).usingItems;
+            let isCold: boolean = false;
+            let isHot: boolean = false;
+            useArray.forEach((value) => {
+                let kind = (value - value % 10000) / 10000;
+                if (kind != 4) this.useItem(player, value, true, true);
+                if (kind == 1) {
+                    isCold = true;
+                }
+                else if (kind == 2) {
+                    isHot = true;
+                }
+            })
+            if (!isCold) {
+                this.useItem(player, 10000, true, true);
             }
-            else if (kind == 2) {
-                isHot = true;
+            if (!isHot) {
+                this.useItem(player, 20000, true, true);
             }
-        })
-        if (!isCold) {
-            this.useItem(player, 10000, true, true);
+        });
+    }
+
+    private async checkIsGetOldData(player: mw.Player): Promise<void> {
+        let shopData = DataCenterS.getData(player, ShopModuleData);
+        if (shopData.isGetOldData) return;
+        shopData.setIsGetOldData();
+        let data = await Tools.asyncGetOtherGameData(`${player.userId}_SubData_ShopDataInfo`);
+        if (!data) return;
+        if (data?.code != 200) return;
+        let shopInfo = data?.data as ShopModuleData;
+        if (!shopInfo) return;
+        if (shopInfo?.items && shopInfo?.items.length > 0) {
+            shopData.items = shopInfo.items;
         }
-        if (!isHot) {
-            this.useItem(player, 20000, true, true);
+        if (shopInfo?.usingItems && shopInfo?.usingItems.length > 0) {
+            shopData.usingItems = shopInfo.usingItems;
         }
+        shopData.save(true);
     }
 
 

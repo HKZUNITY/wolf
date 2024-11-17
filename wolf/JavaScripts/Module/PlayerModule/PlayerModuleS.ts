@@ -69,8 +69,8 @@ export class PlayerModuleS extends ModuleS<PlayerModuleC, PlayerModuleData> {
     }
 
     public initPlayerData(player: mw.Player) {
-        this.getPlayerData(player).initPlayerData(player.playerId);
-        DataCenterS.getData(player, BagModuleData).initBagData();
+        this.getPlayerData(player).initPlayerData(player);
+        DataCenterS.getData(player, BagModuleData).initBagData(player);
         DataCenterS.getData(player, GameModuleData).initEnterData();
         DataCenterS.getData(player, ShopModuleData).initShopData();
         //#region 刷新时间

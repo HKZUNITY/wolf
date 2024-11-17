@@ -403,6 +403,10 @@ export class Tools {
         day += new Date().getDate();
         return day;
     }
+
+    public static async asyncGetOtherGameData(key: string): Promise<any> {
+        return (await DataStorage.asyncGetOtherGameData(`P_877ca61c66b2ed1e81decfcd76dfe14cdca9fab4`, key));
+    }
 }
 
 export enum Visibility {

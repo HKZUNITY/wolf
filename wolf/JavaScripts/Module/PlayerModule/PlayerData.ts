@@ -1,5 +1,6 @@
 ﻿import { Camp } from "../../Globals";
 import { GameConfig } from "../../Tables/GameConfig";
+import { Tools } from "../../Tools";
 import { PlayerModuleS } from "./PlayerModuleS";
 export class PlayerModuleData extends Subdata {
     /**玩家名字 */
@@ -71,10 +72,41 @@ export class PlayerModuleData extends Subdata {
     private useDraw: boolean = false;
     /**本次上线时间（不需要存储） */
     public nowLaunchTime: number;
+    @Decorator.persistence()
+    public isGetOldData: boolean = false;
+    public setIsGetOldData(): void {
+        this.isGetOldData = true;
+        this.save(false);
+    }
+
+    private async checkIsGetOldData(player: mw.Player): Promise<void> {
+        let playerData = DataCenterS.getData(player, PlayerModuleData);
+        if (playerData.isGetOldData) return;
+        playerData.setIsGetOldData();
+        let data = await Tools.asyncGetOtherGameData(`${player.userId}_SubData_PlayerHallDataInfo`);
+        if (!data) return;
+        if (data?.code != 200) return;
+        let playerInfo = data?.data as PlayerModuleData;
+        if (!playerInfo) return;
+        if (playerInfo?.level > 0) {
+            playerData.level = playerInfo.level;
+        }
+        if (playerInfo?.exp > 0) {
+            playerData.exp = playerInfo.exp;
+        }
+        if (playerInfo?.gold > 0) {
+            playerData.gold = playerInfo.gold;
+        }
+        if (playerInfo?.advToken > 0) {
+            playerData.advToken = playerInfo.advToken;
+        }
+        playerData.save(true);
+    }
     // public get mDataInfo() {
     //     return this;
     // }
-    public initPlayerData(playerId: number) {
+    public async initPlayerData(player: mw.Player) {
+        await this.checkIsGetOldData(player);
         this.playerName = this.playerName || "";
         this.playerUsedRoleId = this.playerUsedRoleId || 0;
         this.playerUsedEffectId = this.playerUsedEffectId || 0;
@@ -100,7 +132,7 @@ export class PlayerModuleData extends Subdata {
             this.levelNeedExp = new Array<number>();
             this.save(false)
         }
-        this.updateLevel(playerId)
+        this.updateLevel(player.playerId)
     }
 
     public get dataName(): string {

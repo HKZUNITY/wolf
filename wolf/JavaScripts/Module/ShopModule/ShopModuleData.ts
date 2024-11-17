@@ -28,6 +28,13 @@ export class ShopTimeItem {
 }
 
 export default class ShopModuleData extends Subdata {
+    @Decorator.persistence()
+    public isGetOldData: boolean = false;
+
+    public setIsGetOldData(): void {
+        this.isGetOldData = true;
+        this.save(false);
+    }
     /**当前解锁的物品 */
     @Decorator.persistence()
     public items: Array<ShopItemList> = new Array();

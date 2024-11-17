@@ -1,4 +1,5 @@
-﻿import Action = mw.Action;
+﻿import { Tools } from "../../Tools";
+import Action = mw.Action;
 export class BagModuleData extends Subdata {
 
     /**当前使用的冷武器 */
@@ -17,7 +18,8 @@ export class BagModuleData extends Subdata {
     public get dataName(): string {
         return "BagDataInfo";
     }
-    public initBagData() {
+    public async initBagData(player: mw.Player) {
+        await this.checkIsGetOldData(player);
         this.curColdWeapon = this.curColdWeapon;
         this.curHotWeapon = this.curHotWeapon;
         this.weaponArr = this.weaponArr;
@@ -35,5 +37,33 @@ export class BagModuleData extends Subdata {
     public setCurHotWeapon(id: number) {
         this.curHotWeapon = id;
         this.save(true)
+    }
+
+    @Decorator.persistence()
+    public isGetOldData: boolean = false;
+    public setIsGetOldData(): void {
+        this.isGetOldData = true;
+        this.save(false);
+    }
+
+    private async checkIsGetOldData(player: mw.Player): Promise<void> {
+        let bagData = DataCenterS.getData(player, BagModuleData);
+        if (bagData.isGetOldData) return;
+        bagData.setIsGetOldData();
+        let data = await Tools.asyncGetOtherGameData(`${player.userId}_SubData_BagDataInfo`);
+        if (!data) return;
+        if (data?.code != 200) return;
+        let bagInfo = data?.data as BagModuleData;
+        if (!bagInfo) return;
+        if (bagInfo?.curColdWeapon > 0) {
+            bagData.curColdWeapon = bagInfo.curColdWeapon;
+        }
+        if (bagInfo?.curHotWeapon > 0) {
+            bagData.curHotWeapon = bagInfo.curHotWeapon;
+        }
+        if (bagInfo?.weaponArr && bagInfo?.weaponArr.length > 0) {
+            bagData.weaponArr = bagInfo.weaponArr;
+        }
+        bagData.save(true);
     }
 }
