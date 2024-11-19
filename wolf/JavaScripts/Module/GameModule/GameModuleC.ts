@@ -382,8 +382,11 @@ export class GameModuleC extends ModuleC<GameModuleS, GameModuleData> {
     }
     net_CreatePropEffect(id: number) {
         let loc = GameConfig.PropsGenerate.getElement(id).GeneratePoint;
-        let effectId = GeneralManager.rpcPlayEffectAtLocation(GameConfig.Assets.getElement(12003).Guid, loc, 0);
-        this.propEffectMap.set(id, effectId);
+        let propEffectId = GameConfig.Assets.getElement(12003).Guid;
+        Tools.asyncDownloadAsset(propEffectId).then(() => {
+            let effectId = EffectService.playAtPosition(propEffectId, loc, { loopCount: 0 });
+            this.propEffectMap.set(id, effectId);
+        });
     }
     net_RemovePropEffect(id: number) {
         let effectId = this.propEffectMap.get(id);
