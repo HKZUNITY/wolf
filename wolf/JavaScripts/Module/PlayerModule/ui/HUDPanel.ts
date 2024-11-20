@@ -94,6 +94,9 @@ export default class HUDPanel extends HUDPanel_Generate {
 		this.mBtn_Set.onClicked.add(() => {
 			UIService.getUI(SetPanel).show();
 		});
+		this.mBtn_Avatar.onClicked.add(() => {
+			AvatarEditorService.asyncOpenAvatarEditorModule();
+		});
 	}
 
 	setText() {

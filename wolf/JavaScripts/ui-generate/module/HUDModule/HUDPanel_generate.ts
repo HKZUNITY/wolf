@@ -3,7 +3,7 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/module/HUDModule/HUDPanel.ui
- * TIME: 2024.11.16-15.13.41
+ * TIME: 2024.11.21-00.11.24
  */
  
 @UIBind('UI/module/HUDModule/HUDPanel.ui')
@@ -379,6 +379,27 @@ export default class HUDPanel_Generate extends UIScript {
 		}
 		return this.mAward2NameTextBlock_Internal
 	}
+	private mCanvas_Avatar_Internal: mw.Canvas
+	public get mCanvas_Avatar(): mw.Canvas {
+		if(!this.mCanvas_Avatar_Internal&&this.uiWidgetBase) {
+			this.mCanvas_Avatar_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_Avatar') as mw.Canvas
+		}
+		return this.mCanvas_Avatar_Internal
+	}
+	private mBtn_Avatar_Internal: mw.StaleButton
+	public get mBtn_Avatar(): mw.StaleButton {
+		if(!this.mBtn_Avatar_Internal&&this.uiWidgetBase) {
+			this.mBtn_Avatar_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_Avatar/mBtn_Avatar') as mw.StaleButton
+		}
+		return this.mBtn_Avatar_Internal
+	}
+	private mText_Avatar_Internal: mw.TextBlock
+	public get mText_Avatar(): mw.TextBlock {
+		if(!this.mText_Avatar_Internal&&this.uiWidgetBase) {
+			this.mText_Avatar_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_Avatar/mText_Avatar') as mw.TextBlock
+		}
+		return this.mText_Avatar_Internal
+	}
 
 
 	protected onAwake() {
@@ -451,6 +472,13 @@ export default class HUDPanel_Generate extends UIScript {
 		});
 		this.initLanguage(this.mBtn_Ark);
 		this.mBtn_Ark.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
+		
+	
+		this.mBtn_Avatar.onClicked.add(()=>{
+			Event.dispatchToLocal("PlayButtonClick", "mBtn_Avatar");
+		});
+		this.initLanguage(this.mBtn_Avatar);
+		this.mBtn_Avatar.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
 		
 	
 		//按钮添加点击
@@ -535,6 +563,9 @@ export default class HUDPanel_Generate extends UIScript {
 		
 	
 		this.initLanguage(this.mAward2NameTextBlock)
+		
+	
+		this.initLanguage(this.mText_Avatar)
 		
 	
 		//文本多语言

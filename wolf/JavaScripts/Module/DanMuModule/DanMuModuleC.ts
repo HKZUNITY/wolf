@@ -58,12 +58,14 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
         InputUtil.onKeyDown(mw.Keys.NumPadEight, () => {
             this.getChatPanel.hide();
             UIService.getUI(HUDPanel).hide();
-        })
+        });
     }
 
     protected onEnterScene(sceneType: number): void {
         this.showPanels();
         this.initDance();
+        // 设置“去装扮”按钮隐藏
+        AvatarEditorService.setAvatarEditorButtonVisible(true);
     }
 
     protected onUpdate(dt: number): void {
