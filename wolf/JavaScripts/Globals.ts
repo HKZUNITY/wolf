@@ -19,7 +19,7 @@ export class Globals {
     public static readyTime: number = Globals.isDebug ? 3 : GameConfig.Rule.getElement(10001).Time;
     // public static readyTime: number = 3;
     /**选择地图时间 */
-    public static chooseMapTime: number = 10;
+    public static chooseMapTime: number = 3;
     /**动态加载地图时间 */
     public static spawnSceneTime: number = GameConfig.Rule.getElement(10040).Time;;
     /**随机身份时间 */

@@ -13,6 +13,7 @@ import {DoorConfig} from "./Door";
 import {ExchangeConfig} from "./Exchange";
 import {ExpressionConfig} from "./Expression";
 import {expRuleConfig} from "./expRule";
+import {FlashlightConfig} from "./Flashlight";
 import {GuideConfig} from "./Guide";
 import {IdentityConfig} from "./Identity";
 import {LanguageConfig} from "./Language";
@@ -63,6 +64,7 @@ export class GameConfig{
 	public static get Exchange():ExchangeConfig{ return this.getConfig(ExchangeConfig) };
 	public static get Expression():ExpressionConfig{ return this.getConfig(ExpressionConfig) };
 	public static get expRule():expRuleConfig{ return this.getConfig(expRuleConfig) };
+	public static get Flashlight():FlashlightConfig{ return this.getConfig(FlashlightConfig) };
 	public static get Guide():GuideConfig{ return this.getConfig(GuideConfig) };
 	public static get Identity():IdentityConfig{ return this.getConfig(IdentityConfig) };
 	public static get Language():LanguageConfig{ return this.getConfig(LanguageConfig) };
