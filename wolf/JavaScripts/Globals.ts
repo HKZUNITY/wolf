@@ -55,7 +55,7 @@ export class Globals {
 
     public static coinIcon: string = `47608`;
     public static coinCount: number = 1000;
-    public static onlineTimeConfig: number = 40;
+    public static onlineTimeConfig: number = 30;
 }
 export class GameGlobals {
     /**当前地图 */

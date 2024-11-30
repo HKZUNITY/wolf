@@ -462,6 +462,7 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
 
     //#region 跳舞交互
     private initDance(): void {
+        return;
         danceInteracts.forEach(async (value: DanceInteract) => {
             let npcs: mw.Character[] = [];
             for (let i = 0; i < value.npcIds.length; ++i) {
