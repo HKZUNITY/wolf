@@ -227,6 +227,7 @@ declare namespace EditorPlugin {
         private ExpansionNode;
         private onRowGenerate;
         private onItemClicked;
+        private toggleAllExpansion;
         /**
          * 判断一条属性是否是展示在基础区域的属性
          * @param inData usage:属性节点
@@ -308,9 +309,37 @@ declare namespace EditorPlugin {
     }
 }
 
+/// <reference types="PluginCoreRuntime" />
 /// <reference types="PluginCoreEditor" />
 /// <reference types="extension" />
 declare namespace EditorPlugin {
+    class AutoItInfo {
+        constructor(name: string, itAuthor: string, itFeiShuID: string, func: () => AutoTestResultItem[], optional?: {
+            itTaskType?: mweditor.TaskType;
+            itLogType?: mweditor.CheckAutoTestInfo;
+            itIsAsync?: boolean;
+            itTimeOut?: number;
+        });
+        itName: string;
+        author: string;
+        feiShuID: string;
+        private itFunc;
+        TaskType: mweditor.TaskType;
+        logType: mweditor.CheckAutoTestInfo;
+        bIsAsync: boolean;
+        timeOut: number;
+        run(): AutoTestResultItem[];
+    }
+    enum AutoTestResultType {
+        log = 0,
+        error = 1,
+        warn = 2
+    }
+    class AutoTestResultItem {
+        constructor(type: AutoTestResultType, str: string);
+        resultType: AutoTestResultType;
+        resultStr: string;
+    }
     /**
      * @description 属性Item基类接口， 抽象出一条属性WIdget 必须的接口
      * @effect 在回调中修改属性值时， 需要添加 撤销恢复 记录才能支持改属性的撤销恢复功能
@@ -373,6 +402,14 @@ declare namespace EditorPlugin {
          * @description 刷新Row的狀態，顯影，只讀，大小等
          */
         refreshStatus(): void;
+        /******************************************* 单元测试部分接口 ************************************************************************/
+        prepareCases(): AutoItInfo[];
+        setValueAndCheckByWidget(parentScript: DetailsRowBase): AutoTestResultItem[];
+        setValueAndCheckByWidgetAsync(parentScript: DetailsRowBase): Promise<AutoTestResultItem[]>;
+        restoreAndCheckByWidget(parentScript: DetailsRowBase): AutoTestResultItem[];
+        restoreAndCheckByWidgetAsync(parentScript: DetailsRowBase): Promise<AutoTestResultItem[]>;
+        copyAndPastCheckByWidget(parentScript: DetailsRowBase): AutoTestResultItem[];
+        copyAndPastCheckByWidgetAsync(parentScript: DetailsRowBase): Promise<AutoTestResultItem[]>;
     }
 }
 

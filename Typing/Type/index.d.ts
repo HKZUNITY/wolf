@@ -36,6 +36,7 @@
     }
     /**
      * @author zhiqiang.tan
+     * @groups 玩法/物理
      * @description 空间查询碰撞参数
      */
     interface CollisionQueryParams {
@@ -50,6 +51,7 @@
     }
     /**
      * @author zhiqiang.tan
+     * @groups 玩法/物理
      * @description 空间查询渲染参数
      */
     interface RenderQueryParams {
@@ -1073,14 +1075,23 @@ declare namespace mw {
      * @groups 基础类型
      */
     enum LanguageCodeType {
+        /** English */
         English = "En",
+        /** ChineseSimplified */
         ChineseSimplified = "Zh_CN",
+        /** ChineseTraditional */
         ChineseTraditional = "Zh_HANT",
+        /** Spanish */
         Spanish = "Es",
+        /** French */
         French = "Fr",
+        /** Russian */
         Russian = "Ru",
+        /** Portuguese */
         Portuguese = "Pt",
+        /** Japanese */
         Japanese = "Ja",
+        /** Korean */
         Korean = "Ko"
     }
     /**
@@ -3998,6 +4009,7 @@ declare namespace mw {
     }
 }
 
+/// <reference types="engine" />
 declare namespace mw {
     // @ts-ignore
     import * as UE from "ue";

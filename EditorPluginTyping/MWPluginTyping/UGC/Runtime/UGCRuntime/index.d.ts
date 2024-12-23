@@ -545,6 +545,15 @@ declare namespace UGC {
      */
     function asyncGetReleaseGameData(gameId: string, version?: string, bDownload?: boolean): Promise<MobileEditor_Type.ReleaseGameData>;
     /**
+     * @author baolin.li
+     * @description 根据指定的消费态游戏ID获取游戏名称和游戏发布者昵称
+     * @groups SCRIPTING
+     * @effect 只在客户端调用生效
+     * @param gameId usage:消费态游戏Id
+     * @returns 请求结果(结构体对象：{游戏名称：gameName, 游戏发布者昵称：publisherName})
+     */
+    function asyncGetGameInfo(gameId: string): Promise<MobileEditor_Type.UGCGameInfo>;
+    /**
      * @author jie.wu
      * @description 保存当前游戏项目
      * @groups SCRIPTING
@@ -1142,6 +1151,17 @@ declare namespace UGC {
         gameCover: string;
     };
     /**
+     * @author baolin.li
+     * @description  已发布的游戏名称与发布者昵称数据，内部使用
+     * @groups DATATYPE
+     */
+    type UGCGameInfo = {
+        /** 已发布的游戏名称 */
+        gameName: string;
+        /** 已发布的游戏发布者的名称 */
+        publisherName: string;
+    };
+    /**
  * @author tangbin.zhang
  * @description 移动编辑器上传预制体返回状态
  * @groups DATATYPE
@@ -1578,7 +1598,7 @@ declare namespace UGC {
      * @description 无默认文本
      * @networkStatus usage:客户端
      */
-    class ViewGizmo extends mw.PanelWidget {
+    class ViewGizmo extends mw.Widget {
         /**
          * @groups 界面/控件/视图选择器
          * @description 点击视图面事件

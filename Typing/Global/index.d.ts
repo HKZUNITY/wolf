@@ -14,7 +14,7 @@ declare global {
      * @author jie.wu
      * @description 获取 UI 脚本
      * @groups 界面
-     * @effect  只在客户端调用生效
+     * @effect 只在客户端调用生效
      * @param UI  usage:UI控件
      * @returns UI绑定的脚本
      */
@@ -23,7 +23,7 @@ declare global {
      * @author jie.wu
      * @description 创建 UIPrefab
      * @groups 界面
-     * @effect  只在客户端调用生效
+     * @effect 只在客户端调用生效
      * @param UIPrefabName usage:指定 UI 自定义控件的相对于工程的路径或则相对于 UI 目录的路径  range: 路径长度不做限制
      * @returns 对应的UI
      */
@@ -32,7 +32,7 @@ declare global {
      * @author jie.wu
      * @description 创建 UIPrefab
      * @groups 界面
-     * @effect  只在客户端调用生效
+     * @effect 只在客户端调用生效
      * @param UIPath usage:创建 UI 的完整路径  range: 路径长度
      * @returns 对应的UI
      */
@@ -41,7 +41,7 @@ declare global {
      * @author jie.wu
      * @description 异步创建UI，失败返回空
      * @groups 界面
-     * @effect  只在客户端调用生效
+     * @effect 只在客户端调用生效
      * @param UIPath usage:创建 UI 的完整路径  range: 路径长度
      * @returns 对应的UI
      */
@@ -50,7 +50,7 @@ declare global {
      * @author jie.wu
      * @description 创建空的 UI
      * @groups 界面
-     * @effect  只在客户端调用生效
+     * @effect 只在客户端调用生效
      * @param panelClass usage:指定 UI 控件身上的行为脚本
      * @returns 对应的UI
      */
@@ -59,7 +59,7 @@ declare global {
      * @author jie.wu
      * @description 创建UIPrefab
      * @groups 界面
-     * @effect  只在客户端调用生效
+     * @effect 只在客户端调用生效
      * @param UIPrefabName usage:指定 UI 自定义控件的相对于工程的路径或则相对于 UI 目录的路径，为空的话等于 createUIOnlyClass  range: 路径长度不做限制
      * @param panelClass usage:继承至 UI 身上脚本的派生类
      * @returns 对应的UI
@@ -69,8 +69,8 @@ declare global {
      * @author jie.wu
      * @description 异步创建UI
      * @groups 界面
-     * @effect  只在客户端调用生效
-     * @param UIPrefabName usage:指定 UI 自定义控件的相对于工程的路径或则相对于 UI 目录的路径
+     * @effect 只在客户端调用生效
+     * @param UIPrefabName usage:指定 UI 自定义控件的相对于工程的路径或则相对于 UI 目录的路径 range: 无
      * @param panelClass usage:继承至 UI 身上脚本的派生类
      * @returns 对应的UI
      */
@@ -78,9 +78,9 @@ declare global {
     /**
      * @author jie.wu
      * @description 异步请求资源的ICON信息
-     * @deprecated info:该接口已废弃，在该接口被删除前会仍保持可用，请尽快使用替换方案以免出现问题 since:038 reason:该接口不再需要，直接设置ICON即可
+     * @deprecated info:该接口已废弃，在该接口被删除前会仍保持可用，请尽快使用替换方案以免出现问题 since:038 reason:该接口不再需要 replacement:直接设置ICON即可
      * @groups 界面
-     * @effect  只在客户端调用生效
+     * @effect 只在客户端调用生效
      * @param assets usage:指定资源的id数组
      * @returns 异步回调
      */
@@ -89,9 +89,9 @@ declare global {
      * @author jie.wu
      * @description 获取资源的 ICON 信息
      * @groups 界面
-     * @effect  只在客户端调用生效
+     * @effect 只在客户端调用生效
      * @param asset usage:指定资源的 id  range: 依据资源 ID 长度而定。
-     * @param size  usage:指定资源的分辨率尺寸
+     * @param size  usage:指定资源的分辨率尺寸 default: AssetIconSize.Icon_128px
      * @returns 资源的ICON信息
      */
     const getAssetIconDataByAssetID: typeof mw.getAssetIconDataByAssetID;
@@ -100,7 +100,7 @@ declare global {
      * @deprecated info:该接口已废弃，在该接口被删除前会仍保持可用，请尽快使用替换方案以免出现问题 since:039 reason:接口调整 replacement: 使用 releaseTextureFromCache
      * @description 尝试标记资源的 ICON 图为待释放的等待释放
      * @groups 界面
-     * @effect  只在客户端调用生效
+     * @effect 只在客户端调用生效
      * @param asset usage:指定资源的 id  range: 依据资源 ID 长度而定。
      */
     const releaseAssetIconTextureFromCache: typeof mw.releaseAssetIconTextureFromCache;
@@ -108,8 +108,8 @@ declare global {
      * @author jie.wu
      * @description 尝试标记资源的ICON或则一个URL地址用于释放本地缓存的资源数据
      * @groups 界面
-     * @effect  只在客户端调用生效
-     * @param asset usage:指定资源的 id  range: 依据资源 ID 长度而定。
+     * @effect 只在客户端调用生效
+     * @param id usage:指定资源的 id  range: 依据资源 ID 长度而定。
      */
     const releaseTextureFromCache: typeof mw.releaseTextureFromCache;
     /**
@@ -415,38 +415,6 @@ declare global {
      */
     const UIPack: typeof mw.UIPack;
     /**
-     * @author zheng.zeng
-     * @description Button 控件风格类型
-     * @groups 界面/控件/按钮
-     * @networkStatus 客户端
-     */
-    const ButtonStyle: typeof mw.ButtonStyle;
-    type ButtonStyle = mw.ButtonStyle;
-    /**
-     * @author zheng.zeng
-     * @description Dropdown 控件风格类型
-     * @groups 界面/控件/下拉框
-     * @networkStatus 客户端
-     */
-    const DropdownStyle: typeof mw.DropdownStyle;
-    type DropdownStyle = mw.DropdownStyle;
-    /**
-     * @author jianke.feng
-     * @groups 界面/控件/滚动框
-     * @description 滚动条风格类型
-     * @networkStatus usage:客户端
-     */
-    const ScrollbarStyle: typeof mw.ScrollbarStyle;
-    type ScrollbarStyle = mw.ScrollbarStyle;
-    /**
-     * @author jianke.feng
-     * @groups 界面/控件/图片
-     * @description 背景图片风格类型
-     * @networkStatus usage:客户端
-     */
-    const ListItemStyle: typeof mw.ListItemStyle;
-    type ListItemStyle = mw.ListItemStyle;
-    /**
      * @author jianke.feng
      * @groups 界面/控件/文本
      * @description 文本风格类型
@@ -476,11 +444,11 @@ declare global {
     * @description 他需要依赖 UIService 或 UIPrefab。
     * @description 2. 继承自 UIScript 脚本享受的生命周期有哪些？
     * @description :cactus: 这里有详细的描述
-    * @description https://docs-028.ark.online/UI/LifeCycleandEventDescriptionofUIScripts.html
+    * @description [LifeCycleandEventDescriptionofUIScripts](https://docs.ark.online/UI/LifeCycleandEventDescriptionofUIScripts.html)
     * @description 3. 什么时候编辑器会帮你调用 UI 的生命周期呢？
     * @description 有两种方式：
     * @description - 使用 UIService 帮你管理此脚本，当 UIService.create 并 show 时，会启动脚本的生命周期。
-    * @description - 使用 UIPrefab 。脚本挂载在 UIPrefab 上，并把 UIPrefab 放在对象管理器中。
+    * @description - 使用 UIPrefab。脚本挂载在 UIPrefab 上，并把 UIPrefab 放在对象管理器中。
     * @networkStatus usage:客户端
     */
     const UIScript: typeof mw.UIScript;
@@ -927,7 +895,7 @@ declare global {
      * @author maohang.zeng
      * @groups 界面/控件/列表视图
      * @description 列表视图
-     * @networkStatus usage : 客户端
+     * @networkStatus usage: 客户端
      */
     const ListView: typeof mw.ListView;
     type ListView = mw.ListView;
@@ -1007,6 +975,7 @@ declare global {
     * @author maohang.zeng
     * @groups 界面
     * @description 列表视图节点数据基类
+    * @networkStatus usage:客户端
     */
     const ListViewItemDataBase: typeof mw.ListViewItemDataBase;
     type ListViewItemDataBase = mw.ListViewItemDataBase;
@@ -1054,6 +1023,7 @@ declare global {
      * @author wei.yang
      * @groups 界面
      * @description 菜单项节点信息
+     * @networkStatus usage:客户端
      */
     const MenuItemInfo: typeof mw.MenuItemInfo;
     type MenuItemInfo = mw.MenuItemInfo;
@@ -1152,7 +1122,7 @@ declare global {
      * @author maohang.zeng
      * @groups 界面/控件/平铺视图
      * @description 平铺视图
-     * @networkStatus usage : 客户端
+     * @networkStatus usage: 客户端
      */
     const TileView: typeof mw.TileView;
     type TileView = mw.TileView;
@@ -1224,6 +1194,7 @@ declare global {
     * @author maohang.zeng
     * @groups 界面
     * @description 树状视图节点数据基类
+    * @networkStatus usage: 客户端
     */
     const TreeViewItemDataBase: typeof mw.TreeViewItemDataBase;
     type TreeViewItemDataBase = mw.TreeViewItemDataBase;
@@ -1239,7 +1210,7 @@ declare global {
      * @author maohang.zeng
      * @groups 界面/控件/树状视图
      * @description 树状视图
-     * @networkStatus usage : 客户端
+     * @networkStatus usage: 客户端
      */
     const TreeView: typeof mw.TreeView;
     type TreeView = mw.TreeView;
@@ -1353,7 +1324,7 @@ declare global {
      * @author jianke.feng
      * @description 图片信息类
      * @groups 界面/控件/图片
-     * @networkStatus 客户端
+     * @networkStatus usage:客户端
      */
     const ImageInfo: typeof mw.ImageInfo;
     type ImageInfo = mw.ImageInfo;
@@ -1361,44 +1332,48 @@ declare global {
      * @author zheng.zeng
      * @description Checkbox 控件风格类型
      * @groups 界面/控件/勾选框
-     * @networkStatus 客户端
+     * @networkStatus usage:客户端
      */
     const CheckboxStyle: typeof mw.CheckboxStyle;
     type CheckboxStyle = mw.CheckboxStyle;
+    /**
+     * @author zheng.zeng
+     * @description Button 控件风格类型
+     * @groups 界面/控件/按钮
+     * @networkStatus usage:客户端
+     */
+    const ButtonStyle: typeof mw.ButtonStyle;
+    type ButtonStyle = mw.ButtonStyle;
+    /**
+     * @author zheng.zeng
+     * @description Dropdown 控件风格类型
+     * @groups 界面/控件/下拉框
+     * @networkStatus usage:客户端
+     */
+    const DropdownStyle: typeof mw.DropdownStyle;
+    type DropdownStyle = mw.DropdownStyle;
+    /**
+     * @author jianke.feng
+     * @groups 界面/控件/滚动框
+     * @description 滚动条风格类型
+     * @networkStatus usage:客户端
+     */
+    const ScrollbarStyle: typeof mw.ScrollbarStyle;
+    type ScrollbarStyle = mw.ScrollbarStyle;
+    /**
+     * @author jianke.feng
+     * @groups 界面/控件/图片
+     * @description 背景图片风格类型
+     * @networkStatus usage:客户端
+     */
+    const ListItemStyle: typeof mw.ListItemStyle;
+    type ListItemStyle = mw.ListItemStyle;
     /**
     * @author jianke.feng
     * @description 选项卡组-点击事件type
     * @groups 界面
     */
     type TabGroupOnClickedProps = mw.TabGroupOnClickedProps;
-    /**
-     * @description gizmo空间
-     * @author hao.wu
-     * @groups 基础类型
-     */
-    const GizmoSpaceType: typeof mw.GizmoSpaceType;
-    type GizmoSpaceType = mw.GizmoSpaceType;
-    /**
-     * @description gizmo空间
-     * @author jie.wu
-     * @groups 基础类型
-     */
-    const GizmoScaleType: typeof mw.GizmoScaleType;
-    type GizmoScaleType = mw.GizmoScaleType;
-    /**
-     * @description gizmo空间
-     * @author jie.wu
-     * @groups 基础类型
-     */
-    const GizmoSocketType: typeof mw.GizmoSocketType;
-    type GizmoSocketType = mw.GizmoSocketType;
-    /**
-     * @author jie.wu
-     * @groups 基础类型
-     * @description gizmo坐标轴类型
-     */
-    const GizmoCoordinateType: typeof mw.GizmoCoordinateType;
-    type GizmoCoordinateType = mw.GizmoCoordinateType;
     /**
      * @author shilong.wang
      * @groups 基础类型/代理
@@ -2055,6 +2030,41 @@ declare global {
     const GizmoModeType: typeof mw.GizmoModeType;
     type GizmoModeType = mw.GizmoModeType;
     /**
+     * @description gizmo空间
+     * @author hao.wu
+     * @groups 基础类型
+     */
+    const GizmoSpaceType: typeof mw.GizmoSpaceType;
+    type GizmoSpaceType = mw.GizmoSpaceType;
+    /**
+     * @description gizmo空间
+     * @author jie.wu
+     * @groups 基础类型
+     */
+    const GizmoScaleType: typeof mw.GizmoScaleType;
+    type GizmoScaleType = mw.GizmoScaleType;
+    /**
+     * @description gizmo空间
+     * @author jie.wu
+     * @groups 基础类型
+     */
+    const GizmoSocketType: typeof mw.GizmoSocketType;
+    type GizmoSocketType = mw.GizmoSocketType;
+    /**
+     * @author jie.wu
+     * @groups 基础类型
+     * @description gizmo坐标轴类型
+     */
+    const GizmoCoordinateType: typeof mw.GizmoCoordinateType;
+    type GizmoCoordinateType = mw.GizmoCoordinateType;
+    /**
+     * @author xiangkun.sun
+     * @groups 基础类型
+     * @description 代理回调函数签名
+     * @effect 调用端生效
+     */
+    type DelegateFuncType = mw.DelegateFuncType;
+    /**
      * @hidden
      * @author xiangkun.sun
      * @groups 基础类型
@@ -2082,6 +2092,7 @@ declare global {
     type GameObjectDelegateFuncType = mw.GameObjectDelegateFuncType;
     /**
      * @author zhiqiang.tan
+     * @groups 玩法/物理
      * @description 空间查询碰撞参数
      */
     type CollisionQueryParams = mw.CollisionQueryParams;
@@ -2093,16 +2104,10 @@ declare global {
     type TypeName<T> = mw.TypeName<T>;
     /**
      * @author zhiqiang.tan
+     * @groups 玩法/物理
      * @description 空间查询渲染参数
      */
     type RenderQueryParams = mw.RenderQueryParams;
-    /**
-     * @author xiangkun.sun
-     * @groups 基础类型
-     * @description 代理回调函数签名
-     * @effect 调用端生效
-     */
-    type DelegateFuncType = mw.DelegateFuncType;
     /**
      * @author xiangkun.sun
      * @groups 基础类型
@@ -2202,6 +2207,30 @@ declare global {
      */
     const getWindowIsActive: typeof mw.getWindowIsActive;
     /**
+     * @groups 基类
+     * @author si.wu
+     * @description GameObject和Script的基类，定义基础能力
+     * @networkStatus usage:双端
+     */
+    const Base: typeof mw.Base;
+    type Base = mw.Base;
+    /**
+     * @author xiangkun.sun
+     * @description 是否在编辑器里隐藏
+     * @groups 基础类型
+     */
+    const HideInEditorState: typeof mw.HideInEditorState;
+    type HideInEditorState = mw.HideInEditorState;
+    /**
+     * @ignore
+     * @hidden
+     */
+    const FunctionOption: typeof mw.FunctionOption;
+    type FunctionOption = mw.FunctionOption;
+    /** @ignore */
+    const FlagType: typeof mw.FlagType;
+    type FlagType = mw.FlagType;
+    /**
      * @author zhaoyang.hou
      * @groups 基类
      * @description 脚本的基类
@@ -2277,6 +2306,7 @@ declare global {
     /**
      * @author zhaoyang.hou
      * @groups 基类
+     * @networkStatus usage:双端
      * @description main脚本的基类
      */
     const GameApplication: typeof mw.GameApplication;
@@ -2287,9 +2317,6 @@ declare global {
      */
     const NumberType: typeof mw.NumberType;
     type NumberType = mw.NumberType;
-    /** @ignore */
-    const FlagType: typeof mw.FlagType;
-    type FlagType = mw.FlagType;
     /**
      * @ignore
      * @hidden
@@ -2353,27 +2380,8 @@ declare global {
     const ScriptManager: typeof mw.ScriptManager;
     type ScriptManager = mw.ScriptManager;
     /**
-     * @groups 基类
      * @author si.wu
-     * @description GameObject和Script的基类，定义基础能力
-     * @networkStatus usage:双端
-     */
-    const Base: typeof mw.Base;
-    type Base = mw.Base;
-    /**
-     * @author xiangkun.sun
-     * @description 是否在编辑器里隐藏
      * @groups 基础类型
-     */
-    const HideInEditorState: typeof mw.HideInEditorState;
-    type HideInEditorState = mw.HideInEditorState;
-    /**
-     * @ignore
-     * @hidden
-     */
-    const FunctionOption: typeof mw.FunctionOption;
-    type FunctionOption = mw.FunctionOption;
-    /**
      * @description 自定义属性类型
      */
     type CustomPropertyType = mw.CustomPropertyType;
@@ -2454,137 +2462,6 @@ declare global {
      */
     const setTimeout: typeof mw.setTimeout;
     /**
-     * @author baoqiang.han
-     * @description 特效二维向量值曲线节点
-     * @groups 场景/特效
-     */
-    const vector2DSequencePoint: typeof mw.vector2DSequencePoint;
-    type vector2DSequencePoint = mw.vector2DSequencePoint;
-    /**
-     * @author jun.zhang
-     * @groups 玩法
-     * @description 热武器瞄准模式
-     */
-    const HotWeaponAimMode: typeof mw.HotWeaponAimMode;
-    type HotWeaponAimMode = mw.HotWeaponAimMode;
-    /**
-     * @author baoqiang.han
-     * @description 特效颜色值曲线节点
-     * @groups 场景/特效
-     */
-    const colorSequencePoint: typeof mw.colorSequencePoint;
-    type colorSequencePoint = mw.colorSequencePoint;
-    /**
-     * @description 热武器瞄准组件，瞄准状态下持枪角色的视角会拉近
-     * @groups 玩法/热武器/辅助类
-     * @networkStatus usage: 双端
-     * @author jun.zhang
-     * @example
-     * 使用示例: 创建一个名为"HotWeaponAimSample1"的脚本，放置在对象管理器中，打开脚本，输入以下代码保存，运行游戏，代码如下：
-     * ```ts
-     * @Component
-     * export default class HotWeaponAimSample1 extends Script {
-     *     protected onStart(): void {
-     *         // 构造
-     *         const hotWeapon = this.gameObject as HotWeapon;
-     *
-     *         if (SystemUtil.isServer()) {
-     *             hotWeapon.aimEnabled = true;
-     *             hotWeapon.aimComponent.aimMode = HotWeaponAimMode.ThirdPerson;
-     *             hotWeapon.aimComponent.aimingZoom = 16;
-     *             hotWeapon.aimComponent.cameraOffsetDistanceInThirdPersonMode = 300;
-     *             hotWeapon.aimComponent.onStartAim.add(() => { console.log("aimComponent.onAimStartClient") });
-     *             hotWeapon.aimComponent.onEndAim.add(() => { console.log("aimComponent.onAimEndClient") });
-     *         } else if (SystemUtil.isClient()) {
-     *             hotWeapon.aimComponent.onStartAim.add(() => { console.log("aimComponent.onAimStartClient") });
-     *             hotWeapon.aimComponent.onEndAim.add(() => { console.log("aimComponent.onAimEndClient") });
-     *         }
-     *     }
-     * }
-     * ```
-     */
-    const HotWeaponAimComponent: typeof mw.HotWeaponAimComponent;
-    type HotWeaponAimComponent = mw.HotWeaponAimComponent;
-    /**
-     * @author baoqiang.han
-     * @groups 场景/特效
-     * @description 粒子特效
-     * @description 通常用于游戏场景中的效果表现，目前开放部分粒子效果，当编辑器细节面板勾选自动启用时，运行游戏会自动播放特效。
-     * @description 如需精确控制特效的播放与停止，请使用 play 和 stop 方法。该特效需要手动控制生命周期，效果可通过细节面板中参数调节。
-     * @networkStatus usage:客户端
-     * @example
-     * 使用示例:创建一个名为"EffectExample"的脚本，拖拽到对象栏特效下，打开脚本，输入以下代码保存，运行游戏，你将在场景中看到粒子的变化效果。代码如下：
-     * ```
-     * @Component
-     * export default class EffectExample extends Script {
-     *
-     *     protected onStart(): void {
-     *
-     *          let Effect = this.gameObject as ParticleEmitter;
-     *          // 涉及部分对生命周期内效果的修改
-     *          // 创建尺寸生命周期数组 效果为由蓝线性过度至红色
-     *          let ColorSequence = Array<mw.colorSequencePoint>();
-     *          // 生命周期0%时为蓝色 详见LinearColor
-     *          ColorSequence.push(new mw.colorSequencePoint(0, new LinearColor(1,0,0)));
-     *          // 生命周期100%时为红色
-     *          ColorSequence.push(new mw.colorSequencePoint(0, new LinearColor(0,0,1)));
-     *          Effect.color = ColorSequence;
-     *          // 创建透明度生命周期数组 效果为逐渐清晰
-     *          let TransparencySequence = Array<mw.numberSequencePoint>();
-     *          // 刚生成时透明度为0 看不见
-     *          TransparencySequence.push(new mw.numberSequencePoint(0, 0));
-     *          // 逐渐过渡到生命周期末 全显示
-     *          TransparencySequence.push(new mw.numberSequencePoint(1, 1));
-     *          Effect.transparency = TransparencySequence;
-     *
-     *          // 创建尺寸生命周期数组 效果为变大再缩小
-     *          let SizeSequence = Array<mw.numberSequencePoint>();
-     *          // 生命周期0%时大小为0
-     *          Size
-     *          // 生命周期50%时大小为4
-     *          SizeSequence.push(new mw.numberSequencePoint(0.5, 4));
-     *          // 生命周期100%时大小回到0
-     *          SizeSequence.push(new mw.numberSequencePoint(1, 0));
-     *          Effect.size = SizeSequence;
-     *
-     *          // 设置特效阻力为1
-     *          Effect.drag = 1;
-     *          // 增加特效生成的速度
-     *          Effect.rate = 100;
-     *          // 不进行边缘裁剪,全部保留,方形
-     *          Effect.maskRadius = 1;
-     *          // 仅在表面生成
-     *          Effect.shapeStyle = mw.ParticleEmitterShapeStyle.OnlySurface;
-     *          // 生成范围长宽高100
-     *          Effect.shapeExtents = new Vector(100, 100, 100);
-     *
-     *          // 生命周期在1~10范围内随机
-     *          Effect.lifetime = new Vector2(1, 10);
-     *          // 10秒后停止, 不影响已生成粒子
-     *          setTimeout(() => {
-     *              Effect.stop();
-     *          }, 10000);
-     *     }
-     * }
-     * ```
-     */
-    const ParticleEmitter: typeof mw.ParticleEmitter;
-    type ParticleEmitter = mw.ParticleEmitter;
-    /**
-     * @author jun.zhang
-     * @groups 玩法
-     * @description 热武器开火模式
-     */
-    const HotWeaponFireMode: typeof mw.HotWeaponFireMode;
-    type HotWeaponFireMode = mw.HotWeaponFireMode;
-    /**
-     * @author baoqiang.han
-     * @description 后处理预设枚举
-     * @groups 场景/灯光
-     */
-    const PostProcessPreset: typeof mw.PostProcessPreset;
-    type PostProcessPreset = mw.PostProcessPreset;
-    /**
      * @description 热武器开火组件，负责维护热武器射击的主要参数，及核心逻辑
      * @groups 玩法/热武器/辅助类
      * @networkStatus usage: 双端
@@ -2620,11 +2497,40 @@ declare global {
     /**
      * @author baoqiang.han
      * @groups 场景/灯光
-     * @description 后处理对象属性配置
-     * @networkStatus usage:双端
+     * @description 天空盒
+     * @description ----------------------------------
+     * @networkStatus usage:客户端
+     * @example
+     * 使用示例: 可按如下操作控制编辑器天空盒实时效果
+     * 创建一个名为"SkyboxExample"的脚本，放置在对象栏中，打开脚本，输入以下代码，运行游戏，你将可以通过 "+" 和 "-" 键控制天空盒的亮度， "*" 键切换预设。
+     * ```
+     * @Component
+     * export default class SkyboxExample extends mw.Script {
+     *     // 当脚本被实例后，会在第一帧更新前调用此函数
+     *     protected async onStart(): Promise<void> {
+     *         if(Util.SystemUtil.isClient())
+     *         {
+     *             mw.InputUtil.onKeyDown(Type.Keys.Add,()=>{
+     *                 // 小键盘+建，增加天空盒亮度,依次递增1个单位
+     *                 Skybox.skyDomeIntensity = Skybox.skyDomeIntensity + 0.2;
+     *                 console.log("当前天空盒亮度:" + Skybox.skyDomeIntensity);
+     *             });
+     *             mw.InputUtil.onKeyDown(Type.Keys.Subtract,()=>{
+     *                 // 小键盘-建，降低天空盒亮度,依次递减1个单位
+     *                 Skybox.skyDomeIntensity = Skybox.skyDomeIntensity - 0.2;
+     *                 console.log("当前天空盒亮度:" + Skybox.skyDomeIntensity);
+     *             });
+     *             mw.InputUtil.onKeyDown(Type.Keys.Multiply,()=>{
+     *                 // 小键盘*建，切换天空盒预设
+     *                 Skybox.preset =7 % (Skybox.preset + 1);
+     *             });
+     *         }
+     *     }
+     * }
+     * ```
      */
-    const PostProcessConfig: typeof mw.PostProcessConfig;
-    type PostProcessConfig = mw.PostProcessConfig;
+    const Skybox: typeof mw.Skybox;
+    type Skybox = mw.Skybox;
     /**
      * @description 热武器上膛组件，负责维护热武器播放上膛动作的相关参数，和逻辑
      * @groups 玩法/热武器/辅助类
@@ -2690,39 +2596,13 @@ declare global {
     const HotWeaponRecoilForceComponent: typeof mw.HotWeaponRecoilForceComponent;
     type HotWeaponRecoilForceComponent = mw.HotWeaponRecoilForceComponent;
     /**
+     * @groups 场景/音效
      * @author baoqiang.han
-     * @groups 场景/灯光
-     * @description 后处理
-     * @description ----------------------------------
-     * @description 后处理是指在渲染完成后对图像进行处理的一系列技术和效果。后处理通常用于增强或修改最终渲染图像的对比度、饱和度等特性，以达到特定的视觉效果或风格。
-     * @networkStatus usage:客户端
-     * @example
-     * 使用示例: 可按如下操作控制编辑器后处理实时效果
-     * 创建一个名为"PostProcessExample"的脚本，放置在对象栏中，打开脚本，输入以下代码，运行游戏，你将可以通过+和-键控制后处理的伽马值
-     * ```
-     * @Component
-     * export default class PostProcessExample extends mw.Script {
-     *     // 当脚本被实例后，会在第一帧更新前调用此函数
-     *     protected async onStart(): Promise<void> {
-     *         if(SystemUtil.isClient())
-     *         {
-     *             mw.InputUtil.onKeyDown(Keys.Add,()=>{
-     *                 // 小键盘+建，增加后处理饱和度,依次递增1个单位
-     *                 PostProcess.saturation = PostProcess.saturation + 1;
-     *                 console.log("当前后处理饱和度:" + PostProcess.saturation);
-     *             });
-     *             InputUtil.onKeyDown(Keys.Subtract,()=>{
-     *                 // 小键盘-建，降低后处理饱和度,依次递减1个单位
-     *                 PostProcess.saturation = PostProcess.saturation - 1;
-     *                 console.log("当前后处理饱和度:" + PostProcess.saturation);
-     *             });
-     *         }
-     *     }
-     * }
-     * ```
+     * @description 音效衰减形状
+     * @groups 玩法
      */
-    const PostProcess: typeof mw.PostProcess;
-    type PostProcess = mw.PostProcess;
+    const AttenuationShape: typeof mw.AttenuationShape;
+    type AttenuationShape = mw.AttenuationShape;
     /**
      * @description 热武器换弹组件，负责维护热武器换弹动作的相关参数和逻辑
      * @groups 玩法/热武器/辅助类
@@ -2756,12 +2636,13 @@ declare global {
     const HotWeaponReloadComponent: typeof mw.HotWeaponReloadComponent;
     type HotWeaponReloadComponent = mw.HotWeaponReloadComponent;
     /**
+     * @groups 场景/音效
      * @author baoqiang.han
-     * @description 天空盒预设枚举
-     * @groups 场景/灯光
+     * @description 音效播放状态
+     * @groups 玩法
      */
-    const SkyPreset: typeof mw.SkyPreset;
-    type SkyPreset = mw.SkyPreset;
+    const SoundPlayState: typeof mw.SoundPlayState;
+    type SoundPlayState = mw.SoundPlayState;
     /**
      * @groups 玩法/其他
      * @description 交互物，请保证交互前动画资源已加载，否则可能导致位置错误或者其他不可预料的表现
@@ -2855,12 +2736,13 @@ declare global {
     const PointLight: typeof mw.PointLight;
     type PointLight = mw.PointLight;
     /**
+     * @groups 场景/音效
      * @author baoqiang.han
-     * @description 天空盒背景的切换方式枚举
-     * @groups 场景/灯光
+     * @description 音效衰减函数模型
+     * @groups 玩法
      */
-    const SkyboxBackgroundSwitchMode: typeof mw.SkyboxBackgroundSwitchMode;
-    type SkyboxBackgroundSwitchMode = mw.SkyboxBackgroundSwitchMode;
+    const AttenuationDistanceModel: typeof mw.AttenuationDistanceModel;
+    type AttenuationDistanceModel = mw.AttenuationDistanceModel;
     /**
      * @author xinlei.nie
      * @description 设置链接线的通行方向
@@ -2870,48 +2752,57 @@ declare global {
     type DirectionType = mw.DirectionType;
     /**
      * @author baoqiang.han
-     * @groups 场景/灯光
-     * @description 天空盒
-     * @description ----------------------------------
+     * @groups 场景/音效
+     * @description 音效
      * @networkStatus usage:客户端
      * @example
-     * 使用示例: 可按如下操作控制编辑器天空盒实时效果
-     * 创建一个名为"SkyboxExample"的脚本，放置在对象栏中，打开脚本，输入以下代码，运行游戏，你将可以通过 "+" 和 "-" 键控制天空盒的亮度， "*" 键切换预设。
+     * 使用示例:创建一个名为"SoundExample"的脚本，放置在对象栏中，打开脚本，输入以下代码保存，运行游戏，你可以听到音效的声音。代码如下：
      * ```
      * @Component
-     * export default class SkyboxExample extends mw.Script {
-     *     // 当脚本被实例后，会在第一帧更新前调用此函数
-     *     protected async onStart(): Promise<void> {
-     *         if(Util.SystemUtil.isClient())
-     *         {
-     *             mw.InputUtil.onKeyDown(Type.Keys.Add,()=>{
-     *                 // 小键盘+建，增加天空盒亮度,依次递增1个单位
-     *                 Skybox.skyDomeIntensity = Skybox.skyDomeIntensity + 0.2;
-     *                 console.log("当前天空盒亮度:" + Skybox.skyDomeIntensity);
-     *             });
-     *             mw.InputUtil.onKeyDown(Type.Keys.Subtract,()=>{
-     *                 // 小键盘-建，降低天空盒亮度,依次递减1个单位
-     *                 Skybox.skyDomeIntensity = Skybox.skyDomeIntensity - 0.2;
-     *                 console.log("当前天空盒亮度:" + Skybox.skyDomeIntensity);
-     *             });
-     *             mw.InputUtil.onKeyDown(Type.Keys.Multiply,()=>{
-     *                 // 小键盘*建，切换天空盒预设
-     *                 Skybox.preset =7 % (Skybox.preset + 1);
-     *             });
-     *         }
+     * export default class SoundExample extends Script {
+     *
+     *     private readonly sound = {
+     *         assetID: "14929",
+     *         object: null as mw.Sound,
+     *     };
+     *
+     *     protected onStart(): void {
+     *         this.createSound();
+     *     }
+     *
+     *     @mw.RemoteFunction(mw.Client)
+     *     public async createSound(): Promise<void> {
+     *         const success = await AssetUtil.asyncDownloadAsset(this.sound.assetID);
+     *             if (success) {
+     *                 // 下载完毕创建音效
+     *                 this.sound.object = await GameObject.asyncSpawn<mw.Sound>(this.sound.assetID);
+     *
+     *                 // 设置音效transform
+     *                 const transform = new Transform(new Vector(0, 0, 0), new Rotation(0, 0, 0), new Vector(1, 1, 1));
+     *                 this.sound.object.worldTransform = transform;
+     *
+     *                 // 设置音效为空间音效
+     *                 this.sound.object.isUISound = false;
+     *                 this.sound.object.isSpatialization = true;
+     *                 // 设置UI音效形状为球形
+     *                 this.sound.object.attenuationShape = AttenuationShape.Sphere;
+     *                 // 设置音效范围100
+     *                 this.sound.object.attenuationShapeExtents = new Vector(100,0,0);
+     *                 // 设置音效衰减距离为200
+     *                 this.sound.object.falloffDistance = 200;
+     *                 // 设置音效音量
+     *                 this.sound.object.volume = 1;
+     *                 // 开启音效循环
+     *                 this.sound.object.isLoop = true;
+     *                 // 播放音效
+     *                 this.sound.object.play();
+     *             }
      *     }
      * }
      * ```
      */
-    const Skybox: typeof mw.Skybox;
-    type Skybox = mw.Skybox;
-    /**
-     * @author baoqiang.han
-     * @description 水体预设枚举
-     * @groups 玩法/游泳
-     */
-    const WaterPreset: typeof mw.WaterPreset;
-    type WaterPreset = mw.WaterPreset;
+    const Sound: typeof mw.Sound;
+    type Sound = mw.Sound;
     /**
      * @author xinlei.nie
      * @description 设置链接区域的寻路类型
@@ -2920,13 +2811,12 @@ declare global {
     const LinkClassType: typeof mw.LinkClassType;
     type LinkClassType = mw.LinkClassType;
     /**
-     * @groups 场景/音效
-     * @author baoqiang.han
-     * @description 音效衰减形状
-     * @groups 玩法
+     * @author yunhao.liao
+     * @description 样条线
+     * @groups 玩法/其他
      */
-    const AttenuationShape: typeof mw.AttenuationShape;
-    type AttenuationShape = mw.AttenuationShape;
+    const PointType: typeof mw.PointType;
+    type PointType = mw.PointType;
     /**
      * @author xinlei.nie
      * @groups 玩法/寻路系统
@@ -3060,98 +2950,13 @@ declare global {
     const NavLink: typeof mw.NavLink;
     type NavLink = mw.NavLink;
     /**
-     * @author baoqiang.han
-     * @groups 界面/基础
-     * @description 世界 UI
-     * @description ----------------------
-     * @description 1. UI 界面分为两种：屏幕 UI 和世界 UI。
-     * @description WorldUI 是专门用来制作世界 UI 的。屏幕 UI 的详细制作方式请参考 UIService 或 UserWidget。
-     * @description 2. WorldUI 有两种方式制作世界 UI ：
-     * @description - :cactus: 动态加载（只使用代码动态创建一个世界 UI）
-     * @example
-     * 使用示例: 创建一个名为 WorldUI 的脚本，放置在对象栏中，打开脚本，将原本内容修改为如下内容，保存并运行游戏，会在场景中生成一个世界 UI - 滑动条
-     * ```ts
-     * @Component
-     * export default class WorldUI extends Script {
-     *
-     *     user:UserWidget;
-     *     widget:WorldUI;
-     *     progressBar:ProgressBar;
-     *
-     *     protected onStart(): void {
-     *         if(SystemUtil.isClient()){
-     *             this.creatUI();
-     *             this.widget = GameObject.spawn<WorldUI>("WorldUI",{replicates:false});
-     *             this.widget.worldTransform.position = new Vector(0,0,100);
-     *             this.widget.setTargetUIWidget(this.user);
-     *         }
-     *     }
-     *
-     *     public creatUI(){
-     *         this.user = UserWidget.newObject();
-     *
-     *         let rootCanvas = Canvas.newObject();
-     *         rootCanvas.position = Vector2.zero;
-     *         this.user.rootContent = rootCanvas;
-     *
-     *         this.progressBar = ProgressBar.newObject(rootCanvas);
-     *     }
-     * }
-     * ```
-     * @description - :cactus: 在对象管理器中提前在物体上挂载世界 UI 逻辑对象，在属性面板中放置对应的 UIPrefab。
-     * @networkStatus usage:客户端
-     */
-    const WorldUI: typeof mw.WorldUI;
-    type WorldUI = mw.WorldUI;
-    /**
-     * @groups 场景/音效
-     * @author baoqiang.han
-     * @description 音效播放状态
-     * @groups 玩法
-     */
-    const SoundPlayState: typeof mw.SoundPlayState;
-    type SoundPlayState = mw.SoundPlayState;
-    /**
-     * @author baoqiang.han
-     * @groups 玩法/游泳
-     * @description 水体区域
-     * @description ----------------------------------
-     * @description 拖入 WaterVolume 调整水体区域的大小，角色进入水体区域会切换成游泳状态。
+     * @author yunhao.liao
+     * @groups 玩法/其他
+     * @description 样条线
      * @networkStatus usage:双端
-     * @example
-     * 使用示例:创建一个名为"WaterVolumeExample"的脚本，放置在对象栏中，打开脚本，输入以下代码，替换GUID保存，运行游戏，你将可以通过F1键获取角色是否处于该GUID对应的游泳区。
-     * ```
-     * @Component
-     * export default class WaterVolumeExample extends Script {
-     *     // 当脚本被实例后，会在第一帧更新前调用此函数
-     *     protected async onStart(): Promise<void> {
-     *         // GUID根据实际情况填写，可在编辑器对象管理器内右键复制对象ID
-     *         let WaterVolume = await GameObject.asyncFindGameObjectById(`GUID`) as WaterVolume;
-     *         if(SystemUtil.isClient())
-     *         {
-     *             InputUtil.onKeyDown(Keys.F1,()=>{
-     *                 // F1键 通知获取流体摩擦力
-     *                 console.log("当前游泳区流体摩擦力为：" + WaterVolume.fluidFriction);
-     *             });
-     *             InputUtil.onKeyDown(Keys.F2,()=>{
-     *                 // F2键 通知获取当前是否开启浮力
-     *                 if (WaterVolume.buoyancyEnabled) {
-     *                     console.log("当前游泳区已开启浮力");
-     *                 } else {
-     *                     console.log("当前游泳区未开启浮力");
-     *                 }
-     *             });
-     *             InputUtil.onKeyDown(Keys.F3,()=>{
-     *                 // F3键 通知获取液体密度（用于计算浮力）
-     *                 console.log("当前游泳区密度为：" + WaterVolume.density);
-     *             });
-     *         }
-     *     }
-     * }
-     * ```
      */
-    const WaterVolume: typeof mw.WaterVolume;
-    type WaterVolume = mw.WaterVolume;
+    const Spline: typeof mw.Spline;
+    type Spline = mw.Spline;
     /**
      * @author hao.huang
      * @description 寻路动态修饰区类型，不同类型在寻路计算中成本不同，影响寻路结果
@@ -3160,13 +2965,35 @@ declare global {
     const NavModifierType: typeof mw.NavModifierType;
     type NavModifierType = mw.NavModifierType;
     /**
-     * @groups 场景/音效
      * @author baoqiang.han
-     * @description 音效衰减函数模型
-     * @groups 玩法
+     * @groups 玩法/游泳
+     * @deprecated info:该接口已废弃，在该接口被删除前会仍保持可用，请尽快使用替换方案以免出现问题 since:031 reason: API 优化 replacement: WaterVolume
+     * @description 游泳区域
+     * @description ----------------------------------
+     * @description 拖入 SwimmingVolume 调整游泳区域的大小，角色进入游泳区域会切换成游泳状态。
+     * @networkStatus usage:双端
+     * @example
+     * 使用示例:创建一个名为"SwimmingVolExample"的脚本，放置在对象栏中，打开脚本，输入以下代码，替换GUID保存，运行游戏，你将可以通过F1键获取角色是否处于该GUID对应的游泳区。
+     * ```
+     * @Component
+     * export default class SwimmingVolExample extends Script {
+     *     // 当脚本被实例后，会在第一帧更新前调用此函数
+     *     protected async onStart(): Promise<void> {
+     *         // GUID根据实际情况填写，可在编辑器对象管理器内右键复制对象ID
+     *         let swimmingVolume = await GameObject.asyncFindGameObjectById(`GUID`) as SwimmingVolume;
+     *         if(SystemUtil.isClient())
+     *         {
+     *             InputUtil.onKeyDown(Keys.F1,()=>{
+     *                 // F1键 通知获取流体摩擦力
+     *                 console.log("当前游泳区流体摩擦力为：" + swimmingVolume.fluidFriction);
+     *             });
+     *         }
+     *     }
+     * }
+     * ```
      */
-    const AttenuationDistanceModel: typeof mw.AttenuationDistanceModel;
-    type AttenuationDistanceModel = mw.AttenuationDistanceModel;
+    const SwimmingVolume: typeof mw.SwimmingVolume;
+    type SwimmingVolume = mw.SwimmingVolume;
     /**
      * @author hao.huang
      * @groups 玩法/寻路系统
@@ -3176,58 +3003,15 @@ declare global {
     const NavModifierVolume: typeof mw.NavModifierVolume;
     type NavModifierVolume = mw.NavModifierVolume;
     /**
+     * @hidden
      * @author baoqiang.han
-     * @groups 场景/音效
-     * @description 音效
+     * @groups 输入
+     * @deprecated info:该接口已废弃，在该接口被删除前会仍保持可用，请尽快使用替换方案以免出现问题 since:027 reason:流程自动化，不再需要 replacement: mw.TouchInputUtil
+     * @description 玩家从可触摸设备获取的数据信息，包含触摸手指数量，触摸位置(屏幕像素)和当前触摸状态(点击/滑动/离开)
      * @networkStatus usage:客户端
-     * @example
-     * 使用示例:创建一个名为"SoundExample"的脚本，放置在对象栏中，打开脚本，输入以下代码保存，运行游戏，你可以听到音效的声音。代码如下：
-     * ```
-     * @Component
-     * export default class SoundExample extends Script {
-     *
-     *     private readonly sound = {
-     *         assetID: "14929",
-     *         object: null as mw.Sound,
-     *     };
-     *
-     *     protected onStart(): void {
-     *         this.createSound();
-     *     }
-     *
-     *     @mw.RemoteFunction(mw.Client)
-     *     public async createSound(): Promise<void> {
-     *         const success = await AssetUtil.asyncDownloadAsset(this.sound.assetID);
-     *             if (success) {
-     *                 // 下载完毕创建音效
-     *                 this.sound.object = await GameObject.asyncSpawn<mw.Sound>(this.sound.assetID);
-     *
-     *                 // 设置音效transform
-     *                 const transform = new Transform(new Vector(0, 0, 0), new Rotation(0, 0, 0), new Vector(1, 1, 1));
-     *                 this.sound.object.worldTransform = transform;
-     *
-     *                 // 设置音效为空间音效
-     *                 this.sound.object.isUISound = false;
-     *                 this.sound.object.isSpatialization = true;
-     *                 // 设置UI音效形状为球形
-     *                 this.sound.object.attenuationShape = AttenuationShape.Sphere;
-     *                 // 设置音效范围100
-     *                 this.sound.object.attenuationShapeExtents = new Vector(100,0,0);
-     *                 // 设置音效衰减距离为200
-     *                 this.sound.object.falloffDistance = 200;
-     *                 // 设置音效音量
-     *                 this.sound.object.volume = 1;
-     *                 // 开启音效循环
-     *                 this.sound.object.isLoop = true;
-     *                 // 播放音效
-     *                 this.sound.object.play();
-     *             }
-     *     }
-     * }
-     * ```
      */
-    const Sound: typeof mw.Sound;
-    type Sound = mw.Sound;
+    const TouchInput: typeof mw.TouchInput;
+    type TouchInput = mw.TouchInput;
     /**
      * @author hao.huang
      * @groups 玩法/物理
@@ -3282,12 +3066,12 @@ declare global {
     const RigidConstraint: typeof mw.RigidConstraint;
     type RigidConstraint = mw.RigidConstraint;
     /**
-     * @author yunhao.liao
-     * @description 样条线
-     * @groups 玩法/其他
+     * @author baoqiang.han
+     * @description 碰撞类型
+     * @groups 玩法/物理
      */
-    const PointType: typeof mw.PointType;
-    type PointType = mw.PointType;
+    const CollisionType: typeof mw.CollisionType;
+    type CollisionType = mw.CollisionType;
     /**
      * @author xinlei.nie
      * @description 力区域的施力类型
@@ -3296,13 +3080,12 @@ declare global {
     const ForceType: typeof mw.ForceType;
     type ForceType = mw.ForceType;
     /**
-     * @author yunhao.liao
-     * @groups 玩法/其他
-     * @description 样条线
-     * @networkStatus usage:双端
+     * @author baoqiang.han
+     * @description 碰撞形状
+     * @groups 玩法/物理
      */
-    const Spline: typeof mw.Spline;
-    type Spline = mw.Spline;
+    const TriggerShapeType: typeof mw.TriggerShapeType;
+    type TriggerShapeType = mw.TriggerShapeType;
     /**
      * @groups 玩法/物理
      * @description 物理力区域
@@ -3463,34 +3246,37 @@ declare global {
     type ForceVolume = mw.ForceVolume;
     /**
      * @author baoqiang.han
-     * @groups 玩法/游泳
-     * @deprecated info:该接口已废弃，在该接口被删除前会仍保持可用，请尽快使用替换方案以免出现问题 since:031 reason: API 优化 replacement: WaterVolume
-     * @description 游泳区域
-     * @description ----------------------------------
-     * @description 拖入 SwimmingVolume 调整游泳区域的大小，角色进入游泳区域会切换成游泳状态。
+     * @groups 玩法/触发器
+     * @description 触发器
+     * @description 当与触发器交互时，可以触发事件。所有触发器都差不多，区别在于形状不同——有盒体和球体——触发器通过这些形状来判断其他对象是否碰撞并激活了它。
+     * @description 触发器是一个很有用的工具。你可以使用触发器实现很多有趣的玩法，比如创建一个脚本放在放在触发器子级，同时在触发器子级放置一个金币模型，使用 onEnter 事件，完成角色进入触发器范围，金币消失的效果。
      * @networkStatus usage:双端
+     * @precautions 各端运行，无自动同步
      * @example
-     * 使用示例:创建一个名为"SwimmingVolExample"的脚本，放置在对象栏中，打开脚本，输入以下代码，替换GUID保存，运行游戏，你将可以通过F1键获取角色是否处于该GUID对应的游泳区。
+     * 使用示例: 将如下脚本挂载至对象管理器触发器下。
      * ```
      * @Component
-     * export default class SwimmingVolExample extends Script {
-     *     // 当脚本被实例后，会在第一帧更新前调用此函数
+     * export default class TriggerExample extends Script {
+     *     //当脚本被实例后，会在第一帧更新前调用此函数
      *     protected async onStart(): Promise<void> {
-     *         // GUID根据实际情况填写，可在编辑器对象管理器内右键复制对象ID
-     *         let swimmingVolume = await GameObject.asyncFindGameObjectById(`GUID`) as SwimmingVolume;
-     *         if(SystemUtil.isClient())
-     *         {
-     *             InputUtil.onKeyDown(Keys.F1,()=>{
-     *                 // F1键 通知获取流体摩擦力
-     *                 console.log("当前游泳区流体摩擦力为：" + swimmingVolume.fluidFriction);
-     *             });
-     *         }
+     *         // 获取当前脚本所挂载的触发器
+     *         let Trigger = this.gameObject as Trigger
+     *         // 对进入触发器事件进行绑定
+     *         Trigger.onEnter.add((obj) => {
+     *             // 输出Log
+     *             console.log("OnEnter:" + obj.name);
+     *         });
+     *         // 对离开触发器事件进行绑定
+     *         Trigger.onLeave.add((obj) => {
+     *             // 输出Log
+     *             console.log("OnLeave:" + obj.name);
+     *         });
      *     }
      * }
      * ```
      */
-    const SwimmingVolume: typeof mw.SwimmingVolume;
-    type SwimmingVolume = mw.SwimmingVolume;
+    const Trigger: typeof mw.Trigger;
+    type Trigger = mw.Trigger;
     /**
      * @author jun.zhang
      * @description 冲量的应用方式
@@ -3499,15 +3285,56 @@ declare global {
     const ImpulseType: typeof mw.ImpulseType;
     type ImpulseType = mw.ImpulseType;
     /**
-     * @hidden
+     * @description UI空间位置枚举
+     * @groups 界面
      * @author baoqiang.han
-     * @groups 输入
-     * @deprecated info:该接口已废弃，在该接口被删除前会仍保持可用，请尽快使用替换方案以免出现问题 since:027 reason:流程自动化，不再需要 replacement: mw.TouchInputUtil
-     * @description 玩家从可触摸设备获取的数据信息，包含触摸手指数量，触摸位置(屏幕像素)和当前触摸状态(点击/滑动/离开)
+     */
+    const WidgetSpaceMode: typeof mw.WidgetSpaceMode;
+    type WidgetSpaceMode = mw.WidgetSpaceMode;
+    /**
+     * @author baoqiang.han
+     * @groups 界面/基础
+     * @description 世界 UI
+     * @description ----------------------
+     * @description 1. UI 界面分为两种：屏幕 UI 和世界 UI。
+     * @description WorldUI 是专门用来制作世界 UI 的。屏幕 UI 的详细制作方式请参考 UIService 或 UserWidget。
+     * @description 2. WorldUI 有两种方式制作世界 UI ：
+     * @description - :cactus: 动态加载（只使用代码动态创建一个世界 UI）
+     * @example
+     * 使用示例: 创建一个名为 WorldUI 的脚本，放置在对象栏中，打开脚本，将原本内容修改为如下内容，保存并运行游戏，会在场景中生成一个世界 UI - 滑动条
+     * ```ts
+     * @Component
+     * export default class WorldUI extends Script {
+     *
+     *     user:UserWidget;
+     *     widget:WorldUI;
+     *     progressBar:ProgressBar;
+     *
+     *     protected onStart(): void {
+     *         if(SystemUtil.isClient()){
+     *             this.creatUI();
+     *             this.widget = GameObject.spawn<WorldUI>("WorldUI",{replicates:false});
+     *             this.widget.worldTransform.position = new Vector(0,0,100);
+     *             this.widget.setTargetUIWidget(this.user);
+     *         }
+     *     }
+     *
+     *     public creatUI(){
+     *         this.user = UserWidget.newObject();
+     *
+     *         let rootCanvas = Canvas.newObject();
+     *         rootCanvas.position = Vector2.zero;
+     *         this.user.rootContent = rootCanvas;
+     *
+     *         this.progressBar = ProgressBar.newObject(rootCanvas);
+     *     }
+     * }
+     * ```
+     * @description - :cactus: 在对象管理器中提前在物体上挂载世界 UI 逻辑对象，在属性面板中放置对应的 UIPrefab。
      * @networkStatus usage:客户端
      */
-    const TouchInput: typeof mw.TouchInput;
-    type TouchInput = mw.TouchInput;
+    const WorldUI: typeof mw.WorldUI;
+    type WorldUI = mw.WorldUI;
     /**
      * @author jun.zhang
      * @description 冲量力类型
@@ -3516,12 +3343,19 @@ declare global {
     const ImpulseForceType: typeof mw.ImpulseForceType;
     type ImpulseForceType = mw.ImpulseForceType;
     /**
+     * @description UI形状枚举
+     * @groups 界面
      * @author baoqiang.han
-     * @description 碰撞类型
-     * @groups 玩法/物理
      */
-    const CollisionType: typeof mw.CollisionType;
-    type CollisionType = mw.CollisionType;
+    const WidgetGeometryMode: typeof mw.WidgetGeometryMode;
+    type WidgetGeometryMode = mw.WidgetGeometryMode;
+    /**
+     * @author jun.zhang
+     * @groups 玩法
+     * @description 热武器状态
+     */
+    const HotWeaponState: typeof mw.HotWeaponState;
+    type HotWeaponState = mw.HotWeaponState;
     /**
      * @groups 玩法/物理
      * @description 冲量
@@ -3563,11 +3397,51 @@ declare global {
     type Impulse = mw.Impulse;
     /**
      * @author baoqiang.han
-     * @description 碰撞形状
-     * @groups 玩法/物理
+     * @groups 界面/基础
+     * @deprecated info:该接口已废弃，在该接口被删除前会仍保持可用，请尽快使用替换方案以免出现问题 since:038 reason:接口废弃 replacement: 请使用WorldUI
+     * @description 世界 UI
+     * @description ----------------------
+     * @description 1. UI 界面分为两种：屏幕 UI 和世界 UI。
+     * @description UIWidget 是专门用来制作世界 UI 的。屏幕 UI 的详细制作方式请参考 UIService 或 UserWidget。
+     * @description 2. UIWidget 有两种方式制作世界 UI ：
+     * @description - :cactus: 动态加载（只使用代码动态创建一个世界 UI）
+     * @example
+     * 使用示例: 创建一个名为 NewScript 的脚本，放置在对象栏中，打开脚本，将原本内容修改为如下内容，保存并运行游戏，会在场景中生成一个世界 UI - 滑动条
+     * ```ts
+     * @Component
+     * export default class NewScript extends Script {
+     *
+     *     user:UserWidget;
+     *     widget:UIWidget;
+     *     progressBar:ProgressBar;
+     *
+     *     protected onStart(): void {
+     *         if(SystemUtil.isClient()){
+     *             this.creatUI();
+     *             this.widget = GameObject.spawn<UIWidget>("UIWidget",{replicates:false});
+     *             this.widget.worldTransform.position = new Vector(0,0,100);
+     *             this.widget.setTargetUIWidget(this.user);
+     *         }
+     *     }
+     *
+     *     public creatUI(){
+     *         this.user = UserWidget.newObject();
+     *
+     *         let rootCanvas = Canvas.newObject();
+     *         rootCanvas.size = new Vector2(1920, 1080);
+     *         rootCanvas.position = Vector2.zero;
+     *
+     *         this.user.rootContent = rootCanvas;
+     *
+     *         this.progressBar = ProgressBar.newObject(rootCanvas);
+     *     }
+     * }
+     * ```
+     * @description - :cactus: 在对象管理器中提前在物体上挂载世界 UI 逻辑对象，在属性面板中放置对应的 UIPrefab。
+     * @networkStatus usage:客户端
      */
-    const TriggerShapeType: typeof mw.TriggerShapeType;
-    type TriggerShapeType = mw.TriggerShapeType;
+    const UIWidget: typeof mw.UIWidget;
+    type UIWidget = mw.UIWidget;
     /**
      * @author xinlei.nie
      * @description 运动坐标系
@@ -3577,239 +3451,11 @@ declare global {
     type MotionAxis = mw.MotionAxis;
     /**
      * @author baoqiang.han
-     * @groups 玩法/触发器
-     * @description 触发器
-     * @description 当与触发器交互时，可以触发事件。所有触发器都差不多，区别在于形状不同——有盒体和球体——触发器通过这些形状来判断其他对象是否碰撞并激活了它。
-     * @description 触发器是一个很有用的工具。你可以使用触发器实现很多有趣的玩法，比如创建一个脚本放在放在触发器子级，同时在触发器子级放置一个金币模型，使用 onEnter 事件，完成角色进入触发器范围，金币消失的效果。
-     * @networkStatus usage:双端
-     * @precautions 各端运行，无自动同步
-     * @example
-     * 使用示例: 将如下脚本挂载至对象管理器触发器下。
-     * ```
-     * @Component
-     * export default class TriggerExample extends Script {
-     *     //当脚本被实例后，会在第一帧更新前调用此函数
-     *     protected async onStart(): Promise<void> {
-     *         // 获取当前脚本所挂载的触发器
-     *         let Trigger = this.gameObject as Trigger
-     *         // 对进入触发器事件进行绑定
-     *         Trigger.onEnter.add((obj) => {
-     *             // 输出Log
-     *             console.log("OnEnter:" + obj.name);
-     *         });
-     *         // 对离开触发器事件进行绑定
-     *         Trigger.onLeave.add((obj) => {
-     *             // 输出Log
-     *             console.log("OnLeave:" + obj.name);
-     *         });
-     *     }
-     * }
-     * ```
+     * @description 水体预设枚举
+     * @groups 玩法/游泳
      */
-    const Trigger: typeof mw.Trigger;
-    type Trigger = mw.Trigger;
-    /**
-     * @author xinlei.nie
-     * @description 运动模式
-     * @groups 玩法/物理
-     */
-    const MotionMode: typeof mw.MotionMode;
-    type MotionMode = mw.MotionMode;
-    /**
-     * @description UI空间位置枚举
-     * @groups 界面
-     * @author baoqiang.han
-     */
-    const SpaceMode: typeof mw.SpaceMode;
-    type SpaceMode = mw.SpaceMode;
-    /**
-     * @description UI空间位置枚举
-     * @groups 界面
-     * @author baoqiang.han
-     */
-    const WidgetSpaceMode: typeof mw.WidgetSpaceMode;
-    type WidgetSpaceMode = mw.WidgetSpaceMode;
-    /**
-     * @author hao.huang
-     * @groups 玩法/物理
-     * @description 运动器组件
-     * @networkStatus usage:双端
-     * @example
-     * 使用示例:创建一个名为"IMExample1"的脚本，放置在对象栏中，打开脚本，输入以下代码保存，运行游戏，你将在场景中看到两个长方体，分别以开启和不开启平滑运动的方式做重复线性运动。代码如下：
-     * ```
-     * @Component
-     * export default class IMExample1 extends Script {
-     *
-     *     // 声明变量
-     *     Obj1;
-     *     Obj2;
-     *     IM1;
-     *     IM2;
-     *
-     *     // 当脚本被实例后，会在第一帧更新前调用此函数
-     *     protected async onStart(): Promise<void> {
-     *       if (SystemUtil.isClient()) {
-     *           // 创建一个长方体
-     *           this.Obj1 = await GameObject.asyncSpawn("197386") as GameObject;
-     *           // 设置起始位置
-     *           this.Obj1.worldTransform.position = new Vector(300.0, -100.0, 300.0);
-     *           // 设置起始缩放
-     *           this.Obj1.worldTransform.scale = new Vector(0.5, 2.0, 0.5);
-     *
-     *           // 创建一个运动器，并将运动器挂载到长方体上
-     *           this.IM1 = await GameObject.asyncSpawn("PhysicsSports") as IntegratedMover;
-     *           this.IM1.attachToGameObject(this.Obj1);
-     *
-     *           // 测试启用状态
-     *           console.log("Enable status: " + this.IM1.enable);
-     *           this.IM1.enable = true;
-     *           console.log("New enable status: " + this.IM1.enable);
-     *
-     *           // 添加一个线性运动
-     *           this.IM1.linearSpeed = new Vector(0.0, 100.0, 0.0);
-     *           this.IM1.linearRepeat = true;
-     *           this.IM1.linearRepeatTime = 2.0;
-     *           this.IM1.linearRepeatDelay = 0.0;
-     *           this.IM1.linearReturnDelay = 0.0;
-     *
-     *           // 用同样的方式创建第二个长方体与第二个运动器
-     *           this.Obj2 = await GameObject.asyncSpawn("197386") as GameObject;
-     *           this.Obj2.worldTransform.position = new Vector(300.0, -100.0, 150.0);
-     *           this.Obj2.worldTransform.scale = new Vector(0.5, 2.0, 0.5);
-     *           this.IM2 = await GameObject.asyncSpawn("PhysicsSports") as IntegratedMover;
-     *           this.IM2.attachToGameObject(this.Obj2);
-     *           this.IM2.enable = true;
-     *
-     *           // 给第二个运动器开启平滑运动
-     *           console.log("Smooth status: " + this.IM2.smooth);
-     *           this.IM2.smooth = true;
-     *           console.log("New smooth status: " + this.IM2.smooth);
-     *
-     *           // 添加一个同样的线性运动
-     *           this.IM2.linearSpeed = new Vector(0.0, 100.0, 0.0);
-     *           this.IM2.linearRepeat = true;
-     *           this.IM2.linearRepeatTime = 2.0;
-     *           this.IM2.linearRepeatDelay = 0.0;
-     *           this.IM2.linearReturnDelay = 0.0;
-     *       }
-     *   }
-     * }
-     * ```
-     */
-    const IntegratedMover: typeof mw.IntegratedMover;
-    type IntegratedMover = mw.IntegratedMover;
-    /**
-     * @description UI形状枚举
-     * @groups 界面
-     * @author baoqiang.han
-     */
-    const WidgetGeometryMode: typeof mw.WidgetGeometryMode;
-    type WidgetGeometryMode = mw.WidgetGeometryMode;
-    /**
-     * @author baoqiang.han
-     * @groups 玩法/物理
-     * @description 推进器
-     * @networkStatus usage:双端
-     * @precautions 服务器设置，双端自动同步
-     * @example
-     * 使用示例:创建一个名为"Example"的脚本，放置在对象栏中，打开脚本，输入以下代码保存，保存游戏，并按下键盘'1'键，你将在场景中看到已放置好的物体被推进器推动效果(注意只有开启物理模拟的物体可以被推进器推动)
-     * ```
-     * @Component
-     * export default class NewScript extends Script {
-     *     protected onStart(): void {
-     *         if (SystemUtil.isServer()) return;
-     *         InputUtil.onKeyDown(Keys.One, ()=>{
-     *             this.serverThruster();
-     *         })
-     *     }
-     *
-     *     @mw.RemoteFunction(mw.Server)
-     *     async serverThruster() {
-     *         console.log("Create Thruster Success");
-     *         let box = GameObject.findGameObjectById("物体ID") as Model;
-     *         let thruster = await GameObject.asyncSpawn("PhysicsThruster") as mw.PhysicsThruster;
-     *         thruster.parent = box;
-     *         thruster.strength = 1000000;
-     *         thruster.enable = true;
-     *     }
-     * }
-     * ```
-     */
-    const PhysicsThruster: typeof mw.PhysicsThruster;
-    type PhysicsThruster = mw.PhysicsThruster;
-    /**
-     * @description 投掷物发射器专用实例对象
-     * @author jun.zhang
-     * @groups 玩法/发射器
-     * @networkStatus usage: 双端
-     */
-    const ProjectileInst: typeof mw.ProjectileInst;
-    type ProjectileInst = mw.ProjectileInst;
-    /**
-     * @description 投掷物发射器
-     * @description -------------------------
-     * @description 投掷物发射器是一种游戏中常见的机制，用于模拟投掷物体的发射和飞行。它可以让玩家或游戏角色通过选择合适的方向和力量，将物体发射到目标位置。
-     * @description 想象一下，你站在一个阳台上，手里拿着一个小球，并希望将它投向一个目标。投掷物发射器就像是你的手臂和手，它帮助你控制球的发射。你可以调整你的手臂的方向和力量，以便球以特定的方式飞行。
-     * @description 一旦玩家决定好发射的方向和力量，投掷物发射器就会将投掷物体发射出去。投掷物体会根据发射器设置的速度和发射角度开始飞行。它会在空中经过弧线路径，并受到重力和其他物理效应的影响。
-     * @description ObjectLauncher 为发射器。发射器发射出的实例称为投掷物实例 ProjectileInst 。投掷物实例上挂载着实际发射的物体。
-     * @description 当 spawnProjectileInstanceLaunch 启动发射时，传入对象ID（注意是场景里的对象 id，不是资源 id），投掷物实例拖着传入的模型进行运动，发射器作为发射终端，维护投掷物发射相关的参数。
-     * @description 发射器接口调用端可以是服务器，也可以是客户端；发射投掷物的方式有3种：1.双端投掷物 2.发射全客户端投掷物 3.发射单客户端投掷物
-     * @description 在客户端还是服务端加载 ObjectLauncher 对象呢？
-     * @description 1. 服务端
-     * @description -  在服务端动态生成投掷物发射器，获得一个各端同步的投掷物发射器对象。修改投掷物发射器属性会同步至所有客户端。
-     * @description -  在服务器添加投掷物发射器委托后，委托只会在服务器执行，同时执行前提是发射器要存在于服务器。
-     * @description -  在服务器调用发射接口时，按服务器当前发射器属性生成双端投掷物发射，发射对象如果在服务端找不到（有可能是单客户端投掷物），直接返回，能找到（发射对象是双端对象），在投掷物上挂载发射物体。双端投掷物的碰撞和轨迹就是服务器计算，即以服务器的计算结果为准。
-     * @description 2. 客户端
-     * @description -  在客户端动态生成投掷物发射器，只能获得一个本地的投掷物发射器对象，仅支持本地发射。
-     * @description -  在本地添加回调后，回调只会在本地执行，同时执行前提是发射器要存在于本地。
-     * @description -  在本地调用广播发射：按本地当前发射器属性生成单端投掷物，同时通知服务器广播其他客户端按本地当前发射器属性生成单端投掷物。发射对象如果在服务端找不到，直接返回，能找到（发射对象是双端对象），挂上投掷物。
-     * @description 另外有控制发射器发射初始速度、重力、投掷物半径等参数。
-     * @author jun.zhang
-     * @groups 玩法/发射器
-     * @networkStatus usage: 双端
-     */
-    const ObjectLauncher: typeof mw.ObjectLauncher;
-    type ObjectLauncher = mw.ObjectLauncher;
-    /**
-     * @description UI形状枚举
-     * @groups 界面
-     * @author baoqiang.han
-     */
-    const GeometryMode: typeof mw.GeometryMode;
-    type GeometryMode = mw.GeometryMode;
-    /**
-     * @author jun.zhang
-     * @description 投掷物移动状态
-     * @groups 玩法
-     */
-    const ProjectileMovementStatus: typeof mw.ProjectileMovementStatus;
-    type ProjectileMovementStatus = mw.ProjectileMovementStatus;
-    /**
-     * @author jun.zhang
-     * @description 投掷物移动功能类
-     * @description ProjectileMovement 是一种功能组件，用于处理游戏中的飞行物体，比如子弹、火箭、投掷物等。
-     * @description 想象一下，你在游戏中控制着一个角色，你想让他发射一颗子弹。这时，你可以使用 ProjectileMovement 组件来处理子弹的移动。
-     * @description 这个组件的作用就像是给子弹贴上一个引擎，让它能够自动进行飞行。你只需要设置子弹的速度和方向，组件就会根据这些参数自动计算子弹的轨迹，并将其移动到正确的位置。这样，你就不需要手动编写复杂的移动逻辑，而是交给 ProjectileMovement 来处理。
-     * @description 除了基本的移动功能，ProjectileMovement 还提供了一些其他的特性。例如，你可以设置子弹的最大飞行距离或生命周期，超过这个距离或时间后，子弹会自动销毁。还可以设置子弹的碰撞检测，当子弹与其他物体碰撞时，可以触发相应的效果或伤害。
-     * @description 绑定的逻辑对象请自行关闭物理模拟，运动过程中会忽略相机、禁行区、功能类不考虑移动同步。
-     * @groups 玩法/投掷物
-     * @networkStatus usage: 双端
-     */
-    const ProjectileMovement: typeof mw.ProjectileMovement;
-    type ProjectileMovement = mw.ProjectileMovement;
-    /**
-     * @author xiangkun.sun
-     * @groups 角色系统/角色管理
-     * @description 角色管理器
-     * @description Player 包含当前连接到MW服务器的Player对象。它负责管理角色的各种唯一标识符（ID）并提供创建、获取并管理玩家的功能。
-     * @description 角色管理器类会维护一个字典，用于存储所有角色的唯一标识符。用于区分不同的角色。
-     * @description 角色管理器会提供方法来添加、删除和检索角色的 ID。当创建一个新角色时，该角色的ID会被分配并添加到管理器的列表中。当角色不再存在时，该ID会被从列表中删除。通过这些方法，可以方便地管理角色的ID集合。
-     * @description 角色管理器还提供获取玩家的功能。通过玩家的 ID，可以轻松地从管理器中获取对应的角色对象。这样，其他部分的代码可以使用玩家的ID来获取与之相关联的角色实例，进行进一步的处理和操作。
-     * @description 值得注意的是可通过 Player.localPlayer.character 获取本地玩家角色，开启本地角色玩家的配置。
-     * @networkStatus usage:双端
-     */
-    const Player: typeof mw.Player;
-    type Player = mw.Player;
+    const WaterPreset: typeof mw.WaterPreset;
+    type WaterPreset = mw.WaterPreset;
     /**
      * @description 热武器
      * @description 热武器功能是指游戏中武器的使用和管理机制，它使得玩家可以在战斗中使用各种类型的武器。
@@ -3963,51 +3609,280 @@ declare global {
     type HotWeapon = mw.HotWeapon;
     /**
      * @author baoqiang.han
-     * @groups 界面/基础
-     * @deprecated info:该接口已废弃，在该接口被删除前会仍保持可用，请尽快使用替换方案以免出现问题 since:038 reason:接口废弃 replacement: 请使用WorldUI
-     * @description 世界 UI
-     * @description ----------------------
-     * @description 1. UI 界面分为两种：屏幕 UI 和世界 UI。
-     * @description UIWidget 是专门用来制作世界 UI 的。屏幕 UI 的详细制作方式请参考 UIService 或 UserWidget。
-     * @description 2. UIWidget 有两种方式制作世界 UI ：
-     * @description - :cactus: 动态加载（只使用代码动态创建一个世界 UI）
+     * @groups 玩法/游泳
+     * @description 水体区域
+     * @description ----------------------------------
+     * @description 拖入 WaterVolume 调整水体区域的大小，角色进入水体区域会切换成游泳状态。
+     * @networkStatus usage:双端
      * @example
-     * 使用示例: 创建一个名为 NewScript 的脚本，放置在对象栏中，打开脚本，将原本内容修改为如下内容，保存并运行游戏，会在场景中生成一个世界 UI - 滑动条
-     * ```ts
+     * 使用示例:创建一个名为"WaterVolumeExample"的脚本，放置在对象栏中，打开脚本，输入以下代码，替换GUID保存，运行游戏，你将可以通过F1键获取角色是否处于该GUID对应的游泳区。
+     * ```
      * @Component
-     * export default class NewScript extends Script {
-     *
-     *     user:UserWidget;
-     *     widget:UIWidget;
-     *     progressBar:ProgressBar;
-     *
-     *     protected onStart(): void {
-     *         if(SystemUtil.isClient()){
-     *             this.creatUI();
-     *             this.widget = GameObject.spawn<UIWidget>("UIWidget",{replicates:false});
-     *             this.widget.worldTransform.position = new Vector(0,0,100);
-     *             this.widget.setTargetUIWidget(this.user);
+     * export default class WaterVolumeExample extends Script {
+     *     // 当脚本被实例后，会在第一帧更新前调用此函数
+     *     protected async onStart(): Promise<void> {
+     *         // GUID根据实际情况填写，可在编辑器对象管理器内右键复制对象ID
+     *         let WaterVolume = await GameObject.asyncFindGameObjectById(`GUID`) as WaterVolume;
+     *         if(SystemUtil.isClient())
+     *         {
+     *             InputUtil.onKeyDown(Keys.F1,()=>{
+     *                 // F1键 通知获取流体摩擦力
+     *                 console.log("当前游泳区流体摩擦力为：" + WaterVolume.fluidFriction);
+     *             });
+     *             InputUtil.onKeyDown(Keys.F2,()=>{
+     *                 // F2键 通知获取当前是否开启浮力
+     *                 if (WaterVolume.buoyancyEnabled) {
+     *                     console.log("当前游泳区已开启浮力");
+     *                 } else {
+     *                     console.log("当前游泳区未开启浮力");
+     *                 }
+     *             });
+     *             InputUtil.onKeyDown(Keys.F3,()=>{
+     *                 // F3键 通知获取液体密度（用于计算浮力）
+     *                 console.log("当前游泳区密度为：" + WaterVolume.density);
+     *             });
      *         }
-     *     }
-     *
-     *     public creatUI(){
-     *         this.user = UserWidget.newObject();
-     *
-     *         let rootCanvas = Canvas.newObject();
-     *         rootCanvas.size = new Vector2(1920, 1080);
-     *         rootCanvas.position = Vector2.zero;
-     *
-     *         this.user.rootContent = rootCanvas;
-     *
-     *         this.progressBar = ProgressBar.newObject(rootCanvas);
      *     }
      * }
      * ```
-     * @description - :cactus: 在对象管理器中提前在物体上挂载世界 UI 逻辑对象，在属性面板中放置对应的 UIPrefab。
-     * @networkStatus usage:客户端
      */
-    const UIWidget: typeof mw.UIWidget;
-    type UIWidget = mw.UIWidget;
+    const WaterVolume: typeof mw.WaterVolume;
+    type WaterVolume = mw.WaterVolume;
+    /**
+     * @author xinlei.nie
+     * @description 运动模式
+     * @groups 玩法/物理
+     */
+    const MotionMode: typeof mw.MotionMode;
+    type MotionMode = mw.MotionMode;
+    /**
+     * @author hao.huang
+     * @groups 玩法/物理
+     * @description 运动器组件
+     * @networkStatus usage:双端
+     * @example
+     * 使用示例:创建一个名为"IMExample1"的脚本，放置在对象栏中，打开脚本，输入以下代码保存，运行游戏，你将在场景中看到两个长方体，分别以开启和不开启平滑运动的方式做重复线性运动。代码如下：
+     * ```
+     * @Component
+     * export default class IMExample1 extends Script {
+     *
+     *     // 声明变量
+     *     Obj1;
+     *     Obj2;
+     *     IM1;
+     *     IM2;
+     *
+     *     // 当脚本被实例后，会在第一帧更新前调用此函数
+     *     protected async onStart(): Promise<void> {
+     *       if (SystemUtil.isClient()) {
+     *           // 创建一个长方体
+     *           this.Obj1 = await GameObject.asyncSpawn("197386") as GameObject;
+     *           // 设置起始位置
+     *           this.Obj1.worldTransform.position = new Vector(300.0, -100.0, 300.0);
+     *           // 设置起始缩放
+     *           this.Obj1.worldTransform.scale = new Vector(0.5, 2.0, 0.5);
+     *
+     *           // 创建一个运动器，并将运动器挂载到长方体上
+     *           this.IM1 = await GameObject.asyncSpawn("PhysicsSports") as IntegratedMover;
+     *           this.IM1.attachToGameObject(this.Obj1);
+     *
+     *           // 测试启用状态
+     *           console.log("Enable status: " + this.IM1.enable);
+     *           this.IM1.enable = true;
+     *           console.log("New enable status: " + this.IM1.enable);
+     *
+     *           // 添加一个线性运动
+     *           this.IM1.linearSpeed = new Vector(0.0, 100.0, 0.0);
+     *           this.IM1.linearRepeat = true;
+     *           this.IM1.linearRepeatTime = 2.0;
+     *           this.IM1.linearRepeatDelay = 0.0;
+     *           this.IM1.linearReturnDelay = 0.0;
+     *
+     *           // 用同样的方式创建第二个长方体与第二个运动器
+     *           this.Obj2 = await GameObject.asyncSpawn("197386") as GameObject;
+     *           this.Obj2.worldTransform.position = new Vector(300.0, -100.0, 150.0);
+     *           this.Obj2.worldTransform.scale = new Vector(0.5, 2.0, 0.5);
+     *           this.IM2 = await GameObject.asyncSpawn("PhysicsSports") as IntegratedMover;
+     *           this.IM2.attachToGameObject(this.Obj2);
+     *           this.IM2.enable = true;
+     *
+     *           // 给第二个运动器开启平滑运动
+     *           console.log("Smooth status: " + this.IM2.smooth);
+     *           this.IM2.smooth = true;
+     *           console.log("New smooth status: " + this.IM2.smooth);
+     *
+     *           // 添加一个同样的线性运动
+     *           this.IM2.linearSpeed = new Vector(0.0, 100.0, 0.0);
+     *           this.IM2.linearRepeat = true;
+     *           this.IM2.linearRepeatTime = 2.0;
+     *           this.IM2.linearRepeatDelay = 0.0;
+     *           this.IM2.linearReturnDelay = 0.0;
+     *       }
+     *   }
+     * }
+     * ```
+     */
+    const IntegratedMover: typeof mw.IntegratedMover;
+    type IntegratedMover = mw.IntegratedMover;
+    /**
+     * @description UI空间位置枚举
+     * @groups 界面
+     * @author baoqiang.han
+     */
+    const SpaceMode: typeof mw.SpaceMode;
+    type SpaceMode = mw.SpaceMode;
+    /**
+     * @author baoqiang.han
+     * @groups 玩法/物理
+     * @description 推进器
+     * @networkStatus usage:双端
+     * @precautions 服务器设置，双端自动同步
+     * @example
+     * 使用示例:创建一个名为"Example"的脚本，放置在对象栏中，打开脚本，输入以下代码保存，保存游戏，并按下键盘'1'键，你将在场景中看到已放置好的物体被推进器推动效果(注意只有开启物理模拟的物体可以被推进器推动)
+     * ```
+     * @Component
+     * export default class NewScript extends Script {
+     *     protected onStart(): void {
+     *         if (SystemUtil.isServer()) return;
+     *         InputUtil.onKeyDown(Keys.One, ()=>{
+     *             this.serverThruster();
+     *         })
+     *     }
+     *
+     *     @mw.RemoteFunction(mw.Server)
+     *     async serverThruster() {
+     *         console.log("Create Thruster Success");
+     *         let box = GameObject.findGameObjectById("物体ID") as Model;
+     *         let thruster = await GameObject.asyncSpawn("PhysicsThruster") as mw.PhysicsThruster;
+     *         thruster.parent = box;
+     *         thruster.strength = 1000000;
+     *         thruster.enable = true;
+     *     }
+     * }
+     * ```
+     */
+    const PhysicsThruster: typeof mw.PhysicsThruster;
+    type PhysicsThruster = mw.PhysicsThruster;
+    /**
+     * @description 投掷物发射器专用实例对象
+     * @author jun.zhang
+     * @groups 玩法/发射器
+     * @networkStatus usage: 双端
+     */
+    const ProjectileInst: typeof mw.ProjectileInst;
+    type ProjectileInst = mw.ProjectileInst;
+    /**
+     * @description 投掷物发射器
+     * @description -------------------------
+     * @description 投掷物发射器是一种游戏中常见的机制，用于模拟投掷物体的发射和飞行。它可以让玩家或游戏角色通过选择合适的方向和力量，将物体发射到目标位置。
+     * @description 想象一下，你站在一个阳台上，手里拿着一个小球，并希望将它投向一个目标。投掷物发射器就像是你的手臂和手，它帮助你控制球的发射。你可以调整你的手臂的方向和力量，以便球以特定的方式飞行。
+     * @description 一旦玩家决定好发射的方向和力量，投掷物发射器就会将投掷物体发射出去。投掷物体会根据发射器设置的速度和发射角度开始飞行。它会在空中经过弧线路径，并受到重力和其他物理效应的影响。
+     * @description ObjectLauncher 为发射器。发射器发射出的实例称为投掷物实例 ProjectileInst 。投掷物实例上挂载着实际发射的物体。
+     * @description 当 spawnProjectileInstanceLaunch 启动发射时，传入对象ID（注意是场景里的对象 id，不是资源 id），投掷物实例拖着传入的模型进行运动，发射器作为发射终端，维护投掷物发射相关的参数。
+     * @description 发射器接口调用端可以是服务器，也可以是客户端；发射投掷物的方式有3种：1.双端投掷物 2.发射全客户端投掷物 3.发射单客户端投掷物
+     * @description 在客户端还是服务端加载 ObjectLauncher 对象呢？
+     * @description 1. 服务端
+     * @description -  在服务端动态生成投掷物发射器，获得一个各端同步的投掷物发射器对象。修改投掷物发射器属性会同步至所有客户端。
+     * @description -  在服务器添加投掷物发射器委托后，委托只会在服务器执行，同时执行前提是发射器要存在于服务器。
+     * @description -  在服务器调用发射接口时，按服务器当前发射器属性生成双端投掷物发射，发射对象如果在服务端找不到（有可能是单客户端投掷物），直接返回，能找到（发射对象是双端对象），在投掷物上挂载发射物体。双端投掷物的碰撞和轨迹就是服务器计算，即以服务器的计算结果为准。
+     * @description 2. 客户端
+     * @description -  在客户端动态生成投掷物发射器，只能获得一个本地的投掷物发射器对象，仅支持本地发射。
+     * @description -  在本地添加回调后，回调只会在本地执行，同时执行前提是发射器要存在于本地。
+     * @description -  在本地调用广播发射：按本地当前发射器属性生成单端投掷物，同时通知服务器广播其他客户端按本地当前发射器属性生成单端投掷物。发射对象如果在服务端找不到，直接返回，能找到（发射对象是双端对象），挂上投掷物。
+     * @description 另外有控制发射器发射初始速度、重力、投掷物半径等参数。
+     * @author jun.zhang
+     * @groups 玩法/发射器
+     * @networkStatus usage: 双端
+     */
+    const ObjectLauncher: typeof mw.ObjectLauncher;
+    type ObjectLauncher = mw.ObjectLauncher;
+    /**
+     * @description UI形状枚举
+     * @groups 界面
+     * @author baoqiang.han
+     */
+    const GeometryMode: typeof mw.GeometryMode;
+    type GeometryMode = mw.GeometryMode;
+    /**
+     * @author jun.zhang
+     * @description 投掷物移动状态
+     * @groups 玩法
+     */
+    const ProjectileMovementStatus: typeof mw.ProjectileMovementStatus;
+    type ProjectileMovementStatus = mw.ProjectileMovementStatus;
+    /**
+     * @author jun.zhang
+     * @description 投掷物移动功能类
+     * @description ProjectileMovement 是一种功能组件，用于处理游戏中的飞行物体，比如子弹、火箭、投掷物等。
+     * @description 想象一下，你在游戏中控制着一个角色，你想让他发射一颗子弹。这时，你可以使用 ProjectileMovement 组件来处理子弹的移动。
+     * @description 这个组件的作用就像是给子弹贴上一个引擎，让它能够自动进行飞行。你只需要设置子弹的速度和方向，组件就会根据这些参数自动计算子弹的轨迹，并将其移动到正确的位置。这样，你就不需要手动编写复杂的移动逻辑，而是交给 ProjectileMovement 来处理。
+     * @description 除了基本的移动功能，ProjectileMovement 还提供了一些其他的特性。例如，你可以设置子弹的最大飞行距离或生命周期，超过这个距离或时间后，子弹会自动销毁。还可以设置子弹的碰撞检测，当子弹与其他物体碰撞时，可以触发相应的效果或伤害。
+     * @description 绑定的逻辑对象请自行关闭物理模拟，运动过程中会忽略相机、禁行区、功能类不考虑移动同步。
+     * @groups 玩法/投掷物
+     * @networkStatus usage: 双端
+     */
+    const ProjectileMovement: typeof mw.ProjectileMovement;
+    type ProjectileMovement = mw.ProjectileMovement;
+    /**
+     * @author xiangkun.sun
+     * @groups 角色系统/角色管理
+     * @description 角色管理器
+     * @description Player 包含当前连接到MW服务器的Player对象。它负责管理角色的各种唯一标识符（ID）并提供创建、获取并管理玩家的功能。
+     * @description 角色管理器类会维护一个字典，用于存储所有角色的唯一标识符。用于区分不同的角色。
+     * @description 角色管理器会提供方法来添加、删除和检索角色的 ID。当创建一个新角色时，该角色的ID会被分配并添加到管理器的列表中。当角色不再存在时，该ID会被从列表中删除。通过这些方法，可以方便地管理角色的ID集合。
+     * @description 角色管理器还提供获取玩家的功能。通过玩家的 ID，可以轻松地从管理器中获取对应的角色对象。这样，其他部分的代码可以使用玩家的ID来获取与之相关联的角色实例，进行进一步的处理和操作。
+     * @description 值得注意的是可通过 Player.localPlayer.character 获取本地玩家角色，开启本地角色玩家的配置。
+     * @networkStatus usage:双端
+     */
+    const Player: typeof mw.Player;
+    type Player = mw.Player;
+    /**
+     * @author jun.zhang
+     * @groups 玩法
+     * @description 热武器开火模式
+     */
+    const HotWeaponFireMode: typeof mw.HotWeaponFireMode;
+    type HotWeaponFireMode = mw.HotWeaponFireMode;
+    /**
+     * @description 热武器射击精度组件
+     * @description 武器射击精度是指武器在射击时的命中目标的准确性和精度程度。它描述了武器在使用时弹道路径的稳定性和预测性，以及射击的命中率和精度。控制热武器发射时，子弹的发散程度，默认状态下为最小发散程度.
+     * @description 武器射击精度可以用一个简单的比喻来描述：它就像是你打篮球时的投篮准确度。
+     * @description 当你投篮时，你希望篮球准确地进入篮筐，而不是偏离目标。这就是投篮的精度。在武器射击中，精度指的是武器发射的子弹能够准确地命中目标，而不是随意地朝着其他方向飞行。
+     * @groups 玩法/热武器/辅助类
+     * @networkStatus usage: 双端
+     * @author jun.zhang
+     * @example
+     * 使用示例: 创建一个名为"HotWeaponAofSample1"的脚本，放置在对象管理器中，打开脚本，输入以下代码保存，运行游戏，代码如下：
+     * ```ts
+     * @Component
+     * export default class HotWeaponAofSample1 extends Script {
+     *     protected onStart(): void {
+     *         // 构造
+     *         const hotWeapon = this.gameObject as HotWeapon;
+     *
+     *         if (SystemUtil.isServer()) {
+     *             hotWeapon.accuracyOfFireEnable = true;
+     *             // 影响射击精度的子弹偏移半角的最大值(范围Min~88)
+     *             hotWeapon.accuracyOfFireComponent.maxDispersionHalfAngle = 4;
+     *             // 影响射击精度的子弹偏移半角的最小值(范围0~Max)
+     *             hotWeapon.accuracyOfFireComponent.minDispersionHalfAngle = 0.01;
+     *             // 默认影响射击精度的子弹偏移半角(范围Min~Max)
+     *             hotWeapon.accuracyOfFireComponent.defaultDispersionHalfAngle = 1;
+     *             // 影响射击精度的子弹偏移半角的每秒扩张速度(范围0~88)
+     *             hotWeapon.accuracyOfFireComponent.dispersionHalfAngleIncreaseSpeed = 5;
+     *             // 影响射击精度的子弹偏移半角的每秒收缩速度(范围0~88)
+     *             hotWeapon.accuracyOfFireComponent.dispersionHalfAngleDecreaseSpeed = 10;
+     *             // 影响射击精度的子弹偏移半角的每次开火扩张值(范围0~88)
+     *             hotWeapon.accuracyOfFireComponent.dispersionHalfAngleIncreasePerShot = 1;
+     *         } else if (SystemUtil.isClient()) {
+     *             hotWeapon.accuracyOfFireComponent.onCurrentDispersionChangedClient.add(() => { console.log("accuracyOfFireComponent.onCurrentDispersionChangedClient") });
+     *         }
+     *     }
+     * }
+     * ```
+     */
+    const HotWeaponAccuracyOfFireComponent: typeof mw.HotWeaponAccuracyOfFireComponent;
+    type HotWeaponAccuracyOfFireComponent = mw.HotWeaponAccuracyOfFireComponent;
     /**
      * @author baoqiang.han
      * @description 碰撞检测通道
@@ -4154,46 +4029,6 @@ declare global {
     const HitResult: typeof mw.HitResult;
     type HitResult = mw.HitResult;
     /**
-     * @description 热武器射击精度组件
-     * @description 武器射击精度是指武器在射击时的命中目标的准确性和精度程度。它描述了武器在使用时弹道路径的稳定性和预测性，以及射击的命中率和精度。控制热武器发射时，子弹的发散程度，默认状态下为最小发散程度.
-     * @description 武器射击精度可以用一个简单的比喻来描述：它就像是你打篮球时的投篮准确度。
-     * @description 当你投篮时，你希望篮球准确地进入篮筐，而不是偏离目标。这就是投篮的精度。在武器射击中，精度指的是武器发射的子弹能够准确地命中目标，而不是随意地朝着其他方向飞行。
-     * @groups 玩法/热武器/辅助类
-     * @networkStatus usage: 双端
-     * @author jun.zhang
-     * @example
-     * 使用示例: 创建一个名为"HotWeaponAofSample1"的脚本，放置在对象管理器中，打开脚本，输入以下代码保存，运行游戏，代码如下：
-     * ```ts
-     * @Component
-     * export default class HotWeaponAofSample1 extends Script {
-     *     protected onStart(): void {
-     *         // 构造
-     *         const hotWeapon = this.gameObject as HotWeapon;
-     *
-     *         if (SystemUtil.isServer()) {
-     *             hotWeapon.accuracyOfFireEnable = true;
-     *             // 影响射击精度的子弹偏移半角的最大值(范围Min~88)
-     *             hotWeapon.accuracyOfFireComponent.maxDispersionHalfAngle = 4;
-     *             // 影响射击精度的子弹偏移半角的最小值(范围0~Max)
-     *             hotWeapon.accuracyOfFireComponent.minDispersionHalfAngle = 0.01;
-     *             // 默认影响射击精度的子弹偏移半角(范围Min~Max)
-     *             hotWeapon.accuracyOfFireComponent.defaultDispersionHalfAngle = 1;
-     *             // 影响射击精度的子弹偏移半角的每秒扩张速度(范围0~88)
-     *             hotWeapon.accuracyOfFireComponent.dispersionHalfAngleIncreaseSpeed = 5;
-     *             // 影响射击精度的子弹偏移半角的每秒收缩速度(范围0~88)
-     *             hotWeapon.accuracyOfFireComponent.dispersionHalfAngleDecreaseSpeed = 10;
-     *             // 影响射击精度的子弹偏移半角的每次开火扩张值(范围0~88)
-     *             hotWeapon.accuracyOfFireComponent.dispersionHalfAngleIncreasePerShot = 1;
-     *         } else if (SystemUtil.isClient()) {
-     *             hotWeapon.accuracyOfFireComponent.onCurrentDispersionChangedClient.add(() => { console.log("accuracyOfFireComponent.onCurrentDispersionChangedClient") });
-     *         }
-     *     }
-     * }
-     * ```
-     */
-    const HotWeaponAccuracyOfFireComponent: typeof mw.HotWeaponAccuracyOfFireComponent;
-    type HotWeaponAccuracyOfFireComponent = mw.HotWeaponAccuracyOfFireComponent;
-    /**
      * @hidden
      * @author yuchen.ren
      * @groups 动画
@@ -4293,13 +4128,6 @@ declare global {
     const SubStance: typeof mw.SubStance;
     type SubStance = mw.SubStance;
     /**
-     * @author jun.zhang
-     * @groups 玩法
-     * @description 热武器状态
-     */
-    const HotWeaponState: typeof mw.HotWeaponState;
-    type HotWeaponState = mw.HotWeaponState;
-    /**
      * @author chenghao.song
      * @groups 角色系统
      * @description 移动控制模式
@@ -4313,6 +4141,13 @@ declare global {
      */
     const MoveFacingDirection: typeof mw.MoveFacingDirection;
     type MoveFacingDirection = mw.MoveFacingDirection;
+    /**
+     * @author jun.zhang
+     * @groups 玩法
+     * @description 热武器瞄准模式
+     */
+    const HotWeaponAimMode: typeof mw.HotWeaponAimMode;
+    type HotWeaponAimMode = mw.HotWeaponAimMode;
     /**
      * @author chenghao.song
      * @groups 角色系统
@@ -4338,6 +4173,37 @@ declare global {
      */
     const MovementDirection: typeof mw.MovementDirection;
     type MovementDirection = mw.MovementDirection;
+    /**
+     * @description 热武器瞄准组件，瞄准状态下持枪角色的视角会拉近
+     * @groups 玩法/热武器/辅助类
+     * @networkStatus usage: 双端
+     * @author jun.zhang
+     * @example
+     * 使用示例: 创建一个名为"HotWeaponAimSample1"的脚本，放置在对象管理器中，打开脚本，输入以下代码保存，运行游戏，代码如下：
+     * ```ts
+     * @Component
+     * export default class HotWeaponAimSample1 extends Script {
+     *     protected onStart(): void {
+     *         // 构造
+     *         const hotWeapon = this.gameObject as HotWeapon;
+     *
+     *         if (SystemUtil.isServer()) {
+     *             hotWeapon.aimEnabled = true;
+     *             hotWeapon.aimComponent.aimMode = HotWeaponAimMode.ThirdPerson;
+     *             hotWeapon.aimComponent.aimingZoom = 16;
+     *             hotWeapon.aimComponent.cameraOffsetDistanceInThirdPersonMode = 300;
+     *             hotWeapon.aimComponent.onStartAim.add(() => { console.log("aimComponent.onAimStartClient") });
+     *             hotWeapon.aimComponent.onEndAim.add(() => { console.log("aimComponent.onAimEndClient") });
+     *         } else if (SystemUtil.isClient()) {
+     *             hotWeapon.aimComponent.onStartAim.add(() => { console.log("aimComponent.onAimStartClient") });
+     *             hotWeapon.aimComponent.onEndAim.add(() => { console.log("aimComponent.onAimEndClient") });
+     *         }
+     *     }
+     * }
+     * ```
+     */
+    const HotWeaponAimComponent: typeof mw.HotWeaponAimComponent;
+    type HotWeaponAimComponent = mw.HotWeaponAimComponent;
     /**
      * @author guang.deng
      * @groups 角色系统
@@ -4521,7 +4387,7 @@ declare global {
     const Pawn: typeof mw.Pawn;
     type Pawn = mw.Pawn;
     /**
-     * @author denghongbing
+     * @author guang.deng
      * @groups 角色系统
      * @description 动画曲线
      */
@@ -4585,13 +4451,6 @@ declare global {
     const Camera: typeof mw.Camera;
     type Camera = mw.Camera;
     /**
-     * @author huipeng.jia
-     * @description 四轮载具车轮位置
-     * @groups 玩法
-     */
-    const VehicleWheelPosition4WNew: typeof mw.VehicleWheelPosition4WNew;
-    type VehicleWheelPosition4WNew = mw.VehicleWheelPosition4WNew;
-    /**
      * @author yunhao.liao
      * @groups 玩法/摄像机
      * @description 弹簧臂
@@ -4600,12 +4459,53 @@ declare global {
     const SpringArm: typeof mw.SpringArm;
     type SpringArm = mw.SpringArm;
     /**
-     * @author huipeng.jia
-     * @description 四轮载具驱动模式
-     * @groups 玩法
+     * @author baoqiang.han
+     * @groups 场景/特效
+     * @description 特效
+     * @description 通常用于游戏场景中的效果表现，如火焰，水流，武器拖尾等，当编辑器细节面板勾选自动启用时，运行游戏会自动播放特效。
+     * @description 如需精确控制特效的播放与停止，请使用 play 和 stop 方法。不同特效有不同的生命周期，部分特效可通过细节面板中参数调节。
+     * @networkStatus usage:客户端
+     * @example
+     * 使用示例:创建一个名为"EffectExample"的脚本，放置在对象栏中，打开脚本，输入以下代码保存，运行游戏，你将在场景中看到粒子特效炸裂的效果。代码如下：
+     * ```
+     * @Component
+     * export default class EffectExample extends Script {
+     *
+     *     private readonly effect = {
+     *         assetID: "145884",
+     *         object: null as mw.Effect,
+     *     };
+     *
+     *     protected onStart(): void {
+     *         this.createEffect();
+     *     }
+     *
+     *     @RemoteFunction(Client)
+     *     public async createEffect(): Promise<void> {
+     *         const success = await mw.AssetUtil.asyncDownloadAsset(this.effect.assetID);
+     *             if (success) {
+     *                 // 下载完毕创建特效
+     *                 this.effect.object = await mw.GameObject.asyncSpawn(this.effect.assetID) as mw.Effect;
+     *
+     *                 // 设置特效transform
+     *                 const transform = new mw.Transform(new mw.Vector(500, 0, 0), new mw.Rotation(0, 0, 0), new mw.Vector(1, 1, 1));
+     *                 this.effect.object.localTransform = transform;
+     *
+     *                 // 播放特效
+     *                 this.effect.object.play();
+     *                 // 设置特效参数Life标量值
+     *                 this.effect.object.setFloat("LifeTime", 10);
+     *                 // 设置特效参数Speed向量值
+     *                 this.effect.object.setVector("Speed", new mw.Vector(0,0,150));
+     *                 // 设置特效参数Color颜色值
+     *                 this.effect.object.setColor("Color", new mw.LinearColor(1,0,0,1));
+     *             }
+     *     }
+     * }
+     * ```
      */
-    const VehicleDriveMode4WNew: typeof mw.VehicleDriveMode4WNew;
-    type VehicleDriveMode4WNew = mw.VehicleDriveMode4WNew;
+    const Effect: typeof mw.Effect;
+    type Effect = mw.Effect;
     /**
     * @author yunhao.liao
     * @groups 玩法
@@ -4613,6 +4513,324 @@ declare global {
     */
     const CameraPositionMode: typeof mw.CameraPositionMode;
     type CameraPositionMode = mw.CameraPositionMode;
+    /**
+     * @author yunhao.liao
+     * @description 环境雾预设枚举
+     * @groups 场景/灯光
+     */
+    const FogPreset: typeof mw.FogPreset;
+    type FogPreset = mw.FogPreset;
+    /**
+     * @author yunhao.liao
+     * @groups 玩法
+     * @description 摄像机旋转模式
+     */
+    const CameraRotationMode: typeof mw.CameraRotationMode;
+    type CameraRotationMode = mw.CameraRotationMode;
+    /**
+     * @author yunhao.liao
+     * @groups 场景/灯光
+     * @description 环境雾
+     * @description ----------------------------------
+     * @description 环境雾是一种大气效果，可以模拟雾、大气灰尘等渲染真实的大气效果，在场景中制造云雾缭绕的氛围感。
+     * @description     环境雾中的属性与方法均为 static ， Fog 直接调用即可设置环境雾。其中比较常用的有：
+     * @description     - enabled 静态属性开启设为 TRUE 才可使用环境雾功能。
+     * @description     - directionalInscatteringColor 静态属性表示雾的颜色。
+     * @description     - density 静态属性表示雾的密度。
+     * @description     - startDistance 静态属性表示雾与摄像机的距离。
+     * @networkStatus usage:客户端
+     */
+    const Fog: typeof mw.Fog;
+    type Fog = mw.Fog;
+    /**
+     * @author yunhao.liao
+     * @groups 玩法
+     * @description 摄像机镜头模式
+     */
+    const CameraProjectionMode: typeof mw.CameraProjectionMode;
+    type CameraProjectionMode = mw.CameraProjectionMode;
+    /**
+     * @hidden
+     * @description Gizmo
+     * @author  hongbing.deng
+     * @groups 基础类型/其他
+     * @instance
+     * @networkStatus usage:双端
+     */
+    const Gizmo: typeof mw.Gizmo;
+    type Gizmo = mw.Gizmo;
+    /**
+     * @author yunhao.liao
+     * @groups 玩法
+     * @description 摄像机模式
+     */
+    const CameraPreset: typeof mw.CameraPreset;
+    type CameraPreset = mw.CameraPreset;
+    /**
+     * @author hao.huang
+     * @description IK锚点类型
+     * @groups 玩法/其他
+     */
+    const IKPart: typeof mw.IKPart;
+    type IKPart = mw.IKPart;
+    /**
+     * @author yunhao.liao
+     * @groups 玩法
+     * @description 切换摄像机时运用的混合函数
+     */
+    const CameraSwitchBlendFunction: typeof mw.CameraSwitchBlendFunction;
+    type CameraSwitchBlendFunction = mw.CameraSwitchBlendFunction;
+    /**
+     * @author hao.huang
+     * @groups 玩法/其他
+     * @description IK锚点
+     * @networkStatus usage:双端
+     */
+    const IKAnchor: typeof mw.IKAnchor;
+    type IKAnchor = mw.IKAnchor;
+    /**
+     * @author yunhao.liao
+     * @groups 玩法
+     * @description 定义如何开始(从零开始，或者从随机值开始)
+     */
+    const InitialOscillatorOffset: typeof mw.InitialOscillatorOffset;
+    type InitialOscillatorOffset = mw.InitialOscillatorOffset;
+    /**
+     * @author baoqiang.han
+     * @description 特效发射取向
+     * @groups 场景/特效
+     */
+    const ParticleEmitterOrientation: typeof mw.ParticleEmitterOrientation;
+    type ParticleEmitterOrientation = mw.ParticleEmitterOrientation;
+    /**
+     * @author yunhao.liao
+     * @groups 玩法
+     * @description 振荡器波形
+     */
+    const OscillatorWaveform: typeof mw.OscillatorWaveform;
+    type OscillatorWaveform = mw.OscillatorWaveform;
+    /**
+     * @author baoqiang.han
+     * @description 特效发射类型
+     * @groups 场景/特效
+     */
+    const ParticleEmitterShapeStyle: typeof mw.ParticleEmitterShapeStyle;
+    type ParticleEmitterShapeStyle = mw.ParticleEmitterShapeStyle;
+    /**
+     * @author yunhao.liao
+     * @groups 玩法/摄像机
+     * @description 横纵比约束
+     */
+    const AspectRatioAxisConstraint: typeof mw.AspectRatioAxisConstraint;
+    type AspectRatioAxisConstraint = mw.AspectRatioAxisConstraint;
+    /**
+     * @author baoqiang.han
+     * @description 特效形状枚举
+     * @groups 场景/特效
+     */
+    const ParticleEmitterShape: typeof mw.ParticleEmitterShape;
+    type ParticleEmitterShape = mw.ParticleEmitterShape;
+    /**
+     * @author baoqiang.han
+     * @description 特效标量值曲线节点
+     * @networkStatus usage:客户端
+     * @groups 场景/特效
+     */
+    const numberSequencePoint: typeof mw.numberSequencePoint;
+    type numberSequencePoint = mw.numberSequencePoint;
+    /**
+     * @author baoqiang.han
+     * @description 特效三维向量值曲线节点
+     * @networkStatus usage:客户端
+     * @groups 场景/特效
+     */
+    const vectorSequencePoint: typeof mw.vectorSequencePoint;
+    type vectorSequencePoint = mw.vectorSequencePoint;
+    /**
+     * @author baoqiang.han
+     * @description 特效二维向量值曲线节点
+     * @networkStatus usage:客户端
+     * @groups 场景/特效
+     */
+    const vector2DSequencePoint: typeof mw.vector2DSequencePoint;
+    type vector2DSequencePoint = mw.vector2DSequencePoint;
+    /**
+     * @author baoqiang.han
+     * @description 特效颜色值曲线节点
+     * @networkStatus usage:客户端
+     * @groups 场景/特效
+     */
+    const colorSequencePoint: typeof mw.colorSequencePoint;
+    type colorSequencePoint = mw.colorSequencePoint;
+    /**
+     * @author baoqiang.han
+     * @groups 场景/特效
+     * @description 粒子特效
+     * @description 通常用于游戏场景中的效果表现，目前开放部分粒子效果，当编辑器细节面板勾选自动启用时，运行游戏会自动播放特效。
+     * @description 如需精确控制特效的播放与停止，请使用 play 和 stop 方法。该特效需要手动控制生命周期，效果可通过细节面板中参数调节。
+     * @networkStatus usage:客户端
+     * @example
+     * 使用示例:创建一个名为"EffectExample"的脚本，拖拽到对象栏特效下，打开脚本，输入以下代码保存，运行游戏，你将在场景中看到粒子的变化效果。代码如下：
+     * ```
+     * @Component
+     * export default class EffectExample extends Script {
+     *
+     *     protected onStart(): void {
+     *
+     *          let Effect = this.gameObject as ParticleEmitter;
+     *          // 涉及部分对生命周期内效果的修改
+     *          // 创建尺寸生命周期数组 效果为由蓝线性过度至红色
+     *          let ColorSequence = Array<mw.colorSequencePoint>();
+     *          // 生命周期0%时为蓝色 详见LinearColor
+     *          ColorSequence.push(new mw.colorSequencePoint(0, new LinearColor(1,0,0)));
+     *          // 生命周期100%时为红色
+     *          ColorSequence.push(new mw.colorSequencePoint(0, new LinearColor(0,0,1)));
+     *          Effect.color = ColorSequence;
+     *          // 创建透明度生命周期数组 效果为逐渐清晰
+     *          let TransparencySequence = Array<mw.numberSequencePoint>();
+     *          // 刚生成时透明度为0 看不见
+     *          TransparencySequence.push(new mw.numberSequencePoint(0, 0));
+     *          // 逐渐过渡到生命周期末 全显示
+     *          TransparencySequence.push(new mw.numberSequencePoint(1, 1));
+     *          Effect.transparency = TransparencySequence;
+     *
+     *          // 创建尺寸生命周期数组 效果为变大再缩小
+     *          let SizeSequence = Array<mw.numberSequencePoint>();
+     *          // 生命周期0%时大小为0
+     *          Size
+     *          // 生命周期50%时大小为4
+     *          SizeSequence.push(new mw.numberSequencePoint(0.5, 4));
+     *          // 生命周期100%时大小回到0
+     *          SizeSequence.push(new mw.numberSequencePoint(1, 0));
+     *          Effect.size = SizeSequence;
+     *
+     *          // 设置特效阻力为1
+     *          Effect.drag = 1;
+     *          // 增加特效生成的速度
+     *          Effect.rate = 100;
+     *          // 不进行边缘裁剪,全部保留,方形
+     *          Effect.maskRadius = 1;
+     *          // 仅在表面生成
+     *          Effect.shapeStyle = mw.ParticleEmitterShapeStyle.OnlySurface;
+     *          // 生成范围长宽高100
+     *          Effect.shapeExtents = new Vector(100, 100, 100);
+     *
+     *          // 生命周期在1~10范围内随机
+     *          Effect.lifetime = new Vector2(1, 10);
+     *          // 10秒后停止, 不影响已生成粒子
+     *          setTimeout(() => {
+     *              Effect.stop();
+     *          }, 10000);
+     *     }
+     * }
+     * ```
+     */
+    const ParticleEmitter: typeof mw.ParticleEmitter;
+    type ParticleEmitter = mw.ParticleEmitter;
+    /**
+     * @author xiangkun.sun
+     * @groups 玩法/其他
+     * @description 材质实例类
+     * @networkStatus usage:双端
+     * @example
+     * 使用示例:创建一个名为"MaterialExample"的脚本，把脚本挂载到一个模型对象下，打开脚本，输入以下代码保存，运行游戏，你将在场景中看到动态设置材质的效果。代码如下：
+     * ```
+     * @Component
+     * export default class MaterialExample extends Script {
+     *     protected onStart(): void {
+     *         if (this.gameObject instanceof mw.Model){
+     *             // 获取当前Mesh上的材质
+     *             const mis = this.gameObject.getMaterialInstance();
+     *             mis.forEach(mi => {
+     *             // 获取当前材质的浮点参数
+     *                 let aspns = mi.getAllScalarParameterName();
+     *                 aspns.forEach(aspn => {
+     *                     // 设置当前材质的浮点参数
+     *                     mi.setScalarParameterValue(aspn, 1);
+     *                 });
+     *                 // 获取当前材质的颜色参数
+     *                 let avpns = mi.getAllVectorParameterName();
+     *                 avpns.forEach(avpn => {
+     *                     // 设置当前材质的颜色参数
+     *                     mi.setVectorParameterValue(avpn, LinearColor.red);
+     *                 });
+     *                 // 获取当前材质的贴图参数
+     *                 let atpns = mi.getAllTextureParameterName();
+     *                 atpns.forEach(atpn => {
+     *                     // 设置当前材质的贴图参数，确保设置的资源被加载了
+     *                     mi.setTextureParameterValue(atpn, "26512");
+     *                 });
+     *             });
+     *         }
+     *     }
+     * }
+     * ```
+     */
+    const MaterialInstance: typeof mw.MaterialInstance;
+    type MaterialInstance = mw.MaterialInstance;
+    /**
+     * @author baoqiang.han
+     * @description 后处理预设枚举
+     * @groups 场景/灯光
+     */
+    const PostProcessPreset: typeof mw.PostProcessPreset;
+    type PostProcessPreset = mw.PostProcessPreset;
+    /**
+     * @author huipeng.jia
+     * @description 四轮载具车轮位置
+     * @groups 玩法
+     */
+    const VehicleWheelPosition4WNew: typeof mw.VehicleWheelPosition4WNew;
+    type VehicleWheelPosition4WNew = mw.VehicleWheelPosition4WNew;
+    /**
+     * @author baoqiang.han
+     * @groups 场景/灯光
+     * @description 后处理对象属性配置
+     * @networkStatus usage:双端
+     */
+    const PostProcessConfig: typeof mw.PostProcessConfig;
+    type PostProcessConfig = mw.PostProcessConfig;
+    /**
+     * @author huipeng.jia
+     * @description 四轮载具驱动模式
+     * @groups 玩法
+     */
+    const VehicleDriveMode4WNew: typeof mw.VehicleDriveMode4WNew;
+    type VehicleDriveMode4WNew = mw.VehicleDriveMode4WNew;
+    /**
+     * @author baoqiang.han
+     * @groups 场景/灯光
+     * @description 后处理
+     * @description ----------------------------------
+     * @description 后处理是指在渲染完成后对图像进行处理的一系列技术和效果。后处理通常用于增强或修改最终渲染图像的对比度、饱和度等特性，以达到特定的视觉效果或风格。
+     * @networkStatus usage:客户端
+     * @example
+     * 使用示例: 可按如下操作控制编辑器后处理实时效果
+     * 创建一个名为"PostProcessExample"的脚本，放置在对象栏中，打开脚本，输入以下代码，运行游戏，你将可以通过+和-键控制后处理的伽马值
+     * ```
+     * @Component
+     * export default class PostProcessExample extends mw.Script {
+     *     // 当脚本被实例后，会在第一帧更新前调用此函数
+     *     protected async onStart(): Promise<void> {
+     *         if(SystemUtil.isClient())
+     *         {
+     *             mw.InputUtil.onKeyDown(Keys.Add,()=>{
+     *                 // 小键盘+建，增加后处理饱和度,依次递增1个单位
+     *                 PostProcess.saturation = PostProcess.saturation + 1;
+     *                 console.log("当前后处理饱和度:" + PostProcess.saturation);
+     *             });
+     *             InputUtil.onKeyDown(Keys.Subtract,()=>{
+     *                 // 小键盘-建，降低后处理饱和度,依次递减1个单位
+     *                 PostProcess.saturation = PostProcess.saturation - 1;
+     *                 console.log("当前后处理饱和度:" + PostProcess.saturation);
+     *             });
+     *         }
+     *     }
+     * }
+     * ```
+     */
+    const PostProcess: typeof mw.PostProcess;
+    type PostProcess = mw.PostProcess;
     /**
      * @author huipeng.jia
      * @groups 玩法/载具
@@ -4898,12 +5116,12 @@ declare global {
     const AdvancedVehicle: typeof mw.AdvancedVehicle;
     type AdvancedVehicle = mw.AdvancedVehicle;
     /**
-     * @author yunhao.liao
-     * @groups 玩法
-     * @description 摄像机旋转模式
+     * @author baoqiang.han
+     * @description 天空盒预设枚举
+     * @groups 场景/灯光
      */
-    const CameraRotationMode: typeof mw.CameraRotationMode;
-    type CameraRotationMode = mw.CameraRotationMode;
+    const SkyPreset: typeof mw.SkyPreset;
+    type SkyPreset = mw.SkyPreset;
     /**
      * @author baoqiang.han
      * @groups 玩法/其他
@@ -4943,211 +5161,61 @@ declare global {
     const BlockingVolume: typeof mw.BlockingVolume;
     type BlockingVolume = mw.BlockingVolume;
     /**
-     * @author yunhao.liao
-     * @groups 玩法
-     * @description 摄像机镜头模式
-     */
-    const CameraProjectionMode: typeof mw.CameraProjectionMode;
-    type CameraProjectionMode = mw.CameraProjectionMode;
-    /**
      * @author baoqiang.han
-     * @groups 场景/特效
-     * @description 特效
-     * @description 通常用于游戏场景中的效果表现，如火焰，水流，武器拖尾等，当编辑器细节面板勾选自动启用时，运行游戏会自动播放特效。
-     * @description 如需精确控制特效的播放与停止，请使用 play 和 stop 方法。不同特效有不同的生命周期，部分特效可通过细节面板中参数调节。
-     * @networkStatus usage:客户端
-     * @example
-     * 使用示例:创建一个名为"EffectExample"的脚本，放置在对象栏中，打开脚本，输入以下代码保存，运行游戏，你将在场景中看到粒子特效炸裂的效果。代码如下：
-     * ```
-     * @Component
-     * export default class EffectExample extends Script {
-     *
-     *     private readonly effect = {
-     *         assetID: "145884",
-     *         object: null as mw.Effect,
-     *     };
-     *
-     *     protected onStart(): void {
-     *         this.createEffect();
-     *     }
-     *
-     *     @RemoteFunction(Client)
-     *     public async createEffect(): Promise<void> {
-     *         const success = await mw.AssetUtil.asyncDownloadAsset(this.effect.assetID);
-     *             if (success) {
-     *                 // 下载完毕创建特效
-     *                 this.effect.object = await mw.GameObject.asyncSpawn(this.effect.assetID) as mw.Effect;
-     *
-     *                 // 设置特效transform
-     *                 const transform = new mw.Transform(new mw.Vector(500, 0, 0), new mw.Rotation(0, 0, 0), new mw.Vector(1, 1, 1));
-     *                 this.effect.object.localTransform = transform;
-     *
-     *                 // 播放特效
-     *                 this.effect.object.play();
-     *                 // 设置特效参数Life标量值
-     *                 this.effect.object.setFloat("LifeTime", 10);
-     *                 // 设置特效参数Speed向量值
-     *                 this.effect.object.setVector("Speed", new mw.Vector(0,0,150));
-     *                 // 设置特效参数Color颜色值
-     *                 this.effect.object.setColor("Color", new mw.LinearColor(1,0,0,1));
-     *             }
-     *     }
-     * }
-     * ```
-     */
-    const Effect: typeof mw.Effect;
-    type Effect = mw.Effect;
-    /**
-     * @author yunhao.liao
-     * @groups 玩法
-     * @description 摄像机模式
-     */
-    const CameraPreset: typeof mw.CameraPreset;
-    type CameraPreset = mw.CameraPreset;
-    /**
-     * @author yunhao.liao
-     * @description 环境雾预设枚举
+     * @description 天空盒背景的切换方式枚举
      * @groups 场景/灯光
      */
-    const FogPreset: typeof mw.FogPreset;
-    type FogPreset = mw.FogPreset;
+    const SkyboxBackgroundSwitchMode: typeof mw.SkyboxBackgroundSwitchMode;
+    type SkyboxBackgroundSwitchMode = mw.SkyboxBackgroundSwitchMode;
     /**
      * @author yunhao.liao
-     * @groups 玩法
-     * @description 切换摄像机时运用的混合函数
+     * @groups 玩法/摄像机
+     * @description 抖动数据
      */
-    const CameraSwitchBlendFunction: typeof mw.CameraSwitchBlendFunction;
-    type CameraSwitchBlendFunction = mw.CameraSwitchBlendFunction;
+    type CameraShakeInfo = mw.CameraShakeInfo;
     /**
-     * @author yunhao.liao
-     * @groups 场景/灯光
-     * @description 环境雾
-     * @description ----------------------------------
-     * @description 环境雾是一种大气效果，可以模拟雾、大气灰尘等渲染真实的大气效果，在场景中制造云雾缭绕的氛围感。
-     * @description     环境雾中的属性与方法均为 static ， Fog 直接调用即可设置环境雾。其中比较常用的有：
-     * @description     - enabled 静态属性开启设为 TRUE 才可使用环境雾功能。
-     * @description     - directionalInscatteringColor 静态属性表示雾的颜色。
-     * @description     - density 静态属性表示雾的密度。
-     * @description     - startDistance 静态属性表示雾与摄像机的距离。
-     * @networkStatus usage:客户端
+     * @author guang.deng
+     * @groups 基础类型
+     * @description 返回Bool的回调
      */
-    const Fog: typeof mw.Fog;
-    type Fog = mw.Fog;
+    type BoolCallback = mw.BoolCallback;
     /**
-     * @author yunhao.liao
-     * @groups 玩法
-     * @description 定义如何开始(从零开始，或者从随机值开始)
+     * @author guang.deng
+     * @groups 基础类型
+     * @description 外观加载完成委托
+     * @precautions 当角色外观加载完成时执行绑定函数
      */
-    const InitialOscillatorOffset: typeof mw.InitialOscillatorOffset;
-    type InitialOscillatorOffset = mw.InitialOscillatorOffset;
+    type OnDescriptionComplete = mw.OnDescriptionComplete;
     /**
+     * @ignore
      * @hidden
-     * @description Gizmo
-     * @author  hongbing.deng
-     * @groups 基础类型/其他
-     * @instance
-     * @networkStatus usage:双端
      */
-    const Gizmo: typeof mw.Gizmo;
-    type Gizmo = mw.Gizmo;
+    type Console = mw.Console;
     /**
-     * @author yunhao.liao
+     * @author guang.deng
+     * @groups 基础类型
+     * @description 角色编辑器数据加载完成后的回调
+     */
+    type LoadAppearanceDataAllCompletedCallback = mw.LoadAppearanceDataAllCompletedCallback;
+    /**
+     * @author guang.deng
+     * @groups 基础类型
+     * @description 外观主体（前发，后发，头，上衣，下衣，手套，鞋）加载失败委托
+     * @precautions 当角色外观加载失败时执行绑定函数
+     */
+    type OnLoadDescriptionFailed = mw.OnLoadDescriptionFailed;
+    /**
+     * @author huipeng.jia
+     * @description 四轮载具车轮属性
      * @groups 玩法
-     * @description 振荡器波形
      */
-    const OscillatorWaveform: typeof mw.OscillatorWaveform;
-    type OscillatorWaveform = mw.OscillatorWaveform;
+    type VehicleWheelDataNew = mw.VehicleWheelDataNew;
     /**
-     * @author hao.huang
-     * @description IK锚点类型
-     * @groups 玩法/其他
+     * @author guang.deng
+     * @groups 基础类型
+     * @description 空的回调函数类型
      */
-    const IKPart: typeof mw.IKPart;
-    type IKPart = mw.IKPart;
-    /**
-     * @author hao.huang
-     * @groups 玩法/其他
-     * @description IK锚点
-     * @networkStatus usage:双端
-     */
-    const IKAnchor: typeof mw.IKAnchor;
-    type IKAnchor = mw.IKAnchor;
-    /**
-     * @author baoqiang.han
-     * @description 特效发射取向
-     * @groups 场景/特效
-     */
-    const ParticleEmitterOrientation: typeof mw.ParticleEmitterOrientation;
-    type ParticleEmitterOrientation = mw.ParticleEmitterOrientation;
-    /**
-     * @author baoqiang.han
-     * @description 特效发射类型
-     * @groups 场景/特效
-     */
-    const ParticleEmitterShapeStyle: typeof mw.ParticleEmitterShapeStyle;
-    type ParticleEmitterShapeStyle = mw.ParticleEmitterShapeStyle;
-    /**
-     * @author baoqiang.han
-     * @description 特效形状枚举
-     * @groups 场景/特效
-     */
-    const ParticleEmitterShape: typeof mw.ParticleEmitterShape;
-    type ParticleEmitterShape = mw.ParticleEmitterShape;
-    /**
-     * @author baoqiang.han
-     * @description 特效标量值曲线节点
-     * @groups 场景/特效
-     */
-    const numberSequencePoint: typeof mw.numberSequencePoint;
-    type numberSequencePoint = mw.numberSequencePoint;
-    /**
-     * @author xiangkun.sun
-     * @groups 玩法/其他
-     * @description 材质实例类
-     * @networkStatus usage:双端
-     * @example
-     * 使用示例:创建一个名为"MaterialExample"的脚本，把脚本挂载到一个模型对象下，打开脚本，输入以下代码保存，运行游戏，你将在场景中看到动态设置材质的效果。代码如下：
-     * ```
-     * @Component
-     * export default class MaterialExample extends Script {
-     *     protected onStart(): void {
-     *         if (this.gameObject instanceof mw.Model){
-     *             // 获取当前Mesh上的材质
-     *             const mis = this.gameObject.getMaterialInstance();
-     *             mis.forEach(mi => {
-     *             // 获取当前材质的浮点参数
-     *                 let aspns = mi.getAllScalarParameterName();
-     *                 aspns.forEach(aspn => {
-     *                     // 设置当前材质的浮点参数
-     *                     mi.setScalarParameterValue(aspn, 1);
-     *                 });
-     *                 // 获取当前材质的颜色参数
-     *                 let avpns = mi.getAllVectorParameterName();
-     *                 avpns.forEach(avpn => {
-     *                     // 设置当前材质的颜色参数
-     *                     mi.setVectorParameterValue(avpn, LinearColor.red);
-     *                 });
-     *                 // 获取当前材质的贴图参数
-     *                 let atpns = mi.getAllTextureParameterName();
-     *                 atpns.forEach(atpn => {
-     *                     // 设置当前材质的贴图参数，确保设置的资源被加载了
-     *                     mi.setTextureParameterValue(atpn, "26512");
-     *                 });
-     *             });
-     *         }
-     *     }
-     * }
-     * ```
-     */
-    const MaterialInstance: typeof mw.MaterialInstance;
-    type MaterialInstance = mw.MaterialInstance;
-    /**
-     * @author baoqiang.han
-     * @description 特效三维向量值曲线节点
-     * @groups 场景/特效
-     */
-    const vectorSequencePoint: typeof mw.vectorSequencePoint;
-    type vectorSequencePoint = mw.vectorSequencePoint;
+    type EmptyCallback = mw.EmptyCallback;
     /**
      * @author guang.deng
      * @groups 基础类型
@@ -5191,47 +5259,13 @@ declare global {
      */
     type StringCallback = mw.StringCallback;
     /**
-     * @author yunhao.liao
-     * @groups 玩法/摄像机
-     * @description 抖动数据
+     * @author xiangkun.sun
+     * @description 事件监听器
+     * @groups 基础类型/事件
+     * @networkStatus usage:双端
      */
-    type CameraShakeInfo = mw.CameraShakeInfo;
-    /**
-     * @author guang.deng
-     * @groups 基础类型
-     * @description 返回Bool的回调
-     */
-    type BoolCallback = mw.BoolCallback;
-    /**
-     * @ignore
-     * @hidden
-     */
-    type Console = mw.Console;
-    /**
-     * @author guang.deng
-     * @groups 基础类型
-     * @description 角色编辑器数据加载完成后的回调
-     */
-    type LoadAppearanceDataAllCompletedCallback = mw.LoadAppearanceDataAllCompletedCallback;
-    /**
-     * @author guang.deng
-     * @groups 基础类型
-     * @description 外观加载完成委托
-     * @precautions 当角色外观加载完成时执行绑定函数
-     */
-    type OnDescriptionComplete = mw.OnDescriptionComplete;
-    /**
-     * @author huipeng.jia
-     * @description 四轮载具车轮属性
-     * @groups 玩法
-     */
-    type VehicleWheelDataNew = mw.VehicleWheelDataNew;
-    /**
-     * @author guang.deng
-     * @groups 基础类型
-     * @description 空的回调函数类型
-     */
-    type EmptyCallback = mw.EmptyCallback;
+    const EventListener: typeof mw.EventListener;
+    type EventListener = mw.EventListener;
     /**
      * @description 事件发送的结果
      * @author xiangkun.sun
@@ -5257,14 +5291,6 @@ declare global {
     const Event: typeof mw.Event;
     type Event = mw.Event;
     /**
-     * @author xiangkun.sun
-     * @description 事件监听器
-     * @groups 基础类型/事件
-     * @networkStatus usage:双端
-     */
-    const EventListener: typeof mw.EventListener;
-    type EventListener = mw.EventListener;
-    /**
      * @description 数据储存返回代码
      * @author xiangkun.sun
      * @groups 数据处理
@@ -5273,8 +5299,12 @@ declare global {
     type DataStorageResultCode = mw.DataStorageResultCode;
     /**
      * @author xiangkun.sun
-     * @description 数据存储
      * @groups 数据处理
+     * @description 数据存储
+     * @precautions 在调用DataStorage相关接口时，每一个Key的对应值在数据服务器的读取和修改都有频率限制，主要表现在：接口调用时至一分钟前的时间区间内，某个Key的对应值在后端数据服务器上被获取Get、改写Set、删除Remove的总次数不能超过 (60+游戏设定的最大人数×10)次，不管它是在哪个服务器被操作的；如果时间区间内超限，请求会失败，然后Set、Remove会返回 FREQUENCY_OVERRUN(操作失败：请求频率超限) 而Get会catch到error timeout。
+     * 1. 这些限制是数据服务器层面针对单个Key来的，每个Key之间的限制互相独立，和游戏服务器无关。
+     * 2. Player相关的接口其实也算是一个Key，只不过是和玩家信息强相关的Key，也会受到上述限制；建议用 asyncSetData(属性名+玩家id+其他描述, 要存的值)来分存玩家相关的需要经常存取数据，以免堵塞。
+     * 3. 对于玩家相关的信息，建议在ts层建立数据缓存，进行一定的数据托管；即通过ts脚本逻辑让DS服务器临时缓存玩家数据，只在初始化的时候进行get，在离线或其他必要时set，以减轻对后端数据服务器的压力，保证稳定性
      * @networkStatus usage:双端
      */
     const DataStorage: typeof mw.DataStorage;
@@ -5294,6 +5324,13 @@ declare global {
     const LanguageUtil: typeof mw.LanguageUtil;
     type LanguageUtil = mw.LanguageUtil;
     /**
+     * @author baoqiang.han
+     * @description 触摸类型
+     * @groups 输入
+     */
+    const TouchInputType: typeof mw.TouchInputType;
+    type TouchInputType = mw.TouchInputType;
+    /**
      * @author xiaobo.qi
      * @description 本地化工具
      * @groups 工具
@@ -5301,68 +5338,6 @@ declare global {
      */
     const LocaleUtil: typeof mw.LocaleUtil;
     type LocaleUtil = mw.LocaleUtil;
-    /**
-     * @author xiangkun.sun
-     * @description 数学库工具
-     * @groups 工具
-     * @networkStatus usage:双端
-     */
-    const MathUtil: typeof mw.MathUtil;
-    type MathUtil = mw.MathUtil;
-    /**
-     * @author baoqiang.han
-     * @hidden
-     * @deprecated info:该接口已废弃，在该接口被删除前会仍保持可用，请尽快使用替换方案以免出现问题 since:027 reason:接口废弃 replacement:请使用InputUtil下的onTouchBegin、onTouchMove、onTouchEnd接口
-     * @groups 输入
-     * @description 玩家从可触摸设备获取的数据信息，包含触摸手指数量，触摸位置(屏幕像素)和当前触摸状态(点击/滑动/离开)
-     * @example
-         * 使用示例:创建一个名为"InputInputExample"的脚本，放置在对象栏中，打开脚本，输入以下代码保存，运行游戏，触摸屏幕，你将看从Log看到相关结果。代码如下：
-         * ```
-         * @Component
-         * export default class TouchInputExample extends Script {
-         *     protected onStart(): void {
-         *          let touch = new TouchInputUtil();
-         *          touch.onTouchBegin.add((index, location, state) => {
-         *          console.log("TouchBegin", index, location.toString(), state);
-         *          });
-         *          touch.onTouchMove.add((index, location, state) => {
-         *          console.log("TouchMove", index, location.toString(), state);
-         *          });
-         *          touch.onTouchEnd.add((index, location, state) => {
-         *          console.log("TouchEnd", index, location.toString(), state);
-         *          });
-         *     }
-         * }
-         * ```
-         */
-    const TouchInputUtil: typeof mw.TouchInputUtil;
-    type TouchInputUtil = mw.TouchInputUtil;
-    /**
-     * @author hao.huang
-     * @groups 玩法/寻路系统
-     * @description 寻路
-     * @description 寻路就像是给游戏角色一张地图和一套指导，让它们知道如何从一个地方走到另一个地方，避开障碍物。
-     * @description 想象一下，你在一个迷宫中，需要找到出口。寻路系统就是你的助手，告诉你应该往哪个方向走，以便最快地找到出口。
-     * @description 在游戏中，角色需要在游戏世界中移动，而寻路功能帮助角色计算出最佳路径。它会考虑地图上的可行走区域和障碍物，然后找到一条避开障碍物、最短的路径来到目的地。
-     * @description 寻路就像是一个聪明的导航系统。它会检查周围的地形，看看哪里是可以走的，哪里是被阻挡的。然后，它会计算出一条路径，告诉角色应该朝着哪个方向移动，以及在每个点上应该转向多少度。
-     * @description 这样，角色就可以根据寻路给出的指引，沿着可行走的路径前进，避开障碍物，并最终到达目的地。
-     * @description 如何使用寻路功能呢 ?
-     * @description 左侧栏中寻路区域逻辑对象拖入场景中，可绘制出一个寻路区域，在此区域可实现寻路功能。
-     * @description 运行时寻路数据并不是动态生成的，而是随项目发布的本地寻路数据，寻路数据在场景初始化完成后加载。
-     * @description 当在设置项“寻路设置”中的动态寻路开启时，开启半动态寻路，仅可通过控制寻路修饰区，来达到运行时自定义的寻路效果。
-     * @networkStatus usage:双端
-     */
-    const Navigation: typeof mw.Navigation;
-    type Navigation = mw.Navigation;
-    /**
-     * @hidden
-     * @author jie.wu
-     * @description NFT资产交易系统。
-     * @groups 工具
-     * @networkStatus usage:客户端
-     */
-    const NFTUtil: typeof mw.NFTUtil;
-    type NFTUtil = mw.NFTUtil;
     /**
      * @author jie.wu
      * @description 输入事件工具
@@ -5402,22 +5377,6 @@ declare global {
     const InputUtil: typeof mw.InputUtil;
     type InputUtil = mw.InputUtil;
     /**
-         * @author hao.huang
-         * @groups 玩法/物理
-         * @description 碰撞组
-         * @networkStatus usage:双端
-         */
-    const PhysicsService: typeof mw.PhysicsService;
-    type PhysicsService = mw.PhysicsService;
-    /**
-     * @author xiangkun.sun
-     * @description 数据文件获取工具
-     * @groups 工具
-     * @networkStatus usage:双端
-     */
-    const DataFile: typeof mw.DataFile;
-    type DataFile = mw.DataFile;
-    /**
      * @author jun.zhang
      * @description 游戏性能数据，辅助 Debug 和性能优化
      * @groups 工具
@@ -5425,6 +5384,48 @@ declare global {
      */
     const DebugUtil: typeof mw.DebugUtil;
     type DebugUtil = mw.DebugUtil;
+    /**
+     * @author xiangkun.sun
+     * @description 数学库工具
+     * @groups 工具
+     * @networkStatus usage:双端
+     */
+    const MathUtil: typeof mw.MathUtil;
+    type MathUtil = mw.MathUtil;
+    /**
+     * @author hao.huang
+     * @groups 玩法/寻路系统
+     * @description 寻路
+     * @description 寻路就像是给游戏角色一张地图和一套指导，让它们知道如何从一个地方走到另一个地方，避开障碍物。
+     * @description 想象一下，你在一个迷宫中，需要找到出口。寻路系统就是你的助手，告诉你应该往哪个方向走，以便最快地找到出口。
+     * @description 在游戏中，角色需要在游戏世界中移动，而寻路功能帮助角色计算出最佳路径。它会考虑地图上的可行走区域和障碍物，然后找到一条避开障碍物、最短的路径来到目的地。
+     * @description 寻路就像是一个聪明的导航系统。它会检查周围的地形，看看哪里是可以走的，哪里是被阻挡的。然后，它会计算出一条路径，告诉角色应该朝着哪个方向移动，以及在每个点上应该转向多少度。
+     * @description 这样，角色就可以根据寻路给出的指引，沿着可行走的路径前进，避开障碍物，并最终到达目的地。
+     * @description 如何使用寻路功能呢 ?
+     * @description 左侧栏中寻路区域逻辑对象拖入场景中，可绘制出一个寻路区域，在此区域可实现寻路功能。
+     * @description 运行时寻路数据并不是动态生成的，而是随项目发布的本地寻路数据，寻路数据在场景初始化完成后加载。
+     * @description 当在设置项“寻路设置”中的动态寻路开启时，开启半动态寻路，仅可通过控制寻路修饰区，来达到运行时自定义的寻路效果。
+     * @networkStatus usage:双端
+     */
+    const Navigation: typeof mw.Navigation;
+    type Navigation = mw.Navigation;
+    /**
+     * @hidden
+     * @author jie.wu
+     * @description NFT资产交易系统。
+     * @groups 工具
+     * @networkStatus usage:客户端
+     */
+    const NFTUtil: typeof mw.NFTUtil;
+    type NFTUtil = mw.NFTUtil;
+    /**
+         * @author hao.huang
+         * @groups 玩法/物理
+         * @description 碰撞组
+         * @networkStatus usage:双端
+         */
+    const PhysicsService: typeof mw.PhysicsService;
+    type PhysicsService = mw.PhysicsService;
     /**
      * @author hao.huang
      * @groups 工具/射线检测
@@ -5435,19 +5436,20 @@ declare global {
     type QueryUtil = mw.QueryUtil;
     /**
      * @author baoqiang.han
-     * @description 触摸类型
-     * @groups 输入
-     */
-    const TouchInputType: typeof mw.TouchInputType;
-    type TouchInputType = mw.TouchInputType;
-    /**
-     * @author baoqiang.han
      * @groups 工具
      * @description 屏幕视口工具
      * @networkStatus usage:客户端
      */
     const ScreenUtil: typeof mw.ScreenUtil;
     type ScreenUtil = mw.ScreenUtil;
+    /**
+     * @author xiangkun.sun
+     * @description 数据文件获取工具
+     * @groups 工具
+     * @networkStatus usage:双端
+     */
+    const DataFile: typeof mw.DataFile;
+    type DataFile = mw.DataFile;
     /**
      * @author wu.hao
      * @groups 工具
@@ -5457,6 +5459,16 @@ declare global {
     const SelectionUtil: typeof mw.SelectionUtil;
     type SelectionUtil = mw.SelectionUtil;
     /**
+     * @author xiangkun.sun
+     * @description 资源管理工具
+     * @description 在使用左侧工具栏中的资源时，需要预先下载并加载。
+     * @description 可使用asyncDownloadAsset接口在代码中动态下载对应资源。也可将资源手动拖入编辑器右边优先加载队列中。
+     * @groups 工具
+     * @networkStatus usage:双端
+     */
+    const AssetUtil: typeof mw.AssetUtil;
+    type AssetUtil = mw.AssetUtil;
+    /**
      * @author huipeng.jia
      * @groups 工具
      * @description 字符串工具
@@ -5464,6 +5476,13 @@ declare global {
      */
     const StringUtil: typeof mw.StringUtil;
     type StringUtil = mw.StringUtil;
+    /**
+     * @author guang.deng
+     * @description 贴图格式
+     * @groups 基础类型
+     */
+    const TextureFormat: typeof mw.TextureFormat;
+    type TextureFormat = mw.TextureFormat;
     /**
      * @author mengyuan.hao
      * @description 状态信息获取工具
@@ -5481,16 +5500,6 @@ declare global {
      */
     const TimeUtil: typeof mw.TimeUtil;
     type TimeUtil = mw.TimeUtil;
-    /**
-     * @author xiangkun.sun
-     * @description 资源管理工具
-     * @description 在使用左侧工具栏中的资源时，需要预先下载并加载。
-     * @description 可使用asyncDownloadAsset接口在代码中动态下载对应资源。也可将资源手动拖入编辑器右边优先加载队列中。
-     * @groups 工具
-     * @networkStatus usage:双端
-     */
-    const AssetUtil: typeof mw.AssetUtil;
-    type AssetUtil = mw.AssetUtil;
     /**
      * @author huipeng.jia
      * @groups 工具/补间动画
@@ -5678,6 +5687,34 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const Tween: typeof mw.Tween;
     type Tween<T extends TweenUnknownProps> = mw.Tween<T>;
     /**
+     * @author baoqiang.han
+     * @hidden
+     * @deprecated info:该接口已废弃，在该接口被删除前会仍保持可用，请尽快使用替换方案以免出现问题 since:027 reason:接口废弃 replacement:请使用InputUtil下的onTouchBegin、onTouchMove、onTouchEnd接口
+     * @groups 输入
+     * @description 玩家从可触摸设备获取的数据信息，包含触摸手指数量，触摸位置(屏幕像素)和当前触摸状态(点击/滑动/离开)
+     * @example
+         * 使用示例:创建一个名为"InputInputExample"的脚本，放置在对象栏中，打开脚本，输入以下代码保存，运行游戏，触摸屏幕，你将看从Log看到相关结果。代码如下：
+         * ```
+         * @Component
+         * export default class TouchInputExample extends Script {
+         *     protected onStart(): void {
+         *          let touch = new TouchInputUtil();
+         *          touch.onTouchBegin.add((index, location, state) => {
+         *          console.log("TouchBegin", index, location.toString(), state);
+         *          });
+         *          touch.onTouchMove.add((index, location, state) => {
+         *          console.log("TouchMove", index, location.toString(), state);
+         *          });
+         *          touch.onTouchEnd.add((index, location, state) => {
+         *          console.log("TouchEnd", index, location.toString(), state);
+         *          });
+         *     }
+         * }
+         * ```
+         */
+    const TouchInputUtil: typeof mw.TouchInputUtil;
+    type TouchInputUtil = mw.TouchInputUtil;
+    /**
      * @author mengyuan.hao
      * @description 窗口设置工具。
      * @description 可设置窗口聚焦失焦时触发某种行为，获取分辨率等功能。
@@ -5711,17 +5748,17 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      */
     type TweenEasingFunction = mw.TweenEasingFunction;
     /**
-     * @author huipeng.jia
-     * @description 插值函数的类型定义
-     * @groups 基础类型
-     */
-    type TweenInterpolationFunction = mw.TweenInterpolationFunction;
-    /**
          * @author huipeng.jia
          * @description 屏蔽字检测的结果
          * @groups 基础类型
          */
     type maskWordCheckResult = mw.maskWordCheckResult;
+    /**
+     * @author huipeng.jia
+     * @description 插值函数的类型定义
+     * @groups 基础类型
+     */
+    type TweenInterpolationFunction = mw.TweenInterpolationFunction;
     /**
      * @author huipeng.jia
      * @description 补间属性的定义，用户可以自由扩展
@@ -5798,18 +5835,18 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const generalHttpRequest: typeof mw.generalHttpRequest;
     /**
      * @author junwen.hua
-     * @description 开放给用户用的URL枚举，需要与C++层的枚举对应
-     * @groups 玩法
-     */
-    const HttpRequestURL: typeof mw.HttpRequestURL;
-    type HttpRequestURL = mw.HttpRequestURL;
-    /**
-     * @author junwen.hua
      * @description 开发给用户用的Http请求类型枚举
      * @groups 玩法
      */
     const HttpRequestType: typeof mw.HttpRequestType;
     type HttpRequestType = mw.HttpRequestType;
+    /**
+     * @author junwen.hua
+     * @description 开放给用户用的URL枚举，需要与C++层的枚举对应
+     * @groups 玩法
+     */
+    const HttpRequestURL: typeof mw.HttpRequestURL;
+    type HttpRequestURL = mw.HttpRequestURL;
     /**
      * @author junwen.hua
      * @description Http请求的回调消息格式
@@ -5831,37 +5868,37 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     /**
      * @author si.wu
      * @groups 玩法/其他
-     * @description HTTP响应信息的对象
-     * @networkStatus usage:双端
-     */
-    type Response = mw.Response;
-    /**
-     * @author si.wu
-     * @groups 玩法/其他
      * @description HTTP请求信息的对象
      * @networkStatus usage:双端
      */
     type RequestInit = mw.RequestInit;
     /**
+     * @author si.wu
+     * @groups 玩法/其他
+     * @description HTTP响应信息的对象
+     * @networkStatus usage:双端
+     */
+    type Response = mw.Response;
+    /**
      * Decorator
      */
     const Decorator: typeof mwext.Decorator;
     /**
-    * @author lei.zhao
-    * @groups 拓展/背包
-    * @networkStatus usage:客户端
-    * @description 背包皮肤
+    * @author shilong.wang
+    * @groups 拓展/排行榜
+    * @description 排行榜主界面
+    * @networkStatus usage: 客户端
     */
-    const IBagSkin: typeof mwext.IBagSkin;
-    type IBagSkin = mwext.IBagSkin;
+    const LeaderboardMainPanelBase: typeof mwext.LeaderboardMainPanelBase;
+    type LeaderboardMainPanelBase<T extends ILeaderboardPanelView> = mwext.LeaderboardMainPanelBase<T>;
     /**
-    * @author lei.zhao
-    * @groups 拓展/背包
-    * @networkStatus usage:客户端
-    * @description 背包删除界面父类,继承这个类来实现自己的道具删除界面，使用BagModule.skin来指定皮肤
+    * @author shilong.wang
+    * @groups 拓展/排行榜
+    * @description 排行榜模块-客户端
+    * @networkStatus usage: 客户端
     */
-    const ItemDeleteUI: typeof mwext.ItemDeleteUI;
-    type ItemDeleteUI = mwext.ItemDeleteUI;
+    const LeaderboardModuleBaseC: typeof mwext.LeaderboardModuleBaseC;
+    type LeaderboardModuleBaseC<T extends LeaderboardModuleTypeS> = mwext.LeaderboardModuleBaseC<T>;
     /**
      * @instance
      * @author shilong.wang
@@ -5872,29 +5909,13 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const LeaderboardModule: typeof mwext.LeaderboardModule;
     type LeaderboardModule = mwext.LeaderboardModule;
     /**
-     * @author lei.zhao
-     * @groups 拓展/背包
-     * @networkStatus usage:客户端
-     * @description 背包界面父类,继承这个类来实现自己的背包界面，使用BagModule.skin来指定皮肤
+     * @author shilong.wang
+     * @groups 拓展/排行榜
+     * @description 排行榜主界面中的子UI，用来显示一条记录
+     * @networkStatus usage: 客户端
      */
-    const BagUI: typeof mwext.BagUI;
-    type BagUI = mwext.BagUI;
-    /**
-    * @author shilong.wang
-    * @groups 拓展/排行榜
-    * @description 排行榜模块-客户端
-    * @networkStatus usage: 客户端
-    */
-    const LeaderboardModuleBaseC: typeof mwext.LeaderboardModuleBaseC;
-    type LeaderboardModuleBaseC<T extends LeaderboardModuleTypeS> = mwext.LeaderboardModuleBaseC<T>;
-    /**
-    * @author lei.zhao
-    * @groups 拓展/背包
-    * @networkStatus usage:客户端
-    * @description 背包道具父类,继承这个类来实现自己的道具格子界面，使用BagModule.skin来指定皮肤
-    */
-    const BagItemUI: typeof mwext.BagItemUI;
-    type BagItemUI = mwext.BagItemUI;
+    const LeaderboardItemPanelBase: typeof mwext.LeaderboardItemPanelBase;
+    type LeaderboardItemPanelBase<T extends ILeaderboardItemView> = mwext.LeaderboardItemPanelBase<T>;
     /**
     * @author shilong.wang
     * @groups 拓展/排行榜
@@ -5904,13 +5925,29 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const LeaderboardModuleBaseS: typeof mwext.LeaderboardModuleBaseS;
     type LeaderboardModuleBaseS<T extends LeaderboardModuleTypeC> = mwext.LeaderboardModuleBaseS<T>;
     /**
-    * @author shilong.wang
-    * @groups 拓展/排行榜
-    * @description 排行榜主界面
-    * @networkStatus usage: 客户端
+    * @author lei.zhao
+    * @groups 拓展/背包
+    * @networkStatus usage:客户端
+    * @description 背包删除界面父类,继承这个类来实现自己的道具删除界面，使用BagModule.skin来指定皮肤
     */
-    const LeaderboardMainPanelBase: typeof mwext.LeaderboardMainPanelBase;
-    type LeaderboardMainPanelBase<T extends ILeaderboardPanelView> = mwext.LeaderboardMainPanelBase<T>;
+    const ItemDeleteUI: typeof mwext.ItemDeleteUI;
+    type ItemDeleteUI = mwext.ItemDeleteUI;
+    /**
+    * @author lei.zhao
+    * @groups 拓展/背包
+    * @networkStatus usage:客户端
+    * @description 背包皮肤
+    */
+    const IBagSkin: typeof mwext.IBagSkin;
+    type IBagSkin = mwext.IBagSkin;
+    /**
+     * @author lei.zhao
+     * @groups 拓展/背包
+     * @networkStatus usage:客户端
+     * @description 背包界面父类,继承这个类来实现自己的背包界面，使用BagModule.skin来指定皮肤
+     */
+    const BagUI: typeof mwext.BagUI;
+    type BagUI = mwext.BagUI;
     /**
      * @author shilong.wang
      * @groups 基类/数据拓展
@@ -5924,10 +5961,10 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      * @description 【保存数据方便】保存数据只需要调用父类SubData的save方法，即可实现保存
      * @description 【获取数据方便】获取数据只需要传入数据体的类名，即可获取到对应数据
      * @description 2. 数据控制中心是如何工作的？
-     * @description 数据上方标注的 @Decorator.saveProperty 装饰器有两个作用：
+     * @description 数据上方标注的 @Decorator.persistence 装饰器有两个作用：
      * @description - 让字段能够被永久存储（永久存储可以认为当退出游戏后，再次打开游戏，会存储上次游戏数据继续玩）
      * @description - 让字段能够被同步到客户端
-     * @description - 没有标注 @Decorator.saveProperty 装饰器将丧失永久存储和同步至客户端的能力。
+     * @description - 没有标注 @Decorator.persistence 装饰器将丧失永久存储和同步至客户端的能力。
      * @description 3. 通过改写 ModuleService 中的示例，数据控制中心如何使用：
      * @example
      * 使用示例: C&S 和数据模块组合。
@@ -5992,6 +6029,45 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const Subdata: typeof mwext.Subdata;
     type Subdata = mwext.Subdata;
     /**
+     * @author shilong.wang
+     * @groups 基类/数据拓展
+     * @description 客户端数据中心，里面存放着当前玩家的数据
+     * @networkStatus usage: 客户端
+     * @example
+     * 使用示例:创建一个名为DataCenterCExample的脚本，放置在对象栏中，打开脚本，将原本内容修改为如下内容，保存并运行游戏，你将在客户端日志中看到玩家数据就绪以及玩家等级为0的信息
+     * ```
+     * @Component
+     * export default class DataCenterCExample extends Script {
+     *
+     *     protected onStart(): void {
+     *         this.traceLevel();
+     *     }
+     *
+     *     //等待玩家数据准备好并输出玩家数据的等级
+     *     public async traceLevel(): Promise<void> {
+     *         if (SystemUtil.isClient()) {
+     *             //等待玩家数据准备好
+     *             await DataCenterC.ready();
+     *             console.log("玩家数据就绪");
+     *             let playerData = DataCenterC.getData(PlayerModuleData);
+     *             console.log("玩家等级：", playerData.getlevel());
+     *         }
+     *     }
+     * }
+     *
+     * class PlayerModuleData extends Subdata {
+     *     @Decorator.persistence()
+     *     private level: number = 0;
+     *
+     *     public getlevel(): number {
+     *         return this.level;
+     *     }
+     * }
+     * ```
+     */
+    const DataCenterC: typeof mwext.DataCenterC;
+    type DataCenterC = mwext.DataCenterC;
+    /**
     * @author lei.zhao
     * @groups 拓展/背包
     * @networkStatus 双端
@@ -5999,6 +6075,283 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     */
     const ItemQuality: typeof mwext.ItemQuality;
     type ItemQuality = mwext.ItemQuality;
+    /**
+    * @author lei.zhao
+    * @groups 拓展/背包
+    * @networkStatus usage:客户端
+    * @description 背包道具父类,继承这个类来实现自己的道具格子界面，使用BagModule.skin来指定皮肤
+    */
+    const BagItemUI: typeof mwext.BagItemUI;
+    type BagItemUI = mwext.BagItemUI;
+    /**
+     * @author shilong.wang
+     * @groups 基类/数据拓展
+     * @description 服务端数据中心，管理所有玩家的数据。
+     * @networkStatus usage: 服务端
+     * @example
+     * 使用示例:创建一个名为DataCenterSExample的脚本，放置在对象栏中，打开脚本，将原本内容修改为如下内容，保存并运行游戏，玩家加入时会输出当前玩家的等级以及当前所有玩家的等级，玩家离开时当前玩家会升级并且输出（pie上玩家离开需要通过点x键）
+     * ```
+     * @Component
+     * export default class DataCenterSExample extends Script {
+     *
+     *     protected onStart(): void {
+     *         if (SystemUtil.isServer()) {
+     *             DataCenterS.onPlayerJoin.add(this.onPlayerJoin, this);
+     *             DataCenterS.onPlayerLeave.add(this.onPlayerLeave, this);
+     *         }
+     *     }
+     *
+     *     //玩家加入且数据就绪
+     *     private onPlayerJoin(player: mw.Player): void {
+     *         let playerData = DataCenterS.getData(player, PlayerModuleData);
+     *         console.log("玩家加入，当前玩家等级为：", playerData.getlevel());
+     *         console.log("显示当前所有玩家的等级：");
+     *         const playerIds = DataCenterS.getReadyPlayerIds();
+     *         playerIds.forEach(playerId => {
+     *             let playerData = DataCenterS.getData(playerId, PlayerModuleData);
+     *             console.log("玩家playerId为：" + playerId, "的等级：", playerData.getlevel());
+     *         });
+     *     }
+     *
+     *     //玩家离开
+     *     private onPlayerLeave(player: mw.Player): void {
+     *         let playerData = DataCenterS.getData(player, PlayerModuleData);
+     *         playerData.levelUp();
+     *         console.log("玩家离开，等级提升为：", playerData.getlevel());
+     *     }
+     *
+     * }
+     *
+     * class PlayerModuleData extends Subdata {
+     *     @Decorator.persistence()
+     *     private level: number = 0;
+     *
+     *     public getlevel(): number {
+     *         return this.level;
+     *     }
+     *
+     *     //玩家升级
+     *     public levelUp(): void {
+     *         this.level++;
+     *         //保存数据
+     *         this.save(false);
+     *     }
+     * }
+     * ```
+     */
+    const DataCenterS: typeof mwext.DataCenterS;
+    type DataCenterS = mwext.DataCenterS;
+    /**
+     * @author shilong.wang
+     * @groups 基类/C&S拓展
+     * @description 客户端模块的基类
+     * @description 所有的客户端模块都必须继承这个类，才能被 ModuleService 管理。
+     * @description 注意：继承自 ModuleC 类中的方法名。当方法名前缀为"net_XXX"的方法才能在继承 ModuleS 中调用。
+     * @description 在 Script 类中说过，继承自 Script 的类享受onStart、OnUpdate、OnDestroy脚本的生命周期，在此基础之上，当在onStart()函数中注册了客户端服务端以及数据模块之后
+     * @description ModuleService.registerModule(YourModS, YourModC, YourData);
+     * @networkStatus usage: 双端
+     * @example
+     * 使用示例:创建一个名为ModuleCExample的脚本，放置在对象栏中，打开脚本，将原本内容修改为如下内容，保存并运行游戏，客户端日志会输出player模块每个生命周期执行的日志，按下F键你将在客户端以及服务端日志中看到玩家等级的信息
+     * ```
+     * @Component
+     * export default class ModuleCExample extends Script {
+     *
+     *     protected onStart(): void {
+     *         ModuleService.registerModule(PlayerModuleS, PlayerModuleC, PlayerModuleData);
+     *     }
+     *
+     * }
+     *
+     * class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData>{
+     *
+     *     protected onAwake(): void {
+     *         console.log("-----------player模块创建模块-----------");
+     *     }
+     *
+     *     protected onStart(): void {
+     *         console.log("-----------player模块开始-----------");
+     *         //输出当前玩家的等级
+     *         let playerData = this.data;
+     *         console.log("玩家等级：", playerData.getlevel());
+     *         playerData.onDataChange.add(() => {
+     *             //玩家数据发生变化时，输出当前玩家的等级
+     *             console.log("玩家等级：", playerData.getlevel());
+     *         })
+     *         InputUtil.onKeyDown(Keys.F, () => {
+     *             this.server.net_LevelUp();
+     *         })
+     *     }
+     *
+     *     protected onEnterScene(sceneType: number): void {
+     *         console.log("-----------player模块进入场景-----------");
+     *     }
+     *
+     *     protected onUpdate(dt: number): void {
+     *         //每帧调用 dt为两帧之间的时间差
+     *         // console.log("-----------player模块更新-----------"+dt);
+     *     }
+     *
+     *     protected onDestroy(): void {
+     *         console.log("-----------player模块销毁-----------");
+     *     }
+     *
+     * }
+     * class PlayerModuleS extends ModuleS<PlayerModuleC, PlayerModuleData>{
+     *     //玩家升级
+     *     public net_LevelUp(): void {
+     *         //调用该函数的客户端玩家
+     *         let player = this.currentPlayer;
+     *         //调用该函数的客户端玩家id
+     *         let playerId = this.currentPlayerId;
+     *         //调用该函数的客户端玩家数据
+     *         let playerData = this.currentData;
+     *         playerData.levelUp();
+     *         console.log("玩家等级：", playerData.getlevel());
+     *     }
+     * }
+     * class PlayerModuleData extends Subdata {
+     *     @Decorator.persistence()
+     *     private level: number;
+     *
+     *     protected initDefaultData(): void {
+     *         this.level = 0;
+     *     }
+     *
+     *     public getlevel(): number {
+     *         return this.level;
+     *     }
+     *
+     *     public levelUp(): void {
+     *         this.level++;
+     *         //保存数据
+     *         this.save(true);
+     *     }
+     * }
+     * ```
+     */
+    const ModuleC: typeof mwext.ModuleC;
+    type ModuleC<T, S extends mwext.Subdata> = mwext.ModuleC<T, S>;
+    /**
+    * @author lei.zhao
+    * @groups 拓展/背包
+    * @networkStatus usage:双端
+    * @description 背包实例
+    * @description 背包系统就像你在玩游戏时使用的一个特殊的背包，可以帮助你管理和存放各种物品和资源。MW编辑器已经封装好了一个可以直接使用的背包系统。
+    * @description 你的角色在游戏中收集了很多宝贵的物品，比如武器、装备、药品、材料等等。这些物品都需要一个地方来储存，而背包系统就是一个虚拟的背包，可以容纳这些物品。
+    * @description 它就是一个游戏中的特殊工具，帮助你整理、存储和管理你在游戏中收集到的各种物品和资源，让你的游戏体验更加方便和有序。
+    * @example
+    * 使用示例:创建一个名为BagExample的脚本，放置在对象栏中，打开脚本，将原本内容修改为如下内容，保存并运行游戏
+    * ```
+    * @Component
+    * export default class BagExample extends Script {
+    *    protected onStart(): void {
+    *       BagModule.registerItem(1,"37692","金铲铲",ItemQuality.Legend,10,{a:1,b:2});
+    *       BagModule.registerItem(2,"37690","小喇叭",ItemQuality.Legend,10,{a:1,b:2});
+    *       BagModule.registerItem(3,"37697","金币",ItemQuality.Legend,10,{a:1,b:2});
+    *       BagModule.registerItem(4,"37695","南瓜",ItemQuality.Common,20,{a:1,b:2});
+    *       if(SystemUtil.isClient()){
+    *           BagModule.addItemClickListener(this.onItemClick,this);
+    *           BagModule.addItem(1,1);
+    *           BagModule.addItem(2,5);
+    *           BagModule.addItem(3,10);
+    *           BagModule.addItem(4,30);
+    *           BagModule.open();
+    *       }
+    *    }
+    *    private onItemClick(cfg:ItemConfig){
+    *       console.log("点击了",cfg);
+    *    }
+    * }
+    * ```
+    */
+    const BagModule: typeof mwext.BagModule;
+    type BagModule = mwext.BagModule;
+    /**
+     * @author shilong.wang
+     * @groups 基类/C&S拓展
+     * @description 服务端模块的基类
+     * @description 所有的服务端模块都必须继承这个类，才能被 ModuleService 管理。
+     * @description 注意：继承自 ModuleS 类中的方法名。当方法名前缀为"net_XXX"的方法才能在客户端中调用。
+     * @description 在 Script 类中说过，继承自 Script 的类享受onStart()、onUpdate()、onDestroy() 脚本的生命周期，在此基础之上，当在onStart()函数中注册了客户端服务端以及数据模块之后
+     * @description ModuleService.registerModule(YourModS, YourModC, YourData);
+     * @description 继承自 ModuleS 的类也封装了一套生命周期。
+     * @networkStatus usage: 双端
+     * @example
+     * 使用示例:创建一个名为ModuleSExample的脚本，放置在对象栏中，打开脚本，将原本内容修改为如下内容，保存并运行游戏，服务端日志会输出player模块每个生命周期执行的日志，按下F键你将在服务端日志中看到玩家等级的信息。
+     * ```
+     * @Component
+     * export default class ModuleSExample extends Script {
+     *
+     *     protected onStart(): void {
+     *         ModuleService.registerModule(PlayerModuleS, PlayerModuleC, PlayerModuleData);
+     *     }
+     *
+     * }
+     *
+     * class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData>{
+     *     protected onStart(): void {
+     *         InputUtil.onKeyDown(Keys.F, () => {
+     *             this.server.net_LevelUp();
+     *         })
+     *     }
+     * }
+     * class PlayerModuleS extends ModuleS<PlayerModuleC, PlayerModuleData>{
+     *
+     *     protected onAwake(): void {
+     *         console.log("-----------服务端-player模块创建模块-----------");
+     *     }
+     *
+     *     protected onStart(): void {
+     *         console.log("-----------服务端-player模块开始-----------");
+     *     }
+     *
+     *     protected onPlayerEnterGame(player: Player): void {
+     *         console.log("-----------服务端-player模块玩家进入游戏-----------");
+     *     }
+     *
+     *     protected onPlayerJoined(player: Player): void {
+     *         console.log("-----------服务端-player模块玩家加入-----------");
+     *     }
+     *
+     *     protected onPlayerLeft(player: Player): void {
+     *         console.log("-----------服务端-player模块玩家离开-----------");
+     *     }
+     *
+     *     protected onUpdate(dt: number): void {
+     *         //每帧调用 dt为两帧之间的时间差
+     *         // console.log("-----------服务端-player模块更新-----------"+dt);
+     *     }
+     *
+     *     //玩家升级
+     *     public net_LevelUp(): void {
+     *         //调用该函数的客户端玩家数据
+     *         let playerData = this.currentData;
+     *         playerData.levelUp();
+     *         console.log("玩家等级：", playerData.getlevel());
+     *     }
+     * }
+     * class PlayerModuleData extends Subdata {
+     *     @Decorator.persistence()
+     *     private level: number;
+     *
+     *     protected initDefaultData(): void {
+     *         this.level = 0;
+     *     }
+     *
+     *     public getlevel(): number {
+     *         return this.level;
+     *     }
+     *
+     *     public levelUp(): void {
+     *         this.level++;
+     *         //保存数据
+     *         this.save(true);
+     *     }
+     * }
+     * ```
+     */
+    const ModuleS: typeof mwext.ModuleS;
+    type ModuleS<T, S extends mwext.Subdata> = mwext.ModuleS<T, S>;
     /**
      * @author shilong.wang
      * @groups 基类/C&S拓展
@@ -6272,287 +6625,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     type ModuleService = mwext.ModuleService;
     /**
      * @author shilong.wang
-     * @groups 基类/数据拓展
-     * @description 客户端数据中心，里面存放着当前玩家的数据
-     * @networkStatus usage: 客户端
-     * @example
-     * 使用示例:创建一个名为DataCenterCExample的脚本，放置在对象栏中，打开脚本，将原本内容修改为如下内容，保存并运行游戏，你将在客户端日志中看到玩家数据就绪以及玩家等级为0的信息
-     * ```
-     * @Component
-     * export default class DataCenterCExample extends Script {
-     *
-     *     protected onStart(): void {
-     *         this.traceLevel();
-     *     }
-     *
-     *     //等待玩家数据准备好并输出玩家数据的等级
-     *     public async traceLevel(): Promise<void> {
-     *         if (SystemUtil.isClient()) {
-     *             //等待玩家数据准备好
-     *             await DataCenterC.ready();
-     *             console.log("玩家数据就绪");
-     *             let playerData = DataCenterC.getData(PlayerModuleData);
-     *             console.log("玩家等级：", playerData.getlevel());
-     *         }
-     *     }
-     * }
-     *
-     * class PlayerModuleData extends Subdata {
-     *     @Decorator.persistence()
-     *     private level: number = 0;
-     *
-     *     public getlevel(): number {
-     *         return this.level;
-     *     }
-     * }
-     * ```
-     */
-    const DataCenterC: typeof mwext.DataCenterC;
-    type DataCenterC = mwext.DataCenterC;
-    /**
-     * @author shilong.wang
-     * @groups 基类/C&S拓展
-     * @description 客户端模块的基类
-     * @description 所有的客户端模块都必须继承这个类，才能被 ModuleService 管理。
-     * @description 注意：继承自 ModuleC 类中的方法名。当方法名前缀为"net_XXX"的方法才能在继承 ModuleS 中调用。
-     * @description 在 Script 类中说过，继承自 Script 的类享受onStart、OnUpdate、OnDestroy脚本的生命周期，在此基础之上，当在onStart()函数中注册了客户端服务端以及数据模块之后
-     * @description ModuleService.registerModule(YourModS, YourModC, YourData);
-     * @networkStatus usage: 双端
-     * @example
-     * 使用示例:创建一个名为ModuleCExample的脚本，放置在对象栏中，打开脚本，将原本内容修改为如下内容，保存并运行游戏，客户端日志会输出player模块每个生命周期执行的日志，按下F键你将在客户端以及服务端日志中看到玩家等级的信息
-     * ```
-     * @Component
-     * export default class ModuleCExample extends Script {
-     *
-     *     protected onStart(): void {
-     *         ModuleService.registerModule(PlayerModuleS, PlayerModuleC, PlayerModuleData);
-     *     }
-     *
-     * }
-     *
-     * class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData>{
-     *
-     *     protected onAwake(): void {
-     *         console.log("-----------player模块创建模块-----------");
-     *     }
-     *
-     *     protected onStart(): void {
-     *         console.log("-----------player模块开始-----------");
-     *         //输出当前玩家的等级
-     *         let playerData = this.data;
-     *         console.log("玩家等级：", playerData.getlevel());
-     *         playerData.onDataChange.add(() => {
-     *             //玩家数据发生变化时，输出当前玩家的等级
-     *             console.log("玩家等级：", playerData.getlevel());
-     *         })
-     *         InputUtil.onKeyDown(Keys.F, () => {
-     *             this.server.net_LevelUp();
-     *         })
-     *     }
-     *
-     *     protected onEnterScene(sceneType: number): void {
-     *         console.log("-----------player模块进入场景-----------");
-     *     }
-     *
-     *     protected onUpdate(dt: number): void {
-     *         //每帧调用 dt为两帧之间的时间差
-     *         // console.log("-----------player模块更新-----------"+dt);
-     *     }
-     *
-     *     protected onDestroy(): void {
-     *         console.log("-----------player模块销毁-----------");
-     *     }
-     *
-     * }
-     * class PlayerModuleS extends ModuleS<PlayerModuleC, PlayerModuleData>{
-     *     //玩家升级
-     *     public net_LevelUp(): void {
-     *         //调用该函数的客户端玩家
-     *         let player = this.currentPlayer;
-     *         //调用该函数的客户端玩家id
-     *         let playerId = this.currentPlayerId;
-     *         //调用该函数的客户端玩家数据
-     *         let playerData = this.currentData;
-     *         playerData.levelUp();
-     *         console.log("玩家等级：", playerData.getlevel());
-     *     }
-     * }
-     * class PlayerModuleData extends Subdata {
-     *     @Decorator.persistence()
-     *     private level: number;
-     *
-     *     protected initDefaultData(): void {
-     *         this.level = 0;
-     *     }
-     *
-     *     public getlevel(): number {
-     *         return this.level;
-     *     }
-     *
-     *     public levelUp(): void {
-     *         this.level++;
-     *         //保存数据
-     *         this.save(true);
-     *     }
-     * }
-     * ```
-     */
-    const ModuleC: typeof mwext.ModuleC;
-    type ModuleC<T, S extends mwext.Subdata> = mwext.ModuleC<T, S>;
-    /**
-     * @author shilong.wang
-     * @groups 拓展/排行榜
-     * @description 排行榜主界面中的子UI，用来显示一条记录
-     * @networkStatus usage: 客户端
-     */
-    const LeaderboardItemPanelBase: typeof mwext.LeaderboardItemPanelBase;
-    type LeaderboardItemPanelBase<T extends ILeaderboardItemView> = mwext.LeaderboardItemPanelBase<T>;
-    /**
-     * @author shilong.wang
-     * @groups 基类/数据拓展
-     * @description 服务端数据中心，管理所有玩家的数据。
-     * @networkStatus usage: 服务端
-     * @example
-     * 使用示例:创建一个名为DataCenterSExample的脚本，放置在对象栏中，打开脚本，将原本内容修改为如下内容，保存并运行游戏，玩家加入时会输出当前玩家的等级以及当前所有玩家的等级，玩家离开时当前玩家会升级并且输出（pie上玩家离开需要通过点x键）
-     * ```
-     * @Component
-     * export default class DataCenterSExample extends Script {
-     *
-     *     protected onStart(): void {
-     *         if (SystemUtil.isServer()) {
-     *             DataCenterS.onPlayerJoin.add(this.onPlayerJoin, this);
-     *             DataCenterS.onPlayerLeave.add(this.onPlayerLeave, this);
-     *         }
-     *     }
-     *
-     *     //玩家加入且数据就绪
-     *     private onPlayerJoin(player: mw.Player): void {
-     *         let playerData = DataCenterS.getData(player, PlayerModuleData);
-     *         console.log("玩家加入，当前玩家等级为：", playerData.getlevel());
-     *         console.log("显示当前所有玩家的等级：");
-     *         const playerIds = DataCenterS.getReadyPlayerIds();
-     *         playerIds.forEach(playerId => {
-     *             let playerData = DataCenterS.getData(playerId, PlayerModuleData);
-     *             console.log("玩家playerId为：" + playerId, "的等级：", playerData.getlevel());
-     *         });
-     *     }
-     *
-     *     //玩家离开
-     *     private onPlayerLeave(player: mw.Player): void {
-     *         let playerData = DataCenterS.getData(player, PlayerModuleData);
-     *         playerData.levelUp();
-     *         console.log("玩家离开，等级提升为：", playerData.getlevel());
-     *     }
-     *
-     * }
-     *
-     * class PlayerModuleData extends Subdata {
-     *     @Decorator.persistence()
-     *     private level: number = 0;
-     *
-     *     public getlevel(): number {
-     *         return this.level;
-     *     }
-     *
-     *     //玩家升级
-     *     public levelUp(): void {
-     *         this.level++;
-     *         //保存数据
-     *         this.save(false);
-     *     }
-     * }
-     * ```
-     */
-    const DataCenterS: typeof mwext.DataCenterS;
-    type DataCenterS = mwext.DataCenterS;
-    /**
-     * @author shilong.wang
-     * @groups 基类/C&S拓展
-     * @description 服务端模块的基类
-     * @description 所有的服务端模块都必须继承这个类，才能被 ModuleService 管理。
-     * @description 注意：继承自 ModuleS 类中的方法名。当方法名前缀为"net_XXX"的方法才能在客户端中调用。
-     * @description 在 Script 类中说过，继承自 Script 的类享受onStart()、onUpdate()、onDestroy() 脚本的生命周期，在此基础之上，当在onStart()函数中注册了客户端服务端以及数据模块之后
-     * @description ModuleService.registerModule(YourModS, YourModC, YourData);
-     * @description 继承自 ModuleS 的类也封装了一套生命周期。
-     * @networkStatus usage: 双端
-     * @example
-     * 使用示例:创建一个名为ModuleSExample的脚本，放置在对象栏中，打开脚本，将原本内容修改为如下内容，保存并运行游戏，服务端日志会输出player模块每个生命周期执行的日志，按下F键你将在服务端日志中看到玩家等级的信息。
-     * ```
-     * @Component
-     * export default class ModuleSExample extends Script {
-     *
-     *     protected onStart(): void {
-     *         ModuleService.registerModule(PlayerModuleS, PlayerModuleC, PlayerModuleData);
-     *     }
-     *
-     * }
-     *
-     * class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData>{
-     *     protected onStart(): void {
-     *         InputUtil.onKeyDown(Keys.F, () => {
-     *             this.server.net_LevelUp();
-     *         })
-     *     }
-     * }
-     * class PlayerModuleS extends ModuleS<PlayerModuleC, PlayerModuleData>{
-     *
-     *     protected onAwake(): void {
-     *         console.log("-----------服务端-player模块创建模块-----------");
-     *     }
-     *
-     *     protected onStart(): void {
-     *         console.log("-----------服务端-player模块开始-----------");
-     *     }
-     *
-     *     protected onPlayerEnterGame(player: Player): void {
-     *         console.log("-----------服务端-player模块玩家进入游戏-----------");
-     *     }
-     *
-     *     protected onPlayerJoined(player: Player): void {
-     *         console.log("-----------服务端-player模块玩家加入-----------");
-     *     }
-     *
-     *     protected onPlayerLeft(player: Player): void {
-     *         console.log("-----------服务端-player模块玩家离开-----------");
-     *     }
-     *
-     *     protected onUpdate(dt: number): void {
-     *         //每帧调用 dt为两帧之间的时间差
-     *         // console.log("-----------服务端-player模块更新-----------"+dt);
-     *     }
-     *
-     *     //玩家升级
-     *     public net_LevelUp(): void {
-     *         //调用该函数的客户端玩家数据
-     *         let playerData = this.currentData;
-     *         playerData.levelUp();
-     *         console.log("玩家等级：", playerData.getlevel());
-     *     }
-     * }
-     * class PlayerModuleData extends Subdata {
-     *     @Decorator.persistence()
-     *     private level: number;
-     *
-     *     protected initDefaultData(): void {
-     *         this.level = 0;
-     *     }
-     *
-     *     public getlevel(): number {
-     *         return this.level;
-     *     }
-     *
-     *     public levelUp(): void {
-     *         this.level++;
-     *         //保存数据
-     *         this.save(true);
-     *     }
-     * }
-     * ```
-     */
-    const ModuleS: typeof mwext.ModuleS;
-    type ModuleS<T, S extends mwext.Subdata> = mwext.ModuleS<T, S>;
-    /**
-     * @author shilong.wang
      * @description 面板类的基类，可用于控制一个界面
      * @groups 拓展/排行榜
      * @networkStatus usage: 客户端
@@ -6691,46 +6763,38 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const ObjPool: typeof mwext.ObjPool;
     type ObjPool<T> = mwext.ObjPool<T>;
     /**
+     * @author lei.zhao
+     * @groups 拓展/背包
+     * @networkStatus 双端
+     * @description 背包数据结构
+     */
+    type IBagStruct = mwext.IBagStruct;
+    /**
+    * @author shilong.wang
+    * @description 排行榜模块-服务端
+    * @groups 拓展/排行榜
+    */
+    type LeaderboardModuleTypeS = mwext.LeaderboardModuleTypeS;
+    /**
     * @author lei.zhao
     * @groups 拓展/背包
-    * @networkStatus usage:双端
-    * @description 背包实例
-    * @description 背包系统就像你在玩游戏时使用的一个特殊的背包，可以帮助你管理和存放各种物品和资源。MW编辑器已经封装好了一个可以直接使用的背包系统。
-    * @description 你的角色在游戏中收集了很多宝贵的物品，比如武器、装备、药品、材料等等。这些物品都需要一个地方来储存，而背包系统就是一个虚拟的背包，可以容纳这些物品。
-    * @description 它就是一个游戏中的特殊工具，帮助你整理、存储和管理你在游戏中收集到的各种物品和资源，让你的游戏体验更加方便和有序。
-    * @example
-    * 使用示例:创建一个名为BagExample的脚本，放置在对象栏中，打开脚本，将原本内容修改为如下内容，保存并运行游戏
-    * ```
-    * @Component
-    * export default class BagExample extends Script {
-    *    protected onStart(): void {
-    *       BagModule.registerItem(1,"37692","金铲铲",ItemQuality.Legend,10,{a:1,b:2});
-    *       BagModule.registerItem(2,"37690","小喇叭",ItemQuality.Legend,10,{a:1,b:2});
-    *       BagModule.registerItem(3,"37697","金币",ItemQuality.Legend,10,{a:1,b:2});
-    *       BagModule.registerItem(4,"37695","南瓜",ItemQuality.Common,20,{a:1,b:2});
-    *       if(SystemUtil.isClient()){
-    *           BagModule.addItemClickListener(this.onItemClick,this);
-    *           BagModule.addItem(1,1);
-    *           BagModule.addItem(2,5);
-    *           BagModule.addItem(3,10);
-    *           BagModule.addItem(4,30);
-    *           BagModule.open();
-    *       }
-    *    }
-    *    private onItemClick(cfg:ItemConfig){
-    *       console.log("点击了",cfg);
-    *    }
-    * }
-    * ```
+    * @networkStatus usage:客户端
+    * @description 道具删除皮肤
     */
-    const BagModule: typeof mwext.BagModule;
-    type BagModule = mwext.BagModule;
+    type IItemDeleteSkin = mwext.IItemDeleteSkin;
     /**
     * @author shilong.wang
     * @description 排行榜模块-客户端
     * @groups 拓展/排行榜
     */
     type LeaderboardModuleTypeC = mwext.LeaderboardModuleTypeC;
+    /**
+    * @author lei.zhao
+    * @groups 拓展/背包
+    * @networkStatus 双端
+    * @description 道具配置
+    */
+    type ItemConfig = mwext.ItemConfig;
     /**
      * @author shilong.wang
      * @groups 拓展/排行榜
@@ -6746,13 +6810,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      */
     type ILeaderboardPanelView = mwext.ILeaderboardPanelView;
     /**
-     * @author lei.zhao
-     * @groups 拓展/背包
-     * @networkStatus 双端
-     * @description 背包数据结构
-     */
-    type IBagStruct = mwext.IBagStruct;
-    /**
     * @author shilong.wang
     * @groups 拓展/排行榜
     * @description 排行榜玩家数据类型
@@ -6762,30 +6819,10 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     /**
     * @author lei.zhao
     * @groups 拓展/背包
-    * @networkStatus 双端
-    * @description 道具配置
-    */
-    type ItemConfig = mwext.ItemConfig;
-    /**
-    * @author lei.zhao
-    * @groups 拓展/背包
     * @networkStatus usage:客户端
     * @description 格子皮肤
     */
     type IBagItemSkin = mwext.IBagItemSkin;
-    /**
-    * @author lei.zhao
-    * @groups 拓展/背包
-    * @networkStatus usage:客户端
-    * @description 道具删除皮肤
-    */
-    type IItemDeleteSkin = mwext.IItemDeleteSkin;
-    /**
-    * @author shilong.wang
-    * @description 排行榜模块-服务端
-    * @groups 拓展/排行榜
-    */
-    type LeaderboardModuleTypeS = mwext.LeaderboardModuleTypeS;
     /**
      * @author junwen.hua
      * @groups 设置
@@ -6793,54 +6830,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      */
     const GravityMode: typeof mw.GravityMode;
     type GravityMode = mw.GravityMode;
-    /**
-     * @author mengyuan.hao
-     * @groups 设置
-     * @description 控制一些优化项的开启关闭
-     * @networkStatus usage:客户端
-     * @example
-     * 使用示例:创建一个名为"ClassExample"的脚本，放置在对象栏中，打开脚本，输入以下代码保存，运行游戏，你将在服务器Log中看到对应方法调用信息。代码如下：
-     * ```ts
-     * @Component
-     * export default class ClassExample extends Script {
-     *
-     *     protected onStart(): void {
-     *        this.RoomSettings();
-     *     }
-     *
-     *     public RoomSettings(){
-     *        let opt = AvatarSettings.optimizationEnabled;
-     *        console.log("角色优化是否开启：" + opt);
-     *     }
-     * }
-     * ```
-     */
-    const AvatarSettings: typeof mw.AvatarSettings;
-    type AvatarSettings = mw.AvatarSettings;
-    /**
-     * @author xiangkun.sun
-     * @groups 设置
-     * @description 全局的脚本配置信息
-     * @networkStatus usage:双端
-     * @example
-     * 使用示例:创建一个名为"ClassExample"的脚本，放置在对象栏中，打开脚本，输入以下代码保存，运行游戏，你将在Log中看到对应方法调用信息。代码如下：
-     * ```ts
-     * @Component
-     * export default class ClassExample extends Script {
-     *
-     *     protected onStart(): void {
-     *        this.ScriptingSettings();
-     *     }
-     *
-     *     public ScriptingSettings(): void {
-     *         // 设置当前异步查找超时时间
-     *         ScriptingSettings.setGlobalAsyncTimeout(1000 * 10);
-     *     }
-     * }
-     * ```
-     */
-    const ScriptingSettings: typeof mw.ScriptingSettings;
-    type ScriptingSettings = mw.ScriptingSettings;
     /**
      * @author mengyuan.hao
      * @description  房间设置
@@ -6955,6 +6944,66 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const GraphicsSettings: typeof mw.GraphicsSettings;
     type GraphicsSettings = mw.GraphicsSettings;
     /**
+     * @author xiangkun.sun
+     * @groups 设置
+     * @description 全局的脚本配置信息
+     * @networkStatus usage:双端
+     * @example
+     * 使用示例:创建一个名为"ClassExample"的脚本，放置在对象栏中，打开脚本，输入以下代码保存，运行游戏，你将在Log中看到对应方法调用信息。代码如下：
+     * ```ts
+     * @Component
+     * export default class ClassExample extends Script {
+     *
+     *     protected onStart(): void {
+     *        this.ScriptingSettings();
+     *     }
+     *
+     *     public ScriptingSettings(): void {
+     *         // 设置当前异步查找超时时间
+     *         ScriptingSettings.setGlobalAsyncTimeout(1000 * 10);
+     *     }
+     * }
+     * ```
+     */
+    const ScriptingSettings: typeof mw.ScriptingSettings;
+    type ScriptingSettings = mw.ScriptingSettings;
+    /**
+     * @author mengyuan.hao
+     * @groups 设置
+     * @description 控制一些优化项的开启关闭
+     * @networkStatus usage:客户端
+     * @example
+     * 使用示例:创建一个名为"ClassExample"的脚本，放置在对象栏中，打开脚本，输入以下代码保存，运行游戏，你将在服务器Log中看到对应方法调用信息。代码如下：
+     * ```ts
+     * @Component
+     * export default class ClassExample extends Script {
+     *
+     *     protected onStart(): void {
+     *        this.RoomSettings();
+     *     }
+     *
+     *     public RoomSettings(){
+     *        let opt = AvatarSettings.optimizationEnabled;
+     *        console.log("角色优化是否开启：" + opt);
+     *     }
+     * }
+     * ```
+     */
+    const AvatarSettings: typeof mw.AvatarSettings;
+    type AvatarSettings = mw.AvatarSettings;
+    /**
+     * @author huipeng.jia, shilong.wang
+     * @groups 场景/特效
+     * @description 特效管理器
+     * @description Effect 通常用于增强游戏画面、呈现视觉效果或传达特定的情感或信息。特效可以是各种形式的视觉效果，如粒子效果、光影效果、爆炸效果、烟雾效果等。MW编辑器在左侧特效栏中提供了大量的粒子特效，您可以任意的拖动特效到场景中查看并使用。
+     * @description EffectService 中很多静态方法可直接调用，其中：
+     * @description - playAtPosition、 playOnGameObject 方法控制粒子特效播放位置。
+     * @description - stop 方法控制粒子特效停止播放。
+     * @networkStatus usage: 双端
+     */
+    const EffectService: typeof mw.EffectService;
+    type EffectService = mw.EffectService;
+    /**
      * @author huipeng.jia, guang.deng
      * @groups 服务/社交
      * @description 用户账号信息管理服务
@@ -6962,6 +7011,29 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      */
     const AccountService: typeof mw.AccountService;
     type AccountService = mw.AccountService;
+    /**
+     * @author huipeng.jia
+     * @groups 服务/传送
+     * @description 多场景和传送服务
+     * @networkStatus usage: 服务端
+     */
+    const TeleportService: typeof mw.TeleportService;
+    type TeleportService = mw.TeleportService;
+    /**
+     * @author huipeng.jia
+     * @description 传送状态
+     * @groups 数据处理
+     */
+    const TeleportStatus: typeof mw.TeleportStatus;
+    type TeleportStatus = mw.TeleportStatus;
+    /**
+     * @author huipeng.jia
+     * @groups 服务/货币
+     * @description Avatar商城的应用内购服务
+     * @networkStatus usage: 客户端
+     */
+    const AvatarEditorService: typeof mw.AvatarEditorService;
+    type AvatarEditorService = mw.AvatarEditorService;
     /**
      * @hidden
      * @author huipeng.jia
@@ -6989,34 +7061,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const DebugService: typeof mw.DebugService;
     type DebugService = mw.DebugService;
     /**
-     * @author huipeng.jia
-     * @groups 服务/传送
-     * @description 多场景和传送服务
-     * @networkStatus usage: 服务端
-     */
-    const TeleportService: typeof mw.TeleportService;
-    type TeleportService = mw.TeleportService;
-    /**
-     * @author huipeng.jia
-     * @groups 服务/货币
-     * @description Avatar商城的应用内购服务
-     * @networkStatus usage: 客户端
-     */
-    const AvatarEditorService: typeof mw.AvatarEditorService;
-    type AvatarEditorService = mw.AvatarEditorService;
-    /**
-     * @author huipeng.jia, shilong.wang
-     * @groups 场景/特效
-     * @description 特效管理器
-     * @description Effect 通常用于增强游戏画面、呈现视觉效果或传达特定的情感或信息。特效可以是各种形式的视觉效果，如粒子效果、光影效果、爆炸效果、烟雾效果等。MW编辑器在左侧特效栏中提供了大量的粒子特效，您可以任意的拖动特效到场景中查看并使用。
-     * @description EffectService 中很多静态方法可直接调用，其中：
-     * @description - playAtPosition、 playOnGameObject 方法控制粒子特效播放位置。
-     * @description - stop 方法控制粒子特效停止播放。
-     * @networkStatus usage: 双端
-     */
-    const EffectService: typeof mw.EffectService;
-    type EffectService = mw.EffectService;
-    /**
      * @author mengyuan.hao
      * @groups 服务/社交
      * @description 聊天头顶气泡
@@ -7029,6 +7073,13 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      */
     const ChatBubble: typeof mw.ChatBubble;
     type ChatBubble = mw.ChatBubble;
+    /**
+     * @author mengyuan.hao
+     * @description 发送消息的类型
+     * @groups 基础类型
+     */
+    const MessageType: typeof mw.MessageType;
+    type MessageType = mw.MessageType;
     /**
      * @author mengyuan.hao
      * @description 发送消息的状态
@@ -7046,13 +7097,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const ChatService: typeof mw.ChatService;
     type ChatService = mw.ChatService;
     /**
-     * @author mengyuan.hao
-     * @description 发送消息的类型
-     * @groups 基础类型
-     */
-    const MessageType: typeof mw.MessageType;
-    type MessageType = mw.MessageType;
-    /**
      * @author huipeng.jia
      * @groups 服务/社交
      * @description MGS以及玩家信息、数据、头像等相关API。
@@ -7069,6 +7113,53 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      */
     const SoundService: typeof mw.SoundService;
     type SoundService = mw.SoundService;
+    /**
+     * @author huipeng.jia
+     * @groups 服务/社交
+     * @description 游戏管理器
+     * @networkStatus usage: 双端
+     */
+    const RouteService: typeof mw.RouteService;
+    type RouteService = mw.RouteService;
+    /**
+     * @author huipeng.jia
+     * @description 广告服务
+     * @precautions 需先在开发者后台“游戏服务”中接入广告，才能正常播出。请注意，广告只能在真机上播放，开发环境无法播放。
+     * @networkStatus usage: 客户端
+     * @groups 服务/货币
+     */
+    const AdsService: typeof mw.AdsService;
+    type AdsService = mw.AdsService;
+    /**
+     * @hidden
+     * @author huipeng.jia, junwen.hua
+     * @description 枚举各个通道的使用与接收方
+     * @groups 基础类型
+     */
+    const MessageChannelReceiver: typeof mw.MessageChannelReceiver;
+    type MessageChannelReceiver = mw.MessageChannelReceiver;
+    /**
+     * @author junwen.hua
+     * @groups 服务/货币
+     * @description 大会员扣除钥匙订单返回状态信息
+     */
+    const consumeKeyStatus: typeof mw.consumeKeyStatus;
+    type consumeKeyStatus = mw.consumeKeyStatus;
+    /**
+     * @author huipeng.jia, junwen.hua
+     * @groups 服务/货币
+     * @description 应用内购服务
+     * @networkStatus usage: 客户端
+     */
+    const PurchaseService: typeof mw.PurchaseService;
+    type PurchaseService = mw.PurchaseService;
+    /**
+     * @author huipeng.jia
+     * @description 广告状态，调用show方法的时候可能返回的广告状态
+     * @groups 服务/货币
+     */
+    const AdsState: typeof mw.AdsState;
+    type AdsState = mw.AdsState;
     /**
      * @hidden
      * @author huipeng.jia, junwen.hua
@@ -7095,35 +7186,11 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     type MessageChannelService = mw.MessageChannelService;
     /**
      * @author huipeng.jia
-     * @groups 服务/社交
-     * @description 游戏管理器
-     * @networkStatus usage: 双端
-     */
-    const RouteService: typeof mw.RouteService;
-    type RouteService = mw.RouteService;
-    /**
-     * @author huipeng.jia
-     * @description 广告服务
-     * @precautions 需先在开发者后台“游戏服务”中接入广告，才能正常播出。请注意，广告只能在真机上播放，开发环境无法播放。
-     * @networkStatus usage: 客户端
-     * @groups 服务/货币
-     */
-    const AdsService: typeof mw.AdsService;
-    type AdsService = mw.AdsService;
-    /**
-     * @author huipeng.jia
      * @description 广告类型
      * @groups 服务/货币
      */
     const AdsType: typeof mw.AdsType;
     type AdsType = mw.AdsType;
-    /**
-     * @author huipeng.jia
-     * @description 广告状态，调用show方法的时候可能返回的广告状态
-     * @groups 服务/货币
-     */
-    const AdsState: typeof mw.AdsState;
-    type AdsState = mw.AdsState;
     /**
      * @author xiangkun.sun
      * @groups 服务/埋点分析
@@ -7133,41 +7200,11 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const AnalyticsService: typeof mw.AnalyticsService;
     type AnalyticsService = mw.AnalyticsService;
     /**
-     * @hidden
-     * @author huipeng.jia, junwen.hua
-     * @description 枚举各个通道的使用与接收方
-     * @groups 基础类型
-     */
-    const MessageChannelReceiver: typeof mw.MessageChannelReceiver;
-    type MessageChannelReceiver = mw.MessageChannelReceiver;
-    /**
-     * @author junwen.hua
-     * @groups 服务/货币
-     * @description 大会员扣除钥匙订单返回状态信息
-     */
-    const consumeKeyStatus: typeof mw.consumeKeyStatus;
-    type consumeKeyStatus = mw.consumeKeyStatus;
-    /**
-     * @author huipeng.jia, junwen.hua
-     * @groups 服务/货币
-     * @description 应用内购服务
-     * @networkStatus usage: 客户端
-     */
-    const PurchaseService: typeof mw.PurchaseService;
-    type PurchaseService = mw.PurchaseService;
-    /**
-     * @author huipeng.jia
-     * @description 传送状态
-     * @groups 数据处理
-     */
-    const TeleportStatus: typeof mw.TeleportStatus;
-    type TeleportStatus = mw.TeleportStatus;
-    /**
      * @author huipeng.jia
      * @groups 服务/货币
-     * @description 通过接口查询符合要求的商品列表时，会返回的对象类型。
+     * @description 发货回调
      */
-    type CommodityListObj = mw.CommodityListObj;
+    type ShipOrderResponse = mw.ShipOrderResponse;
     /**
      * @author mengyuan.hao
      * @description 收到MGS事件调用
@@ -7175,43 +7212,17 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      */
     type ChatEvent = mw.ChatEvent;
     /**
-     * @description 账户余额信息
-     */
-    type BalanceInfo = mw.BalanceInfo;
-    /**
-     * @description 发货回调
-     */
-    type ShipOrderResponse = mw.ShipOrderResponse;
-    /**
-     * @author huipeng.jia
-     * @description 传送时可额外提供的信息
-     * @groups 数据处理
-     */
-    type TeleportOptions = mw.TeleportOptions;
-    /**
      * @author mengyuan.hao
      * @description 发送消息的结果
      * @groups 基础类型
      */
     type BroadcastMessageResult = mw.BroadcastMessageResult;
     /**
-     * @author junwen.hua
-     * @description 大会员消费钥匙订单。orderId：订单ID，boxId：宝箱ID，number：购买宝箱数量，shipTime：发货时间，毫秒级时间戳
-     * @groups 服务/货币
-     */
-    type keyUsageInfo = mw.keyUsageInfo;
-    /**
      * @author huipeng.jia
-     * @description 下载平台数据回调
+     * @description 收到MGS事件调用
      * @groups 基础类型
      */
-    type downloadCharacterDataStringCallback = mw.downloadCharacterDataStringCallback;
-    /**
-     * @author huipeng.jia
-     * @description 下载角色形象的回调，无参数
-     * @groups 基础类型
-     */
-    type DownloadDataResponse = mw.DownloadDataResponse;
+    type MGSEvent = mw.MGSEvent;
     /**
      * @author mengyuan.hao
      * @description status : 兑换状态。
@@ -7232,18 +7243,18 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      */
     type RedeemResponse = mw.RedeemResponse;
     /**
+     * @author junwen.hua
+     * @description 大会员消费钥匙订单。orderId：订单ID，boxId：宝箱ID，number：购买宝箱数量，shipTime：发货时间，毫秒级时间戳
+     * @groups 服务/货币
+     */
+    type keyUsageInfo = mw.keyUsageInfo;
+    /**
      * @author huipeng.jia
      * @description 客户端接收余额更新的消息格式
      * @groups 基础类型
      * @param amount usage: 新的余额
      */
     type OnArkBalanceUpdated = mw.OnArkBalanceUpdated;
-    /**
-     * @author huipeng.jia
-     * @description 收到MGS事件调用
-     * @groups 基础类型
-     */
-    type MGSEvent = mw.MGSEvent;
     /**
      * @author junwen.hua
      * @description 大会员钥匙扣除服务端接收发货通知的消息格式
@@ -7257,10 +7268,29 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     type OnKeyConsume = mw.OnKeyConsume;
     /**
      * @author huipeng.jia
+     * @description 窗口显示模式切换的消息格式
+     * @groups 基础类型
+     * @param newState usage: 新的窗口模式。1 为“角色展示模式”，2 为“角色编辑模式”
+     */
+    type OnViewLayoutSwitched = mw.OnViewLayoutSwitched;
+    /**
+     * @author huipeng.jia
      * @description 窗口刷新的消息格式
      * @groups 基础类型
      */
     type OnViewRefreshed = mw.OnViewRefreshed;
+    /**
+     * @author huipeng.jia
+     * @description 下载平台数据回调
+     * @groups 基础类型
+     */
+    type downloadCharacterDataStringCallback = mw.downloadCharacterDataStringCallback;
+    /**
+     * @author huipeng.jia
+     * @description 下载角色形象的回调，无参数
+     * @groups 基础类型
+     */
+    type DownloadDataResponse = mw.DownloadDataResponse;
     /**
      * @author huipeng.jia
      * @description 下载角色形象的回调消息格式
@@ -7276,13 +7306,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     type BoolResponse = mw.BoolResponse;
     /**
      * @author huipeng.jia
-     * @description 窗口显示模式切换的消息格式
-     * @groups 基础类型
-     * @param newState usage: 新的窗口模式。1 为“角色展示模式”，2 为“角色编辑模式”
-     */
-    type OnViewLayoutSwitched = mw.OnViewLayoutSwitched;
-    /**
-     * @author huipeng.jia
      * @description 服务端接收发货通知的消息格式
      * @groups 基础类型
      * @param playerId usage: 下单的玩家playerId
@@ -7294,40 +7317,34 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     type OnOrderDelivered = mw.OnOrderDelivered;
     /**
      * @author huipeng.jia
-     * @description 返回无参数的回调
-     * @groups 基础类型
-     */
-    type VoidResponse = mw.VoidResponse;
-    /**
-     * @author huipeng.jia
-     * @description 返回string的回调
-     * @groups 基础类型
-     */
-    type StringResponse = mw.StringResponse;
-    /**
-     * @author huipeng.jia
-     * @description GameService的回调
-     * @groups 基础类型
-     */
-    type MGSResponse = mw.MGSResponse;
-    /**
-     * @author huipeng.jia
-     * @groups 服务/货币
-     * @description 充值信息
-     */
-    type RechargeInfo = mw.RechargeInfo;
-    /**
-     * @author huipeng.jia
      * @description 组队跳游戏请求失败回调
      * @groups 基础类型
      */
     type TeamMatchFailureInfo = mw.TeamMatchFailureInfo;
     /**
      * @author huipeng.jia
+     * @description 返回无参数的回调
+     * @groups 基础类型
+     */
+    type VoidResponse = mw.VoidResponse;
+    /**
+     * @author huipeng.jia
      * @description 传送时可携带的数据类型
      * @groups 数据处理
      */
     type TeleportData = mw.TeleportData;
+    /**
+     * @author huipeng.jia
+     * @description 传送时可额外提供的信息
+     * @groups 数据处理
+     */
+    type TeleportOptions = mw.TeleportOptions;
+    /**
+     * @author huipeng.jia
+     * @description 返回string的回调
+     * @groups 基础类型
+     */
+    type StringResponse = mw.StringResponse;
     /**
      * @author huipeng.jia
      * @description 传送请求的结果
@@ -7340,6 +7357,12 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      * @groups 数据处理
      */
     type RoomInfo = mw.RoomInfo;
+    /**
+     * @author huipeng.jia
+     * @description GameService的回调
+     * @groups 基础类型
+     */
+    type MGSResponse = mw.MGSResponse;
     /**
      * @author huipeng.jia
      * @groups 基础类型
@@ -7364,6 +7387,24 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      * @description 使用placeOrder接口下单时用于描述商品信息的类型
      */
     type CommodityInfo = mw.CommodityInfo;
+    /**
+     * @author huipeng.jia
+     * @groups 服务/货币
+     * @description 通过接口查询符合要求的商品列表时，会返回的对象类型。
+     */
+    type CommodityListObj = mw.CommodityListObj;
+    /**
+     * @author huipeng.jia
+     * @groups 服务/货币
+     * @description 充值信息
+     */
+    type RechargeInfo = mw.RechargeInfo;
+    /**
+     * @author huipeng.jia
+     * @groups 服务/货币
+     * @description 账户余额信息
+     */
+    type BalanceInfo = mw.BalanceInfo;
 
 }
 export { }
