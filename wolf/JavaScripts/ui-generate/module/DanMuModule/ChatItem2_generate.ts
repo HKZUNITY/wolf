@@ -3,7 +3,7 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/module/DanMuModule/ChatItem2.ui
- * TIME: 2024.11.21-00.11.24
+ * TIME: 2024.12.24-22.05.35
  */
  
 @UIBind('UI/module/DanMuModule/ChatItem2.ui')

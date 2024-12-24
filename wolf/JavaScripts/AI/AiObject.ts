@@ -585,6 +585,14 @@ export class AiObject {
         this.location = target;
         this.lookAt(target);
         console.error(`wfz - wfz - moveTo`);
+        let moveAnimationId = GameConfig.Assets.getElement(20032).Guid;
+        Tools.asyncDownloadAsset(moveAnimationId).then(() => {
+            if (!this.moveAni) {
+                this.moveAni = this.aiModel.loadAnimation(moveAnimationId);
+                this.moveAni.loop = 0;
+            }
+            this.moveAni.play();
+        });
         Navigation.navigateTo(this.aiModel, target, 5,
             () => {
                 if (this.moveAni) this.moveAni.stop();

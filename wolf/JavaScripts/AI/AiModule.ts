@@ -52,36 +52,24 @@ export class AiModuleS extends ModuleS<AiModuleC, null> {
     /**保护罩插槽 */
     private protectSocket: number
     onStart() {
-        GameObject.asyncFindGameObjectById(this.aiModelGuid).then(async (go) => {
-            if (go) {
-                await go.asyncReady();
-                let i = 0;
-                go.getChildren().forEach((obj) => {
-                    let aiobj = new AiObject(obj as mw.Character);
-                    AiModuleS.aiObjList.push(aiobj);
-                    AiModuleS.aiModelList.push(obj as mw.Character);
-                    aiobj.curAIManager = new AiManager(aiobj);
-                    aiobj.setAiName("");
-                    i++;
-                })
-
-
-            }
+        GameObject.asyncFindGameObjectById(this.aiModelGuid).then(async (go: mw.GameObject) => {
+            if (!go) return;
+            await go.asyncReady();
+            let i = 0;
+            go.getChildren().forEach(async (obj) => {
+                let aiNpc = obj as mw.Character;
+                await aiNpc.asyncReady();
+                let aiobj = new AiObject(aiNpc);
+                AiModuleS.aiObjList.push(aiobj);
+                AiModuleS.aiModelList.push(aiNpc);
+                aiobj.curAIManager = new AiManager(aiobj);
+                aiobj.setAiName("");
+                i++;
+            })
         });
-        // for (let i = 1; i < 4; i++) {
-        //     SpawnManager.wornAsyncSpawn(`NPC`).then(go => {
-
-        //         let aiobj = new AiObject(go as mw.Character);
-        //         AiModuleS.aiObjList.push(aiobj);
-        //         AiModuleS.aiModelList.push(go as mw.Character);
-        //         aiobj.curAIManager = new AiManager(aiobj);
-        //         let index = 90001 + i;
-        //         aiobj.setAiName(GameConfig.AIData.getElement(index).AIName);
-        //     });
-        // };
-        this.protectScale = new mw.Vector(0.5, 0.5, 1.2)
-        this.protectPos = new mw.Vector(0, 0, 0)
-        this.protectRot = new mw.Vector(0, 0, 0)
+        this.protectScale = new mw.Vector(0.5, 0.5, 1.2);
+        this.protectPos = new mw.Vector(0, 0, 0);
+        this.protectRot = new mw.Vector(0, 0, 0);
         this.protectSocket = 23
     }
     resetAi() {
