@@ -1742,6 +1742,17 @@ declare namespace mw {
          * ```
          */
         static angleCheck(StartLocation: mw.Vector, StartDirection: mw.Vector, TargetLocation: mw.Vector, Angle: number): boolean;
+        /**
+         * @author yang.zheng
+         * @description 判断浮点数是否近似相等
+         * @groups 玩法
+         * @effect 调用端生效
+         * @param a usage:对比变量 a range: 数据大小不做限制 type: 浮点
+         * @param b usage:对比变量 b range: 数据大小不做限制 type: 浮点
+         * @param epsilon usage:判断精度 range: 数据大小不做限制 type: 浮点 default: MathUtil.EPSILON(1.e-7)
+         * @returns true，两浮点数近似相等
+         */
+        static areFloatsEqual(a: number, b: number, epsilon?: number): boolean;
     }
 }
 
@@ -2577,7 +2588,7 @@ declare namespace mw {
         /**
          * @author zhiqiang.tan
          * @groups 玩法/物理
-         * @description 沿着给定的行执行碰撞跟踪，并返回遇到的所有命中，直到并包括第一次阻塞命中。
+         * @description 沿着给定的路径进行射线追踪，直到首次遇到阻挡命中时结束，返回沿途遇到的所有命中。
          * @effect 调用端生效
          * @param start usage: 起始点
          * @param end usage:终止点
@@ -2597,7 +2608,7 @@ declare namespace mw {
         /**
          * @author zhiqiang.tan
          * @groups 玩法/物理
-         * @description 沿着给定的线进行碰撞追踪，并返回遇到的第一个阻挡命中。
+         * @description 沿着给定的路径进行射线追踪，并返回遇到的第一个阻挡命中。
          * @effect 调用端生效
          * @param start usage: 起始点
          * @param end usage:终止点
@@ -2614,7 +2625,7 @@ declare namespace mw {
         /**
          * @author zhiqiang.tan
          * @groups 玩法/物理
-         * @description 沿着给定的直线扫过一个球体，并返回所有命中，包括第一次拦截命中。
+         * @description 球体沿着给定的路径扫过一个空间，直到首次在起点球体空间之外遇到阻挡命中时结束（球体在起点时重叠的阻挡对象不包含在首次判定中），返回沿途遇到的所有命中。
          * @effect 调用端生效
          * @param start usage: 起始点
          * @param end usage:终止点
@@ -2635,7 +2646,7 @@ declare namespace mw {
         /**
          * @author zhiqiang.tan
          * @groups 玩法/物理
-         * @description 沿着给定的线扫过一个球体，并返回遇到的第一个阻挡命中。
+         * @description 球体沿着给定的路径扫过一个空间，并返回遇到的第一个阻挡命中。
          * @effect 调用端生效
          * @param start usage: 起始点
          * @param end usage:终止点
@@ -2653,7 +2664,7 @@ declare namespace mw {
         /**
          * @author zhiqiang.tan
          * @groups 玩法/物理
-         * @description 沿着给定的路线扫描一个胶囊，并返回遇到的所有命中，包括第一次拦截命中。
+         * @description 胶囊体沿着给定的路径扫过一个空间，直到首次在起点胶囊体空间之外遇到阻挡命中时结束（胶囊体在起点时重叠的阻挡对象不包含在首次判定中），返回沿途遇到的所有命中。
          * @effect 调用端生效
          * @param start usage: 起始点
          * @param end usage:终止点
@@ -2675,7 +2686,7 @@ declare namespace mw {
         /**
          * @author zhiqiang.tan
          * @groups 玩法/物理
-         * @description 沿着给定的线扫过一个胶囊体，并返回遇到的第一个阻挡命中。
+         * @description 胶囊体沿着给定的路径扫过一个空间，并返回遇到的第一个阻挡命中。
          * @effect 调用端生效
          * @param start usage: 起始点
          * @param end usage:终止点
@@ -2694,7 +2705,7 @@ declare namespace mw {
         /**
          * @author zhiqiang.tan
          * @groups 玩法/物理
-         * @description 沿着给定的路线扫描一个盒体，并返回遇到的所有命中，包括第一次拦截命中。
+         * @description 盒体沿着给定的路径扫过一个空间，直到首次在起点盒体空间之外遇到阻挡命中时结束（盒体在起点时重叠的阻挡对象不包含在首次判定中），返回沿途遇到的所有命中。
          * @effect 调用端生效
          * @param start usage: 起始点
          * @param end usage:终止点
@@ -2716,7 +2727,7 @@ declare namespace mw {
         /**
          * @author zhiqiang.tan
          * @groups 玩法/物理
-         * @description 沿着给定的线扫过一个盒体，并返回遇到的第一个阻挡命中。
+         * @description 盒体沿着给定的路径扫过一个空间，并返回遇到的第一个阻挡命中。
          * @effect 调用端生效
          * @param start usage: 起始点
          * @param end usage:终止点

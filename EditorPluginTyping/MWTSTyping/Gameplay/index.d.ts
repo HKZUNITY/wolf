@@ -1085,6 +1085,15 @@ declare namespace mw {
      * @effect 只在客户端调用生效
      */
     function stopRecord(): void;
+    /**
+     * @author xinlei.nie
+     * @groups 角色系统/角色
+     * @description 获取强制更新移动时检测到的碰撞结果
+     * @effect 调用端生效
+     * @param character usage: 需要获取碰撞结果的角色 <br> default: null 必填参数   <br> type: Character
+     * @returns 强制移动检测到的碰撞数据
+     */
+    function getForcedMovementHits(character: mw.Character): Array<HitResult>;
 }
 
 declare namespace mw {
@@ -2304,6 +2313,11 @@ declare namespace mw {
      * @networkStatus usage:双端
      */
     class Character extends mw.Pawn {
+        /**
+         * @description 角色开启强制位移后，移动中碰撞检测结果的代理
+         * @groups 角色系统/角色
+         */
+        onSweepCollision: mw.MulticastDelegate<(velocities: Array<mw.Vector>, hitActors: Array<mw.GameObject>, impactPoints: Array<mw.Vector>, impactNormals: Array<mw.Vector>) => void>;
         /**
          * @groups 角色系统/角色
          * @description 角色外观配置。返回值为 CharacterDescription 类。调用 description 变量可以修改角色的外观，可更改角色的外观参数详见 CharacterDescription 类。
@@ -6144,6 +6158,13 @@ declare namespace mw {
          */
         setVisibility(status: mw.PropertyStatus | boolean, propagateToChildren?: boolean): void;
         /**
+         * @description 角色对象裁剪距离
+         * @description 最终的裁剪距离会和画质等级有关；修改此属性 ≤0 时，裁剪距离会根据对象尺寸自动调整 (自动启用 CullDistanceVolume 功能)
+         * @effect 只在客户端调用生效
+         * @param inCullDistance usage:裁剪距离 range: 建议 (2000, 4000)  type: 浮点数
+         */
+        setCullDistance(inCullDistance: number): void;
+        /**
          * @deprecated info:该接口已废弃，在该接口被删除前会仍保持可用，请尽快使用替换方案以免出现问题 since:027 reason:旧版接口 replacement:请查阅接口文档
          * @description 获取mesh相对角色坐标点的偏移
          * @groups 角色系统/角色
@@ -8318,6 +8339,7 @@ declare namespace mw {
         readonly attachmentAssetId: string;
         readonly attachmentOffset?: Readonly<mw.Transform>;
         readonly attachmentGameObject?: mw.GameObject;
+        readonly bSync?: boolean;
     }> {
         /**
          * @description 向当前外观插槽中添加一个挂件
@@ -13935,10 +13957,57 @@ declare namespace mw {
     enum ParticleEmitterShape {
         /** 点*/
         /** 球 */
+        Sphere = 1,
         /** 圆柱 */
+        Cylinder = 2,
         /** 三棱柱 */
         /** 盒体 */
-        Box = 4
+        Box = 4,
+        /** 圆盘 */
+        Disc = 5
+    }
+    /**
+     * @author baoqiang.han
+     * @description 序列帧布局
+     * @groups 场景/特效
+     */
+    enum ParticleFlipbookLayout {
+        /** 关闭序列帧*/
+        FlipbookUnenabled = 0,
+        /** 2x2 */
+        X2 = 1,
+        /** 4x4 */
+        X4 = 2,
+        /** 6x6 */
+        X6 = 3,
+        /** 8x8 */
+        X8 = 4
+    }
+    /**
+     * @author baoqiang.han
+     * @description 序列帧播放模式
+     * @groups 场景/特效
+     */
+    enum ParticleFlipbookMode {
+        /** 顺序播放 */
+        Sequence = 0,
+        /** 来回播放 */
+        Pingpong = 1
+    }
+    /**
+     * @author baoqiang.han
+     * @description 发射内外朝向
+     * @groups 场景/特效
+     */
+    enum ParticleEmitterShapeInOut {
+        /** 关 */
+        Off = 0,
+        /** 向外发射 */
+        Outward = 1,
+        /** 向内发射 */
+        Inward = 2,
+        /** 内外发射 */
+        InAndOut = 3
     }
     /**
      * @author baoqiang.han
@@ -14297,6 +14366,30 @@ declare namespace mw {
          */
         get maskRadius(): number;
         /**
+         * @description 形状
+         * @effect 只在客户端调用生效
+         * @param shape usage:特效的形状
+         */
+        set shape(shape: ParticleEmitterShape);
+        /**
+         * @description 形状
+         * @effect 只在客户端调用生效
+         * @returns 特效的形状
+         */
+        get shape(): ParticleEmitterShape;
+        /**
+         * @description 设置发射内外朝向
+         * @effect 只在客户端调用生效
+         * @param shape usage:特效的发射朝向
+         */
+        set shapeInOut(shape: ParticleEmitterShapeInOut);
+        /**
+         * @description 获取发射内外朝向
+         * @effect 只在客户端调用生效
+         * @returns 特效的发射朝向
+         */
+        get shapeInOut(): ParticleEmitterShapeInOut;
+        /**
          * @description 发射取向/对齐方式
          * @effect 只在客户端调用生效
          * @param value usage:特效的发射取向
@@ -14336,6 +14429,60 @@ declare namespace mw {
          * @returns 特效的形状样式
          */
         get shapeExtents(): mw.Vector;
+        /**
+         * @description 序列帧贴图的布局
+         * @effect 只在客户端调用生效
+         * @param Layout usage:序列帧贴图的布局
+         */
+        set flipbookLayout(Layout: ParticleFlipbookLayout);
+        /**
+         * @description 序列帧贴图的布局
+         * @effect 只在客户端调用生效
+         * @returns 序列帧贴图的布局
+         */
+        get flipbookLayout(): ParticleFlipbookLayout;
+        /**
+         * @description 序列帧布局可用单元数量
+         * @effect 只在客户端调用生效
+         * @param avalidNum usage:序列帧布局拆分后使用的拆分单元数量
+         */
+        set flipbookCellCount(avalidNum: number);
+        /**
+         * @description 序列帧布局可用单元数量
+         * @effect 只在客户端调用生效
+         * @returns 序列帧布局可用单元数量
+         */
+        get flipbookCellCount(): number;
+        /**
+         * @description 序列帧的播放模式
+         * @effect 只在客户端调用生效
+         * @param Layout usage:序列帧的播放模式
+         */
+        set flipbookMode(Layout: ParticleFlipbookMode);
+        /**
+         * @description 序列帧的播放模式
+         * @effect 只在客户端调用生效
+         * @returns 序列帧的播放模式
+         */
+        get flipbookMode(): ParticleFlipbookMode;
+        /**
+         * @description 序列帧动画循环次数
+         * @effect 只在客户端调用生效
+         * @param value usage:序列帧在生命周期内循环播放的次数
+         */
+        set flipbookCirculationTime(value: number);
+        /**
+         * @description 序列帧动画循环次数
+         * @effect 只在客户端调用生效
+         * @returns 序列帧动画循环次数
+         */
+        get flipbookCirculationTime(): number;
+        /**
+         * @description 发射固定数量粒子
+         * @effect 只在客户端调用生效
+         * @param emitCount usage:需要发射的粒子数量 range: 不做限制 type: 浮点数
+         */
+        emit(emitCount: number): void;
     }
 }
 

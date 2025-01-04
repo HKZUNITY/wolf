@@ -1,15 +1,17 @@
-﻿import { Globals } from "../../Globals";
+﻿import { Notice } from "../../CommonUI/notice/Notice";
+import { Globals } from "../../Globals";
 import { IActionConfigElement } from "../../Tables/ActionConfig";
 import { IChatElement } from "../../Tables/Chat";
 import { IExpressionElement } from "../../Tables/Expression";
 import { GameConfig } from "../../Tables/GameConfig";
 import { Tools } from "../../Tools";
 import BubbleItem_Generate from "../../ui-generate/module/DanMuModule/BubbleItem_generate";
+import AdsPanel from "../AdsModule/ui/AdsPanel";
 import HUDPanel from "../PlayerModule/ui/HUDPanel";
 import { Bubble } from "./Bubble";
 import { ChatData, ActionData } from "./DanMuData";
 import DanMuModuleS from "./DanMuModuleS";
-import ChatPanel from "./ui/ChatPanel";
+import ChatPanel, { SharePanel } from "./ui/ChatPanel";
 import DanMuPanel from "./ui/DanMuPanel";
 
 export const DanmuSyncServer = "DanmuSyncServer";
@@ -32,6 +34,22 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
         return this.chatPanel;
     }
 
+    private sharePanel: SharePanel = null;
+    private get getSharePanel(): SharePanel {
+        if (!this.sharePanel) {
+            this.sharePanel = UIService.getUI(SharePanel);
+        }
+        return this.sharePanel;
+    }
+
+    private adPanel: AdsPanel = null;
+    private get getAdPanel(): AdsPanel {
+        if (!this.adPanel) {
+            this.adPanel = UIService.getUI(AdsPanel);
+        }
+        return this.adPanel;
+    }
+
     public onOpenChatAction: Action = new Action();
     public onClickChatItem1Action: Action1<number> = new Action1<number>();
     public onClickChatItem2Action: Action2<number, number> = new Action2<number, number>();
@@ -45,6 +63,8 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
     public onClickBagTabAction: Action1<number> = new Action1<number>();
     public onClickBagItemAction: Action1<number> = new Action1<number>();
     public onClickUnloadBagItemAction: Action = new Action();
+    public onOpenShareAction: Action = new Action();
+    public onUseShareAction: Action1<string> = new Action1<string>();
 
     protected onStart(): void {
         this.bindEvent();
@@ -98,7 +118,37 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
         this.onClickBagTabAction.add(this.addClickBagTabAction.bind(this));
         this.onClickBagItemAction.add(this.addClickBagItemAction.bind(this));
         this.onClickUnloadBagItemAction.add(this.addClickUnloadBagItemAction.bind(this));
+        this.onOpenShareAction.add(this.onOpenShareActionHandler.bind(this));
+        this.onUseShareAction.add(this.onUseShareActionHandler.bind(this));
     }
+
+    private async onOpenShareActionHandler(): Promise<void> {
+        this.getSharePanel.show();
+        let sharedId = await Tools.createSharedId(this.localPlayer.character);
+        this.getSharePanel.showPanel(sharedId);
+    }
+
+    private onUseShareActionHandler(shareId: string): void {
+        if (Globals.isOpenIAA) {
+            this.getAdPanel.showRewardAd(() => {
+                this.useShareId(shareId);
+            }, GameConfig.Language.Text_TryItOnForFree.Value
+                , GameConfig.Language.Text_Cancel.Value
+                , GameConfig.Language.Text_FreeTryOn.Value);
+        } else {
+            this.useShareId(shareId);
+        }
+    }
+
+    private async useShareId(shareId: string): Promise<void> {
+        let isSuccess = await Tools.applySharedId(this.localPlayer.character, shareId);
+        if (isSuccess) {
+            Notice.showDownNotice(GameConfig.Language.Text_TryItOnSuccessfully.Value);
+        } else {
+            Notice.showDownNotice(GameConfig.Language.Text_InvalidID.Value);
+        }
+    }
+
 
     //#region  弹幕
     private sendDanMuSyncServer(msg: string, isActive: boolean): void {

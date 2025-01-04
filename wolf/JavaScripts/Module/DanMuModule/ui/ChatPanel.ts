@@ -1,8 +1,10 @@
-﻿import { Globals } from "../../../Globals";
+﻿import { Notice } from "../../../CommonUI/notice/Notice";
+import { Globals } from "../../../Globals";
 import { IActionPropElement } from "../../../Tables/ActionProp";
 import { GameConfig } from "../../../Tables/GameConfig";
 import { Tools } from "../../../Tools";
 import ChatPanel_Generate from "../../../ui-generate/module/DanMuModule/ChatPanel_generate";
+import SharePanel_Generate from "../../../ui-generate/module/ShareModule/SharePanel_generate";
 import { ChatData, ActionData } from "../DanMuData";
 import DanMuModuleC from "../DanMuModuleC";
 import ActionItem from "./ActionItem";
@@ -66,6 +68,11 @@ export default class ChatPanel extends ChatPanel_Generate {
 		this.mCloseBagButton.onClicked.add(this.addCloseBagButton.bind(this));
 		this.mBackBagButton.onClicked.add(this.addCloseBagButton.bind(this));
 		this.mUnloadButton.onClicked.add(this.addUnloadButton.bind(this));
+		this.mOpenShareButton.onClicked.add(this.addOpenShareButton.bind(this));
+	}
+
+	private addOpenShareButton(): void {
+		this.getDanMuModuleC.onOpenShareAction.call(1);
 	}
 
 	private addOpenChatButton(): void {
@@ -374,4 +381,66 @@ export default class ChatPanel extends ChatPanel_Generate {
 		Tools.setWidgetVisibility(this.mBagCanvas, isOpen ? mw.SlateVisibility.SelfHitTestInvisible : mw.SlateVisibility.Collapsed);
 	}
 	//#endregion
+}
+
+export class SharePanel extends SharePanel_Generate {
+	private hudModuleC: DanMuModuleC = null;
+	private get getHUDModuleC(): DanMuModuleC {
+		if (this.hudModuleC == null) {
+			this.hudModuleC = ModuleService.getModule(DanMuModuleC);
+		}
+		return this.hudModuleC;
+	}
+
+	protected onStart(): void {
+		this.initUI();
+		this.bindButton();
+	}
+
+	private initUI(): void {
+		this.mMyselfTipsTextBlock.text = GameConfig.Language.Text_MyCharacterId.Value;
+		this.mOtherTipsTextBlock.text = GameConfig.Language.Text_TryOnYourFriendAvatarForFree.Value;
+		this.mInputBox.text = "";
+		this.mInputBox.hintString = GameConfig.Language.Text_PleaseEnter.Value;
+		this.mCancelTextBlock.text = GameConfig.Language.Text_Cancel.Value;
+		this.mUseTextBlock.text = GameConfig.Language.Text_FreeTryOn.Value;
+		this.mAdsButton.text = GameConfig.Language.Text_FreeTryOn.Value;
+
+		Tools.setWidgetVisibility(this.mAdsButton, mw.SlateVisibility.Collapsed);
+	}
+
+	private bindButton(): void {
+		this.mCopyButton.onClicked.add(this.addCopyButton.bind(this));
+		this.mCancelButton.onClicked.add(this.addCancelButton.bind(this));
+		this.mUseButton.onClicked.add(this.addUseButton.bind(this));
+	}
+
+	private addCopyButton(): void {
+		let copyText = this.mMyselfTextBlock.text;
+		if (!copyText || copyText == "" || copyText.length == 0) return;
+		StringUtil.clipboardCopy(copyText);
+		Notice.showDownNotice(GameConfig.Language.Text_CopySuccessfully.Value);
+	}
+
+	private addCancelButton(): void {
+		this.hide();
+	}
+
+	private addUseButton(): void {
+		let shareId = this.mInputBox.text;
+		if (!shareId || shareId == "" || shareId.length == 0) return;
+		this.getHUDModuleC.onUseShareAction.call(shareId);
+		this.hide();
+	}
+
+	public showPanel(shareId: string): void {
+		this.mMyselfTextBlock.text = shareId;
+		Tools.setWidgetVisibility(this.mInputBgImage, mw.SlateVisibility.SelfHitTestInvisible);
+		this.mOtherTipsTextBlock.text = GameConfig.Language.Text_TryOnYourFriendAvatarForFree.Value;
+	}
+
+	protected onShow(...params: any[]): void {
+		this.mMyselfTextBlock.text = GameConfig.Language.Text_Loading.Value;
+		this.mInputBox.text = ``;
+	}
 }

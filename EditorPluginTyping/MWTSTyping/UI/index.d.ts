@@ -2510,6 +2510,18 @@ declare namespace mw {
          */
         get onItemRefreshed(): mw.MulticastDelegate<(rowDatas: ListViewItemDataBase[]) => void>;
         /**
+        * @description 设置是否受Touch事件影响滚动
+        * @effect 只在客户端调用生效
+        * @param bCanControl usage:能否touch控制滚动
+        */
+        setTouchCanControlThisScroll(bCanControl: boolean): void;
+        /**
+        * @description 获取是否受Touch事件影响滚动
+        * @effect 只在客户端调用生效
+        * @returns 能否touch能控制滚动
+        */
+        getTouchCanControlThisScroll(): boolean;
+        /**
          * @description 创建 ListView 控件，当parent和inName与已有的对象相同时，旧的对象会被销毁
          * @effect 只在客户端调用生效
          * @param orientation usage: 朝向
@@ -2612,20 +2624,22 @@ declare namespace mw {
         isPressed(): boolean;
         /**
          * @groups 界面/控件/遮罩按钮
-         * @description 设置点击模式
-         * @effect  只在客户端调用生效
-         * @param inClickMethod usage:点击模式选择
-         */
-        set clickMethod(inClickMethod: mw.ButtonClickMethod);
-        /**
-         * @groups 界面/控件/遮罩按钮
          * @description 获取点击模式
          * @effect  只在客户端调用生效
          * @returns 点击模式
+         * @deprecated info:该接口已废弃，在该接口被删除前会仍保持可用，请尽快使用替换方案以免出现问题 since:042 reason:接口与touchMethod功能合并 replacement:touchMethod
          */
         get clickMethod(): mw.ButtonClickMethod;
         /**
-         * @groups 界面/控件/遮罩按钮
+         * @groups 界面/控件/按钮
+         * @description 设置点击模式
+         * @effect  只在客户端调用生效
+         * @param inClickMethod usage:点击模式选择
+         * @deprecated info:该接口已废弃，在该接口被删除前会仍保持可用，请尽快使用替换方案以免出现问题 since:042 reason:接口touchMethod功能合并 replacement:touchMethod
+         */
+        set clickMethod(inClickMethod: mw.ButtonClickMethod);
+        /**
+         * @groups 界面/控件/按钮
          * @description 设置触摸模式
          * @effect  只在客户端调用生效
          * @param inTouchMethod usage:Touch模式选择
@@ -3991,6 +4005,18 @@ declare namespace mw {
          * @returns 滚动条图片颜色，Type.LinearColor类型，数据范围0~1
          */
         get scrollAxisColor(): Readonly<mw.LinearColor>;
+        /**
+        * @description 设置是否受Touch事件影响滚动
+        * @effect 只在客户端调用生效
+        * @param bCanControl usage:能否touch控制滚动
+        */
+        setTouchCanControlThisScroll(bCanControl: boolean): void;
+        /**
+        * @description 获取是否受Touch事件影响滚动
+        * @effect 只在客户端调用生效
+        * @returns 能否touch能控制滚动
+        */
+        getTouchCanControlThisScroll(): boolean;
     }
 }
 
@@ -4108,6 +4134,34 @@ declare namespace mw {
          * @returns 是否获取输入焦点
          */
         get focusable(): boolean;
+        /**
+         * @groups 界面/控件/文本
+         * @description 获取当前字体的水平显示方式
+         * @effect  只在客户端调用生效
+         * @returns 返回字体的水平显示方式
+         */
+        get textHorizontalLayout(): mw.UITextHorizontalLayout;
+        /**
+         * @groups 界面/控件/文本
+         * @description 设置字体的水平显示方式
+         * @effect  只在客户端调用生效
+         * @param inTextHorizontalLayout usage:水平显示方式
+         */
+        set textHorizontalLayout(inTextHorizontalLayout: mw.UITextHorizontalLayout);
+        /**
+        * @groups 界面/控件/文本
+        * @description 获取字体是否自适应调整大小:boolean(为True时，文本内容字体大小将自动改变，尽可能大的充满整个文本框，而文本框大小不会变化)
+        * @effect  只在客户端调用生效
+        * @returns 字体是否自适应调整大小
+        */
+        get autoAdjust(): boolean;
+        /**
+         * @groups 界面/控件/文本
+         * @description 设置字体是否自适应调整大小:boolean(为True时，文本内容字体大小将自动改变，尽可能大的充满整个文本框，而文本框大小不会变化)
+         * @effect  只在客户端调用生效
+         * @param isAdjust usage:字体是否自适应调整大小
+         */
+        set autoAdjust(isAdjust: boolean);
         /** *******************  文本内容 *****************************/
         /**
          * @groups 界面/控件/文本按钮
@@ -4351,6 +4405,58 @@ declare namespace mw {
          * @returns 字体描边宽度
          */
         get outlineSize(): number;
+        /**
+         * @groups 界面/控件/文本
+         * @description 设置富文本
+         * @effect  只在客户端调用生效
+         * @param InValue usage:是否为富文本
+         */
+        set isRichText(isRichText: boolean);
+        /**
+         * @groups 界面/控件/文本
+         * @description 获取是否为富文本
+         * @effect  只在客户端调用生效
+         * @returns 是否为富文本
+         */
+        get isRichText(): boolean;
+        /**
+         * @description 设置自适应最大字体大小
+         * @effect  只在客户端调用生效
+         * @param inText usage:文本内容
+         */
+        set maxSize(inText: number);
+        /**
+         * @description 获取自适应最大字体大小
+         * @effect  只在客户端调用生效
+         * @returns 返回当前的文本内容
+         */
+        get maxSize(): number;
+        /**
+         * @description 设置自适应最小字体大小
+         * @effect  只在客户端调用生效
+         * @param inText usage:文本内容
+         */
+        set minSize(inText: number);
+        /**
+         * @description 获取自适应最小字体大小
+         * @effect  只在客户端调用生效
+         * @returns 返回当前的文本内容
+         */
+        get minSize(): number;
+        /**
+         * @groups 界面/控件/文本
+         * @description 设置行高系数
+         * @effect  只在客户端调用生效
+         * @param inValue usage:系数
+         */
+        set lineHeightPercentage(inValue: number);
+        /**
+         * @groups 界面/控件/文本
+         * @description 获取行高系数
+         * @effect  只在客户端调用生效
+         * @returns 行高系数
+         */
+        get lineHeightPercentage(): number;
         /** ************************************************* 普通图片  ******************************************************/
         /**
          * @groups 界面/控件/文本按钮
@@ -4700,15 +4806,15 @@ declare namespace mw {
          */
         isPressed(): boolean;
         /**
-         * @groups 界面/控件/文本按钮
+         * @groups 界面/控件/按钮
          * @description 设置点击模式
          * @effect  只在客户端调用生效
-         * @param inClickMethod usage:点击模式
-         * @returns 点击模式选择
+         * @param inClickMethod usage:点击模式选择
+         * @deprecated info:该接口已废弃，在该接口被删除前会仍保持可用，请尽快使用替换方案以免出现问题 since:042 reason:接口与touchMethod功能合并 replacement:touchMethod
          */
         set clickMethod(inClickMethod: mw.ButtonClickMethod);
         /**
-         * @groups 界面/控件/文本按钮
+         * @groups 界面/控件/按钮
          * @description 设置触摸模式
          * @effect  只在客户端调用生效
          * @param inTouchMethod usage:Touch模式选择
@@ -5221,6 +5327,18 @@ declare namespace mw {
          */
         set itemHeight(itemHeight: number);
         /**
+        * @description 设置是否受Touch事件影响滚动
+        * @effect 只在客户端调用生效
+        * @param bCanControl usage:能否touch控制滚动
+        */
+        setTouchCanControlThisScroll(bCanControl: boolean): void;
+        /**
+        * @description 获取是否受Touch事件影响滚动
+        * @effect 只在客户端调用生效
+        * @returns 能否touch能控制滚动
+        */
+        getTouchCanControlThisScroll(): boolean;
+        /**
          * @description 创建 TileView 控件，当parent和inName与已有的对象相同时，旧的对象会被销毁
          * @effect 只在客户端调用生效
          * @param orientation usage: 朝向
@@ -5552,6 +5670,18 @@ declare namespace mw {
          */
         get onItemReleaseShow(): mw.MulticastDelegate<(targetItem: mw.Widget) => void>;
         /**
+          * @description 设置是否受Touch事件影响滚动
+          * @effect 只在客户端调用生效
+          * @param bCanControl usage:能否touch控制滚动
+          */
+        setTouchCanControlThisScroll(bCanControl: boolean): void;
+        /**
+          * @description 获取是否受Touch事件影响滚动
+          * @effect 只在客户端调用生效
+          * @returns 能否touch能控制滚动
+          */
+        getTouchCanControlThisScroll(): boolean;
+        /**
          * @description 创建 TreeView 控件，当parent和inName与已有的对象相同时，旧的对象会被销毁
          * @effect 只在客户端调用生效
          * @param uiAssetGUID usage: 设置视图绑定的节点UI range: 无
@@ -5571,7 +5701,7 @@ declare namespace mw {
      * @author jie.wu
      * @description 获取 UI 脚本
      * @groups 界面
-     * @effect 只在客户端调用生效
+     * @effect  只在客户端调用生效
      * @param UI  usage:UI控件
      * @returns UI绑定的脚本
      */
@@ -8961,6 +9091,12 @@ declare namespace mw {
      */
     class Widget {
         /**
+         * @description 判断控件有没有被销毁，是否是有效的控件
+         * @effect 只在客户端调用生效
+         * @returns boolean 是否还有效，判定有没有被销毁
+         */
+        isValid(): boolean;
+        /**
          * @description 立刻移除并销毁 不可以在使用
          * @effect 只在客户端调用生效
          */
@@ -9236,17 +9372,17 @@ declare namespace mw {
          */
         get autoSizeHorizontalEnable(): boolean;
         /**
-         * @description 获取是否自动垂直设置大小
-         * @effect  只在客户端调用生效
-         * @returns 是否自动垂直设置大小
-         */
-        get autoSizeVerticalEnable(): boolean;
-        /**
          * @description 获取是否自动水平设置大小
          * @effect  只在客户端调用生效
          * @returns 是否自动水平设置大小
          */
         set autoSizeHorizontalEnable(bEnabled: boolean);
+        /**
+         * @description 获取是否自动垂直设置大小
+         * @effect  只在客户端调用生效
+         * @returns 是否自动垂直设置大小
+         */
+        get autoSizeVerticalEnable(): boolean;
         /**
          * @description 获取是否自动垂直设置大小
          * @effect  只在客户端调用生效
@@ -9281,7 +9417,7 @@ declare namespace mw {
         /**
          * @description 获取第几位子节点
          * @effect  只在客户端调用生效
-         * @param index usage:下标  range: 大于 0   type: 整形
+         * @param index usage:下标  range:大于等于0  type: 整形
          * @returns 找到的控件
          */
         getChildAt(index: number): mw.Widget;

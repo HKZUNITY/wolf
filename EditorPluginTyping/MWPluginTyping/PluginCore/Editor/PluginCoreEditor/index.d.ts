@@ -1159,6 +1159,11 @@ declare namespace mweditor {
          * 调用进程的安全上下文中指定的可执行文件
          */
         static createProcess(url: string, params?: string, launchDetached?: boolean, launchHidden?: boolean, optional?: string, callback?: (bEnding: boolean, data: string) => void): number;
+        /**
+         * 创建一个新进程及其主线程。新流程运行,该进程会随父进程销毁而自动销毁
+         * 调用进程的安全上下文中指定的可执行文件
+         */
+        static createJobProcess(url: string, params?: string, launchDetached?: boolean, launchHidden?: boolean, optional?: string, callback?: (bEnding: boolean, data: string) => void): number;
         /**正常向进程发送一个关闭命令 */
         static closeProcess(processHandle: number): boolean;
         /**终止进程 */
@@ -1171,6 +1176,12 @@ declare namespace mweditor {
         static launchFile(fileName: string, params?: string, openVerbEdit?: boolean): void;
         /**获取编辑器语言 */
         static getEditorLanguage(): string;
+        /**是否指定进程在运行，性能开销会比较大，慎用 */
+        static isApplicationRunning(name: string): boolean;
+        /** 根据进程名称强杀进程，性能开销会比较大，容易误杀，慎用 */
+        static killApplication(name: string): void;
+        /** 是否是有效的没有被占用的端口 */
+        static isValidPort(port: number): boolean;
     }
 }
 declare namespace mweditor {
@@ -1203,7 +1214,7 @@ declare namespace mweditor {
     class LocalAssetManager extends mweditor.EditorSystemBase {
         launchImportDialog(importType?: mweditor.LocalType): void;
         dragImportLocalAsset(fileNames: string[]): void;
-        uploadLocalAsset(guidList: string[], uploadCallback: (bSuccess: boolean) => void): void;
+        uploadLocalAsset(guidList: string[], uploadCallback: (bSuccess: boolean, message: string) => void): void;
         getThumbnailByAssetId(assetId: string): string;
         getThumbnailByAssetPath(assetPath: string): string;
         getVisibleByAssetId(assetId: string): boolean;
@@ -1533,7 +1544,23 @@ declare namespace mweditor {
         Entered = 1,
         Leaved = 2
     }
+    enum ECompileStatus {
+        CompileStart = 0,
+        CompileCurrentFile = 1,
+        CompileSuccess = 2,
+        CompileFailed = 3,
+        LoadExtensionsStart = 4,
+        LoadGameStart = 5,
+        UIInitStart = 6,
+        InitGameStart = 7,
+        LoadExtensionsError = 8,
+        LoadGameError = 9,
+        UIInitError = 10,
+        InitGameError = 11,
+        NotifyCompilingScene = 12
+    }
     class OpenProjectManager extends mweditor.EditorSystemBase {
+        allbuild: boolean;
         private openProjectSubsystem;
         private procedureChanged;
         private procedureChangedHandle;
@@ -1559,6 +1586,8 @@ declare namespace mweditor {
          * @param stage 插入的位置，在输入的阶段之后插入
          */
         static insertProcedure(newProcedureClass: typeof OpenProjectProcedureBase, stage: EOpenProjectStage): boolean;
+        StopCompile(): void;
+        OpenAllbuildCompilePopover(): void;
     }
 }
 
@@ -1826,6 +1855,7 @@ declare namespace mweditor {
         get contentList(): Readonly<mweditor.WorkData[]>;
         get selectedContent(): Readonly<mweditor.WorkData[]>;
         get searchContentList(): Readonly<mweditor.WorkData[]>;
+        SetCompileScriptState(state: number, message: string): void;
     }
     class ProjectContentTab extends mweditor.Tab {
         get projectContent(): ProjectContent;
@@ -1918,6 +1948,7 @@ declare namespace mweditor {
     class ToolBar extends mweditor.EditorSystemBase {
         private MWEdToolBarSubsystem;
         onLogWindowClosed: mw.MulticastDelegate<(name: string) => void>;
+        onLogWindowOpen: mw.MulticastDelegate<(name: string) => void>;
         onTSAutoCompileChanged: mw.MulticastDelegate<(auto: boolean) => void>;
         onAlignmentToolTabChanged: mw.MulticastDelegate<(auto: boolean) => void>;
         onPerformanceTabChanged: mw.MulticastDelegate<(auto: boolean) => void>;
@@ -2026,6 +2057,7 @@ declare namespace mweditor {
         OnNegateClicked(): void;
         OnSeparateClicked(): void;
         GetActiveChord(id: string): UE.InputChord;
+        BuildAll(): void;
     }
 }
 
@@ -2398,14 +2430,14 @@ declare namespace mweditor {
         /**
          * 拷贝文件或者文件夹
          * @param destination 拷贝目的地址
-         * @param overwrite 拷贝来源地址
+         * @param overwrite 是否覆盖
          * @returns 返回成功还是失败
          */
         copyTo(destination: string, overwrite?: boolean): boolean;
         /**
          * 移动文件或者文件夹
          * @param destination 移动到目的地址
-         * @param overwrite 移动来源地址
+         * @param overwrite 是否覆盖
          * @returns 返回成功还是失败
          */
         moveTo(destination: string, overwrite?: boolean): boolean;
@@ -3829,7 +3861,7 @@ declare namespace mweditor {
     }
     enum EPropertyType {
         default = 0,
-        blankAttribute = 1,
+        tipsError = 1,
         UIConstraintGraph = 2,
         category = 3,
         array = 4,
@@ -3854,9 +3886,11 @@ declare namespace mweditor {
         staticMesh = 23,
         objectPtr = 24,
         materials = 25,
-        asset = 26,
-        script = 27,
-        otherStruct = 28
+        multiPassMaterial = 26,
+        asset = 27,
+        CurveColorArray = 28,
+        script = 29,
+        otherStruct = 30
     }
     /**
      * @author jianke.feng
@@ -3933,7 +3967,15 @@ declare namespace mweditor {
         /** 标记该属性是不是基础属性，是哪一个(名称、ID、网络状态、tag) */
         BaseProperty_Str = 33,
         /** 显隐和材质的切换绑定，材质颜色动态显隐专用 */
-        VisibleBindMaterialChange_Boolean = 34
+        VisibleBindMaterialChange_Boolean = 34,
+        /** 通知MultiPassM材质移除插槽, 默认参数: void  返回值: void*/
+        ClearMultiPassMatsFun_Fun = 35
+    }
+    enum EMultiPassFit {
+        MP_Fit = 0,
+        MP_VariableNotFit = 1,
+        MP_MainPassNotFit1 = 2,
+        MP_MultiPassNotFit1 = 4
     }
     /**
      * @description 根据字符串解析为相应的 Vector 方法, 字符串格式(Pitch=0.000000,Yaw=0.000000,Roll=0.000000)
@@ -3958,6 +4000,8 @@ declare namespace mweditor {
     function ParseLinearColorString(str: string, outColor: mw.LinearColor): mw.LinearColor;
     function ParsesSysValueFromString(inValue: string, inType: EPropertyType): any;
     function ParsesSysValueToString(inValue: any): string;
+    function GetAssetDisplayName(assetID: string): string;
+    function CheckIsMatFitForMultiPass(obj: any, assetId: string): void;
     /**
      * @description         解析获取Obj上的资源属性的Guid
      * @effect              调用生效
@@ -3968,6 +4012,7 @@ declare namespace mweditor {
     function getAssetPropertyGuid(inObj: any | any[], getterName: string, assetOriginalType: UE.EMWTSPropertyType): string;
 }
 
+/// <reference types="Extension" />
 /// <reference types="Extension" />
 /// <reference types="Extension" />
 declare namespace mweditor {
@@ -4142,6 +4187,11 @@ declare namespace mweditor {
         private ColorPickCallBack;
         copy(): LinearColorPropertyData;
     }
+    class ColorGradientPropertyData extends PropertyData {
+        constructor();
+        onColorPointChange: mw.MulticastDelegate<(colorPointArr: mw.colorSequencePoint[]) => void>;
+        copy(): ColorGradientPropertyData;
+    }
     /**
      * @description marginData类
      */
@@ -4209,6 +4259,7 @@ declare namespace mweditor {
          * @return      节点自身的拷贝
          */
         copy(): TArrayCategoryData;
+        get arraylength(): number;
         /**
          *
          * @returns 初步判断数组的内容是否有变化，长度变化需要刷新属性面板
@@ -4229,15 +4280,32 @@ declare namespace mweditor {
         copy(): MaterialsPropertyData;
     }
     /**
-     * @description BlankAttributePropertyData类, 空白屬性， 當屬性展示空間格式不夠時， 用來綁定並行展示
+     * @description MaterialsPropertyData类
      */
-    class BlankAttributePropertyData extends PropertyData {
+    class MultiPassMaterialPropertyData extends PropertyData {
         constructor();
-        BindData: PropertyDataBase;
-        copy(): BlankAttributePropertyData;
+        warnTipsKey: string;
+        ClearPass(): boolean;
+        /**
+        * @description 拷贝节点自身,但属性信息与属性所属对象依然引用同样的对象
+        * @return      节点自身的拷贝
+        */
+        copy(): MultiPassMaterialPropertyData;
     }
     /**
-     * @description UIConstraintGraphPropertyData 类, 空白屬性， 當屬性展示空間格式不夠時， 用來綁定並行展示
+     * @description TipsErrorPropertyData类, 警告提示，单独占用一行，有绑定的目标属性控制显示和警告内容
+     */
+    class TipsErrorPropertyData extends PropertyData {
+        constructor();
+        BindData: PropertyDataBase;
+        TipsKey: string;
+        get bTipsVisible(): boolean;
+        customRowHeight: number;
+        propertyContentHeight: number;
+        copy(): TipsErrorPropertyData;
+    }
+    /**
+     * @description UIConstraintGraphPropertyData 类,
      */
     class UIConstraintGraphPropertyData extends PropertyData {
         constructor();
@@ -4247,6 +4315,7 @@ declare namespace mweditor {
     }
 }
 
+/// <reference types="Extension" />
 /// <reference types="Extension" />
 /// <reference types="Extension" />
 declare namespace mweditor {
@@ -4324,6 +4393,12 @@ declare namespace mweditor {
         getValue(obj: any): any;
         setValue(obj: any, inValue: any): void;
     }
+    class ObjColorGradientPropertyInfo extends ObjPropertyInfo {
+        constructor(funGetter: PropertyDescriptor, funSetter: PropertyDescriptor);
+        getValue(obj: any): Array<mw.colorSequencePoint>;
+        setValue(obj: any, inValue: Array<mw.colorSequencePoint> | any): void;
+        ColorGradientValue: Array<mw.colorSequencePoint>;
+    }
     /**
      * @author jianke.feng
      * @description  属性信息
@@ -4387,6 +4462,16 @@ declare namespace mweditor {
         getAssetGuid(obj: any): string[];
         getValue(obj: any, inGuid?: string): mweditor.AssetManager_OnlineAssetInfo[];
         setMaterialInst(obj: any, index: number, inAssetGUID: string): void;
+    }
+    /**
+     * @author jianke.feng
+     * @description  MultiPassMaterial 多Pass材质资源属性信息
+     * @effect
+     */
+    class objMultiPassMaterialPropertyInfo extends ObjPropertyInfo {
+        constructor(funGetter: PropertyDescriptor, funSetter: PropertyDescriptor);
+        getValue(obj: any): any;
+        setValue(obj: any, inValue: any, inPropertyPath?: string): void;
     }
 }
 

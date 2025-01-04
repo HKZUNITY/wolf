@@ -403,6 +403,26 @@ export class Tools {
         day += new Date().getDate();
         return day;
     }
+
+    public static async applySharedId(character: mw.Character, sharedId: string): Promise<boolean> {
+        return new Promise(async (resolve: (isSuccess: boolean) => void) => {
+            mw.AccountService.applySharedId(character, sharedId, async (success: boolean) => {
+                console.error(`success:${success}`);
+                if (success) character.syncDescription();
+                await character.asyncReady();
+                return resolve(success);
+            });
+        });
+    }
+
+    public static async createSharedId(character: mw.Character): Promise<string> {
+        return new Promise(async (resolve: (isSuccess: string) => void) => {
+            mw.AccountService.createSharedId(character, (dataString: string) => {
+                console.error(`dataString:${dataString}`);
+                return resolve(dataString);
+            });
+        });
+    }
 }
 
 export enum Visibility {

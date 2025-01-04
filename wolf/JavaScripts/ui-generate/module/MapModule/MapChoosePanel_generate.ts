@@ -3,7 +3,7 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/module/MapModule/MapChoosePanel.ui
- * TIME: 2024.12.24-22.05.35
+ * TIME: 2025.01.04-16.15.06
  */
  
 @UIBind('UI/module/MapModule/MapChoosePanel.ui')

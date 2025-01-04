@@ -185,6 +185,7 @@ declare namespace EditorPlugin {
         onMaterialIndexChange: mw.MulticastDelegate<(curIndex: number) => void>;
         onClearData: mw.MulticastDelegate<() => void>;
         curMaterialIndex: number;
+        onShowTipsErrorPost: mw.MulticastDelegate<(bindData: mweditor.PropertyDataBase, bVisible: boolean) => void>;
         private timerHandler;
         private onIntervalUpdateBind;
         myInternationalization: mweditor.Internationalization;
@@ -218,8 +219,9 @@ declare namespace EditorPlugin {
         private Undo;
         private clearSetObject;
         updateSelection(objs: any[]): void;
-        private bSelectChange;
+        bSelectChange: boolean;
         tempSelectObjs: any[];
+        private clearDataOwner;
         private prepareToReset;
         setObject(objs: any[]): void;
         private CheckSelectionHasChanged;
@@ -358,7 +360,7 @@ declare namespace EditorPlugin {
          */
         protected onStart(): void;
         curInternationalization: string;
-        ownerDetailsView: WeakRef<EditorPlugin.DetailsView>;
+        ownerDetailsViewWeak: WeakRef<EditorPlugin.DetailsView>;
         propertyDataWeak: WeakRef<mweditor.PropertyDataBase>;
         BData_WidgetType: mweditor.BData_PropertyWidgetType;
         BData_WidgetMethod: mweditor.BData_PropertyWidgetMethod;
@@ -440,7 +442,8 @@ declare namespace EditorPlugin {
         Positioning = 7,
         DeleteRowBtn = 8,
         DeleteArrayItem = 9,
-        CaptureProperty = 10
+        CaptureProperty = 10,
+        ColorGradient = 11
     }
     class CustomRowHeightData {
         constructor(customRowHeight: number, propertyContent: number);

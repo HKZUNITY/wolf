@@ -3,7 +3,7 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/module/DanMuModule/ChatPanel.ui
- * TIME: 2024.12.24-22.05.35
+ * TIME: 2025.01.04-16.15.05
  */
  
 @UIBind('UI/module/DanMuModule/ChatPanel.ui')
@@ -295,6 +295,20 @@ export default class ChatPanel_Generate extends UIScript {
 		}
 		return this.mBackBagButton_Internal
 	}
+	private mOpenShareImage_Internal: mw.Image
+	public get mOpenShareImage(): mw.Image {
+		if(!this.mOpenShareImage_Internal&&this.uiWidgetBase) {
+			this.mOpenShareImage_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenShareImage') as mw.Image
+		}
+		return this.mOpenShareImage_Internal
+	}
+	private mOpenShareButton_Internal: mw.StaleButton
+	public get mOpenShareButton(): mw.StaleButton {
+		if(!this.mOpenShareButton_Internal&&this.uiWidgetBase) {
+			this.mOpenShareButton_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenShareImage/mOpenShareButton') as mw.StaleButton
+		}
+		return this.mOpenShareButton_Internal
+	}
 
 
 	protected onAwake() {
@@ -346,6 +360,13 @@ export default class ChatPanel_Generate extends UIScript {
 		});
 		this.initLanguage(this.mBackBagButton);
 		this.mBackBagButton.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
+		
+	
+		this.mOpenShareButton.onClicked.add(()=>{
+			Event.dispatchToLocal("PlayButtonClick", "mOpenShareButton");
+		});
+		this.initLanguage(this.mOpenShareButton);
+		this.mOpenShareButton.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
 		
 	
 		//按钮添加点击

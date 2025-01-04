@@ -1004,6 +1004,16 @@ declare namespace mw {
          */
         protected onReplicated(path: string, value: unknown, oldVal: unknown): void | boolean;
         /**
+         * @description 生命周期函数 - target 禁用时调用
+         * @effect 调用端生效
+         */
+        protected onDeactivate(): void;
+        /**
+         * @description 生命周期函数 - target 激活时调用
+         * @effect 调用端生效
+         */
+        protected onActivate(): void;
+        /**
          * @description 销毁组件对象
          * @effect 只在服务端调用生效
          */

@@ -563,6 +563,22 @@ declare namespace UGC {
     function saveProject(): Promise<void>;
     /**
      * @author jie.wu
+     * @description 设置游戏退出延迟,设置为true的话，233退出会卡住，等待设置完成为false后才会退出
+     * @groups 基础类型
+     * @effect 调用端生效
+     * @precautions 只在233平台调用，可以控制做233杀进程
+     */
+    function setWaitForTSGameExit(bWaitExistOrKill: boolean): void;
+    /**
+     * @author jie.wu
+     * @description 设置游戏退出延迟是否读取配置文件，可远端配置强杀时间
+     * @groups 基础类型
+     * @effect 调用端生效
+     * @precautions 只在233平台调用，可以控制做233杀进程
+     */
+    function setDelayExitTimeoutEnable(bEnabled: boolean): void;
+    /**
+     * @author jie.wu
      * @description 保存当前游戏项目
      * @groups SCRIPTING
      * @effect 调用端生效
@@ -998,6 +1014,15 @@ declare namespace UGC {
     function UGCApplyArchive(slot: number): void;
     /**
      * @author shuhan.liu
+     * @description 移动端编辑器公共存档读档
+     * @groups 基础类型
+     * @effect 调用端生效
+     * @precautions 只在MobileEditor模式下调用生效
+     * @param archiveId 公共存档id
+     */
+    function UGCApplyArchive_Common(archiveId: number): void;
+    /**
+     * @author shuhan.liu
      * @description 移动端编辑器读档结果
      * @groups 基础类型
      * @effect 调用端生效
@@ -1051,6 +1076,25 @@ declare namespace UGC {
     * @return Array<GameObject>
     */
     function batchSelectObjects(selectionStartPoint: mw.Vector2, selectionEndPoint: mw.Vector2): Array<mw.GameObject>;
+    /**
+     * @author hexuan.zhang
+     * @description 设置是否将以该节点为根节点场景树自动生成为一个资源文件，生成后在运行时通过 asyncSpawn 接口直接创建，或者加载资源后同步 spawn。
+     * @groups 基础类型
+     * @effect 调用端生效
+     * @precautions 只在编辑模式下调用生效，标记的的源物体不要删除，否则会导致生成的 Asset 异常。
+     * @param gameObjectId 根节点的 gameObjectId
+     * @param bGenerateAsset 是否生成 Asset。标记过 true 的，在标记 false 或者源物体被删除后会删除资源。
+     * @returns
+     */
+    function setAutoCreateRuntimeAsset(gameObjectId: string, bGenerateAsset: boolean): string;
+    /**
+     * @author zheng.zeng
+     * @groups SCRIPTING
+     * @description 获取路径
+     * @effect 只在客户端调用生效
+     * @return 返回当前UGC项目的路径
+     */
+    function getCurrentProjectPath(): string;
 }
 
 declare namespace UGC {
@@ -1317,8 +1361,10 @@ declare namespace UGC {
      * @param Width      usage:截图区域的宽度
      * @param Height     usage:截图区域的高度
      * @param callback   usage: 获取本地截图路径 default:null
+     * @param bShowUI    usage:是否包含UI
+     * @param fileName   usage:自定义截图的文件名，默认为Game_Thumbnail
      */
-    function screenShot(Resolution: mw.Vector2, StartPoint: mw.Vector2, Width: number, Height: number, callback: (dataString: string) => void): void;
+    function screenShot(Resolution: mw.Vector2, StartPoint: mw.Vector2, Width: number, Height: number, callback: (dataString: string) => void, bShowUI?: boolean, fileName?: string): void;
     /**
      * @author jie.wu
      * @description            同步对指定虚拟角色进行截取，截图保存在本地固定路径下
