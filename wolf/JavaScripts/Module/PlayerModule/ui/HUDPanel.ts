@@ -50,39 +50,37 @@ export default class HUDPanel extends HUDPanel_Generate {
 		this.mBtn_Skill.onClicked.add(() => {
 			ModuleService.getModule(SkillModuleC).isOpenSkillShopPanel(true);
 		})
-		let advCount: number = 1;
 		this.mBtn_Member.onClicked.add(() => {
 			if (!Globals.isOpenIAA) {
-				ModuleService.getModule(PlayerModuleC).addAdvToken(advCount);
-				Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_8.Value, advCount));
+				ModuleService.getModule(PlayerModuleC).addAdvToken(Globals.advCount);
+				Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_8.Value, Globals.advCount));
 			} else {
 				UIService.getUI(AdsPanel).showRewardAd(() => {
-					ModuleService.getModule(PlayerModuleC).addAdvToken(advCount);
-					Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_8.Value, advCount));
-				}, StringUtil.format(GameConfig.Language.Text_Ads_9.Value, advCount), GameConfig.Language.Text_Content_20022.Value, GameConfig.Language.Text_Content_20030.Value);
+					ModuleService.getModule(PlayerModuleC).addAdvToken(Globals.advCount);
+					Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_8.Value, Globals.advCount));
+				}, StringUtil.format(GameConfig.Language.Text_Ads_9.Value, Globals.advCount), GameConfig.Language.Text_Content_20022.Value, GameConfig.Language.Text_Content_20030.Value);
 			}
 		})
 		this.mAddAdsButton.onClicked.add(() => {
 			if (!Globals.isOpenIAA) {
-				ModuleService.getModule(PlayerModuleC).addAdvToken(advCount);
-				Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_8.Value, advCount));
+				ModuleService.getModule(PlayerModuleC).addAdvToken(Globals.advCount);
+				Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_8.Value, Globals.advCount));
 			} else {
 				UIService.getUI(AdsPanel).showRewardAd(() => {
-					ModuleService.getModule(PlayerModuleC).addAdvToken(advCount);
-					Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_8.Value, advCount));
-				}, StringUtil.format(GameConfig.Language.Text_Ads_9.Value, advCount), GameConfig.Language.Text_Content_20022.Value, GameConfig.Language.Text_Content_20030.Value);
+					ModuleService.getModule(PlayerModuleC).addAdvToken(Globals.advCount);
+					Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_8.Value, Globals.advCount));
+				}, StringUtil.format(GameConfig.Language.Text_Ads_9.Value, Globals.advCount), GameConfig.Language.Text_Content_20022.Value, GameConfig.Language.Text_Content_20030.Value);
 			}
 		});
-		let getCoinCount: number = 100;
 		this.mAddCoinButton.onClicked.add(() => {
 			if (!Globals.isOpenIAA) {
-				ModuleService.getModule(PlayerModuleC).addCoin(getCoinCount);
-				Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_6.Value, getCoinCount));
+				ModuleService.getModule(PlayerModuleC).addCoin(Globals.addCoin);
+				Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_6.Value, Globals.addCoin));
 			} else {
 				mw.UIService.getUI(AdsPanel).showRewardAd(() => {
-					ModuleService.getModule(PlayerModuleC).addCoin(getCoinCount);
-					Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_6.Value, getCoinCount));
-				}, StringUtil.format(GameConfig.Language.Text_Ads_7.Value, getCoinCount), GameConfig.Language.Text_Content_20022.Value, GameConfig.Language.Text_Content_20030.Value);
+					ModuleService.getModule(PlayerModuleC).addCoin(Globals.addCoin);
+					Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_6.Value, Globals.addCoin));
+				}, StringUtil.format(GameConfig.Language.Text_Ads_7.Value, Globals.addCoin), GameConfig.Language.Text_Content_20022.Value, GameConfig.Language.Text_Content_20030.Value);
 			}
 		});
 		this.mBtn_Exchange.onClicked.add(() => {

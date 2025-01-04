@@ -139,28 +139,26 @@ export default class ShopPanel extends ShopPanel_Generate {
 		},
 			this);
 
-		let addCoin: number = 100;
 		this.mAddCoinButton.onClicked.add(() => {
 			if (!Globals.isOpenIAA) {
-				ModuleService.getModule(PlayerModuleC).addCoin(addCoin);
-				Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_6.Value, addCoin));
+				ModuleService.getModule(PlayerModuleC).addCoin(Globals.addCoin);
+				Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_6.Value, Globals.addCoin));
 			} else {
 				mw.UIService.getUI(AdsPanel).showRewardAd(() => {
-					ModuleService.getModule(PlayerModuleC).addCoin(addCoin);
-					Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_6.Value, addCoin));
-				}, StringUtil.format(GameConfig.Language.Text_Ads_7.Value, addCoin), GameConfig.Language.Text_Content_20022.Value, GameConfig.Language.Text_Content_20030.Value);
+					ModuleService.getModule(PlayerModuleC).addCoin(Globals.addCoin);
+					Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_6.Value, Globals.addCoin));
+				}, StringUtil.format(GameConfig.Language.Text_Ads_7.Value, Globals.addCoin), GameConfig.Language.Text_Content_20022.Value, GameConfig.Language.Text_Content_20030.Value);
 			}
 		});
-		let advCount: number = 1;
 		this.mAddCouponButton.onClicked.add(() => {
 			if (!Globals.isOpenIAA) {
-				ModuleService.getModule(PlayerModuleC).addAdvToken(advCount);
-				Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_8.Value, advCount));
+				ModuleService.getModule(PlayerModuleC).addAdvToken(Globals.advCount);
+				Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_8.Value, Globals.advCount));
 			} else {
 				UIService.getUI(AdsPanel).showRewardAd(() => {
-					ModuleService.getModule(PlayerModuleC).addAdvToken(advCount);
-					Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_8.Value, advCount));
-				}, StringUtil.format(GameConfig.Language.Text_Ads_9.Value, advCount), GameConfig.Language.Text_Content_20022.Value, GameConfig.Language.Text_Content_20030.Value);
+					ModuleService.getModule(PlayerModuleC).addAdvToken(Globals.advCount);
+					Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_8.Value, Globals.advCount));
+				}, StringUtil.format(GameConfig.Language.Text_Ads_9.Value, Globals.advCount), GameConfig.Language.Text_Content_20022.Value, GameConfig.Language.Text_Content_20030.Value);
 			}
 		});
 	}

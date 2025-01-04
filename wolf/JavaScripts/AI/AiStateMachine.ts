@@ -1,4 +1,6 @@
-﻿import { AiObject } from "./AiObject";
+﻿import { GameConfig } from "../Tables/GameConfig";
+import { Tools } from "../Tools";
+import { AiObject } from "./AiObject";
 
 export enum AiState {
     NotActive,
@@ -77,6 +79,12 @@ export class FSM_AiMove implements IAIState {
         obj.curAIState = AiState.Move;
         this.aiobj = obj;
         this.aiobj.moveState();
+        let moveAnimationId = GameConfig.Assets.getElement(20032).Guid;
+        Tools.asyncDownloadAsset(moveAnimationId).then(() => {
+            this.aiobj.moveAni = this.aiobj.aiModel.loadAnimation(moveAnimationId);
+            this.aiobj.moveAni.loop = 0;
+            this.aiobj.moveAni.play();
+        });
     }
     onUpdate(): void {
         if (this.aiobj != null) {
@@ -90,7 +98,6 @@ export class FSM_AiMove implements IAIState {
         }
     }
     exit(): void {
-        if (this.aiobj.moveAni) this.aiobj.moveAni.stop();
     }
 }
 export class FSM_AiFollow implements IAIState {
@@ -99,6 +106,12 @@ export class FSM_AiFollow implements IAIState {
         obj.curAIState = AiState.Follow;
         this.aiobj = obj;
         this.aiobj.followState();
+        let moveAnimationId = GameConfig.Assets.getElement(20032).Guid;
+        Tools.asyncDownloadAsset(moveAnimationId).then(() => {
+            this.aiobj.moveAni = this.aiobj.aiModel.loadAnimation(moveAnimationId);
+            this.aiobj.moveAni.loop = 0;
+            this.aiobj.moveAni.play();
+        });
     }
     onUpdate(): void {
         if (this.aiobj != null) {
@@ -114,6 +127,12 @@ export class FSM_AiGunAttack implements IAIState {
         obj.curAIState = AiState.GunAttack;
         this.aiobj = obj;
         obj.gunState();
+        let moveAnimationId = GameConfig.Assets.getElement(20032).Guid;
+        Tools.asyncDownloadAsset(moveAnimationId).then(() => {
+            this.aiobj.moveAni = this.aiobj.aiModel.loadAnimation(moveAnimationId);
+            this.aiobj.moveAni.loop = 0;
+            this.aiobj.moveAni.play();
+        });
     }
     onUpdate(): void {
         if (this.aiobj != null) {
@@ -137,6 +156,12 @@ export class FSM_AiKnifeAttack implements IAIState {
         obj.curAIState = AiState.KnifeAttack;
         this.aiobj = obj;
         obj.knifeState();
+        let moveAnimationId = GameConfig.Assets.getElement(20032).Guid;
+        Tools.asyncDownloadAsset(moveAnimationId).then(() => {
+            this.aiobj.moveAni = this.aiobj.aiModel.loadAnimation(moveAnimationId);
+            this.aiobj.moveAni.loop = 0;
+            this.aiobj.moveAni.play();
+        });
     }
     onUpdate(): void {
         if (this.aiobj != null) {

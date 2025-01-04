@@ -81,19 +81,18 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
     }
 
     // private mUIText20030_txt: mw.TextBlock;
-    private getCoinCount: number = 100;
     private initCoinAds(): void {
         // this.mUIText20030_txt = this.getHUDPanel.mUIText20030_txt;
         // this.mUIText20030_txt.text = `领金币`;
         this.getHUDPanel.mBtn_AD.onClicked.add(() => {
             if (!Globals.isOpenIAA) {
-                this.server.net_ChangeGold(this.getCoinCount);
-                Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_6.Value, this.getCoinCount));;
+                this.server.net_ChangeGold(Globals.addCoin);
+                Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_6.Value, Globals.addCoin));;
             } else {
                 mw.UIService.getUI(AdsPanel).showRewardAd(() => {
-                    this.server.net_ChangeGold(this.getCoinCount);
-                    Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_6.Value, this.getCoinCount));
-                }, StringUtil.format(GameConfig.Language.Text_Ads_7.Value, this.getCoinCount), GameConfig.Language.Text_Content_20022.Value, GameConfig.Language.Text_Content_20030.Value);
+                    this.server.net_ChangeGold(Globals.addCoin);
+                    Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_6.Value, Globals.addCoin));
+                }, StringUtil.format(GameConfig.Language.Text_Ads_7.Value, Globals.addCoin), GameConfig.Language.Text_Content_20022.Value, GameConfig.Language.Text_Content_20030.Value);
             }
         });
     }

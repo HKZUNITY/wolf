@@ -219,15 +219,6 @@ export class AiObject {
                 this.changeAiState(AiState.GunAttack);
             }
         }
-
-        let moveAnimationId = GameConfig.Assets.getElement(20032).Guid;
-        Tools.asyncDownloadAsset(moveAnimationId).then(() => {
-            if (!this.moveAni) {
-                this.moveAni = this.aiModel.loadAnimation(moveAnimationId);
-                this.moveAni.loop = 0;
-            }
-            this.moveAni.play();
-        });
     }
     checkUseWeapon() {
         let playerList = this.findAroundPlayer();
@@ -581,16 +572,14 @@ export class AiObject {
       */
     public moveTo(target: mw.Vector) {
         this.beginMoveTime = mw.TimeUtil.time();
-        this.stopMove();
+        // this.stopMove();
         this.location = target;
         this.lookAt(target);
         console.error(`wfz - wfz - moveTo`);
         let moveAnimationId = GameConfig.Assets.getElement(20032).Guid;
         Tools.asyncDownloadAsset(moveAnimationId).then(() => {
-            if (!this.moveAni) {
-                this.moveAni = this.aiModel.loadAnimation(moveAnimationId);
-                this.moveAni.loop = 0;
-            }
+            this.moveAni = this.aiModel.loadAnimation(moveAnimationId);
+            this.moveAni.loop = 0;
             this.moveAni.play();
         });
         Navigation.navigateTo(this.aiModel, target, 5,
@@ -620,7 +609,6 @@ export class AiObject {
         if (this.location == null) return false;
         if (this.location.subtract(this.aiModel.worldTransform.clone().position).length <= 150) {
             console.warn("到达目标点");
-            if (this.moveAni) this.moveAni.stop();
             return true;
         } else {
             return false;

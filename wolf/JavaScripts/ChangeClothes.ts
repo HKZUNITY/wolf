@@ -2,17 +2,20 @@
 import { Globals } from "./Globals";
 import AdsPanel from "./Module/AdsModule/ui/AdsPanel";
 import { GameConfig } from "./Tables/GameConfig";
+import { Tools } from "./Tools";
 
 @Component
 export default class ChangeClothes extends Script {
-
+    @mw.Property({ displayName: "ShareId", group: "脚本设置" })
+    private shareId: string = "";
     /** 当脚本被实例后，会在第一帧更新前调用此函数 */
     protected onStart(): void {
         if (mw.SystemUtil.isClient()) {
             let trigger = this.gameObject as mw.Trigger;
+            let npc = trigger.parent as mw.Character;
+            if (this.shareId && this.shareId != "") Tools.applySharedId(npc, this.shareId);
             trigger.onEnter.add((char: mw.Character) => {
                 if (char.gameObjectId != Player.localPlayer.character.gameObjectId) return;
-                let npc = trigger.parent as mw.Character;
                 if (!Globals.isOpenIAA) {
                     char.setDescription(npc.getDescription());
                     char.asyncReady().then(() => {
@@ -28,9 +31,7 @@ export default class ChangeClothes extends Script {
                         Notice.showDownNotice(GameConfig.Language.Text_Ads_3.Value);
                     }, GameConfig.Language.Text_Ads_4.Value, GameConfig.Language.Text_Content_20022.Value, GameConfig.Language.Text_Ads_5.Value);
                 }
-
             });
-
         }
     }
 
