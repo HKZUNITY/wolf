@@ -19,7 +19,7 @@ export default class DanMuModuleS extends ModuleS<DanMuModuleC, null> {
 
     protected onPlayerEnterGame(player: mw.Player): void {
         this.initChatDatas(player);
-        this.initExpressionDatas(player);
+        // this.initExpressionDatas(player);
         // this.initActionDatas(player);
     }
 

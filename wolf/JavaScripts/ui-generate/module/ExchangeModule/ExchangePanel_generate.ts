@@ -3,7 +3,7 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/module/ExchangeModule/ExchangePanel.ui
- * TIME: 2025.01.04-16.15.06
+ * TIME: 2025.01.20-21.54.29
  */
  
 @UIBind('UI/module/ExchangeModule/ExchangePanel.ui')

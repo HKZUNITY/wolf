@@ -4,6 +4,7 @@ import { IActionPropElement } from "../../../Tables/ActionProp";
 import { GameConfig } from "../../../Tables/GameConfig";
 import { Tools } from "../../../Tools";
 import ChatPanel_Generate from "../../../ui-generate/module/DanMuModule/ChatPanel_generate";
+import SavePanel_Generate from "../../../ui-generate/module/ShareModule/SavePanel_generate";
 import SharePanel_Generate from "../../../ui-generate/module/ShareModule/SharePanel_generate";
 import { ChatData, ActionData } from "../DanMuData";
 import DanMuModuleC from "../DanMuModuleC";
@@ -427,20 +428,63 @@ export class SharePanel extends SharePanel_Generate {
 	}
 
 	private addUseButton(): void {
-		let shareId = this.mInputBox.text;
-		if (!shareId || shareId == "" || shareId.length == 0) return;
-		this.getHUDModuleC.onUseShareAction.call(shareId);
+		if (this.openType == 1) {
+			let shareId = this.mInputBox.text;
+			if (!shareId || shareId == "" || shareId.length == 0) return;
+			this.getHUDModuleC.onUseShareAction.call(shareId, this.openType);
+		} else if (this.openType == 2) {
+			this.getHUDModuleC.onUseShareAction.call(null, this.openType);
+		}
 		this.hide();
 	}
 
-	public showPanel(shareId: string): void {
+	private openType: number = 1;
+	public showPanel(shareId: string, openType: number): void {
+		this.openType = openType;
 		this.mMyselfTextBlock.text = shareId;
-		Tools.setWidgetVisibility(this.mInputBgImage, mw.SlateVisibility.SelfHitTestInvisible);
-		this.mOtherTipsTextBlock.text = GameConfig.Language.Text_TryOnYourFriendAvatarForFree.Value;
+		if (openType == 1) {
+			Tools.setWidgetVisibility(this.mInputBgImage, mw.SlateVisibility.SelfHitTestInvisible);
+			this.mOtherTipsTextBlock.text = GameConfig.Language.Text_TryOnYourFriendAvatarForFree.Value;
+			setTimeout(() => {
+				this.mMainImage.position = new mw.Vector2(this.rootCanvas.size.x / 2 - this.mMainImage.size.x / 2, this.rootCanvas.size.y / 2 - this.mMainImage.size.y / 2);
+			}, 1);
+		} else if (openType == 2) {
+			Tools.setWidgetVisibility(this.mInputBgImage, mw.SlateVisibility.Collapsed);
+			this.mOtherTipsTextBlock.text = GameConfig.Language.Text_CopyTheCharacterIDShareFriendsTryOn.Value;
+			setTimeout(() => {
+				this.mMainImage.position = new mw.Vector2(this.rootCanvas.size.x / 2 - this.mMainImage.size.x, this.rootCanvas.size.y / 2 - this.mMainImage.size.y / 2);
+			}, 1);
+		}
 	}
 
 	protected onShow(...params: any[]): void {
 		this.mMyselfTextBlock.text = GameConfig.Language.Text_Loading.Value;
 		this.mInputBox.text = ``;
+	}
+}
+
+export class SavePanel extends SavePanel_Generate {
+	private hudModuleC: DanMuModuleC = null;
+	private get getHUDModuleC(): DanMuModuleC {
+		if (this.hudModuleC == null) {
+			this.hudModuleC = ModuleService.getModule(DanMuModuleC);
+		}
+		return this.hudModuleC;
+	}
+	protected onStart(): void {
+		this.initUI();
+		this.bindButton();
+	}
+
+	private initUI(): void {
+		this.mSaveTipsTextBlock.text = GameConfig.Language.Text_SaveImagesForFree.Value;
+	}
+
+	private bindButton(): void {
+		this.mSaveButton.onClicked.add(this.addSaveButton.bind(this));
+	}
+
+	private addSaveButton(): void {
+		this.getHUDModuleC.onOpenShareAction.call(2);
 	}
 }

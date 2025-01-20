@@ -11,7 +11,7 @@ import HUDPanel from "../PlayerModule/ui/HUDPanel";
 import { Bubble } from "./Bubble";
 import { ChatData, ActionData } from "./DanMuData";
 import DanMuModuleS from "./DanMuModuleS";
-import ChatPanel, { SharePanel } from "./ui/ChatPanel";
+import ChatPanel, { SavePanel, SharePanel } from "./ui/ChatPanel";
 import DanMuPanel from "./ui/DanMuPanel";
 
 export const DanmuSyncServer = "DanmuSyncServer";
@@ -50,6 +50,14 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
         return this.adPanel;
     }
 
+    private savePanel: SavePanel = null;
+    private get getSavePanel(): SavePanel {
+        if (!this.savePanel) {
+            this.savePanel = UIService.getUI(SavePanel);
+        }
+        return this.savePanel;
+    }
+
     public onOpenChatAction: Action = new Action();
     public onClickChatItem1Action: Action1<number> = new Action1<number>();
     public onClickChatItem2Action: Action2<number, number> = new Action2<number, number>();
@@ -63,8 +71,8 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
     public onClickBagTabAction: Action1<number> = new Action1<number>();
     public onClickBagItemAction: Action1<number> = new Action1<number>();
     public onClickUnloadBagItemAction: Action = new Action();
-    public onOpenShareAction: Action = new Action();
-    public onUseShareAction: Action1<string> = new Action1<string>();
+    public onOpenShareAction: Action1<number> = new Action1<number>();
+    public onUseShareAction: Action2<string, number> = new Action2<string, number>();
 
     protected onStart(): void {
         this.bindEvent();
@@ -107,8 +115,8 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
         this.onOpenChatAction.add(this.addOpenChatAction.bind(this));
         this.onClickChatItem1Action.add(this.addClickChatItem1Action.bind(this));
         this.onClickChatItem2Action.add(this.addClickChatItem2Action.bind(this));
-        this.onOpenExpressionAction.add(this.addOpenExpressionAction.bind(this));
-        this.onClickExpressionItemAction.add(this.addClickExpressionItemAction.bind(this));
+        // this.onOpenExpressionAction.add(this.addOpenExpressionAction.bind(this));
+        // this.onClickExpressionItemAction.add(this.addClickExpressionItemAction.bind(this));
         this.onOpenActionAction.add(this.addOpenActionAction.bind(this));
         this.onClickActionTabAction.add(this.addClickActionTabAction.bind(this));
         this.onClickActionItemAction.add(this.addClickActionItemAction.bind(this));
@@ -120,24 +128,60 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
         this.onClickUnloadBagItemAction.add(this.addClickUnloadBagItemAction.bind(this));
         this.onOpenShareAction.add(this.onOpenShareActionHandler.bind(this));
         this.onUseShareAction.add(this.onUseShareActionHandler.bind(this));
+        this.onOpenExpressionAction.add(this.onOpenClothActionHandler.bind(this));
+        mw.AvatarEditorService.avatarServiceDelegate.add(this.addAvatarServiceDelegate.bind(this));
+        this.localPlayer.character.onDescriptionChange.add(this.addDescriptionChange.bind(this));
     }
 
-    private async onOpenShareActionHandler(): Promise<void> {
+    private onOpenClothActionHandler(): void {
+        AvatarEditorService.asyncOpenAvatarEditorModule();
+    }
+
+    private async onOpenShareActionHandler(openType: number): Promise<void> {
         this.getSharePanel.show();
         let sharedId = await Tools.createSharedId(this.localPlayer.character);
-        this.getSharePanel.showPanel(sharedId);
+        this.getSharePanel.showPanel(sharedId, openType);
     }
 
-    private onUseShareActionHandler(shareId: string): void {
-        if (Globals.isOpenIAA) {
-            this.getAdPanel.showRewardAd(() => {
+    private onUseShareActionHandler(shareId: string, openType: number): void {
+        if (openType == 1) {
+            if (false) {
+                this.getAdPanel.showRewardAd(() => {
+                    this.useShareId(shareId);
+                }, GameConfig.Language.Text_TryItOnForFree.Value
+                    , GameConfig.Language.Text_Cancel.Value
+                    , GameConfig.Language.Text_FreeTryOn.Value);
+            } else {
                 this.useShareId(shareId);
-            }, GameConfig.Language.Text_TryItOnForFree.Value
-                , GameConfig.Language.Text_Cancel.Value
-                , GameConfig.Language.Text_FreeTryOn.Value);
-        } else {
-            this.useShareId(shareId);
+            }
+        } else if (openType == 2) {
+            if (false) {
+                this.getAdPanel.showRewardAd(() => {
+                    AvatarEditorService.asyncCloseAvatarEditorModule().then(async () => {
+                        await TimeUtil.delaySecond(5);
+                        await this.useDescription();
+                    });
+                }, GameConfig.Language.Text_TryItOnForFree.Value
+                    , GameConfig.Language.Text_Cancel.Value
+                    , GameConfig.Language.Text_FreeTryOn.Value);
+            } else {
+                AvatarEditorService.asyncCloseAvatarEditorModule().then(async () => {
+                    await TimeUtil.delaySecond(5);
+                    await this.useDescription();
+                });
+            }
         }
+    }
+
+    private changeDescription: mw.CharacterDescription = null;
+    private addDescriptionChange(): void {
+        this.localPlayer.character.asyncReady().then(() => {
+            console.error(`变化`);
+            this.changeDescription = this.localPlayer.character.getDescription();
+            if (this.isOpenAvatar) {
+                if (!UIService.getUI(SavePanel, false)?.visible) this.getSavePanel.show();
+            }
+        });
     }
 
     private async useShareId(shareId: string): Promise<void> {
@@ -149,6 +193,36 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
         }
     }
 
+    private async useDescription(): Promise<void> {
+        // if (this.changeDescription) {
+        await this.localPlayer.character.asyncReady();
+        let shareId = this.getSharePanel.mMyselfTextBlock.text;
+        if (shareId && shareId?.length > 0) Tools.applySharedId(this.localPlayer.character, shareId);
+        // this.localPlayer.character.setDescription(this.changeDescription);
+        // this.localPlayer.character.syncDescription();
+        Notice.showDownNotice(GameConfig.Language.Text_TryItOnSuccessfully.Value);
+        // this.changeDescription = null;
+        // }
+    }
+
+    private isOpenAvatar: boolean = false;
+    private addAvatarServiceDelegate(eventName: string, ...params: unknown[]): void {
+        console.error(`eventName: ${eventName}`);
+        switch (eventName) {
+            case "AE_OnQuit":
+                // Event.dispatchToLocal(`OnOffMainUI`, true);
+                // Player.localPlayer.character.setStateEnabled(CharacterStateType.Running, true);
+                if (UIService.getUI(SavePanel, false)?.visible) this.getSavePanel.hide();
+                this.isOpenAvatar = false;
+                break;
+            case "AE_OnOpen":
+                // Event.dispatchToLocal(`OnOffMainUI`, false);
+                this.isOpenAvatar = true;
+                if (!UIService.getUI(SavePanel, false)?.visible) this.getSavePanel.show();
+                // Player.localPlayer.character.setStateEnabled(CharacterStateType.Running, false);
+                break;
+        }
+    }
 
     //#region  弹幕
     private sendDanMuSyncServer(msg: string, isActive: boolean): void {
