@@ -32,6 +32,7 @@ export default class ChatPanel extends ChatPanel_Generate {
 		//设置能否每帧触发onUpdate
 		this.canUpdate = false;
 		this.layer = UILayerTop;
+		this.mOpenExpressionTextBlock.text = GameConfig.Language.Text_FREE.Value;
 		this.initUI();
 		this.bindButton();
 	}
