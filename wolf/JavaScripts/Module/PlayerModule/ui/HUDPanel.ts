@@ -103,7 +103,7 @@ export default class HUDPanel extends HUDPanel_Generate {
 		if (Globals.languageId == 0) {
 			this.mText_Exchange.fontSize = 15;
 		}
-		this.initTaskUI();
+		// this.initTaskUI();
 	}
 	public showHallUI() {
 		this.show();
@@ -118,7 +118,7 @@ export default class HUDPanel extends HUDPanel_Generate {
 		this.mImg_Jump_BG.visibility = (mw.SlateVisibility.Collapsed);
 		this.mCanvas_Shop.visibility = (mw.SlateVisibility.Collapsed);
 		this.mCanvas_PlayerInf.visibility = (mw.SlateVisibility.Collapsed);
-		this.mTaskCanvas.visibility = (mw.SlateVisibility.Collapsed);
+		// this.mTaskCanvas.visibility = (mw.SlateVisibility.Collapsed);
 		this.mCanvas_Skill.visibility = (mw.SlateVisibility.Collapsed);
 		this.mCanvas_lottery.visibility = (mw.SlateVisibility.Collapsed);
 		this.mCanvas_Skill.visibility = (mw.SlateVisibility.Collapsed);
@@ -135,7 +135,7 @@ export default class HUDPanel extends HUDPanel_Generate {
 		this.mImg_Jump_BG.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
 		this.mCanvas_Shop.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
 		this.mCanvas_PlayerInf.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
-		this.mTaskCanvas.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
+		// this.mTaskCanvas.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
 		this.mCanvas_Skill.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
 		this.mCanvas_lottery.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
 		this.mCanvas_Member.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
@@ -151,7 +151,7 @@ export default class HUDPanel extends HUDPanel_Generate {
 		this.mImg_Jump_BG.visibility = (mw.SlateVisibility.Collapsed);
 		this.mCanvas_Shop.visibility = (mw.SlateVisibility.Collapsed);
 		this.mCanvas_PlayerInf.visibility = (mw.SlateVisibility.Collapsed);
-		this.mTaskCanvas.visibility = (mw.SlateVisibility.Collapsed);
+		// this.mTaskCanvas.visibility = (mw.SlateVisibility.Collapsed);
 		this.mCanvas_Skill.visibility = (mw.SlateVisibility.Collapsed);
 		this.mCanvas_lottery.visibility = (mw.SlateVisibility.Collapsed);
 		this.mCanvas_Skill.visibility = (mw.SlateVisibility.Collapsed);
@@ -168,7 +168,7 @@ export default class HUDPanel extends HUDPanel_Generate {
 		this.mImg_Jump_BG.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
 		this.mCanvas_Shop.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
 		this.mCanvas_PlayerInf.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
-		this.mTaskCanvas.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
+		// this.mTaskCanvas.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
 		this.mCanvas_Skill.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
 		this.mCanvas_lottery.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
 		this.mCanvas_Member.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
@@ -212,7 +212,7 @@ export default class HUDPanel extends HUDPanel_Generate {
 	}
 
 	private initTaskUI(): void {
-		this.mTaskCanvas.visibility = mw.SlateVisibility.Collapsed;
+		// this.mTaskCanvas.visibility = mw.SlateVisibility.Collapsed;
 		this.mGetButton.onClicked.add(() => {
 			ModuleService.getModule(TaskModuleC).getTaskAward(() => {
 				this.mGetTextBlock.text = GameConfig.Language.Text_Task3.Value;

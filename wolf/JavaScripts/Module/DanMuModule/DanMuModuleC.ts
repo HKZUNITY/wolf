@@ -130,7 +130,7 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
         this.onUseShareAction.add(this.onUseShareActionHandler.bind(this));
         this.onOpenExpressionAction.add(this.onOpenClothActionHandler.bind(this));
         mw.AvatarEditorService.avatarServiceDelegate.add(this.addAvatarServiceDelegate.bind(this));
-        this.localPlayer.character.onDescriptionChange.add(this.addDescriptionChange.bind(this));
+        // this.localPlayer.character.onDescriptionChange.add(this.addDescriptionChange.bind(this));
     }
 
     private onOpenClothActionHandler(): void {
