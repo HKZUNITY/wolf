@@ -73,6 +73,7 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
     public onClickUnloadBagItemAction: Action = new Action();
     public onOpenShareAction: Action1<number> = new Action1<number>();
     public onUseShareAction: Action2<string, number> = new Action2<string, number>();
+    public onFreeTryOnAction: Action = new Action();
 
     protected onStart(): void {
         this.bindEvent();
@@ -94,6 +95,12 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
         this.initDance();
         // 设置“去装扮”按钮隐藏
         AvatarEditorService.setAvatarEditorButtonVisible(true);
+        this.initFreeNpc();
+    }
+
+    private freeNpc: mw.Character = null;
+    private async initFreeNpc(): Promise<void> {
+        if (!this.freeNpc) this.freeNpc = await mw.GameObject.asyncFindGameObjectById("024A1E5C") as mw.Character;
     }
 
     protected onUpdate(dt: number): void {
@@ -129,6 +136,7 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
         this.onOpenShareAction.add(this.onOpenShareActionHandler.bind(this));
         this.onUseShareAction.add(this.onUseShareActionHandler.bind(this));
         this.onOpenExpressionAction.add(this.onOpenClothActionHandler.bind(this));
+        this.onFreeTryOnAction.add(this.addFreeTryOnAction.bind(this));
         mw.AvatarEditorService.avatarServiceDelegate.add(this.addAvatarServiceDelegate.bind(this));
         // this.localPlayer.character.onDescriptionChange.add(this.addDescriptionChange.bind(this));
     }
@@ -222,6 +230,23 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
                 // Player.localPlayer.character.setStateEnabled(CharacterStateType.Running, false);
                 break;
         }
+    }
+
+    private addFreeTryOnAction(): void {
+        Notice.showDownNotice(GameConfig.Language.Text_FREE1.Value);
+        this.initFreeNpc().then(async () => {
+            this.freeNpc.setDescription(this.localPlayer.character.getDescription());
+            await this.freeNpc.asyncReady();
+            await TimeUtil.delaySecond(1);
+            Notice.showDownNotice(GameConfig.Language.Text_FREE1.Value);
+            await AvatarEditorService.asyncCloseAvatarEditorModule();
+            await TimeUtil.delaySecond(5);
+            await this.localPlayer.character.asyncReady();
+            this.localPlayer.character.setDescription(this.freeNpc.getDescription());
+            await this.localPlayer.character.asyncReady();
+            this.localPlayer.character.syncDescription();
+            Notice.showDownNotice(GameConfig.Language.Text_TryItOnSuccessfully.Value);
+        });
     }
 
     //#region  弹幕

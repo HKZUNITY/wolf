@@ -7,8 +7,8 @@ export class Globals {
     public static isDebug: boolean = false;
     public static isOpenIAA: boolean = true;
     public static isShowLineTrace: boolean = false;
-    public static advCount: number = 12;
-    public static addCoin: number = 1200;
+    public static advCount: number = 100;
+    public static addCoin: number = 6000;
     public static pieIsVip: boolean = false;
     public static pieGoldKey: number = 2;
     ///////////////////////////////////////////物体guid////////////////////////////////////////////////////////////

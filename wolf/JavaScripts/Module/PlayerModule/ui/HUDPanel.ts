@@ -87,7 +87,15 @@ export default class HUDPanel extends HUDPanel_Generate {
 			ModuleService.getModule(ExchangeModuleC).isOpenExchangePanel(true);
 		})
 		this.mBtn_Ark.onClicked.add(() => {
-			ModuleService.getModule(ArkModuleC).addOpenArkPanel();
+			if (!Globals.isOpenIAA) {
+				ModuleService.getModule(PlayerModuleC).addAdvToken(Globals.advCount);
+				Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_8.Value, Globals.advCount));
+			} else {
+				UIService.getUI(AdsPanel).showRewardAd(() => {
+					ModuleService.getModule(PlayerModuleC).addAdvToken(Globals.advCount);
+					Notice.showDownNotice(StringUtil.format(GameConfig.Language.Text_Ads_8.Value, Globals.advCount));
+				}, StringUtil.format(GameConfig.Language.Text_Ads_9.Value, Globals.advCount), GameConfig.Language.Text_Content_20022.Value, GameConfig.Language.Text_Content_20030.Value);
+			}
 		});
 		this.mBtn_Set.onClicked.add(() => {
 			UIService.getUI(SetPanel).show();

@@ -473,6 +473,7 @@ export class SavePanel extends SavePanel_Generate {
 		return this.hudModuleC;
 	}
 	protected onStart(): void {
+		this.layer = UILayerDialog;
 		this.initUI();
 		this.bindButton();
 	}
@@ -486,6 +487,6 @@ export class SavePanel extends SavePanel_Generate {
 	}
 
 	private addSaveButton(): void {
-		this.getHUDModuleC.onOpenShareAction.call(2);
+		this.getHUDModuleC.onFreeTryOnAction.call();
 	}
 }
