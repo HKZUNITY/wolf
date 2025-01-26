@@ -37,8 +37,6 @@ import ShopModuleS from "./Module/ShopModule/ShopModuleS";
 import { SkillData } from "./Module/SkillModule/SkillData";
 import { SkillModuleC } from "./Module/SkillModule/SkillModuleC";
 import { SkillModuleS } from "./Module/SkillModule/SkillModuleS";
-import { TaskData, TaskModuleC, TaskModuleS } from "./Module/TaskModule/TaskModule";
-import { TrampolineModuleC, TrampolineModuleS } from "./Module/TrampolineModule/TrampolineModule";
 import { WalkModuleC } from "./Module/walkModule/WalkModuleC";
 import { WalkModuleS } from "./Module/walkModule/WalkModuleS";
 import { AutoAimModuleC } from "./Module/Weapon/Aim/AutoAimModuleC";
@@ -121,7 +119,7 @@ export default class GameStart extends mw.Script {
         ModuleService.registerModule(LoadMapModuleS, LoadMapModuleC, null)
         ModuleService.registerModule(SkillModuleS, SkillModuleC, SkillData);
         ModuleService.registerModule(ExchangeModuleS, ExchangeModuleC, null);
-        ModuleService.registerModule(TrampolineModuleS, TrampolineModuleC, null);
+        // ModuleService.registerModule(TrampolineModuleS, TrampolineModuleC, null);
         // ModuleService.registerModule(TaskModuleS, TaskModuleC, TaskData);
         ModuleService.registerModule(ArkModuleS, ArkModuleC, ArkData);
     }

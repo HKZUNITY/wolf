@@ -345,11 +345,7 @@ export class PlayerModuleS extends ModuleS<PlayerModuleC, PlayerModuleData> {
         curplayer.character.worldTransform.position = loc;
         GameGlobals.hallBornList.splice(index, 1);
 
-        curplayer.character.driftControl = 0.5;
-        curplayer.character.gravityScale = 1;
         curplayer.character.movementEnabled = true;
-        curplayer.character.collisionWithOtherCharacterEnabled = false;
-        if (curplayer.character.getCurrentState() != mw.CharacterStateType.Running) curplayer.character.changeState(mw.CharacterStateType.Running);
     }
     private pushCurrentPlayer(curplayer: mw.Player) {
         let isExist: boolean = false;

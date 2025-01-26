@@ -164,7 +164,6 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
             if (!model) return;
             Tools.changeClothByRole(modelInfo, model);
         })
-
     }
     net_changeDiamond(num: number) {
         this.getHUDPanel.setHallDiamondNum(num);

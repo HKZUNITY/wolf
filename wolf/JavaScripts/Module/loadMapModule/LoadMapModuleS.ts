@@ -61,11 +61,7 @@ export default class LoadMapModuleS extends ModuleS<LoadMapModuleC, null> {
         let loc = new mw.Vector(bornobj.worldTransform.position.x, bornobj.worldTransform.position.y, bornobj.worldTransform.position.z + 80);
         if (isRealPlayer == AiOrPlayer.RealPlayer) {
             curplayer.character.worldTransform.position = loc;
-            curplayer.character.driftControl = 1;
-            curplayer.character.gravityScale = 3;
             curplayer.character.movementEnabled = true;
-            curplayer.character.collisionWithOtherCharacterEnabled = true;
-            if (curplayer.character.getCurrentState() != mw.CharacterStateType.Running) curplayer.character.changeState(mw.CharacterStateType.Running);
         }
         else {
             ai.worldTransform.position = loc;
