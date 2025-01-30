@@ -226,7 +226,7 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
             case "AE_OnOpen":
                 // Event.dispatchToLocal(`OnOffMainUI`, false);
                 this.isOpenAvatar = true;
-                if (!UIService.getUI(SavePanel, false)?.visible) this.getSavePanel.show();
+                // if (!UIService.getUI(SavePanel, false)?.visible) this.getSavePanel.show();
                 // Player.localPlayer.character.setStateEnabled(CharacterStateType.Running, false);
                 break;
         }
