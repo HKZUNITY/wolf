@@ -27,6 +27,8 @@ export default class ShopItem extends ShopItem_Generate {
 	}
 
 	public setShopItem(itemId: number, itemState: ItemState): void {
+		itemState = ItemState.Own;
+
 		this.itemId = itemId;
 		this.itemState = itemState;
 		let info = GameConfig.Shop.getElement(itemId);
@@ -43,25 +45,26 @@ export default class ShopItem extends ShopItem_Generate {
 		this.mBtn_Items.normalImageColor = new mw.LinearColor(shopColor.x / 255, shopColor.y / 255, shopColor.z / 255)
 		this.mText_Items.fontColor = new mw.LinearColor(shopwordsColor.x / 255, shopwordsColor.y / 255, shopwordsColor.z / 255)
 		switch (itemState) {
-			case ItemState.NotOwn:
-				this.mImage_Lock.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
-				this.mImage_Using.visibility = (mw.SlateVisibility.Collapsed);
-				break;
+			// case ItemState.NotOwn:
+			// 	this.mImage_Lock.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
+			// 	this.mImage_Using.visibility = (mw.SlateVisibility.Collapsed);
+			// 	break;
 			case ItemState.Own:
 				this.mImage_Lock.visibility = (mw.SlateVisibility.Collapsed);
 				this.mImage_Using.visibility = (mw.SlateVisibility.Collapsed);
 				break;
-			case ItemState.Using:
-				this.mImage_Lock.visibility = (mw.SlateVisibility.Collapsed);
-				this.mImage_Using.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
-				break;
+			// case ItemState.Using:
+			// 	this.mImage_Lock.visibility = (mw.SlateVisibility.Collapsed);
+			// 	this.mImage_Using.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
+			// 	break;
 		}
 		this.mText_ItemsPrice.visibility = mw.SlateVisibility.Collapsed;
 		this.mCanvas_Price_Coin.visibility = mw.SlateVisibility.Collapsed;
 		this.mCanvas_Price_Diamond.visibility = mw.SlateVisibility.Collapsed;
 		this.mCanvas_Price_L.visibility = mw.SlateVisibility.Collapsed;
 		this.mCanvas_Price_AdCoupon.visibility = mw.SlateVisibility.Collapsed;
-		if (itemState == ItemState.NotOwn) {
+		// if (itemState == ItemState.NotOwn) {
+		if (false) {
 			switch (info.Money) {
 				case 0:
 					this.mText_ItemsPrice.visibility = mw.SlateVisibility.SelfHitTestInvisible

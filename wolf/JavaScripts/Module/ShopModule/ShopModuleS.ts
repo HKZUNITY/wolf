@@ -59,9 +59,9 @@ export default class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData> {
         let kind = (id - id % 10000) / 10000;
         console.error(`kind:${kind} isUse:${isUse}`);
         if (isUse) {
-            if (isInit == false && this.getPlayerData(player).getItemState(id) == ItemState.NotOwn) {
-                return;
-            }
+            // if (isInit == false && this.getPlayerData(player).getItemState(id) == ItemState.NotOwn) {
+            //     return;
+            // }
             if (this.getPlayerData(player).usingItems.includes(id) && isInit == false) {
                 console.error("重复的，返回");
                 return;
