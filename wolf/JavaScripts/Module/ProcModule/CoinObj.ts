@@ -24,7 +24,7 @@ export class CoinObj {
     }
     public active(tableId: number) {
         this.tableId = tableId;
-        this.randomLoc2();
+        this.randomLoc();
         this.state = CoinState.Active;
         // this.coinModel.worldTransform.rotation = mw.Rotation.zero
     }
@@ -76,10 +76,11 @@ export class CoinObj {
 
     }
     private randomLoc() {
-        let locCenter = GameConfig.CoinsGenerate.getElement(this.tableId).Location;
-        let x = GameConfig.CoinsGenerate.getElement(this.tableId).Scale[0] * 100;
-        let y = GameConfig.CoinsGenerate.getElement(this.tableId).Scale[1] * 100;
-        let z = locCenter.z;;
+        let coinsGenerateElement = GameConfig.CoinsGenerate.getElement(this.tableId);
+        let locCenter = coinsGenerateElement.Location;
+        let x = coinsGenerateElement.Scale[0] * 100;
+        let y = coinsGenerateElement.Scale[1] * 100;
+        let z = locCenter.z;
         let randomX = Tools.randomInt(-x / 2, x / 2);
         let randomY = Tools.randomInt(-y / 2, y / 2);
         this.curLoc = new mw.Vector(locCenter.x + randomX, locCenter.y + locCenter.y + randomY, z);
