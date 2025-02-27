@@ -95,12 +95,6 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
         this.initDance();
         // 设置“去装扮”按钮隐藏
         AvatarEditorService.setAvatarEditorButtonVisible(true);
-        this.initFreeNpc();
-    }
-
-    private freeNpc: mw.Character = null;
-    private async initFreeNpc(): Promise<void> {
-        if (!this.freeNpc) this.freeNpc = await mw.GameObject.asyncFindGameObjectById("024A1E5C") as mw.Character;
     }
 
     protected onUpdate(dt: number): void {
@@ -133,120 +127,11 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
         this.onClickBagTabAction.add(this.addClickBagTabAction.bind(this));
         this.onClickBagItemAction.add(this.addClickBagItemAction.bind(this));
         this.onClickUnloadBagItemAction.add(this.addClickUnloadBagItemAction.bind(this));
-        this.onOpenShareAction.add(this.onOpenShareActionHandler.bind(this));
-        this.onUseShareAction.add(this.onUseShareActionHandler.bind(this));
-        this.onOpenExpressionAction.add(this.onOpenClothActionHandler.bind(this));
-        this.onFreeTryOnAction.add(this.addFreeTryOnAction.bind(this));
-        mw.AvatarEditorService.avatarServiceDelegate.add(this.addAvatarServiceDelegate.bind(this));
+        // this.onOpenShareAction.add(this.onOpenShareActionHandler.bind(this));
+        // this.onUseShareAction.add(this.onUseShareActionHandler.bind(this));
+        // this.onFreeTryOnAction.add(this.addFreeTryOnAction.bind(this));
+        // mw.AvatarEditorService.avatarServiceDelegate.add(this.addAvatarServiceDelegate.bind(this));
         // this.localPlayer.character.onDescriptionChange.add(this.addDescriptionChange.bind(this));
-    }
-
-    private onOpenClothActionHandler(): void {
-        AvatarEditorService.asyncOpenAvatarEditorModule();
-    }
-
-    private async onOpenShareActionHandler(openType: number): Promise<void> {
-        this.getSharePanel.show();
-        let sharedId = await Tools.createSharedId(this.localPlayer.character);
-        this.getSharePanel.showPanel(sharedId, openType);
-    }
-
-    private onUseShareActionHandler(shareId: string, openType: number): void {
-        if (openType == 1) {
-            if (false) {
-                this.getAdPanel.showRewardAd(() => {
-                    this.useShareId(shareId);
-                }, GameConfig.Language.Text_TryItOnForFree.Value
-                    , GameConfig.Language.Text_Cancel.Value
-                    , GameConfig.Language.Text_FreeTryOn.Value);
-            } else {
-                this.useShareId(shareId);
-            }
-        } else if (openType == 2) {
-            if (false) {
-                this.getAdPanel.showRewardAd(() => {
-                    AvatarEditorService.asyncCloseAvatarEditorModule().then(async () => {
-                        await TimeUtil.delaySecond(5);
-                        await this.useDescription();
-                    });
-                }, GameConfig.Language.Text_TryItOnForFree.Value
-                    , GameConfig.Language.Text_Cancel.Value
-                    , GameConfig.Language.Text_FreeTryOn.Value);
-            } else {
-                AvatarEditorService.asyncCloseAvatarEditorModule().then(async () => {
-                    await TimeUtil.delaySecond(5);
-                    await this.useDescription();
-                });
-            }
-        }
-    }
-
-    private changeDescription: mw.CharacterDescription = null;
-    private addDescriptionChange(): void {
-        this.localPlayer.character.asyncReady().then(() => {
-            console.error(`变化`);
-            this.changeDescription = this.localPlayer.character.getDescription();
-            if (this.isOpenAvatar) {
-                if (!UIService.getUI(SavePanel, false)?.visible) this.getSavePanel.show();
-            }
-        });
-    }
-
-    private async useShareId(shareId: string): Promise<void> {
-        let isSuccess = await Tools.applySharedId(this.localPlayer.character, shareId);
-        if (isSuccess) {
-            Notice.showDownNotice(GameConfig.Language.Text_TryItOnSuccessfully.Value);
-        } else {
-            Notice.showDownNotice(GameConfig.Language.Text_InvalidID.Value);
-        }
-    }
-
-    private async useDescription(): Promise<void> {
-        // if (this.changeDescription) {
-        await this.localPlayer.character.asyncReady();
-        let shareId = this.getSharePanel.mMyselfTextBlock.text;
-        if (shareId && shareId?.length > 0) Tools.applySharedId(this.localPlayer.character, shareId);
-        // this.localPlayer.character.setDescription(this.changeDescription);
-        // this.localPlayer.character.syncDescription();
-        Notice.showDownNotice(GameConfig.Language.Text_TryItOnSuccessfully.Value);
-        // this.changeDescription = null;
-        // }
-    }
-
-    private isOpenAvatar: boolean = false;
-    private addAvatarServiceDelegate(eventName: string, ...params: unknown[]): void {
-        console.error(`eventName: ${eventName}`);
-        switch (eventName) {
-            case "AE_OnQuit":
-                // Event.dispatchToLocal(`OnOffMainUI`, true);
-                // Player.localPlayer.character.setStateEnabled(CharacterStateType.Running, true);
-                if (UIService.getUI(SavePanel, false)?.visible) this.getSavePanel.hide();
-                this.isOpenAvatar = false;
-                break;
-            case "AE_OnOpen":
-                // Event.dispatchToLocal(`OnOffMainUI`, false);
-                this.isOpenAvatar = true;
-                // if (!UIService.getUI(SavePanel, false)?.visible) this.getSavePanel.show();
-                // Player.localPlayer.character.setStateEnabled(CharacterStateType.Running, false);
-                break;
-        }
-    }
-
-    private addFreeTryOnAction(): void {
-        Notice.showDownNotice(GameConfig.Language.Text_FREE1.Value);
-        this.initFreeNpc().then(async () => {
-            this.freeNpc.setDescription(this.localPlayer.character.getDescription());
-            await this.freeNpc.asyncReady();
-            await TimeUtil.delaySecond(1);
-            Notice.showDownNotice(GameConfig.Language.Text_FREE1.Value);
-            await AvatarEditorService.asyncCloseAvatarEditorModule();
-            await TimeUtil.delaySecond(5);
-            await this.localPlayer.character.asyncReady();
-            this.localPlayer.character.setDescription(this.freeNpc.getDescription());
-            await this.localPlayer.character.asyncReady();
-            this.localPlayer.character.syncDescription();
-            Notice.showDownNotice(GameConfig.Language.Text_TryItOnSuccessfully.Value);
-        });
     }
 
     //#region  弹幕

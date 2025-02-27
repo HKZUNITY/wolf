@@ -94,8 +94,9 @@ export default class ChatPanel extends ChatPanel_Generate {
 	}
 
 	private addOpenExpressionButton(): void {
+		this.getDanMuModuleC.onOpenExpressionAction.call();
+		return;
 		if (!this.mExpressionListCanvas.visible) {
-			this.getDanMuModuleC.onOpenExpressionAction.call();
 		} else {
 			this.closeExpressionList(false);
 		}

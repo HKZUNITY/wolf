@@ -22,6 +22,9 @@ import LoadMapModuleC from "./Module/loadMapModule/LoadMapModuleC";
 import LoadMapModuleS from "./Module/loadMapModule/LoadMapModuleS";
 import { LotteryModuleC } from "./Module/LotteryModule/LotteryModuleC";
 import { LotteryModuleS } from "./Module/LotteryModule/LotteryModuleS";
+import MallData from "./Module/MallModule/MallData";
+import MallModuleC from "./Module/MallModule/MallModuleC";
+import MallModuleS from "./Module/MallModule/MallModuleS";
 import { PlayerModuleData } from "./Module/PlayerModule/PlayerData";
 import { PlayerModuleC } from "./Module/PlayerModule/PlayerModuleC";
 import { PlayerModuleS } from "./Module/PlayerModule/PlayerModuleS";
@@ -122,6 +125,7 @@ export default class GameStart extends mw.Script {
         // ModuleService.registerModule(TrampolineModuleS, TrampolineModuleC, null);
         // ModuleService.registerModule(TaskModuleS, TaskModuleC, TaskData);
         ModuleService.registerModule(ArkModuleS, ArkModuleC, ArkData);
+        ModuleService.registerModule(MallModuleS, MallModuleC, MallData);
     }
 
     private onUpdateCS(dt: number): void {
