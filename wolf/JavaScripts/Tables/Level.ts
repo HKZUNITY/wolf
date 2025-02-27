@@ -1,5 +1,5 @@
 import { ConfigBase, IElementBase } from "./ConfigBase";
-const EXCELDATA:Array<Array<any>> = [["ID","Name","Remark","BirthName","BirthPoint","ImageGuid","PlayerSpeed"],["","Language","","","","",""],[10000,"Level_Name_10000","大厅","PlayStart_Hall","2C4F453B",null,"350"],[10001,"Level_Name_10001","夜色酒吧","PlayStart_Inside_001","6A4B9B76","111775","350"],[10002,"Level_Name_10002","樱花咖啡馆","PlayStart_Inside_002","6A4B9B76","292222","350"],[10003,"Level_Name_10003","泳池派对","PlayStart_Inside_003","6A4B9B76","111774","430"]];
+const EXCELDATA:Array<Array<any>> = [["ID","Name","Remark","BirthName","BirthPoint","ImageGuid","PlayerSpeed"],["","","","","","",""],[10000,"水上乐园","大厅","PlayStart_Hall","2C4F453B",null,"350"],[10001,"水上乐园","夜色酒吧","PlayStart_Inside_001","6A4B9B76","292240","350"],[10002,"水上乐园","樱花咖啡馆","PlayStart_Inside_002","6A4B9B76","292241","350"],[10003,"水上乐园","泳池派对","PlayStart_Inside_003","6A4B9B76","292252","430"]];
 export interface ILevelElement extends IElementBase{
  	/**序号*/
 	ID:number

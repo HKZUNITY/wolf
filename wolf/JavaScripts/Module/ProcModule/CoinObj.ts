@@ -24,7 +24,7 @@ export class CoinObj {
     }
     public active(tableId: number) {
         this.tableId = tableId;
-        this.randomLoc();
+        this.randomLoc2();
         this.state = CoinState.Active;
         // this.coinModel.worldTransform.rotation = mw.Rotation.zero
     }
