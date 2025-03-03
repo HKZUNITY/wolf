@@ -75,17 +75,17 @@ export class CoinObj {
         }
 
     }
-    private randomLoc() {
-        let coinsGenerateElement = GameConfig.CoinsGenerate.getElement(this.tableId);
-        let locCenter = coinsGenerateElement.Location;
-        let x = coinsGenerateElement.Scale[0] * 100;
-        let y = coinsGenerateElement.Scale[1] * 100;
-        let z = locCenter.z;
-        let randomX = Tools.randomInt(-x / 2, x / 2);
-        let randomY = Tools.randomInt(-y / 2, y / 2);
-        this.curLoc = new mw.Vector(locCenter.x + randomX, locCenter.y + locCenter.y + randomY, z);
-        this.coinTrigger.worldTransform.position = this.curLoc;
-    }
+    // private randomLoc() {
+    //     let coinsGenerateElement = GameConfig.CoinsGenerate.getElement(this.tableId);
+    //     let locCenter = coinsGenerateElement.Location;
+    //     let x = coinsGenerateElement.Scale[0] * 100;
+    //     let y = coinsGenerateElement.Scale[1] * 100;
+    //     let z = locCenter.z;
+    //     let randomX = Tools.randomInt(-x / 2, x / 2);
+    //     let randomY = Tools.randomInt(-y / 2, y / 2);
+    //     this.curLoc = new mw.Vector(locCenter.x + randomX, locCenter.y + locCenter.y + randomY, z);
+    //     this.coinTrigger.worldTransform.position = this.curLoc;
+    // }
     private randomLoc2() {
         let pointO = GameConfig.CoinsGenerate.getElement(this.tableId).Point2;
         let pointA = GameConfig.CoinsGenerate.getElement(this.tableId).Point1;

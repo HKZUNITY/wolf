@@ -94,7 +94,7 @@ export class SceneModuleS extends ModuleS<SceneModuleC, null> {
         this.initCoin();
     }
     initCoin() {
-        for (let i = 0; i < 80; i++) {
+        for (let i = 0; i < 100; i++) {
             SpawnManager.wornAsyncSpawn("F66F10CF472AA427DCFE389292D57EEE").then(go => {
                 let trigger = go.getChildren()[0] as mw.Trigger
                 let model = trigger.getChildren()[0];
