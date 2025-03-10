@@ -33,6 +33,7 @@ export default class ChatPanel extends ChatPanel_Generate {
 		this.canUpdate = false;
 		this.layer = UILayerTop;
 		this.mOpenExpressionTextBlock.text = GameConfig.Language.Text_FREE.Value;
+		this.mOpenShareTextBlock.text = GameConfig.Language.Text_OpenClothTextBlock.Value;
 		this.initUI();
 		this.bindButton();
 	}

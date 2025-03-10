@@ -3,7 +3,7 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/module/Trampoline/ImpactRadiusWindow.ui
- * TIME: 2025.02.27-19.44.56
+ * TIME: 2025.03.10-20.08.38
  */
  
 @UIBind('UI/module/Trampoline/ImpactRadiusWindow.ui')

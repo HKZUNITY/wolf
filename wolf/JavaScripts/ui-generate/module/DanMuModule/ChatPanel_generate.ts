@@ -3,7 +3,7 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/module/DanMuModule/ChatPanel.ui
- * TIME: 2025.02.27-19.44.56
+ * TIME: 2025.03.10-20.08.36
  */
  
 @UIBind('UI/module/DanMuModule/ChatPanel.ui')
@@ -316,6 +316,13 @@ export default class ChatPanel_Generate extends UIScript {
 		}
 		return this.mOpenShareButton_Internal
 	}
+	private mOpenShareTextBlock_Internal: mw.TextBlock
+	public get mOpenShareTextBlock(): mw.TextBlock {
+		if(!this.mOpenShareTextBlock_Internal&&this.uiWidgetBase) {
+			this.mOpenShareTextBlock_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenShareImage/mOpenShareTextBlock') as mw.TextBlock
+		}
+		return this.mOpenShareTextBlock_Internal
+	}
 
 
 	protected onAwake() {
@@ -419,6 +426,9 @@ export default class ChatPanel_Generate extends UIScript {
 		//文本多语言
 		
 		this.initLanguage(this.mOpenExpressionTextBlock)
+		
+	
+		this.initLanguage(this.mOpenShareTextBlock)
 		
 	
 		//文本多语言

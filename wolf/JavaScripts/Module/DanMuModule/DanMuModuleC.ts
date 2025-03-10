@@ -6,6 +6,7 @@ import { IExpressionElement } from "../../Tables/Expression";
 import { GameConfig } from "../../Tables/GameConfig";
 import { Tools } from "../../Tools";
 import BubbleItem_Generate from "../../ui-generate/module/DanMuModule/BubbleItem_generate";
+import ExecutorManager from "../../WaitingQueue";
 import AdsPanel from "../AdsModule/ui/AdsPanel";
 import HUDPanel from "../PlayerModule/ui/HUDPanel";
 import { Bubble } from "./Bubble";
@@ -127,11 +128,17 @@ export default class DanMuModuleC extends ModuleC<DanMuModuleS, null> {
         this.onClickBagTabAction.add(this.addClickBagTabAction.bind(this));
         this.onClickBagItemAction.add(this.addClickBagItemAction.bind(this));
         this.onClickUnloadBagItemAction.add(this.addClickUnloadBagItemAction.bind(this));
-        // this.onOpenShareAction.add(this.onOpenShareActionHandler.bind(this));
+        this.onOpenShareAction.add(this.onOpenShareActionHandler.bind(this));
         // this.onUseShareAction.add(this.onUseShareActionHandler.bind(this));
         // this.onFreeTryOnAction.add(this.addFreeTryOnAction.bind(this));
         // mw.AvatarEditorService.avatarServiceDelegate.add(this.addAvatarServiceDelegate.bind(this));
         // this.localPlayer.character.onDescriptionChange.add(this.addDescriptionChange.bind(this));
+    }
+
+    private onOpenShareActionHandler(): void {
+        ExecutorManager.instance.pushAsyncExecutor(async () => {
+            await mw.AvatarEditorService.asyncOpenAvatarEditorModule();
+        });
     }
 
     //#region  弹幕
