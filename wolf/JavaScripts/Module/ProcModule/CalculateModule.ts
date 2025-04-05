@@ -10,6 +10,7 @@ import { GameModuleS } from "../GameModule/GameModuleS";
 import { PlayerModuleData } from "../PlayerModule/PlayerData";
 import { PlayerModuleC } from "../PlayerModule/PlayerModuleC";
 import { PlayerModuleS } from "../PlayerModule/PlayerModuleS";
+import RankModuleS from "../RankModule/RankModuleS";
 import AttributeManager, { AttributeType } from "../SVipModule/AttributeManager";
 import ClearingPanel from "./ui/ClearingPanel";
 
@@ -286,6 +287,7 @@ export class CalculateModuleS extends ModuleS<CalculateModuleC, null> {
                 spyRole, rightRole, gold, baseExp, isWin, GameGlobals.dieNum, gameData.getLiveTimeNum(), civilianNum, GameGlobals.readyPlayers.length, subRate > 0
             );
         })
+        ModuleService.getModule(RankModuleS).updateLv();
     }
     removePlayer() {
         for (let i = 0; i < GameGlobals.readyPlayers.length; i++) {

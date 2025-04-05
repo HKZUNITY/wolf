@@ -21,6 +21,16 @@ export enum SoundType {
 }
 
 export class Tools {
+    public static async getCustomdata(key: string): Promise<any> {
+        return (await DataStorage.asyncGetData(key)).data;
+    }
+
+    public static async setCustomData(saveKey: string, dataInfo: any): Promise<boolean> {
+        let code: mw.DataStorageResultCode = null;
+        code = await DataStorage.asyncSetData(saveKey, dataInfo);
+        return code == mw.DataStorageResultCode.Success;
+    }
+
     private static assetIconDataMap: Map<string, mw.AssetIconData> = new Map<string, mw.AssetIconData>();
     public static setImageByAssetIconData(image: mw.Image, icon: string): void {
         if (this.assetIconDataMap.has(icon)) {

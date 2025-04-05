@@ -3,7 +3,7 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/module/LotteryModule/LotteryItem.ui
- * TIME: 2025.03.10-20.08.39
+ * TIME: 2025.04.05-16.17.27
  */
  
 @UIBind('UI/module/LotteryModule/LotteryItem.ui')

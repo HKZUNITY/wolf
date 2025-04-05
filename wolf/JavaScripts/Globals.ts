@@ -6,6 +6,7 @@ export class Globals {
     public static languageId: number = -1;
     public static isDebug: boolean = false;
     public static isOpenIAA: boolean = true;
+    public static worldCount: number = 500;
     public static isShowLineTrace: boolean = false;
     public static advCount: number = 100;
     public static addCoin: number = 6000;

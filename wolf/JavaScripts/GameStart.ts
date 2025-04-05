@@ -1,4 +1,5 @@
 import { AiModuleC, AiModuleS } from "./AI/AiModule";
+import { AvatarApi } from "./AvatarApi";
 import { update } from "./CommonUI/notice/Tween";
 import NoticePanel from "./CommonUI/NoticePanel";
 import { Globals } from "./Globals";
@@ -32,6 +33,8 @@ import { CalculateModuleC, CalculateModuleS } from "./Module/ProcModule/Calculat
 import { ChooseModuleC, ChooseModuleS } from "./Module/ProcModule/ChooseModule";
 import { SceneModuleC, SceneModuleS } from "./Module/ProcModule/SceneModule";
 import { WatchModuleC, WatchModuleS } from "./Module/ProcModule/WatchModule";
+import RankModuleC from "./Module/RankModule/RankModuleC";
+import RankModuleS from "./Module/RankModule/RankModuleS";
 import ShelterModuleC from "./Module/shelterModule/ShelterModuleC";
 import ShelterModuleS from "./Module/shelterModule/ShelterModuleS";
 import ShopModuleC from "./Module/ShopModule/ShopModuleC";
@@ -126,6 +129,7 @@ export default class GameStart extends mw.Script {
         // ModuleService.registerModule(TaskModuleS, TaskModuleC, TaskData);
         ModuleService.registerModule(ArkModuleS, ArkModuleC, ArkData);
         ModuleService.registerModule(MallModuleS, MallModuleC, MallData);
+        ModuleService.registerModule(RankModuleS, RankModuleC, null);
     }
 
     private onUpdateCS(dt: number): void {
@@ -145,6 +149,9 @@ export default class GameStart extends mw.Script {
     private onStartC(): void {
         this.initLanguage();
         this.initData();
+        InputUtil.onKeyDown(mw.Keys.J, () => {
+            console.error(JSON.stringify(AvatarApi.getAllData(Player.localPlayer.character)));
+        });
     }
 
     private initLanguage(): void {

@@ -21,6 +21,7 @@ import {ColorValueConfig} from "./ColorValue";
 import {ColorConfig} from "./Color";
 import {DailyStylingOutfit1Config} from "./DailyStylingOutfit1";
 import {DailyStylingOutfit2Config} from "./DailyStylingOutfit2";
+import {DescriptionConfig} from "./Description";
 import {DoorConfig} from "./Door";
 import {EarConfig} from "./Ear";
 import {EffectsConfig} from "./Effects";
@@ -133,6 +134,7 @@ export class GameConfig{
 	public static get Color():ColorConfig{ return this.getConfig(ColorConfig) };
 	public static get DailyStylingOutfit1():DailyStylingOutfit1Config{ return this.getConfig(DailyStylingOutfit1Config) };
 	public static get DailyStylingOutfit2():DailyStylingOutfit2Config{ return this.getConfig(DailyStylingOutfit2Config) };
+	public static get Description():DescriptionConfig{ return this.getConfig(DescriptionConfig) };
 	public static get Door():DoorConfig{ return this.getConfig(DoorConfig) };
 	public static get Ear():EarConfig{ return this.getConfig(EarConfig) };
 	public static get Effects():EffectsConfig{ return this.getConfig(EffectsConfig) };
