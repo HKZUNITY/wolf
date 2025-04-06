@@ -63,6 +63,7 @@ import MallPanel_Generate from "../../../ui-generate/module/MallModule/MallPanel
 import Utils from "../../../Utils";
 import ExecutorManager from "../../../WaitingQueue";
 import ChatPanel from "../../DanMuModule/ui/ChatPanel";
+import RankPanel from "../../RankModule/ui/RankPanel";
 import Mall from "../Mall";
 import { AssetIdInfoData, TabType, TabIdData, Tab1Type, Tab2Type, Tab3Type } from "../MallData";
 import MallModuleC from "../MallModuleC";
@@ -81,6 +82,14 @@ export default class MallPanel extends MallPanel_Generate {
 			this.mallModuleC = ModuleService.getModule(MallModuleC);
 		}
 		return this.mallModuleC;
+	}
+
+	private rankPanel: RankPanel = null;
+	private get getRankPanel(): RankPanel {
+		if (!this.rankPanel) {
+			this.rankPanel = UIService.getUI(RankPanel);
+		}
+		return this.rankPanel;
 	}
 
 	/** 
@@ -958,12 +967,14 @@ export default class MallPanel extends MallPanel_Generate {
 	}
 	protected onShow(...params: any[]): void {
 		this.getChatPanel.hide();
+		this.getRankPanel.hide();
 		this.canUpdate = true;
 		TouchScript.instance.addScreenListener(this.mTouchImage, this.onMoveTouchEvent.bind(this), false);
 	}
 
 	protected onHide(): void {
 		this.getChatPanel.show();
+		this.getRankPanel.show();
 		this.canUpdate = false;
 		TouchScript.instance.removeScreenListener(this.mTouchImage);
 	}
