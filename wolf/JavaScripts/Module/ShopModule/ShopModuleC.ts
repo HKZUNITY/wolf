@@ -161,4 +161,8 @@ export default class ShopModuleC extends ModuleC<ShopModuleS, ShopModuleData> {
             this.getShopPanel.updateCurPage();
 
     }
+
+    public getUsingItems(id: number): boolean {
+        return this.server.net_getUsingItems(id);
+    }
 }

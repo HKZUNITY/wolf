@@ -49,6 +49,9 @@ export default class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData> {
         }
     }
 
+    public net_getUsingItems(id: number): boolean {
+        return this.getPlayerData(this.currentPlayer).usingItems.includes(id);
+    }
 
 
     net_UseItem(id: number, isUse: boolean) {
@@ -192,9 +195,13 @@ export default class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData> {
     }
 
     destroyDecorator(playerId: number) {
-        if (this.itemMap.has(playerId)) {
-            let id = this.itemMap.get(playerId);
-            id.destroy();
+        try {
+            if (this.itemMap.has(playerId)) {
+                let id = this.itemMap.get(playerId);
+                id?.destroy();
+            }
+        } catch (error) {
+
         }
     }
 

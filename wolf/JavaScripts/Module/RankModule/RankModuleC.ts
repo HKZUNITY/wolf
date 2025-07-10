@@ -1,4 +1,5 @@
 ﻿import { AvatarApi } from "../../AvatarApi";
+import { Globals } from "../../Globals";
 import { PlayerModuleData } from "../PlayerModule/PlayerData";
 import { RankData, RoomData, TryOnConfigData, WorldData } from "./RankData";
 import RankModuleS from "./RankModuleS";
@@ -49,6 +50,7 @@ export default class RankModuleC extends ModuleC<RankModuleS, RankData> {
             nickName = nickName ? nickName : "UserId：" + this.currentUserId;
             let score = this.getPlayerModuleData?.level;
             this.server.net_onEnterScene(nickName, score, 0, 0);
+            this.updateRankData()
         });
     }
 
@@ -197,5 +199,12 @@ export default class RankModuleC extends ModuleC<RankModuleS, RankData> {
             return b.tryOn - a.tryOn;
         });
         return tmpRoomDatas;
+    }
+
+    public updateRankData(): void {
+        let score = DataCenterC.getData(PlayerModuleData).level;
+        let nickName = mw.AccountService.getNickName();
+        nickName = nickName ? nickName : Globals.pieNickName[Globals.languageId];
+        this.getRankPanel.refreshSelfWorldNameAndTimeUI(new RoomData(null, nickName, 0, score, 0));
     }
 }

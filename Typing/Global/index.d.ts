@@ -5454,6 +5454,13 @@ declare global {
     const TextureFormat: typeof mw.TextureFormat;
     type TextureFormat = mw.TextureFormat;
     /**
+     * @author guang.deng
+     * @description 贴图格式
+     * @groups 基础类型
+     */
+    const MultiTextureFormat: typeof mw.MultiTextureFormat;
+    type MultiTextureFormat = mw.MultiTextureFormat;
+    /**
      * @author mengyuan.hao
      * @description 状态信息获取工具
      * @description 判断当前环境状态是否是客户端、服务端、移动端。获取版本号等信息
@@ -5486,6 +5493,123 @@ declare global {
      */
     const TweenGroup: typeof mw.TweenGroup;
     type TweenGroup = mw.TweenGroup;
+    /**
+     * @author jie.wu
+     * @description 输入事件工具
+     * @groups 输入
+     * @networkStatus usage:双端
+     * @example
+     * 使用示例:创建一个名为"InputExample"的脚本，放置在对象栏中，打开脚本，输入以下代码保存，运行游戏，点击键盘1键及屏幕，你将看到Input相关效果。代码如下：
+     * ```
+     * @Component
+     * export default class InputExample extends Script {
+     *     protected onStart(): void {
+     *         InputUtil.onKeyDown(Keys.One, () => {
+     *             console.error(`===>onKeyDown: Keys.One`);
+     *         });
+     *         InputUtil.onKeyUp(Keys.One, () => {
+     *             console.error(`===>onKeyUp: Keys.One`);
+     *         });
+     *         InputUtil.onKeyPress(Keys.One, () => {
+     *             console.error(`===>onKeyPress: Keys.One`);
+     *         });
+     *         InputUtil.onTouch((index: number, location: Vector2, touchType: TouchInputType) => {
+     *             console.error(`===>onTouch: ${index}, ${location}, ${touchType}`);
+     *         });
+     *         InputUtil.onTouchBegin((index: number, location: Vector2, touchType: TouchInputType) => {
+     *             console.error(`===>onTouchBegin: ${index}, ${location}, ${touchType}`);
+     *         });
+     *         InputUtil.onTouchMove((index: number, location: Vector2, touchType: TouchInputType) => {
+     *             console.error(`===>onTouchMove: ${index}, ${location}, ${touchType}`);
+     *         });
+     *         InputUtil.onTouchEnd((index: number, location: Vector2, touchType: TouchInputType) => {
+     *             console.error(`===>onTouchEnd: ${index}, ${location}, ${touchType}`);
+     *         });
+     *     }
+     * }
+     * ```
+     */
+    const InputUtil: typeof mw.InputUtil;
+    type InputUtil = mw.InputUtil;
+    /**
+     * @author xiangkun.sun
+     * @description 数据文件获取工具
+     * @groups 工具
+     * @networkStatus usage:双端
+     */
+    const DataFile: typeof mw.DataFile;
+    type DataFile = mw.DataFile;
+    /**
+     * @author baoqiang.han
+     * @description 触摸类型
+     * @groups 输入
+     */
+    const TouchInputType: typeof mw.TouchInputType;
+    type TouchInputType = mw.TouchInputType;
+    /**
+     * @author xiangkun.sun
+     * @description 资源管理工具
+     * @description 在使用左侧工具栏中的资源时，需要预先下载并加载。
+     * @description 可使用asyncDownloadAsset接口在代码中动态下载对应资源。也可将资源手动拖入编辑器右边优先加载队列中。
+     * @groups 工具
+     * @networkStatus usage:双端
+     */
+    const AssetUtil: typeof mw.AssetUtil;
+    type AssetUtil = mw.AssetUtil;
+    /**
+     * @author jun.zhang
+     * @description 游戏性能数据，辅助 Debug 和性能优化
+     * @groups 工具
+     * @networkStatus usage:双端
+     */
+    const DebugUtil: typeof mw.DebugUtil;
+    type DebugUtil = mw.DebugUtil;
+    /**
+     * @author baoqiang.han
+     * @hidden
+     * @deprecated info:该接口已废弃，在该接口被删除前会仍保持可用，请尽快使用替换方案以免出现问题 since:027 reason:接口废弃 replacement:请使用InputUtil下的onTouchBegin、onTouchMove、onTouchEnd接口
+     * @groups 输入
+     * @description 玩家从可触摸设备获取的数据信息，包含触摸手指数量，触摸位置(屏幕像素)和当前触摸状态(点击/滑动/离开)
+     * @example
+         * 使用示例:创建一个名为"InputInputExample"的脚本，放置在对象栏中，打开脚本，输入以下代码保存，运行游戏，触摸屏幕，你将看从Log看到相关结果。代码如下：
+         * ```
+         * @Component
+         * export default class TouchInputExample extends Script {
+         *     protected onStart(): void {
+         *          let touch = new TouchInputUtil();
+         *          touch.onTouchBegin.add((index, location, state) => {
+         *          console.log("TouchBegin", index, location.toString(), state);
+         *          });
+         *          touch.onTouchMove.add((index, location, state) => {
+         *          console.log("TouchMove", index, location.toString(), state);
+         *          });
+         *          touch.onTouchEnd.add((index, location, state) => {
+         *          console.log("TouchEnd", index, location.toString(), state);
+         *          });
+         *     }
+         * }
+         * ```
+         */
+    const TouchInputUtil: typeof mw.TouchInputUtil;
+    type TouchInputUtil = mw.TouchInputUtil;
+    /**
+     * @author xiaobo.qi
+     * @description 多语言工具
+     * @groups 工具
+     * @networkStatus usage:双端
+     */
+    const LanguageUtil: typeof mw.LanguageUtil;
+    type LanguageUtil = mw.LanguageUtil;
+    /**
+     * @author huipeng.jia
+     * @groups 工具/补间动画
+     * @description 补间(动画)（来自 in-between）是一个概念，允许你以平滑的方式更改对象的属性。
+     * 你只需告诉它哪些属性要更改，当补间结束运行时它们应该具有哪些最终值，以及这需要多长时间，
+     * 补间引擎将负责计算从起始点到结束点的值。
+     * @networkStatus usage: 双端
+     */
+    const Tween: typeof mw.Tween;
+    type Tween<T extends TweenUnknownProps> = mw.Tween<T>;
     /**
      * @groups 工具/补间动画
      * @author huipeng.jia
@@ -5647,113 +5771,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const TweenUtil: typeof mw.TweenUtil;
     type TweenUtil = mw.TweenUtil;
     /**
-     * @author jie.wu
-     * @description 输入事件工具
-     * @groups 输入
-     * @networkStatus usage:双端
-     * @example
-     * 使用示例:创建一个名为"InputExample"的脚本，放置在对象栏中，打开脚本，输入以下代码保存，运行游戏，点击键盘1键及屏幕，你将看到Input相关效果。代码如下：
-     * ```
-     * @Component
-     * export default class InputExample extends Script {
-     *     protected onStart(): void {
-     *         InputUtil.onKeyDown(Keys.One, () => {
-     *             console.error(`===>onKeyDown: Keys.One`);
-     *         });
-     *         InputUtil.onKeyUp(Keys.One, () => {
-     *             console.error(`===>onKeyUp: Keys.One`);
-     *         });
-     *         InputUtil.onKeyPress(Keys.One, () => {
-     *             console.error(`===>onKeyPress: Keys.One`);
-     *         });
-     *         InputUtil.onTouch((index: number, location: Vector2, touchType: TouchInputType) => {
-     *             console.error(`===>onTouch: ${index}, ${location}, ${touchType}`);
-     *         });
-     *         InputUtil.onTouchBegin((index: number, location: Vector2, touchType: TouchInputType) => {
-     *             console.error(`===>onTouchBegin: ${index}, ${location}, ${touchType}`);
-     *         });
-     *         InputUtil.onTouchMove((index: number, location: Vector2, touchType: TouchInputType) => {
-     *             console.error(`===>onTouchMove: ${index}, ${location}, ${touchType}`);
-     *         });
-     *         InputUtil.onTouchEnd((index: number, location: Vector2, touchType: TouchInputType) => {
-     *             console.error(`===>onTouchEnd: ${index}, ${location}, ${touchType}`);
-     *         });
-     *     }
-     * }
-     * ```
-     */
-    const InputUtil: typeof mw.InputUtil;
-    type InputUtil = mw.InputUtil;
-    /**
-     * @author xiangkun.sun
-     * @description 数据文件获取工具
-     * @groups 工具
-     * @networkStatus usage:双端
-     */
-    const DataFile: typeof mw.DataFile;
-    type DataFile = mw.DataFile;
-    /**
-     * @author baoqiang.han
-     * @description 触摸类型
-     * @groups 输入
-     */
-    const TouchInputType: typeof mw.TouchInputType;
-    type TouchInputType = mw.TouchInputType;
-    /**
-     * @author xiangkun.sun
-     * @description 资源管理工具
-     * @description 在使用左侧工具栏中的资源时，需要预先下载并加载。
-     * @description 可使用asyncDownloadAsset接口在代码中动态下载对应资源。也可将资源手动拖入编辑器右边优先加载队列中。
-     * @groups 工具
-     * @networkStatus usage:双端
-     */
-    const AssetUtil: typeof mw.AssetUtil;
-    type AssetUtil = mw.AssetUtil;
-    /**
-     * @author jun.zhang
-     * @description 游戏性能数据，辅助 Debug 和性能优化
-     * @groups 工具
-     * @networkStatus usage:双端
-     */
-    const DebugUtil: typeof mw.DebugUtil;
-    type DebugUtil = mw.DebugUtil;
-    /**
-     * @author baoqiang.han
-     * @hidden
-     * @deprecated info:该接口已废弃，在该接口被删除前会仍保持可用，请尽快使用替换方案以免出现问题 since:027 reason:接口废弃 replacement:请使用InputUtil下的onTouchBegin、onTouchMove、onTouchEnd接口
-     * @groups 输入
-     * @description 玩家从可触摸设备获取的数据信息，包含触摸手指数量，触摸位置(屏幕像素)和当前触摸状态(点击/滑动/离开)
-     * @example
-         * 使用示例:创建一个名为"InputInputExample"的脚本，放置在对象栏中，打开脚本，输入以下代码保存，运行游戏，触摸屏幕，你将看从Log看到相关结果。代码如下：
-         * ```
-         * @Component
-         * export default class TouchInputExample extends Script {
-         *     protected onStart(): void {
-         *          let touch = new TouchInputUtil();
-         *          touch.onTouchBegin.add((index, location, state) => {
-         *          console.log("TouchBegin", index, location.toString(), state);
-         *          });
-         *          touch.onTouchMove.add((index, location, state) => {
-         *          console.log("TouchMove", index, location.toString(), state);
-         *          });
-         *          touch.onTouchEnd.add((index, location, state) => {
-         *          console.log("TouchEnd", index, location.toString(), state);
-         *          });
-         *     }
-         * }
-         * ```
-         */
-    const TouchInputUtil: typeof mw.TouchInputUtil;
-    type TouchInputUtil = mw.TouchInputUtil;
-    /**
-     * @author xiaobo.qi
-     * @description 多语言工具
-     * @groups 工具
-     * @networkStatus usage:双端
-     */
-    const LanguageUtil: typeof mw.LanguageUtil;
-    type LanguageUtil = mw.LanguageUtil;
-    /**
      * @author mengyuan.hao
      * @description 窗口设置工具。
      * @description 可设置窗口聚焦失焦时触发某种行为，获取分辨率等功能。
@@ -5780,16 +5797,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      */
     const WindowUtil: typeof mw.WindowUtil;
     type WindowUtil = mw.WindowUtil;
-    /**
-     * @author huipeng.jia
-     * @groups 工具/补间动画
-     * @description 补间(动画)（来自 in-between）是一个概念，允许你以平滑的方式更改对象的属性。
-     * 你只需告诉它哪些属性要更改，当补间结束运行时它们应该具有哪些最终值，以及这需要多长时间，
-     * 补间引擎将负责计算从起始点到结束点的值。
-     * @networkStatus usage: 双端
-     */
-    const Tween: typeof mw.Tween;
-    type Tween<T extends TweenUnknownProps> = mw.Tween<T>;
     /**
      * @author xiaobo.qi
      * @description 本地化工具
@@ -5872,12 +5879,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     type TweenUnknownProps = mw.TweenUnknownProps;
     /**
      * @author huipeng.jia
-     * @description 缓动函数的类型定义
-     * @groups 基础类型
-     */
-    type TweenEasingFunction = mw.TweenEasingFunction;
-    /**
-     * @author huipeng.jia
      * @description 插值函数的类型定义
      * @groups 基础类型
      */
@@ -5888,6 +5889,12 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
          * @groups 基础类型
          */
     type maskWordCheckResult = mw.maskWordCheckResult;
+    /**
+     * @author huipeng.jia
+     * @description 缓动函数的类型定义
+     * @groups 基础类型
+     */
+    type TweenEasingFunction = mw.TweenEasingFunction;
     /**
      * @author si.wu
      * @description HTTP请求
@@ -5979,6 +5986,14 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     type RequestInit = mw.RequestInit;
     /**
      * @author junwen.hua
+     * @description 商城通信回调消息格式
+     * @groups 基础类型
+     * @param isSuccess usage: 通信结果
+     * @param content usage: 消息内容
+     */
+    type TransactionType = mw.TransactionType;
+    /**
+     * @author junwen.hua
      * @description Http请求的回调消息格式
      * @groups 基础类型
      * @precautions 无需主动销毁，生命周期由UObject管理
@@ -5987,14 +6002,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      * @param responseCode usage: 状态码
      */
     type HttpResponse = mw.HttpResponse;
-    /**
-     * @author junwen.hua
-     * @description 商城通信回调消息格式
-     * @groups 基础类型
-     * @param isSuccess usage: 通信结果
-     * @param content usage: 消息内容
-     */
-    type TransactionType = mw.TransactionType;
     /**
      * @author si.wu
      * @groups 玩法/其他
@@ -6696,40 +6703,12 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const BaseView: typeof mwext.BaseView;
     type BaseView = mwext.BaseView;
     /**
-    * @author lei.zhao
-    * @groups 拓展/背包
-    * @networkStatus usage:双端
-    * @description 背包实例
-    * @description 背包系统就像你在玩游戏时使用的一个特殊的背包，可以帮助你管理和存放各种物品和资源。MW编辑器已经封装好了一个可以直接使用的背包系统。
-    * @description 你的角色在游戏中收集了很多宝贵的物品，比如武器、装备、药品、材料等等。这些物品都需要一个地方来储存，而背包系统就是一个虚拟的背包，可以容纳这些物品。
-    * @description 它就是一个游戏中的特殊工具，帮助你整理、存储和管理你在游戏中收集到的各种物品和资源，让你的游戏体验更加方便和有序。
-    * @example
-    * 使用示例:创建一个名为BagExample的脚本，放置在对象栏中，打开脚本，将原本内容修改为如下内容，保存并运行游戏
-    * ```
-    * @Component
-    * export default class BagExample extends Script {
-    *    protected onStart(): void {
-    *       BagModule.registerItem(1,"37692","金铲铲",ItemQuality.Legend,10,{a:1,b:2});
-    *       BagModule.registerItem(2,"37690","小喇叭",ItemQuality.Legend,10,{a:1,b:2});
-    *       BagModule.registerItem(3,"37697","金币",ItemQuality.Legend,10,{a:1,b:2});
-    *       BagModule.registerItem(4,"37695","南瓜",ItemQuality.Common,20,{a:1,b:2});
-    *       if(SystemUtil.isClient()){
-    *           BagModule.addItemClickListener(this.onItemClick,this);
-    *           BagModule.addItem(1,1);
-    *           BagModule.addItem(2,5);
-    *           BagModule.addItem(3,10);
-    *           BagModule.addItem(4,30);
-    *           BagModule.open();
-    *       }
-    *    }
-    *    private onItemClick(cfg:ItemConfig){
-    *       console.log("点击了",cfg);
-    *    }
-    * }
-    * ```
-    */
-    const BagModule: typeof mwext.BagModule;
-    type BagModule = mwext.BagModule;
+     * @author shilong.wang
+     * @description GameObject对象池资源来源类型，不同类型的资源创建方式不一样，需要正确选择
+     * @groups 基类/对象池
+     */
+    const GameObjPoolSourceType: typeof mwext.GameObjPoolSourceType;
+    type GameObjPoolSourceType = mwext.GameObjPoolSourceType;
     /**
      * @author shilong.wang
      * @description 面板类的基类，可用于控制一个界面
@@ -6739,21 +6718,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      */
     const BasePanel: typeof mwext.BasePanel;
     type BasePanel<T extends mw.UIScript> = mwext.BasePanel<T>;
-    /**
-     * @author shilong.wang
-     * @description GameObject对象池资源来源类型，不同类型的资源创建方式不一样，需要正确选择
-     * @groups 基类/对象池
-     */
-    const GameObjPoolSourceType: typeof mwext.GameObjPoolSourceType;
-    type GameObjPoolSourceType = mwext.GameObjPoolSourceType;
-    /**
-     * @author lei.zhao
-     * @groups 拓展/背包
-     * @networkStatus usage:客户端
-     * @description 背包界面父类,继承这个类来实现自己的背包界面，使用BagModule.skin来指定皮肤
-     */
-    const BagUI: typeof mwext.BagUI;
-    type BagUI = mwext.BagUI;
     /**
      * @author shilong.wang
      * @groups 基类/对象池
@@ -6786,21 +6750,13 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const GameObjPool: typeof mwext.GameObjPool;
     type GameObjPool = mwext.GameObjPool;
     /**
-    * @author lei.zhao
-    * @groups 拓展/背包
-    * @networkStatus usage:客户端
-    * @description 背包道具父类,继承这个类来实现自己的道具格子界面，使用BagModule.skin来指定皮肤
-    */
-    const BagItemUI: typeof mwext.BagItemUI;
-    type BagItemUI = mwext.BagItemUI;
-    /**
-    * @author lei.zhao
-    * @groups 拓展/背包
-    * @networkStatus 双端
-    * @description 道具品质
-    */
-    const ItemQuality: typeof mwext.ItemQuality;
-    type ItemQuality = mwext.ItemQuality;
+     * @author lei.zhao
+     * @groups 拓展/背包
+     * @networkStatus usage:客户端
+     * @description 背包界面父类,继承这个类来实现自己的背包界面，使用BagModule.skin来指定皮肤
+     */
+    const BagUI: typeof mwext.BagUI;
+    type BagUI = mwext.BagUI;
     /**
      * @author shilong.wang
      * @groups 基类/对象池
@@ -6886,12 +6842,69 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const ObjPool: typeof mwext.ObjPool;
     type ObjPool<T> = mwext.ObjPool<T>;
     /**
-    * @author shilong.wang
-    * @groups 拓展/排行榜
-    * @description 排行榜玩家数据类型
-    * @networkStatus usage: 双端
+    * @author lei.zhao
+    * @groups 拓展/背包
+    * @networkStatus usage:客户端
+    * @description 背包道具父类,继承这个类来实现自己的道具格子界面，使用BagModule.skin来指定皮肤
     */
-    type LeaderboardPlayerData = mwext.LeaderboardPlayerData;
+    const BagItemUI: typeof mwext.BagItemUI;
+    type BagItemUI = mwext.BagItemUI;
+    /**
+    * @author lei.zhao
+    * @groups 拓展/背包
+    * @networkStatus usage:双端
+    * @description 背包实例
+    * @description 背包系统就像你在玩游戏时使用的一个特殊的背包，可以帮助你管理和存放各种物品和资源。MW编辑器已经封装好了一个可以直接使用的背包系统。
+    * @description 你的角色在游戏中收集了很多宝贵的物品，比如武器、装备、药品、材料等等。这些物品都需要一个地方来储存，而背包系统就是一个虚拟的背包，可以容纳这些物品。
+    * @description 它就是一个游戏中的特殊工具，帮助你整理、存储和管理你在游戏中收集到的各种物品和资源，让你的游戏体验更加方便和有序。
+    * @example
+    * 使用示例:创建一个名为BagExample的脚本，放置在对象栏中，打开脚本，将原本内容修改为如下内容，保存并运行游戏
+    * ```
+    * @Component
+    * export default class BagExample extends Script {
+    *    protected onStart(): void {
+    *       BagModule.registerItem(1,"37692","金铲铲",ItemQuality.Legend,10,{a:1,b:2});
+    *       BagModule.registerItem(2,"37690","小喇叭",ItemQuality.Legend,10,{a:1,b:2});
+    *       BagModule.registerItem(3,"37697","金币",ItemQuality.Legend,10,{a:1,b:2});
+    *       BagModule.registerItem(4,"37695","南瓜",ItemQuality.Common,20,{a:1,b:2});
+    *       if(SystemUtil.isClient()){
+    *           BagModule.addItemClickListener(this.onItemClick,this);
+    *           BagModule.addItem(1,1);
+    *           BagModule.addItem(2,5);
+    *           BagModule.addItem(3,10);
+    *           BagModule.addItem(4,30);
+    *           BagModule.open();
+    *       }
+    *    }
+    *    private onItemClick(cfg:ItemConfig){
+    *       console.log("点击了",cfg);
+    *    }
+    * }
+    * ```
+    */
+    const BagModule: typeof mwext.BagModule;
+    type BagModule = mwext.BagModule;
+    /**
+    * @author lei.zhao
+    * @groups 拓展/背包
+    * @networkStatus 双端
+    * @description 道具品质
+    */
+    const ItemQuality: typeof mwext.ItemQuality;
+    type ItemQuality = mwext.ItemQuality;
+    /**
+    * @author shilong.wang
+    * @description 排行榜模块-服务端
+    * @groups 拓展/排行榜
+    */
+    type LeaderboardModuleTypeS = mwext.LeaderboardModuleTypeS;
+    /**
+     * @author lei.zhao
+     * @groups 拓展/背包
+     * @networkStatus 双端
+     * @description 背包数据结构
+     */
+    type IBagStruct = mwext.IBagStruct;
     /**
      * @author shilong.wang
      * @groups 拓展/排行榜
@@ -6906,12 +6919,12 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     */
     type LeaderboardModuleTypeC = mwext.LeaderboardModuleTypeC;
     /**
-     * @author lei.zhao
-     * @groups 拓展/背包
-     * @networkStatus 双端
-     * @description 背包数据结构
-     */
-    type IBagStruct = mwext.IBagStruct;
+    * @author lei.zhao
+    * @groups 拓展/背包
+    * @networkStatus 双端
+    * @description 道具配置
+    */
+    type ItemConfig = mwext.ItemConfig;
     /**
      * @author shilong.wang
      * @groups 拓展/排行榜
@@ -6919,13 +6932,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      * @networkStatus usage: 客户端
      */
     type ILeaderboardItemView = mwext.ILeaderboardItemView;
-    /**
-    * @author lei.zhao
-    * @groups 拓展/背包
-    * @networkStatus 双端
-    * @description 道具配置
-    */
-    type ItemConfig = mwext.ItemConfig;
     /**
     * @author lei.zhao
     * @groups 拓展/背包
@@ -6942,10 +6948,11 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     type IItemDeleteSkin = mwext.IItemDeleteSkin;
     /**
     * @author shilong.wang
-    * @description 排行榜模块-服务端
     * @groups 拓展/排行榜
+    * @description 排行榜玩家数据类型
+    * @networkStatus usage: 双端
     */
-    type LeaderboardModuleTypeS = mwext.LeaderboardModuleTypeS;
+    type LeaderboardPlayerData = mwext.LeaderboardPlayerData;
     /**
      * @author mengyuan.hao
      * @description  图片画质设置
@@ -7115,13 +7122,36 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const EnvironmentSettings: typeof mw.EnvironmentSettings;
     type EnvironmentSettings = mw.EnvironmentSettings;
     /**
-     * @author huipeng.jia, guang.deng
-     * @groups 服务/社交
-     * @description 用户账号信息管理服务
-     * @networkStatus usage: 客户端
+     * @author jun.zhang
+     * @description GameService的错误回调编码枚举
+     * @groups 基础类型
      */
-    const AccountService: typeof mw.AccountService;
-    type AccountService = mw.AccountService;
+    const AvatarCheckStatusCode: typeof mw.AvatarCheckStatusCode;
+    type AvatarCheckStatusCode = mw.AvatarCheckStatusCode;
+    /**
+     * @hidden
+     * @author huipeng.jia, junwen.hua
+     * @groups 基础类型
+     * @instance
+     * @description 支持各端的通信，Platform、引擎、Web和游戏项目可以互相直接进行业务上的消息传递，无需修改引擎代码
+     * @networkStatus usage: 客户端
+     * @precautions 单例类，请使用getInstance获取对象。TS端想要收到某消息并执行回调函数需要提前
+     *              调用registerAction进行绑定。消息需要是Json格式的字符串并包含“action”字段
+     *              否则无法被通道转发。在PIE下无法连接到App、Web端。
+     *              如果游戏在后台收到消息，通道会将消息缓存并在游戏回到前台后一并发送。
+     * @example
+     * 使用示例:通道的注册、发送的使用示例
+     * ```
+     * // 注册action:ts.test.myaction，对包含action的消息，调用OnCall回调
+     * mw.MessageChannelService.getInstance().registerAction("ts.test.myaction", this, OnCall);
+     * // 发送message:"{\"action\":\"ts.test.myaction\",\"data\":{}}"到通道上，所有注册了该消息中action的端才可以收到该消息
+     * mw.MessageChannelService.getInstance().send("{\"action\":\"ts.test.myaction\",\"data\":{}}");
+     * // 指定一个目标端toWhom发送消息message，对方无需提前注册就可以收到该消息
+     * mw.MessageChannelService.getInstance().sendTo(toWhom, message);
+     * ```
+     */
+    const MessageChannelService: typeof mw.MessageChannelService;
+    type MessageChannelService = mw.MessageChannelService;
     /**
      * @author changzun.li
      * @groups 设置/设置面板
@@ -7276,6 +7306,14 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const SoundService: typeof mw.SoundService;
     type SoundService = mw.SoundService;
     /**
+     * @author huipeng.jia, guang.deng
+     * @groups 服务/社交
+     * @description 用户账号信息管理服务
+     * @networkStatus usage: 客户端
+     */
+    const AccountService: typeof mw.AccountService;
+    type AccountService = mw.AccountService;
+    /**
      * @author huipeng.jia
      * @description 广告类型
      * @groups 服务/货币
@@ -7332,46 +7370,41 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const MessageChannelReceiver: typeof mw.MessageChannelReceiver;
     type MessageChannelReceiver = mw.MessageChannelReceiver;
     /**
-     * @hidden
-     * @author huipeng.jia, junwen.hua
+     * @author huipeng.jia
+     * @description 组队跳游戏请求失败回调
      * @groups 基础类型
-     * @instance
-     * @description 支持各端的通信，Platform、引擎、Web和游戏项目可以互相直接进行业务上的消息传递，无需修改引擎代码
-     * @networkStatus usage: 客户端
-     * @precautions 单例类，请使用getInstance获取对象。TS端想要收到某消息并执行回调函数需要提前
-     *              调用registerAction进行绑定。消息需要是Json格式的字符串并包含“action”字段
-     *              否则无法被通道转发。在PIE下无法连接到App、Web端。
-     *              如果游戏在后台收到消息，通道会将消息缓存并在游戏回到前台后一并发送。
-     * @example
-     * 使用示例:通道的注册、发送的使用示例
-     * ```
-     * // 注册action:ts.test.myaction，对包含action的消息，调用OnCall回调
-     * mw.MessageChannelService.getInstance().registerAction("ts.test.myaction", this, OnCall);
-     * // 发送message:"{\"action\":\"ts.test.myaction\",\"data\":{}}"到通道上，所有注册了该消息中action的端才可以收到该消息
-     * mw.MessageChannelService.getInstance().send("{\"action\":\"ts.test.myaction\",\"data\":{}}");
-     * // 指定一个目标端toWhom发送消息message，对方无需提前注册就可以收到该消息
-     * mw.MessageChannelService.getInstance().sendTo(toWhom, message);
-     * ```
      */
-    const MessageChannelService: typeof mw.MessageChannelService;
-    type MessageChannelService = mw.MessageChannelService;
+    type TeamMatchFailureInfo = mw.TeamMatchFailureInfo;
+    /**
+     * @author jun.zhang
+     * @description GameService的回调参数类型
+     * @groups 基础类型
+     */
+    type AvatarBaseError = mw.AvatarBaseError;
+    /**
+     * @author huipeng.jia
+     * @description 传送时可携带的数据类型
+     * @groups 数据处理
+     */
+    type TeleportData = mw.TeleportData;
+    /**
+     * @author huipeng.jia
+     * @description 传送时可额外提供的信息
+     * @groups 数据处理
+     */
+    type TeleportOptions = mw.TeleportOptions;
+    /**
+     * @author jun.zhang
+     * @description GameService的回调参数类型
+     * @groups 基础类型
+     */
+    type AvatarCheckResponse = mw.AvatarCheckResponse;
     /**
      * @author huipeng.jia
      * @description 传送请求的结果
      * @groups 数据处理
      */
     type TeleportResult = mw.TeleportResult;
-    /**
-     * @author junwen.hua
-     * @description 大会员钥匙扣除服务端接收发货通知的消息格式
-     * @groups 服务/货币
-     * @param player usage: 下单的玩家Player
-     * @param orderId usage: 订单Id
-     * @param boxId usage: 宝箱Id
-     * @param amount usage: 数量
-     * @param confirmOrder usage: 是否收到货的回调，会发给订单服务器。如果回调false，服务器会认定未收到货，下次玩家进入游戏，还会收到该通知
-     */
-    type OnKeyConsume = mw.OnKeyConsume;
     /**
      * @author huipeng.jia
      * @description 玩家所在的房间信息
@@ -7384,13 +7417,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      * @description UGC模板信息
      */
     type UGCTemplateInfo = mw.UGCTemplateInfo;
-    /**
-     * @author huipeng.jia
-     * @description 客户端接收余额更新的消息格式
-     * @groups 基础类型
-     * @param amount usage: 新的余额
-     */
-    type OnArkBalanceUpdated = mw.OnArkBalanceUpdated;
     /**
      * @author huipeng.jia
      * @groups 基础类型
@@ -7417,6 +7443,12 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     type CommodityListObj = mw.CommodityListObj;
     /**
      * @author huipeng.jia
+     * @description GameService的回调
+     * @groups 基础类型
+     */
+    type MGSResponse = mw.MGSResponse;
+    /**
+     * @author huipeng.jia
      * @groups 服务/货币
      * @description 充值信息
      */
@@ -7433,17 +7465,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      * @description 发货回调
      */
     type ShipOrderResponse = mw.ShipOrderResponse;
-    /**
-     * @author huipeng.jia
-     * @description 服务端接收发货通知的消息格式
-     * @groups 基础类型
-     * @param playerId usage: 下单的玩家playerId
-     * @param orderId usage: 订单Id
-     * @param commodityId usage: 商品Id
-     * @param amount usage: 数量
-     * @param confirmOrder usage: 是否收到货的回调，会发给订单服务器。如果回调false，服务器会认定未收到货，下次玩家进入游戏，还会收到该通知
-     */
-    type OnOrderDelivered = mw.OnOrderDelivered;
     /**
      * @author mengyuan.hao
      * @description 收到MGS事件调用
@@ -7470,10 +7491,10 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     type StringResponse = mw.StringResponse;
     /**
      * @author huipeng.jia
-     * @description 返回无参数的回调
+     * @description 返回bool的回调
      * @groups 基础类型
      */
-    type VoidResponse = mw.VoidResponse;
+    type BoolResponse = mw.BoolResponse;
     /**
      * @author huipeng.jia
      * @description 下载平台数据回调
@@ -7482,16 +7503,16 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     type downloadCharacterDataStringCallback = mw.downloadCharacterDataStringCallback;
     /**
      * @author huipeng.jia
+     * @description 返回无参数的回调
+     * @groups 基础类型
+     */
+    type VoidResponse = mw.VoidResponse;
+    /**
+     * @author huipeng.jia
      * @description 下载角色形象的回调，无参数
      * @groups 基础类型
      */
     type DownloadDataResponse = mw.DownloadDataResponse;
-    /**
-     * @author huipeng.jia
-     * @description GameService的回调
-     * @groups 基础类型
-     */
-    type MGSResponse = mw.MGSResponse;
     /**
      * @author huipeng.jia
      * @description 下载角色形象的回调消息格式
@@ -7501,10 +7522,33 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     type UploadDataResponse = mw.UploadDataResponse;
     /**
      * @author huipeng.jia
-     * @description 返回bool的回调
+     * @description 服务端接收发货通知的消息格式
      * @groups 基础类型
+     * @param playerId usage: 下单的玩家playerId
+     * @param orderId usage: 订单Id
+     * @param commodityId usage: 商品Id
+     * @param amount usage: 数量
+     * @param confirmOrder usage: 是否收到货的回调，会发给订单服务器。如果回调false，服务器会认定未收到货，下次玩家进入游戏，还会收到该通知
      */
-    type BoolResponse = mw.BoolResponse;
+    type OnOrderDelivered = mw.OnOrderDelivered;
+    /**
+     * @author junwen.hua
+     * @description 大会员钥匙扣除服务端接收发货通知的消息格式
+     * @groups 服务/货币
+     * @param player usage: 下单的玩家Player
+     * @param orderId usage: 订单Id
+     * @param boxId usage: 宝箱Id
+     * @param amount usage: 数量
+     * @param confirmOrder usage: 是否收到货的回调，会发给订单服务器。如果回调false，服务器会认定未收到货，下次玩家进入游戏，还会收到该通知
+     */
+    type OnKeyConsume = mw.OnKeyConsume;
+    /**
+     * @author huipeng.jia
+     * @description 客户端接收余额更新的消息格式
+     * @groups 基础类型
+     * @param amount usage: 新的余额
+     */
+    type OnArkBalanceUpdated = mw.OnArkBalanceUpdated;
     /**
      * @author junwen.hua
      * @description 大会员消费钥匙订单。orderId：订单ID，boxId：宝箱ID，number：购买宝箱数量，shipTime：发货时间，毫秒级时间戳
@@ -7543,24 +7587,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      * @param newState usage: 新的窗口模式。1 为“角色展示模式”，2 为“角色编辑模式”
      */
     type OnViewLayoutSwitched = mw.OnViewLayoutSwitched;
-    /**
-     * @author huipeng.jia
-     * @description 组队跳游戏请求失败回调
-     * @groups 基础类型
-     */
-    type TeamMatchFailureInfo = mw.TeamMatchFailureInfo;
-    /**
-     * @author huipeng.jia
-     * @description 传送时可携带的数据类型
-     * @groups 数据处理
-     */
-    type TeleportData = mw.TeleportData;
-    /**
-     * @author huipeng.jia
-     * @description 传送时可额外提供的信息
-     * @groups 数据处理
-     */
-    type TeleportOptions = mw.TeleportOptions;
 
 }
 export { }

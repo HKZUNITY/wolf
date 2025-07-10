@@ -188,7 +188,7 @@ export default class ShopPanel extends ShopPanel_Generate {
 		this.mCanvas_Result.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
 	}
 	private remainTimer;
-	private showItemDetail(id: number, state: ItemState) {
+	private async showItemDetail(id: number, state: ItemState) {
 
 		let info = GameConfig.Shop.getElement(id);
 		// this.mImage_ItemShow.imageGuid = (info.IconGuid);
@@ -246,6 +246,13 @@ export default class ShopPanel extends ShopPanel_Generate {
 			this.mImage_ItemPrice.visibility = (mw.SlateVisibility.Collapsed);
 			this.mImage_ItemPrice_Diamond.visibility = (mw.SlateVisibility.Collapsed);
 			this.mImage_ItemPrice_Ad.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
+		}
+
+		if (await ModuleService.getModule(ShopModuleC).getUsingItems(id)) {
+			this.mUIText20015_btn.visibility = (mw.SlateVisibility.Collapsed);
+			this.mUIText20016_btn.visibility = (mw.SlateVisibility.Collapsed);
+			this.mUIText20017_btn.visibility = (mw.SlateVisibility.Visible);
+			return;
 		}
 		switch (state) {
 			case ItemState.NotOwn:

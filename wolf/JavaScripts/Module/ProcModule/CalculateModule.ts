@@ -10,6 +10,7 @@ import { GameModuleS } from "../GameModule/GameModuleS";
 import { PlayerModuleData } from "../PlayerModule/PlayerData";
 import { PlayerModuleC } from "../PlayerModule/PlayerModuleC";
 import { PlayerModuleS } from "../PlayerModule/PlayerModuleS";
+import RankModuleC from "../RankModule/RankModuleC";
 import RankModuleS from "../RankModule/RankModuleS";
 import AttributeManager, { AttributeType } from "../SVipModule/AttributeManager";
 import ClearingPanel from "./ui/ClearingPanel";
@@ -84,6 +85,8 @@ export class CalculateModuleC extends ModuleC<CalculateModuleS, null> {
         //         });
         //     }
         // }
+
+        ModuleService.getModule(RankModuleC).updateRankData();
     }
 }
 export class CalculateModuleS extends ModuleS<CalculateModuleC, null> {
