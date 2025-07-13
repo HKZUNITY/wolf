@@ -149,7 +149,9 @@ export default class ShopModuleC extends ModuleC<ShopModuleS, ShopModuleData> {
             Notice.showDownNotice(GameConfig.Tips.getElement("10012").Content);
         }
     }
-
+    public getUsingItems(id: number): boolean {
+        return this.server.net_getUsingItems(id);
+    }
     public getItem(id: number) {
         this.server.net_GetItem(id)
     }

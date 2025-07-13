@@ -122,6 +122,10 @@ export default class ShopModuleS extends ModuleS<ShopModuleC, ShopModuleData> {
         this.getClient(player).net_RefreshUI(id);
     }
 
+    public net_getUsingItems(id: number): boolean {
+        return this.getPlayerData(this.currentPlayer).usingItems.includes(id);
+    }
+
     useWeapon(player: mw.Player, id: number) {
         this.getPlayerData(player).setUsingItem(id);
         this.getPlayerData(player).save(true);

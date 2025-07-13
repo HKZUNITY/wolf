@@ -169,7 +169,7 @@ export default class MallPanel extends MallPanel_Generate {
 		this.tab1Ids.length = 0;
 		this.tab1Elements.forEach((value: ITab1Element) => { this.tab1Ids.push(value.ID); });
 		this.updateTab1();
-		this.tab1Id = this.tab1Ids[0];//可修改默认
+		this.tab1Id = this.tab1Ids[1];//可修改默认
 		this.getMallModuleC.onSelectTab1Action.call(this.tab1Id);
 		this.initTab2();
 	}
@@ -293,7 +293,7 @@ export default class MallPanel extends MallPanel_Generate {
 
 	private get getDefaultTab2Index(): number {
 		if (this.tab1Id == Tab1Type.Tab1_Appearance) return 5;
-		if (this.tab1Id == Tab1Type.Tab1_Clothing) return 0;
+		if (this.tab1Id == Tab1Type.Tab1_Clothing) return 6;
 		return 0;
 	}
 
