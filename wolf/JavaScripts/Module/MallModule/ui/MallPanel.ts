@@ -4,6 +4,7 @@ import { IALongCoatTopElement } from "../../../Tables/ALongCoatTop";
 import { IAncientMoldingOutfitElement } from "../../../Tables/AncientMoldingOutfit";
 import { IBackElement } from "../../../Tables/Back";
 import { IBackHairElement } from "../../../Tables/BackHair";
+import { IBackPetElement } from "../../../Tables/BackPet";
 import { IBlushElement } from "../../../Tables/Blush";
 import { IBodyTypeElement } from "../../../Tables/BodyType";
 import { IBootsShoesElement } from "../../../Tables/BootsShoes";
@@ -63,11 +64,14 @@ import MallPanel_Generate from "../../../ui-generate/module/MallModule/MallPanel
 import Utils from "../../../Utils";
 import ExecutorManager from "../../../WaitingQueue";
 import ChatPanel from "../../DanMuModule/ui/ChatPanel";
+import JoystickPanel from "../../GameModule/ui/JoystickPanel";
+import HUDPanel from "../../PlayerModule/ui/HUDPanel";
 import RankPanel from "../../RankModule/ui/RankPanel";
 import Mall from "../Mall";
 import { AssetIdInfoData, TabType, TabIdData, Tab1Type, Tab2Type, Tab3Type } from "../MallData";
 import MallModuleC from "../MallModuleC";
 import MallItem_Big from "./MallItem_Big";
+import MallItem_Character from "./MallItem_Character";
 import MallItem_Color from "./MallItem_Color";
 import MallItem_Self from "./MallItem_Self";
 import MallItem_Small from "./MallItem_Small";
@@ -84,14 +88,6 @@ export default class MallPanel extends MallPanel_Generate {
 		return this.mallModuleC;
 	}
 
-	private rankPanel: RankPanel = null;
-	private get getRankPanel(): RankPanel {
-		if (!this.rankPanel) {
-			this.rankPanel = UIService.getUI(RankPanel);
-		}
-		return this.rankPanel;
-	}
-
 	/** 
 	 * 构造UI文件成功后，在合适的时机最先初始化一次 
 	 */
@@ -102,10 +98,11 @@ export default class MallPanel extends MallPanel_Generate {
 		this.initUI();
 		this.bindButton();
 		this.bindAction();
-		this.initMallRot();
+		// this.initMallRot();
 	}
 
 	private initUI(): void {
+		Utils.setWidgetVisibility(this.mTouchImage, mw.SlateVisibility.Collapsed);
 		this.mSaveTextBlock.text = GameConfig.Language.Text_FreeSave.Value;
 		this.mResetTextBlock.text = GameConfig.Language.Text_ResetImage.Value;
 	}
@@ -425,8 +422,10 @@ export default class MallPanel extends MallPanel_Generate {
 	private mallItem_Color: MallItem_Color[] = [];
 	private mallItem_Small: MallItem_Small[] = [];
 	private mallItem_Big: MallItem_Big[] = [];
+	private mallItem_Character: MallItem_Character[] = [];
 	private mallItemAssetIds: string[] = [];
-	private mallItemMap: Map<string, MallItem_Small | MallItem_Big | MallItem_Color> = new Map<string, MallItem_Small | MallItem_Big | MallItem_Color>();
+	private mallItemMap: Map<string, MallItem_Small | MallItem_Big | MallItem_Color | MallItem_Character>
+		= new Map<string, MallItem_Small | MallItem_Big | MallItem_Color | MallItem_Character>();
 	private mallItemHasBig: number[] = [
 		Tab2Type.Tab2_BodyType,
 		Tab2Type.Tab2_Outfit,
@@ -440,6 +439,7 @@ export default class MallPanel extends MallPanel_Generate {
 		Tab3Type.Tab3_AncientMolding_Suit
 	];
 	private mallItemHasColor: number[] = [Tab2Type.Tab2_SkinTone];
+	private mallItemHasCharacter: number[] = [Tab1Type.Tab1_Collection];
 	private currentConfigId: number = 0;
 	private clearMallItemData(): void {
 		this.mallItemMap.clear();
@@ -632,6 +632,9 @@ export default class MallPanel extends MallPanel_Generate {
 			case Tab3Type.Tab3_SportsShoes_Shoes:
 				GameConfig.SportsShoesShoes.getAllElement().forEach((value: ISportsShoesShoesElement) => { if (value.SexType == 0 || value.SexType == this.currentSomatotype) this.mallItemAssetIds.push(`${value.ID}`); });
 				break;
+			case Tab3Type.Tab3_BackPet:
+				GameConfig.BackPet.getAllElement().forEach((value: IBackPetElement) => { if (value.SexType == 0 || value.SexType == this.currentSomatotype) this.mallItemAssetIds.push(`${value.ID}`); });
+				break;
 			default:
 				break;
 		}
@@ -639,8 +642,17 @@ export default class MallPanel extends MallPanel_Generate {
 		this.initMallItem();
 	}
 
-	private initTab1Item(): void {
+	public initTab1Item(): void {
 		this.clearMallItemData();
+		switch (this.tab1Id) {
+			case Tab1Type.Tab1_Collection:
+				this.mallItemAssetIds.push(`0`);
+				let keys = this.getMallModuleC.getCharacterDataKeys;
+				if (keys && keys.length > 0) {
+					this.mallItemAssetIds = this.mallItemAssetIds.concat(keys);
+				}
+				break;
+		}
 		this.currentConfigId = this.tab1Id;
 		this.initMallItem();
 	}
@@ -651,29 +663,50 @@ export default class MallPanel extends MallPanel_Generate {
 		}
 	}
 
-	private hideMallItemSmallAndBig(): void {
+	private hideOtherMallItemNoHasColor(): void {
 		this.mallItem_Small.forEach((value: MallItem_Small) => {
 			Utils.setWidgetVisibility(value.uiObject, mw.SlateVisibility.Collapsed);
 		});
 		this.mallItem_Big.forEach((value: MallItem_Big) => {
 			Utils.setWidgetVisibility(value.uiObject, mw.SlateVisibility.Collapsed);
 		});
+		this.mallItem_Character.forEach((value: MallItem_Character) => {
+			Utils.setWidgetVisibility(value.uiObject, mw.SlateVisibility.Collapsed);
+		});
 	}
 
-	private hideMallItemSamllAndColor(): void {
+	private hideOtherMallItemNoHasBig(): void {
 		this.mallItem_Small.forEach((value: MallItem_Small) => {
 			Utils.setWidgetVisibility(value.uiObject, mw.SlateVisibility.Collapsed);
 		});
 		this.mallItem_Color.forEach((value: MallItem_Color) => {
 			Utils.setWidgetVisibility(value.uiObject, mw.SlateVisibility.Collapsed);
 		});
+		this.mallItem_Character.forEach((value: MallItem_Character) => {
+			Utils.setWidgetVisibility(value.uiObject, mw.SlateVisibility.Collapsed);
+		});
 	}
 
-	private hideMallItemBigAndColor(): void {
+	private hideOtherMallItemNoHasSmall(): void {
 		this.mallItem_Big.forEach((value: MallItem_Big) => {
 			Utils.setWidgetVisibility(value.uiObject, mw.SlateVisibility.Collapsed);
 		});
 		this.mallItem_Color.forEach((value: MallItem_Color) => {
+			Utils.setWidgetVisibility(value.uiObject, mw.SlateVisibility.Collapsed);
+		});
+		this.mallItem_Character.forEach((value: MallItem_Character) => {
+			Utils.setWidgetVisibility(value.uiObject, mw.SlateVisibility.Collapsed);
+		});
+	}
+
+	private hideOtherMallItemNoHasCharacter(): void {
+		this.mallItem_Color.forEach((value: MallItem_Color) => {
+			Utils.setWidgetVisibility(value.uiObject, mw.SlateVisibility.Collapsed);
+		});
+		this.mallItem_Small.forEach((value: MallItem_Small) => {
+			Utils.setWidgetVisibility(value.uiObject, mw.SlateVisibility.Collapsed);
+		});
+		this.mallItem_Big.forEach((value: MallItem_Big) => {
 			Utils.setWidgetVisibility(value.uiObject, mw.SlateVisibility.Collapsed);
 		});
 	}
@@ -681,13 +714,16 @@ export default class MallPanel extends MallPanel_Generate {
 	private initMallItem(): void {
 		this.thisFeatureIsNotEnabled();
 		if (this.mallItemHasBig.includes(this.currentConfigId)) {
-			this.hideMallItemSamllAndColor();
+			this.hideOtherMallItemNoHasBig();
 			this.initMallItemBig();
 		} else if (this.mallItemHasColor.includes(this.currentConfigId)) {
-			this.hideMallItemSmallAndBig();
+			this.hideOtherMallItemNoHasColor();
 			this.initMallItemColor();
+		} else if (this.mallItemHasCharacter.includes(this.currentConfigId)) {
+			this.hideOtherMallItemNoHasCharacter();
+			this.initMallItemCharacter();
 		} else {
-			this.hideMallItemBigAndColor();
+			this.hideOtherMallItemNoHasSmall();
 			this.initMallItemSmall();
 		}
 		this.checkMallItemState();
@@ -771,6 +807,33 @@ export default class MallPanel extends MallPanel_Generate {
 			}
 		}
 	}
+
+	private initMallItemCharacter(): void {
+		if (this.mallItemAssetIds.length > this.mallItem_Character.length) {
+			for (let i = 0; i < this.mallItem_Character.length; ++i) {
+				this.mallItem_Character[i].initItem(this.currentTabType, this.currentConfigId, this.mallItemAssetIds[i], this.mallItemAssetIds.length - 1);
+				Utils.setWidgetVisibility(this.mallItem_Character[i].uiObject, mw.SlateVisibility.SelfHitTestInvisible);
+				this.mallItemMap.set(this.mallItemAssetIds[i], this.mallItem_Character[i]);
+			}
+			for (let i = this.mallItem_Character.length; i < this.mallItemAssetIds.length; ++i) {
+				let mallItem_Character = UIService.create(MallItem_Character);
+				mallItem_Character.initItem(this.currentTabType, this.currentConfigId, this.mallItemAssetIds[i], this.mallItemAssetIds.length - 1);
+				this.mItemContentCanvas.addChild(mallItem_Character.uiObject);
+				this.mallItem_Character.push(mallItem_Character);
+				this.mallItemMap.set(this.mallItemAssetIds[i], mallItem_Character);
+			}
+		} else {
+			for (let i = 0; i < this.mallItemAssetIds.length; ++i) {
+				this.mallItem_Character[i].initItem(this.currentTabType, this.currentConfigId, this.mallItemAssetIds[i], this.mallItemAssetIds.length - 1);
+				Utils.setWidgetVisibility(this.mallItem_Character[i].uiObject, mw.SlateVisibility.SelfHitTestInvisible);
+				this.mallItemMap.set(this.mallItemAssetIds[i], this.mallItem_Character[i]);
+			}
+			for (let i = this.mallItemAssetIds.length; i < this.mallItem_Character.length; ++i) {
+				Utils.setWidgetVisibility(this.mallItem_Character[i].uiObject, mw.SlateVisibility.Collapsed);
+			}
+		}
+	}
+
 
 	private checkMallItemState(): void {
 		ExecutorManager.instance.pushAsyncExecutor(async () => {
@@ -965,18 +1028,49 @@ export default class MallPanel extends MallPanel_Generate {
 		}
 		return this.chatPanel;
 	}
+
+	private rankPanel: RankPanel = null;
+	private get getRankPanel(): RankPanel {
+		if (!this.rankPanel) {
+			this.rankPanel = UIService.getUI(RankPanel);
+		}
+		return this.rankPanel;
+	}
+
+	private hudPanel: HUDPanel = null;
+	private get getHUDPanel(): HUDPanel {
+		if (!this.hudPanel) {
+			this.hudPanel = UIService.getUI(HUDPanel);
+		}
+		return this.hudPanel;
+	}
+
+	private joystickPanel: JoystickPanel = null;
+	private get getJoystickPanel(): JoystickPanel {
+		if (!this.joystickPanel) {
+			this.joystickPanel = UIService.getUI(JoystickPanel);
+		}
+		return this.joystickPanel;
+	}
+
 	protected onShow(...params: any[]): void {
 		this.getChatPanel.hide();
 		this.getRankPanel.hide();
-		this.canUpdate = true;
-		TouchScript.instance.addScreenListener(this.mTouchImage, this.onMoveTouchEvent.bind(this), false);
+		this.getHUDPanel.mCanvas_PlayerInf.visibility = mw.SlateVisibility.Collapsed;
+		this.getJoystickPanel.mMWVirtualJoystickPanelDesigner.visibility = mw.SlateVisibility.Collapsed;
+		this.getJoystickPanel.mMWVirtualJoystickPanelDesigner.resetJoyStick();
+		// this.canUpdate = true;
+		// TouchScript.instance.addScreenListener(this.mTouchImage, this.onMoveTouchEvent.bind(this), false);
 	}
 
 	protected onHide(): void {
 		this.getChatPanel.show();
 		this.getRankPanel.show();
-		this.canUpdate = false;
-		TouchScript.instance.removeScreenListener(this.mTouchImage);
+		this.getHUDPanel.mCanvas_PlayerInf.visibility = mw.SlateVisibility.SelfHitTestInvisible;
+		this.getJoystickPanel.mMWVirtualJoystickPanelDesigner.visibility = mw.SlateVisibility.Visible;
+		this.getJoystickPanel.mMWVirtualJoystickPanelDesigner.resetJoyStick();
+		// this.canUpdate = false;
+		// TouchScript.instance.removeScreenListener(this.mTouchImage);
 	}
 
 	public onOffLeftCanvas(isOpen: boolean): void {

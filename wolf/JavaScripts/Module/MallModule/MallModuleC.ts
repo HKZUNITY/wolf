@@ -1,4 +1,6 @@
-﻿import { Notice } from "../../CommonUI/notice/Notice";
+﻿import CameraManager from "../../CameraManager";
+import { Notice } from "../../CommonUI/notice/Notice";
+import { CameraManagerType, EventType } from "../../Globals";
 import { IBodyTypeElement } from "../../Tables/BodyType";
 import { IColorValueElement } from "../../Tables/ColorValue";
 import { IFaceExpressionElement } from "../../Tables/FaceExpression";
@@ -6,9 +8,10 @@ import { GameConfig } from "../../Tables/GameConfig";
 import { IOutfitElement } from "../../Tables/Outfit";
 import Utils from "../../Utils";
 import ExecutorManager from "../../WaitingQueue";
+import { CharacterModuleC } from "../CharacterModule/CharacterModuleC";
 import DanMuModuleC from "../DanMuModule/DanMuModuleC";
 import Mall from "./Mall";
-import MallData, { AssetIdInfoData, Tab3Type, Tab2Type, TabType, ColorPickTab2Data } from "./MallData";
+import MallData, { AssetIdInfoData, Tab3Type, Tab2Type, TabType, ColorPickTab2Data, Tab1Type } from "./MallData";
 import MallModuleS from "./MallModuleS";
 import ColorPickPanel from "./ui/ColorPickPanel";
 import MallPanel from "./ui/MallPanel";
@@ -21,6 +24,14 @@ export default class MallModuleC extends ModuleC<MallModuleS, MallData> {
             this.hudModuleC = ModuleService.getModule(DanMuModuleC);
         }
         return this.hudModuleC;
+    }
+
+    private characterModuleC: CharacterModuleC = null;
+    private get getCharacterModuleC(): CharacterModuleC {
+        if (!this.characterModuleC) {
+            this.characterModuleC = ModuleService.getModule(CharacterModuleC);
+        }
+        return this.characterModuleC;
     }
 
     private mallPanel: MallPanel = null;
@@ -51,6 +62,7 @@ export default class MallModuleC extends ModuleC<MallModuleS, MallData> {
     public onSelectTab2Action: Action1<number> = new Action1<number>();
     public onSelectTab3Action: Action1<number> = new Action1<number>();
     public onSelectItemAction: Action3<number, number, string> = new Action3<number, number, string>();
+    public onDeleteItemAction: Action3<number, number, string> = new Action3<number, number, string>();
     public onOpenColorPickAction: Action2<number, number> = new Action2<number, number>();
     public onResetAction: Action = new Action();
     public onSaveAction: Action = new Action();
@@ -77,6 +89,7 @@ export default class MallModuleC extends ModuleC<MallModuleS, MallData> {
     private bindAction(): void {
         this.getHUDModuleC?.onOpenExpressionAction.add(this.addOpenMallAction.bind(this));
         this.onSelectItemAction.add(this.addSelectItemAction.bind(this));
+        this.onDeleteItemAction.add(this.addDeleteItemAction.bind(this));
         this.onOpenColorPickAction.add(this.addOpenColorPickAction.bind(this));
         this.onSaveAction.add(this.addSaveAction.bind(this));
         this.onCloseMallPanelAction.add(this.addCloseAction.bind(this));
@@ -252,7 +265,7 @@ export default class MallModuleC extends ModuleC<MallModuleS, MallData> {
         if (tabType == TabType.None) return;
         ExecutorManager.instance.pushAsyncExecutor(async () => {
             await this.changeCharacter(tabId, assetId);
-            if (!Mall.isRemovableTabId(tabId)) return;
+            if (!Mall.isRemovableTabId(tabId) || assetId == `0`) return;
             // if (Mall.isClothingTabId(tabId)) {
             //     this.refreshUsingCharacterDataByTabId(tabId);
             // } else {
@@ -263,10 +276,32 @@ export default class MallModuleC extends ModuleC<MallModuleS, MallData> {
         });
     }
 
+    private addDeleteItemAction(tabType: TabType, tabId: number, assetId: string): void {
+        ExecutorManager.instance.pushAsyncExecutor(async () => {
+            await this.getCharacterModuleC.deleteCharacterData(assetId, () => {
+                this.getMallPanel.initTab1Item();
+            });
+        });
+    }
+
+    private delaySwitchCameraTabIds: number[] = [
+        Tab1Type.Tab1_Clothing,
+        Tab2Type.Tab2_BodyType
+    ];
+
     private isNeedSaveCharacter: boolean = false;
     private async changeCharacter(tabId: number, assetId: string): Promise<void> {
         await this.localPlayer.character.asyncReady();
         switch (tabId) {
+            case Tab1Type.Tab1_Collection:
+                await this.getCharacterModuleC.useCharacterData(assetId, (isAdd: boolean) => {
+                    if (isAdd) {
+                        this.getMallPanel.initTab1Item();
+                    } else {
+                        this.updateMallPanelBySomatotype();
+                    }
+                });
+                break;
             case Tab2Type.Tab2_BodyType:
                 let bodyTypeElement: IBodyTypeElement = GameConfig.BodyType.getElement(assetId);
                 if (!bodyTypeElement || bodyTypeElement?.Scale == 0) return;
@@ -625,11 +660,20 @@ export default class MallModuleC extends ModuleC<MallModuleS, MallData> {
                 if (!trailingElement) return;
                 await this.changeSlotAndDecoration(tabId, trailingElement.AssetId, Utils.stringArrayToTransform(trailingElement.Transform), mw.HumanoidSlotType.Root);
                 break;
+            case Tab3Type.Tab3_BackPet:
+                let backPetElement = GameConfig.BackPet.getElement(assetId);
+                if (!backPetElement) return;
+                await this.changeSlotAndDecoration(tabId, backPetElement.AssetId, Utils.stringArrayToTransform(backPetElement.Transform), mw.HumanoidSlotType.BackOrnamental);
+                break;
             default:
                 break;
         }
         await this.localPlayer.character.asyncReady();
         this.isNeedSaveCharacter = true;
+        if (this.delaySwitchCameraTabIds.includes(tabId)) {
+            await TimeUtil.delaySecond(1);
+            this.onSwitchCameraAction.call(2);
+        }
         // this.localPlayer.character.syncDescription();
     }
 
@@ -801,6 +845,8 @@ export default class MallModuleC extends ModuleC<MallModuleS, MallData> {
     public async getCharacterAssetId(configId: number): Promise<string | mw.LinearColor> {
         await this.localPlayer.character.asyncReady();
         switch (configId) {
+            case Tab1Type.Tab1_Collection:
+                return this.getCharacterModuleC.getCharacterDataKey();
             case Tab2Type.Tab2_BodyType:
                 let heightRatio: number = this.localPlayer.character.description.advance.bodyFeatures.body.height;
                 let scale: string = heightRatio.toFixed(1);
@@ -976,23 +1022,31 @@ export default class MallModuleC extends ModuleC<MallModuleS, MallData> {
         let shopCamera: mw.Camera = await GameObject.asyncSpawn<mw.Camera>(`Camera`);
         shopCamera.worldTransform.rotation = mw.Rotation.zero;
         this.onSwitchCameraAction.add((cameraType: number) => {
-            if (this.lastCameraType == cameraType) return;
+            // if (this.lastCameraType == cameraType) return;
             if (cameraType == 0) {
+                CameraManager.instance.switchWFZCamera(false);
+                return;
                 Camera.switch(myCamera);
             } else if (cameraType == 1) {
+                CameraManager.instance.switchWFZCamera(true, this.localPlayer.character, true, false);
+                Event.dispatchToLocal(EventType.SwitchCamera, CameraManagerType.Head);
+                return;
                 let rootLoc = this.localPlayer.character.getSlotWorldPosition(mw.HumanoidSlotType.Head);
                 // shopCamera.worldTransform.position = new mw.Vector(rootLoc.x - 55, rootLoc.y + 32, rootLoc.z + 10);
                 let offsetZ = this.localPlayer.character.collisionExtent.z;
                 shopCamera.worldTransform.position = new mw.Vector(rootLoc.x - offsetZ / 2.8, rootLoc.y + offsetZ / 5.3, rootLoc.z + offsetZ / 16);
                 Camera.switch(shopCamera, 0.5, mw.CameraSwitchBlendFunction.Linear);
             } else if (cameraType == 2) {
+                CameraManager.instance.switchWFZCamera(true, this.localPlayer.character, true, false);
+                Event.dispatchToLocal(EventType.SwitchCamera, CameraManagerType.Body);
+                return;
                 let rootLoc = this.localPlayer.character.getSlotWorldPosition(mw.HumanoidSlotType.Head);
                 // shopCamera.worldTransform.position = new mw.Vector(rootLoc.x - 174, rootLoc.y + 102, rootLoc.z - 54);
                 let offsetZ = this.localPlayer.character.collisionExtent.z;
                 shopCamera.worldTransform.position = new mw.Vector(rootLoc.x - offsetZ * 1.3, rootLoc.y + offsetZ / 1.6, rootLoc.z - offsetZ / 3);
                 Camera.switch(shopCamera, 0.5, mw.CameraSwitchBlendFunction.Linear);
             }
-            this.lastCameraType = cameraType;
+            // this.lastCameraType = cameraType;
         });
     }
 
@@ -1128,6 +1182,15 @@ export default class MallModuleC extends ModuleC<MallModuleS, MallData> {
             if (mw.UIService.getUI(MallPanel, false)?.visible) this.getMallPanel.initMallPanel(somatotype, this.usingAssetIdMap);
             Notice.showDownNotice(GameConfig.Language.Text_SwitchSuccessfully.Value);
         });
+    }
+
+    private updateMallPanelBySomatotype(): void {
+        let somatotype = this.localPlayer.character.description.advance.base.characterSetting.somatotype;
+        this.initUsingCharacterData();
+        if (mw.UIService.getUI(MallPanel, false)?.visible) {
+            this.getMallPanel.initMallPanel(somatotype, this.usingAssetIdMap);
+            this.onSelectTab1Action.call(3);
+        }
     }
 
     private colorPickTabId: number = -1;
@@ -1781,5 +1844,14 @@ export default class MallModuleC extends ModuleC<MallModuleS, MallData> {
         }
         this.isNeedSaveColor = true;
         this.isNeedSaveCharacter = true;
+    }
+
+
+    public get getCharacterDataKeys(): string[] {
+        return this.getCharacterModuleC.getCharacterDataKeys;
+    }
+
+    public getCharacterDataUpAssetIdByKey(key: string): string {
+        return this.getCharacterModuleC.getCharacterDataUpAssetIdByKey(key);
     }
 }

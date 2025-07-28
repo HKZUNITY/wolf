@@ -3,7 +3,7 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/common/worldUI/ReturnImage.ui
- * TIME: 2025.04.05-16.17.26
+ * TIME: 2025.07.28-23.31.43
  */
  
 @UIBind('UI/common/worldUI/ReturnImage.ui')

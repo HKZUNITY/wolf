@@ -1,23 +1,7 @@
 ﻿Key,English,ChineseSimplified,ChineseTraditional,Spanish,French,Russian,Portuguese,Japanese,Korean
-免费奖励,Free Rewards,免费奖励,,,,,,無料特典,무료 보상
-看广告可以使用这个厉害的武器哟~,Watch ads to use this powerful weapon!,看广告可以使用这个厉害的武器哟~,,,,,,広告を見ればこの強力な武器を使うことができますよ~,광고를 보시면 이 강력한 무기를 사용하실 수 있습니다~
-取消,Cancel,取消,,,,,,キャンセル,취소
-Play Ads,Play Ads,Play Ads,,,,,,Play Ads,Play Ads
-1,1,1,,,,,,1,1
-2,2,2,,,,,,2,2
-3,3,3,,,,,,3,3
-0,0,0,,,,,,0,0
-4,4,4,,,,,,4,4
-5,5,5,,,,,,5,5
-6,6,6,,,,,,6,6
-R,R,R,,,,,,R,R
-7,7,7,,,,,,7,7
-8,8,8,,,,,,8,8
-9,9,9,,,,,,9,9
-OK,OK,OK,,,,,,OK,OK
-A,A,A,,,,,,A,A
-Text,Text,Text,,,,,,Text,Text
-还原,Restore,还原,,,,,,削減,절감
+MetaWorld,MetaWorld,MetaWorld,,,,,,MetaWorld,MetaWorld
+Defeat1and1execute1them1,Defeat1and1execute1them1,Defeat1and1execute1them1,,,,,,Defeat1and1execute1them1,Defeat1and1execute1them1
+Loading...,Loading...,Loading...,,,,,,Loading...,Loading...
 "不要轻易暴露自己的身份
 远离那些试图靠近你的人
 不要相信任何人
@@ -65,131 +49,35 @@ Defeat everyone, Detective!","掏出近战武器后，会自动攻击周围玩�
 掏出近战匕首,Pull out the Knife,掏出近战匕首,,,,,,近接ダガーを取り出します,근접 단검을 꺼내세요
 掏出远程飞刀,Pull out the Dagger,掏出远程飞刀,,,,,,遠隔手投げナイフを取り出します,원격 투척칼을 꺼내세요
 收起武器,Put away your weapon,收起武器,,,,,,武器をしまう,무기를 치워두다
-Button,Button,Button,,,,,,Button,Button
-Wanna play a game with me? ,Wanna play a game with me? ,Wanna play a game with me? ,,,,,,Wanna play a game with me? ,Wanna play a game with me? 
-警探,Detective,警探,,,,,,警探,경찰 탐정
-MetaWorld,MetaWorld,MetaWorld,,,,,,MetaWorld,MetaWorld
-达拉崩吧斑得贝迪卜多比鲁翁,Let's get this party started!,达拉崩吧斑得贝迪卜多比鲁翁,,,,,,ダラ ベンバ バーデ ベディブ ドビルン,다라 벤바 베디베디브 도빌루옹
-黑手党,Mafia,黑手党,,,,,,マフィア,마피아
-VS,VS,VS,,,,,,VS,VS
-Text_Content_12007,Text_Content_12007,Text_Content_12007,,,,,,Text_Content_12007,Text_Content_12007
-Text_Content_12008,Text_Content_12008,Text_Content_12008,,,,,,Text_Content_12008,Text_Content_12008
-杀手,Assassin,杀手,,,,,,キラー,살인자
-Text_Content_12009,Text_Content_12009,Text_Content_12009,,,,,,Text_Content_12009,Text_Content_12009
-99,99,99,,,,,,99,99
-消灭了3名学生,Eliminated 3 students,消灭了3名学生,,,,,,生徒3人を殺害,학생 3명 살해
-9999,9999,9999,,,,,,9999,9999
-Text_Content_12014,Text_Content_12014,Text_Content_12014,,,,,,Text_Content_12014,Text_Content_12014
-Text_Content_12015,Text_Content_12015,Text_Content_12015,,,,,,Text_Content_12015,Text_Content_12015
-特权生效中,Privilege is in effect.,特权生效中,,,,,,特権が有効です,권한이 적용됩니다.
-Text_Content_12016,Text_Content_12016,Text_Content_12016,,,,,,Text_Content_12016,Text_Content_12016
-Text_Content_12017,Text_Content_12017,Text_Content_12017,,,,,,Text_Content_12017,Text_Content_12017
-"Your first round is over, take a look at the settlement panel","Your first round is over, take a look at the settlement panel","Your first round is over, take a look at the settlement panel",,,,,,"Your first round is over, take a look at the settlement panel","Your first round is over, take a look at the settlement panel"
-Here is the final result of the game,Here is the final result of the game,Here is the final result of the game,,,,,,Here is the final result of the game,Here is the final result of the game
-Here shows the two players who impacted the game most as well as their wins and losses,Here shows the two players who impacted the game most as well as their wins and losses,Here shows the two players who impacted the game most as well as their wins and losses,,,,,,Here shows the two players who impacted the game most as well as their wins and losses,Here shows the two players who impacted the game most as well as their wins and losses
-Here's shows your earning in this round,Here's shows your earning in this round,Here's shows your earning in this round,,,,,,Here's shows your earning in this round,Here's shows your earning in this round
-CONFIRM,CONFIRM,CONFIRM,,,,,,CONFIRM,CONFIRM
-youwillpay10000forthis,youwillpay10000forthis,youwillpay10000forthis,,,,,,youwillpay10000forthis,youwillpay10000forthis
-Yes,Yes,Yes,,,,,,Yes,Yes
-No,No,No,,,,,,No,No
-1111111111111111111,1111111111111111111,1111111111111111111,,,,,,1111111111111111111,1111111111111111111
-22222222222222,22222222222222,22222222222222,,,,,,22222222222222,22222222222222
-3333333,3333333,3333333,,,,,,3333333,3333333
-Defeat1and1execute1them1,Defeat1and1execute1them1,Defeat1and1execute1them1,,,,,,Defeat1and1execute1them1,Defeat1and1execute1them1
-分组,Groups,分组,,,,,,グループ,그룹
-命令,Commands,命令,,,,,,命令,주문하다
-执行,Execute,执行,,,,,,埋め込む,구현하다
-购买,Purchase,购买,,,,,,買う,구입하다
-物品名字物品名字,Item Name Item Name,物品名字物品名字,,,,,,項目名 項目名,아이템 이름 아이템 이름
-100000,100000,100000,,,,,,100000,100000
-抽奖获得,Won by Lottery,抽奖获得,,,,,,抽選で当たりました,복권으로 당첨됨
-Loading,Loading,Loading,,,,,,Loading,Loading
-武器名字,Weapon Name,武器名字,,,,,,武器名,무기 이름
-3%,3%,3%,,,,,,3%,3%
-Text_Content_12024,Text_Content_12024,Text_Content_12024,,,,,,Text_Content_12024,Text_Content_12024
-Text_Content_12019,Text_Content_12019,Text_Content_12019,,,,,,Text_Content_12019,Text_Content_12019
-1231321,1231321,1231321,,,,,,1231321,1231321
-抽奖,Lottery,抽奖,,,,,,宝くじ,운
-1000,1000,1000,,,,,,1000,1000
-Text_Content_12020,Text_Content_12020,Text_Content_12020,,,,,,Text_Content_12020,Text_Content_12020
-Text_Content_12021,Text_Content_12021,Text_Content_12021,,,,,,Text_Content_12021,Text_Content_12021
-300s,300s,300s,,,,,,300s,300s
-Text_Content_12022,Text_Content_12022,Text_Content_12022,,,,,,Text_Content_12022,Text_Content_12022
-Text_Content_12023,Text_Content_12023,Text_Content_12023,,,,,,Text_Content_12023,Text_Content_12023
-10/200,10/200,10/200,,,,,,10/200,10/200
-Text_Content_12025,Text_Content_12025,Text_Content_12025,,,,,,Text_Content_12025,Text_Content_12025
-武器名称,Weapon Name,武器名称,,,,,,武器名,무기 이름
-Text_Content_12026,Text_Content_12026,Text_Content_12026,,,,,,Text_Content_12026,Text_Content_12026
-200,200,200,,,,,,200,200
-99999,99999,99999,,,,,,99999,99999
-距离对局开始还有,until the game starts.,距离对局开始还有,,,,,,試合開始までまだ時間がある,경기 시작까지는 아직 시간이 남았다
-Text_Content_20030,Text_Content_20030,Text_Content_20030,,,,,,Text_Content_20030,Text_Content_20030
-观战,Spectate,观战,,,,,,試合を見る,게임 시청
-Text_Content_20009,Text_Content_20009,Text_Content_20009,,,,,,Text_Content_20009,Text_Content_20009
-Text_Content_12018,Text_Content_12018,Text_Content_12018,,,,,,Text_Content_12018,Text_Content_12018
-能力,Ability,能力,,,,,,能力,능력
-免费领券,Free Voucher,免费领券,,,,,,無料クーポン,무료쿠폰
+恢复默认形象,Restore Default Avatar,恢复默认形象,,,,,,デフォルトイメージに戻す,기본 이미지 복원
+换装商店,Dress Up Shop,换装商店,,,,,,ドレスアップショップ,드레스 업 샵
+免费奖励,Free Rewards,免费奖励,,,,,,無料特典,무료 보상
+看广告可以使用这个厉害的武器哟~,Watch ads to use this powerful weapon!,看广告可以使用这个厉害的武器哟~,,,,,,広告を見ればこの強力な武器を使うことができますよ~,광고를 보시면 이 강력한 무기를 사용하실 수 있습니다~
+取消,Cancel,取消,,,,,,キャンセル,취소
+Play Ads,Play Ads,Play Ads,,,,,,Play Ads,Play Ads
+每天限购一次,One purchase per day,每天限购一次,,,,,,購入は1日1回までに制限する,하루에 한 번만 구매 가능
+广告券+13888,Voucher + 13888,广告券+13888,,,,,,広告クーポン +13888,광고 쿠폰 +13888
+已领取,Claimed,已领取,,,,,,受け取った,받았다
+充值,Recharge,充值,,,,,,補充する,충전하다
+UserId：1111111111,UserId：1111111111,UserId：1111111111,,,,,,UserId：1111111111,UserId：1111111111
+9.99万亿111,$9.99 trillion 111,9.99万亿111,,,,,,9.99 兆 111,9조 9900억 111
+9.99万亿,$9.99 trillion,9.99万亿,,,,,,9.99兆ドル,9.99조
+请输入兑换码,Please enter redemption code,请输入兑换码,,,,,,引き換えコードを入力してください,상환 코드를 입력하세요
+请输入作者提供的兑换码，即可兑换奖励,Please enter the redemption code provided by the author to redeem the reward,请输入作者提供的兑换码，即可兑换奖励,,,,,,特典を引き換えるには、作者が提供する引き換えコードを入力してください。,보상을 교환하려면 작성자가 제공한 교환 코드를 입력하세요.
 兑换,Exchange,兑换,,,,,,交換,교환
-请选择要游玩的地图,Please select the map you want to play,请选择要游玩的地图,,,,,,プレイしたいマップを選択してください,플레이하고 싶은 맵을 선택해주세요
-地图名称一,Name I,地图名称一,,,,,,マップ名 1,지도 이름 1
-16,16,16,,,,,,16,16
-地图名称二,Name Two,地图名称二,,,,,,マップ名2,지도 이름 2
-地图名称三,Name Three,地图名称三,,,,,,マップ名3,지도 이름 3
-Text_Content_20033,Text_Content_20033,Text_Content_20033,,,,,,Text_Content_20033,Text_Content_20033
-Text_Content_20019,Text_Content_20019,Text_Content_20019,,,,,,Text_Content_20019,Text_Content_20019
-Text_Content_20020,Text_Content_20020,Text_Content_20020,,,,,,Text_Content_20020,Text_Content_20020
-Text_Content_20014,Text_Content_20014,Text_Content_20014,,,,,,Text_Content_20014,Text_Content_20014
-Text_Content_20029,Text_Content_20029,Text_Content_20029,,,,,,Text_Content_20029,Text_Content_20029
-Text_Content_20013,Text_Content_20013,Text_Content_20013,,,,,,Text_Content_20013,Text_Content_20013
-Text_Content_20012,Text_Content_20012,Text_Content_20012,,,,,,Text_Content_20012,Text_Content_20012
-23333333,23333333,23333333,,,,,,23333333,23333333
-Text_Content_20015,Text_Content_20015,Text_Content_20015,,,,,,Text_Content_20015,Text_Content_20015
-Text_Content_20016,Text_Content_20016,Text_Content_20016,,,,,,Text_Content_20016,Text_Content_20016
-Text_Content_20017,Text_Content_20017,Text_Content_20017,,,,,,Text_Content_20017,Text_Content_20017
-Text_Content_20018,Text_Content_20018,Text_Content_20018,,,,,,Text_Content_20018,Text_Content_20018
-2333333,2333333,2333333,,,,,,2333333,2333333
-Text_Content_20021,Text_Content_20021,Text_Content_20021,,,,,,Text_Content_20021,Text_Content_20021
-Text_Content_20022,Text_Content_20022,Text_Content_20022,,,,,,Text_Content_20022,Text_Content_20022
-Text_Content_20023,Text_Content_20023,Text_Content_20023,,,,,,Text_Content_20023,Text_Content_20023
-Text_Content_20024,Text_Content_20024,Text_Content_20024,,,,,,Text_Content_20024,Text_Content_20024
-凶手能力装配,Murderer Ability Equipped,凶手能力装配,,,,,,キラーアビリティの集合体,킬러 능력 조립
-能力详情,Power details,能力详情,,,,,,機能の詳細,기능 세부정보
-装备,Equipment,装备,,,,,,装置,장비
-已拥有,Owned,已拥有,,,,,,すでに所有しています,이미 소유함
-装备中,Equipped,装备中,,,,,,装備済み,갖추게 하는
-能力名称,Ability Name,能力名称,,,,,,アビリティ名,능력 이름
-详情描述,Details,详情描述,,,,,,詳細な説明,자세한 설명
-金币购买,Coin Purchase,金币购买,,,,,,金貨の購入,금화 구매
-钻石购买,Diamond Purchase,钻石购买,,,,,,ダイヤモンドの購入,다이아몬드 구매
-Start,Start,Start,,,,,,Start,Start
-TownMystory,TownMystory,TownMystory,,,,,,TownMystory,TownMystory
-本轮胜利者！,Winner of this round!,本轮胜利者！,,,,,,このラウンドの勝者!,이번 라운드의 승자!
-玩家A,Player A,玩家A,,,,,,プレイヤーA,플레이어 A
-广告券兑换,Vouchers for Items,广告券兑换,,,,,,広告クーポンの引き換え,광고쿠폰 상환
+There Is No Tomorrow,There Is No Tomorrow,There Is No Tomorrow,,,,,,There Is No Tomorrow,There Is No Tomorrow
+社交,Social,社交,,,,,,社会的接触,사회적 접촉
+*o*( 我要开始表演了~,*o* (I'm going to start the show!),*o*( 我要开始表演了~,,,,,,*o*( ショーを始めます。,*오*( 쇼를 시작하겠습니다.
+"Hello,How are you?I'm fine,thank you.","Hello,How are you?I'm fine,thank you.","Hello,How are you?I'm fine,thank you.",,,,,,"Hello,How are you?I'm fine,thank you.","Hello,How are you?I'm fine,thank you."
+我要开始表演了我要开始表演了,I'm gonna start. I'm gonna start.,我要开始表演了我要开始表演了,,,,,,ショーを始めるよ。,쇼를 시작할게요 쇼를 시작할게요
+凶手,Murderer,凶手,,,,,,殺人者,살인자
+免费换装,Free Outfit,免费换装,,,,,,無料ドレスアップ,무료 드레스업
+R,R,R,,,,,,R,R
+OK,OK,OK,,,,,,OK,OK
+A,A,A,,,,,,A,A
 兑换 奖励,Redeem Rewards,兑换 奖励,,,,,,報酬を引き換える,보상 사용
-消耗,Consume,消耗,,,,,,消費する,소비하다
-999,999,999,,,,,,999,999
-会员特权,Member Privilege,会员特权,,,,,,会員特典,회원 특전
-"炫酷红色昵称，与众不同！
-每局获得更多金币和经验~","Unique red nickname!
-Gain more coins and EXP per game!","炫酷红色昵称，与众不同！
-每局获得更多金币和经验~",,,,,,"クールな赤いニックネーム、ユニークです!
-各ラウンドでより多くの金貨と経験値を獲得してください~","독특한 빨간색 별명이 멋져요!
-매 라운드마다 더 많은 금화와 경험치를 얻으세요~"
-233乐园大会员生效期间自动激活,GPark Membership will be activated automatically.,233乐园大会员生效期间自动激活,,,,,,233 パーク メンバーシップは有効期間中に自動的に有効になります。,233 파크 멤버십은 유효기간 동안 자동으로 활성화됩니다.
-已激活,Activated,已激活,,,,,,アクティブ化された,활성화됨
-超级特权,Super Privilege,超级特权,,,,,,超特権,슈퍼 특권
-"凶手概率翻倍，爽快体验~
-专属拖尾、武器形象，秀出不同！","Double the Murderer probability, have a great time!
-Exclusive trailing, weapon image, showcasing difference!","凶手概率翻倍，爽快体验~
-专属拖尾、武器形象，秀出不同！",,,,,,"殺人犯の確率2倍、爽快体験〜
-特別な尻尾と武器のイメージが違いを見せつけます!","살인범 확률이 2배로 상쾌한 경험~
-독점 꼬리와 무기 이미지로 차이점을 뽐내보세요!"
-购买消耗,Purchase Consumption,购买消耗,,,,,,購入消費,구매소비
-*1,*1,*1,,,,,,*1,*1
-剩余生效时间,Remaining Effective Time,剩余生效时间,,,,,,残り有効時間,남은 유효 시간
-一只小猪一只小猪Text,"A Piggy, a Piggy",一只小猪一只小猪Text,,,,,,子豚 子豚テキスト,작은 돼지 작은 돼지텍스트
-动作1,Action 1,动作1,,,,,,アクション 1,액션 1
+Text_Expend,Text_Expend,Text_Expend,,,,,,Text_Expend,Text_Expend
+Text_VoucherExchange,Text_VoucherExchange,Text_VoucherExchange,,,,,,Text_VoucherExchange,Text_VoucherExchange
 你的身份是1,Your identity is 1.,你的身份是1,,,,,,あなたのアイデンティティは 1,당신의 신분은 1
 1参与对局将提升概率1,1 Participating in the match will increase the probability 1,1参与对局将提升概率1,,,,,,1ゲームに参加すると確率が1上がります,1게임에 참여하면 확률이 1씩 증가합니다.
 超级特权生效中,Super Privilege is in effect.,超级特权生效中,,,,,,スーパー特権が有効です,슈퍼 특권 적용 중
@@ -202,131 +90,309 @@ Civilian,Civilian,Civilian,,,,,,Civilian,Civilian
 You Die,You Die,You Die,,,,,,You Die,You Die
 "On behalf of justice, you can't shoot randomly, attacking good people leads to your own death","On behalf of justice, you can't shoot randomly, attacking good people leads to your own death","On behalf of justice, you can't shoot randomly, attacking good people leads to your own death",,,,,,"On behalf of justice, you can't shoot randomly, attacking good people leads to your own death","On behalf of justice, you can't shoot randomly, attacking good people leads to your own death"
 Text_Content_20032,Text_Content_20032,Text_Content_20032,,,,,,Text_Content_20032,Text_Content_20032
-99.99,99.99,99.99,,,,,,99.99,99.99
 0/5,0/5,0/5,,,,,,0/5,0/5
 存活经验：+{0}EXP,Survival Experience: +{0}EXP,存活经验：+{0}EXP,,,,,,生存経験: +{0}経験値,생존 경험: +{0}경험치
+距离对局开始还有,until the game starts.,距离对局开始还有,,,,,,試合開始までまだ時間がある,경기 시작까지는 아직 시간이 남았다
 00:00,00:00,00:00,,,,,,00:00,00:00
 身份目标提示放在这里,Identity Target Prompt here,身份目标提示放在这里,,,,,,ID ターゲットのヒントはここに配置されます,ID 타겟 팁은 여기에 있습니다.
 1/10,1/10,1/10,,,,,,1/10,1/10
 待拾取,To be collected,待拾取,,,,,,迎えに行く,픽업 예정
 你的身份是：,Your identity is:,你的身份是：,,,,,,あなたのアイデンティティは次のとおりです。,귀하의 신원은 다음과 같습니다:
+警探,Detective,警探,,,,,,警探,경찰 탐정
 身份目标,Identity Goal,身份目标,,,,,,アイデンティティの目標,정체성 목표
 活下去,Live,活下去,,,,,,生き続ける,계속 살아
 目标1,Goal 1,目标1,,,,,,目標 1,목표 1
 目标2,Goal 2,目标2,,,,,,目標2,목표 2
-9999999,9999999,9999999,,,,,,9999999,9999999
+特权生效中,Privilege is in effect.,特权生效中,,,,,,特権が有効です,권한이 적용됩니다.
 PlayerName,PlayerName,PlayerName,,,,,,PlayerName,PlayerName
-30,30,30,,,,,,30,30
+Text,Text,Text,,,,,,Text,Text
  消灭!, Exterminate!, 消灭!,,,,,, 一掃する！, 닦아라!
 Text_Content_11001,Text_Content_11001,Text_Content_11001,,,,,,Text_Content_11001,Text_Content_11001
-${this.mYesBtn.text}失败，请重试,"{this.mYesBtn.text} failed, please try again.",${this.mYesBtn.text}失败，请重试,,,,,,${this.mYesBtn.text}失敗しました。もう一度お試しください,${this.mYesBtn.text}실패했습니다. 다시 시도해 주세요.
-领取,Receive,领取,,,,,,受け取る,받다
-Death :: AI ${ai.aiModel.gameObjectId} 死亡模型 ==== 播放动作 Deathmodel: ${this.deathModelMap.get(ai.aiModel).gameObjectId} ain: ${deathGuid},Death :: AI ${ai.aiModel.gameObjectId} Deathmodel ==== Play Action Deathmodel: ${this.deathModelMap.get(ai.aiModel).gameObjectId} ain: ${deathGuid},Death :: AI ${ai.aiModel.gameObjectId} 死亡模型 ==== 播放动作 Deathmodel: ${this.deathModelMap.get(ai.aiModel).gameObjectId} ain: ${deathGuid},,,,,,Death :: AI${ai.aiModel.gameObjectId} 死のモデル ==== アクションを再生する 死のモデル: ${this.deathModelMap.get(ai.aiModel).gameObjectId} ain: ${deathGuid},Death :: AI ${ai.aiModel.gameObjectId}죽음 모델 ==== 플레이 액션 죽음 모델: ${this.deathModelMap.get(ai.aiModel).gameObjectId} ain: ${deathGuid}
-没有传入图片guid,No picture guid passed in.,没有传入图片guid,,,,,,画像ガイドが渡されませんでした,이미지 가이드가 전달되지 않았습니다.
-S调用:\n,S-Call: \n,S调用:\n,,,,,,スコール:\n,스콜:\n
-========================\nC调用:\n,==========\nC Call:\n,========================\nC调用:\n,,,,,,========================\nC 呼び出し:\n,========================\nC 호출:\n
-对局正式开始,Match officially starts,对局正式开始,,,,,,ゲームが正式に始まります,게임이 공식적으로 시작됩니다
-玩家购买能力,Player Purchase Ability,玩家购买能力,,,,,,プレイヤーの購買力,플레이어 구매력
-玩家个人结算,Player Settlement,玩家个人结算,,,,,,プレイヤー個人の決済,플레이어 개인 정산
-大厅按钮点击率,Lobby Button Hits,大厅按钮点击率,,,,,,ロビーボタンのクリック率,로비 버튼 클릭률
-抽奖按钮点击率,Lottery button hits,抽奖按钮点击率,,,,,,宝くじボタンのクリック率,복권 버튼 클릭률
-点击结算双倍金币,Tap to settle double coins,点击结算双倍金币,,,,,,クリックしてダブルゴールドコインを決済します,더블 골드 코인을 정산하려면 클릭하세요.
-游戏结束,Game Over,游戏结束,,,,,,ゲームオーバー,게임 종료
-按钮点击事件,Button Tap Event,按钮点击事件,,,,,,ボタンクリックイベント,버튼 클릭 이벤트
-玩家开始新手引导,Player starts tutorial,玩家开始新手引导,,,,,,選手が初心者指導を開始,플레이어가 초보자 지도를 시작합니다.
-新手引导的第几步,Beginner's Guide,新手引导的第几步,,,,,,初心者指導の最初のステップは何ですか?,초보자 지도를 위한 첫 번째 단계는 무엇입니까?
-新手引导事件完成,Beginner's Guide Event Completed,新手引导事件完成,,,,,,新人研修イベントが終了しました,뉴비 온보딩 이벤트 완료
-玩家第一轮对局开始,Player's first match starts,玩家第一轮对局开始,,,,,,プレイヤーの最初のラウンドが始まります,플레이어의 첫 번째 라운드가 시작됩니다
-玩家关键行为,Key Behavior,玩家关键行为,,,,,,主要選手の行動,주요 플레이어 행동
-玩家第一轮结束,Player's first round ends,玩家第一轮结束,,,,,,プレイヤーの最初のラウンドが終了する,플레이어의 첫 번째 라운드가 종료됩니다.
-玩家每次点击购买按钮并成功购买物品,Each time a player taps the purchase button and successfully purchases an item,玩家每次点击购买按钮并成功购买物品,,,,,,プレーヤーが購入ボタンをクリックしてアイテムを正常に購入するたび,플레이어가 구매 버튼을 클릭하고 아이템을 성공적으로 구매할 때마다
-玩家每次点击装备按钮并成功装备物品,Each time a player taps the equip button and successfully equips an item,玩家每次点击装备按钮并成功装备物品,,,,,,プレイヤーが装備ボタンをクリックしてアイテムの装備に成功するたび,플레이어가 장착 버튼을 클릭하고 아이템을 성공적으로 장착할 때마다
-玩家使用快捷短语,Player uses shortcut phrase,玩家使用快捷短语,,,,,,プレイヤーはショートカット フレーズを使用します,플레이어는 단축키 문구를 사용합니다.
-玩家选择那张地图,Player selects the map,玩家选择那张地图,,,,,,プレイヤーはどのマップを選択するか,플레이어는 어떤 맵을 선택하는지
-玩家使用广告券购买物品,Player uses voucher to purchase item,玩家使用广告券购买物品,,,,,,プレイヤーは広告クーポンを使用してアイテムを購入します,플레이어는 광고 쿠폰을 사용하여 아이템을 구매합니다.
-玩家购买大会员礼包,Purchase Premium Membership Pack,玩家购买大会员礼包,,,,,,プレイヤーは高額なメンバーシップ ギフト パックを購入します,플레이어는 큰 멤버십 선물 팩을 구매합니다.
-FSM游戏中有玩家离开,A player has left the FSM game.,FSM游戏中有玩家离开,,,,,,FSM ゲームに残ったプレイヤー,FSM 게임에 남은 선수
-暂时存储玩家数据1,Store temporarily player data1,暂时存储玩家数据1,,,,,,プレイヤーデータ一時保存1,플레이어 데이터 임시 저장 1
-暂时存储玩家数据2,temporarily store player data 2,暂时存储玩家数据2,,,,,,プレイヤーデータ一時保存2,플레이어 데이터 임시 저장 2
-FSM游戏结束中有玩家离开,A player has left at the end of the FSM game.,FSM游戏结束中有玩家离开,,,,,,FSM ゲーム終了時にプレイヤーが退場する,FSM 게임이 끝나면 플레이어가 떠납니다.
-金币已达上限,Coin limit reached.,金币已达上限,,,,,,ゴールドコインの上限に達しました,금화 한도에 도달했습니다.
-有玩家没有成功进入场景，游戏重新开始,"A player failed to enter the scene, the game restarts.",有玩家没有成功进入场景，游戏重新开始,,,,,,プレイヤーがシーンに正常に入ることができなかった場合、ゲームは再開されます。,플레이어가 해당 장면에 성공적으로 입장하지 못하면 게임이 다시 시작됩니다.
-玩家,Player,玩家,,,,,,プレーヤー,플레이어
-死亡了,Dead,死亡了,,,,,,死んだ,죽은
-Camera :: ===== 相机设置1,Camera :: ===== Camera Settings1,Camera :: ===== 相机设置1,,,,,,Camera :: ===== カメラ設定1,Camera :: ===== 카메라 설정 1
-Camera :: ===== 相机设置2,Camera :: ===== Camera Settings 2,Camera :: ===== 相机设置2,,,,,,Camera :: ===== カメラ設定2,Camera :: ===== 카메라 설정 2
-有玩家进入了道具触发器,A player has entered the item trigger.,有玩家进入了道具触发器,,,,,,プレイヤーがプロップトリガーを入力しました,플레이어가 소품 트리거에 들어갔습니다.
-有玩家游戏前离开,Leave before the game,有玩家游戏前离开,,,,,,選手が試合前に退場した,경기 시작 전 퇴장하는 선수
-警察留下枪械,Police left guns behind.,警察留下枪械,,,,,,警察が銃器を置き去りにする,경찰은 총기를 남겨둔다
-有玩家离开,A player has left.,有玩家离开,,,,,,選手が退場する,선수가 떠난다
-找不到玩家信息playerleave,Player information not found: playerleave,找不到玩家信息playerleave,,,,,,プレイヤー情報 playerleave が見つかりません,플레이어 정보 playerleave를 찾을 수 없습니다
-玩家不是第一次离开当局游戏,This is not the first time a player has left the game,玩家不是第一次离开当局游戏,,,,,,プレイヤーがゲームから離れたのはこれが初めてではない,선수들이 게임을 떠난 것은 이번이 처음이 아니다.
-玩家已经死亡过了,Player is dead,玩家已经死亡过了,,,,,,プレイヤーが死亡しました,플레이어가 사망했습니다
-警察或英雄死亡，留下枪械,"Police or hero dies, leaving behind weapons",警察或英雄死亡，留下枪械,,,,,,警官や英雄が銃器を残して死亡,총기를 남겨두고 경찰이나 영웅이 사망함
-gameplayerCheck:找不到info,gameplayerCheck:info not found,gameplayerCheck:找不到info,,,,,,gameplayerCheck:情報が見つかりません,게임 플레이 확인:정보를 찾을 수 없습니다
-当前死亡总人数,Current total deaths,当前死亡总人数,,,,,,現在の総死者数,현재 총 사망자 수
-Death ::当前死亡人数 ${dieNum} 黑手党是否存活 ${spyExist},Death :: Current death toll ${dieNum} Does the Mafia survive ${spyExist},Death ::当前死亡人数 ${dieNum} 黑手党是否存活 ${spyExist},,,,,,死亡::現在の死亡者数${dieNum} マフィアは生き残れるのか ${spyExist},사망::현재 사망자 수${dieNum}마피아는 살아남나요 ${spyExist}
-生成保护壳,Generate Shell,生成保护壳,,,,,,保護シェルを生成する,보호 쉘 생성
-玩家受到伤害,Player injured,玩家受到伤害,,,,,,プレイヤーがダメージを受ける,플레이어가 피해를 입습니다.
-人机受到伤害,Damaged Human Machine,人机受到伤害,,,,,,人間も機械も被害を受ける,인간과 기계가 피해를 입는다
-关闭玩家 =====${player.playerId},Close Player =====${player.playerId},关闭玩家 =====${player.playerId},,,,,,プレーヤーを閉じる =====${player.playerId},플레이어 닫기 =====${player.playerId}
-confirmTerminator: 警探 AI   ====== ${GameGlobals.policeAi.aiModel.gameObjectId},confirmTerminator: Detective AI ====== ${GameGlobals.policeAi.aiModel.gameObjectId},confirmTerminator: 警探 AI   ====== ${GameGlobals.policeAi.aiModel.gameObjectId},,,,,,confirmTerminator: 探偵AI ====== ${GameGlobals.policeAi.aiModel.gameObjectId},confirmTerminator: 탐정 AI ====== ${GameGlobals.policeAi.aiModel.gameObjectId}
-confirmTerminator: 警探 ==== 报错,confirmTerminator: Detective ====,confirmTerminator: 警探 ==== 报错,,,,,,confirmTerminator: 探偵 ==== エラーを報告する,confirmTerminator: 형사 ==== 오류 신고
-confirmTerminator: 黑手党 真人 ====== ${GameGlobals.spyPlayer.playerId},confirmTerminator: Mafia Reality ======${GameGlobals.spyPlayer.playerId},confirmTerminator: 黑手党 真人 ====== ${GameGlobals.spyPlayer.playerId},,,,,,confirmTerminator: マフィア ライブ ====== ${GameGlobals.spyPlayer.playerId},confirmTerminator: 마피아 라이브 ====== ${GameGlobals.spyPlayer.playerId}
-confirmTerminator: 黑手党 AI   ====== ${GameGlobals.spyAi.aiModel.gameObjectId},confirmTerminator: Mafia AI ======${GameGlobals.spyAi.aiModel.gameObjectId},confirmTerminator: 黑手党 AI   ====== ${GameGlobals.spyAi.aiModel.gameObjectId},,,,,,confirmTerminator: マフィア AI ====== ${GameGlobals.spyAi.aiModel.gameObjectId},confirmTerminator: 마피아 AI ====== ${GameGlobals.spyAi.aiModel.gameObjectId}
-confirmTerminator: 黑手党 ==== 报错,confirmTerminator: Mafia ==== Error Reporting,confirmTerminator: 黑手党 ==== 报错,,,,,,confirmTerminator: マフィア ==== エラー報告,confirmTerminator: 마피아 ==== 오류 보고
-confirmTerminator: 英雄 真人 ====== ${GameGlobals.heroPlayer.playerId},confirmTerminator: Hero Reality ======${GameGlobals.heroPlayer.playerId},confirmTerminator: 英雄 真人 ====== ${GameGlobals.heroPlayer.playerId},,,,,,confirmTerminator: ヒーローライブ ====== ${GameGlobals.heroPlayer.playerId},confirmTerminator: 영웅 라이브 ====== ${GameGlobals.heroPlayer.playerId}
-confirmTerminator: 英雄 AI   ====== ${GameGlobals.heroAi.aiModel.gameObjectId},confirmTerminator: Hero AI ======${GameGlobals.heroAi.aiModel.gameObjectId},confirmTerminator: 英雄 AI   ====== ${GameGlobals.heroAi.aiModel.gameObjectId},,,,,,confirmTerminator: ヒーロー AI ====== ${GameGlobals.heroAi.aiModel.gameObjectId},confirmTerminator: 영웅 AI ====== ${GameGlobals.heroAi.aiModel.gameObjectId}
-confirmTerminator: 英雄 ==== 报错,confirmTerminator: Hero ====,confirmTerminator: 英雄 ==== 报错,,,,,,confirmTerminator: ヒーロー ==== エラーを報告する,confirmTerminator: 영웅 ==== 오류 신고
-confirmTerminator: 终结者 ==== 没有,confirmTerminator: Terminator ==== None,confirmTerminator: 终结者 ==== 没有,,,,,,confirmTerminator: ターミネータ ==== なし,confirmTerminator: 터미네이터 ==== 없음
-leave :: 离线玩家 ==== 终结者,leave :: Offline Players ==== Terminator,leave :: 离线玩家 ==== 终结者,,,,,,leave :: オフラインプレイヤー ==== ターミネーター,leave :: 오프라인 플레이어 ==== 터미네이터
-leave :: 离线玩家 ==== 不是终结者,leave :: Offline Player ==== Not Terminator,leave :: 离线玩家 ==== 不是终结者,,,,,,leave :: オフラインプレイヤー ==== ターミネーターではありません,leave :: 오프라인 플레이어 ==== 터미네이터 아님
-免费抽奖~\n再送一张广告券,Free lottery! \nSend another ad voucher!,免费抽奖~\n再送一张广告券,,,,,,無料の宝くじ~\n別の広告クーポン,무료복권~\n또다른 광고쿠폰
-钻石数量不足,Insufficient diamonds,钻石数量不足,,,,,,ダイヤモンドが足りない,다이아몬드가 부족해요
-金币数量不足,Insufficient coins,金币数量不足,,,,,,金貨の枚数が足りない,금화 개수가 부족합니다.
-广告券数量不足,Not enough Vouchers,广告券数量不足,,,,,,広告クーポンの枚数が不足しています,광고쿠폰 개수가 부족합니다.
-随机的角色id为:,The random character ids are:,随机的角色id为:,,,,,,ランダムな文字 ID は次のとおりです。,임의의 문자 ID는 다음과 같습니다.
-Camera :: ===== 相机重置前判断:: ${bo},Camera :: ===== Before Camera Reset: ${bo},Camera :: ===== 相机重置前判断:: ${bo},,,,,,Camera :: ===== カメラをリセットする前に決定します:: ${bo},Camera :: ===== 카메라 재설정 전 결정:: ${bo}
-kang log 今日首次领取奖励后开始倒计时,Kang log Countdown starts after claiming your first reward today,kang log 今日首次领取奖励后开始倒计时,,,,,,カンログ 今日初めて報酬を受け取ったらカウントダウンが始まります。,강로그 오늘 처음으로 보상을 받은 후 카운트다운이 시작됩니다.
-kang log 已经达到上限,Kang log has reached the upper limit,kang log 已经达到上限,,,,,,カンログが上限に達しました,강로그가 상한선에 도달했습니다
-kang log 正在倒计时,Kang log Countdown,kang log 正在倒计时,,,,,,カンログはカウントダウン中,강로그가 카운트다운을 하고 있다
-kang log 已经观看了,Already viewed,kang log 已经观看了,,,,,,カンログは見ました,강로그가 시청했습니다
-次广告,Ads,次广告,,,,,,広告,광고
-免费领取${num}金币,Claim ${num} coins for free,免费领取${num}金币,,,,,,$を無料でゲット{num}金,$를 무료로 받으세요{num}금
-kang log 当前玩家观看大厅广告次数:,Kang log Current Player Watches Lobby Advertisements:,kang log 当前玩家观看大厅广告次数:,,,,,,Kang log 現在のプレイヤーがロビー広告を視聴した回数:,kang log 현재 플레이어가 로비 광고를 시청한 횟수:
-大厅观看次数累计,Lobby views,大厅观看次数累计,,,,,,ロビーでの合計ビュー数,로비의 총 조회수
-  大厅激励-广告上限L:,  Lobby Incentive - Advertising Limit L:,  大厅激励-广告上限L:,,,,,,  ロビーインセンティブ広告制限 L:,  로비 인센티브 광고 한도 L:
-kang log 正在倒计时 ,Kang log Countdown ,kang log 正在倒计时 ,,,,,,カンログはカウントダウン中 ,강로그가 카운트다운을 하고 있다 
-kang log 倒计时结束,Kang log Countdown ends,kang log 倒计时结束,,,,,,カンログカウントダウン終了,강로그 카운트다운 종료
-BGM ==== 大厅,BGM ==== Hall,BGM ==== 大厅,,,,,,BGM ==== ホール,BGM ==== 홀
-ssssssss当前currentPlayer人数,Current Player count,ssssssss当前currentPlayer人数,,,,,,ssssssss現在のプレイヤー数,sssssss현재 플레이어 수
-kang log 倒计时到第二天了，刷新今日参加场数！！！！！！！！,"Kang log Countdown to the next day, refresh the number of matches attended today!!!!!!",kang log 倒计时到第二天了，刷新今日参加场数！！！！！！！！,,,,,,カンログ 次の日へのカウントダウンです、今日の参加試合数を更新してください！ ！ ！ ！ ！ ！ ！ ！,"강로그 카운트다운은 다음날까지, 오늘 출석한 경기수 새로고침! ! ! ! ! ! ! !"
-免费领取双倍金币\n再送一张广告券,Claim double gold coins for free \nand get another ad voucher,免费领取双倍金币\n再送一张广告券,,,,,,無料で 2 倍の金貨を獲得し、\n広告クーポンを獲得してください,더블 골드 코인을 무료로 받고\n광고 쿠폰을 받으세요.
-kang log 重置当天进行的场数,Kang log Reset the number of matches played today,kang log 重置当天进行的场数,,,,,,カンログはその日にプレイされたゲーム数をリセットします,강로그는 그날 플레이한 게임 수를 재설정합니다.
-激活金币,Activate Coins,激活金币,,,,,,ゴールドコインをアクティブにする,금화 활성화
-销毁金币,Destroy Coins,销毁金币,,,,,,金貨を破壊する,금화를 파괴하세요
-SZW得不到玩家数据,SZW can't get player data.,SZW得不到玩家数据,,,,,,SZWはプレイヤーデータを取得できません,SZW는 플레이어 데이터를 가져올 수 없습니다
-不是对局中的玩家,Not in the match,不是对局中的玩家,,,,,,試合に出場した選手ではない,경기에 참가하는 선수가 아닙니다
-遗留枪的位置发生改变,The position of the left gun has changed.,遗留枪的位置发生改变,,,,,,レガシーガンの位置が変更されました。,레거시 총의 위치가 변경되었습니다.
-BGM ==== 地图选择,BGM ==== Map Selection,BGM ==== 地图选择,,,,,,BGM ==== マップ選択,BGM ==== 맵 선택
-客户端：开始观战,Client: Start Spectating,客户端：开始观战,,,,,,クライアント: ゲームの視聴を開始します,클라이언트: 게임 시청을 시작하세요
-玩家主动停止观战,Player voluntarily stops watching,玩家主动停止观战,,,,,,プレイヤーは積極的に試合の観戦をやめます,플레이어가 적극적으로 게임 시청을 중단함
-将该玩家移除观战,Remove player from view,将该玩家移除观战,,,,,,このプレイヤーを試合の観戦から削除します,경기 시청에서 이 플레이어를 삭제하세요.
-免费领取2张广告券,Claim 2 free vouchers,免费领取2张广告券,,,,,,広告クーポンを 2 枚無料で入手,광고쿠폰 2개를 무료로 받으세요
-皮肤,Skin,皮肤,,,,,,肌,피부
-击中角色,Hit Character,击中角色,,,,,,ヒットキャラクター,히트 캐릭터
-击中自己,Hit yourself,击中自己,,,,,,自分を殴る,자신을 때려
-击中目标,Hit the target,击中目标,,,,,,ターゲットを攻撃する,표적을 맞추다
-人形对象,Human Object,人形对象,,,,,,人型の物体,인간형 개체
-角色,Character,角色,,,,,,役割,역할
-ai不存在,AI does not exist,ai不存在,,,,,,aiは存在しない,ai는 존재하지 않습니다
-子弹击中人机1,Bullet hits Man 1,子弹击中人机1,,,,,,銃弾が人間と機械に命中 1,총알이 사람과 기계를 맞았다 1
-子弹击中人1,Bullet Hit Person 1,子弹击中人1,,,,,,弾丸が人1に当たる,총알이 사람 1에 맞았습니다.
-子弹击中人机2,Bullet Hit Man 2,子弹击中人机2,,,,,,銃弾が人間と機械に命中 2,총알이 사람과 기계를 맞았다 2
-子弹击中人2,Bullet Hit Person 2,子弹击中人2,,,,,,銃弾が男に当たる 2,총알이 사람을 때린다 2
-在pie环境下如果想要vip请使用gm,Use gm if you want vip in pie,在pie环境下如果想要vip请使用gm,,,,,,パイ環境でVIPが必要な場合は、gmを使用してください,파이환경에서 VIP를 원하시면 GM을 이용해주세요
-目标类型,Target Type,目标类型,,,,,,ターゲットタイプ,대상 유형
-子弹击中物体,Bullets hitting objects.,子弹击中物体,,,,,,弾丸が物体に当たる,총알이 물체에 부딪힌다
+本轮胜利者！,Winner of this round!,本轮胜利者！,,,,,,このラウンドの勝者!,이번 라운드의 승자!
+玩家A,Player A,玩家A,,,,,,プレイヤーA,플레이어 A
+GM,GM,GM,,,,,,GM,GM
+Button,Button,Button,,,,,,Button,Button
+达拉崩吧斑得贝迪卜多比鲁翁,Let's get this party started!,达拉崩吧斑得贝迪卜多比鲁翁,,,,,,ダラ ベンバ バーデ ベディブ ドビルン,다라 벤바 베디베디브 도빌루옹
+在线30分钟免费领取（30/30）,Claim for free in 30 minutes online (30/30),在线30分钟免费领取（30/30）,,,,,,オンライン30分無料（30/30）,온라인 30분 무료(30/30)
+凶手专用：逐日(符文),Killer Exclusive: Daily (Runes),凶手专用：逐日(符文),,,,,,マーダーズ・スペシャル：デイ・バイ・デイ（ルーン）,살인자의 스페셜: 하루하루(룬)
+免费领取,Free to claim,免费领取,,,,,,無料で入手,무료로 받으세요
+明日奖励：侦探专用-黄金左轮(虹彩),Tomorrow's reward: Detective Exclusive - Gold Revolver (Rainbow),明日奖励：侦探专用-黄金左轮(虹彩),,,,,,明日の報酬：刑事スペシャル - ゴールド・リボルバー（レインボーカラー）,내일의 보상: 탐정 스페셜 - 골드 리볼버(레인보우 컬러)
+Text_Content_20030,Text_Content_20030,Text_Content_20030,,,,,,Text_Content_20030,Text_Content_20030
+Text_FreeCoupon,Text_FreeCoupon,Text_FreeCoupon,,,,,,Text_FreeCoupon,Text_FreeCoupon
+Text_Set,Text_Set,Text_Set,,,,,,Text_Set,Text_Set
+Text_ChangeClothes,Text_ChangeClothes,Text_ChangeClothes,,,,,,Text_ChangeClothes,Text_ChangeClothes
+Text_Content_20052,Text_Content_20052,Text_Content_20052,,,,,,Text_Content_20052,Text_Content_20052
+Text_Content_20009,Text_Content_20009,Text_Content_20009,,,,,,Text_Content_20009,Text_Content_20009
+Text_Content_12018,Text_Content_12018,Text_Content_12018,,,,,,Text_Content_12018,Text_Content_12018
+Text_HUD_SkillShop,Text_HUD_SkillShop,Text_HUD_SkillShop,,,,,,Text_HUD_SkillShop,Text_HUD_SkillShop
+Text_Content_20003,Text_Content_20003,Text_Content_20003,,,,,,Text_Content_20003,Text_Content_20003
+还原,Restore,还原,,,,,,削減,절감
+Loading,Loading,Loading,,,,,,Loading,Loading
+武器名字,Weapon Name,武器名字,,,,,,武器名,무기 이름
+Text_Content_12024,Text_Content_12024,Text_Content_12024,,,,,,Text_Content_12024,Text_Content_12024
+物品名字物品名字,Item Name Item Name,物品名字物品名字,,,,,,項目名 項目名,아이템 이름 아이템 이름
+Text_Content_12019,Text_Content_12019,Text_Content_12019,,,,,,Text_Content_12019,Text_Content_12019
+"武器名字
+武器名字","Weapon Name
+Weapon Name","武器名字
+武器名字",,,,,,"武器名
+武器名","무기 이름
+무기 이름"
+3%,3%,3%,,,,,,3%,3%
+Text_Content_12025,Text_Content_12025,Text_Content_12025,,,,,,Text_Content_12025,Text_Content_12025
+武器名称,Weapon Name,武器名称,,,,,,武器名,무기 이름
+Text_Content_12026,Text_Content_12026,Text_Content_12026,,,,,,Text_Content_12026,Text_Content_12026
+保存瞳孔瞳孔,Save Pupil,保存瞳孔瞳孔,,,,,,生徒を守る,동공 동공 보존
+调颜板-上衣,Cosmetic Board - Top,调颜板-上衣,,,,,,パレット - トップス,팔레트 - 탑
+部位 1,Part 1,部位 1,,,,,,部位 1,파트 1
+免费,Free,免费,,,,,,無料,무료
+重置平台形象,Reset Platform Avatar,重置平台形象,,,,,,プラットフォーム・イメージをリセット,플랫폼 이미지 재설정
+捏脸,Face Punch,捏脸,,,,,,顔をつねる,얼굴 꼬집기
+套装,Outfit,套装,,,,,,スーツ,정장
+前发,Forward,前发,,,,,,前髪,앞머리
+保存提示,Save Tip,保存提示,,,,,,節約術,저장 팁
+试穿好友的角色形象,Try on your friend's character,试穿好友的角色形象,,,,,,親友のキャラクターを着てみる,절친의 캐릭터 이미지 입어보기
+保存,Save,保存,,,,,,保存,구하다
+不保存,Do not save,不保存,,,,,,保存しないでください,저장하지 않음
+请选择要游玩的地图,Please select the map you want to play,请选择要游玩的地图,,,,,,プレイしたいマップを選択してください,플레이하고 싶은 맵을 선택해주세요
+地图名称一,Name I,地图名称一,,,,,,マップ名 1,지도 이름 1
+地图名称二,Name Two,地图名称二,,,,,,マップ名2,지도 이름 2
+地图名称三,Name Three,地图名称三,,,,,,マップ名3,지도 이름 3
+黑手党,Mafia,黑手党,,,,,,マフィア,마피아
+VS,VS,VS,,,,,,VS,VS
+Text_Content_12007,Text_Content_12007,Text_Content_12007,,,,,,Text_Content_12007,Text_Content_12007
+Text_Content_12008,Text_Content_12008,Text_Content_12008,,,,,,Text_Content_12008,Text_Content_12008
+杀手,Assassin,杀手,,,,,,キラー,살인자
+Text_Content_12009,Text_Content_12009,Text_Content_12009,,,,,,Text_Content_12009,Text_Content_12009
+消灭了3名学生,Eliminated 3 students,消灭了3名学生,,,,,,生徒3人を殺害,학생 3명 살해
+Text_Content_12014,Text_Content_12014,Text_Content_12014,,,,,,Text_Content_12014,Text_Content_12014
+Text_Content_12015,Text_Content_12015,Text_Content_12015,,,,,,Text_Content_12015,Text_Content_12015
+Text_Content_12016,Text_Content_12016,Text_Content_12016,,,,,,Text_Content_12016,Text_Content_12016
+"Your first round is over, take a look at the settlement panel","Your first round is over, take a look at the settlement panel","Your first round is over, take a look at the settlement panel",,,,,,"Your first round is over, take a look at the settlement panel","Your first round is over, take a look at the settlement panel"
+Here is the final result of the game,Here is the final result of the game,Here is the final result of the game,,,,,,Here is the final result of the game,Here is the final result of the game
+Here shows the two players who impacted the game most as well as their wins and losses,Here shows the two players who impacted the game most as well as their wins and losses,Here shows the two players who impacted the game most as well as their wins and losses,,,,,,Here shows the two players who impacted the game most as well as their wins and losses,Here shows the two players who impacted the game most as well as their wins and losses
+Here's shows your earning in this round,Here's shows your earning in this round,Here's shows your earning in this round,,,,,,Here's shows your earning in this round,Here's shows your earning in this round
+全服排行榜,Global Leaderboard,全服排行榜,,,,,,サーバー全体のランキング,서버 전체 순위
+排名,Ranking,排名,,,,,,ランキング,순위
+昵称,Nickname,昵称,,,,,,ニックネーム,닉네임
+分数,Score,分数,,,,,,分数,분수
+时长全服前500名,Top 500 Global Time Servers,时长全服前500名,,,,,,サービス全体における労働時間トップ500,전체 서비스에서 사용 시간 기준 상위 500명
+总击败,Total Defeat,总击败,,,,,,トータルビート,총 비트
+帅哥你谁啊帅哥你谁啊,Who are you? Who are you?,帅哥你谁啊帅哥你谁啊,,,,,,ハンサム、あなたは誰ですか? ハンサム、あなたは誰ですか?,"잘 생긴 남자, 당신은 누구입니까? 잘 생긴 남자, 당신은 누구입니까?"
+背景音量：99,Background Volume: 99,背景音量：99,,,,,,バックグラウンド・ボリューム：99,백그라운드 볼륨: 99
+点击生成新的角色ID,Tap to generate a new character ID,点击生成新的角色ID,,,,,,新しい役割IDの生成」をクリックする,새 역할 ID 생성을 클릭합니다.
+我的角色ID-分享好友试穿,My Character ID - Share Friend Try On,我的角色ID-分享好友试穿,,,,,,マイキャラID - 友達とシェアして試着しよう！,내 캐릭터 ID - 친구들과 공유하여 입어 보세요!
+1026MJK0,1026MJK0,1026MJK0,,,,,,1026MJK0,1026MJK0
+Free Try On,Free Try On,Free Try On,,,,,,Free Try On,Free Try On
+抽奖获得,Won by Lottery,抽奖获得,,,,,,抽選で当たりました,복권으로 당첨됨
+Text_Content_20019,Text_Content_20019,Text_Content_20019,,,,,,Text_Content_20019,Text_Content_20019
+Text_Content_20020,Text_Content_20020,Text_Content_20020,,,,,,Text_Content_20020,Text_Content_20020
+Text_Content_20014,Text_Content_20014,Text_Content_20014,,,,,,Text_Content_20014,Text_Content_20014
+Text_Content_20029,Text_Content_20029,Text_Content_20029,,,,,,Text_Content_20029,Text_Content_20029
+Text_Content_20013,Text_Content_20013,Text_Content_20013,,,,,,Text_Content_20013,Text_Content_20013
+Text_Content_20012,Text_Content_20012,Text_Content_20012,,,,,,Text_Content_20012,Text_Content_20012
+Text_Shop_Skin,Text_Shop_Skin,Text_Shop_Skin,,,,,,Text_Shop_Skin,Text_Shop_Skin
+Text_Content_20015,Text_Content_20015,Text_Content_20015,,,,,,Text_Content_20015,Text_Content_20015
+Text_Content_20016,Text_Content_20016,Text_Content_20016,,,,,,Text_Content_20016,Text_Content_20016
+Text_Content_20017,Text_Content_20017,Text_Content_20017,,,,,,Text_Content_20017,Text_Content_20017
+Text_Content_20018,Text_Content_20018,Text_Content_20018,,,,,,Text_Content_20018,Text_Content_20018
+Text_Content_20021,Text_Content_20021,Text_Content_20021,,,,,,Text_Content_20021,Text_Content_20021
+Text_Content_20022,Text_Content_20022,Text_Content_20022,,,,,,Text_Content_20022,Text_Content_20022
+Text_Content_20023,Text_Content_20023,Text_Content_20023,,,,,,Text_Content_20023,Text_Content_20023
+Text_Content_20024,Text_Content_20024,Text_Content_20024,,,,,,Text_Content_20024,Text_Content_20024
+Text_Content_12028,Text_Content_12028,Text_Content_12028,,,,,,Text_Content_12028,Text_Content_12028
+装备,Equipment,装备,,,,,,装置,장비
+Text_Content_12034,Text_Content_12034,Text_Content_12034,,,,,,Text_Content_12034,Text_Content_12034
+Text_Content_12033,Text_Content_12033,Text_Content_12033,,,,,,Text_Content_12033,Text_Content_12033
+能力名称,Ability Name,能力名称,,,,,,アビリティ名,능력 이름
+详情描述,Details,详情描述,,,,,,詳細な説明,자세한 설명
+Text_Content_12031,Text_Content_12031,Text_Content_12031,,,,,,Text_Content_12031,Text_Content_12031
+Text_Content_12032,Text_Content_12032,Text_Content_12032,,,,,,Text_Content_12032,Text_Content_12032
+Text_KillerPowerAssembly,Text_KillerPowerAssembly,Text_KillerPowerAssembly,,,,,,Text_KillerPowerAssembly,Text_KillerPowerAssembly
+你是哪个你是哪个你是哪个,Which one are you? Which one are you?,你是哪个你是哪个你是哪个,,,,,,あなたはどっち？,당신은 어느 쪽입니까? 당신은 어느 쪽입니까? 당신은 어느 쪽입니까?
+Text_Ranking,Text_Ranking,Text_Ranking,,,,,,Text_Ranking,Text_Ranking
+"apiData.apiValue数据长度异常,${JSON.stringify(apiData)}","apiData.apiValue data length abnormal, ${JSON.stringify(apiData)}","apiData.apiValue数据长度异常,${JSON.stringify(apiData)}",,,,,,apiData.apiValue データ長が異常です。${JSON.stringify(apiData)},apiData.apiValue 데이터 길이가 비정상적입니다. ${JSON.stringify(apiData)}
+"颜色换算大于八位,${color}","Color conversion greater than 8 characters, ${color}","颜色换算大于八位,${color}",,,,,,カラー変換が 8 桁を超える場合、${color},"색상 변환이 8자리보다 큼, ${color}"
+爱玩游戏的小胖子,Game-playing little fat guy.,爱玩游戏的小胖子,,,,,,ゲームが大好きなデブ男,게임을 좋아하는 뚱뚱한 남자
+测试弹幕,Test Bomb,测试弹幕,,,,,,テストポップアップ,팝업 테스트
+Hot-热门,Hot - Popular,Hot-热门,,,,,,ホットホット,Hot-Hot
+Wing-翅膀,Wing - Wing,Wing-翅膀,,,,,,ウィング,Wing
+Prop-道具,Prop - Item,Prop-道具,,,,,,プロップ,소품-소품
+Food-食品,Food - Food,Food-食品,,,,,,Food-食品,식품 - 식료품
+Other-烟花,Other - Fireworks,Other-烟花,,,,,,その他-花火,기타-불꽃놀이
+改变背景音效,Change Background Sound Effect,改变背景音效,,,,,,背景音の変更,배경 사운드 변경하기
+增加金币,Increase Coins,增加金币,,,,,,金貨を増やす,금화 증가
+增加钻石,Increase Diamonds,增加钻石,,,,,,ダイヤモンドを追加する,다이아몬드 추가
+增加游戏内的金币10,Increase in-game coins by 10,增加游戏内的金币10,,,,,,ゲーム内ゴールドコインを10枚増やす,게임 내 금화를 10 늘립니다.
+下次抽奖保底,Guaranteed Draw,下次抽奖保底,,,,,,次回の抽選が保証されます,다음 추첨 보장
+增加广告券,Increase Voucher,增加广告券,,,,,,広告クーポンを追加する,광고 쿠폰 추가
+修改大厅时间,Modify Lobby Time,修改大厅时间,,,,,,ロビー時間を変更する,로비 시간 수정
+技能体验券+10,Skill Voucher +10,技能体验券+10,,,,,,スキル経験値クーポン+10,스킬 경험치 쿠폰 +10
+切换热武器，对局内使用,Switch hot weapons for in-game use,切换热武器，对局内使用,,,,,,人気の武器を切り替えてゲームで使用してください,뜨거운 무기를 바꿔서 게임에서 사용하세요
+背景音乐大小：${(this.mProgressBar.currentValue * 100).toFixed(0)},Background Music Size: ${(this.mProgressBar.currentValue * 100).toFixed(0)},背景音乐大小：${(this.mProgressBar.currentValue * 100).toFixed(0)},,,,,,バックグランドミュージックのサイズ: ${(this.mProgressBar.currentValue * 100).toFixed(0)},배경 음악 크기: ${(this.mProgressBar.currentValue * 100).toFixed(0)}
+背景音乐大小：${(v * 100).toFixed(0)},Background Music Size: ${(v * 100).toFixed(0)},背景音乐大小：${(v * 100).toFixed(0)},,,,,,バックグランドミュージックのサイズ: ${(v * 100).toFixed(0)},배경 음악 크기: ${(v * 100).toFixed(0)}
+世界UI,World,世界UI,,,,,,世界UI,월드 UI
+蹦床,Trampoline,蹦床,,,,,,トランポリン,트램펄린
+Double-双人,Double - Double,Double-双人,,,,,,ダブル・ダブル,더블-더블
+Social-社交,Social-Social,Social-社交,,,,,,ソーシャル-ソーシャル,소셜-소셜
+Dance-舞蹈,Dance - Dance,Dance-舞蹈,,,,,,ダンス,댄스 - 댄스
+Pose-拍照,Pose - Photo,Pose-拍照,,,,,,ポーズ写真,포즈-사진
+Other-其他,Other - Other,Other-其他,,,,,,その他 - その他,기타 - 기타
+托举,Lift,托举,,,,,,持ち上げる,리프팅
+肩抗,Shoulder Resistance,肩抗,,,,,,肩の抵抗,어깨 저항
+拖,Drag,拖,,,,,,ドラッグ,견인
+公主抱,Princess Carry,公主抱,,,,,,お姫様抱っこ,공주 포옹
+背,Carry,背,,,,,,背,뒤쪽에
+拉丁,Latin,拉丁,,,,,,ラテン,라틴어
+现代03,Modern 03,现代03,,,,,,モダン03,현대 03
+爵士,Sir,爵士,,,,,,爵士,재즈
+现代02,Modern 02,现代02,,,,,,モダン02,현대 02
+告别,Bid farewell,告别,,,,,,別れを告げる,작별 인사를 하다
+鼓掌,Applause,鼓掌,,,,,,拍手する,박수를 보내다
+行礼,Salute,行礼,,,,,,敬礼,경례
+喝彩,Cheers,喝彩,,,,,,乾杯,건배
+欢呼,Cheers,欢呼,,,,,,乾杯,환호
+加油,Come On,加油,,,,,,来て,어서 해봐요
+开心跺脚,Happy Stomp,开心跺脚,,,,,,楽しそうに足を踏み鳴らしている,즐겁게 발을 구르며
+高举击掌,High Five,高举击掌,,,,,,ハイタッチ,하이파이브
+耍帅,Play Cool,耍帅,,,,,,クールに振る舞う,쿨하게 행동해
+后空翻,Backflip,后空翻,,,,,,バックフリップ,공중제비
+拒绝,Reject,拒绝,,,,,,拒否する,거부하다
+不服气,Unconvinced,不服气,,,,,,納得できない,확신하지 못함
+挑衅,Provocation,挑衅,,,,,,挑発的な,성나게 하는
+嘲讽,Taunt,嘲讽,,,,,,嘲笑する,조소
+出拳,Punch,出拳,,,,,,パンチ,펀치
+大脚踹,Big Tread,大脚踹,,,,,,ビッグキック,큰 킥
+鞠躬,Bow,鞠躬,,,,,,弓,절하다
+跪拜,Kneel Down,跪拜,,,,,,お辞儀をする,절하다
+俯首跪姿,Kneel Down,俯首跪姿,,,,,,お辞儀とひざまずく,절하고 무릎을 꿇고
+害羞捂脸,Shy Face,害羞捂脸,,,,,,恥ずかしくて顔を覆う,부끄러워서 얼굴을 가린 채
+比心,Heart Pose,比心,,,,,,比較,비교
+飞吻,Kiss,飞吻,,,,,,投げキッスをする,키스를 날리다
+亲吻,Kiss,亲吻,,,,,,キス,키스
+牵手吻,Hold Hands,牵手吻,,,,,,手を繋いでキスをする,손을 잡고 키스하는 모습
+单膝跪地,Get down on one knee.,单膝跪地,,,,,,片膝をつきます,한쪽 무릎을 꿇고
+生气,Angry,生气,,,,,,怒り,화난
+失望,Disappointed,失望,,,,,,失望,실망
+哭泣,Weeping,哭泣,,,,,,泣く,울다
+科目三,Topic Three,科目三,,,,,,科目三,주제 3
+霹雳舞,Breakdance,霹雳舞,,,,,,ブレイクダンス,브레이크 댄스
+一分一秒,"Minute, Minute, Second",一分一秒,,,,,,一分一秒,1분 1초
+外星人,Alien,外星人,,,,,,エイリアン,외계인
+恋爱,In Love,恋爱,,,,,,恋愛中,사랑에 빠졌다
+小熊跳舞,Bear Dances,小熊跳舞,,,,,,踊るクマ,춤추는 곰
+爱杀宝贝,Love to Kill,爱杀宝贝,,,,,,赤ちゃんを殺すのが大好き,아기를 죽이고 싶어
+怦然心动,Radiant Heart,怦然心动,,,,,,鼓動する心臓,뛰는 심장
+今天我们开始,We start today.,今天我们开始,,,,,,今日から始めます,오늘 우리는 시작합니다
+和我交往吗,Are you going out with me?,和我交往吗,,,,,,私とデートしてくれませんか？,나랑 데이트할래?
+天鹅舞,Swan Dance,天鹅舞,,,,,,白鳥の踊り,백조의 춤
+海草舞,Seaweed Dance,海草舞,,,,,,海藻ダンス,해초 댄스
+招呼舞,Greeting Dance,招呼舞,,,,,,挨拶ダンス,인사 댄스
+街舞,Hiphop,街舞,,,,,,ヒップホップ,힙합
+海盗,Pirate,海盗,,,,,,海賊,해적
+鲤鱼,Koi,鲤鱼,,,,,,鯉,잉어
+拉丁舞,Latin,拉丁舞,,,,,,ラテンダンス,라틴 댄스
+鬼步舞,Ghost Step,鬼步舞,,,,,,ゴーストダンス,유령춤
+没有明天,No tomorrow,没有明天,,,,,,明日はない,내일은 안돼
+电流舞,Electric Dance,电流舞,,,,,,エレクトリックダンス,일렉트릭 댄스
+告别记忆,Farewell Memory,告别记忆,,,,,,思い出に別れを告げる,기억과의 작별
+醉酒的蝴蝶,Butterfly,醉酒的蝴蝶,,,,,,酔った蝶,취한 나비
+舞蹈01,Dance 01,舞蹈01,,,,,,ダンス01,댄스 01
+小熊跳舞01,Bear Dance 01,小熊跳舞01,,,,,,ダンシング・ベア 01,춤추는 곰 01
+魔法城堡01,Magic Castle 01,魔法城堡01,,,,,,マジック・キャッスル 01,마법의 성 01
+魔法城堡02,Magic Castle 02,魔法城堡02,,,,,,マジック・キャッスル 02,마법의 성 02
+魔法城堡03,Magic Castle 03,魔法城堡03,,,,,,マジック・キャッスル 03,마법의 성 03
+极乐净土,Blissful Land,极乐净土,,,,,,極楽浄土,순수한 행복의 땅
+自由之轮,Wheel of Freedom,自由之轮,,,,,,フリーダムホイール,자유의 바퀴
+Full Video（女）,Full Video (Female),Full Video（女）,,,,,,Full Video（女）,전체영상(여)
+Full Video（男）,Full Video (Male),Full Video（男）,,,,,,Full Video（男）,풀영상(남)
+Permission（女3）,Permission (Female 3),Permission（女3）,,,,,,Permission（女3）,허가 (여성 3)
+Permission（男1）,Permission (Male 1),Permission（男1）,,,,,,Permission（男1）,허가 (남성 1)
+Permission（女1）,Permission (Female 1),Permission（女1）,,,,,,Permission（女1）,허가 (여성 1)
+Permission（女2）,Permission (Female 2),Permission（女2）,,,,,,Permission（女2）,허가 (여성 2)
+How You Like That（女）,How You Like That (Female),How You Like That（女）,,,,,,How You Like That（女）,How You Like That(여)
+How You Like That（男）,How You Like That (Male),How You Like That（男）,,,,,,How You Like That（男）,How You Like That(남성)
+扭胯,Twist,扭胯,,,,,,腰をひねる,엉덩이를 비틀어보세요
+欢迎你来,Welcome!,欢迎你来,,,,,,ようこそ,환영합니다
+摇曳舞,Sway Dance,摇曳舞,,,,,,スイングダンス,스윙댄스
+桃源恋歌,Peach Love,桃源恋歌,,,,,,桃園ラブソング,복숭아 정원 사랑 노래
+螃蟹舞,Crab Dance,螃蟹舞,,,,,,カニダンス,게춤
+抖肩舞,Shoulder Dance,抖肩舞,,,,,,肩を振るダンス,어깨 흔들기 댄스
+扮兔子,Play Bunny,扮兔子,,,,,,ウサギのふりをする,토끼인 척
+双手触地,Hand Touch,双手触地,,,,,,地面に触れる手,땅에 닿는 손
+单手摆,Solo Pendulum,单手摆,,,,,,片手スイング,한 손으로 스윙
+女性站立,Woman Standing,女性站立,,,,,,立っている女性,여성 서
+男性站立,Stand Still,男性站立,,,,,,立っている男性,남성 서
+握拳举起,Raise Your Fist,握拳举起,,,,,,拳を握り上げて,주먹을 쥐고 올려보세요
+握拳摆,Swing,握拳摆,,,,,,握りこぶし,꽉 쥔 주먹
+托腮,Chest,托腮,,,,,,あごサポート,턱 지지대
+比耶,Victory,比耶,,,,,,ビー,비
+比造型,Pattern,比造型,,,,,,形よりも,모양보다
+扶头耍帅,Handsome,扶头耍帅,,,,,,頭を抱えてクールに見える,머리를 잡고 멋있어 보이세요
+撑下巴,Chin Support,撑下巴,,,,,,あごをサポート,턱을 받쳐주세요
+掩面,Hide,掩面,,,,,,掩面,얼굴을 숨기는 것
+叉腰,Fold Waist,叉腰,,,,,,アキンボ,아킴보
+撑头,Prop Up,撑头,,,,,,サポートヘッド,지지대
+握拳,Swing,握拳,,,,,,拳を作る,주먹을 쥐다
+侧身,Side-to-side,侧身,,,,,,横向き,샛길
+眺望,Looking Out,眺望,,,,,,眺望,간과하다
+抓手腕,Wristgrab,抓手腕,,,,,,手首を掴む,손목을 잡는다
+双手握拳,Fist clenched,双手握拳,,,,,,両手で拳を作ります,양손으로 주먹을 쥐다
+双手交叉,Hands Crossed,双手交叉,,,,,,手を組んだ,손을 교차
+单脚立地,Stand on One Foot,单脚立地,,,,,,片足で立つ,한 발로 서다
+鬼脸,Ghostface,鬼脸,,,,,,鬼脸,얼굴을 찡그리다
+单手抱头,Arms Crossed,单手抱头,,,,,,片手で頭を押さえる,한 손으로 머리를 잡고
+蹲姿,Squat,蹲姿,,,,,,しゃがんだ姿勢,쪼그리고 앉는 자세
+双手合十,Hands Together,双手合十,,,,,,手を合わせて,두 손을 모아
+模仿飞天,Imitation,模仿飞天,,,,,,フェイティアンの真似,Feitian의 모방
+伸腿摸头,Stretch My Legs,伸腿摸头,,,,,,足を伸ばして頭を触ってください,다리를 쭉 뻗고 머리를 만져보세요
+鬼畜,Weird beast,鬼畜,,,,,,鬼畜,유령 짐승
+坐姿单腿伸出,Sit with one leg out.,坐姿单腿伸出,,,,,,片足を伸ばして座る,한쪽 다리를 쭉 뻗고 앉아 있는 모습
+单手张开,Open Hand,单手张开,,,,,,片手を開いて,한 손으로 벌려
+单手叉腰,Cross Waist,单手叉腰,,,,,,片手を腰に当てる,한 손은 엉덩이에
+顶肩,Top Shoulders,顶肩,,,,,,トップショルダー,상단 어깨
+半蹲张手,Half-Squat Arms Open,半蹲张手,,,,,,両手を開いて半分スクワット,양손을 벌리고 하프 스쿼트
+半躺抱头,Lie Half-Back,半躺抱头,,,,,,頭を手に持って半分横たわっている,반쯤 누워서 머리를 손에 쥐고
+单手匝地,Solo Turnpike,单手匝地,,,,,,片手ラップ,한손 랩
+双手比耶,Duo Victory,双手比耶,,,,,,手ビエ,손 비예
+单脚站立,Stand on One Leg,单脚站立,,,,,,片足で立つ,한쪽 다리로 서다
+双手合并,Hands Combined,双手合并,,,,,,手を合わせる,손 병합
+半躺撑着,Lie Half-Up,半躺撑着,,,,,,半分横になった状態,반쯤 누워서
+站姿双手,Stand Pose,站姿双手,,,,,,立ち手,서있는 손
+双手抱头,Arms Crossed,双手抱头,,,,,,手で頭を押さえる,손으로 머리를 잡고
+屈腿坐姿,Sit Bended,屈腿坐姿,,,,,,足を曲げて座る,다리를 구부린 채 앉아 있는 모습
+摆照型,Pose,摆照型,,,,,,ポーズタイプ,포즈 유형
+双手托脸,Hand Facelift,双手托脸,,,,,,手で顔,손으로 얼굴을 대다
+半躺摸下巴,Half-lying and touching my chin,半躺摸下巴,,,,,,半分横になってあごを触っている,반쯤 누워서 턱 만지기
+单脚抬起,Lift on One Leg,单脚抬起,,,,,,片足を上げます,한쪽 다리 들어올리기
+比心左,Heart L,比心左,,,,,,ビシン,빅신
+比心右,Heart R,比心右,,,,,,心の権利,마음의 오른쪽
+骑马舞,Riding Dance,骑马舞,,,,,,馬の踊り,말춤
+学鸟走,Learn Bird Walk,学鸟走,,,,,,鳥のように歩くことを学ぶ,새처럼 걷는 법을 배우세요
+旋转01,Spin 01,旋转01,,,,,,ローテーション 01,회전 01
+旋转02,Spin 02,旋转02,,,,,,回転 02,회전 02
+旋转03,Spin 03,旋转03,,,,,,回転 03,회전 03
+旋转04,Rotate 04,旋转04,,,,,,回転 04,회전 04
+旋转05,Spin 05,旋转05,,,,,,回転 05,회전 05
+旋转06,Rotate 06,旋转06,,,,,,回転06,회전 06
+旋转07,Spin 07,旋转07,,,,,,ロータリー 07,로타리 07
+跳舞,Dance,跳舞,,,,,,ダンス,춤
+歌舞,Sing and Dance,歌舞,,,,,,歌と踊り,노래와 춤
+翻滚,Roll,翻滚,,,,,,ロール,연타
+冲刺,Sprint,冲刺,,,,,,スプリント,스프린트
+滑翔,Glider,滑翔,,,,,,滑空,활공
+空中蹬腿,Air Stomp,空中蹬腿,,,,,,エアキック,에어킥
+下蹲行走,Squat Walk,下蹲行走,,,,,,スクワットウォーキング,스쿼트 걷기
+水中,In Water,水中,,,,,,水中,물 속에서
+飞行,Fly,飞行,,,,,,フライト,비행
+丧尸行,Zombie Row,丧尸行,,,,,,歩くゾンビ,걷는 좀비
+仰卧起坐,Sit-ups,仰卧起坐,,,,,,腹筋運動,윗몸 일으키기
+转圈,Spin,转圈,,,,,,ぐるぐる回る,원을 그리며 회전하다
+鸭子坐,Duck Sit,鸭子坐,,,,,,座っているアヒル,오리 앉아
+抱膝坐,Sit on Knee,抱膝坐,,,,,,膝を曲げて座る,무릎을 접고 앉기
+躺下,Lie Down,躺下,,,,,,横になる,누워
+趴下,Get down,趴下,,,,,,降りてください,내려와
+爬行,Crawl,爬行,,,,,,クロール,기다
 黑手党视野范围,Mafia Vision,黑手党视野范围,,,,,,マフィアの視界範囲,마피아 비전 범위
 黑手党静止,Mafia Stillness,黑手党静止,,,,,,マフィアはまだ,마피아는 아직도
 黑手党亮刀,Mafia Blade,黑手党亮刀,,,,,,マフィアナイフ,마피아 칼
@@ -360,6 +426,30 @@ AI名称8,AI Name 8,AI名称8,,,,,,AI名称8,AI 이름 8
 AI名称9,AI Name 9,AI名称9,,,,,,AI名称9,AI 이름 9
 AI名称10,AI Name10,AI名称10,,,,,,AI名称10,AI 이름 10
 AI名称11,AI Name 11,AI名称11,,,,,,AI名称11,AI 이름 11
+紫袍皇妃,Purple Princess,紫袍皇妃,,,,,,紫のローブの王女,보라색 가운 공주
+黄袍皇妃,Yellow-Robed Princess,黄袍皇妃,,,,,,黄色いローブの王女,노란 가운 공주
+柔弱少女,Soft Girl,柔弱少女,,,,,,弱い女の子,약한 여자
+旗袍,Qipao,旗袍,,,,,,チャイナドレス,치파오
+冰雪少女服饰,Snow Girl,冰雪少女服饰,,,,,,氷の女の子のコスチューム,아이스걸 코스튬
+短款汉服襦裙,Short Chinese Dress,短款汉服襦裙,,,,,,短い韓服 襦袢,짧은 한복 襦襦墓墓
+西域舞蹈服饰,Western Dance Outfit,西域舞蹈服饰,,,,,,西洋のダンス衣装,서양 무용 의상
+对襟襦裙,Skirt,对襟襦裙,,,,,,ダブルブレストスカート,더블 브레스티드 스커트
+汉服襦裙,Chinese Dress,汉服襦裙,,,,,,漢服スカート,한푸 스커트
+民族服饰,folk dress,民族服饰,,,,,,民族衣装,민속 드레스
+古风大唐袖衫,Ancient Tang Shirt,古风大唐袖衫,,,,,,古代スタイルの唐袖シャツ,고대 스타일 당나라 소매 셔츠
+古装潮流女,Antique Stylish Girl,古装潮流女,,,,,,女性のおしゃれな衣装,여성의 유행 의상
+汉服男套装,Han Suit,汉服男套装,,,,,,漢服のメンズスーツ,한복 남성복
+作战服,Combat Uniform,作战服,,,,,,戦闘服,전투복
+汉服长袍,Chinese Robe,汉服长袍,,,,,,漢服のローブ,한푸 가운
+清代官服,Qing Dynasty Official Clothing,清代官服,,,,,,清朝の公式服,청나라 관복
+刺绣古装男,Embroidered Outfit,刺绣古装男,,,,,,メンズ刺繍衣装,남자 자수 의상
+古风长发书生,Ancient Long-haired Scholar,古风长发书生,,,,,,古代風の長い髪の学者,고대 스타일의 장발 학자
+盔甲套装男,Armor Suit,盔甲套装男,,,,,,男性の鎧スーツ,남자 갑옷 한 벌
+富家子弟,Rich Boy,富家子弟,,,,,,金持ちの子供,부자 아이
+黑衣侠客,Dark Knight,黑衣侠客,,,,,,黒騎士,흑기사
+古代将军,Ancient General,古代将军,,,,,,古代の将軍,고대 장군
+白衣军师,White Master,白衣军师,,,,,,白の軍事顧問,흰색 군사 고문
+古代诗人,Ancient Poet,古代诗人,,,,,,古代の詩人,고대 시인
 按钮通用音效,Button Sound,按钮通用音效,,,,,,ボタンの一般的な効果音,버튼 일반 음향 효과
 随机身份的咔哒声,Random identity clicks.,随机身份的咔哒声,,,,,,ランダムなアイデンティティのクリック,임의의 ID 클릭
 选中身份的强调音,Selected identity accent,选中身份的强调音,,,,,,選ばれたアイデンティティのアクセント,선택한 아이덴티티의 악센트
@@ -505,6 +595,7 @@ AI名称11,AI Name 11,AI名称11,,,,,,AI名称11,AI 이름 11
 角色形象29,Character Image 29,角色形象29,,,,,,キャラクターイメージ29,캐릭터 이미지 29
 逻辑对象投掷物,Logical Object Throw,逻辑对象投掷物,,,,,,論理オブジェクトがスローされました,던져진 논리적 객체
 子弹模型预加载,Bullet Model Preloaded,子弹模型预加载,,,,,,弾丸モデルのプリロード,총알 모델 사전 로드
+人形对象,Human Object,人形对象,,,,,,人型の物体,인간형 개체
 金币模型,Coin Model,金币模型,,,,,,金貨モデル,금화 모델
 丢飞刀,Throw Knife,丢飞刀,,,,,,投げナイフを投げる,투척용 칼을 던져라
 投掷架势,Throwing Stance,投掷架势,,,,,,投球姿勢,투척 자세
@@ -534,34 +625,394 @@ AI名称11,AI Name 11,AI名称11,,,,,,AI名称11,AI 이름 11
 死亡姿态2,Death Stance 2,死亡姿态2,,,,,,死のジェスチャー 2,죽음의 몸짓 2
 死亡姿态3,Death Stance 3,死亡姿态3,,,,,,死のジェスチャー 3,죽음의 몸짓 3
 AI跑步动画,AI Running Animation,AI跑步动画,,,,,,AI走行アニメーション,AI가 달리는 애니메이션
+双层翅膀,Double-Decker Wings,双层翅膀,,,,,,二重翼,이중 날개
+翅膀,Wings,翅膀,,,,,,翼,비행
+六翼翅膀,Six-winged Wing,六翼翅膀,,,,,,六つの翼,여섯 개의 날개
+精灵翅膀,Elf Wing,精灵翅膀,,,,,,エルフの翼,엘프 날개
+棺材,Coffin,棺材,,,,,,棺材,관
+环绕,Aura,环绕,,,,,,囲む,서라운드
+闪电,Lightning,闪电,,,,,,稲妻,번개
+飞行背包,Jetpack,飞行背包,,,,,,ジェットパック,제트팩
+小熊背包,Bear Backpack,小熊背包,,,,,,ベア・バックパック,베어 백팩
+0.7倍,0.7x,0.7倍,,,,,,0.7倍,0.7배
+0.8倍,0.8x,0.8倍,,,,,,0.8倍,0.8배
+0.9倍,0.9x,0.9倍,,,,,,0.9倍,0.9배
+正常,Normal,正常,,,,,,正常,정상
+1.1倍,1.1x,1.1倍,,,,,,1.1倍,1.1배
+1.2倍,1.2x,1.2倍,,,,,,1.2倍,1.2배
+1.3倍,1.3x,1.3倍,,,,,,1.3倍,1.3배
+套靴长裤,Bootcut Pants,套靴长裤,,,,,,オーバーブーツ＆パンツ,오버부츠 및 바지
+制服短裙,Uniform Skirt,制服短裙,,,,,,制服スカート,유니폼 스커트
 位移加速为1.1倍,Displacement acceleration 1.1 times,位移加速为1.1倍,,,,,,変位加速度1.1倍,변위가속도는 1.1배
 飞刀移速加速为1.6倍,Speed Boost of Flying Knife reaches 1.6 times,飞刀移速加速为1.6倍,,,,,,フライングナイフの移動速度が1.6倍に加速される,날아오는 칼의 이동 속도가 1.6배로 가속됩니다.
 爆炸飞刀,Explosive Knife,爆炸飞刀,,,,,,爆発するナイフ,폭발하는 칼
-我是{1},I'm {1}.,我是{1},,,,,,私は{1},그래요{1}
-凶手是谁？,Who is the murderer?,凶手是谁？,,,,,,殺人者は誰ですか？,살인자는 누구입니까?
-😡气死我了,😡 I'm furious.,😡气死我了,,,,,,😡とても怒っています,😡너무 화가 나
-救命💦,Help 💦,救命💦,,,,,,助けてください💦,도와주세요 ☀
-别刀我😭,Don't hurt me 😭,别刀我😭,,,,,,私を殺さないでください😭,죽이지 마세요 😭
-谢谢你🙏,Thank you 🙏,谢谢你🙏,,,,,,ありがとう🙏,감사합니다 🙏
-🤺退！🤺退！🤺退！,🤺Get back! 🤺Get back!,🤺退！🤺退！🤺退！,,,,,,🤺退！🤺退！🤺退！,🤺퇴각! 🤺퇴각! 🤺퇴각!
-💯满分操作！,💯 Perfect!,💯满分操作！,,,,,,💯フルスコア作戦！,💯만점작전!
-🎭我要开始表演了~,🎭I'm going to start performing!,🎭我要开始表演了~,,,,,,🎭パフォーマンス始めますよ〜,🎭공연 시작하겠습니다~
+我是{0},I'm {0}.,我是{0},,,,,,私はそうだ。{0},맞아요.{0}
 学生,Student,学生,,,,,,学生,학생
-凶手,Murderer,凶手,,,,,,殺人者,살인자
+侦探,Detective,侦探,,,,,,探偵,형사
+凶手是谁？,Who is the murderer?,凶手是谁？,,,,,,殺人者は誰ですか？,살인자는 누구입니까?
+0.o 气死我了,0.o I'm so angry.,0.o 气死我了,,,,,,0.o頭にきたよ。,0.o 정말 화가 났어요.
+救命啊！,Help!,救命啊！,,,,,,助けてくれ！,도와주세요!
+谢谢你 ^_^,Thank you ^_^,谢谢你 ^_^,,,,,,ありがとう^_^。,감사합니다 ^_^
+你好！,Hello!,你好！,,,,,,こんにちは！,안녕하세요!
+别刀我 QAQ,"Don't hurt me, QAQ.",别刀我 QAQ,,,,,,切らないでくれ、QAQ。,"자르지 마세요, QAQ."
+<--退！<--退！<--退！,<--Get back!<--Get back!<--Get back!,<--退！<--退！<--退！,,,,,,<--戻る<--退却<--戻る！,<-- 후퇴! <-- 후퇴! <-- 후퇴!
+*0* 满分操作！,*0* Perfect!,*0* 满分操作！,,,,,,*0* 操作性は満点！,*0* 작동에 만점!
+)*o*( 我要开始表演了~,*o* (I'm going to start the show!,)*o*( 我要开始表演了~,,,,,,)*o*( I'm going to start the show now~,)*오*( 이제 쇼를 시작하겠습니다~)
 红色,Red,红色,,,,,,赤,빨간색
 紫色,Purple,紫色,,,,,,紫,보라
 蓝色,Blue,蓝色,,,,,,青,파란색
 绿色,Green,绿色,,,,,,緑,녹색
 白色,White,白色,,,,,,白,하얀색
-一袋金币,A bag of gold coins,一袋金币,,,,,,金貨の入った袋,금화 가방
-一箱金币,A box of gold coins,一箱金币,,,,,,金貨の入った箱,금화 한 상자
+制服女,Uniform,制服女,,,,,,女性の制服,여성 유니폼
+一定过套装,I'm sure I'll pass the suit.,一定过套装,,,,,,スーツをパスしたに違いない。,소송을 통과했나 봐요.
+主打求神套装,Main Seeker Outfit,主打求神套装,,,,,,主にゴッド・シーカーズ・キット,주로 신을 찾는 자의 키트
+卡皮巴拉套装1,Capybara Suit 1,卡皮巴拉套装1,,,,,,カピバラセット1,카피발라 세트 1
+卡皮巴拉套装2,Capybara Suit 2,卡皮巴拉套装2,,,,,,カピバラセット2,카피바라 세트 2
+女学生角色,Schoolgirl Character,女学生角色,,,,,,女子学生キャラクター,여학생 캐릭터
+和服,Kimono,和服,,,,,,和服,일본 기모노
+JK女生,JK Girl,JK女生,,,,,,JK女子生徒,JK 소녀들
+新年毛衣,New Year Sweater,新年毛衣,,,,,,新年のセーター,새해 스웨터
+露肩长裙,Off-Shoulder Skirt,露肩长裙,,,,,,オフショルダーロングドレス,오프 숄더 롱 드레스
+头部样式,Head Style,头部样式,,,,,,ヘッドスタイル,머리 스타일
+头部左右缩放,Zoom Head,头部左右缩放,,,,,,ヘッドズーム左右,헤드 줌 좌우
+上半脸前后移动,Move the upper face forward and backward.,上半脸前后移动,,,,,,上面を前後に動かす,윗면을 앞뒤로 움직여 보세요.
+上半脸上下移动,Move the upper half of your face up and down.,上半脸上下移动,,,,,,顔の上部を上下に動かします,얼굴 윗부분을 위아래로 움직여 보세요.
+上半脸整体缩放,Zoom Overall,上半脸整体缩放,,,,,,上面全体のスケーリング,얼굴 상반신의 전체적인 스케일링
+下半脸前后移动,Move the lower half of your face forward and backward.,下半脸前后移动,,,,,,顔の下半分を前後に動かします,얼굴의 아래쪽 절반을 앞뒤로 움직여 보세요.
+下半脸左右缩放,Zoom around the lower half,下半脸左右缩放,,,,,,顔の下半分を左右にズーム,얼굴의 하반부를 좌우로 확대/축소합니다.
+耳朵整体缩放,Whole Ear Zoom,耳朵整体缩放,,,,,,全体的な耳のスケーリング,전반적인 귀 스케일링
+耳朵左右旋转,Ears rotate around,耳朵左右旋转,,,,,,耳は左右に回転します,귀가 좌우로 회전함
+耳朵前后旋转,Ears rotate back and forth,耳朵前后旋转,,,,,,耳が前後に回転します,귀가 앞뒤로 회전함
+耳朵上部缩放,Upper Ear Zoom,耳朵上部缩放,,,,,,上耳のスケーリング,윗귀 스케일링
+耳朵下部缩放,Lower Ear Zoom,耳朵下部缩放,,,,,,下耳スケーリング,아래 귀 스케일링
+下颌圆度,jaw roundness,下颌圆度,,,,,,下顎の丸み,하악 진원도
+下颌前后移动,Move the jaw forward and backward.,下颌前后移动,,,,,,下顎の前後運動,하악의 앞뒤 움직임
+下颌上下移动,Move your jaw up and down.,下颌上下移动,,,,,,顎が上下に動きます,턱이 위아래로 움직인다
+下颌左右缩放,Zoom around the jaw,下颌左右缩放,,,,,,下顎の左右のスケーリング,하악 스케일링 왼쪽 및 오른쪽
+下巴前后移动,Move jaw forward and backward,下巴前后移动,,,,,,あごが前後に動く,턱이 앞뒤로 움직인다
+下巴尖上下移动,Move the chin tip up and down.,下巴尖上下移动,,,,,,あごの先端が上下に動きます,턱 끝이 위아래로 움직인다.
+下巴尖前后移动,Move the chin tip forward and backward.,下巴尖前后移动,,,,,,あごの先端が前後に動きます,턱끝이 앞뒤로 움직인다.
+下巴尖左右缩放,Zoom around the top of your jaw.,下巴尖左右缩放,,,,,,あごの先端が左右にスケールします,턱 끝이 좌우로 비늘이 있습니다.
+颧骨左右缩放,Zoom Left and Right,颧骨左右缩放,,,,,,頬骨の左右のスケーリング,광대뼈 왼쪽 및 오른쪽 스케일링
+颧骨前后移动,Move cheekbones forward and backward,颧骨前后移动,,,,,,頬骨骨は前後に動きます,광대뼈가 앞뒤로 움직인다
+脸颊左右缩放,Zoom Left and Right,脸颊左右缩放,,,,,,左右の頬ズーム,뺨 확대 왼쪽 및 오른쪽
+脸颊前后移动,Move cheeks forward and backward,脸颊前后移动,,,,,,頬が前後に動きます,뺨이 앞뒤로 움직인다
+脸颊上下移动,Move your cheeks up and down.,脸颊上下移动,,,,,,頬が上下に動きます,뺨이 위아래로 움직인다
+眉毛上下移动,Move your eyebrows up and down.,眉毛上下移动,,,,,,眉毛が上下に動きます,눈썹이 위아래로 움직인다
+眉毛左右移动,Move eyebrows around,眉毛左右移动,,,,,,眉毛が左右に動きます,눈썹이 좌우로 움직인다
+眉毛整体旋转,Integral eyebrow rotation,眉毛整体旋转,,,,,,眉毛全体の回転,눈썹 전체 회전
+眉头上下移动,Move your eyebrows up and down.,眉头上下移动,,,,,,眉が上下に動く,눈썹이 위아래로 움직인다
+眉尾上下移动,Move eyebrows up and down.,眉尾上下移动,,,,,,眉尻が上下に動きます,눈썹 꼬리가 위아래로 움직인다
+眼睛上下移动,Move your eyes up and down.,眼睛上下移动,,,,,,目が上下に動きます,눈이 위아래로 움직인다
+眼睛左右缩放,Zoom Left and Right,眼睛左右缩放,,,,,,目が左右にズームします,눈은 좌우로 확대
+眼睛前后移动,Move your eyes forward and backward.,眼睛前后移动,,,,,,目が前後に動きます,눈이 앞뒤로 움직인다
+眼睛整体旋转,Integral eye rotation,眼睛整体旋转,,,,,,目全体が回転する,눈이 전체적으로 회전함
+眼睛上下缩放,Zoom Up and Down,眼睛上下缩放,,,,,,目は上下にズームします,눈이 위아래로 확대됩니다.
+眼睛左右移动,Move your eyes around,眼睛左右移动,,,,,,目が左右に動きます,눈이 좌우로 움직인다
+内眼角左右移动,Move around the inner eye corner.,内眼角左右移动,,,,,,目頭が左右に動く,눈 안쪽이 좌우로 움직입니다.
+外眼角上下移动,Move the outer eye corner up and down.,外眼角上下移动,,,,,,目尻が上下に動く,눈의 바깥쪽 모서리가 위아래로 움직입니다.
+瞳孔左右移动,Move pupils around.,瞳孔左右移动,,,,,,瞳孔が左右に動く,학생들은 좌우로 움직입니다.
+瞳孔上下移动,Move pupils up and down.,瞳孔上下移动,,,,,,瞳孔が上下に動く,학생들은 위아래로 움직입니다.
+瞳孔左右缩放,Zoom pupils around,瞳孔左右缩放,,,,,,生徒は左右にズームします,눈동자가 왼쪽과 오른쪽으로 확대됩니다.
+瞳孔上下缩放,Zoom pupils up and down.,瞳孔上下缩放,,,,,,生徒が上下にズームする,학생들이 위아래로 확대/축소됩니다.
+鼻子整体前后移动,Move your nose forward and backward as a whole.,鼻子整体前后移动,,,,,,機首は全体的に前後に動きます,코가 전체적으로 앞뒤로 움직인다
+鼻尖上下移动,Move the tip of your nose up and down.,鼻尖上下移动,,,,,,鼻先が上下に動きます,코끝이 위아래로 움직인다
+鼻梁前后移动,Move the bridge of the nose forward and backward.,鼻梁前后移动,,,,,,鼻梁が前後に動きます,콧등이 앞뒤로 움직입니다.
+嘴巴上下移动,Move your mouth up and down.,嘴巴上下移动,,,,,,口が上下に動きます,입이 위아래로 움직인다
+嘴巴前后移动,Move mouth forward and backward,嘴巴前后移动,,,,,,口が前後に動きます,입이 앞뒤로 움직인다
+嘴巴左右缩放,Zoom Left and Right,嘴巴左右缩放,,,,,,口を左右にズーム,입 확대/축소 좌우
+上嘴唇薄厚,Thick upper lip,上嘴唇薄厚,,,,,,厚い上唇,두꺼운 윗입술
+下嘴唇薄厚,Low Lip,下嘴唇薄厚,,,,,,厚い下唇,두꺼운 아랫입술
+嘴角上下移动,Move the corner of your mouth up and down.,嘴角上下移动,,,,,,口角が上下に動きます,입꼬리가 위아래로 움직인다
+身高,Height,身高,,,,,,身長,키
+头部整体缩放,Head Zoom,头部整体缩放,,,,,,頭全体のスケーリング,전반적인 헤드 스케일링
+胸部整体缩放,Holistic chest zoom,胸部整体缩放,,,,,,全体的な胸のスケーリング,전반적인 유방 스케일링
+胸部上下移动,Move your chest up and down.,胸部上下移动,,,,,,胸が上下に動きます,가슴이 위아래로 움직인다
+胸部左右移动,Move your chest around,胸部左右移动,,,,,,胸が左右に動く,가슴이 좌우로 움직인다
+胸部长度,Chest Length,胸部长度,,,,,,胸の長さ,가슴 길이
+脖子左右缩放,Zoom around your neck,脖子左右缩放,,,,,,首ズーム左右,목 줌 왼쪽 및 오른쪽
+脖子前后缩放,Zoom neck forward and backward,脖子前后缩放,,,,,,首を前後にズーム,목 줌 앞뒤로
+胸腔左右缩放,Zoom chest around,胸腔左右缩放,,,,,,胸部左右拡張,가슴 확장 좌우
+胸腔前后缩放,Zoom chest forward and backward,胸腔前后缩放,,,,,,胸部の前後への拡張,가슴 확장은 앞뒤로
+肋骨左右缩放,Zoom Left and Right Ribs,肋骨左右缩放,,,,,,肋骨は左右にスケールします,갈비뼈 크기는 왼쪽과 오른쪽으로 조정됩니다.
+肋骨前后缩放,Zoom Ribs Forward and Back,肋骨前后缩放,,,,,,リブ前後のスケーリング,갈비뼈 전면 및 후면 스케일링
+腰部左右缩放,Zoom around the waist,腰部左右缩放,,,,,,ウエスト左右スケーリング,허리 좌우 스케일링
+腰部前后缩放,Zoom Back and Forward,腰部前后缩放,,,,,,ウエスト前後スケーリング,"허리 앞, 뒤 스케일링"
+脖子上下缩放,Zoom Up and Down,脖子上下缩放,,,,,,首を上下にズーム,목 확대/축소
+胸腔上下缩放,Zoom Up and Down,胸腔上下缩放,,,,,,胸部の拡大縮小,가슴 확장 및 축소
+腰部上下缩放,Zoom Up and Down,腰部上下缩放,,,,,,ウエストの上下スケーリング,허리 위아래 스케일링
+胯左右缩放,Zoom Left and Right,胯左右缩放,,,,,,ヒップズーム,엉덩이 줌
+胯前后缩放,Zoom Back and Forward,胯前后缩放,,,,,,ヒップの前後ズーム,엉덩이 줌 앞뒤로
+肩臂左右缩放,Zoom Left and Right Shoulders,肩臂左右缩放,,,,,,肩と腕の左右のスケーリング,어깨와 팔의 크기 조정이 왼쪽과 오른쪽으로 이루어집니다.
+肩臂前后缩放,Zoom forward and backward on shoulders,肩臂前后缩放,,,,,,肩と腕が前後にスケーリング,어깨와 팔이 앞뒤로 스케일링됨
+大臂左右缩放,Zoom Left and Right,大臂左右缩放,,,,,,アーム左右ズーム,암 줌 왼쪽 및 오른쪽
+大臂前后缩放,Zoom Front and Back,大臂前后缩放,,,,,,アームを前後にズーム,암 줌을 앞뒤로
+小臂左右缩放,Zoom Left and Right,小臂左右缩放,,,,,,前腕ズーム左右,팔뚝 확대/축소 왼쪽 및 오른쪽
+小臂前后缩放,Zoom forward and backward,小臂前后缩放,,,,,,前腕の前後ズーム,팔뚝 확대/축소 앞으로 및 뒤로
+大臂上下缩放,Zoom Up and Down,大臂上下缩放,,,,,,腕を上下にズーム,팔 확대 및 축소
+小臂上下缩放,Zoom Up and Down,小臂上下缩放,,,,,,前腕のズームアップとダウン,팔뚝 확대 및 축소
+大腿上下缩放,Zoom Up and Down,大腿上下缩放,,,,,,太ももを上下にズーム,허벅지 확대 및 축소
+小腿上下缩放,Zoom up and down the calf.,小腿上下缩放,,,,,,ふくらはぎの上下のスケーリング,종아리 업 앤 다운 스케일링
+大腿左右缩放,Zoom around thighs,大腿左右缩放,,,,,,太もも左右ズーム,허벅지 줌 왼쪽 및 오른쪽
+大腿前后缩放,Zoom thighs forward and backward,大腿前后缩放,,,,,,太ももの前後のスケーリング,허벅지 전면 및 후면 스케일링
+小腿前后缩放,Zoom calf forward and backward,小腿前后缩放,,,,,,ふくらはぎの前後のスケーリング,종아리 전면 및 후면 스케일링
+小腿左右缩放,Zoom around calf,小腿左右缩放,,,,,,ふくらはぎの左右のスケーリング,종아리 좌우 스케일링
+上装样式,Top Style,上装样式,,,,,,トップスタイル,최고의 스타일
+区域颜色,Area Color,区域颜色,,,,,,エリアカラー,영역 색상
+纹理样式,Texture Style,纹理样式,,,,,,テクスチャスタイル,텍스처 스타일
+纹理颜色,Texture Color,纹理颜色,,,,,,テクスチャカラー,질감 색상
+纹理左右拉伸,Stretch texture around,纹理左右拉伸,,,,,,左右に伸びるテクスチャー,질감이 좌우로 늘어납니다.
+纹理上下拉伸,Stretch texture up and down.,纹理上下拉伸,,,,,,上下に伸びたテクスチャ,상하로 늘어나는 질감
+纹理旋转,Texture Rotation,纹理旋转,,,,,,テクスチャの回転,텍스처 회전
+纹理显示程度,Level of texture display,纹理显示程度,,,,,,質感表示度,질감 표시 정도
+设计图案样式,Design Pattern,设计图案样式,,,,,,デザインパターンスタイル,디자인 패턴 스타일
+设计图案颜色,Design Pattern Color,设计图案颜色,,,,,,デザインパターンカラー,디자인 패턴 색상
+设计图案旋转,Design Pattern Rotation,设计图案旋转,,,,,,デザインパターンの回転,디자인 패턴 회전
+下装样式,Bottom Style,下装样式,,,,,,ボトムスタイル,바닥 스타일
+手套样式,Gloves,手套样式,,,,,,グローブスタイル,장갑 스타일
+鞋子样式,Shoe Style,鞋子样式,,,,,,靴のスタイル,신발 스타일
+眉毛样式,Eyebrow Style,眉毛样式,,,,,,眉毛スタイル,눈썹 스타일
+眉毛颜色,Eyebrow Color,眉毛颜色,,,,,,眉毛の色,눈썹 색깔
+瞳孔样式,Pupil Style,瞳孔样式,,,,,,瞳のスタイル,학생 스타일
+睫毛样式,Eyelash Style,睫毛样式,,,,,,まつげスタイル,속눈썹 스타일
+睫毛颜色,Eyelash Color,睫毛颜色,,,,,,まつげの色,속눈썹 색상
+上高光样式,Upper Highlight Style,上高光样式,,,,,,ハイライトスタイル,스타일 강조
+上高光颜色,Upper Highlight Color,上高光颜色,,,,,,ハイライトカラー,하이라이트 색상
+下高光样式,Lower Highlight Style,下高光样式,,,,,,ハイライトスタイル,스타일 강조
+下高光颜色,Lower Highlight Color,下高光颜色,,,,,,下のハイライトの色,낮은 강조 색상
+瞳孔颜色,Pupil Color,瞳孔颜色,,,,,,瞳の色,눈동자 색
+瞳孔左右位置,Left and Right Pupil Positions,瞳孔左右位置,,,,,,瞳孔の左右の位置,동공 왼쪽 및 오른쪽 위치
+瞳孔上下位置,Pupil Position,瞳孔上下位置,,,,,,瞳孔の上下の位置,동공의 위쪽과 아래쪽 위치
+瞳孔大小缩放,Pupil Size Zoom,瞳孔大小缩放,,,,,,瞳孔サイズのスケーリング,동공 크기 스케일링
+眼影样式,Eyeshadow Style,眼影样式,,,,,,アイシャドウスタイル,아이섀도우 스타일
+眼影颜色,Eyeshadow Color,眼影颜色,,,,,,アイシャドウの色,아이섀도우 컬러
+腮红样式,Blush Style,腮红样式,,,,,,チークスタイル,블러셔 스타일
+腮红颜色,Blush Color,腮红颜色,,,,,,チークカラー,블러셔 컬러
+口红样式,Lipstick Style,口红样式,,,,,,口紅のスタイル,립스틱 스타일
+口红颜色,Lipstick Color,口红颜色,,,,,,口紅の色,립스틱 색상
+贴花样式,Decal Style,贴花样式,,,,,,デカールのスタイル,데칼 스타일
+贴花左右移动,Decal Move Left and Right,贴花左右移动,,,,,,デカールは左右に動きます,데칼이 좌우로 움직입니다.
+贴花上下移动,Decal Move Up and Down,贴花上下移动,,,,,,デカールは上下に動きます,데칼이 위아래로 움직입니다.
+贴花整体旋转,Decals rotate integrally,贴花整体旋转,,,,,,デカール全体の回転,데칼 전체 회전
+贴花整体缩放,Decal Overall Zoom,贴花整体缩放,,,,,,デカール全体のスケーリング,데칼 전체 스케일링
+肌肤颜色,Skin Color,肌肤颜色,,,,,,肌の色,피부색
+贴花颜色,Decal Color,贴花颜色,,,,,,デカールの色,데칼 색상
+样式,Style,样式,,,,,,スタイル,스타일
+颜色,Color,颜色,,,,,,色,색상
+渐变颜色,Gradient Color,渐变颜色,,,,,,グラデーションカラー,그라데이션 색상
+渐变区域,Gradient Area,渐变区域,,,,,,勾配領域,그라데이션 영역
+高光样式,Highlight Style,高光样式,,,,,,ハイライトスタイル,스타일 강조
+体型,Body Type,体型,,,,,,体型,체형
+左眼颜色(二次元),Left eye color (quadratic),左眼颜色(二次元),,,,,,左目の色（二次元）,왼쪽 눈 색깔(2차원)
+右眼颜色(二次元),Right eye color (quadratic),右眼颜色(二次元),,,,,,右目の色（二次元）,오른쪽 눈 색깔(2차원)
+头部贴花颜色,Head Decal Color,头部贴花颜色,,,,,,ヘッドデカールの色,헤드 데칼 색상
+头部贴花样式,Head Decal Style,头部贴花样式,,,,,,ヘッドデカールスタイル,헤드 데칼 스타일
+切换表情,Switch Expressions,切换表情,,,,,,スイッチ式,표현식 전환
+头饰颜色,Headgear Color,头饰颜色,,,,,,ヘッドギアの色,헤드기어 색상
+设计图案缩放,Design Pattern Zoom,设计图案缩放,,,,,,デザインパターンのスケーリング,디자인 패턴 스케일링
+手整体缩放,Hand Zoom,手整体缩放,,,,,,全体的なハンドスケーリング,전반적인 핸드 스케일링
+脚整体缩放,Foot Zoom,脚整体缩放,,,,,,全体的な足のスケーリング,전반적인 발 스케일링
+面部左右缩放,Zoom Face,面部左右缩放,,,,,,顔の左右のズーム,얼굴 줌 왼쪽 및 오른쪽
+眉毛前后移动,Move eyebrows forward and backward,眉毛前后移动,,,,,,眉毛が前後に動く,눈썹이 앞뒤로 움직인다
+眉间前后移动,Move back and forth between eyebrows,眉间前后移动,,,,,,眉毛を前後に動かす,눈썹을 앞뒤로 움직여 보세요.
+鼻子整体上下移动,Move your nose up and down as a whole.,鼻子整体上下移动,,,,,,鼻は全体的に上下に動きます,코가 전체적으로 위아래로 움직입니다.
+鼻梁左右缩放,Zoom Left and Right,鼻梁左右缩放,,,,,,鼻梁の左右ズーム,콧대 확대/축소 좌우
+鼻翼前后移动,Move nose forward and backward,鼻翼前后移动,,,,,,鼻が前後に動きます,코가 앞뒤로 움직인다
+鼻翼上下移动,Move your nose up and down.,鼻翼上下移动,,,,,,鼻が上下に動きます,코가 위아래로 움직인다
+鼻翼左右缩放,Zoom Left and Right,鼻翼左右缩放,,,,,,鼻の左右のスケーリング,코 스케일링 좌우
+嘴角前后移动,Mouth Corner Move Forward and Back,嘴角前后移动,,,,,,口角を前後に動かす,입꼬리를 앞뒤로 움직여 보세요.
+V1模型,V1 model,V1模型,,,,,,V1モデル,V1 모델
+狐狸耳朵,Fox Ears,狐狸耳朵,,,,,,キツネの耳,여우 귀
+围巾,Scarf,围巾,,,,,,スカーフ,스카프
+双马尾辫子,Ponytails,双马尾辫子,,,,,,ダブルポニーテール,더블 포니테일
+狐耳朵,Fox Ears,狐耳朵,,,,,,きつねの耳,여우 귀
+猫耳,Cat Ears,猫耳,,,,,,猫耳,고양이 귀
+星星,Stars,星星,,,,,,星,별
+眩晕Buff,Stun buff,眩晕Buff,,,,,,スタンバフ,기절 버프
+狗头,Dog Head,狗头,,,,,,犬頭,개의 머리
+熊猫头,Panda Face,熊猫头,,,,,,パンダ頭,팬더 머리
+问号,Question mark,问号,,,,,,クエスチョンマーク,물음표(구두점)
+乌云,Dark Clouds,乌云,,,,,,暗雲,암운
+表情,Expressions,表情,,,,,,表現,표현
+睡眠,Sleep,睡眠,,,,,,睡眠,잠
+恶心,Nauseous,恶心,,,,,,むかつく,메스꺼움
+泡泡,Bubble,泡泡,,,,,,泡,거품
+蝙蝠,Bat,蝙蝠,,,,,,蝙蝠,박쥐
+花瓣环绕,Petal Aura,花瓣环绕,,,,,,ペタロイド,페탈로이드
+蝴蝶泡泡,Butterfly Bubble,蝴蝶泡泡,,,,,,蝶の泡,버터플라이 버블
+五角星泡泡,Pentagonal Bubble,五角星泡泡,,,,,,ペンタグラム・バブル,오각형 버블
+打瞌睡,Doze,打瞌睡,,,,,,眠りにつく,잠들기
+爱心,Love,爱心,,,,,,愛,사랑
+梦幻泡泡蝴蝶结,Bubble Bow,梦幻泡泡蝴蝶结,,,,,,ファンタジー・バブル・リボン,판타지 버블 활
+道具,Item,道具,,,,,,小道具,소품
+绿蛇头发,Green snake hair.,绿蛇头发,,,,,,緑蛇の髪,녹색 뱀의 머리카락
+青蛇头发,Cyan Snake Hair,青蛇头发,,,,,,緑蛇の髪,녹색 뱀의 머리카락
+红蛇头发,Red snake hair.,红蛇头发,,,,,,レッド・スネーク・ヘア,붉은 뱀 머리
+龙角,Dragon horn,龙角,,,,,,ドラゴンホーン,용의 뿔
+犄角,Horn,犄角,,,,,,すみっこ,구석
+发光恶魔角,Shining Demon Horn,发光恶魔角,,,,,,光る悪魔の角,빛나는 악마 뿔
+帽子,Hat,帽子,,,,,,帽子,모자
+护目眼镜,Goggles,护目眼镜,,,,,,保護メガネ,보호 안경
+泳镜,Swim Goggles,泳镜,,,,,,スイミングゴーグル,수영 고글
+男帽子,Male Hat,男帽子,,,,,,男性の帽子,남자 모자
+尴尬,Awkward,尴尬,,,,,,気まずい,어색한
+眩晕,Stunned,眩晕,,,,,,めまい,현기증
+手指,Finger,手指,,,,,,フィンガープリント,지문
+自动寻路图标,Auto wayfinding icon,自动寻路图标,,,,,,オートパスアイコン,자동 경로 아이콘
+子弹,Bullets,子弹,,,,,,弾丸,총알
+荧光小人,Glowing Man,荧光小人,,,,,,光る小人,빛나는 작은 사람
+恭喜发财,Prosperity,恭喜发财,,,,,,あなたが幸せで豊かになりますように,행복하고 번영하시길 바랍니다
+南瓜,Pumpkin,南瓜,,,,,,パンプキン,호박
+头套,Headgear,头套,,,,,,かぶりもの,배우용 헤드기어
+广告牌,Billboard,广告牌,,,,,,看板,광고 게시판
+流光,Flowing Light,流光,,,,,,流光,사광
+火焰,Flames,火焰,,,,,,炎,불꽃
+雪花,Snowflake,雪花,,,,,,スノーフレーク,눈송이
+星座,Constellation,星座,,,,,,星座,별자리
+法阵,Magic Formation,法阵,,,,,,魔法陣,마법진
+桃心,Heart,桃心,,,,,,心臓,마음
+音符,Musical Note,音符,,,,,,音符,메모
+光环,Halo,光环,,,,,,ハロー,후광
+彩带,Ribbons,彩带,,,,,,リボン,고삐
+传送门,Portal,传送门,,,,,,ポータル,문
+禁锢,Imprisonment,禁锢,,,,,,監禁,제한
+防护盾,Shield,防护盾,,,,,,保護シールド,보호 쉴드
+角色__BUFF,Character__BUFF,角色__BUFF,,,,,,キャラクター __BUFF,문자 __BUFF
+护盾,Shield,护盾,,,,,,シールド,방패
+音乐,Music,音乐,,,,,,音楽,음악
+禁锢Buff,Imprison buff,禁锢Buff,,,,,,投獄バフ,감금 버프
+治疗Buff,Cure Buff,治疗Buff,,,,,,ヒーリングバフ,힐링 버프
+盾牌,Shield,盾牌,,,,,,シールド,방패
+击杀,Slay,击杀,,,,,,殺す,죽이다
+卡牌,Card,卡牌,,,,,,トランプ,카드 놀이
+生成光环,Generate Aura,生成光环,,,,,,ヘイローの生成,헤일로 생성
+烟花,Fireworks,烟花,,,,,,花火,불꽃
+全息投影,Holographic Projection,全息投影,,,,,,ホログラフィック投影,홀로그램 프로젝션
+剪纸,Paper Cut,剪纸,,,,,,きりかみ,종이 커팅(중국 민속 예술)
+一小堆金币,A small bunch of coins.,一小堆金币,,,,,,小さな金貨の山。,작은 금화 더미.
+一大堆金币,A bunch of coins.,一大堆金币,,,,,,金貨の束だ。,금화 한 무더기.
 限定武器-樱,Limited Weapon - Sakura,限定武器-樱,,,,,,限定武器・桜,한정무기 - 사쿠라
 限定武器-蝶,Butterfly: Limited,限定武器-蝶,,,,,,限定武器・バタフライ,한정무기 - 나비
+限定武器-紫光剑,Limited Weapon - Purple Sword,限定武器-紫光剑,,,,,,限定武器・紫光剣,한정 무기 - 보라색 빛의 검
+限定武器-冰寒弓箭,Limited Weapon - Ice Bow,限定武器-冰寒弓箭,,,,,,限定武器 - アイス・コールド・ボウ＆アロー,한정 무기 - 얼음처럼 차가운 활과 화살
 快速投掷体验券,Quick Throw Voucher,快速投掷体验券,,,,,,クイックスロー体験クーポン,빠른던지기 체험쿠폰
 爆炸飞刀体验券,Explosive Knife Voucher,爆炸飞刀体验券,,,,,,爆発ナイフ体験券,폭발칼 체험권
 幽灵斗篷体验券,Ghost Cloak Voucher,幽灵斗篷体验券,,,,,,ゴーストマント体験チケット,유령망토 체험권
 每拯救一名学生,Every student saved,每拯救一名学生,,,,,,生徒が救われるたびに,학생이 구원받을 때마다
 凶手每次击杀,Every time the Murderer kills,凶手每次击杀,,,,,,殺人者が人を殺すたびに,살인자가 사람을 죽일 때마다
+眼影,Eyeshadow,眼影,,,,,,アイシャドウ,아이섀도
+标准脸型-男,Standard Face - Male,标准脸型-男,,,,,,スタンダード・フェイス - 男性,표준 얼굴 - 남성
+标准脸型-女,Standard Face - Female,标准脸型-女,,,,,,スタンダード・フェイス - 女性,표준 얼굴 - 여성
+默认表情,Default Expression,默认表情,,,,,,デフォルトの絵文字,기본 이모티콘
+微笑,Smile,微笑,,,,,,笑顔,웃다
+开心,Happy,开心,,,,,,ハッピー,행복하다
+伤心,Sad,伤心,,,,,,悲しい,슬픈
+笑,Laugh,笑,,,,,,笑う,웃다
+调皮,Naughty,调皮,,,,,,いたずらな,못된
+可爱,Cute,可爱,,,,,,かわいい,귀여운
+疑惑,Confused,疑惑,,,,,,疑惑,혼란시키다
+眼镜,Glasses,眼镜,,,,,,眼鏡,안경
+眼罩,Blindfold,眼罩,,,,,,アイマスク,아이 마스크
+面纱,veils,面纱,,,,,,ベール,베일
+面具,Mask,面具,,,,,,マスク,마스크
+狐狸面具,Fox Mask,狐狸面具,,,,,,キツネの仮面,여우 가면
+眼饰面具,Eyewear Mask,眼饰面具,,,,,,アイマスク,아이 마스크
+恶魔头,Demon Head,恶魔头,,,,,,鬼頭,악마의 머리
+魔后,Queen,魔后,,,,,,女王,여왕
+白人女魔使,White Warlock,白人女魔使,,,,,,白い魔女,착한 마녀
+白人女天使,White Angel,白人女天使,,,,,,白い女性の天使,백인 여성 천사
+黑人女天使,Black Angel,黑人女天使,,,,,,黒人の女性の天使,흑인 여성 천사
+女战神,Goddess of War,女战神,,,,,,女の戦いの女神,여성 전쟁 여신
+女水手白人,White Sailor,女水手白人,,,,,,白人の女性船員,백인 여성 선원
+青年智慧女神,Young Muse,青年智慧女神,,,,,,若き知恵の女神,젊은 지혜의 여신
+黑天使,Black Angel,黑天使,,,,,,黒い天使,검은 천사
+刺客女性,Assassin Female,刺客女性,,,,,,暗殺者の女性,암살자 여성
+纳米机甲女性,Nano Mecha Female,纳米机甲女性,,,,,,ナノメカメス,나노메카 암컷
+卡魔拉,Kamala,卡魔拉,,,,,,"ガモーラ, 日本映画の怪獣","가모라(일본어 ガメラ 가모라), 일본 영화 괴물"
+魔术师女,Magician,魔术师女,,,,,,魔術師の女性,마술사 여자
+哨兵冰,Sentry Ice,哨兵冰,,,,,,センチネルアイス,센티넬 아이스
+女浩克,Female Holk,女浩克,,,,,,女性ハルク,여성 헐크
+羊角女巫,Horned Witch,羊角女巫,,,,,,山羊の角の魔女,염소 뿔 마녀
+冰雪王后,Snow Queen,冰雪王后,,,,,,氷の女王,얼음 여왕
+海洋王后,Queen of Ocean,海洋王后,,,,,,海の女王,바다의 여왕
+雏田,Hinata,雏田,,,,,,雏田,"고다 다이스케(1934-), 일본 정치인, 2007-2010년 총리"
+春野樱,Sakura,春野樱,,,,,,春野サクラ,하루노 사쿠라
+纲手,Master,纲手,,,,,,綱手,츠나데
+娜美,Nami,娜美,,,,,,ナミ,나미
+妮可罗宾,Nicole Robin,妮可罗宾,,,,,,ニコール・ロビン,니콜 로빈
+女帝,Female Emperor,女帝,,,,,,女帝,황후
+天天,Everyday,天天,,,,,,天天,날마다
+小南,Nan,小南,,,,,,小南,샤오난
+小樱,Sakura,小樱,,,,,,さくら,사쿠라
+灶门祢豆子,Youra Bean,灶门祢豆子,,,,,,竈門禰豆子,카마도 네즈코
+暗影芭比,Shadow Barbie,暗影芭比,,,,,,シャドウバービー,섀도우 바비
+粉毛怪,Pink Monster,粉毛怪,,,,,,白い毛むくじゃらの怪物,흰 털 괴물
+蓝毛怪,Blue Monster,蓝毛怪,,,,,,青い髪の怪物,파란 머리 괴물
+魔莱坞学院院长,Academy Dean,魔莱坞学院院长,,,,,,マジックハリウッドアカデミー 理事長,매직할리우드아카데미 원장
+魔法少女,Magic Girl,魔法少女,,,,,,魔法少女,마법소녀
+弓箭少女,Archery Girl,弓箭少女,,,,,,弓矢ガール,활과 화살 소녀
+西方神女,Western Goddess,西方神女,,,,,,西方神女,매춘부(속어)
+狐耳少女,Fox Girl,狐耳少女,,,,,,キツネ耳の女の子,여우귀 소녀
+魔法少女服饰,Magic Girl Costume,魔法少女服饰,,,,,,魔法少女の衣装,마법소녀 의상
+魔法女巫套装,Magic Witch Suit,魔法女巫套装,,,,,,魔法の魔女セット,마법의 마녀 세트
+绿色怪人服,Green Freak Suit,绿色怪人服,,,,,,グリーン・フリーク・スーツ,녹색 괴물 수트
+变异人套装,Mutant Suit,变异人套装,,,,,,ミュータントスーツ,돌연변이 슈트
+怪人套装,Monster Suit,怪人套装,,,,,,奇抜なスーツ。,오드볼 슈트.
+马戏团小丑服,Circus Clown Costume,马戏团小丑服,,,,,,サーカスピエロの衣装,서커스 광대 의상
+小爱神,Little Eros,小爱神,,,,,,小さなキューピッド,작은 큐피드
+中年冥神,Middle-aged Netherworld,中年冥神,,,,,,中年冥神,중년의 하데스
+白人男天使,White Angel,白人男天使,,,,,,白人の男性天使,백인 남성 천사
+黑人男天使,Black Angel,黑人男天使,,,,,,黒人男性天使,흑인 남성 천사
+老山城,Old Hill Castle,老山城,,,,,,老山城,올드 마운틴 시티
+太阳神,Sun God,太阳神,,,,,,太陽神,태양신
+魔王,Demon King,魔王,,,,,,魔王,마왕
+海王神,Neptune,海王神,,,,,,海王神,해왕성
+神使,Angel,神使,,,,,,神使,전령
+魔使男,Warlock,魔使男,,,,,,悪魔の男,악마의 남자
+魔兵,Magic Soldier,魔兵,,,,,,魔兵,악마병사
+兽人,Orc,兽人,,,,,,オーク,오크
+未来战士,Future Warrior,未来战士,,,,,,未来の戦士,미래의 전사
+哨兵石,Sentry Stone,哨兵石,,,,,,歩哨,센티널
+哨兵木,Sentry Wood,哨兵木,,,,,,センチネルウッド,센티넬 우드
+哨兵火,Sentry Fire,哨兵火,,,,,,センチネルファイア,센티널 파이어
+青年地精,Youth Goblin,青年地精,,,,,,ヤング・ゴブリン,어린 고블린
+老年地精,Elderly Goblin,老年地精,,,,,,古いゴブリン,늙은 고블린
+天神,Legendary,天神,,,,,,天神,신들
+狼人001,Werewolf 001,狼人001,,,,,,狼男001,늑대인간 001
+黑男哨兵铁,Black Male Sentry Iron,黑男哨兵铁,,,,,,黒人男性の歩哨,흑인 남성 센티널
+男丧尸,Zombie,男丧尸,,,,,,男性ゾンビ,남성 좀비
+大蛇丸,Snake Pill,大蛇丸,,,,,,大蛇丸,오로치마루
+飞段,Flying Stage,飞段,,,,,,飛段,히단
+干柿鬼鲛,Dry Ghost Cloud,干柿鬼鲛,,,,,,干し柿鬼雨,곶감 키사메
+角都,Kado,角都,,,,,,角都,카쿠즈
+卡卡西,Kakasi,卡卡西,,,,,,カカシ,카카시
+炼狱杏寿郎,Kyojuro Rengoku,炼狱杏寿郎,,,,,,煉獄の杏周郎,연옥의 살구 슈로우
+路飞,Luffy,路飞,,,,,,ルフィ,루피
+索隆,Zoro,索隆,,,,,,索隆,사우론
+洛克李,Lock Lee,洛克李,,,,,,ロック・リー,록 리
+鸣人,Naruto,鸣人,,,,,,ナルト,나루토
+我爱罗,I Love You,我爱罗,,,,,,我愛羅,가아라
+我妻善逸,My wife is kind.,我妻善逸,,,,,,妻はいい人だ。,제 아내는 좋은 운동선수입니다.
+悟空,Goku,悟空,,,,,,悟空,오공
+蝎,Scorpion,蝎,,,,,,サソリ,투석기
+宇智波斑,Wave Spot,宇智波斑,,,,,,うちはマダラ,우치하 마다라
+宇智波带土,Wave Zone,宇智波带土,,,,,,うちはオビト,우치하 오비토
+宇智波鼬,Ghost,宇智波鼬,,,,,,うちはイタチ,우치하 이타치
+长门,Long Door,长门,,,,,,長門,나가토
+嘴平伊之助,Hashibira Inosuke,嘴平伊之助,,,,,,嘴平伊之助,모히라 이노스케
+宇智波佐助,Sasuke,宇智波佐助,,,,,,うちはサスケ,우치하 사스케
+史瑞克,Shrek,史瑞克,,,,,,シュレック,슈렉
+迷雾鬼影,Misty Ghost,迷雾鬼影,,,,,,霧の幽霊,안개 유령
+屠夫,Butcher,屠夫,,,,,,肉屋,푸주한
+玄魁,Profound Quill,玄魁,,,,,,玄魁,쉬안쿠이
+专家,Expert,专家,,,,,,専門家,전문가
+巫医,Witch Doctor,巫医,,,,,,呪術師,주술사
+灶门炭治郎,Tanjiro Kamado,灶门炭治郎,,,,,,竈門炭治郎,카마도 탄지로
+长胡子老者,Bearded Oldman,长胡子老者,,,,,,ひげを生やした老人,수염을 기른 노인
+大耳男,Big Ears,大耳男,,,,,,耳の大きな男,귀가 큰 남자
+侦探小子,Detective Boy,侦探小子,,,,,,少年探偵,탐정 소년
+翻毛黄金首饰,Furry Gold Jewelry,翻毛黄金首饰,,,,,,タンブルド・ゴールド・ジュエリー,텀블 골드 주얼리
+清洁手套,Cleaning Gloves,清洁手套,,,,,,掃除用手袋,청소 장갑
 身份名称（学生）,Identity Name (Student),身份名称（学生）,,,,,,アイデンティティ名（学生）,신원 이름 (학생)
 身份,Role,身份,,,,,,身元,신원
 这里是本局中你的身份,Here is your identity in this match.,这里是本局中你的身份,,,,,,このゲームにおけるあなたのアイデンティティはここにあります,이 게임에서 당신의 정체성은 다음과 같습니다
@@ -611,7 +1062,77 @@ AI跑步动画,AI Running Animation,AI跑步动画,,,,,,AI走行アニメーシ�
 侦探/凶手死亡提示（凶手/侦探）,Detective/Murderer Death Hint (Murderer/Detective),侦探/凶手死亡提示（凶手/侦探）,,,,,,探偵/殺人の死亡ヒント (殺人者/探偵),형사/살인 사망 팁(살인자/형사)
 死亡,Dead,死亡,,,,,,死ぬ,주사위
 代表正义的你不可以乱开枪，攻击好人会导致自己死亡,"On behalf of justice, you can't shoot indiscriminately. Attacking any Civilian will lead to death.",代表正义的你不可以乱开枪，攻击好人会导致自己死亡,,,,,,正義の代表者として、善人を無差別に撃つことは自らの死に繋がる。,정의의 대표자로서 선량한 사람을 공격하면 스스로 죽음을 맞이할 수 없습니다.
-侦探,Detective,侦探,,,,,,探偵,형사
+风暴女,Stormgirl,风暴女,,,,,,ストームウーマン,스톰 우먼
+绯红女巫,Crimson Witch,绯红女巫,,,,,,緋色の魔女,스칼렛 마녀
+黑寡妇,Black Widow,黑寡妇,,,,,,ブラック・ウィドウ,흑인 과부
+惊奇队长,Captain Marvel,惊奇队长,,,,,,キャプテン・マーベル,캡틴 마블
+神奇女侠,Wonder Woman,神奇女侠,,,,,,神奇女侠,원더 우먼
+女战士,Female Warrior,女战士,,,,,,女戦士,여전사
+魔法女孩,Magic Girl,魔法女孩,,,,,,魔法少女,마법 소녀
+战士服,Warrior Suit,战士服,,,,,,戦士の制服,전사 유니폼
+紧身作战服,Tight Combat Suit,紧身作战服,,,,,,ピチピチ戦闘服,타이트한 전투복
+塞西亚套装,Thessian Suit,塞西亚套装,,,,,,スキタイのスーツ,스키타이 슈트
+男式紧身服,Men's Tights,男式紧身服,,,,,,男性用タイツ,남성용 타이츠
+道服,Practice Uniform,道服,,,,,,従う,순종하다
+男作战服,Male Combat Uniform,男作战服,,,,,,男性の戦闘服,남자 전투복
+雷电战士服饰,Thunder Warrior Costume,雷电战士服饰,,,,,,雷戦士コスチューム,썬더 워리어 코스튬
+鱼族战士服,Fish Warrior,鱼族战士服,,,,,,魚戦士の制服,물고기 전사 유니폼
+法师服饰,Mage Costumes,法师服饰,,,,,,メイジコスチューム,마법사 코스튬
+面具骑士服,Masked Knight Suit,面具骑士服,,,,,,仮面騎士スーツ,마스크 나이트 슈트
+黑夜战士服,Black Night Warrior Suit,黑夜战士服,,,,,,ブラック・ナイト・ウォリアー・スーツ,블랙 나이트 워리어 수트
+黄金战甲,Golden Armor,黄金战甲,,,,,,黄金の鎧,황금 갑옷
+蝙蝠侠,Batman,蝙蝠侠,,,,,,バットマン,말 당번
+超人,Superman,超人,,,,,,超人,초인
+毒液,Venom,毒液,,,,,,毒液,독액
+恶灵骑士,Evil Knight,恶灵骑士,,,,,,ゴーストライダー,고스트 라이더
+钢铁侠,Steel Man,钢铁侠,,,,,,アイアンマン,철인
+海王,Aquaman,海王,,,,,,海王,바다의 왕
+黑豹,Black Panther,黑豹,,,,,,ブラックパンサー,블랙 팬더
+金刚狼,Wolvie,金刚狼,,,,,,ウルヴァリン、コミックのスーパーヒーロー,코믹북 슈퍼히어로 울버린
+雷神,Thor,雷神,,,,,,雷神,토르
+洛基,Loki,洛基,,,,,,ロキ,로키
+绿灯侠,Green Lantern,绿灯侠,,,,,,グリーン・ランタン,그린 랜턴
+绿巨人,Hulk,绿巨人,,,,,,ハルク,폐선
+美国队长,Captain America,美国队长,,,,,,キャプテン・アメリカ,캡틴 아메리카
+灭霸,Thamos,灭霸,,,,,,ビッグマック（マクドナルド）,빅맥(맥도날드)
+奇异博士,Doctor Strange,奇异博士,,,,,,ドクター・ストレンジ,닥터 스트레인지
+闪电侠,Flash,闪电侠,,,,,,フラッシュ,플래시
+死侍,Deathrattle,死侍,,,,,,デッドプール,데드풀(비디오 게임 시리즈)
+万磁王,Magneto,万磁王,,,,,,マグニートー,마그네토
+蚁人,Ant Man,蚁人,,,,,,アントマン,앤트맨
+鹰眼,Eagle Eye,鹰眼,,,,,,鷹の目,독수리의 눈
+蜘蛛侠,Spider Person,蜘蛛侠,,,,,,スパイダーマン,스파이더맨
+尾巴,Tail,尾巴,,,,,,しっぽ,꼬리
+孔雀尾巴,Peacock Tail,孔雀尾巴,,,,,,孔雀の尾,공작의 꼬리
+狐狸尾巴,Fox Tail,狐狸尾巴,,,,,,キツネの尻尾,여우 꼬리
+人鱼尾巴,Mermaid Tail,人鱼尾巴,,,,,,人魚の尾,인어의 꼬리
+圣诞节女,Christmas Girl,圣诞节女,,,,,,クリスマスの女の子,크리스마스 소녀
+煎饼狗子,Pancake Dog,煎饼狗子,,,,,,パンケーキドッグ,팬케이크 개
+新年双马尾女,New Year Twin Tails,新年双马尾女,,,,,,新年ダブルポニーテールの女の子,새해 더블 포니테일 소녀
+新年女,New Year Girl,新年女,,,,,,新年の女の子,새해 소녀
+雪人001,Snowman 001,雪人001,,,,,,雪だるま001,눈사람 001
+新年女青年,New Year Girl,新年女青年,,,,,,新年の若い女性たち,새해를 맞이하는 젊은 여성
+万圣节女,Halloween Girl,万圣节女,,,,,,ハロウィン女性,할로윈 여성
+圣诞服装,Christmas Costumes,圣诞服装,,,,,,クリスマスの衣装,크리스마스 의상
+圣诞公主裙,Christmas Princess Skirt,圣诞公主裙,,,,,,クリスマス・プリンセス・ドレス,크리스마스 공주 드레스
+圣诞装,Christmas Outfit,圣诞装,,,,,,クリスマスの衣装,크리스마스 복장
+春节时装,Spring Festival,春节时装,,,,,,春節ファッション,봄 축제 패션
+雪人装,Snowman,雪人装,,,,,,雪だるまの衣装,눈사람 의상
+新年装,New Year's Wear,新年装,,,,,,正月の服装,새해 의류
+兔子套装,Bunny Suit,兔子套装,,,,,,ウサギのスーツ,토끼 옷
+摇滚歌手服饰,Rocker Outfit,摇滚歌手服饰,,,,,,ロック歌手の服,록 가수 의류
+圣诞老人服,Santa Suit,圣诞老人服,,,,,,サンタスーツ,산타복
+巫医服饰,Wizard Doctor Costume,巫医服饰,,,,,,魔女の医者の衣装,마녀 의사 의상
+教廷服饰,Holy See Outfit,教廷服饰,,,,,,バチカンの衣服,바티칸 의류
+鬼脸套装,Ghost Face Suit,鬼脸套装,,,,,,ゴーストフェイス・スーツ,고스트 페이스 슈트
+圣诞老人套装,Santa Suit,圣诞老人套装,,,,,,サンタスーツ,산타복
+鸡蛋套装,Egg Suit,鸡蛋套装,,,,,,たまごセット,계란 세트
+圣诞老人,Santa,圣诞老人,,,,,,サンタクロース,산타클로스
+凌羽琪,Pinkie Ling,凌羽琪,,,,,,リン・ユーチー,링 우치
+新年男,New Year Male,新年男,,,,,,新年の男,새해 남자
+新年男青年,Young Man,新年男青年,,,,,,新年の若者たち,새해를 맞이하는 젊은 남성
+新年男中年,New Year's Eve,新年男中年,,,,,,新年 男性 中年,새해 남성 중년
+新年男005,New Year Male 005,新年男005,,,,,,新年 男性 005,새해 남성 005
 10000：新手引导表,"10,000: Beginner's Guide",10000：新手引导表,,,,,,10000: 初心者向けガイドシート,10000: 초보자 가이드 시트
 20000：身份属性表,20000: Identity Attribute Sheet,20000：身份属性表,,,,,,20000: アイデンティティ属性テーブル,20000: ID 속성 테이블
 当前人数不足,Current numbers are insufficient.,当前人数不足,,,,,,現時点では人が足りません,지금은 인원이 부족해요
@@ -635,16 +1156,18 @@ AI跑步动画,AI Running Animation,AI跑步动画,,,,,,AI走行アニメーシ�
 凶手似乎遗漏了什么...,The Murderer seems to have missed something...,凶手似乎遗漏了什么...,,,,,,犯人は何かを忘れたようだ...,범인은 뭔가를 놓친 것 같습니다...
 合宿谜团,Homestay Mystery,合宿谜团,,,,,,滞在ミステリー,미스터리를 유지하다
 开始,Start,开始,,,,,,始める,시작
+观战,Spectate,观战,,,,,,試合を見る,게임 시청
 观战倒计时,Countdown,观战倒计时,,,,,,カウントダウンを見る,카운트다운 보기
 他的身份是,Their identity is,他的身份是,,,,,,彼の正体は、,그의 정체성은
 加载中...,Loading...,加载中...,,,,,,読み込み中...,로드 중...
 货币不足,Insufficient currency,货币不足,,,,,,お金が足りない,돈이 부족하다
-商店,Shop,商店,,,,,,店,가게
+商店免费,Shop Free,商店免费,,,,,,ショップ・フリー,무료 쇼핑
 凶手专用,For Murderer,凶手专用,,,,,,殺人者専用,살인자에게만
 侦探专用,For Detective,侦探专用,,,,,,探偵専用,형사들에게만
 枪,Gun,枪,,,,,,銃,총
 刀,Knife,刀,,,,,,刀,칼
 挂件,Pendant,挂件,,,,,,ペンダント,펜던트
+购买,Purchase,购买,,,,,,買う,구입하다
 使用,Use,使用,,,,,,使用,사용
 脱下,Take Off,脱下,,,,,,脱ぐ,이륙하다
 购买物品,Purchase,购买物品,,,,,,アイテムを購入する,아이템 구매
@@ -654,7 +1177,6 @@ AI跑步动画,AI Running Animation,AI跑步动画,,,,,,AI走行アニメーシ�
 地图已选出,Map selected,地图已选出,,,,,,選択されたマップ,지도가 선택됨
 随机地图中,Random Map,随机地图中,,,,,,ランダムマップで,무작위 지도에서
 拖尾,Trails,拖尾,,,,,,尾行,미행
-免费领取,Free to claim,免费领取,,,,,,無料で入手,무료로 받으세요
 观看广告领取额外奖励,Watch ads to receive bonus rewards,观看广告领取额外奖励,,,,,,広告を視聴して追加の報酬を受け取りましょう,광고를 시청하고 추가 보상을 받으세요
 观看广告领取补偿,Watch ads to receive compensation,观看广告领取补偿,,,,,,広告の視聴で報酬を得る,광고 시청 보상 받기
 恭喜获得,Obtained!,恭喜获得,,,,,,獲得おめでとうございます,획득 축하드립니다
@@ -673,6 +1195,7 @@ AI跑步动画,AI Running Animation,AI跑步动画,,,,,,AI走行アニメーシ�
 观看广告，获得双倍金币！,Watch ads to get double gold!,观看广告，获得双倍金币！,,,,,,広告を見てコインを2倍ゲット！,광고를 시청하고 코인을 두 배로 받으세요!
 UI按钮上的文字,Text on UI Buttons,UI按钮上的文字,,,,,,UIボタン上のテキスト,UI 버튼의 텍스트
 观看,Watch,观看,,,,,,時計,보다
+抽奖,Lottery,抽奖,,,,,,宝くじ,운
 武器箱,Weapon Chest,武器箱,,,,,,武器箱,무기 상자
 观看广告，免费抽奖一次,Watch ads to get a free lottery,观看广告，免费抽奖一次,,,,,,広告を見て無料の抽選を獲得しましょう,광고를 시청하고 무료 추첨을 받으세요
 距离下次免费：,Next free lottery in:,距离下次免费：,,,,,,次回は無料です:,다음번에는 무료입니다:
@@ -694,7 +1217,7 @@ UI按钮上的文字,Text on UI Buttons,UI按钮上的文字,,,,,,UIボタン上
 能量保护壳被击碎了！小心！,The energy shield is broken! Careful!,能量保护壳被击碎了！小心！,,,,,,エネルギーを守る殻は砕け散った！注意深い！,에너지 보호 껍질이 부서졌습니다! 주의 깊은!
 保护壳的能量被吸收了...,The energy of the protective shell is absorbed...,保护壳的能量被吸收了...,,,,,,保護殻のエネルギーが吸収されて…,보호막의 에너지가 흡수됩니다...
 金币袋已满！,The coin bag is full!,金币袋已满！,,,,,,小銭入れがいっぱいになりました！,코인백이 꽉 찼어요!
-有人被淘汰了！,Someone has been eliminated!,有人被淘汰了！,,,,,,誰かが排除されました！,누군가 제거되었습니다!
+有人倒下了！,Someone has fallen!,有人倒下了！,,,,,,誰かが倒れている！,누군가 쓰러졌어요!
 侦探死亡了，找找他的武器吧！,"The Detective is dead, look for his weapon!",侦探死亡了，找找他的武器吧！,,,,,,刑事は死んだ、武器を探せ！,형사가 죽었습니다. 그의 무기를 찾으세요!
 当前没有正在进行的对局！,There are currently no ongoing matches!,当前没有正在进行的对局！,,,,,,現在進行中の試合はありません。,현재 진행중인 경기가 없습니다!
 密码输入正确,Correct password.,密码输入正确,,,,,,パスワードが正しく入力されました,비밀번호를 올바르게 입력했습니다
@@ -732,10 +1255,10 @@ UI按钮上的文字,Text on UI Buttons,UI按钮上的文字,,,,,,UIボタン上
 深海武器箱,Deep Sea Chest,深海武器箱,,,,,,深海兵器ボックス,심해 무기 상자
 60000：AI数据表,60000: AI Data Sheet,60000：AI数据表,,,,,,60000: AI データシート,60000: AI 데이터 시트
 大厅,Hall,大厅,,,,,,ホール,홀
-湖边别墅,Lakeside Villa,湖边别墅,,,,,,湖畔のヴィラ,호숫가 빌라
+邮轮之旅,Cruise Journey,邮轮之旅,,,,,,クルーズ,크루즈
 关卡地图名称,Level Map Name,关卡地图名称,,,,,,レベルマップ名,레벨 맵 이름
-林中庭院,Forest Courtyard,林中庭院,,,,,,森の中庭,숲속의 안뜰
-废弃医院,Abandoned Hospital,废弃医院,,,,,,廃病院,버려진 병원
+樱花咖啡馆,Sakura Cafe,樱花咖啡馆,,,,,,サクラカフェ,사쿠라 카페
+运输船,Ship,运输船,,,,,,輸送船,운송 선박
 烟雾,Smoke,烟雾,,,,,,煙,연기
 拖尾道具,Trails,拖尾道具,,,,,,後続の小道具,후행 소품
 紫电,Purple Aura,紫电,,,,,,ジディアン,지디안
@@ -773,7 +1296,6 @@ UI按钮上的文字,Text on UI Buttons,UI按钮上的文字,,,,,,UIボタン上
 猫耳女仆,Cat Maid,猫耳女仆,,,,,,猫耳メイドさん,고양이 귀 하녀
 少女偶像,Girl Idol,少女偶像,,,,,,女の子アイドル,여자아이돌
 圣诞少女,Christmas Girl,圣诞少女,,,,,,クリスマスの女の子,크리스마스 소녀
-火焰,Flames,火焰,,,,,,炎,불꽃
 女巫,Witch,女巫,,,,,,魔女,마녀
 骑士,Knight,骑士,,,,,,騎士,기사
 恶魔,Demon,恶魔,,,,,,悪魔,악마
@@ -781,7 +1303,6 @@ UI按钮上的文字,Text on UI Buttons,UI按钮上的文字,,,,,,UIボタン上
 我是{1}~,I am {1}!,我是{1}~,,,,,,私は{1}～,그래요{1}~
 救命！,Help!,救命！,,,,,,ヘルプ！,돕다!
 谢谢你！,Thank you!,谢谢你！,,,,,,ありがとう！,감사합니다!
-你好！,Hello!,你好！,,,,,,こんにちは！,안녕하세요!
 别刀我QAQ,Don't hurt me!,别刀我QAQ,,,,,,私を殺さないで QAQ,날 죽이지 마세요 QAQ
 QAQ希望也本地化一下，换成欧美比较熟悉的颜表情,QAQ wants to customize it to look more familiar in Europe and the United States.,QAQ希望也本地化一下，换成欧美比较熟悉的颜表情,,,,,,QAQ はローカライズされ、ヨーロッパや米国でより馴染みのある表情に置き換えられることを望んでいます。,QAQ는 현지화되어 유럽과 미국에 더 친숙한 표정으로 대체되기를 희망합니다.
 退！退！退！,Get back! Get back! Get back!,退！退！退！,,,,,,後退！後退！後退！,후퇴! 후퇴! 후퇴!
@@ -795,9 +1316,14 @@ QAQ希望也本地化一下，换成欧美比较熟悉的颜表情,QAQ wants to 
 目标错误，你被淘汰了,"Wrong target, you're eliminated.",目标错误，你被淘汰了,,,,,,ターゲットを間違えました、あなたは排除されます,대상이 잘못되었습니다. 당신은 제거되었습니다.
 已被正义的警探消灭,have been eliminated by a justice detective.,已被正义的警探消灭,,,,,,正義の警察刑事によって排除された,정의로운 경찰 수사관들에 의해 제거되었습니다
 能力商店,Power Store,能力商店,,,,,,アビリティストア,능력 저장소
+能力详情,Power details,能力详情,,,,,,機能の詳細,기능 세부정보
 动词,Verb,动词,,,,,,動詞,동사
 卸下,Remove,卸下,,,,,,取り除く,제거하다
+金币购买,Coin Purchase,金币购买,,,,,,金貨の購入,금화 구매
+钻石购买,Diamond Purchase,钻石购买,,,,,,ダイヤモンドの購入,다이아몬드 구매
+装备中,Equipped,装备中,,,,,,装備済み,갖추게 하는
 指“已装备”,"Refers to """"Equipped""""",指“已装备”,,,,,,「装備されている」という意味,'갖추다'라는 뜻
+已拥有,Owned,已拥有,,,,,,すでに所有しています,이미 소유함
 货币不足，再攒攒吧~,"Not enough currency, save up again!",货币不足，再攒攒吧~,,,,,,お金が足りないなら、もう少し貯めてくださいね〜,돈이 부족하다면 좀 더 아껴두세요~
 杀手步伐,Killer Pace,杀手步伐,,,,,,キラーペース,킬러 페이스
 杀手的特殊能力名称,Killer's special ability name,杀手的特殊能力名称,,,,,,キラーの特殊能力名,킬러의 특수 능력 이름
@@ -860,14 +1386,164 @@ QAQ希望也本地化一下，换成欧美比较熟悉的颜表情,QAQ wants to 
 尚未激活会员特权,Member Privileges have not been activated.,尚未激活会员特权,,,,,,メンバー権限はまだ有効化されていません,회원권한이 아직 활성화되지 않았습니다
 尚未激活超级特权,Super Privilege has not been activated.,尚未激活超级特权,,,,,,スーパー権限はまだ有効化されていません,슈퍼 권한이 아직 활성화되지 않았습니다
 剩余激活时间{0}天,Remaining activation time: {0} days.,剩余激活时间{0}天,,,,,,残りのアクティベーション時間{0}空,남은 활성화 시간{0}하늘
+会员特权,Member Privilege,会员特权,,,,,,会員特典,회원 특전
+超级特权,Super Privilege,超级特权,,,,,,超特権,슈퍼 특권
 恭喜获得广告券*1,Congratulations on getting the ad voucher *1!,恭喜获得广告券*1,,,,,,広告クーポン獲得おめでとうございます*1,광고쿠폰*1 획득을 축하합니다
 土豪来啦,Welcome!,土豪来啦,,,,,,富裕層がやってくる,부자들이 온다
 和上面一样,Same as above.,和上面一样,,,,,,同上,위와 동일
 金钥匙数量不足,Insufficient number of golden keys.,金钥匙数量不足,,,,,,ゴールデンキーの数が不十分です,황금열쇠 개수가 부족합니다.
 这个版本不支持开通大会员,Membership is not supported in this version.,这个版本不支持开通大会员,,,,,,このバージョンは大規模なメンバーシップのアクティベーションをサポートしていません,이 버전은 대규모 멤버십 활성화를 지원하지 않습니다.
-"s not ready yet, please wait a little longer to get it~"", ""时间还没到，再等一下才能获得哦~"", null], [30058, ""Tips_Content_20004"", ""You",,"s not ready yet, please wait a little longer to get it~"", ""时间还没到，再等一下才能获得哦~"", null], [30058, ""Tips_Content_20004"", ""You",,,,,,,
-"t trust anyone who tries to get close to you, they are dangerous, always stay alert.\n3. If you are a student, try to survive!"", ""1.如果你是杀手/侦探，请尽量不要暴露自己的身份\n2.不要相信任何试图靠近你的人，他们很危险，时刻保持警惕\n3.假如你是平民，那么努力活下来吧"", ""文本长度尽量和中文一致""], [90016, ""Text_Content_20039"", ""Murderer Tutorial"", ""凶手教学"", null], [90017, ""Text_Content_20040"", ""Detective Tutorial"", ""侦探教学"", null], [90018, ""Text_Content_20041"", ""Tips"", ""温馨提示"", null], [90019, ""Tips_Content_20009"", ""The murderer defeated you."", ""凶手淘汰了你"", null], [90020, ""Tips_Content_20010"", ""Wrong target, you",,"t trust anyone who tries to get close to you, they are dangerous, always stay alert.\n3. If you are a student, try to survive!"", ""1.如果你是杀手/侦探，请尽量不要暴露自己的身份\n2.不要相信任何试图靠近你的人，他们很危险，时刻保持警惕\n3.假如你是平民，那么努力活下来吧"", ""文本长度尽量和中文一致""], [90016, ""Text_Content_20039"", ""Murderer Tutorial"", ""凶手教学"", null], [90017, ""Text_Content_20040"", ""Detective Tutorial"", ""侦探教学"", null], [90018, ""Text_Content_20041"", ""Tips"", ""温馨提示"", null], [90019, ""Tips_Content_20009"", ""The murderer defeated you."", ""凶手淘汰了你"", null], [90020, ""Tips_Content_20010"", ""Wrong target, you",,,,,,,
-"s Passive Ability] When you pull out your knife, your movement speed is increased by 10% faster than usual."", ""【杀手被动能力】\n当你掏出你的刀时，你的移动速度会比平时更快，提升10％"", null], [90036, ""SkillShop_Description_10002"", ""[Murderer",,"s Passive Ability] When you pull out your knife, your movement speed is increased by 10% faster than usual."", ""【杀手被动能力】\n当你掏出你的刀时，你的移动速度会比平时更快，提升10％"", null], [90036, ""SkillShop_Description_10002"", ""[Murderer",,,,,,,
+紫光剑,Purple light sword,紫光剑,,,,,,紫光の剣,보라색 빛의 검
+冰寒弓箭,Ice Bow,冰寒弓箭,,,,,,氷のように冷たい弓矢,얼음처럼 차가운 활과 화살
+烟花拖尾,Fireworks Trail,烟花拖尾,,,,,,花火の道,불꽃놀이 코스
+爆竹拖尾,Firecracker Trail,爆竹拖尾,,,,,,爆竹の後を追う,폭죽 후행
+礼物拖尾,Gift Trail,礼物拖尾,,,,,,ギフトテール,선물 꼬리
+糖果拖尾,Candy Trail,糖果拖尾,,,,,,キャンディトレイル,캔디 트레일
+便便拖尾,Poop Trail,便便拖尾,,,,,,うんこが尾を引く,똥 후행
+ 火焰翅膀, Flame Wings, 火焰翅膀,,,,,, 炎の翼, 불꽃 날개
+火焰翅膀,Flame Wings,火焰翅膀,,,,,,炎の翼,불꽃 날개
+水系翅膀,Water Wings,水系翅膀,,,,,,アクア・ウィングス,아쿠아 윙
+黑暗翅膀,Dark Wings,黑暗翅膀,,,,,,暗い翼,어두운 날개
+恶魔翅膀,Demon Wing,恶魔翅膀,,,,,,悪魔の翼,악마의 날개
+恶灵翅膀,Evil Spirit Wings,恶灵翅膀,,,,,,悪霊の翼,악령의 날개
+天使翅膀,Angel Wing,天使翅膀,,,,,,天使の羽,천사 날개
+免费领券,Free Voucher,免费领券,,,,,,無料クーポン,무료쿠폰
+设置,Settings,设置,,,,,,設定,설정
+皮肤,Skin,皮肤,,,,,,肌,피부
+广告券兑换,Vouchers for Items,广告券兑换,,,,,,広告クーポンの引き換え,광고쿠폰 상환
+消耗,Consume,消耗,,,,,,消費する,소비하다
+凶手能力装配,Murderer Ability Equipped,凶手能力装配,,,,,,キラーアビリティの集合体,킬러 능력 조립
+{0}失败，请重试,"{0} failed, please try again",{0}失败，请重试,,,,,,{0}失敗しました。,{0}실패했습니다. 다시 시도하세요.
+换装成功,Outfit change successful!,换装成功,,,,,,ドレスアップ成功,성공적으로 옷을 입다
+看广告免费试穿,Watch ads for free try-on,看广告免费试穿,,,,,,広告をご覧になり、無料でお試しください。,광고 시청 및 무료 체험
+免费试穿,Free Trial,免费试穿,,,,,,無料トライアル,무료 평가판
+恭喜获得{0}金币,Congratulations on winning the {0} coins!,恭喜获得{0}金币,,,,,,おめでとう{0}金貨,축하드립니다 {0}골드 코인
+看广告免费领取{0}金币,Watch ads to claim {0} coins for free,看广告免费领取{0}金币,,,,,,広告を見て、{0}金貨を無料で手に入れよう。,광고를 보고 {0}금화를 무료로 받으세요.
+恭喜获得{0}张广告券,Congratulations on obtaining {0}an ad voucher!,恭喜获得{0}张广告券,,,,,,{0}広告クーポン獲得おめでとうございます！,{0}광고 쿠폰을 받으신 것을 축하드립니다!
+免费领取{0}张广告券,Claim {0}free ad vouchers,免费领取{0}张广告券,,,,,,{0}無料広告クーポンを受け取る,무료 {0}광고 쿠폰 받기
+免费领取双倍金币\n再送一张广告券,Claim double gold coins for free \nand get another ad voucher,免费领取双倍金币\n再送一张广告券,,,,,,無料で 2 倍の金貨を獲得し、\n広告クーポンを獲得してください,더블 골드 코인을 무료로 받고\n광고 쿠폰을 받으세요.
+免费抽奖,Free Lottery,免费抽奖,,,,,,無料抽選,무료 추첨
+高度,Height,高度,,,,,,高い,높은
+开始结算,Start Settlement,开始结算,,,,,,決済開始,정산 시작
+玩家{0}死亡了,Player {0}dead,玩家{0}死亡了,,,,,,{0}選手が死亡,{0}플레이어가 사망했습니다.
+有玩家没有成功进入场景，游戏重新开始,"A player failed to enter the scene, the game restarts.",有玩家没有成功进入场景，游戏重新开始,,,,,,プレイヤーがシーンに正常に入ることができなかった場合、ゲームは再開されます。,플레이어가 해당 장면에 성공적으로 입장하지 못하면 게임이 다시 시작됩니다.
+不要轻易暴露自己的身份\n远离那些试图靠近你的人\n不要相信任何人\n每个人都可能很危险!,Don't reveal yourself easily\nStay away from those who try to reach you\nDon't trust anyone\nEveryone can be dangerous!,不要轻易暴露自己的身份\n远离那些试图靠近你的人\n不要相信任何人\n每个人都可能很危险!,,,,,,安易に自分をさらけ出さないこと、自分に近づこうとする人に近づかないこと、誰も信用しないこと、誰もが危険な可能性がある！,너무 쉽게 자신을 노출하지 마세요\n 가까이 다가오려는 사람에게서 멀리 떨어져 있어요\n 아무도 믿지 마세요\n 누구나 위험할 수 있어요!
+掏出手枪后，点击屏幕射击\n找到隐藏的凶手，击败他!\n不要攻击平民,Raise your gun and tap to shoot. \nFind the Murderer and defeat him! \nDon't attack civilians.,掏出手枪后，点击屏幕射击\n找到隐藏的凶手，击败他!\n不要攻击平民,,,,,,ピストルを取り出したら、画面をタップして発砲します\n隠れた殺人者を見つけて倒してください!\n民間人を攻撃しないでください,권총을 꺼낸 후 화면을 탭하여 총을 쏘세요\n숨겨진 살인자를 찾아서 물리치세요!\n민간인을 공격하지 마세요
+掏出近战武器后，会自动攻击周围玩家\n掏出远程飞刀后，点击准星来扔出\n击败所有人，小心侦探!,Attack [Melee]: Attack [Melee]: Attack [Melee]: Attack [Melee]: Attack [Melee]: Attack [Melee]: Attack [Melee]: Attack [Melee]: Attack [Melee]: Attack [Melee]: Attack [Melee]: Attack [Melee]: Attack [Melee]: Attack [Melee]: Attack [Melee]: Attack [Melee]: Attack [Melee]: Attack [Melee]: Attack [Ranged]: Tap [Ranged]: Dart [Ranged]: Shoot [Ranged]: Shoot [Ranged]: Shoot [Ranged]: Shoot [Ranged] to shoot [Ranged] to shoot [Ranged] to shoot [Red] [Red] [Red] [Red] [Red] [Red] [Red] [Red] [Red] [Red] [Red] [Red] [Red] [Red] [Red] [Red] [Red] [Red] [Red] [Red] [Red] [Red] [Red] [Red] [Red] [Red] [Red] [Red] [Red] [Red] [Red] [Red] [Red] to shoot [Red] [Ded] [Ded] [Ded] [Ded] [Ded] [Ded] to kill everyone to kill everyone. Detective!,掏出近战武器后，会自动攻击周围玩家\n掏出远程飞刀后，点击准星来扔出\n击败所有人，小心侦探!,,,,,,近接武器を取り出すと、自動的に周囲のプレイヤーを攻撃します\n遠距離投げナイフを取り出したら、十字線をクリックして投げます\n全員を倒します、探偵に注意してください!,"근접 무기를 꺼내면 자동으로 주변 플레이어를 공격합니다.\n장거리 투척칼을 꺼낸 후 십자선을 클릭하여 던집니다.\n모두 물리치고, 탐정을 조심하세요!"
+不能重复领取,Can not claim repeatedly.,不能重复领取,,,,,,繰り返し受信はできません,반복해서 받을 수 없습니다
+在线时间不足{0}分钟,Online time less{0} than min,在线时间不足{0}分钟,,,,,,オンライン{0}分未満,온라인에서 {0}분 미만
+奖励金币,Reward Coins,奖励金币,,,,,,ボーナス・ゴールド,보너스 골드
+明日奖励,Tomorrow's Reward,明日奖励,,,,,,明日のご褒美,내일의 보상
+在线{0}分钟免费领取({1}/{2}),Claim for free in {0} minutes ({1}/{2}),在线{0}分钟免费领取({1}/{2}),,,,,,オンラインは{0}分無料 ({1}/{2}),온라인 {0}분 무료 ( {1}/ {2})
+领取成功、打开商店使用,Claimed successfully. Open the shop for use.,领取成功、打开商店使用,,,,,,それを手に入れ、店を開き、使う。,받아 상점을 열고 사용하세요.
+"今日已售空,请更换其他商品购买","Sold out today, please replace with another item","今日已售空,请更换其他商品购买",,,,,,本日は売り切れましたので、他の商品に変更してください。,현재 품절되었으니 다른 상품으로 변경하여 구매해 주세요.
+充值广告券,Top-up Voucher,充值广告券,,,,,,充電式広告クーポン,충전식 광고 쿠폰
+不限购,Unlimited Purchase,不限购,,,,,,購入制限なし,구매 제한 없음
+今日已售空,Sold Out,今日已售空,,,,,,本日完売,오늘 매진
+广告券,Voucher,广告券,,,,,,広告クーポン,광고쿠폰
+别点太快,Don't click too fast.,别点太快,,,,,,あまり急いで注文しないこと。,너무 빨리 클릭하지 마세요.
+超级装扮,Super Outfit,超级装扮,,,,,,スーパードレスアップ,슈퍼 드레스 업
+请输入好友角色ID,Please enter your Friend Character ID,请输入好友角色ID,,,,,,お友達のキャラクターIDを入力してください。,친구의 캐릭터 ID를 입력하세요.
+免费保存形象,Save Avatar for Free,免费保存形象,,,,,,無料画像保存,무료 이미지 보존
+免费试穿好友的角色形象,Try on your friend's character for free,免费试穿好友的角色形象,,,,,,友人のキャラクター画像を無料で試着できる,친구의 캐릭터 이미지를 무료로 사용해 보세요.
+复制成功,Copy successful,复制成功,,,,,,正常にコピーされました,성공적으로 복사되었습니다
+ID无效！,Invalid ID!,ID无效！,,,,,,IDが無効です！,ID가 유효하지 않습니다!
+加载中,Loading,加载中,,,,,,読み込み中,로드 중
+试穿成功,Try On Successfully,试穿成功,,,,,,トライアルの成功,성공적인 평가판
+复制角色ID分享好友试穿,Copy Character ID to share friend try-on,复制角色ID分享好友试穿,,,,,,キャラクターIDをコピーして友人と共有し、試着できる,캐릭터 ID를 복사하여 친구와 공유하여 입어볼 수 있습니다.
+试穿中，请耐心等待。,Please try it out.,试穿中，请耐心等待。,,,,,,辛抱してください。,조금만 기다려주세요.
+换装,Change clothes,换装,,,,,,ドレスアップ,옷을 입다
+收藏,Collect,收藏,,,,,,集める,모으다
+测试,test,测试,,,,,,テスト,시험
+肤色,Skin Color,肤色,,,,,,色,색상
+脸型,Face Shape,脸型,,,,,,顔の形,얼굴 모양
+眼睛,Eyes,眼睛,,,,,,目,눈
+眉毛,Eyebrows,眉毛,,,,,,眉,눈썹
+妆容,Makeup,妆容,,,,,,補う,조립
+头发,Hair,头发,,,,,,髪,머리카락
+上衣,Top,上衣,,,,,,上衣,재킷
+下衣,Bottom,下衣,,,,,,ボトムス,하의
+鞋子,Shoes,鞋子,,,,,,靴,구두
+手套,Gloves,手套,,,,,,手袋,장갑
+宠物,Pets,宠物,,,,,,ペット,애완 동물
+饰品,Accessories,饰品,,,,,,アクセサリー,부속품
+瞳孔贴花,Pupil Decal,瞳孔贴花,,,,,,瞳デカール,동공 데칼
+上高光,Upper Highlight,上高光,,,,,,ハイライト,가장 밝은 부분
+下高光,Lower Highlight,下高光,,,,,,ハイライト,가장 밝은 부분
+睫毛,Eyelashes,睫毛,,,,,,まつげ,속눈썹
+腮红,Blush,腮红,,,,,,赤面,붉히다
+口红,Lipstick,口红,,,,,,口紅,입술 연지
+面部彩绘,Face Painting,面部彩绘,,,,,,フェイスペインティング,페이스 페인팅
+整体发型,Integral Hair,整体发型,,,,,,全体的な髪型,전체적인 헤어스타일
+后发,Latecomer,后发,,,,,,遅発性,늦은 발병
+左手,Left Hand,左手,,,,,,左手,왼손
+右手,Right Hand,右手,,,,,,右手,오른손
+背饰,Wings,背饰,,,,,,背面装飾,뒷면 장식
+头饰,Headgear,头饰,,,,,,ヘッドギア,머리 장식
+面饰,Face Decor,面饰,,,,,,表面装飾,표면 장식
+臀部,Butt,臀部,,,,,,お尻,엉덩이
+肩部,Shoulders,肩部,,,,,,肩部,어깨
+特效,Effects,特效,,,,,,特撮,특수 효과
+耳饰,Earrings,耳饰,,,,,,イヤリング,귀걸이
+此功能未开启,This function is not enabled,此功能未开启,,,,,,この機能は有効になっていない,이 기능은 활성화되어 있지 않습니다.
+{0}倍,{0} x,{0}倍,,,,,,{0}倍,{0}배율(승수)
+调色板,Palette,调色板,,,,,,カラーパレット,색상 팔레트
+部位 {0},Part {0},部位 {0},,,,,,部位 {0},장소 {0}
+这个{0}不支持调色,This {0} does not support toning,这个{0}不支持调色,,,,,,この{0}はカラーミキシングをサポートしていません。,이 {0}는 색상 혼합을 지원하지 않습니다.
+左瞳孔颜色,Left Pupil Color,左瞳孔颜色,,,,,,左瞳孔の色,왼쪽 동공 색상
+右瞳孔颜色,Right Pupil Color,右瞳孔颜色,,,,,,右瞳孔の色,오른쪽 동공 색상
+单色,Monochrome,单色,,,,,,カラープリント,컬러 인쇄
+发顶色,Hair Top Color,发顶色,,,,,,トパーズ,토파즈
+发尾色,Hairtail,发尾色,,,,,,毛色,머리 색깔
+免费保存,Save for Free,免费保存,,,,,,無料セービング,무료 저장
+重置平台形象失败,Failed to reset platform avatar,重置平台形象失败,,,,,,プラットフォーム・イメージのリセットに失敗しました,플랫폼 이미지 재설정에 실패했습니다.
+保存{0}颜色,Save {0}color,保存{0}颜色,,,,,,{0}カラーを保存,저장 {0}색상
+是否保存当前角色形象,Save current character appearance?,是否保存当前角色形象,,,,,,現在の文字画像を保存するかどうか,현재 캐릭터 이미지 저장 여부
+关闭提示,Close Prompt,关闭提示,,,,,,プロンプトを閉じる,프롬프트 닫기
+保存成功,Save successfully,保存成功,,,,,,正常に保存されました,성공적으로 저장되었습니다
+重置成功,Reset successful!,重置成功,,,,,,リセット成功,재설정 성공
+切换成功,Switch successful,切换成功,,,,,,スイッチング成功,전환 성공
+是否保留当前颜色,Preserve current color?,是否保留当前颜色,,,,,,現在の色を維持するかどうか,현재 색상을 유지할지 여부
+保留,Reserve,保留,,,,,,予約する,예약하다
+不保留,Not Reserved,不保留,,,,,,予約不可,비예약
+日常造型1,Daily Shape 1,日常造型1,,,,,,エブリデイ・スタイリング 1,일상 스타일링 1
+布偶造型,Puppet Styling,布偶造型,,,,,,マペットの形,머펫 모양
+英雄造型,Hero Styling,英雄造型,,,,,,ヒーロールック,영웅의 모습
+幻想造型,Fantasy Styling,幻想造型,,,,,,ファンタジーな外観,판타지한 모습
+节日造型,Festive Styling,节日造型,,,,,,ホリデールック,홀리데이 룩
+科幻造型,Sci-Fi Styling,科幻造型,,,,,,SF 風の外観,공상 과학적인 모습
+古代造型,Ancient Styling,古代造型,,,,,,古代のスタイル,고대 스타일
+长单件,Long Piece,长单件,,,,,,ロングアイテム,긴 항목
+短外套,Short Outfit,短外套,,,,,,ショートジャケット,쇼트 재킷
+短单件,Short Piece,短单件,,,,,,ショートアイテム,짧은 항목
+长外套,Long coat,长外套,,,,,,ロングコート,롱 코트
+短裙,Skirt,短裙,,,,,,短いスカート,짧은 치마
+长裤,Long Trousers,长裤,,,,,,ハァハァ,pant
+短裤,Shorts,短裤,,,,,,ニーブリーチ,무릎 바지
+长裙,Long Skirt,长裙,,,,,,ロングスカート,롱 스커트
+裤袜,Pantyhose,裤袜,,,,,,パンスト,팬티스타킹
+手套饰品,Glove Accessories,手套饰品,,,,,,グローブ・ジュエリー,장갑 쥬얼리
+日常鞋,Daily Shoes,日常鞋,,,,,,デイリーシューズ,일상 신발
+靴子,Boots,靴子,,,,,,グローブ,부츠
+足套,Footgear,足套,,,,,,履物,신발
+裸饰,Nude Decor,裸饰,,,,,,ヌードオーナメント,누드 장식
+高跟鞋,High Heels,高跟鞋,,,,,,ハイヒール,하이힐
+运动鞋,Sneaker,运动鞋,,,,,,スニーカー,운동화
+日常造型2,Daily Shape 2,日常造型2,,,,,,エブリデイ・スタイリング 2,일상 스타일링 2
+未上榜,Not listed,未上榜,,,,,,リストに載っていない,목록에 없음
+等级,Level,等级,,,,,,学年,등급
+等级全服前{0}名,Level Global Top{0},等级全服前{0}名,,,,,,全サービスにおけるトップ{0},전체 서비스에서 상위 {0}순위
+"t know what to do"",""这里是你本局的目标，不知道做什么的话就看一下这里吧"",null],[10003,""Guide_GuideContent_10003"",""Survive to win~"",""努力活下来才能够获得胜利~"",null],[10004,""Guide_GuideContent_10004"",""Here is the energy ball:"",""这是能量球："",null],[10005,""Guide_GuideContent_10005"",""Collect them all to get a protective shield"",""集齐能量球，可以获得一层保护壳"",null],[10006,""Guide_GuideContent_10006"",""This is your goal in this round, achieve it before the game ends to win"",""这里是你本局的目标，在对局结束前完成目标才能获得胜利"",null],[10007,""Guide_GuideContent_10007"",""This is your goal in this round, achieve it before the game ends to win"",""这里是你本局的目标，在对局结束前完成目标才能获得胜利"",null],[10008,""Guide_GuideContent_10008"",""You have a new goal, to defeat the Murderer and protect the Students"",""你有了新的目标，击杀凶手，保护学生"",null],[10009,""Guide_GuideContent_10009"",""This is what you are playing in this round"",""这里是本局中你的身份"",null],[10010,""Guide_GuideContent_10010"",""This is what you are playing in this round"",""这里是本局中你的身份"",null],[10011,""Guide_GuideContent_10011"",""Congratulation! You just picked up the weapon and you",,"t know what to do"",""这里是你本局的目标，不知道做什么的话就看一下这里吧"",null],[10003,""Guide_GuideContent_10003"",""Survive to win~"",""努力活下来才能够获得胜利~"",null],[10004,""Guide_GuideContent_10004"",""Here is the energy ball:"",""这是能量球："",null],[10005,""Guide_GuideContent_10005"",""Collect them all to get a protective shield"",""集齐能量球，可以获得一层保护壳"",null],[10006,""Guide_GuideContent_10006"",""This is your goal in this round, achieve it before the game ends to win"",""这里是你本局的目标，在对局结束前完成目标才能获得胜利"",null],[10007,""Guide_GuideContent_10007"",""This is your goal in this round, achieve it before the game ends to win"",""这里是你本局的目标，在对局结束前完成目标才能获得胜利"",null],[10008,""Guide_GuideContent_10008"",""You have a new goal, to defeat the Murderer and protect the Students"",""你有了新的目标，击杀凶手，保护学生"",null],[10009,""Guide_GuideContent_10009"",""This is what you are playing in this round"",""这里是本局中你的身份"",null],[10010,""Guide_GuideContent_10010"",""This is what you are playing in this round"",""这里是本局中你的身份"",null],[10011,""Guide_GuideContent_10011"",""Congratulation! You just picked up the weapon and you",,,,,,,
+"s not ready yet, please wait a little longer to get it~"",""时间还没到，再等一下才能获得哦~"",null],[30058,""Tips_Content_20004"",""You",,"s not ready yet, please wait a little longer to get it~"",""时间还没到，再等一下才能获得哦~"",null],[30058,""Tips_Content_20004"",""You",,,,,,,
+"t trust anyone who tries to get close to you, they are dangerous, always stay alert.\n3. If you are a student, try to survive!"",""1.如果你是杀手/侦探，请尽量不要暴露自己的身份\n2.不要相信任何试图靠近你的人，他们很危险，时刻保持警惕\n3.假如你是平民，那么努力活下来吧"",""文本长度尽量和中文一致""],[90016,""Text_Content_20039"",""Murderer Tutorial"",""凶手教学"",null],[90017,""Text_Content_20040"",""Detective Tutorial"",""侦探教学"",null],[90018,""Text_Content_20041"",""Tips"",""温馨提示"",null],[90019,""Tips_Content_20009"",""The murderer defeated you."",""凶手淘汰了你"",null],[90020,""Tips_Content_20010"",""Wrong target, you",,"t trust anyone who tries to get close to you, they are dangerous, always stay alert.\n3. If you are a student, try to survive!"",""1.如果你是杀手/侦探，请尽量不要暴露自己的身份\n2.不要相信任何试图靠近你的人，他们很危险，时刻保持警惕\n3.假如你是平民，那么努力活下来吧"",""文本长度尽量和中文一致""],[90016,""Text_Content_20039"",""Murderer Tutorial"",""凶手教学"",null],[90017,""Text_Content_20040"",""Detective Tutorial"",""侦探教学"",null],[90018,""Text_Content_20041"",""Tips"",""温馨提示"",null],[90019,""Tips_Content_20009"",""The murderer defeated you."",""凶手淘汰了你"",null],[90020,""Tips_Content_20010"",""Wrong target, you",,,,,,,
+"s Passive Ability] When you pull out your knife, your movement speed is increased by 10% faster than usual."",""【杀手被动能力】\n当你掏出你的刀时，你的移动速度会比平时更快，提升10％"",null],[90036,""SkillShop_Description_10002"",""[Murderer",,"s Passive Ability] When you pull out your knife, your movement speed is increased by 10% faster than usual."",""【杀手被动能力】\n当你掏出你的刀时，你的移动速度会比平时更快，提升10％"",null],[90036,""SkillShop_Description_10002"",""[Murderer",,,,,,,
+"t trust anyone.\nEveryone can be dangerous!"",""不要轻易暴露自己的身份\n远离那些试图靠近你的人\n不要相信任何人\n每个人都可能很危险!"",null],[100033,""Text_World2"",""Pull out your pistol and tap the screen to fire\nFind the hidden killer and defeat him!\nDon",,"t trust anyone.\nEveryone can be dangerous!"",""不要轻易暴露自己的身份\n远离那些试图靠近你的人\n不要相信任何人\n每个人都可能很危险!"",null],[100033,""Text_World2"",""Pull out your pistol and tap the screen to fire\nFind the hidden killer and defeat him!\nDon",,,,,,,
+"s Reward"",""明日奖励"",null],[100041,""Text_Task6"",""Free Online {0} Minutes ({1}/{2})"",""在线{0}分钟免费领取({1}/{2})"",null],[100042,""Text_Task7"",""Receive successfully, open the shop to use"",""领取成功、打开商店使用"",null],[100043,""Text_SoldouttodayPleaseReplaceWithOtherProductsToPurchase"",""Sold Out Today, Please Replace With Other Products To Purchase"",""今日已售空,请更换其他商品购买"",null],[100044,""Text_Rechargediamonds"",""Recharge"",""充值广告券"",null],[100045,""Text_Nopurchaserestrictions"",""No purchase Restrictions"",""不限购"",null],[100046,""Text_Soldouttoday"",""Sold Out Today"",""今日已售空"",null],[100047,""Text_Limitedtoonepurchaseperday"",""Limited To One Purchase Per Day"",""每天限购一次"",null],[100048,""Text_AdvertisingCoupon"",""Coupon"",""广告券"",null],[100049,""Text_TipsTooFast"",""Don",,"s Reward"",""明日奖励"",null],[100041,""Text_Task6"",""Free Online {0} Minutes ({1}/{2})"",""在线{0}分钟免费领取({1}/{2})"",null],[100042,""Text_Task7"",""Receive successfully, open the shop to use"",""领取成功、打开商店使用"",null],[100043,""Text_SoldouttodayPleaseReplaceWithOtherProductsToPurchase"",""Sold Out Today, Please Replace With Other Products To Purchase"",""今日已售空,请更换其他商品购买"",null],[100044,""Text_Rechargediamonds"",""Recharge"",""充值广告券"",null],[100045,""Text_Nopurchaserestrictions"",""No purchase Restrictions"",""不限购"",null],[100046,""Text_Soldouttoday"",""Sold Out Today"",""今日已售空"",null],[100047,""Text_Limitedtoonepurchaseperday"",""Limited To One Purchase Per Day"",""每天限购一次"",null],[100048,""Text_AdvertisingCoupon"",""Coupon"",""广告券"",null],[100049,""Text_TipsTooFast"",""Don",,,,,,,
+单手刀,single-handed knife,单手刀,,,,,,片手包丁,한손 나이프
+星月魔杖,Starry Magic Wand,星月魔杖,,,,,,星と月の杖,별과 달 지팡이
+散弹喷枪,Shotgun,散弹喷枪,,,,,,ショットガン,산탄총
+弓箭,Bow and Arrow,弓箭,,,,,,弓矢,궁전
+法杖,Wand,法杖,,,,,,スタッフ,직원
 粉色,Pink,粉色,,,,,,ピンク,분홍색
 黄色,Yellow,黄色,,,,,,黄色,노란색
 左边,Left,左边,,,,,,左,왼쪽
@@ -887,10 +1563,10 @@ QAQ希望也本地化一下，换成欧美比较熟悉的颜表情,QAQ wants to 
 这扇门需要同时按压两个按钮才可开启，与你的搭档一起冲过去吧！,This door requires pressing two buttons simultaneously to open. Dash through with your partner!,这扇门需要同时按压两个按钮才可开启，与你的搭档一起冲过去吧！,,,,,,このドアを開けるには 2 つのボタンを同時に押す必要があるので、パートナーと一緒に急いで通過してください。,이 문을 열려면 두 개의 버튼을 동시에 눌러야 하므로 파트너와 함께 서둘러서 들어가세요!
 方形的按钮只有用“同伴方块”才可按压，快将它推至对应位置打开大门吧！,"The square button can only be pressed with the """"Companion Square,"""" quickly push it to the corresponding position to open the door!",方形的按钮只有用“同伴方块”才可按压，快将它推至对应位置打开大门吧！,,,,,,四角ボタンは「コンパニオンキューブ」でのみ押すことができ、対応する位置に押すと扉が開きます！,"사각형 버튼은 """"컴패니언 큐브""""로만 누를 수 있으며, 해당 위치로 밀어 문을 열 수 있습니다!"
 与你的搭档合作，将友情方块顺利推至按钮处吧！,Work with your partner to push the friendship square to the button!,与你的搭档合作，将友情方块顺利推至按钮处吧！,,,,,,パートナーと協力して友情ブロックをボタンに押し込みましょう！,파트너와 협력하여 우정 블록을 원활하게 버튼에 밀어 넣으세요!
-建议先通关“信任即钥匙”关卡后再挑战本关卡,It is recommended to complete the """"""""Trust is Key"""""""" level before challenging this level.,建议先通关“信任即钥匙”关卡后再挑战本关卡,,,,,,このレベルに挑戦する前に、まず「信頼が鍵」レベルをクリアすることをお勧めします。,이 레벨에 도전하기 전에 먼저 """"""""신뢰가 핵심"""""""" 레벨을 클리어하는 것이 좋습니다.
-建议先通关“往返跳跃”关卡后再挑战本关卡,It is recommended to complete the Round Trip level before challenging this level.,建议先通关“往返跳跃”关卡后再挑战本关卡,,,,,,「往復ジャンプ」レベルをクリアしてから挑戦することをお勧めします。,이 레벨에 도전하기 전에 먼저 """"""""왕복 점프"""""""" 레벨을 클리어하는 것이 좋습니다.
+建议先通关“信任即钥匙”关卡后再挑战本关卡,It is recommended to complete the """"Trust is Key"""" level before challenging this level.,建议先通关“信任即钥匙”关卡后再挑战本关卡,,,,,,このレベルに挑戦する前に、まず「信頼が鍵」レベルをクリアすることをお勧めします。,이 레벨에 도전하기 전에 먼저 """"신뢰가 핵심"""" 레벨을 클리어하는 것이 좋습니다.
+建议先通关“往返跳跃”关卡后再挑战本关卡,It is recommended to complete the Round Trip level before challenging this level.,建议先通关“往返跳跃”关卡后再挑战本关卡,,,,,,「往復ジャンプ」レベルをクリアしてから挑戦することをお勧めします。,이 레벨에 도전하기 전에 먼저 """"왕복 점프"""" 레벨을 클리어하는 것이 좋습니다.
 墙上的开关只能触发一瞬间，与你的默契搭档一同跳起打开大门吧！,A switch on the wall only triggers a moment. Jump up and open the door with your partner!,墙上的开关只能触发一瞬间，与你的默契搭档一同跳起打开大门吧！,,,,,,壁のスイッチはほんの一瞬しか作動しません。黙り込んでいるパートナーと一緒に飛び上がってドアを開けてください。,벽에 있는 스위치는 잠시 동안만 활성화될 수 있습니다. 암묵적인 파트너와 함께 뛰어 올라 문을 열어보세요!
-建议先通关“箱子难题”关卡后再挑战本关卡,It is recommended to complete the """"""""box puzzle"""""""" level before challenging this level.,建议先通关“箱子难题”关卡后再挑战本关卡,,,,,,「ボックスパズル」レベルをクリアしてから挑戦することをお勧めします。,이 레벨에 도전하기 전에 먼저 """"""""박스 퍼즐"""""""" 레벨을 클리어하는 것이 좋습니다.
+建议先通关“箱子难题”关卡后再挑战本关卡,It is recommended to complete the """"box puzzle"""" level before challenging this level.,建议先通关“箱子难题”关卡后再挑战本关卡,,,,,,「ボックスパズル」レベルをクリアしてから挑戦することをお勧めします。,이 레벨에 도전하기 전에 먼저 """"박스 퍼즐"""" 레벨을 클리어하는 것이 좋습니다.
 这里是最难的关卡之一，建议先通关简单与普通难度的关卡再来挑战哦,This is one of the most challenging levels. It is recommended to complete both the simple and the ordinary levels first.,这里是最难的关卡之一，建议先通关简单与普通难度的关卡再来挑战哦,,,,,,最も難しいレベルの 1 つです。最初に Easy および Normal の難易度をクリアしてから挑戦することをお勧めします。,"가장 어려운 레벨 중 하나이며, 도전하기 전에 먼저 쉽고 보통 난이도를 클리어하는 것이 좋습니다."
 教程,Tutorial,教程,,,,,,チュートリアル,지도 시간
 齐心协力,Working Together,齐心协力,,,,,,一緒に働く,함께 일하다
@@ -902,12 +1578,10 @@ QAQ希望也本地化一下，换成欧美比较熟悉的颜表情,QAQ wants to 
 层层登攀,Climbing,层层登攀,,,,,,上がったり下がったり,오르락 내리락
 心跳冲刺,Heartthrob Sprint,心跳冲刺,,,,,,ハートビートスプリント,심장박동 질주
 人箱合一,Suitcase,人箱合一,,,,,,マンボックスインワン,맨박스가 하나로
-换装,Change clothes,换装,,,,,,ドレスアップ,옷을 입다
 音量：开,Volume: On,音量：开,,,,,,音量: オン,볼륨: 켜짐
 音量：关,Volume: Off,音量：关,,,,,,音量: オフ,볼륨: 꺼짐
 返回大厅,Back to Lobby,返回大厅,,,,,,ロビーに戻る,로비로 돌아가기
 排行榜,Leaderboard,排行榜,,,,,,ランキング一覧,순위 목록
-排名,Ranking,排名,,,,,,ランキング,순위
 名称,Name,名称,,,,,,名称,이름
 积分,Points,积分,,,,,,積分,완전한
 打招呼,Greetings,打招呼,,,,,,挨拶する,환영하다
@@ -915,7 +1589,6 @@ QAQ希望也本地化一下，换成欧美比较熟悉的颜表情,QAQ wants to 
 摇头,shake your head,摇头,,,,,,頭を振る,머리를 흔들다
 庆祝,Celebrate,庆祝,,,,,,祝う,축하하다
 鼓励,Encourage,鼓励,,,,,,奨励する,장려하다
-比心,Heart Pose,比心,,,,,,比較,비교
 快邀请你想要搭档的玩家一同闯关吧！,Invite your partner to pass!,快邀请你想要搭档的玩家一同闯关吧！,,,,,,パートナーになりたいプレイヤーを招待して、一緒にレベルをクリアしてください!,함께 레벨을 완료하기 위해 파트너가 되고 싶은 플레이어를 초대하세요!
 这些玩家正在请求你的协助！,These players are requesting your assistance!,这些玩家正在请求你的协助！,,,,,,これらのプレイヤーはあなたの助けを求めています!,이 플레이어들이 여러분의 도움을 요청하고 있습니다!
 邀请,Invitation,邀请,,,,,,招待する,초대하다
@@ -948,7 +1621,6 @@ QAQ希望也本地化一下，换成欧美比较熟悉的颜表情,QAQ wants to 
 邀请好友,Invite Friends,邀请好友,,,,,,友達を招待する,친구 초대
 你的{0}{1}邀请你一同挑战{2}关卡,Your {0}{1} invites you to challenge the {2} level together.,你的{0}{1}邀请你一同挑战{2}关卡,,,,,,あなたの{0}{1}一緒にチャレンジしてみませんか{2}レベル,당신의{0}{1}함께 도전할 수 있도록 여러분을 초대합니다{2}수준
 接受,Accept,接受,,,,,,受け入れる,수용하다
-拒绝,Reject,拒绝,,,,,,拒否する,거부하다
 {0}接受了你的邀请,{0} accepted your invitation.,{0}接受了你的邀请,,,,,,{0}あなたの招待を受け入れました,{0}당신의 초대를 수락했습니다
 祝贺*{0}*与*{1}*合作完成了*{2}*关卡！,Congratulations **{0} on completing the **{2} level in cooperation with **!{1},祝贺*{0}*与*{1}*合作完成了*{2}*关卡！,,,,,,おめでとうございます*{0}*そして*{1}*連携完了*{2}*レベル！,축하합니다*{0}*그리고*{1}*협력 완료*{2}*레벨!
 {0}玩家与他人成立了好友关系，与你的好友关系已自动解除,"{0}Player has established a friendship with others, and your friendship has been automatically terminated.",{0}玩家与他人成立了好友关系，与你的好友关系已自动解除,,,,,,{0}プレイヤーは他のユーザーとフレンド関係を確立しており、あなたとのフレンド関係は自動的に終了します。,"{0}해당 플레이어는 다른 사람들과 친구 관계를 맺었으며, 귀하와의 친구 관계는 자동으로 종료되었습니다."
@@ -965,33 +1637,29 @@ QAQ希望也本地化一下，换成欧美比较熟悉的颜表情,QAQ wants to 
 使用飞行皮靴获得飞行能力飞过障碍！,Gain flying ability over obstacles with flying leather boots!,使用飞行皮靴获得飞行能力飞过障碍！,,,,,,フライングレザーブーツを使って障害物を飛び越える能力を獲得しましょう！,플라잉 가죽 부츠를 사용하면 장애물 위로 날아갈 수 있는 능력을 얻을 수 있습니다!
 召唤魔法伙伴帮助你控制机关吧！,Summon magic buddies to help you control the mechanism!,召唤魔法伙伴帮助你控制机关吧！,,,,,,メカニズムの制御を手伝ってくれる魔法のパートナーを召喚してください!,메커니즘을 제어하는 ​​데 도움을 줄 마법 파트너를 소환하세요!
 使用延时沙漏将时间机关延长15秒！,Extend the time mechanism by 15 seconds with Time-lapse Hourglass!,使用延时沙漏将时间机关延长15秒！,,,,,,遅延砂時計を使用すると、時間メカニズムを 15 秒延長できます。,지연 모래시계를 사용하여 시간 메커니즘을 15초 연장하세요!
-先前往左边的简单关卡挑战第一关“教程”吧！,Head to the simple level on the left to challenge the first """"""""Tutorial""""""""!,先前往左边的简单关卡挑战第一关“教程”吧！,,,,,,まずは左側の簡単なレベルへ行き、最初のレベル「チュートリアル」に挑戦してください！,먼저 왼쪽의 간단한 레벨로 이동하여 첫 번째 레벨 """"""""튜토리얼""""""""에 도전하세요!
+先前往左边的简单关卡挑战第一关“教程”吧！,Head to the simple level on the left to challenge the first """"Tutorial""""!,先前往左边的简单关卡挑战第一关“教程”吧！,,,,,,まずは左側の簡単なレベルへ行き、最初のレベル「チュートリアル」に挑戦してください！,먼저 왼쪽의 간단한 레벨로 이동하여 첫 번째 레벨 """"튜토리얼""""에 도전하세요!
 请从关卡起点进入后再使用该道具,Please enter from the start of the level before using this item.,请从关卡起点进入后再使用该道具,,,,,,このプロップを使用する前にレベルの開始点から入ってください,이 소품을 사용하기 전에 레벨의 시작점부터 입장하세요.
 本按钮已被占用，暂无法使用魔法伙伴,This button is occupied. Magic Partner is temporarily unavailable.,本按钮已被占用，暂无法使用魔法伙伴,,,,,,このボタンは占有されているため、マジック コンパニオンは一時的に使用できなくなります,이 버튼은 사용 중이므로 마법 동반자를 일시적으로 사용할 수 없습니다.
 此按钮暂被其他玩家控制，最好不要乱动噢,This button is temporarily controlled by other players. Please do not move it.,此按钮暂被其他玩家控制，最好不要乱动噢,,,,,,このボタンは他のプレイヤーによって一時的に制御されているため、移動しないことが最善です。,이 버튼은 다른 플레이어가 일시적으로 제어할 수 있으므로 이동하지 않는 것이 가장 좋습니다.
-获得一个“{0}”道具,Obtain an """"""""{0}"""""""" item,获得一个“{0}”道具,,,,,,「」を入手{0}「小道具,"""""를 받으세요{0}""""소품"
+获得一个“{0}”道具,Obtain an """"{0}"""" item,获得一个“{0}”道具,,,,,,「」を入手{0}「小道具,"""""를 받으세요{0}""""소품"
 好友卡,Friend Card,好友卡,,,,,,フレンドカード,친구 카드
 双倍积分,Double Points,双倍积分,,,,,,ダブルポイント,더블 포인트
 飞行皮靴,Flying Leather Boots,飞行皮靴,,,,,,フライングレザーブーツ,플라잉 가죽 부츠
 魔法伙伴,Magic Partner,魔法伙伴,,,,,,魔法の仲間,마법의 동반자
 延时沙漏,Time-lapse Hourglass,延时沙漏,,,,,,タイムラプス砂時計,시간 경과 모래시계
 眼间距,Eye Spacing,眼间距,,,,,,目と目の間の距離,눈 사이의 거리
-眼睛上下移动,Move your eyes up and down.,眼睛上下移动,,,,,,目が上下に動きます,눈이 위아래로 움직인다
 眼睛角度,Eye Angle,眼睛角度,,,,,,目の角度,눈 각도
 眼睛长度,Eye Length,眼睛长度,,,,,,目の長さ,눈 길이
 眼睛宽度,Eye Width,眼睛宽度,,,,,,目の幅,눈 폭
 眼角左右移动,Move around the corner of your eye.,眼角左右移动,,,,,,目尻が左右に動く,눈꼬리가 좌우로 움직입니다.
 眼角上下移动,Move up and down the corner of your eye.,眼角上下移动,,,,,,目尻が上下に動く,눈꼬리가 위아래로 움직인다
 眉间距,Eyebrow Spacing,眉间距,,,,,,眉間距離,눈썹 거리
-眉毛上下移动,Move your eyebrows up and down.,眉毛上下移动,,,,,,眉毛が上下に動きます,눈썹이 위아래로 움직인다
 眉毛角度,Eyebrow Angle,眉毛角度,,,,,,眉の角度,눈썹 각도
 鼻梁高度,Height,鼻梁高度,,,,,,鼻梁の高さ,콧대 높이
 鼻子长度,Nose Length,鼻子长度,,,,,,鼻の長さ,코 길이
 鼻子上下移动,Move your nose up and down.,鼻子上下移动,,,,,,鼻が上下に動きます,코가 위아래로 움직인다
-嘴巴上下移动,Move your mouth up and down.,嘴巴上下移动,,,,,,口が上下に動きます,입이 위아래로 움직인다
 嘴巴宽度,Mouth Width,嘴巴宽度,,,,,,口幅,입 너비
 嘴巴弧度,Mouth Arc,嘴巴弧度,,,,,,口の湾曲,입 곡률
-颜色,Color,颜色,,,,,,色,색상
 返回,Return,返回,,,,,,戻る,반품
 进阶,Advance,进阶,,,,,,高度な,고급의
 保存装扮,Save Outfit,保存装扮,,,,,,衣装を保存する,옷을 저장
@@ -1002,18 +1670,10 @@ QAQ希望也本地化一下，换成欧美比较熟悉的颜表情,QAQ wants to 
 套装预设,Outfit Presets,套装预设,,,,,,パッケージプリセット,패키지 사전 설정
 脸部预设,Facial Presets,脸部预设,,,,,,顔プリセット,얼굴 사전 설정
 身材预设,Body Presets,身材预设,,,,,,ボディプリセット,바디 프리셋
-眼睛,Eyes,眼睛,,,,,,目,눈
-眉毛,Eyebrows,眉毛,,,,,,眉,눈썹
 鼻子,Nose,鼻子,,,,,,鼻,코
 嘴巴,Mouth,嘴巴,,,,,,口,입
-腮红,Blush,腮红,,,,,,赤面,붉히다
-肤色,Skin Color,肤色,,,,,,色,색상
 身材,Figure,身材,,,,,,身材,수치
-上衣,Top,上衣,,,,,,上衣,재킷
 下装,Bottom,下装,,,,,,ボトムス,하의
-鞋子,Shoes,鞋子,,,,,,靴,구두
-手套,Gloves,手套,,,,,,手袋,장갑
-头发,Hair,头发,,,,,,髪,머리카락
 额外,Extra,额外,,,,,,追加,추가의
 背包,Backpack,背包,,,,,,バックパック,배낭
 关闭,Close,关闭,,,,,,閉鎖,폐쇄
@@ -1027,7 +1687,44 @@ QAQ希望也本地化一下，换成欧美比较熟悉的颜表情,QAQ wants to 
 专属拖尾,Exclusive Trail,专属拖尾,,,,,,排他的なトレーリング,독점 후행
 凶手武器,Murderer Weapon,凶手武器,,,,,,殺人兵器,킬러 무기
 侦探武器,Detective Weapon,侦探武器,,,,,,探偵用武器,탐정무기
-广告券,Voucher,广告券,,,,,,広告クーポン,광고쿠폰
+一箱金币,A box of gold coins,一箱金币,,,,,,金貨の入った箱,금화 한 상자
+回声战士,Echo Warrior,回声战士,,,,,,エコー戦士,메아리 전사
+福瑞,Fury,福瑞,,,,,,フューリー,격노
+海绵宝宝装,Spongiebob Costume,海绵宝宝装,,,,,,スポンジボブの衣装,스폰지밥 의상
+猫人装,Cat Man,猫人装,,,,,,猫の衣装,고양이 의상
+长腿妈妈,Long Leg Mom,长腿妈妈,,,,,,母の長い足,엄마 다리가 길어
+猫猫头套服饰,Kitten Headgear,猫猫头套服饰,,,,,,猫のフードの服,고양이 두건 의류
+猫咪玩偶服,Kitty Suit,猫咪玩偶服,,,,,,猫の人形の服,고양이 인형 옷
+大头玩偶服,Big Head Doll Suit,大头玩偶服,,,,,,ビッグヘッド人形の服,큰 머리 인형 옷
+交个朋友鸭,Friend Duck,交个朋友鸭,,,,,,アヒルと友達になる,친구를 사귀다
+卡通玩偶服饰,Cartoon Doll Costume,卡通玩偶服饰,,,,,,漫画の人形の服,만화 인형 의류
+玩偶熊服饰,Doll Bear Costume,玩偶熊服饰,,,,,,テディベアの衣装,테디 베어 의상
+小蓝人服饰,Little Blue Man Clothing,小蓝人服饰,,,,,,リトル・ブルー・マン,리틀 블루 맨 의류
+方块玩偶服,Cube Doll Clothes,方块玩偶服,,,,,,正方形の人形の服,스퀘어 인형 옷
+兔子玩偶服,Bunny Doll Clothes,兔子玩偶服,,,,,,バニー人形の服,토끼 인형 옷
+玩具鸡服饰,Toy Chicken Costume,玩具鸡服饰,,,,,,おもちゃの鶏のコスチューム,장난감 치킨 코스튬
+刺猬玩偶服,hedgehog doll suit,刺猬玩偶服,,,,,,ハリネズミ人形の衣装,고슴도치 인형 의상
+玩具兔服饰,Toy Bunny Costume,玩具兔服饰,,,,,,おもちゃのバニーコスチューム,장난감 토끼 코스튬
+狗头毛毛虫玩偶服,Doll Suit,狗头毛毛虫玩偶服,,,,,,犬頭の毛虫人形コスチューム,개 머리 애벌레 인형 의상
+橘龙,Dragon,橘龙,,,,,,オレンジドラゴン,오렌지 드래곤
+跳舞熊,Dancing Bear,跳舞熊,,,,,,踊るクマ,춤추는 곰
+蓝龙,Azure Dragon,蓝龙,,,,,,ブルードラゴン,블루 드래곤
+绿龙,Green Dragon,绿龙,,,,,,グリーンドラゴン,그린 드래곤
+黑龙,Black Dragon,黑龙,,,,,,ブラックドラゴン,블랙 드래곤
+成都五彩熊,Chengdu colored bear,成都五彩熊,,,,,,成都のカラフルなクマ,청두의 다채로운 곰
+小黑子,Blackie,小黑子,,,,,,シャオ・ヘイジ,샤오 헤이지
+鸡人装,Chicken Outfit,鸡人装,,,,,,ニワトリの着ぐるみ,치킨 의상
+兔人装,Bunny Costume,兔人装,,,,,,バニーコスチューム,토끼 의상
+熊人装,Bear Costume,熊人装,,,,,,ベアコスチューム,곰 코스튬
+索尼克,Sonik,索尼克,,,,,,ソニック,소닉
+狗头毛毛虫,Dog-headed Caterpillar,狗头毛毛虫,,,,,,犬頭の毛虫,개 머리 애벌레
+温柔女孩,Gentle Girl,温柔女孩,,,,,,優しい女の子,온화한 소녀
+阳光男,Sunny Man,阳光男,,,,,,サンシャインマン,선샤인 맨
+叛逆女孩,Rebel Girl,叛逆女孩,,,,,,反抗的な女の子,반항적인 소녀
+叛逆男孩,Rebel Boy,叛逆男孩,,,,,,反逆児,반란군 소년
+白人举重运动员,White Weightlifter,白人举重运动员,,,,,,白人重量挙げ選手,백인 역도 선수
+女仆套装女,Maid Suit,女仆套装女,,,,,,女性のメイドスーツ,여성 하녀복
+华丽海盗服,Gorgeous Pirate Costumes,华丽海盗服,,,,,,ゴージャスな海賊コスチューム,화려한 해적 의상
 道具收集目标,Item Collection Target,道具收集目标,,,,,,アイテム収集対象,아이템 수집 대상
 道具生成数量,Item Generation count,道具生成数量,,,,,,生成されたプロップの数,생성된 소품 수
 道具刷新间隔,Item Refresh Interval,道具刷新间隔,,,,,,プロップの更新間隔,소품 새로 고침 간격
@@ -1053,8 +1750,13 @@ QAQ希望也本地化一下，换成欧美比较熟悉的颜表情,QAQ wants to 
 道具刷新点19,Item Refresh Point 19,道具刷新点19,,,,,,プロップリフレッシュポイント19,소품 새로고침 포인트 19
 道具刷新点20,Item Refresh Point 20,道具刷新点20,,,,,,プロップリフレッシュポイント20,소품 새로고침 포인트 20
 道具刷新点21,Item Refresh Point 21,道具刷新点21,,,,,,プロップリフレッシュポイント21,소품 새로고침 포인트 21
+道具刷新点22,Item Refresh Point 22,道具刷新点22,,,,,,プロップ・リフレッシュ・ポイント22,소품 리프레시 포인트 22
+道具刷新点23,Item Refresh Point 23,道具刷新点23,,,,,,プロップ・リフレッシュ・ポイント23,소품 리프레시 포인트 23
+道具刷新点24,Item Refresh Point 24,道具刷新点24,,,,,,プロップ・リフレッシュ・ポイント24,소품 리프레시 포인트 24
+道具刷新点25,Item Refresh Point 25,道具刷新点25,,,,,,リフレッシュポイント25,소품 다과 포인트 25
 地图2XXXX,Map 2XXXX,地图2XXXX,,,,,,マップ 2XXXX,지도 2XXXX
 地图3XXXX,Map 3XXXX,地图3XXXX,,,,,,地図 3XXXX,지도 3XXXX
+美瞳,Mihito,美瞳,,,,,,デカ目コンタクトレンズ,큰 눈 콘택트렌즈
 春季绿,Spring Green,春季绿,,,,,,春の緑,봄의 녹색
 宝石蓝,Gem Blue,宝石蓝,,,,,,サファイアブルー,사파이어 블루
 虚空紫,Void Purple,虚空紫,,,,,,ボイドパープル,보이드 퍼플
@@ -1062,6 +1764,33 @@ QAQ希望也本地化一下，换成欧美比较熟悉的颜表情,QAQ wants to 
 落日黄,Yellow Sunset,落日黄,,,,,,サンセットイエロー,일몰 노란색
 芭比粉,Barbie,芭比粉,,,,,,バービーパウダー,바비 파우더
 活力红,Energetic Red,活力红,,,,,,鮮やかな赤,생기 넘치는 레드
+"本次更新：
+1.新增【马桶人VS监控人】系列挂件，欢迎大家去商店选购~
+2.新增【能力商店】，开放杀手局内特殊能力的配置
+3.优化了侦探、凶手的操作手感及相关界面
+4.调整大厅及关卡场景，提升性能
+5.新增还原按钮，镜头卡住的时候点一下试试吧","This update:
+1. Added [Skibidi Toilet VS Cameraman] series of pendants, welcome to the shop!
+2. Added [Power Store], the configuration of the killer's special abilities is now available.
+3. Optimized the operating experience of detectives and murderers and the related interface.
+4. Adjust the lobby and level scenes to improve performance.
+5. Added reset button; tap it when the camera is stuck.","本次更新：
+1.新增【马桶人VS监控人】系列挂件，欢迎大家去商店选购~
+2.新增【能力商店】，开放杀手局内特殊能力的配置
+3.优化了侦探、凶手的操作手感及相关界面
+4.调整大厅及关卡场景，提升性能
+5.新增还原按钮，镜头卡住的时候点一下试试吧",,,,,,"今回のアップデート:
+1.新しく追加された[トイレマンVSモニタリングマン]シリーズのペンダント、誰もが購入するために店に行くことを歓迎します〜
+2.キラーのゲーム内で特殊能力の設定を開くための[アビリティストア]を追加しました
+3. 探偵と殺人犯の操作感と関連インターフェースを最適化
+4. パフォーマンスを向上させるためにロビーとレベルのシーンを調整する
+5. 復元ボタンを追加しました。レンズが動かなくなったときにクリックして試してください。","이번 업데이트:
+1. 새로 추가된 [화장실 남자 VS 모니터링 남자] 시리즈 펜던트, 누구나 매장에 가서 구매하실 수 있습니다~
+2. 킬러 게임 내 특수 능력 구성을 열 수 있는 [능력 상점]을 추가했습니다.
+3. 형사와 살인자의 조작감과 관련 인터페이스를 최적화했습니다.
+4. 로비 및 레벨 장면을 조정하여 성능 향상
+5. 복원 버튼을 추가했습니다. 렌즈가 걸렸을 때 클릭하여 시도해 보세요."
+去购买,Go Shopping,去购买,,,,,,買いに行く,가서 사다
 毛衣水手棕发,Sailor Brown Sweater,毛衣水手棕发,,,,,,セーターセーラー茶色の髪,스웨터 선원 갈색 머리
 连体制服银发,One-Piece Uniform Silver,连体制服银发,,,,,,銀髪のワンピース制服,은발의 원피스 유니폼
 不良水手粉发,Bad Sailor Pink,不良水手粉发,,,,,,悪いセーラーのピンクの髪,나쁜 선원 핑크 머리
@@ -1071,7 +1800,7 @@ QAQ希望也本地化一下，换成欧美比较熟悉的颜表情,QAQ wants to 
 棕毛针织衫男,Brown Knit,棕毛针织衫男,,,,,,メンズ ブラウン ウール セーター,남성용 브라운 울 스웨터
 红毛不良男,Bad Haired Man,红毛不良男,,,,,,赤毛の不良男,빨간 머리의 비행 남자
 蓝马尾科技少女,Blue Ponytail Tech Girl,蓝马尾科技少女,,,,,,青いポニーテールのテクノロジー少女,파란색 포니테일을 가진 기술 소녀
-粉“兔耳”科技少女,Pink """"""""Bunny Ears"""""""" Technology Girl,粉“兔耳”科技少女,,,,,,ピンクの「ウサギの耳」テクノロジー少女,핑크색 '토끼 귀' 기술 소녀
+粉“兔耳”科技少女,Pink """"Bunny Ears"""" Technology Girl,粉“兔耳”科技少女,,,,,,ピンクの「ウサギの耳」テクノロジー少女,핑크색 '토끼 귀' 기술 소녀
 精英风男,Elite Man,精英风男,,,,,,エリートスタイルの男性,엘리트 스타일의 남자
 可爱鲨鱼男,Cute Shark,可爱鲨鱼男,,,,,,かわいいサメ男,귀여운 상어 남자
 文静大小姐,Miss Wen Jing,文静大小姐,,,,,,文京さん,미스 웬징
@@ -1202,6 +1931,19 @@ GUID | 速度,GUID | Speed,GUID | 速度,,,,,,GUID | 速度,GUID | 속도
 世界UI脚本,World UI Script,世界UI脚本,,,,,,ワールドUIスクリプト,월드 UI 스크립트
 AI父节点,AI Parent,AI父节点,,,,,,AI親ノード,AI 상위 노드
 局内出生点组-关卡3,Intra-game Spawn Point Group - Level 3,局内出生点组-关卡3,,,,,,ゲーム内スポーン ポイント グループ - レベル 3,게임 내 스폰 지점 그룹 - 레벨 3
+短发女,Short-haired Woman,短发女,,,,,,ショートヘアの女の子,짧은 머리 소녀
+机械女,Robotic Girl,机械女,,,,,,機械少女,기계소녀
+赛博套装,Cyber Suit,赛博套装,,,,,,サイバー・スーツ,사이버 수트
+机甲套装,Mecha Suit,机甲套装,,,,,,メカスーツ,메카 슈트
+机器人,Robot,机器人,,,,,,ロボット,기계 인간
+赛博服饰,Cyber Outfit,赛博服饰,,,,,,サイバーウェア,사이버웨어
+刺猬小子,hedgehog boy,刺猬小子,,,,,,ヘッジホッグ・ボーイ,고슴도치 소년
+魔法男孩,Magic Boy,魔法男孩,,,,,,魔法少年,마법의 소년
+长袜制服鞋,Uniform Shoes with Stockings,长袜制服鞋,,,,,,ストッキングユニフォームシューズ,스타킹 유니폼 신발
+细跟尖头鞋,Pointed High Heels,细跟尖头鞋,,,,,,ピンヒール,스틸레토 힐 슈즈
+猫猫鞋套,Cat Shoe Covers,猫猫鞋套,,,,,,猫の靴カバー,고양이 신발 커버
+皮鞋,Leather Shoes,皮鞋,,,,,,革靴,가죽 신발
+小熊鞋,Bear Boots,小熊鞋,,,,,,リトル・ベア・シューズ,리틀 베어 신발
 物品种类,Item Type,物品种类,,,,,,アイテムの種類,품목 유형
 近战数量,Melee count,近战数量,,,,,,近接攻撃量,근접 수량
 斧子,Axe,斧子,,,,,,斧,도끼
@@ -1240,6 +1982,43 @@ AI父节点,AI Parent,AI父节点,,,,,,AI親ノード,AI 상위 노드
 爆炸飞刀爆炸音效,Explosive Knife Explosion Sound,爆炸飞刀爆炸音效,,,,,,爆発するナイフの爆発効果音,폭발 칼 폭발 음향 효과
 成功购买/激活,Successful purchase/activation,成功购买/激活,,,,,,購入/アクティベーションが成功しました,성공적인 구매/활성화
 购买/激活失败,Purchase/Activation Failed,购买/激活失败,,,,,,購入/アクティベーションに失敗しました,구매/활성화 실패
+体型_收藏,Body Size_Collection,体型_收藏,,,,,,ボディタイプ_コレクション,체형_컬렉션
+肤色_收藏,Color_Collection,肤色_收藏,,,,,,カラーコレクション,색상_컬렉션
+脸型_收藏,Face Collection,脸型_收藏,,,,,,フェイス・コレクション,Face_Collection
+眼睛_收藏,Eye_Collection,眼睛_收藏,,,,,,アイズ_コレクション,Eyes_Collection
+眉毛_收藏,Eyebrow Collection,眉毛_收藏,,,,,,眉毛コレクション,눈썹_컬렉션
+妆容_收藏,Makeup Collection,妆容_收藏,,,,,,メイクアップコレクション,메이크업_컬렉션
+表情_收藏,Expressions_Collection,表情_收藏,,,,,,絵文字コレクション,이모티콘_컬렉션
+套装_收藏,Outfit_Collection,套装_收藏,,,,,,セット_コレクション,Set_Collection
+头发_收藏,Hair_Collection,头发_收藏,,,,,,ヘアコレクション,헤어 컬렉션
+上衣_收藏,Topless Collection,上衣_收藏,,,,,,トップス_コレクション,Tops_Collection
+下衣_收藏,Bottoms_Collection,下衣_收藏,,,,,,アンダーウェア・コレクション,속옷_컬렉션
+鞋子_收藏,Shoes Collection,鞋子_收藏,,,,,,シューズ・コレクション,신발_컬렉션
+手套_收藏,Gloves_Collection,手套_收藏,,,,,,グローブ_コレクション,장갑_컬렉션
+宠物_收藏,Pet Collection,宠物_收藏,,,,,,ペット・コレクション,애완동물_컬렉션
+饰品_收藏,Accessories_Collection,饰品_收藏,,,,,,ジュエリー・コレクション,주얼리_컬렉션
+瞳孔贴画,Pupil Art,瞳孔贴画,,,,,,生徒ステッカー,동공 스티커
+瞳孔样式_收藏,Pupil Style _ Collection,瞳孔样式_收藏,,,,,,生徒のスタイル_コレクション,동공 스타일_컬렉션
+瞳孔贴花_收藏,Pupil Decals _ Collection,瞳孔贴花_收藏,,,,,,生徒シールコレクション,동공 데칼_컬렉션
+上高光_收藏,Highlights_Collection,上高光_收藏,,,,,,アッパーハイライト_コレクション,상단 하이라이트_컬렉션
+下高光_收藏,Highlights_Collection,下高光_收藏,,,,,,下段ハイライト_コレクション,하단 하이라이트_컬렉션
+睫毛_收藏,Eyelashes Collection,睫毛_收藏,,,,,,アイラッシュコレクション,속눈썹_컬렉션
+眼影_收藏,Eyeshadow Collection,眼影_收藏,,,,,,アイシャドウコレクション,아이섀도우_컬렉션
+腮红_收藏,Blush _ Collection,腮红_收藏,,,,,,チーク・コレクション,블러셔_컬렉션
+口红_收藏,Lipstick_Collection,口红_收藏,,,,,,リップスティック・コレクション,립스틱_컬렉션
+面部彩绘_收藏,Face Painting Collection,面部彩绘_收藏,,,,,,フェイスペインティング_コレクション,페이스 페인팅_컬렉션
+整体发型_收藏,Hairstyle Collection,整体发型_收藏,,,,,,ヘアコレクション,전체 헤어 컬렉션
+前发_收藏,Forward_Collection,前发_收藏,,,,,,フォア・コレクション,Fore_Collection
+后发_收藏,Future_Collection,后发_收藏,,,,,,バックコレクション,Back_Collection
+左手_收藏,Left Hand_Collection,左手_收藏,,,,,,左手コレクション,왼손_수집
+右手_收藏,Right Hand_Collection,右手_收藏,,,,,,右手_コレクション,오른손_수집
+背饰_收藏,Accessory_Collection,背饰_收藏,,,,,,バックドロップ・コレクション,배경_컬렉션
+耳饰_收藏,Earrings Collection,耳饰_收藏,,,,,,イヤリング_コレクション,귀걸이_컬렉션
+面饰_收藏,Face Decors_Collection,面饰_收藏,,,,,,デコレーション・コレクション,장식_컬렉션
+臀部_收藏,Hip Collection,臀部_收藏,,,,,,ヒップ・コレクション,힙_컬렉션
+肩部_收藏,Shoulder Collection,肩部_收藏,,,,,,ショルダーコレクション,어깨_컬렉션
+特效_收藏,Effect_Collection,特效_收藏,,,,,,特殊効果_コレクション,특수 효과_컬렉션
+拖尾_收藏,Trail_Collect,拖尾_收藏,,,,,,テール_コレクション,Tail_Collection
 大厅倒计时,Lobby Countdown,大厅倒计时,,,,,,ホールカウントダウン,홀 카운트다운
 随机地图,Random Map,随机地图,,,,,,ランダムマップ,무작위 지도
 公告,Announcements,公告,,,,,,発表,발표
@@ -1277,11 +2056,9 @@ AI父节点,AI Parent,AI父节点,,,,,,AI親ノード,AI 상위 노드
 大厅界面,Lobby Interface,大厅界面,,,,,,ロビーインターフェース,로비 인터페이스
 观战界面,Spectator,观战界面,,,,,,視聴インターフェース,시청 인터페이스
 加载界面,Load UI,加载界面,,,,,,読み込みインターフェース,로딩 인터페이스
-加载中,Loading,加载中,,,,,,読み込み中,로드 중
+商店,Shop,商店,,,,,,店,가게
 商店界面,Shop Interface,商店界面,,,,,,ストアインターフェース,매장 인터페이스
-套装,Outfit,套装,,,,,,スーツ,정장
 地图选择界面,Map Selection,地图选择界面,,,,,,マップ選択インターフェイス,지도 선택 인터페이스
-特效,Effects,特效,,,,,,特撮,특수 효과
 结算界面,Settlement interface,结算界面,,,,,,決済インターフェース,정산 인터페이스
 死亡提示界面,Death Prompt,死亡提示界面,,,,,,デスプロンプトインターフェイス,죽음 프롬프트 인터페이스
 奖励界面,Reward UI,奖励界面,,,,,,報酬インターフェース,보상 인터페이스
@@ -1299,7 +2076,6 @@ AI父节点,AI Parent,AI父节点,,,,,,AI親ノード,AI 상위 노드
 学生道具,Student Tools,学生道具,,,,,,学生の小道具,학생 소품
 局内金币,Intra-game gold coins,局内金币,,,,,,ゲーム内ゴールドコイン,게임 내 금화
 局内其他人死亡,Others killed in the round,局内其他人死亡,,,,,,局内の他の人も死亡した,사무국의 다른 사람들이 사망했습니다.
-有人淘汰了！,Someone's out!,有人淘汰了！,,,,,,誰かが排除されました！,누군가가 제거되었습니다!
 局内侦探死亡,Detective Dead,局内侦探死亡,,,,,,局の刑事が死亡,국 형사 사망
 场景加载提示,Scene loading hints,场景加载提示,,,,,,シーン読み込みプロンプト,장면 로딩 프롬프트
 大厅观战,Spectate in the Lobby,大厅观战,,,,,,ロビーで試合を観戦,로비에서 경기 관람
@@ -1308,47 +2084,16 @@ AI父节点,AI Parent,AI父节点,,,,,,AI親ノード,AI 상위 노드
 抽奖主动提示,Lottery Tips,抽奖主动提示,,,,,,宝くじのプロンプト,복권 프롬프트
 抽奖广告冷却,Lottery Ad Cooldown,抽奖广告冷却,,,,,,懸賞広告のクールダウン,경품행사 광고 쿨다운
 大会员,Elite Member,大会员,,,,,,ビッグメンバー,큰 회원
+弓道服,Kyudo Uniform,弓道服,,,,,,弓道着,궁도복
+毛衣外套,Sweater Jacket,毛衣外套,,,,,,ジャンパー・ジャケット,점퍼 재킷
+拖尾婚纱,Trailing Wedding Dress,拖尾婚纱,,,,,,ウェディングドレス,슬링키 웨딩 드레스
+蝴蝶结桃心裙,Heart Dress,蝴蝶结桃心裙,,,,,,ピーチ・ハート・ドレス,보타이 피치 하트 드레스
+恐龙玩偶服,Dinosaur Suit,恐龙玩偶服,,,,,,恐竜人形の服,공룡 인형 옷
+礼服,Dress,礼服,,,,,,ガウン,가운
+战损休闲装,Damaged Casual Wear,战损休闲装,,,,,,戦争で傷んだカジュアルウェア,전쟁으로 손상된 캐주얼웨어
+披风长袖,Long Sleeves,披风长袖,,,,,,長袖ケープ,긴 소매가 달린 케이프
+紧身衣,Tights,紧身衣,,,,,,タイツ,타이츠
+长袍上衣,Robe Top,长袍上衣,,,,,,カフタン,카프탄
+学士服,Bachelor's Robe,学士服,,,,,,学士号,학사 학위
 投掷飞刀,Throw Knife,投掷飞刀,,,,,,投げナイフ,칼 던지기
-"Death :: 玩家 ==== 玩家已经死亡,先关闭死亡姿态",Death :: Player ==== is dead. Close the death stance first.,"Death :: 玩家 ==== 玩家已经死亡,先关闭死亡姿态",,,,,,Death :: プレイヤー ==== プレイヤーは死亡しました。まず死亡姿勢を解除してください,Death :: 플레이어 ==== 플레이어가 사망했습니다. 먼저 사망 자세를 꺼주세요.
-Death :: 玩家 ==== 玩家 ${playerId} 已经死亡 ,Death :: Player ===== ${playerId} is dead ,Death :: 玩家 ==== 玩家 ${playerId} 已经死亡 ,,,,,,Death :: プレイヤー==== プレイヤー${playerId} すでに死んでいる ,Death :: 플레이어==== 플레이어${playerId}이미 죽었어 
-Death :: 玩家 ==== 玩家 ${playerId} 恢复原状态 ,Death :: Player ===== ${playerId} returned to normal ,Death :: 玩家 ==== 玩家 ${playerId} 恢复原状态 ,,,,,,Death :: プレイヤー==== プレイヤー${playerId} 元の状態に戻す ,Death :: 플레이어==== 플레이어${playerId}원래 상태 복원 
-"Death :: AI ==== 玩家已经死亡,先关闭死亡姿态","Death :: AI ==== Player is dead, close the death stance first","Death :: AI ==== 玩家已经死亡,先关闭死亡姿态",,,,,,Death :: AI ==== プレイヤーは死亡しました。まず死亡姿勢を解除してください,Death :: AI ==== 플레이어가 사망했습니다. 먼저 사망 자세를 꺼주세요.
-kang log 奖励弹窗,Kang log Reward Window,kang log 奖励弹窗,,,,,,カンログ報酬ポップアップウィンドウ,강로그 보상 팝업창
-开始结算,Start Settlement,开始结算,,,,,,決済開始,정산 시작
-按钮列表为空,Button list is empty,按钮列表为空,,,,,,ボタンリストが空です,버튼 목록이 비어 있습니다.
-增加金币,Increase Coins,增加金币,,,,,,金貨を増やす,금화 증가
-增加钻石,Increase Diamonds,增加钻石,,,,,,ダイヤモンドを追加する,다이아몬드 추가
-增加游戏内的金币10,Increase in-game coins by 10,增加游戏内的金币10,,,,,,ゲーム内ゴールドコインを10枚増やす,게임 내 금화를 10 늘립니다.
-下次抽奖保底,Guaranteed Draw,下次抽奖保底,,,,,,次回の抽選が保証されます,다음 추첨 보장
-增加广告券,Increase Voucher,增加广告券,,,,,,広告クーポンを追加する,광고 쿠폰 추가
-修改大厅时间,Modify Lobby Time,修改大厅时间,,,,,,ロビー時間を変更する,로비 시간 수정
-技能体验券+10,Skill Voucher +10,技能体验券+10,,,,,,スキル経験値クーポン+10,스킬 경험치 쿠폰 +10
-切换热武器，对局内使用,Switch hot weapons for in-game use,切换热武器，对局内使用,,,,,,人気の武器を切り替えてゲームで使用してください,뜨거운 무기를 바꿔서 게임에서 사용하세요
-"本次更新：
-1.新增【马桶人VS监控人】系列挂件，欢迎大家去商店选购~
-2.新增【能力商店】，开放杀手局内特殊能力的配置
-3.优化了侦探、凶手的操作手感及相关界面
-4.调整大厅及关卡场景，提升性能
-5.新增还原按钮，镜头卡住的时候点一下试试吧","This update:
-1. Added [Skibidi Toilet VS Cameraman] series of pendants, welcome to the shop!
-2. Added [Power Store], the configuration of the killer's special abilities is now available.
-3. Optimized the operating experience of detectives and murderers and the related interface.
-4. Adjust the lobby and level scenes to improve performance.
-5. Added reset button; tap it when the camera is stuck.","本次更新：
-1.新增【马桶人VS监控人】系列挂件，欢迎大家去商店选购~
-2.新增【能力商店】，开放杀手局内特殊能力的配置
-3.优化了侦探、凶手的操作手感及相关界面
-4.调整大厅及关卡场景，提升性能
-5.新增还原按钮，镜头卡住的时候点一下试试吧",,,,,,"今回のアップデート:
-1.新しく追加された[トイレマンVSモニタリングマン]シリーズのペンダント、誰もが購入するために店に行くことを歓迎します〜
-2.キラーのゲーム内で特殊能力の設定を開くための[アビリティストア]を追加しました
-3. 探偵と殺人犯の操作感と関連インターフェースを最適化
-4. パフォーマンスを向上させるためにロビーとレベルのシーンを調整する
-5. 復元ボタンを追加しました。レンズが動かなくなったときにクリックして試してください。","이번 업데이트:
-1. 새로 추가된 [화장실 남자 VS 모니터링 남자] 시리즈 펜던트, 누구나 매장에 가서 구매하실 수 있습니다~
-2. 킬러 게임 내 특수 능력 구성을 열 수 있는 [능력 상점]을 추가했습니다.
-3. 형사와 살인자의 조작감과 관련 인터페이스를 최적화했습니다.
-4. 로비 및 레벨 장면을 조정하여 성능 향상
-5. 복원 버튼을 추가했습니다. 렌즈가 걸렸을 때 클릭하여 시도해 보세요."
-去购买,Go Shopping,去购买,,,,,,買いに行く,가서 사다
 

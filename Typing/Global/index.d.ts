@@ -11,7 +11,6 @@
 /// <reference path="../Service/index.d.ts" />
 declare global {
     /**
-     * @author jie.wu
      * @description 获取 UI 脚本
      * @groups 界面
      * @effect  只在客户端调用生效
@@ -20,7 +19,6 @@ declare global {
      */
     const findUIScript: typeof mw.findUIScript;
     /**
-     * @author jie.wu
      * @description 创建 UIPrefab
      * @groups 界面
      * @effect 只在客户端调用生效
@@ -29,7 +27,6 @@ declare global {
      */
     const createUIByName: typeof mw.createUIByName;
     /**
-     * @author jie.wu
      * @description 创建 UIPrefab
      * @groups 界面
      * @effect 只在客户端调用生效
@@ -38,7 +35,6 @@ declare global {
      */
     const createUIByPath: typeof mw.createUIByPath;
     /**
-     * @author jie.wu
      * @description 异步创建UI，失败返回空
      * @groups 界面
      * @effect 只在客户端调用生效
@@ -47,7 +43,6 @@ declare global {
      */
     const asyncCreateUIByName: typeof mw.asyncCreateUIByName;
     /**
-     * @author jie.wu
      * @description 创建空的 UI
      * @groups 界面
      * @effect 只在客户端调用生效
@@ -56,7 +51,6 @@ declare global {
      */
     const createUIOnlyClass: typeof mw.createUIOnlyClass;
     /**
-     * @author jie.wu
      * @description 创建UIPrefab
      * @groups 界面
      * @effect 只在客户端调用生效
@@ -66,7 +60,6 @@ declare global {
      */
     const createUI: typeof mw.createUI;
     /**
-     * @author jie.wu
      * @description 异步创建UI
      * @groups 界面
      * @effect 只在客户端调用生效
@@ -76,7 +69,6 @@ declare global {
      */
     const asyncCreateUI: typeof mw.asyncCreateUI;
     /**
-     * @author jie.wu
      * @description 异步请求资源的ICON信息
      * @deprecated info:该接口已废弃，在该接口被删除前会仍保持可用，请尽快使用替换方案以免出现问题 since:038 reason:该接口不再需要 replacement:直接设置ICON即可
      * @groups 界面
@@ -86,7 +78,6 @@ declare global {
      */
     const assetIDChangeIconUrlRequest: typeof mw.assetIDChangeIconUrlRequest;
     /**
-     * @author jie.wu
      * @description 获取资源的 ICON 信息
      * @groups 界面
      * @effect 只在客户端调用生效
@@ -96,7 +87,6 @@ declare global {
      */
     const getAssetIconDataByAssetID: typeof mw.getAssetIconDataByAssetID;
     /**
-     * @author jie.wu
      * @deprecated info:该接口已废弃，在该接口被删除前会仍保持可用，请尽快使用替换方案以免出现问题 since:039 reason:接口调整 replacement: 使用 releaseTextureFromCache
      * @description 尝试标记资源的 ICON 图为待释放的等待释放
      * @groups 界面
@@ -105,7 +95,6 @@ declare global {
      */
     const releaseAssetIconTextureFromCache: typeof mw.releaseAssetIconTextureFromCache;
     /**
-     * @author jie.wu
      * @description 尝试标记资源的ICON或则一个URL地址用于释放本地缓存的资源数据
      * @groups 界面
      * @effect 只在客户端调用生效
@@ -113,7 +102,6 @@ declare global {
      */
     const releaseTextureFromCache: typeof mw.releaseTextureFromCache;
     /**
-     * @author jie.wu
      * @description 分辨率改变时的回调
      * @groups 界面
      * @effect 只在客户端调用生效
@@ -151,7 +139,6 @@ declare global {
      */
     const UIBind: typeof mw.UIBind;
     /**
-     * @author jie.wu
      * @description 判定给定坐标是否在geometry下
      * @groups 界面
      * @effect  只在客户端调用生效
@@ -161,7 +148,6 @@ declare global {
      */
     const isUnderLocation: typeof mw.isUnderLocation;
     /**
-     * @author jie.wu
      * @description 转化绝对坐标到相对坐标
      * @groups 界面
      * @effect  只在客户端调用生效
@@ -171,7 +157,6 @@ declare global {
      */
     const absoluteToLocal: typeof mw.absoluteToLocal;
     /**
-     * @author jie.wu
      * @description 将局部坐标转换为绝对坐标,绝对坐标可以是桌面空间，也可以是窗口空间，这取决于小部件层次结构的根所在的空间。
      * @groups 界面
      * @effect  只在客户端调用生效
@@ -181,7 +166,6 @@ declare global {
      */
     const localToAbsolute: typeof mw.localToAbsolute;
     /**
-     * @author jie.wu
      * @description 返回局部空间中几何图形的局部顶部/左侧
      * @groups 界面
      * @effect  只在客户端调用生效
@@ -190,7 +174,6 @@ declare global {
      */
     const getLocalTopLeft: typeof mw.getLocalTopLeft;
     /**
-     * @author jie.wu
      * @description 返回局部空间中几何图形的大小
      * @groups 界面
      * @effect  只在客户端调用生效
@@ -199,7 +182,6 @@ declare global {
      */
     const getLocalSize: typeof mw.getLocalSize;
     /**
-     * @author jie.wu
      * @description 返回绝对空间中几何图形的大小
      * @groups 界面
      * @effect  只在客户端调用生效
@@ -208,7 +190,6 @@ declare global {
      */
     const getAbsoluteSize: typeof mw.getAbsoluteSize;
     /**
-     * @author jie.wu
      * @description 转化绝对空间下矢量到局部空间下
      * @groups 界面
      * @effect  只在客户端调用生效
@@ -218,7 +199,6 @@ declare global {
      */
     const transformVectorAbsoluteToLocal: typeof mw.transformVectorAbsoluteToLocal;
     /**
-     * @author jie.wu
      * @description 转化局部空间下矢量到绝对空间下
      * @groups 界面
      * @effect  只在客户端调用生效
@@ -228,7 +208,6 @@ declare global {
      */
     const transformVectorLocalToAbsolute: typeof mw.transformVectorLocalToAbsolute;
     /**
-     * @author jie.wu
      * @description 将几何体的局部坐标转换为局部视口坐标。
      * @groups 界面
      * @effect  只在客户端调用生效
@@ -239,7 +218,6 @@ declare global {
      */
     const localToViewport: typeof mw.localToViewport;
     /**
-     * @author jie.wu
      * @description 将桌面空间中几何图形的绝对坐标转换为本地视口坐标
      * @groups 界面
      * @effect  只在客户端调用生效
@@ -249,7 +227,6 @@ declare global {
      */
     const absoluteToViewport: typeof mw.absoluteToViewport;
     /**
-     * @author jie.wu
      * @description 将屏幕位置(以像素为单位)转换为具有给定几何形状的小部件的本地空间。如果bIncludeWindowPosition为真，那么这个方法也将移除游戏窗口的位置(在窗口模式下有用)。
      * @groups 界面
      * @effect  只在客户端调用生效
@@ -260,7 +237,6 @@ declare global {
      */
     const screenToWidgetLocal: typeof mw.screenToWidgetLocal;
     /**
-     * @author jie.wu
      * @description 将屏幕位置(像素)转换为绝对桌面程序坐标。如果bIncludeWindowPosition为真，那么这个方法也将移除游戏窗口的位置(在窗口模式下有用)。
      * @groups 界面
      * @effect  只在客户端调用生效
@@ -270,7 +246,6 @@ declare global {
      */
     const screenToWidgetAbsolute: typeof mw.screenToWidgetAbsolute;
     /**
-     * @author jie.wu
      * @description 将屏幕位置(以像素为单位)转换为视口控件的本地空间。
      * @groups 界面
      * @effect  只在客户端调用生效
@@ -279,7 +254,6 @@ declare global {
      */
     const screenToViewport: typeof mw.screenToViewport;
     /**
-     * @author jie.wu
      * @description 获取当前鼠标所在的绝对位置
      * @groups 界面
      * @effect  只在客户端调用生效
@@ -287,7 +261,6 @@ declare global {
      */
     const getCurrentMousePosition: typeof mw.getCurrentMousePosition;
     /**
-     * @author jie.wu
      * @description 获取上一次鼠标所在的绝对位置
      * @groups 界面
      * @effect  只在客户端调用生效
@@ -295,7 +268,6 @@ declare global {
      */
     const getLastMousePosition: typeof mw.getLastMousePosition;
     /**
-     * @author jie.wu
      * @description 设置只允许UI响应用户输入的输入模式。
      * @groups 界面
      * @effect 只在客户端调用生效
@@ -304,7 +276,6 @@ declare global {
      */
     const setInputModeUIOnly: typeof mw.setInputModeUIOnly;
     /**
-     * @author jie.wu
      * @description 设置一个输入模式，只允许UI响应用户输入，如果UI不处理它，玩家输入/玩家控制器就有机会
      * @groups 界面
      * @effect 只在客户端调用生效
@@ -314,21 +285,18 @@ declare global {
      */
     const setInputModeGameAndUI: typeof mw.setInputModeGameAndUI;
     /**
-     * @author jie.wu
      * @description 设置一个输入模式，只允许玩家输入/玩家控制器响应用户输入
      * @groups 界面
      * @effect 只在客户端调用生效
      */
     const setInputModeGameOnly: typeof mw.setInputModeGameOnly;
     /**
-     * @author jie.wu
      * @description 设置关注游戏窗口
      * @groups 界面
      * @effect 只在客户端调用生效
      */
     const setFocusToGameViewport: typeof mw.setFocusToGameViewport;
     /**
-     * @author jie.wu
      * @description 中断一个拖拽事件, 传入一个操作的事件
      * @groups 界面
      * @effect 只在客户端调用生效
@@ -336,14 +304,12 @@ declare global {
      */
     const endDragDrop: typeof mw.endDragDrop;
     /**
-     * @author jie.wu
      * @description 中断所有的DragDrop
      * @groups 界面
      * @effect 只在客户端调用生效
      */
     const cancelDragDrop: typeof mw.cancelDragDrop;
     /**
-     * @author jie.wu
      * @description 判断当前是否有一个DragDrop事件
      * @groups 界面
      * @effect 只在客户端调用生效
@@ -351,7 +317,6 @@ declare global {
      */
     const isDragDropping: typeof mw.isDragDropping;
     /**
-     * @author jie.wu
      * @description 获取当前的DragDrop事件
      * @groups 界面
      * @effect 只在客户端调用生效
@@ -359,7 +324,6 @@ declare global {
      */
     const getDragDroppingContent: typeof mw.getDragDroppingContent;
     /**
-     * @author jie.wu
     * @description 获取应用于视口和所有小部件的当前DPI Scale。
     * @groups 界面
     * @effect 只在客户端调用生效
@@ -367,7 +331,6 @@ declare global {
     */
     const getViewportScale: typeof mw.getViewportScale;
     /**
-     * @author jie.wu
     * @description 获取游戏视口的大小。
     * @groups 界面
     * @effect 只在客户端调用生效
@@ -375,7 +338,6 @@ declare global {
     */
     const getViewportSize: typeof mw.getViewportSize;
     /**
-     * @author jie.wu
      * @description 获取包含添加到“视口”中的所有控件的控件的几何形状。你可以使用这个几何图形在绝对和本地空间的控件之间转换控件。
      * @groups 界面
      * @effect 只在客户端调用生效
@@ -383,7 +345,6 @@ declare global {
      */
     const getViewportWidgetGeometry: typeof mw.getViewportWidgetGeometry;
     /**
-     * @author jie.wu
      * @description 获取包含添加到“player screen”的所有控件的控件的几何形状。你可以使用这个几何图形在绝对和本地空间的控件之间转换控件。
      * @groups 界面
      * @effect 只在客户端调用生效
@@ -392,7 +353,6 @@ declare global {
      */
     const getPlayerScreenWidgetGeometry: typeof mw.getPlayerScreenWidgetGeometry;
     /**
-     * @author jie.wu
     * @description 获取平台的鼠标光标位置。这是鼠标的绝对桌面位置。
     * @groups 界面
     * @effect 只在客户端调用生效
@@ -400,7 +360,6 @@ declare global {
     */
     const getMousePositionOnPlatform: typeof mw.getMousePositionOnPlatform;
     /**
-     * @author jie.wu
     * @description 获取平台的鼠标光标在视口控件的本地空间中的位置。
     * @groups 界面
     * @effect 只在客户端调用生效
@@ -415,7 +374,6 @@ declare global {
      */
     const UIPack: typeof mw.UIPack;
     /**
-    * @author jie.wu
     * @groups 界面/控件/遥杆
     * @description 摇杆按键绑定
     * @networkStatus usage:客户端
@@ -423,7 +381,6 @@ declare global {
     const JoystickBindKeyType: typeof mw.JoystickBindKeyType;
     type JoystickBindKeyType = mw.JoystickBindKeyType;
     /**
-     * @author jianke.feng
      * @description 图片信息类
      * @groups 界面/控件/图片
      * @networkStatus usage:客户端
@@ -431,7 +388,6 @@ declare global {
     const ImageInfo: typeof mw.ImageInfo;
     type ImageInfo = mw.ImageInfo;
     /**
-     * @author zheng.zeng
      * @description Checkbox 控件风格类型
      * @groups 界面/控件/勾选框
      * @networkStatus usage:客户端
@@ -439,7 +395,6 @@ declare global {
     const CheckboxStyle: typeof mw.CheckboxStyle;
     type CheckboxStyle = mw.CheckboxStyle;
     /**
-     * @author zheng.zeng
      * @description Button 控件风格类型
      * @groups 界面/控件/按钮
      * @networkStatus usage:客户端
@@ -447,7 +402,6 @@ declare global {
     const ButtonStyle: typeof mw.ButtonStyle;
     type ButtonStyle = mw.ButtonStyle;
     /**
-     * @author zheng.zeng
      * @description Dropdown 控件风格类型
      * @groups 界面/控件/下拉框
      * @networkStatus usage:客户端
@@ -455,7 +409,6 @@ declare global {
     const DropdownStyle: typeof mw.DropdownStyle;
     type DropdownStyle = mw.DropdownStyle;
     /**
-     * @author jianke.feng
      * @groups 界面/控件/滚动框
      * @description 滚动条风格类型
      * @networkStatus usage:客户端
@@ -463,7 +416,6 @@ declare global {
     const ScrollbarStyle: typeof mw.ScrollbarStyle;
     type ScrollbarStyle = mw.ScrollbarStyle;
     /**
-     * @author jianke.feng
      * @groups 界面/控件/图片
      * @description 背景图片风格类型
      * @networkStatus usage:客户端
@@ -471,7 +423,6 @@ declare global {
     const ListItemStyle: typeof mw.ListItemStyle;
     type ListItemStyle = mw.ListItemStyle;
     /**
-     * @author jianke.feng
      * @groups 界面/控件/文本
      * @description 文本风格类型
      * @networkStatus usage:客户端
@@ -479,7 +430,6 @@ declare global {
     const TextStyle: typeof mw.TextStyle;
     type TextStyle = mw.TextStyle;
     /**
-     * @author jianke.feng
      * @groups 界面/基础
      * @description UI 对象
      * @description ----------------------------
@@ -490,7 +440,6 @@ declare global {
     const UIObject: typeof mw.UIObject;
     type UIObject = mw.UIObject;
     /**
-    * @author jie.wu
     * @groups 界面/基础
     * @description UI 的驱动脚本基类
     * @description -----------------------
@@ -510,7 +459,6 @@ declare global {
     const UIScript: typeof mw.UIScript;
     type UIScript = mw.UIScript;
     /**
-     * @author wei.yang
      * @groups 界面/基础
      * @description UI 管理类
      * @description 1. 关于 UI 的一些名词解释
@@ -622,7 +570,6 @@ declare global {
     const UIService: typeof mw.UIService;
     type UIService = mw.UIService;
     /**
-     * @author jie.wu
      * @groups 界面/控件/容器
      * @description 容器
      * @description ----------------------
@@ -632,7 +579,6 @@ declare global {
     const Canvas: typeof mw.Canvas;
     type Canvas = mw.Canvas;
     /**
-     * @author jie.wu
      * @groups 界面/事件
      * @description UI 拖拽事件
      * @networkStatus usage:客户端
@@ -640,7 +586,6 @@ declare global {
     const DragDropOperation: typeof mw.DragDropOperation;
     type DragDropOperation = mw.DragDropOperation;
     /**
-     * @author jie.wu
      * @groups 界面/控件/自定义控件
      * @description 自定义控件
      * @description UI控件的集合，预制体UI
@@ -649,7 +594,6 @@ declare global {
     const UserWidget: typeof mw.UserWidget;
     type UserWidget = mw.UserWidget;
     /**
-     * @author jianke.feng
      * @groups 界面/控件/勾选框
      * @description 勾选框
      * @networkStatus usage:客户端
@@ -658,7 +602,6 @@ declare global {
     type Checkbox = mw.Checkbox;
     /**
      * @hidden
-     * @author jie.wu
      * @groups 界面
      * @description ui预制体
      * @networkStatus usage:客户端
@@ -666,7 +609,6 @@ declare global {
     const UserWidgetPrefab: typeof mw.UserWidgetPrefab;
     type UserWidgetPrefab = mw.UserWidgetPrefab;
     /**
-     * @author jie.wu
      * @groups 界面/控件/遥杆
      * @description 摇杆
      * @networkStatus usage:客户端
@@ -674,7 +616,6 @@ declare global {
     const VirtualJoystickPanel: typeof mw.VirtualJoystickPanel;
     type VirtualJoystickPanel = mw.VirtualJoystickPanel;
     /**
-     * @author jianke.feng
      * @groups 界面/控件/按钮
      * @description 按钮
      * @description -------------------------
@@ -684,7 +625,6 @@ declare global {
     const Button: typeof mw.Button;
     type Button = mw.Button;
     /**
-     * @author jie.wu
      * @groups 界面/基础
      * @description 控件的基类
      * @description ---------------
@@ -695,161 +635,138 @@ declare global {
     const Widget: typeof mw.Widget;
     type Widget = mw.Widget;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 帧动画播放规则
      */
     const PlayStatus: typeof mw.PlayStatus;
     type PlayStatus = mw.PlayStatus;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 输入框回车键功能
      */
     const InsertNewLineType: typeof mw.InsertNewLineType;
     type InsertNewLineType = mw.InsertNewLineType;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 选中规则
      */
     const CheckBoxState: typeof mw.CheckBoxState;
     type CheckBoxState = mw.CheckBoxState;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 自动布局排版规则-排列规则
      */
     const UILayoutPacket: typeof mw.UILayoutPacket;
     type UILayoutPacket = mw.UILayoutPacket;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 自动布局排版规则-容器类型
      */
     const UILayoutType: typeof mw.UILayoutType;
     type UILayoutType = mw.UILayoutType;
     /**
-    * @author jianke.feng
     * @groups 界面
     * @description 自动布局容器水平适应规则
     */
     const UIHugContentHorizontally: typeof mw.UIHugContentHorizontally;
     type UIHugContentHorizontally = mw.UIHugContentHorizontally;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 自动布局容器垂直适应规则
      */
     const UIHugContentVertically: typeof mw.UIHugContentVertically;
     type UIHugContentVertically = mw.UIHugContentVertically;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 自动布局子项布局排序 - 水平排序
      */
     const UIHorizontalCollation: typeof mw.UIHorizontalCollation;
     type UIHorizontalCollation = mw.UIHorizontalCollation;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 自动布局子项布局排序 - 垂直排序
      */
     const UIVerticalCollation: typeof mw.UIVerticalCollation;
     type UIVerticalCollation = mw.UIVerticalCollation;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 文本框规则显示规则限制
      */
     const UITextHorizontalLayout: typeof mw.UITextHorizontalLayout;
     type UITextHorizontalLayout = mw.UITextHorizontalLayout;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 滚动框动画类型
      */
     const UIScrollBoxAnimationType: typeof mw.UIScrollBoxAnimationType;
     type UIScrollBoxAnimationType = mw.UIScrollBoxAnimationType;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 对齐策略水平规则
      */
     const UIConstraintHorizontal: typeof mw.UIConstraintHorizontal;
     type UIConstraintHorizontal = mw.UIConstraintHorizontal;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 对齐策略垂直规则
      */
     const UIConstraintVertical: typeof mw.UIConstraintVertical;
     type UIConstraintVertical = mw.UIConstraintVertical;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 字体类型
      */
     const UIFontGlyph: typeof mw.UIFontGlyph;
     type UIFontGlyph = mw.UIFontGlyph;
     /**
-     * @author yang.zheng
      * @groups 界面
      * @description 字体
      */
     const UIFontFamily: typeof mw.UIFontFamily;
     type UIFontFamily = mw.UIFontFamily;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 文本排列对齐规则
      */
     const TextJustify: typeof mw.TextJustify;
     type TextJustify = mw.TextJustify;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 文本排列垂直对齐规则
      */
     const TextVerticalJustify: typeof mw.TextVerticalJustify;
     type TextVerticalJustify = mw.TextVerticalJustify;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 按钮点击响应规则
      */
     const ButtonClickMethod: typeof mw.ButtonClickMethod;
     type ButtonClickMethod = mw.ButtonClickMethod;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 按钮触摸响应规则
      */
     const ButtonTouchMethod: typeof mw.ButtonTouchMethod;
     type ButtonTouchMethod = mw.ButtonTouchMethod;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 按钮按压响应规则
      */
     const ButtonPressMethod: typeof mw.ButtonPressMethod;
     type ButtonPressMethod = mw.ButtonPressMethod;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description UI节点显示规则
      */
     const SlateVisibility: typeof mw.SlateVisibility;
     type SlateVisibility = mw.SlateVisibility;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 鼠标锁定模式
      */
     const MouseLockMode: typeof mw.MouseLockMode;
     type MouseLockMode = mw.MouseLockMode;
     /**
-      * @author jie.wu
       * @groups 界面/事件
       * @description 拖拽事件数据传递类
       * @networkStatus usage:客户端
@@ -857,7 +774,6 @@ declare global {
     const DragDropPayLoad: typeof mw.DragDropPayLoad;
     type DragDropPayLoad = mw.DragDropPayLoad;
     /**
-     * @author jie.wu
      * @groups 界面/控件/图片
      * @description 图片
      * @networkStatus usage:客户端
@@ -865,7 +781,6 @@ declare global {
     const Image: typeof mw.Image;
     type Image = mw.Image;
     /**
-     * @author jie.wu
      * @groups 界面/控件/绘图画布
      * @description UI 画布
      * @networkStatus usage:客户端
@@ -873,14 +788,12 @@ declare global {
     const DrawCanvas: typeof mw.DrawCanvas;
     type DrawCanvas = mw.DrawCanvas;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 相机控制模式
      */
     const CameraControlType: typeof mw.CameraControlType;
     type CameraControlType = mw.CameraControlType;
     /**
-     * @author jie.wu
      * @groups 界面/控件/绘图画布
      * @description 自定义绘制图元数据
      * @networkStatus usage:客户端
@@ -888,7 +801,6 @@ declare global {
     const UIDrawCustomVertex: typeof mw.UIDrawCustomVertex;
     type UIDrawCustomVertex = mw.UIDrawCustomVertex;
     /**
-     * @author jie.wu
      * @groups 界面/控件/绘图画布
      * @description 图元绘制基础参数
      * @networkStatus usage:客户端
@@ -896,21 +808,18 @@ declare global {
     const DrawDataBase: typeof mw.DrawDataBase;
     type DrawDataBase = mw.DrawDataBase;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 滚动框类型
      */
     const Orientation: typeof mw.Orientation;
     type Orientation = mw.Orientation;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 光标类型
      */
     const MouseCursor: typeof mw.MouseCursor;
     type MouseCursor = mw.MouseCursor;
     /**
-     * @author jianke.feng
      * @groups 界面/控件/下拉框
      * @description Dropdown
      * @networkStatus usage:客户端
@@ -920,13 +829,11 @@ declare global {
     /**
      * @description  滚动条默认位置
      * @groups 界面
-     * @author jianke.feng
      *
      */
     const ScrollBarDefaultLocation: typeof mw.ScrollBarDefaultLocation;
     type ScrollBarDefaultLocation = mw.ScrollBarDefaultLocation;
     /**
-     * @author jie.wu
      * @groups 界面/控件/帧动画
      * @description 帧动画控件
      * @networkStatus usage:客户端
@@ -934,14 +841,12 @@ declare global {
     const FlipBook: typeof mw.FlipBook;
     type FlipBook = mw.FlipBook;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 进度条填充规则
      */
     const ProgressBarFillType: typeof mw.ProgressBarFillType;
     type ProgressBarFillType = mw.ProgressBarFillType;
     /**
-    * @author maohang.zeng
     * @groups 界面
     * @description 列表视图节点数据基类
     * @networkStatus usage:客户端
@@ -949,14 +854,12 @@ declare global {
     const ListViewItemDataBase: typeof mw.ListViewItemDataBase;
     type ListViewItemDataBase = mw.ListViewItemDataBase;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description UI颜色应用模式
      */
     const SlateColorStylingMode: typeof mw.SlateColorStylingMode;
     type SlateColorStylingMode = mw.SlateColorStylingMode;
     /**
-     * @author maohang.zeng
      * @groups 界面/控件/列表视图
      * @description 列表视图
      * @networkStatus usage: 客户端
@@ -964,14 +867,12 @@ declare global {
     const ListView: typeof mw.ListView;
     type ListView = mw.ListView;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 图片画刷绘制模式
      */
     const SlateBrushDrawType: typeof mw.SlateBrushDrawType;
     type SlateBrushDrawType = mw.SlateBrushDrawType;
     /**
-     * @author jianke.feng
      * @groups 界面/控件/遮罩按钮
      * @description 遮罩按钮
      * @networkStatus usage:客户端
@@ -979,14 +880,12 @@ declare global {
     const MaskButton: typeof mw.MaskButton;
     type MaskButton = mw.MaskButton;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 图片画刷填充模式
      */
     const SlateBrushTileType: typeof mw.SlateBrushTileType;
     type SlateBrushTileType = mw.SlateBrushTileType;
     /**
-     * @author jianke.feng
      * @groups 界面/控件/菜单锚点
      * @description 菜单锚点
      * @networkStatus usage:客户端
@@ -994,7 +893,6 @@ declare global {
     const MenuAnchor: typeof mw.MenuAnchor;
     type MenuAnchor = mw.MenuAnchor;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 输入框限制
      */
@@ -1002,7 +900,6 @@ declare global {
     type InputTextLimit = mw.InputTextLimit;
     /**
     * @deprecated info:该接口已废弃，在该接口被删除前会仍保持可用，请尽快使用替换方案以免出现问题 since: 029 reason: 删除接口 replacement:挂载相关功能已全移动到 Widget 控件
-    * @author jie.wu
     * @groups 界面/控件
     * @description UI 控件中，可以挂载子控件的父类。
     * @description ---------------------
@@ -1012,14 +909,12 @@ declare global {
     const PanelWidget: typeof mw.PanelWidget;
     type PanelWidget = mw.PanelWidget;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 输入提交模式
      */
     const TextCommit: typeof mw.TextCommit;
     type TextCommit = mw.TextCommit;
     /**
-     * @author jie.wu
      * @groups 界面/控件/输入框
      * @description 输入框
      * @networkStatus usage:客户端
@@ -1027,7 +922,6 @@ declare global {
     const InputBox: typeof mw.InputBox;
     type InputBox = mw.InputBox;
     /**
-    * @author jie.wu
     * @groups 界面/控件/调色板
     * @description 调色板
     * @networkStatus usage:客户端
@@ -1035,14 +929,12 @@ declare global {
     const ColorPick: typeof mw.ColorPick;
     type ColorPick = mw.ColorPick;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 拖拽的锚点
      */
     const DragPivot: typeof mw.DragPivot;
     type DragPivot = mw.DragPivot;
     /**
-     * @author cheng.zeng
      * @groups 界面/控件/广告按钮
      * @description 广告按钮，请注意广告按钮不允许被遮挡
      * @description 需要在游戏中使用 onshow/onclose 才能播放广告
@@ -1052,7 +944,6 @@ declare global {
     const AdsButton: typeof mw.AdsButton;
     type AdsButton = mw.AdsButton;
     /**
-     * @author jie.wu
      * @groups 界面/控件/进度条
      * @description 进度条
      * @networkStatus usage:客户端
@@ -1060,14 +951,12 @@ declare global {
     const ProgressBar: typeof mw.ProgressBar;
     type ProgressBar = mw.ProgressBar;
     /**
-    * @author jie.wu
     * @groups 界面
     * @description 进度条滑动的方式
     */
     const SlideMethod: typeof mw.SlideMethod;
     type SlideMethod = mw.SlideMethod;
     /**
-     * @author jie.wu
      * @groups 界面/控件/容器
      * @description 遮罩容器
      * @description ----------------------
@@ -1077,14 +966,12 @@ declare global {
     const Mask: typeof mw.Mask;
     type Mask = mw.Mask;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 遮罩类型
      */
     const MaskButtonType: typeof mw.MaskButtonType;
     type MaskButtonType = mw.MaskButtonType;
     /**
-   * @author jie.wu
    * @groups 界面/控件/滚动框
    * @description 滑动框
    * @networkStatus usage:客户端
@@ -1092,14 +979,12 @@ declare global {
     const ScrollBox: typeof mw.ScrollBox;
     type ScrollBox = mw.ScrollBox;
     /**
-     * @author jianke.feng
      * @groups 界面
      * @description 新版遮罩类型
      */
     const MaskType: typeof mw.MaskType;
     type MaskType = mw.MaskType;
     /**
-    * @author jie.wu
     * @groups 界面/控件/文本按钮
     * @description 文本按钮
     * @networkStatus usage:客户端
@@ -1146,14 +1031,12 @@ declare global {
     const StaleButton: typeof mw.StaleButton;
     type StaleButton = mw.StaleButton;
     /**
-     * @author maohang.zeng
      * @groups 界面
      * @description 列表视图选择模式
      */
     const SelectionMode: typeof mw.SelectionMode;
     type SelectionMode = mw.SelectionMode;
     /**
-     * @author wei.yang
      * @groups 界面
      * @description 选项卡组
      * @networkStatus usage:客户端
@@ -1161,14 +1044,12 @@ declare global {
     const TabGroup: typeof mw.TabGroup;
     type TabGroup<T extends TabGroupOnClickedProps> = mw.TabGroup<T>;
     /**
-     * @author maohang.zeng
      * @groups 界面
      * @description 列表视图选择来源信息
      */
     const SelectInfo: typeof mw.SelectInfo;
     type SelectInfo = mw.SelectInfo;
     /**
-    * @author jie.wu
     * @groups 界面/控件/文本
     * @description 文本
     * @networkStatus usage:客户端
@@ -1176,14 +1057,12 @@ declare global {
     const TextBlock: typeof mw.TextBlock;
     type TextBlock = mw.TextBlock;
     /**
-     * @author wei.yang
      * @groups 界面
      * @description 菜单呼出位置枚举
      */
     const MenuPlacement: typeof mw.MenuPlacement;
     type MenuPlacement = mw.MenuPlacement;
     /**
-     * @author wei.yang
      * @groups 界面
      * @description 菜单项节点信息
      * @networkStatus usage:客户端
@@ -1191,14 +1070,12 @@ declare global {
     const MenuItemInfo: typeof mw.MenuItemInfo;
     type MenuItemInfo = mw.MenuItemInfo;
     /**
-     * @author maohang.zeng
      * @groups 界面
      * @description 图标的分辨率
      */
     const AssetIconSize: typeof mw.AssetIconSize;
     type AssetIconSize = mw.AssetIconSize;
     /**
-     * @author jie.wu
      * @groups 界面/控件/绘图画板
      * @description UI 画板
      * @networkStatus usage:客户端
@@ -1206,7 +1083,6 @@ declare global {
     const DrawBoard: typeof mw.DrawBoard;
     type DrawBoard = mw.DrawBoard;
     /**
-     * @author jie.wu
      * @groups 界面/配置
      * @description 基础的边距，提供4个方向的数值修改
      * @networkStatus usage:客户端
@@ -1214,7 +1090,6 @@ declare global {
     const Margin: typeof mw.Margin;
     type Margin = mw.Margin;
     /**
-     * @author maohang.zeng
      * @groups 界面/控件/平铺视图
      * @description 平铺视图
      * @networkStatus usage: 客户端
@@ -1223,7 +1098,6 @@ declare global {
     type TileView = mw.TileView;
     /**
      * @deprecated info:该接口已废弃，在该接口被删除前会仍保持可用，请尽快使用替换方案以免出现问题 since: 029 reason: 删除接口 replacement:控件属性 autoSizeHorizontalEnable()/autoSizeVerticalEnable()
-     * @author jie.wu
      * @groups 界面/控件/容器
      * @description 容器自动布局大小适应规则
      * @networkStatus usage:客户端
@@ -1231,7 +1105,6 @@ declare global {
     const UIHugContent: typeof mw.UIHugContent;
     type UIHugContent = mw.UIHugContent;
     /**
-     * @author jie.wu
      * @groups 界面/控件/容器
      * @description 容器自动布局子项排序规则
      * @networkStatus usage:客户端
@@ -1239,7 +1112,6 @@ declare global {
     const UIChildCollation: typeof mw.UIChildCollation;
     type UIChildCollation = mw.UIChildCollation;
     /**
-     * @author jie.wu
      * @groups 界面/控件/摄像机滑动区
      * @description 摄像机滑动区
      * @networkStatus usage:客户端
@@ -1247,7 +1119,6 @@ declare global {
     const TouchPad: typeof mw.TouchPad;
     type TouchPad = mw.TouchPad;
     /**
-     * @author jie.wu
      * @groups 界面/控件/容器
      * @description 容器自动布局规则
      * @networkStatus usage:客户端
@@ -1255,7 +1126,6 @@ declare global {
     const UILayout: typeof mw.UILayout;
     type UILayout = mw.UILayout;
     /**
-    * @author maohang.zeng
     * @groups 界面
     * @description 树状视图节点数据基类
     * @networkStatus usage: 客户端
@@ -1263,7 +1133,6 @@ declare global {
     const TreeViewItemDataBase: typeof mw.TreeViewItemDataBase;
     type TreeViewItemDataBase = mw.TreeViewItemDataBase;
     /**
-     * @author jie.wu
      * @groups 界面/配置
      * @description Transform
      * @networkStatus usage:客户端
@@ -1271,7 +1140,6 @@ declare global {
     const UITransform: typeof mw.UITransform;
     type UITransform = mw.UITransform;
     /**
-     * @author maohang.zeng
      * @groups 界面/控件/树状视图
      * @description 树状视图
      * @networkStatus usage: 客户端
@@ -1279,7 +1147,6 @@ declare global {
     const TreeView: typeof mw.TreeView;
     type TreeView = mw.TreeView;
     /**
-     * @author jie.wu
      * @groups 界面/配置
      * @description 节点对齐规则
      * @networkStatus usage:客户端
@@ -1287,7 +1154,6 @@ declare global {
     const UIConstraintAnchors: typeof mw.UIConstraintAnchors;
     type UIConstraintAnchors = mw.UIConstraintAnchors;
     /**
-     * @author jie.wu
      * @groups 界面/配置
      * @description 字体信息
      * @networkStatus usage:客户端
@@ -1295,7 +1161,6 @@ declare global {
     const UIFontInfo: typeof mw.UIFontInfo;
     type UIFontInfo = mw.UIFontInfo;
     /**
-     * @author jie.wu
      * @groups 界面/控件/遥杆
      * @description 摇杆信息
      * @networkStatus usage:客户端
@@ -1303,7 +1168,6 @@ declare global {
     const JoystickStyleDesigner: typeof mw.JoystickStyleDesigner;
     type JoystickStyleDesigner = mw.JoystickStyleDesigner;
     /**
-     * @author jie.wu
      * @groups 界面/控件/遥杆
      * @description 颜色管理
      * @networkStatus usage:客户端
@@ -1311,7 +1175,6 @@ declare global {
     const SlateColor: typeof mw.SlateColor;
     type SlateColor = mw.SlateColor;
     /**
-     * @author jie.wu
      * @groups 界面
      * @description 几何坐标信息
      * @networkStatus usage:客户端
@@ -1320,7 +1183,6 @@ declare global {
     type Geometry = mw.Geometry;
     /**
      * @hidden
-     * @author jie.wu
      * @groups 输入
      * @description 输入事件
      * @networkStatus usage:客户端
@@ -1329,7 +1191,6 @@ declare global {
     type InputEvent = mw.InputEvent;
     /**
      * @hidden
-     * @author jie.wu
      * @groups 界面
      * @description 焦点事件
      * @networkStatus usage:客户端
@@ -1337,7 +1198,6 @@ declare global {
     const FocusEvent: typeof mw.FocusEvent;
     type FocusEvent = mw.FocusEvent;
     /**
-     * @author jie.wu
      * @groups 界面/事件
      * @description 角色输入事件
      * @networkStatus usage:客户端
@@ -1345,7 +1205,6 @@ declare global {
     const CharacterEvent: typeof mw.CharacterEvent;
     type CharacterEvent = mw.CharacterEvent;
     /**
-     * @author jie.wu
      * @groups 界面/事件
      * @description 按键事件
      * @networkStatus usage:客户端
@@ -1353,7 +1212,6 @@ declare global {
     const KeyEvent: typeof mw.KeyEvent;
     type KeyEvent = mw.KeyEvent;
     /**
-    * @author jie.wu
     * @groups 界面/事件
     * @description 点击或者滑动的时候传递mobile touch,鼠标,键盘信息的类
     * @networkStatus usage:客户端
@@ -1361,7 +1219,6 @@ declare global {
     const PointerEvent: typeof mw.PointerEvent;
     type PointerEvent = mw.PointerEvent;
     /**
-    * @author jie.wu
     * @groups 界面/事件
     * @description 事件回复
     * @networkStatus usage:客户端
@@ -1369,7 +1226,6 @@ declare global {
     const EventReply: typeof mw.EventReply;
     type EventReply = mw.EventReply;
     /**
-    * @author jie.wu
     * @groups 界面/控件/图片
     * @description 资源 icon 信息
     * @networkStatus usage:客户端
@@ -1377,20 +1233,17 @@ declare global {
     const AssetIconData: typeof mw.AssetIconData;
     type AssetIconData = mw.AssetIconData;
     /**
-    * @author jianke.feng
     * @description 选项卡组-点击事件type
     * @groups 界面
     */
     type TabGroupOnClickedProps = mw.TabGroupOnClickedProps;
     /**
-     * @author xiaobo.qi
      * @description 游戏本地化语言
      * @groups 基础类型
      */
     const LanguageCodeType: typeof mw.LanguageCodeType;
     type LanguageCodeType = mw.LanguageCodeType;
     /**
-     * @author xiangkun.sun
      * @description 资源类型
      * @groups 基础类型
      */
@@ -1398,41 +1251,35 @@ declare global {
     type AssetType = mw.AssetType;
     /**
   * @description gizmo模式
-  * @author jie.wu
   * @groups 基础类型
   */
     const GizmoModeType: typeof mw.GizmoModeType;
     type GizmoModeType = mw.GizmoModeType;
     /**
      * @description gizmo空间
-     * @author hao.wu
      * @groups 基础类型
      */
     const GizmoSpaceType: typeof mw.GizmoSpaceType;
     type GizmoSpaceType = mw.GizmoSpaceType;
     /**
      * @description gizmo空间
-     * @author jie.wu
      * @groups 基础类型
      */
     const GizmoScaleType: typeof mw.GizmoScaleType;
     type GizmoScaleType = mw.GizmoScaleType;
     /**
      * @description gizmo空间
-     * @author jie.wu
      * @groups 基础类型
      */
     const GizmoSocketType: typeof mw.GizmoSocketType;
     type GizmoSocketType = mw.GizmoSocketType;
     /**
-     * @author jie.wu
      * @groups 基础类型
      * @description gizmo坐标轴类型
      */
     const GizmoCoordinateType: typeof mw.GizmoCoordinateType;
     type GizmoCoordinateType = mw.GizmoCoordinateType;
     /**
-     * @author shilong.wang
      * @groups 基础类型/代理
      * @description 代理
      * @description ----------------------------------------
@@ -1521,7 +1368,6 @@ declare global {
     const Action: typeof mw.Action;
     type Action = mw.Action;
     /**
-     * @author shilong.wang
      * @groups 基础类型/代理
      * @description 一个参数的代理
      * @networkStatus usage: 双端
@@ -1581,7 +1427,6 @@ declare global {
     const Action1: typeof mw.Action1;
     type Action1<T> = mw.Action1<T>;
     /**
-     * @author xiangkun.sun
      * @groups 输入
      * @description 屏幕坐标转换结果
      * @networkStatus usage:双端
@@ -1589,7 +1434,6 @@ declare global {
     const ConvertScreenResult: typeof mw.ConvertScreenResult;
     type ConvertScreenResult = mw.ConvertScreenResult;
     /**
-     * @author shilong.wang
      * @groups 基础类型/代理
      * @description 两个参数的代理
      * @networkStatus usage: 双端
@@ -1603,7 +1447,6 @@ declare global {
     const HeapStatistics: typeof mw.HeapStatistics;
     type HeapStatistics = mw.HeapStatistics;
     /**
-     * @author shilong.wang
      * @groups 基础类型/代理
      * @description 三个参数的代理
      * @networkStatus usage: 双端
@@ -1611,7 +1454,6 @@ declare global {
     const Action3: typeof mw.Action3;
     type Action3<T1, T2, T3> = mw.Action3<T1, T2, T3>;
     /**
-     * @author xiangkun.sun
      * @groups 基础类型/委托
      * @description 委托
      * @description ----------------------------------------
@@ -1659,7 +1501,6 @@ declare global {
     const Delegate: typeof mw.Delegate;
     type Delegate<T extends DelegateFuncType> = mw.Delegate<T>;
     /**
-     * @author xiangkun.sun
      * @groups 基础类型/其他
      * @description r, g, b 颜色值的有效范围是 0.0 <= value <= 1.0
      * @networkStatus usage:双端
@@ -1667,7 +1508,6 @@ declare global {
     const LinearColor: typeof mw.LinearColor;
     type LinearColor = mw.LinearColor;
     /**
-     * @author xiangkun.sun
      * @groups 基础类型/委托
      * @description 多播委托接口
      * @networkStatus usage:双端
@@ -1699,7 +1539,6 @@ declare global {
     const MulticastDelegate: typeof mw.MulticastDelegate;
     type MulticastDelegate<T extends DelegateFuncType> = mw.MulticastDelegate<T>;
     /**
-     * @author yuhao.chen
      * @groups 基础类型/变换/矩阵
      * @description 三维矩阵
      * @description -------------------
@@ -1709,7 +1548,6 @@ declare global {
     const Matrix3x3: typeof mw.Matrix3x3;
     type Matrix3x3 = mw.Matrix3x3;
     /**
-     * @author si.wu
      * @groups 基础类型/委托
      * @description 广播代理
      * @networkStatus usage:双端
@@ -1739,7 +1577,6 @@ declare global {
     const MulticastGameObjectDelegate: typeof mw.MulticastGameObjectDelegate;
     type MulticastGameObjectDelegate = mw.MulticastGameObjectDelegate;
     /**
-     * @author yuhao.chen
      * @groups 基础类型/变换/矩阵
      * @description 四维矩阵
      * @description ------------------
@@ -1749,14 +1586,12 @@ declare global {
     const Matrix4x4: typeof mw.Matrix4x4;
     type Matrix4x4 = mw.Matrix4x4;
     /**
-     * @author xiangkun.sun
      * @description 属性状态
      * @groups 基础类型
      */
     const PropertyStatus: typeof mw.PropertyStatus;
     type PropertyStatus = mw.PropertyStatus;
     /**
-     * @author xiangkun.sun
      * @groups 基础类型/变换/旋转
      * @description 四元数
      * @description ----------------------------
@@ -1768,14 +1603,12 @@ declare global {
     const Quaternion: typeof mw.Quaternion;
     type Quaternion = mw.Quaternion;
     /**
-     * @author xiangkun.sun
      * @description 碰撞属性状态
      * @groups 基础类型
     */
     const CollisionStatus: typeof mw.CollisionStatus;
     type CollisionStatus = mw.CollisionStatus;
     /**
-     * @author xiangkun.sun
      * @groups 基础类型/变换/旋转
      * @description 欧拉角
      * @description ------------------
@@ -1787,14 +1620,12 @@ declare global {
     const Rotation: typeof mw.Rotation;
     type Rotation = mw.Rotation;
     /**
-     * @author maohang.zeng
      * @description Actor在编辑器中的状态标记
      * @groups 基础类型
      */
     const EdActorFlag: typeof mw.EdActorFlag;
     type EdActorFlag = mw.EdActorFlag;
     /**
-     * @author xiangkun.sun
      * @groups 基础类型/变换
      * @description 三维变换
      * @description -----------------------
@@ -1806,14 +1637,12 @@ declare global {
     const Transform: typeof mw.Transform;
     type Transform = mw.Transform;
     /**
-     * @author xiangkun.sun
      * @description 同步状态
      * @groups 基础类型
      */
     const NetStatus: typeof mw.NetStatus;
     type NetStatus = mw.NetStatus;
     /**
-     * @author xiangkun.sun
      * @groups 基础类型/变换/向量
      * @description 三维向量
      * @description ------------------
@@ -1823,14 +1652,12 @@ declare global {
     const Vector: typeof mw.Vector;
     type Vector = mw.Vector;
     /**
-     * @author xiangkun.sun
      * @description 按键Key值
      * @groups 基础类型
      */
     const Keys: typeof mw.Keys;
     type Keys = mw.Keys;
     /**
-     * @author xiangkun.sun
      * @groups 基础类型/变换/向量
      * @description 二维向量
      * @description ------------------
@@ -2034,7 +1861,6 @@ declare global {
     const Vector2: typeof mw.Vector2;
     type Vector2 = mw.Vector2;
     /**
-     * @author xiangkun.sun
      * @description 画质等级
      * @deprecated info:该接口已废弃，在该接口被删除前会仍保持可用，请尽快使用替换方案以免出现问题 since: 030 reason:接口废弃 replacement:
      * @groups 基础类型
@@ -2042,7 +1868,6 @@ declare global {
     const GraphicsLevel: typeof mw.GraphicsLevel;
     type GraphicsLevel = mw.GraphicsLevel;
     /**
-     * @author xiangkun.sun
      * @groups 基础类型/变换/向量
      * @description 齐次向量
      * @description ------------------
@@ -2052,33 +1877,28 @@ declare global {
     const Vector4: typeof mw.Vector4;
     type Vector4 = mw.Vector4;
     /**
-     * @author xiangkun.sun
      * @description 运行平台
      * @groups 基础类型
      */
     const RuntimePlatform: typeof mw.RuntimePlatform;
     type RuntimePlatform = mw.RuntimePlatform;
     /**
-     * @author xiangkun.sun
      * @description 游戏语言
      * @groups 基础类型
      */
     const LanguageType: typeof mw.LanguageType;
     type LanguageType = mw.LanguageType;
     /**
-     * @author shilong.wang
      * @groups 基础类型/其他
      * @description 类定义，使用这个可以省去类参数繁琐的类型声明    如:fun<T>(c:{new():T}) 可以写成 fun<T>(c:Class<T>)
      */
     type TypeName<T> = mw.TypeName<T>;
     /**
-     * @author zhiqiang.tan
      * @groups 玩法/物理
      * @description 空间查询渲染参数
      */
     type RenderQueryParams = mw.RenderQueryParams;
     /**
-     * @author xiangkun.sun
      * @groups 基础类型
      * @description 代理回调函数签名
      * @effect 调用端生效
@@ -2086,7 +1906,6 @@ declare global {
     type DelegateFuncType = mw.DelegateFuncType;
     /**
      * @hidden
-     * @author xiangkun.sun
      * @groups 基础类型
      * @description 委托接口
      * @effect 调用端生效
@@ -2094,14 +1913,12 @@ declare global {
     type DelegateInterface<T extends DelegateFuncType> = mw.DelegateInterface<T>;
     /**
      * @hidden
-     * @author xiangkun.sun
      * @groups 基础类型
      * @description 多播委托接口
      * @effect 调用端生效
      */
     type MulticastDelegateInterface<T extends DelegateFuncType> = mw.MulticastDelegateInterface<T>;
     /**
-     * @author xiangkun.sun
      * @groups 基类/场景所有物体基类
      * @description 构建物体的信息
      */
@@ -2111,48 +1928,41 @@ declare global {
     */
     type GameObjectDelegateFuncType = mw.GameObjectDelegateFuncType;
     /**
-     * @author zhiqiang.tan
      * @groups 玩法/物理
      * @description 空间查询碰撞参数
      */
     type CollisionQueryParams = mw.CollisionQueryParams;
     /**
-     * @author xiangkun.sun
      * @groups 基础类型
      * @description 多播
      * @effect 调用端生效
      */
     const Multicast: typeof mw.Multicast;
     /**
-     * @author xiangkun.sun
      * @groups 基础类型
      * @description 客户端
      * @effect 调用端生效
      */
     const Client: typeof mw.Client;
     /**
-     * @author xiangkun.sun
      * @groups 基础类型
      * @description 服务端
      * @effect 调用端生效
      */
     const Server: typeof mw.Server;
     /**
-     * @author xiangkun.sun
      * @groups 基础类型
      * @description 与Client Server配合实现RPC函数返回值
      * @effect 调用端生效
      */
     const Result: typeof mw.Result;
     /**
-     * @author xiangkun.sun
      * @groups 基础类型
      * @description 不可靠rpc
      * @effect 调用端生效
      */
     const Unreliable: typeof mw.Unreliable;
     /**
-     * @author xiangkun.sun
      * @groups 基础类型
      * @description 将类声明为mwclass
      * @effect 调用端生效
@@ -2161,7 +1971,6 @@ declare global {
      */
     const Component: typeof mw.Component;
     /**
-     * @author xiangkun.sun
      * @groups 基础类型
      * @description 类型支持属性同步
      * @effect 调用端生效
@@ -2170,7 +1979,6 @@ declare global {
      */
     const Serializable: typeof mw.Serializable;
     /**
-     * @author xiangkun.sun
      * @groups 基础类型
      * @description 函数支持Rpc调用
      * @effect 调用端生效
@@ -2179,7 +1987,6 @@ declare global {
      */
     const RemoteFunction: typeof mw.RemoteFunction;
     /**
-     * @author xiangkun.sun
      * @groups 基础类型
      * @description 属性支持同步
      * @effect 调用端生效
@@ -2190,7 +1997,6 @@ declare global {
     /**
      * @hidden
      * @groups 基础类型
-     * @author xiangkun.sun
      * @description 游戏窗口被激活事件
      * @effect 只在客户端调用生效
      * @param callback usage:回调事件
@@ -2199,7 +2005,6 @@ declare global {
     /**
      * @hidden
      * @groups 基础类型
-     * @author xiangkun.sun
      * @description 游戏窗口被挂起事件
      * @effect 只在客户端调用生效
      * @param callback usage:回调事件
@@ -2208,14 +2013,12 @@ declare global {
     /**
      * @hidden
      * @groups 基础类型
-     * @author xiangkun.sun
      * @description 获取游戏窗口激活状态
      * @effect 只在客户端调用生效
      * @returns 是否激活
      */
     const getWindowIsActive: typeof mw.getWindowIsActive;
     /**
-     * @author xiangkun.sun
      * @groups 基类/场景所有物体基类
      * @description 场景中所有实体的基类
      * @description Model、Pawn、Camera、AdvancedVehicle、BlockingVolume等逻辑对象均继承自GameObject。
@@ -2269,7 +2072,6 @@ declare global {
     type FunctionOption = mw.FunctionOption;
     /**
      * @hidden
-     * @author zhaoyang.hou
      * @groups 基类
      * @description 脚本管理类
      * @networkStatus usage:双端
@@ -2278,14 +2080,12 @@ declare global {
     type ScriptManager = mw.ScriptManager;
     /**
      * @groups 基类
-     * @author si.wu
      * @description GameObject和Script的基类，定义基础能力
      * @networkStatus usage:双端
      */
     const Base: typeof mw.Base;
     type Base = mw.Base;
     /**
-     * @author xiangkun.sun
      * @description 是否在编辑器里隐藏
      * @groups 基础类型
      */
@@ -2295,7 +2095,6 @@ declare global {
     const FlagType: typeof mw.FlagType;
     type FlagType = mw.FlagType;
     /**
-     * @author zhaoyang.hou
      * @groups 基类
      * @description 脚本的基类
      * @description -----------------------------
@@ -2368,7 +2167,6 @@ declare global {
     const RpcType: typeof mw.RpcType;
     type RpcType = mw.RpcType;
     /**
-     * @author zhaoyang.hou
      * @groups 基类
      * @networkStatus usage:双端
      * @description main脚本的基类
@@ -2395,7 +2193,6 @@ declare global {
     /**
      * @hidden
      * @groups 基础类型
-     * @author xiangkun.sun
      * @description 用户属性范围和是否显示滑块
      */
     type IRangeOptions = mw.IRangeOptions;
@@ -2405,20 +2202,17 @@ declare global {
      */
     type IRepEventOptions = mw.IRepEventOptions;
     /**
-     * @author si.wu
      * @groups 基础类型
      * @description 自定义属性类型
      */
     type CustomPropertyType = mw.CustomPropertyType;
     /**
      * @hidden
-     * @author xiangkun.sun
      * @groups 基础类型
      * @description 用户属性标记的参数选项
      */
     type IPropertyOptions = mw.IPropertyOptions;
     /**
-     * @author baoqiang.han
      * @groups 玩法
      * @description 振动开关
      * @param enable usage:-true:开启震动，-false:关闭震动
@@ -2426,7 +2220,6 @@ declare global {
      */
     const vibrate: typeof mw.vibrate;
     /**
-     * @author hongbing.deng
      * @description 录屏
      * @groups 工具
      * @effect 只在客户端调用生效
@@ -2438,14 +2231,12 @@ declare global {
      */
     const startRecord: typeof mw.startRecord;
     /**
-     * @author hongbing.deng
      * @description 停止录屏
      * @groups 工具
      * @effect 只在客户端调用生效
      */
     const stopRecord: typeof mw.stopRecord;
     /**
-     * @author xinlei.nie
      * @groups 角色系统/角色
      * @description 获取强制更新移动时检测到的碰撞结果
      * @effect 调用端生效
@@ -2481,12 +2272,10 @@ declare global {
     /**
      * @description UI形状枚举
      * @groups 界面
-     * @author baoqiang.han
      */
     const WidgetGeometryMode: typeof mw.WidgetGeometryMode;
     type WidgetGeometryMode = mw.WidgetGeometryMode;
     /**
-     * @author yunhao.liao
      * @groups 场景/灯光
      * @description 环境雾
      * @description ----------------------------------
@@ -2501,7 +2290,6 @@ declare global {
     const Fog: typeof mw.Fog;
     type Fog = mw.Fog;
     /**
-     * @author baoqiang.han
      * @groups 界面/基础
      * @deprecated info:该接口已废弃，在该接口被删除前会仍保持可用，请尽快使用替换方案以免出现问题 since:038 reason:接口废弃 replacement: 请使用WorldUI
      * @description 世界 UI
@@ -2550,7 +2338,6 @@ declare global {
     /**
      * @hidden
      * @description Gizmo
-     * @author  hongbing.deng
      * @groups 基础类型/其他
      * @instance
      * @networkStatus usage:双端
@@ -2558,21 +2345,18 @@ declare global {
     const Gizmo: typeof mw.Gizmo;
     type Gizmo = mw.Gizmo;
     /**
-     * @author baoqiang.han
      * @description 水体预设枚举
      * @groups 玩法/游泳
      */
     const WaterPreset: typeof mw.WaterPreset;
     type WaterPreset = mw.WaterPreset;
     /**
-     * @author hao.huang
      * @description IK锚点类型
      * @groups 玩法/其他
      */
     const IKPart: typeof mw.IKPart;
     type IKPart = mw.IKPart;
     /**
-     * @author baoqiang.han
      * @groups 玩法/游泳
      * @description 水体区域
      * @description ----------------------------------
@@ -2613,7 +2397,6 @@ declare global {
     const WaterVolume: typeof mw.WaterVolume;
     type WaterVolume = mw.WaterVolume;
     /**
-     * @author hao.huang
      * @groups 玩法/其他
      * @description IK锚点
      * @networkStatus usage:双端
@@ -2623,12 +2406,10 @@ declare global {
     /**
      * @description UI空间位置枚举
      * @groups 界面
-     * @author baoqiang.han
      */
     const SpaceMode: typeof mw.SpaceMode;
     type SpaceMode = mw.SpaceMode;
     /**
-     * @author baoqiang.han
      * @description 特效发射取向
      * @groups 场景/特效
      */
@@ -2637,19 +2418,16 @@ declare global {
     /**
      * @description UI形状枚举
      * @groups 界面
-     * @author baoqiang.han
      */
     const GeometryMode: typeof mw.GeometryMode;
     type GeometryMode = mw.GeometryMode;
     /**
-     * @author baoqiang.han
      * @description 特效发射类型
      * @groups 场景/特效
      */
     const ParticleEmitterShapeStyle: typeof mw.ParticleEmitterShapeStyle;
     type ParticleEmitterShapeStyle = mw.ParticleEmitterShapeStyle;
     /**
-     * @author baoqiang.han
      * @groups 界面/基础
      * @description 世界 UI
      * @description ----------------------
@@ -2693,21 +2471,18 @@ declare global {
     const WorldUI: typeof mw.WorldUI;
     type WorldUI = mw.WorldUI;
     /**
-     * @author baoqiang.han
      * @description 特效形状枚举
      * @groups 场景/特效
      */
     const ParticleEmitterShape: typeof mw.ParticleEmitterShape;
     type ParticleEmitterShape = mw.ParticleEmitterShape;
     /**
-     * @author jun.zhang
      * @groups 玩法
      * @description 热武器状态
      */
     const HotWeaponState: typeof mw.HotWeaponState;
     type HotWeaponState = mw.HotWeaponState;
     /**
-     * @author baoqiang.han
      * @description 序列帧布局
      * @groups 场景/特效
      */
@@ -2722,7 +2497,6 @@ declare global {
      * @description 4. 后坐力 - 射击时会产生后坐力，让准星会稍稍偏移。
      * @groups 玩法/热武器
      * @networkStatus usage: 双端
-     * @author jun.zhang
      * @precautions 当装备上玩家时，此对象的功能才能生效。
      * @example
      * 使用示例: 创建一个名为"HotWeaponSample1"的脚本，放置在对象管理器中热武器对象子级，打开脚本，输入以下代码保存，在本地资源库中搜索80484、4172、4171动画资源，拖入对象管理器中的优先加载目录。运行游戏，按键1、2、3、4你将在场景中看到一个热武器设置参数，添加委托，绑定按键，以及人物换弹的效果，代码如下：
@@ -2871,7 +2645,6 @@ declare global {
      * @description 当你投篮时，你希望篮球准确地进入篮筐，而不是偏离目标。这就是投篮的精度。在武器射击中，精度指的是武器发射的子弹能够准确地命中目标，而不是随意地朝着其他方向飞行。
      * @groups 玩法/热武器/辅助类
      * @networkStatus usage: 双端
-     * @author jun.zhang
      * @example
      * 使用示例: 创建一个名为"HotWeaponAofSample1"的脚本，放置在对象管理器中，打开脚本，输入以下代码保存，运行游戏，代码如下：
      * ```ts
@@ -2905,21 +2678,18 @@ declare global {
     const HotWeaponAccuracyOfFireComponent: typeof mw.HotWeaponAccuracyOfFireComponent;
     type HotWeaponAccuracyOfFireComponent = mw.HotWeaponAccuracyOfFireComponent;
     /**
-     * @author baoqiang.han
      * @description 序列帧播放模式
      * @groups 场景/特效
      */
     const ParticleFlipbookMode: typeof mw.ParticleFlipbookMode;
     type ParticleFlipbookMode = mw.ParticleFlipbookMode;
     /**
-     * @author jun.zhang
      * @groups 玩法
      * @description 热武器瞄准模式
      */
     const HotWeaponAimMode: typeof mw.HotWeaponAimMode;
     type HotWeaponAimMode = mw.HotWeaponAimMode;
     /**
-     * @author baoqiang.han
      * @description 发射内外朝向
      * @groups 场景/特效
      */
@@ -2929,7 +2699,6 @@ declare global {
      * @description 热武器瞄准组件，瞄准状态下持枪角色的视角会拉近
      * @groups 玩法/热武器/辅助类
      * @networkStatus usage: 双端
-     * @author jun.zhang
      * @example
      * 使用示例: 创建一个名为"HotWeaponAimSample1"的脚本，放置在对象管理器中，打开脚本，输入以下代码保存，运行游戏，代码如下：
      * ```ts
@@ -2957,7 +2726,6 @@ declare global {
     const HotWeaponAimComponent: typeof mw.HotWeaponAimComponent;
     type HotWeaponAimComponent = mw.HotWeaponAimComponent;
     /**
-     * @author jun.zhang
      * @groups 玩法
      * @description 热武器开火模式
      */
@@ -2967,7 +2735,6 @@ declare global {
      * @description 热武器开火组件，负责维护热武器射击的主要参数，及核心逻辑
      * @groups 玩法/热武器/辅助类
      * @networkStatus usage: 双端
-     * @author jun.zhang
      * @example
      * 使用示例: 创建一个名为"HotWeaponFireSample1"的脚本，放置在对象管理器热武器的子节点中，打开脚本，输入以下代码保存，运行游戏，代码如下：
      * ```ts
@@ -2997,7 +2764,6 @@ declare global {
     const HotWeaponFireComponent: typeof mw.HotWeaponFireComponent;
     type HotWeaponFireComponent = mw.HotWeaponFireComponent;
     /**
-     * @author baoqiang.han
      * @description 特效标量值曲线节点
      * @networkStatus usage:客户端
      * @groups 场景/特效
@@ -3008,7 +2774,6 @@ declare global {
      * @description 热武器上膛组件，负责维护热武器播放上膛动作的相关参数，和逻辑
      * @groups 玩法/热武器/辅助类
      * @networkStatus usage: 双端
-     * @author jun.zhang
      * @example
      * 使用示例: 创建一个名为"HotWeaponLoadSample1"的脚本，放置在对象管理器中，打开脚本，输入以下代码保存，运行游戏，代码如下：
      * ```ts
@@ -3037,7 +2802,6 @@ declare global {
     const HotWeaponLoadComponent: typeof mw.HotWeaponLoadComponent;
     type HotWeaponLoadComponent = mw.HotWeaponLoadComponent;
     /**
-     * @author baoqiang.han
      * @description 特效三维向量值曲线节点
      * @networkStatus usage:客户端
      * @groups 场景/特效
@@ -3048,7 +2812,6 @@ declare global {
      * @description 热武器后坐力组件，用于在发射时控制角色的视角的抖动（会自动恢复）和偏移（不会自动恢复）
      * @groups 玩法/热武器/辅助类
      * @networkStatus usage: 双端
-     * @author jun.zhang
      * @example
      * 使用示例: 创建一个名为"HotWeaponRecoilForceSample1"的脚本，放置在对象管理器中，打开脚本，输入以下代码保存，运行游戏，代码如下：
      * ```ts
@@ -3077,7 +2840,6 @@ declare global {
     const HotWeaponRecoilForceComponent: typeof mw.HotWeaponRecoilForceComponent;
     type HotWeaponRecoilForceComponent = mw.HotWeaponRecoilForceComponent;
     /**
-     * @author baoqiang.han
      * @description 特效二维向量值曲线节点
      * @networkStatus usage:客户端
      * @groups 场景/特效
@@ -3088,7 +2850,6 @@ declare global {
      * @description 热武器换弹组件，负责维护热武器换弹动作的相关参数和逻辑
      * @groups 玩法/热武器/辅助类
      * @networkStatus usage: 双端
-     * @author jun.zhang
      * @example
      * 使用示例: 创建一个名为"HotWeaponReloadSample1"的脚本，放置在对象管理器中，打开脚本，输入以下代码保存，运行游戏，代码如下：
      * ```ts
@@ -3117,7 +2878,6 @@ declare global {
     const HotWeaponReloadComponent: typeof mw.HotWeaponReloadComponent;
     type HotWeaponReloadComponent = mw.HotWeaponReloadComponent;
     /**
-     * @author baoqiang.han
      * @description 特效颜色值曲线节点
      * @networkStatus usage:客户端
      * @groups 场景/特效
@@ -3128,7 +2888,6 @@ declare global {
      * @groups 玩法/其他
      * @description 交互物，请保证交互前动画资源已加载，否则可能导致位置错误或者其他不可预料的表现
      * @networkStatus usage: 双端
-     * @author jun.zhang
      * @example
      * 使用示例:创建一个名为"InteractorSample"的脚本，放置在对象管理器某一交互物的子级中，打开脚本，输入以下代码保存，在本地资源库中搜索4175动画资源，拖入对象管理器中的优先加载目录。运行游戏，你将在场景中看到一个交互物的效果，玩家可以和此交互物进行交互，代码如下：
      * ```
@@ -3165,7 +2924,6 @@ declare global {
     const Interactor: typeof mw.Interactor;
     type Interactor = mw.Interactor;
     /**
-     * @author baoqiang.han
      * @groups 场景/特效
      * @description 粒子特效
      * @description 通常用于游戏场景中的效果表现，目前开放部分粒子效果，当编辑器细节面板勾选自动启用时，运行游戏会自动播放特效。
@@ -3230,7 +2988,6 @@ declare global {
     const ParticleEmitter: typeof mw.ParticleEmitter;
     type ParticleEmitter = mw.ParticleEmitter;
     /**
-   * @author baoqiang.han
    * @groups 场景/灯光
    * @description 光照
    * @description -------------------------
@@ -3274,14 +3031,12 @@ declare global {
     const Lighting: typeof mw.Lighting;
     type Lighting = mw.Lighting;
     /**
-     * @author baoqiang.han
      * @description 后处理预设枚举
      * @groups 场景/灯光
      */
     const PostProcessPreset: typeof mw.PostProcessPreset;
     type PostProcessPreset = mw.PostProcessPreset;
     /**
-     * @author baoqiang.han
      * @groups 场景/灯光
      * @description 点光源
      * @networkStatus usage:客户端
@@ -3289,7 +3044,6 @@ declare global {
     const PointLight: typeof mw.PointLight;
     type PointLight = mw.PointLight;
     /**
-     * @author baoqiang.han
      * @groups 场景/灯光
      * @description 后处理对象属性配置
      * @networkStatus usage:双端
@@ -3297,14 +3051,12 @@ declare global {
     const PostProcessConfig: typeof mw.PostProcessConfig;
     type PostProcessConfig = mw.PostProcessConfig;
     /**
-     * @author xinlei.nie
      * @description 设置链接线的通行方向
      * @groups 玩法/寻路系统
      */
     const DirectionType: typeof mw.DirectionType;
     type DirectionType = mw.DirectionType;
     /**
-     * @author baoqiang.han
      * @groups 场景/灯光
      * @description 后处理
      * @description ----------------------------------
@@ -3338,21 +3090,18 @@ declare global {
     const PostProcess: typeof mw.PostProcess;
     type PostProcess = mw.PostProcess;
     /**
-     * @author xinlei.nie
      * @description 设置链接区域的寻路类型
      * @groups 玩法/寻路系统
      */
     const LinkClassType: typeof mw.LinkClassType;
     type LinkClassType = mw.LinkClassType;
     /**
-     * @author baoqiang.han
      * @description 天空盒预设枚举
      * @groups 场景/灯光
      */
     const SkyPreset: typeof mw.SkyPreset;
     type SkyPreset = mw.SkyPreset;
     /**
-     * @author yunhao.liao
      * @groups 玩法/其他
      * @description 样条线
      * @networkStatus usage:双端
@@ -3360,7 +3109,6 @@ declare global {
     const Spline: typeof mw.Spline;
     type Spline = mw.Spline;
     /**
-     * @author xinlei.nie
      * @groups 玩法/寻路系统
      * @networkStatus usage:双端
      * @description 寻路链接
@@ -3370,7 +3118,6 @@ declare global {
      * @description     - 创建一个寻路链接对象。可手动将左侧栏中逻辑对象中的寻路链接拖入场景中，在编辑器属性面板中调整参数；也可以在脚本中动态创建寻路链接。
      * @description     - 设置寻路链接对象属性 左点右点位置分别表示链接在寻路区域中的两个点，链接建立后AI会从一个点沿直线前往另一个点
      * @description     - 需要注意的是，链接并不保证指定线路的“可到达性”，即如果链接线上存在AI无法跨越或者无法行走的区域，寻路有可能失效
-     * @author xinlei.nie
      * @example
      * 使用示例:创建一个名为"NavLinkSample"的脚本，复制以下代码后将脚本挂载于地板上，接着在场景中拖入一个寻路区域，相对位置设置为(1200, 0, 0)，相对缩放设置为(20, 20, 10)，再开启世界设置中的 动态构建寻路导航数据
      * 进入游戏后，按 N 控制NPC开始寻路；按 R 重置NPC位置；按 1 切换寻路链接的区域类型；按 2 切换寻路链接的连通方式。可以测试NPC在不同情景下的寻路表现。
@@ -3492,14 +3239,12 @@ declare global {
     const NavLink: typeof mw.NavLink;
     type NavLink = mw.NavLink;
     /**
-     * @author baoqiang.han
      * @description 天空盒背景的切换方式枚举
      * @groups 场景/灯光
      */
     const SkyboxBackgroundSwitchMode: typeof mw.SkyboxBackgroundSwitchMode;
     type SkyboxBackgroundSwitchMode = mw.SkyboxBackgroundSwitchMode;
     /**
-     * @author baoqiang.han
      * @groups 玩法/游泳
      * @deprecated info:该接口已废弃，在该接口被删除前会仍保持可用，请尽快使用替换方案以免出现问题 since:031 reason: API 优化 replacement: WaterVolume
      * @description 游泳区域
@@ -3529,14 +3274,12 @@ declare global {
     const SwimmingVolume: typeof mw.SwimmingVolume;
     type SwimmingVolume = mw.SwimmingVolume;
     /**
-     * @author hao.huang
      * @description 寻路动态修饰区类型，不同类型在寻路计算中成本不同，影响寻路结果
      * @groups 玩法
      */
     const NavModifierType: typeof mw.NavModifierType;
     type NavModifierType = mw.NavModifierType;
     /**
-     * @author baoqiang.han
      * @groups 场景/灯光
      * @description 天空盒
      * @description ----------------------------------
@@ -3573,7 +3316,6 @@ declare global {
     const Skybox: typeof mw.Skybox;
     type Skybox = mw.Skybox;
     /**
-     * @author hao.huang
      * @groups 玩法/寻路系统
      * @description 寻路动态修饰区
      * @networkStatus usage:双端
@@ -3582,7 +3324,6 @@ declare global {
     type NavModifierVolume = mw.NavModifierVolume;
     /**
      * @groups 场景/音效
-     * @author baoqiang.han
      * @description 音效衰减形状
      * @groups 玩法
      */
@@ -3590,7 +3331,6 @@ declare global {
     type AttenuationShape = mw.AttenuationShape;
     /**
      * @hidden
-     * @author baoqiang.han
      * @groups 输入
      * @deprecated info:该接口已废弃，在该接口被删除前会仍保持可用，请尽快使用替换方案以免出现问题 since:027 reason:流程自动化，不再需要 replacement: mw.TouchInputUtil
      * @description 玩家从可触摸设备获取的数据信息，包含触摸手指数量，触摸位置(屏幕像素)和当前触摸状态(点击/滑动/离开)
@@ -3600,14 +3340,12 @@ declare global {
     type TouchInput = mw.TouchInput;
     /**
      * @groups 场景/音效
-     * @author baoqiang.han
      * @description 音效播放状态
      * @groups 玩法
      */
     const SoundPlayState: typeof mw.SoundPlayState;
     type SoundPlayState = mw.SoundPlayState;
     /**
-     * @author hao.huang
      * @groups 玩法/物理
      * @description 物理链接组件
      * @networkStatus usage:双端
@@ -3660,7 +3398,6 @@ declare global {
     const RigidConstraint: typeof mw.RigidConstraint;
     type RigidConstraint = mw.RigidConstraint;
     /**
-     * @author xinlei.nie
      * @description 力区域的施力类型
      * @groups 玩法/物理
      */
@@ -3668,7 +3405,6 @@ declare global {
     type ForceType = mw.ForceType;
     /**
      * @groups 场景/音效
-     * @author baoqiang.han
      * @description 音效衰减函数模型
      * @groups 玩法
      */
@@ -3685,7 +3421,6 @@ declare global {
      * @description     - 选择一种力区域的类型，指向力会向指定方向施加指定大小的力，而径向力会沿球心方向施加指定大小的力
      * @description     - 对于指向力，需要设置 指向力值/directionalForce 指定大小和方向；对于径向力，需要设置 径向力值/radialForce 指定大小
      * @networkStatus usage: 双端
-     * @author xinlei.nie
      * @example
      * 使用示例:创建一个名为"ForceVolumeSample"的脚本，按 Q 使方块进入力区域，接下来使用数字键 1 控制开关，使用数字键 2 切换力的类型，使用数字键 3 切换力的大小，就可以看到方块在力区域中的表现了
      * 注意：默认给的径向力大小不足以使方块运动起来，所以不调整大小的情况下切换为径向力之后方块坠地为正常表现；如果方块在运动过程中离开了区域，再按一次 Q 可以将方块重新置于力区域中；由于力区域仅存在于服务端，对于以主控端表现为主的角色无影响也是正常表现
@@ -3833,7 +3568,6 @@ declare global {
     const ForceVolume: typeof mw.ForceVolume;
     type ForceVolume = mw.ForceVolume;
     /**
-     * @author baoqiang.han
      * @groups 场景/音效
      * @description 音效
      * @networkStatus usage:客户端
@@ -3886,21 +3620,18 @@ declare global {
     const Sound: typeof mw.Sound;
     type Sound = mw.Sound;
     /**
-     * @author jun.zhang
      * @description 冲量的应用方式
      * @groups 玩法/物理
      */
     const ImpulseType: typeof mw.ImpulseType;
     type ImpulseType = mw.ImpulseType;
     /**
-     * @author jun.zhang
      * @description 冲量力类型
      * @groups 玩法/物理
      */
     const ImpulseForceType: typeof mw.ImpulseForceType;
     type ImpulseForceType = mw.ImpulseForceType;
     /**
-     * @author yunhao.liao
      * @description 样条线
      * @groups 玩法/其他
      */
@@ -3917,7 +3648,6 @@ declare global {
      * @description - impulseVector 属性表示力的方向。
      * @description - impulseRadialForce 属性表示力的大小。
      * @networkStatus usage: 双端
-     * @author jun.zhang
      * @example
      * 使用示例:创建一个名为"ImpulseSample"的脚本，放置在对象管理器中冲量对象的子级，将冲量对象相对缩放改为（5.00,5.00,0.50），放置在合适的位置，可以在与冲量对象重叠区域放置一个Cube，Cube大小缩放与冲量对象相同。打开脚本，输入以下代码保存，运行游戏，你将在场景中看到人物在Cube上蹦床的效果，代码如下：
      * （示例代码中impulseId = "1602E908"中的1602E908替换方式为右键冲量对象，复制对象ID。更换为你的冲量对象ID即可）
@@ -3946,21 +3676,18 @@ declare global {
     const Impulse: typeof mw.Impulse;
     type Impulse = mw.Impulse;
     /**
-     * @author xinlei.nie
      * @description 运动坐标系
      * @groups 玩法/物理
      */
     const MotionAxis: typeof mw.MotionAxis;
     type MotionAxis = mw.MotionAxis;
     /**
-     * @author xinlei.nie
      * @description 运动模式
      * @groups 玩法/物理
      */
     const MotionMode: typeof mw.MotionMode;
     type MotionMode = mw.MotionMode;
     /**
-     * @author hao.huang
      * @groups 玩法/物理
      * @description 运动器组件
      * @networkStatus usage:双端
@@ -4029,7 +3756,6 @@ declare global {
     const IntegratedMover: typeof mw.IntegratedMover;
     type IntegratedMover = mw.IntegratedMover;
     /**
-     * @author baoqiang.han
      * @groups 玩法/物理
      * @description 推进器
      * @networkStatus usage:双端
@@ -4063,13 +3789,11 @@ declare global {
     /**
      * @description UI空间位置枚举
      * @groups 界面
-     * @author baoqiang.han
      */
     const WidgetSpaceMode: typeof mw.WidgetSpaceMode;
     type WidgetSpaceMode = mw.WidgetSpaceMode;
     /**
      * @description 投掷物发射器专用实例对象
-     * @author jun.zhang
      * @groups 玩法/发射器
      * @networkStatus usage: 双端
      */
@@ -4094,21 +3818,18 @@ declare global {
      * @description -  在本地添加回调后，回调只会在本地执行，同时执行前提是发射器要存在于本地。
      * @description -  在本地调用广播发射：按本地当前发射器属性生成单端投掷物，同时通知服务器广播其他客户端按本地当前发射器属性生成单端投掷物。发射对象如果在服务端找不到，直接返回，能找到（发射对象是双端对象），挂上投掷物。
      * @description 另外有控制发射器发射初始速度、重力、投掷物半径等参数。
-     * @author jun.zhang
      * @groups 玩法/发射器
      * @networkStatus usage: 双端
      */
     const ObjectLauncher: typeof mw.ObjectLauncher;
     type ObjectLauncher = mw.ObjectLauncher;
     /**
-     * @author jun.zhang
      * @description 投掷物移动状态
      * @groups 玩法
      */
     const ProjectileMovementStatus: typeof mw.ProjectileMovementStatus;
     type ProjectileMovementStatus = mw.ProjectileMovementStatus;
     /**
-     * @author jun.zhang
      * @description 投掷物移动功能类
      * @description ProjectileMovement 是一种功能组件，用于处理游戏中的飞行物体，比如子弹、火箭、投掷物等。
      * @description 想象一下，你在游戏中控制着一个角色，你想让他发射一颗子弹。这时，你可以使用 ProjectileMovement 组件来处理子弹的移动。
@@ -4121,7 +3842,6 @@ declare global {
     const ProjectileMovement: typeof mw.ProjectileMovement;
     type ProjectileMovement = mw.ProjectileMovement;
     /**
-     * @author xiangkun.sun
      * @groups 角色系统/角色管理
      * @description 角色管理器
      * @description Player 包含当前连接到MW服务器的Player对象。它负责管理角色的各种唯一标识符（ID）并提供创建、获取并管理玩家的功能。
@@ -4134,14 +3854,12 @@ declare global {
     const Player: typeof mw.Player;
     type Player = mw.Player;
     /**
-     * @author baoqiang.han
      * @description 碰撞类型
      * @groups 玩法/物理
      */
     const CollisionType: typeof mw.CollisionType;
     type CollisionType = mw.CollisionType;
     /**
-     * @author guang.dong
      * @groups 角色系统
      * @networkStatus usage:双端
      * @description PlayerState基类
@@ -4190,7 +3908,6 @@ declare global {
     const PlayerState: typeof mw.PlayerState;
     type PlayerState = mw.PlayerState;
     /**
-     * @author baoqiang.han
      * @groups 玩法/物理
      * @description 物理模拟与材质设置
      * @description -------------------------
@@ -4251,7 +3968,6 @@ declare global {
     const Model: typeof mw.Model;
     type Model = mw.Model;
     /**
-     * @author xiangkun.sun
      * @groups 工具/射线检测
      * @description 命中结果，包含关于轨迹的一次命中的信息，例如撞击点和该点的表面法线。
      * @networkStatus usage:双端
@@ -4282,14 +3998,12 @@ declare global {
     const HitResult: typeof mw.HitResult;
     type HitResult = mw.HitResult;
     /**
-     * @author baoqiang.han
      * @description 碰撞检测通道
      * @groups 玩法/物理
      */
     const ObjectTypeQuery: typeof mw.ObjectTypeQuery;
     type ObjectTypeQuery = mw.ObjectTypeQuery;
     /**
-     * @author jiamin.guo
      * @groups 动画
      * @description 动画
      * @description -------------------------
@@ -4309,14 +4023,12 @@ declare global {
     const Animation: typeof mw.Animation;
     type Animation = mw.Animation;
     /**
-     * @author zhiqiang.tan
      * @groups 角色系统
      * @description 碰撞体形状类型
      */
     const CustomShapeType: typeof mw.CustomShapeType;
     type CustomShapeType = mw.CustomShapeType;
     /**
-     * @author huipeng.jia
      * @groups 动画
      * @description 支持修改的姿态参数
      */
@@ -4324,7 +4036,6 @@ declare global {
     type StanceParam = mw.StanceParam;
     /**
      * @hidden
-     * @author yuchen.ren
      * @groups 动画
      * @description 姿态
      * @networkStatus usage:双端
@@ -4332,7 +4043,6 @@ declare global {
     const StanceBase: typeof mw.StanceBase;
     type StanceBase = mw.StanceBase;
     /**
-    * @author yuchen.ren
     * @groups 动画
     * @description 二级姿态
     * @description -------------------------
@@ -4345,7 +4055,6 @@ declare global {
     const SubStance: typeof mw.SubStance;
     type SubStance = mw.SubStance;
     /**
-     * @author chenghao.song, guang.deng
      * @groups 角色系统/角色
      * @description 角色
      * @description --------------------------------------
@@ -4380,14 +4089,12 @@ declare global {
     const Character: typeof mw.Character;
     type Character = mw.Character;
     /**
-     * @author baoqiang.han
      * @description 碰撞形状
      * @groups 玩法/物理
      */
     const TriggerShapeType: typeof mw.TriggerShapeType;
     type TriggerShapeType = mw.TriggerShapeType;
     /**
-     * @author yuchen.ren
      * @groups 动画
      * @description 基础姿态
      * @description -------------------------
@@ -4402,14 +4109,12 @@ declare global {
     const Stance: typeof mw.Stance;
     type Stance = mw.Stance;
     /**
-     * @author chenghao.song
      * @groups 角色系统
      * @description 角色状态
      */
     const MovementMode: typeof mw.MovementMode;
     type MovementMode = mw.MovementMode;
     /**
-     * @author baoqiang.han
      * @groups 玩法/触发器
      * @description 触发器
      * @description 当与触发器交互时，可以触发事件。所有触发器都差不多，区别在于形状不同——有盒体和球体——触发器通过这些形状来判断其他对象是否碰撞并激活了它。
@@ -4442,14 +4147,12 @@ declare global {
     const Trigger: typeof mw.Trigger;
     type Trigger = mw.Trigger;
     /**
-     * @author chenghao.song
      * @groups 角色系统
      * @description 运动时面朝方向
      */
     const MoveFacingDirection: typeof mw.MoveFacingDirection;
     type MoveFacingDirection = mw.MoveFacingDirection;
     /**
-     * @author chenghao.song
      * @groups 角色系统
      * @description 运动时依据的正方向
      * @description 不同的模式会决定运动时依据的实际轴向修改方式
@@ -4467,7 +4170,6 @@ declare global {
     const MovementDirection: typeof mw.MovementDirection;
     type MovementDirection = mw.MovementDirection;
     /**
-     * @author guang.deng
      * @groups 角色系统
      * @description 形象类型
      * @example
@@ -4478,70 +4180,60 @@ declare global {
     const CharacterType: typeof mw.CharacterType;
     type CharacterType = mw.CharacterType;
     /**
-     * @author yuchen.ren
      * @groups 角色系统
      * @description V1角色部位
      */
     const BodyPartTypeV1: typeof mw.BodyPartTypeV1;
     type BodyPartTypeV1 = mw.BodyPartTypeV1;
     /**
-     * @author guang.deng
      * @groups 角色系统
      * @description 人形角色插槽类型
      */
     const HumanoidSlotType: typeof mw.HumanoidSlotType;
     type HumanoidSlotType = mw.HumanoidSlotType;
     /**
-     * @author yunhao.liao
      * @groups 角色系统
      * @description 非人形角色插槽类型
      */
     const NonHumanoidSlotType: typeof mw.NonHumanoidSlotType;
     type NonHumanoidSlotType = mw.NonHumanoidSlotType;
     /**
-     * @author yuchen.ren
      * @groups 角色系统
      * @description 基础姿态风格
      */
     const BasicStanceType: typeof mw.BasicStanceType;
     type BasicStanceType = mw.BasicStanceType;
     /**
-     * @author jun.zhang
      * @groups 角色系统
      * @description 角色基础脸型
      */
     const FaceStyle: typeof mw.FaceStyle;
     type FaceStyle = mw.FaceStyle;
     /**
-     * @author guang.deng
      * @groups 角色系统
      * @description 表情类型
      */
     const ExpressionType: typeof mw.ExpressionType;
     type ExpressionType = mw.ExpressionType;
     /**
-    * @author yuchen.ren
     * @groups 角色系统
     * @description 角色体型
     */
     const CharacterTemplate: typeof mw.CharacterTemplate;
     type CharacterTemplate = mw.CharacterTemplate;
     /**
-     * @author chenghao.song
      * @groups 角色系统
      * @description 移动控制模式
      */
     const MoveControlMode: typeof mw.MoveControlMode;
     type MoveControlMode = mw.MoveControlMode;
     /**
-     * @author guang.deng
      * @groups 角色系统
      * @description V1角色体型
      */
     const SomatotypeV1: typeof mw.SomatotypeV1;
     type SomatotypeV1 = mw.SomatotypeV1;
     /**
-     * @author guang.deng
      * @groups 角色系统
      * @description 形象类型
      * @example
@@ -4552,21 +4244,18 @@ declare global {
     const AppearanceType: typeof mw.AppearanceType;
     type AppearanceType = mw.AppearanceType;
     /**
-     * @author yuchen.ren
      * @groups 角色系统
      * @description 角色体型
      */
     const SomatotypeV2: typeof mw.SomatotypeV2;
     type SomatotypeV2 = mw.SomatotypeV2;
     /**
-     * @author jiamin.guo
      * @groups 动画
      * @description 姿态混合模式
      */
     const StanceBlendMode: typeof mw.StanceBlendMode;
     type StanceBlendMode = mw.StanceBlendMode;
     /**
-     * @author qiming.jiang
      * @groups 玩法/材质
      * @description Model插槽，执行材质相关操作
      * @description -------------------------
@@ -4624,42 +4313,36 @@ declare global {
     const MaterialSlot: typeof mw.MaterialSlot;
     type MaterialSlot = mw.MaterialSlot;
     /**
-     * @author jiamin.guio
      * @groups 动画
      * @description 动画模式
      */
     const AnimationMode: typeof mw.AnimationMode;
     type AnimationMode = mw.AnimationMode;
     /**
-     * @author jiamin.guo
      * @groups 动画
      * @description 动画插槽
      */
     const AnimSlot: typeof mw.AnimSlot;
     type AnimSlot = mw.AnimSlot;
     /**
-     * @author liaoyun.hao
      * @groups 角色系统
      * @description 角色状态
      */
     const CharacterStateType: typeof mw.CharacterStateType;
     type CharacterStateType = mw.CharacterStateType;
     /**
-     * @author guang.deng
      * @groups 角色系统
      * @description 动画曲线
      */
     const AnimationBlendMode: typeof mw.AnimationBlendMode;
     type AnimationBlendMode = mw.AnimationBlendMode;
     /**
-     * @author liaoyun.hao
      * @groups 角色系统
      * @description 动态挂件枚举
      */
     const EDynamicAttachmentIndex: typeof mw.EDynamicAttachmentIndex;
     type EDynamicAttachmentIndex = mw.EDynamicAttachmentIndex;
     /**
-     * @author guang.deng
      * @groups 角色系统/角色
      * @description 服装逻辑对象
      * @networkStatus usage:双端
@@ -4667,7 +4350,6 @@ declare global {
     const ClothObject: typeof mw.ClothObject;
     type ClothObject = mw.ClothObject;
     /**
-     * @author guang.deng
      * @groups 角色系统/角色
      * @description Pawn作为玩家角色和非对象玩家角色的基类，是一个可以通过玩家控制器或者逻辑脚本控制的游戏对象。
      * @networkStatus usage:双端
@@ -4675,7 +4357,6 @@ declare global {
     const Pawn: typeof mw.Pawn;
     type Pawn = mw.Pawn;
     /**
-     * @author yunhao.liao
      * @groups 角色系统/角色
      * @description 角色挂件插槽
      * @description 除了可以随意的更换人物衣服，脸，身体，还可以在给人物增加更多装饰物。
@@ -4690,14 +4371,12 @@ declare global {
     const CharacterDecoration: typeof mw.CharacterDecoration;
     type CharacterDecoration = mw.CharacterDecoration;
     /**
-     * @author jun.zhang
      * @groups 角色系统
      * @description 外观属性的 Morph 和 Bone 换装项的枚举
      */
     const CharacterFeatureType: typeof mw.CharacterFeatureType;
     type CharacterFeatureType = mw.CharacterFeatureType;
     /**
-     * @author guang.deng
      * @groups 角色系统/角色
      * @description 人形外观配置
      * @description -------------------------------------------------------------------------
@@ -4714,7 +4393,6 @@ declare global {
     const CharacterDescription: typeof mw.CharacterDescription;
     type CharacterDescription = mw.CharacterDescription;
     /**
-     * @author yunhao.liao
      * @groups 玩法/摄像机
      * @description 摄像机
      * @description -------------------------
@@ -4732,7 +4410,6 @@ declare global {
     const Camera: typeof mw.Camera;
     type Camera = mw.Camera;
     /**
-     * @author yunhao.liao
      * @groups 玩法/摄像机
      * @description 弹簧臂
      * @networkStatus usage:客户端
@@ -4740,21 +4417,18 @@ declare global {
     const SpringArm: typeof mw.SpringArm;
     type SpringArm = mw.SpringArm;
     /**
-    * @author yunhao.liao
     * @groups 玩法
     * @description 摄像机位置模式
     */
     const CameraPositionMode: typeof mw.CameraPositionMode;
     type CameraPositionMode = mw.CameraPositionMode;
     /**
-     * @author yunhao.liao
      * @groups 玩法
      * @description 摄像机旋转模式
      */
     const CameraRotationMode: typeof mw.CameraRotationMode;
     type CameraRotationMode = mw.CameraRotationMode;
     /**
-     * @author xiangkun.sun
      * @groups 玩法/其他
      * @description 材质实例类
      * @networkStatus usage:双端
@@ -4795,42 +4469,36 @@ declare global {
     const MaterialInstance: typeof mw.MaterialInstance;
     type MaterialInstance = mw.MaterialInstance;
     /**
-     * @author yunhao.liao
      * @groups 玩法
      * @description 摄像机镜头模式
      */
     const CameraProjectionMode: typeof mw.CameraProjectionMode;
     type CameraProjectionMode = mw.CameraProjectionMode;
     /**
-     * @author huipeng.jia
      * @description 四轮载具车轮位置
      * @groups 玩法
      */
     const VehicleWheelPosition4WNew: typeof mw.VehicleWheelPosition4WNew;
     type VehicleWheelPosition4WNew = mw.VehicleWheelPosition4WNew;
     /**
-     * @author yunhao.liao
      * @groups 玩法
      * @description 摄像机模式
      */
     const CameraPreset: typeof mw.CameraPreset;
     type CameraPreset = mw.CameraPreset;
     /**
-     * @author huipeng.jia
      * @description 四轮载具驱动模式
      * @groups 玩法
      */
     const VehicleDriveMode4WNew: typeof mw.VehicleDriveMode4WNew;
     type VehicleDriveMode4WNew = mw.VehicleDriveMode4WNew;
     /**
-     * @author yunhao.liao
      * @groups 玩法
      * @description 切换摄像机时运用的混合函数
      */
     const CameraSwitchBlendFunction: typeof mw.CameraSwitchBlendFunction;
     type CameraSwitchBlendFunction = mw.CameraSwitchBlendFunction;
     /**
-     * @author huipeng.jia
      * @groups 玩法/载具
      * @description 四轮载具
      * @description 四轮载具是指模拟四个车轮的交通工具，例如汽车、卡车等。它们被设计成能够在游戏中自由移动、加速和转向，给玩家带来真实的驾驶体验。
@@ -5114,14 +4782,12 @@ declare global {
     const AdvancedVehicle: typeof mw.AdvancedVehicle;
     type AdvancedVehicle = mw.AdvancedVehicle;
     /**
-     * @author yunhao.liao
      * @groups 玩法
      * @description 定义如何开始(从零开始，或者从随机值开始)
      */
     const InitialOscillatorOffset: typeof mw.InitialOscillatorOffset;
     type InitialOscillatorOffset = mw.InitialOscillatorOffset;
     /**
-     * @author baoqiang.han
      * @groups 玩法/其他
      * @description 禁行区
      * @description 用于控制角色是否可以进出此区域。
@@ -5159,14 +4825,12 @@ declare global {
     const BlockingVolume: typeof mw.BlockingVolume;
     type BlockingVolume = mw.BlockingVolume;
     /**
-     * @author yunhao.liao
      * @groups 玩法
      * @description 振荡器波形
      */
     const OscillatorWaveform: typeof mw.OscillatorWaveform;
     type OscillatorWaveform = mw.OscillatorWaveform;
     /**
-     * @author baoqiang.han
      * @groups 场景/特效
      * @description 特效
      * @description 通常用于游戏场景中的效果表现，如火焰，水流，武器拖尾等，当编辑器细节面板勾选自动启用时，运行游戏会自动播放特效。
@@ -5214,75 +4878,63 @@ declare global {
     const Effect: typeof mw.Effect;
     type Effect = mw.Effect;
     /**
-     * @author yunhao.liao
      * @groups 玩法/摄像机
      * @description 横纵比约束
      */
     const AspectRatioAxisConstraint: typeof mw.AspectRatioAxisConstraint;
     type AspectRatioAxisConstraint = mw.AspectRatioAxisConstraint;
     /**
-     * @author yunhao.liao
      * @description 环境雾预设枚举
      * @groups 场景/灯光
      */
     const FogPreset: typeof mw.FogPreset;
     type FogPreset = mw.FogPreset;
     /**
-     * @author guang.deng
      * @groups 基础类型
      * @description 外观加载细节变化委托
      */
     type OnDescriptionChange = mw.OnDescriptionChange;
     /**
-     * @author huipeng.jia
      * @description 四轮载具挡位属性
      * @groups 玩法
      */
     type VehicleGearDataNew = mw.VehicleGearDataNew;
     /**
-     * @author guang.deng
      * @groups 基础类型
      * @description 角色身上GUID切换成功回调
      */
     type onAppearanceDataChanged = mw.onAppearanceDataChanged;
     /**
-     * @author guang.deng
      * @groups 基础类型
      * @description 设置编辑数据完成的回调
      */
     type SetAppearanceDataCallback = mw.SetAppearanceDataCallback;
     /**
-     * @author jun.zhang
      * @description 投掷物配置类型
      * @groups 玩法/投掷物
      */
     type ProjectileMovementConfig = mw.ProjectileMovementConfig;
     /**
-     * @author guang.deng
      * @groups 基础类型
      * @description 移动状态切换委托
      */
     type OnMovementModeChange = mw.OnMovementModeChange;
     /**
-     * @author guang.deng
      * @groups 基础类型
      * @description 返回String的回调
      */
     type StringCallback = mw.StringCallback;
     /**
-     * @author yunhao.liao
      * @groups 玩法/摄像机
      * @description 抖动数据
      */
     type CameraShakeInfo = mw.CameraShakeInfo;
     /**
-     * @author guang.deng
      * @groups 基础类型
      * @description 返回Bool的回调
      */
     type BoolCallback = mw.BoolCallback;
     /**
-     * @author guang.deng
      * @groups 基础类型
      * @description 外观加载完成委托
      * @precautions 当角色外观加载完成时执行绑定函数
@@ -5294,39 +4946,33 @@ declare global {
      */
     type Console = mw.Console;
     /**
-     * @author guang.deng
      * @groups 基础类型
      * @description 角色编辑器数据加载完成后的回调
      */
     type LoadAppearanceDataAllCompletedCallback = mw.LoadAppearanceDataAllCompletedCallback;
     /**
-     * @author guang.deng
      * @groups 基础类型
      * @description 外观主体（前发，后发，头，上衣，下衣，手套，鞋）加载失败委托
      * @precautions 当角色外观加载失败时执行绑定函数
      */
     type OnLoadDescriptionFailed = mw.OnLoadDescriptionFailed;
     /**
-     * @author huipeng.jia
      * @description 四轮载具车轮属性
      * @groups 玩法
      */
     type VehicleWheelDataNew = mw.VehicleWheelDataNew;
     /**
-     * @author guang.deng
      * @groups 基础类型
      * @description 空的回调函数类型
      */
     type EmptyCallback = mw.EmptyCallback;
     /**
      * @description 事件发送的结果
-     * @author xiangkun.sun
      * @groups 基础类型/事件
      */
     const DispatchEventResult: typeof mw.DispatchEventResult;
     type DispatchEventResult = mw.DispatchEventResult;
     /**
-     * @author xiangkun.sun
      * @description 事件监听器
      * @groups 基础类型/事件
      * @networkStatus usage:双端
@@ -5334,7 +4980,6 @@ declare global {
     const EventListener: typeof mw.EventListener;
     type EventListener = mw.EventListener;
     /**
-     * @author mengyuan.hao
      * @description 事件
      * @description MW编辑器支持多种类型的事件。
      * @description 在实现逻辑时，您可以将函数连接到编辑器触发的内置事件以响应它们。还可以创建触发并响应自定义事件。此外，您可以使用网络事件来允许跨客户端-服务器边界进行事件驱动的通信。
@@ -5351,7 +4996,6 @@ declare global {
     const Event: typeof mw.Event;
     type Event = mw.Event;
     /**
-     * @author zhaoyang.hou
      * @groups 数据处理
      * @description 数据存储
      * @description MemoryStorageSortedMap
@@ -5360,7 +5004,6 @@ declare global {
     const MemoryStorageSortedMap: typeof mw.MemoryStorageSortedMap;
     type MemoryStorageSortedMap = mw.MemoryStorageSortedMap;
     /**
-     * @author zhaoyang.hou
      * @groups 数据处理
      * @description 数据存储
      * @description 内存存储结果状态码
@@ -5368,7 +5011,6 @@ declare global {
     const MemoryStorageResultCode: typeof mw.MemoryStorageResultCode;
     type MemoryStorageResultCode = mw.MemoryStorageResultCode;
     /**
-     * @author zhaoyang.hou
      * @groups 数据处理
      * @description 数据存储
      * @description MemoryStorageQueue
@@ -5377,7 +5019,6 @@ declare global {
     const MemoryStorageQueue: typeof mw.MemoryStorageQueue;
     type MemoryStorageQueue = mw.MemoryStorageQueue;
     /**
-     * @author xiangkun.sun
      * @groups 数据处理
      * @description 数据存储
      * @precautions 在调用DataStorage相关接口时，每一个Key的对应值在数据服务器的读取和修改都有频率限制，主要表现在：接口调用时至一分钟前的时间区间内，某个Key的对应值在后端数据服务器上被获取Get、改写Set、删除Remove的总次数不能超过 (60+游戏设定的最大人数×10)次，不管它是在哪个服务器被操作的；如果时间区间内超限，请求会失败，然后Set、Remove会返回 FREQUENCY_OVERRUN(操作失败：请求频率超限) 而Get会catch到error timeout。
@@ -5390,13 +5031,11 @@ declare global {
     type DataStorage = mw.DataStorage;
     /**
      * @description 数据储存返回代码
-     * @author xiangkun.sun
      * @groups 数据处理
      */
     const DataStorageResultCode: typeof mw.DataStorageResultCode;
     type DataStorageResultCode = mw.DataStorageResultCode;
     /**
-     * @author zhaoyang.hou
      * @groups 数据处理
      * @description 数据存储
      * @description MemoryStorage
@@ -5406,40 +5045,34 @@ declare global {
     type MemoryStorage = mw.MemoryStorage;
     /**
      * @description 数据储存返回值
-     * @author xiangkun.sun
      * @groups 数据处理
      */
     type DataStorageResult = mw.DataStorageResult;
     /**
-     * @author zhaoyang.hou
      * @groups 数据处理
      * @description 数据存储
      * @description 排序映射数据结果
      */
     type SortedMapGetDataResult = mw.SortedMapGetDataResult;
     /**
-     * @author zhaoyang.hou
      * @groups 数据处理
      * @description 数据存储
      * @description 范围排序映射数据回调函数结果
      */
     type SortedMapGetRangeDataResult = mw.SortedMapGetRangeDataResult;
     /**
-     * @author zhaoyang.hou
      * @groups 数据处理
      * @description 数据存储
      * @description SortedMapGetRankResult
      */
     type SortedMapGetRankResult = mw.SortedMapGetRankResult;
     /**
-     * @author zhaoyang.hou
      * @groups 数据处理
      * @description 数据存储
      * @description 队列数据结果
      */
     type QueueReadDataResult = mw.QueueReadDataResult;
     /**
-     * @author huipeng.jia
      * @groups 工具
      * @description 字符串工具
      * @networkStatus usage:客户端
@@ -5447,21 +5080,18 @@ declare global {
     const StringUtil: typeof mw.StringUtil;
     type StringUtil = mw.StringUtil;
     /**
-     * @author guang.deng
      * @description 贴图格式
      * @groups 基础类型
      */
     const TextureFormat: typeof mw.TextureFormat;
     type TextureFormat = mw.TextureFormat;
     /**
-     * @author guang.deng
      * @description 贴图格式
      * @groups 基础类型
      */
     const MultiTextureFormat: typeof mw.MultiTextureFormat;
     type MultiTextureFormat = mw.MultiTextureFormat;
     /**
-     * @author mengyuan.hao
      * @description 状态信息获取工具
      * @description 判断当前环境状态是否是客户端、服务端、移动端。获取版本号等信息
      * @groups 工具
@@ -5471,14 +5101,12 @@ declare global {
     type SystemUtil = mw.SystemUtil;
     /**
      * @groups 工具
-     * @author huipeng.jia, xiangkun.sun
      * @description 时间工具
      * @networkStatus usage:双端
      */
     const TimeUtil: typeof mw.TimeUtil;
     type TimeUtil = mw.TimeUtil;
     /**
-     * @author huipeng.jia
      * @groups 工具/补间动画
      * @description 序列工具类，主要用于获取连续的ID
      * @networkStatus usage: 双端
@@ -5486,7 +5114,6 @@ declare global {
     const TweenSequence: typeof mw.TweenSequence;
     type TweenSequence = mw.TweenSequence;
     /**
-     * @author huipeng.jia
      * @groups 工具/补间动画
      * @description 补间组，用于同时控制多个补间对象
      * @networkStatus usage: 双端
@@ -5494,7 +5121,6 @@ declare global {
     const TweenGroup: typeof mw.TweenGroup;
     type TweenGroup = mw.TweenGroup;
     /**
-     * @author jie.wu
      * @description 输入事件工具
      * @groups 输入
      * @networkStatus usage:双端
@@ -5532,7 +5158,6 @@ declare global {
     const InputUtil: typeof mw.InputUtil;
     type InputUtil = mw.InputUtil;
     /**
-     * @author xiangkun.sun
      * @description 数据文件获取工具
      * @groups 工具
      * @networkStatus usage:双端
@@ -5540,14 +5165,12 @@ declare global {
     const DataFile: typeof mw.DataFile;
     type DataFile = mw.DataFile;
     /**
-     * @author baoqiang.han
      * @description 触摸类型
      * @groups 输入
      */
     const TouchInputType: typeof mw.TouchInputType;
     type TouchInputType = mw.TouchInputType;
     /**
-     * @author xiangkun.sun
      * @description 资源管理工具
      * @description 在使用左侧工具栏中的资源时，需要预先下载并加载。
      * @description 可使用asyncDownloadAsset接口在代码中动态下载对应资源。也可将资源手动拖入编辑器右边优先加载队列中。
@@ -5557,7 +5180,6 @@ declare global {
     const AssetUtil: typeof mw.AssetUtil;
     type AssetUtil = mw.AssetUtil;
     /**
-     * @author jun.zhang
      * @description 游戏性能数据，辅助 Debug 和性能优化
      * @groups 工具
      * @networkStatus usage:双端
@@ -5565,7 +5187,6 @@ declare global {
     const DebugUtil: typeof mw.DebugUtil;
     type DebugUtil = mw.DebugUtil;
     /**
-     * @author baoqiang.han
      * @hidden
      * @deprecated info:该接口已废弃，在该接口被删除前会仍保持可用，请尽快使用替换方案以免出现问题 since:027 reason:接口废弃 replacement:请使用InputUtil下的onTouchBegin、onTouchMove、onTouchEnd接口
      * @groups 输入
@@ -5593,7 +5214,6 @@ declare global {
     const TouchInputUtil: typeof mw.TouchInputUtil;
     type TouchInputUtil = mw.TouchInputUtil;
     /**
-     * @author xiaobo.qi
      * @description 多语言工具
      * @groups 工具
      * @networkStatus usage:双端
@@ -5601,7 +5221,6 @@ declare global {
     const LanguageUtil: typeof mw.LanguageUtil;
     type LanguageUtil = mw.LanguageUtil;
     /**
-     * @author huipeng.jia
      * @groups 工具/补间动画
      * @description 补间(动画)（来自 in-between）是一个概念，允许你以平滑的方式更改对象的属性。
      * 你只需告诉它哪些属性要更改，当补间结束运行时它们应该具有哪些最终值，以及这需要多长时间，
@@ -5612,7 +5231,6 @@ declare global {
     type Tween<T extends TweenUnknownProps> = mw.Tween<T>;
     /**
      * @groups 工具/补间动画
-     * @author huipeng.jia
      * @description 补间(动画)（来自 in-between）是一个概念，允许你以平滑的方式更改对象的属性。
      * 你只需告诉它哪些属性要更改，当补间结束运行时它们应该具有哪些最终值，以及这需要多长时间，
      * 补间引擎将负责计算从起始点到结束点的值。
@@ -5771,7 +5389,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const TweenUtil: typeof mw.TweenUtil;
     type TweenUtil = mw.TweenUtil;
     /**
-     * @author mengyuan.hao
      * @description 窗口设置工具。
      * @description 可设置窗口聚焦失焦时触发某种行为，获取分辨率等功能。
      * @groups 工具
@@ -5798,7 +5415,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const WindowUtil: typeof mw.WindowUtil;
     type WindowUtil = mw.WindowUtil;
     /**
-     * @author xiaobo.qi
      * @description 本地化工具
      * @groups 工具
      * @networkStatus usage:双端
@@ -5806,7 +5422,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const LocaleUtil: typeof mw.LocaleUtil;
     type LocaleUtil = mw.LocaleUtil;
     /**
-     * @author xiangkun.sun
      * @description 数学库工具
      * @groups 工具
      * @networkStatus usage:双端
@@ -5814,7 +5429,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const MathUtil: typeof mw.MathUtil;
     type MathUtil = mw.MathUtil;
     /**
-     * @author hao.huang
      * @groups 玩法/寻路系统
      * @description 寻路
      * @description 寻路就像是给游戏角色一张地图和一套指导，让它们知道如何从一个地方走到另一个地方，避开障碍物。
@@ -5832,7 +5446,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     type Navigation = mw.Navigation;
     /**
      * @hidden
-     * @author jie.wu
      * @description NFT资产交易系统。
      * @groups 工具
      * @networkStatus usage:客户端
@@ -5840,7 +5453,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const NFTUtil: typeof mw.NFTUtil;
     type NFTUtil = mw.NFTUtil;
     /**
-         * @author hao.huang
          * @groups 玩法/物理
          * @description 碰撞组
          * @networkStatus usage:双端
@@ -5848,7 +5460,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const PhysicsService: typeof mw.PhysicsService;
     type PhysicsService = mw.PhysicsService;
     /**
-     * @author hao.huang
      * @groups 工具/射线检测
      * @description 射线检测工具
      * @networkStatus usage:双端
@@ -5856,7 +5467,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const QueryUtil: typeof mw.QueryUtil;
     type QueryUtil = mw.QueryUtil;
     /**
-     * @author baoqiang.han
      * @groups 工具
      * @description 屏幕视口工具
      * @networkStatus usage:客户端
@@ -5864,7 +5474,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const ScreenUtil: typeof mw.ScreenUtil;
     type ScreenUtil = mw.ScreenUtil;
     /**
-     * @author wu.hao
      * @groups 工具
      * @description 描边绘制工具
      * @networkStatus usage:客户端
@@ -5872,31 +5481,26 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const SelectionUtil: typeof mw.SelectionUtil;
     type SelectionUtil = mw.SelectionUtil;
     /**
-     * @author huipeng.jia
      * @description 补间属性的定义，用户可以自由扩展
      * @groups 基础类型
      */
     type TweenUnknownProps = mw.TweenUnknownProps;
     /**
-     * @author huipeng.jia
      * @description 插值函数的类型定义
      * @groups 基础类型
      */
     type TweenInterpolationFunction = mw.TweenInterpolationFunction;
     /**
-         * @author huipeng.jia
          * @description 屏蔽字检测的结果
          * @groups 基础类型
          */
     type maskWordCheckResult = mw.maskWordCheckResult;
     /**
-     * @author huipeng.jia
      * @description 缓动函数的类型定义
      * @groups 基础类型
      */
     type TweenEasingFunction = mw.TweenEasingFunction;
     /**
-     * @author si.wu
      * @description HTTP请求
      * @groups 玩法
      * @effect 调用端生效
@@ -5906,7 +5510,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      */
     const fetch: typeof mw.fetch;
     /**
-     * @author si.wu
      * @description url转码
      * @groups 玩法
      * @effect 调用端生效
@@ -5915,7 +5518,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      */
     const urlEncode: typeof mw.urlEncode;
     /**
-     * @author si.wu
      * @description url解码
      * @groups 玩法
      * @effect 调用端生效
@@ -5924,7 +5526,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      */
     const urlDecode: typeof mw.urlDecode;
     /**
-     * @author si.wu
      * @description 获取 url 参数
      * @groups 玩法
      * @effect 调用端生效
@@ -5934,7 +5535,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      */
     const getUrlParameter: typeof mw.getUrlParameter;
     /**
-     * @author junwen.hua
      * @description Http请求接口
      * @groups 玩法
      * @effect 调用端生效
@@ -5946,7 +5546,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      */
     const httpRequestTransmitData: typeof mw.httpRequestTransmitData;
     /**
-     * @author junwen.hua
      * @groups 玩法
      * @description 通用 Http 请求
      * @effect 调用端生效
@@ -5964,28 +5563,24 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      */
     const generalHttpRequest: typeof mw.generalHttpRequest;
     /**
-     * @author junwen.hua
      * @description 开发给用户用的Http请求类型枚举
      * @groups 玩法
      */
     const HttpRequestType: typeof mw.HttpRequestType;
     type HttpRequestType = mw.HttpRequestType;
     /**
-     * @author junwen.hua
      * @description 开放给用户用的URL枚举，需要与C++层的枚举对应
      * @groups 玩法
      */
     const HttpRequestURL: typeof mw.HttpRequestURL;
     type HttpRequestURL = mw.HttpRequestURL;
     /**
-     * @author si.wu
      * @groups 玩法/其他
      * @description HTTP请求信息的对象
      * @networkStatus usage:双端
      */
     type RequestInit = mw.RequestInit;
     /**
-     * @author junwen.hua
      * @description 商城通信回调消息格式
      * @groups 基础类型
      * @param isSuccess usage: 通信结果
@@ -5993,7 +5588,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      */
     type TransactionType = mw.TransactionType;
     /**
-     * @author junwen.hua
      * @description Http请求的回调消息格式
      * @groups 基础类型
      * @precautions 无需主动销毁，生命周期由UObject管理
@@ -6003,7 +5597,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      */
     type HttpResponse = mw.HttpResponse;
     /**
-     * @author si.wu
      * @groups 玩法/其他
      * @description HTTP响应信息的对象
      * @networkStatus usage:双端
@@ -6014,7 +5607,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      */
     const Decorator: typeof mwext.Decorator;
     /**
-    * @author lei.zhao
     * @groups 拓展/背包
     * @networkStatus usage:客户端
     * @description 背包删除界面父类,继承这个类来实现自己的道具删除界面，使用BagModule.skin来指定皮肤
@@ -6022,7 +5614,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const ItemDeleteUI: typeof mwext.ItemDeleteUI;
     type ItemDeleteUI = mwext.ItemDeleteUI;
     /**
-    * @author lei.zhao
     * @groups 拓展/背包
     * @networkStatus usage:客户端
     * @description 背包皮肤
@@ -6031,7 +5622,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     type IBagSkin = mwext.IBagSkin;
     /**
      * @instance
-     * @author shilong.wang
      * @groups 拓展/排行榜
      * @description 编辑器内置排行榜
      * @networkStatus usage: 双端
@@ -6039,7 +5629,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const LeaderboardModule: typeof mwext.LeaderboardModule;
     type LeaderboardModule = mwext.LeaderboardModule;
     /**
-    * @author shilong.wang
     * @groups 拓展/排行榜
     * @description 排行榜模块-客户端
     * @networkStatus usage: 客户端
@@ -6047,7 +5636,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const LeaderboardModuleBaseC: typeof mwext.LeaderboardModuleBaseC;
     type LeaderboardModuleBaseC<T extends LeaderboardModuleTypeS> = mwext.LeaderboardModuleBaseC<T>;
     /**
-    * @author shilong.wang
     * @groups 拓展/排行榜
     * @description 排行榜模块-服务端
     * @networkStatus usage: 服务端
@@ -6055,7 +5643,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const LeaderboardModuleBaseS: typeof mwext.LeaderboardModuleBaseS;
     type LeaderboardModuleBaseS<T extends LeaderboardModuleTypeC> = mwext.LeaderboardModuleBaseS<T>;
     /**
-     * @author shilong.wang
      * @groups 拓展/排行榜
      * @description 排行榜主界面中的子UI，用来显示一条记录
      * @networkStatus usage: 客户端
@@ -6063,7 +5650,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const LeaderboardItemPanelBase: typeof mwext.LeaderboardItemPanelBase;
     type LeaderboardItemPanelBase<T extends ILeaderboardItemView> = mwext.LeaderboardItemPanelBase<T>;
     /**
-     * @author shilong.wang
      * @groups 基类/C&S拓展
      * @description 服务端模块的基类
      * @description 所有的服务端模块都必须继承这个类，才能被 ModuleService 管理。
@@ -6149,7 +5735,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const ModuleS: typeof mwext.ModuleS;
     type ModuleS<T, S extends mwext.Subdata> = mwext.ModuleS<T, S>;
     /**
-     * @author shilong.wang
      * @groups 基类/数据拓展
      * @description 数据控制类的基类
      * @description 1. 为什么需要数据控制中心？
@@ -6229,7 +5814,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const Subdata: typeof mwext.Subdata;
     type Subdata = mwext.Subdata;
     /**
-     * @author shilong.wang
      * @groups 基类/数据拓展
      * @description 客户端数据中心，里面存放着当前玩家的数据
      * @networkStatus usage: 客户端
@@ -6268,7 +5852,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const DataCenterC: typeof mwext.DataCenterC;
     type DataCenterC = mwext.DataCenterC;
     /**
-     * @author shilong.wang
      * @groups 基类/C&S拓展
      * @description 客户端模块的基类
      * @description 所有的客户端模块都必须继承这个类，才能被 ModuleService 管理。
@@ -6358,7 +5941,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const ModuleC: typeof mwext.ModuleC;
     type ModuleC<T, S extends mwext.Subdata> = mwext.ModuleC<T, S>;
     /**
-     * @author shilong.wang
      * @groups 基类/数据拓展
      * @description 服务端数据中心，管理所有玩家的数据。
      * @networkStatus usage: 服务端
@@ -6416,7 +5998,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const DataCenterS: typeof mwext.DataCenterS;
     type DataCenterS = mwext.DataCenterS;
     /**
-    * @author shilong.wang
     * @groups 拓展/排行榜
     * @description 排行榜主界面
     * @networkStatus usage: 客户端
@@ -6424,7 +6005,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const LeaderboardMainPanelBase: typeof mwext.LeaderboardMainPanelBase;
     type LeaderboardMainPanelBase<T extends ILeaderboardPanelView> = mwext.LeaderboardMainPanelBase<T>;
     /**
-     * @author shilong.wang
      * @groups 基类/C&S拓展
      * @description 服务端客户端及数据模块管理
      * @description 当你真正开始开发一个联机游戏时发现，客户端服务端总是需要你去考虑的。多人游戏的实现并不简单，如果你想在游戏中加入多人游戏，应该尽早在设计和开发中考虑妥当。
@@ -6695,7 +6275,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const ModuleService: typeof mwext.ModuleService;
     type ModuleService = mwext.ModuleService;
     /**
-     * @author shilong.wang
      * @groups 拓展/排行榜
      * @description 界面类的基类
      * @networkStatus usage: 客户端
@@ -6703,14 +6282,12 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const BaseView: typeof mwext.BaseView;
     type BaseView = mwext.BaseView;
     /**
-     * @author shilong.wang
      * @description GameObject对象池资源来源类型，不同类型的资源创建方式不一样，需要正确选择
      * @groups 基类/对象池
      */
     const GameObjPoolSourceType: typeof mwext.GameObjPoolSourceType;
     type GameObjPoolSourceType = mwext.GameObjPoolSourceType;
     /**
-     * @author shilong.wang
      * @description 面板类的基类，可用于控制一个界面
      * @groups 拓展/排行榜
      * @networkStatus usage: 客户端
@@ -6719,7 +6296,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const BasePanel: typeof mwext.BasePanel;
     type BasePanel<T extends mw.UIScript> = mwext.BasePanel<T>;
     /**
-     * @author shilong.wang
      * @groups 基类/对象池
      * @description 用于缓存GameObject的对象池，适用资源库资源、场景对象、预制体的复用缓存
      * @networkStatus usage: 双端
@@ -6750,7 +6326,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const GameObjPool: typeof mwext.GameObjPool;
     type GameObjPool = mwext.GameObjPool;
     /**
-     * @author lei.zhao
      * @groups 拓展/背包
      * @networkStatus usage:客户端
      * @description 背包界面父类,继承这个类来实现自己的背包界面，使用BagModule.skin来指定皮肤
@@ -6758,7 +6333,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const BagUI: typeof mwext.BagUI;
     type BagUI = mwext.BagUI;
     /**
-     * @author shilong.wang
      * @groups 基类/对象池
      * @description 通用对象池，可用于各种类型对象的复用
      * @networkStatus usage: 双端
@@ -6842,7 +6416,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const ObjPool: typeof mwext.ObjPool;
     type ObjPool<T> = mwext.ObjPool<T>;
     /**
-    * @author lei.zhao
     * @groups 拓展/背包
     * @networkStatus usage:客户端
     * @description 背包道具父类,继承这个类来实现自己的道具格子界面，使用BagModule.skin来指定皮肤
@@ -6850,7 +6423,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const BagItemUI: typeof mwext.BagItemUI;
     type BagItemUI = mwext.BagItemUI;
     /**
-    * @author lei.zhao
     * @groups 拓展/背包
     * @networkStatus usage:双端
     * @description 背包实例
@@ -6885,7 +6457,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const BagModule: typeof mwext.BagModule;
     type BagModule = mwext.BagModule;
     /**
-    * @author lei.zhao
     * @groups 拓展/背包
     * @networkStatus 双端
     * @description 道具品质
@@ -6893,68 +6464,58 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const ItemQuality: typeof mwext.ItemQuality;
     type ItemQuality = mwext.ItemQuality;
     /**
-    * @author shilong.wang
     * @description 排行榜模块-服务端
     * @groups 拓展/排行榜
     */
     type LeaderboardModuleTypeS = mwext.LeaderboardModuleTypeS;
     /**
-     * @author lei.zhao
      * @groups 拓展/背包
      * @networkStatus 双端
      * @description 背包数据结构
      */
     type IBagStruct = mwext.IBagStruct;
     /**
-     * @author shilong.wang
      * @groups 拓展/排行榜
      * @description 排行榜面板的UI结构接口
      * @networkStatus usage: 客户端
      */
     type ILeaderboardPanelView = mwext.ILeaderboardPanelView;
     /**
-    * @author shilong.wang
     * @description 排行榜模块-客户端
     * @groups 拓展/排行榜
     */
     type LeaderboardModuleTypeC = mwext.LeaderboardModuleTypeC;
     /**
-    * @author lei.zhao
     * @groups 拓展/背包
     * @networkStatus 双端
     * @description 道具配置
     */
     type ItemConfig = mwext.ItemConfig;
     /**
-     * @author shilong.wang
      * @groups 拓展/排行榜
      * @description 排行榜面板一条数据的UI结构接口
      * @networkStatus usage: 客户端
      */
     type ILeaderboardItemView = mwext.ILeaderboardItemView;
     /**
-    * @author lei.zhao
     * @groups 拓展/背包
     * @networkStatus usage:客户端
     * @description 格子皮肤
     */
     type IBagItemSkin = mwext.IBagItemSkin;
     /**
-    * @author lei.zhao
     * @groups 拓展/背包
     * @networkStatus usage:客户端
     * @description 道具删除皮肤
     */
     type IItemDeleteSkin = mwext.IItemDeleteSkin;
     /**
-    * @author shilong.wang
     * @groups 拓展/排行榜
     * @description 排行榜玩家数据类型
     * @networkStatus usage: 双端
     */
     type LeaderboardPlayerData = mwext.LeaderboardPlayerData;
     /**
-     * @author mengyuan.hao
      * @description  图片画质设置
      * @groups 设置
      * @networkStatus usage:客户端
@@ -7002,7 +6563,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const GraphicsSettings: typeof mw.GraphicsSettings;
     type GraphicsSettings = mw.GraphicsSettings;
     /**
-     * @author xiangkun.sun
      * @groups 设置
      * @description 全局的脚本配置信息
      * @networkStatus usage:双端
@@ -7026,7 +6586,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const ScriptingSettings: typeof mw.ScriptingSettings;
     type ScriptingSettings = mw.ScriptingSettings;
     /**
-     * @author mengyuan.hao
      * @description  房间设置
      * @groups 设置
      * @networkStatus usage:服务端
@@ -7063,7 +6622,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const RoomSettings: typeof mw.RoomSettings;
     type RoomSettings = mw.RoomSettings;
     /**
-     * @author mengyuan.hao
      * @groups 设置
      * @description 控制一些优化项的开启关闭
      * @networkStatus usage:客户端
@@ -7087,14 +6645,12 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const AvatarSettings: typeof mw.AvatarSettings;
     type AvatarSettings = mw.AvatarSettings;
     /**
-     * @author junwen.hua
      * @groups 设置
      * @description 重力模式
      */
     const GravityMode: typeof mw.GravityMode;
     type GravityMode = mw.GravityMode;
     /**
-     * @author junwen.hua
      * @groups 设置
      * @description 环境设置
      * @effect 只在客户端调用生效
@@ -7122,7 +6678,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const EnvironmentSettings: typeof mw.EnvironmentSettings;
     type EnvironmentSettings = mw.EnvironmentSettings;
     /**
-     * @author jun.zhang
      * @description GameService的错误回调编码枚举
      * @groups 基础类型
      */
@@ -7130,7 +6685,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     type AvatarCheckStatusCode = mw.AvatarCheckStatusCode;
     /**
      * @hidden
-     * @author huipeng.jia, junwen.hua
      * @groups 基础类型
      * @instance
      * @description 支持各端的通信，Platform、引擎、Web和游戏项目可以互相直接进行业务上的消息传递，无需修改引擎代码
@@ -7153,7 +6707,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const MessageChannelService: typeof mw.MessageChannelService;
     type MessageChannelService = mw.MessageChannelService;
     /**
-     * @author changzun.li
      * @groups 设置/设置面板
      * @description 拍照组件
      * @networkStatus usage: 客户端
@@ -7161,14 +6714,12 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const PhotoStudioService: typeof mw.PhotoStudioService;
     type PhotoStudioService = mw.PhotoStudioService;
     /**
-     * @author junwen.hua
      * @groups 服务/货币
      * @description 大会员扣除钥匙订单返回状态信息
      */
     const consumeKeyStatus: typeof mw.consumeKeyStatus;
     type consumeKeyStatus = mw.consumeKeyStatus;
     /**
-     * @author huipeng.jia, junwen.hua
      * @groups 服务/货币
      * @description 应用内购服务
      * @networkStatus usage: 客户端
@@ -7176,7 +6727,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const PurchaseService: typeof mw.PurchaseService;
     type PurchaseService = mw.PurchaseService;
     /**
-     * @author huipeng.jia
      * @groups 服务/社交
      * @description 游戏管理器
      * @networkStatus usage: 双端
@@ -7184,7 +6734,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const RouteService: typeof mw.RouteService;
     type RouteService = mw.RouteService;
     /**
-     * @author changzun.li
      * @description 设置面板选项
      * @networkStatus usage: 客户端
      * @groups 设置/设置面板
@@ -7192,7 +6741,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const SettingsOption: typeof mw.SettingsOption;
     type SettingsOption = mw.SettingsOption;
     /**
-     * @author changzun.li
      * @description 设置面板相关API
      * @networkStatus usage: 客户端
      * @groups 设置/设置面板
@@ -7200,14 +6748,12 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const SettingService: typeof mw.SettingService;
     type SettingService = mw.SettingService;
     /**
-     * @author huipeng.jia
      * @description 传送状态
      * @groups 数据处理
      */
     const TeleportStatus: typeof mw.TeleportStatus;
     type TeleportStatus = mw.TeleportStatus;
     /**
-     * @author huipeng.jia
      * @groups 服务/传送
      * @description 多场景和传送服务
      * @networkStatus usage: 服务端
@@ -7216,7 +6762,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     type TeleportService = mw.TeleportService;
     /**
      * @hidden
-     * @author huipeng.jia
      * @groups 基础类型
      * @description 用户建造服务
      * @networkStatus usage: 客户端
@@ -7224,7 +6769,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const UGCService: typeof mw.UGCService;
     type UGCService = mw.UGCService;
     /**
-     * @author huipeng.jia
      * @groups 服务/货币
      * @description Avatar商城的应用内购服务
      * @networkStatus usage: 客户端
@@ -7232,7 +6776,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const AvatarEditorService: typeof mw.AvatarEditorService;
     type AvatarEditorService = mw.AvatarEditorService;
     /**
-     * @author xiangkun.sun
      * @groups 服务/调试
      * @instance
      * @description debug调试服务
@@ -7241,7 +6784,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const DebugService: typeof mw.DebugService;
     type DebugService = mw.DebugService;
     /**
-     * @author huipeng.jia, shilong.wang
      * @groups 场景/特效
      * @description 特效管理器
      * @description Effect 通常用于增强游戏画面、呈现视觉效果或传达特定的情感或信息。特效可以是各种形式的视觉效果，如粒子效果、光影效果、爆炸效果、烟雾效果等。MW编辑器在左侧特效栏中提供了大量的粒子特效，您可以任意的拖动特效到场景中查看并使用。
@@ -7253,7 +6795,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const EffectService: typeof mw.EffectService;
     type EffectService = mw.EffectService;
     /**
-     * @author mengyuan.hao
      * @groups 服务/社交
      * @description 聊天头顶气泡
      * @description 1. 什么是头顶气泡？
@@ -7266,21 +6807,18 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const ChatBubble: typeof mw.ChatBubble;
     type ChatBubble = mw.ChatBubble;
     /**
-     * @author mengyuan.hao
      * @description 发送消息的类型
      * @groups 基础类型
      */
     const MessageType: typeof mw.MessageType;
     type MessageType = mw.MessageType;
     /**
-     * @author mengyuan.hao
      * @description 发送消息的状态
      * @groups 基础类型
      */
     const MessageState: typeof mw.MessageState;
     type MessageState = mw.MessageState;
     /**
-     * @author mengyuan.hao
      * @groups 服务/社交
      * @description 聊天服务
      * @description 语音聊天功能需要在mobile端才可生效，pie没有效果。可以使用手机端测试。
@@ -7289,7 +6827,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const ChatService: typeof mw.ChatService;
     type ChatService = mw.ChatService;
     /**
-     * @author huipeng.jia
      * @groups 服务/社交
      * @description MGS以及玩家信息、数据、头像等相关API。
      * MGS = Meta Game Service, 是编辑器提供给开发者的一些原生服务，如发布游戏后的左上角聊天、好友相关信息服务。
@@ -7298,7 +6835,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const RoomService: typeof mw.RoomService;
     type RoomService = mw.RoomService;
     /**
-     * @author shilong.wang
      * @groups 场景/音效
      * @description 音效管理器
      * @networkStatus usage: 双端
@@ -7306,7 +6842,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const SoundService: typeof mw.SoundService;
     type SoundService = mw.SoundService;
     /**
-     * @author huipeng.jia, guang.deng
      * @groups 服务/社交
      * @description 用户账号信息管理服务
      * @networkStatus usage: 客户端
@@ -7314,21 +6849,18 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const AccountService: typeof mw.AccountService;
     type AccountService = mw.AccountService;
     /**
-     * @author huipeng.jia
      * @description 广告类型
      * @groups 服务/货币
      */
     const AdsType: typeof mw.AdsType;
     type AdsType = mw.AdsType;
     /**
-     * @author huipeng.jia
      * @description 广告状态，调用show方法的时候可能返回的广告状态
      * @groups 服务/货币
      */
     const AdsState: typeof mw.AdsState;
     type AdsState = mw.AdsState;
     /**
-     * @author huipeng.jia
      * @description 广告服务
      * @precautions 需先在开发者后台“游戏服务”中接入广告，才能正常播出。请注意，广告只能在真机上播放，开发环境无法播放。
      * @networkStatus usage: 客户端
@@ -7337,7 +6869,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const AdsService: typeof mw.AdsService;
     type AdsService = mw.AdsService;
     /**
-     * @author huipeng.jia
      * @groups 服务/埋点分析
      * @description 事件包装器
      * @networkStatus usage: 双端
@@ -7354,7 +6885,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     const EventWrapper: typeof mw.EventWrapper;
     type EventWrapper = mw.EventWrapper;
     /**
-     * @author xiangkun.sun
      * @groups 服务/埋点分析
      * @description 分析服务
      * @networkStatus usage: 双端
@@ -7363,165 +6893,138 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
     type AnalyticsService = mw.AnalyticsService;
     /**
      * @hidden
-     * @author huipeng.jia, junwen.hua
      * @description 枚举各个通道的使用与接收方
      * @groups 基础类型
      */
     const MessageChannelReceiver: typeof mw.MessageChannelReceiver;
     type MessageChannelReceiver = mw.MessageChannelReceiver;
     /**
-     * @author huipeng.jia
      * @description 组队跳游戏请求失败回调
      * @groups 基础类型
      */
     type TeamMatchFailureInfo = mw.TeamMatchFailureInfo;
     /**
-     * @author jun.zhang
      * @description GameService的回调参数类型
      * @groups 基础类型
      */
     type AvatarBaseError = mw.AvatarBaseError;
     /**
-     * @author huipeng.jia
      * @description 传送时可携带的数据类型
      * @groups 数据处理
      */
     type TeleportData = mw.TeleportData;
     /**
-     * @author huipeng.jia
      * @description 传送时可额外提供的信息
      * @groups 数据处理
      */
     type TeleportOptions = mw.TeleportOptions;
     /**
-     * @author jun.zhang
      * @description GameService的回调参数类型
      * @groups 基础类型
      */
     type AvatarCheckResponse = mw.AvatarCheckResponse;
     /**
-     * @author huipeng.jia
      * @description 传送请求的结果
      * @groups 数据处理
      */
     type TeleportResult = mw.TeleportResult;
     /**
-     * @author huipeng.jia
      * @description 玩家所在的房间信息
      * @groups 数据处理
      */
     type RoomInfo = mw.RoomInfo;
     /**
-     * @author huipeng.jia
      * @groups 基础类型
      * @description UGC模板信息
      */
     type UGCTemplateInfo = mw.UGCTemplateInfo;
     /**
-     * @author huipeng.jia
      * @groups 基础类型
      * @description 发布成功的UGC消费态游戏信息
      */
     type PublishedUGCGameInfo = mw.PublishedUGCGameInfo;
     /**
-     * @author huipeng.jia
      * @groups 基础类型
      * @description 本地工程信息。如果该工程发布过UGC消费态的游戏，那gameId不为空。
      */
     type LocalUGCGameInfo = mw.LocalUGCGameInfo;
     /**
-     * @author huipeng.jia
      * @groups 服务/货币
      * @description 使用placeOrder接口下单时用于描述商品信息的类型
      */
     type CommodityInfo = mw.CommodityInfo;
     /**
-     * @author huipeng.jia
      * @groups 服务/货币
      * @description 通过接口查询符合要求的商品列表时，会返回的对象类型。
      */
     type CommodityListObj = mw.CommodityListObj;
     /**
-     * @author huipeng.jia
      * @description GameService的回调
      * @groups 基础类型
      */
     type MGSResponse = mw.MGSResponse;
     /**
-     * @author huipeng.jia
      * @groups 服务/货币
      * @description 充值信息
      */
     type RechargeInfo = mw.RechargeInfo;
     /**
-     * @author huipeng.jia
      * @groups 服务/货币
      * @description 账户余额信息
      */
     type BalanceInfo = mw.BalanceInfo;
     /**
-     * @author huipeng.jia
      * @groups 服务/货币
      * @description 发货回调
      */
     type ShipOrderResponse = mw.ShipOrderResponse;
     /**
-     * @author mengyuan.hao
      * @description 收到MGS事件调用
      * @groups 数据处理
      */
     type ChatEvent = mw.ChatEvent;
     /**
-     * @author mengyuan.hao
      * @description 发送消息的结果
      * @groups 基础类型
      */
     type BroadcastMessageResult = mw.BroadcastMessageResult;
     /**
-     * @author huipeng.jia
      * @description 收到MGS事件调用
      * @groups 基础类型
      */
     type MGSEvent = mw.MGSEvent;
     /**
-     * @author huipeng.jia
      * @description 返回string的回调
      * @groups 基础类型
      */
     type StringResponse = mw.StringResponse;
     /**
-     * @author huipeng.jia
      * @description 返回bool的回调
      * @groups 基础类型
      */
     type BoolResponse = mw.BoolResponse;
     /**
-     * @author huipeng.jia
      * @description 下载平台数据回调
      * @groups 基础类型
      */
     type downloadCharacterDataStringCallback = mw.downloadCharacterDataStringCallback;
     /**
-     * @author huipeng.jia
      * @description 返回无参数的回调
      * @groups 基础类型
      */
     type VoidResponse = mw.VoidResponse;
     /**
-     * @author huipeng.jia
      * @description 下载角色形象的回调，无参数
      * @groups 基础类型
      */
     type DownloadDataResponse = mw.DownloadDataResponse;
     /**
-     * @author huipeng.jia
      * @description 下载角色形象的回调消息格式
      * @groups 基础类型
      * @param success usage: 上传是否成功
      */
     type UploadDataResponse = mw.UploadDataResponse;
     /**
-     * @author huipeng.jia
      * @description 服务端接收发货通知的消息格式
      * @groups 基础类型
      * @param playerId usage: 下单的玩家playerId
@@ -7532,7 +7035,6 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      */
     type OnOrderDelivered = mw.OnOrderDelivered;
     /**
-     * @author junwen.hua
      * @description 大会员钥匙扣除服务端接收发货通知的消息格式
      * @groups 服务/货币
      * @param player usage: 下单的玩家Player
@@ -7543,20 +7045,17 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      */
     type OnKeyConsume = mw.OnKeyConsume;
     /**
-     * @author huipeng.jia
      * @description 客户端接收余额更新的消息格式
      * @groups 基础类型
      * @param amount usage: 新的余额
      */
     type OnArkBalanceUpdated = mw.OnArkBalanceUpdated;
     /**
-     * @author junwen.hua
      * @description 大会员消费钥匙订单。orderId：订单ID，boxId：宝箱ID，number：购买宝箱数量，shipTime：发货时间，毫秒级时间戳
      * @groups 服务/货币
      */
     type keyUsageInfo = mw.keyUsageInfo;
     /**
-     * @author mengyuan.hao
      * @description status : 兑换状态。
      * @description 200 ： 兑换成功
      * @description 400 ： 兑换失败（兑换码不存在）
@@ -7575,13 +7074,11 @@ CatmullRom插值：拐弯平滑，只在拐弯处进行平滑
      */
     type RedeemResponse = mw.RedeemResponse;
     /**
-     * @author huipeng.jia
      * @description 窗口刷新的消息格式
      * @groups 基础类型
      */
     type OnViewRefreshed = mw.OnViewRefreshed;
     /**
-     * @author huipeng.jia
      * @description 窗口显示模式切换的消息格式
      * @groups 基础类型
      * @param newState usage: 新的窗口模式。1 为“角色展示模式”，2 为“角色编辑模式”

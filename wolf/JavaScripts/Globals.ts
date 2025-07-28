@@ -59,6 +59,8 @@ export class Globals {
     public static coinIcon: string = `47608`;
     public static coinCount: number = 1000;
     public static onlineTimeConfig: number = 30;
+
+    public static savaMaxCount: number = 6;
 }
 export class GameGlobals {
     /**当前地图 */
@@ -255,3 +257,11 @@ export enum ColdWeaponAttackMode {
     FlyKnife
 }
 
+export enum CameraManagerType {
+    Head = 104,
+    Body = 105,
+}
+export enum EventType {
+    OnOffMainUI = `OnOffMainUI`,
+    SwitchCamera = `SwitchCamera`,
+}

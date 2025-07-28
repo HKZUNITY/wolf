@@ -5,6 +5,7 @@ import { PlayerManagerExtesion, } from '../../Modified027Editor/ModifiedPlayer';
 import { GeneralManager, } from '../../Modified027Editor/ModifiedStaticAPI';
 import { GameConfig } from "../../Tables/GameConfig";
 import { Tools } from "../../Tools";
+import Utils from "../../Utils";
 import AdsPanel from "../AdsModule/ui/AdsPanel";
 import DanMuModuleC from "../DanMuModule/DanMuModuleC";
 import FSMModuleC from "../FSMModule/FSMModuleC";
@@ -510,21 +511,28 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
         if (!canvas) {
             return;
         }
-        let levelText = canvas.getChildAt(1) as mw.TextBlock
-        levelText.text = level.toString()
+        let levelText = canvas.getChildAt(2) as mw.TextBlock
         if (level <= 70) {
+            levelText.text = level.toString();
             GameConfig.Rank.getAllElement().every((value, index) => {
                 if (value.Level == level) {
                     let image = value.BgID.toString()
                     let imageUI = canvas.getChildAt(0) as mw.Image
+                    let imageUI2 = canvas.getChildAt(1) as mw.FlipBook
+                    Utils.setWidgetVisibility(imageUI, mw.SlateVisibility.SelfHitTestInvisible);
+                    Utils.setWidgetVisibility(imageUI2, mw.SlateVisibility.Collapsed);
                     imageUI.imageGuid = image
                     return false
                 }
                 return true
             });
         } else {
+            levelText.text = `Lv.${level}`;
             let imageUI = canvas.getChildAt(0) as mw.Image
-            imageUI.imageGuid = `128708`;
+            let imageUI2 = canvas.getChildAt(1) as mw.FlipBook
+            Utils.setWidgetVisibility(imageUI, mw.SlateVisibility.Collapsed);
+            Utils.setWidgetVisibility(imageUI2, mw.SlateVisibility.Visible);
+            // imageUI.imageGuid = `128708`;
         }
     }
     /**获取玩家头顶的等级ui */

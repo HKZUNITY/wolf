@@ -210,6 +210,7 @@ export enum Tab3Type {
     Tab3_SportsShoes_Shoes,
     /**日常造型2 */
     Tab3_DailyStyling_Suit2,
+    Tab3_BackPet,
 
     /**瞳孔样式_收藏 */
     Tab3_PupilStyle_Collection = 2001,

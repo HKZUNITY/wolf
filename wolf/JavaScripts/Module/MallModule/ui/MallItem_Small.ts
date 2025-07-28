@@ -1,6 +1,7 @@
 ﻿import { IAccessoriesGlovesElement } from "../../../Tables/AccessoriesGloves";
 import { IALongCoatTopElement } from "../../../Tables/ALongCoatTop";
 import { IBackElement } from "../../../Tables/Back";
+import { IBackPetElement } from "../../../Tables/BackPet";
 import { IBootsShoesElement } from "../../../Tables/BootsShoes";
 import { IEarElement } from "../../../Tables/Ear";
 import { IEffectsElement } from "../../../Tables/Effects";
@@ -270,6 +271,12 @@ export default class MallItem_Small extends MallItem_Small_Generate {
 			case Tab2Type.Tab2_Pet:
 				let petElement: IPetElement = GameConfig.Pet.getElement(assetId);
 				this.mIconImage.imageInfo.setByAssetIcon(petElement.AssetId, mw.AssetIconSize.Icon_128px);
+				Utils.setWidgetVisibility(this.mCoinIconImage, mw.SlateVisibility.SelfHitTestInvisible);
+				this.mPriceTextBlock.text = GameConfig.Language.Text_MallItem_Free.Value;
+				break;
+			case Tab3Type.Tab3_BackPet:
+				let backPetElement: IBackPetElement = GameConfig.BackPet.getElement(assetId);
+				this.mIconImage.imageInfo.setByAssetIcon(backPetElement.AssetId, mw.AssetIconSize.Icon_128px);
 				Utils.setWidgetVisibility(this.mCoinIconImage, mw.SlateVisibility.SelfHitTestInvisible);
 				this.mPriceTextBlock.text = GameConfig.Language.Text_MallItem_Free.Value;
 				break;

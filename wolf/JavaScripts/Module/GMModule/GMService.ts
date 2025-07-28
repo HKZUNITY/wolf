@@ -16,6 +16,15 @@ export function AddGMCommand(cmd: GMData) {
 }
 
 AddGMCommand({
+    label: "Lv",
+    clientCmd: (player, value) => {
+    },
+    serverCmd: (player, value) => {
+        ModuleService.getModule(PlayerModuleS).updatePlayerLevel(player.playerId, Number(value));
+    }
+});
+
+AddGMCommand({
     label: "改变背景音效",
     clientCmd: (player, value) => {
         SoundService.BGMVolumeScale = Number(value);

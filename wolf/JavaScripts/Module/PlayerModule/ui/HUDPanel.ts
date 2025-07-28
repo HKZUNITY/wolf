@@ -13,9 +13,11 @@ import HUDPanel_Generate from "../../../ui-generate/module/HUDModule/HUDPanel_ge
 import AdsPanel from "../../AdsModule/ui/AdsPanel";
 import { ArkModuleC } from "../../ArkModule/ArkModule";
 import DanMuModuleC from "../../DanMuModule/DanMuModuleC";
+import ChatPanel from "../../DanMuModule/ui/ChatPanel";
 import ExchangeModuleC from "../../ExchangeModule/ExchangeModuleC";
 import { LotteryModuleC } from "../../LotteryModule/LotteryModuleC";
 import { WatchModuleC } from "../../ProcModule/WatchModule";
+import RankPanel from "../../RankModule/ui/RankPanel";
 import { SetPanel } from "../../SetModule/SetModule";
 import ShopModuleC from "../../ShopModule/ShopModuleC";
 import { SkillModuleC } from "../../SkillModule/SkillModuleC";
@@ -136,6 +138,8 @@ export default class HUDPanel extends HUDPanel_Generate {
 		this.mCanvas_Ark.visibility = (mw.SlateVisibility.Collapsed);
 		this.mCanvas_Set.visibility = (mw.SlateVisibility.Collapsed);
 		this.mCanvas_Avatar.visibility = (mw.SlateVisibility.Collapsed);
+		UIService.getUI(RankPanel).mOpenRoomRankImage.visibility = (mw.SlateVisibility.Collapsed);
+		UIService.getUI(ChatPanel).mOpenShareImage.visibility = (mw.SlateVisibility.Collapsed);
 	}
 	public hideShop() {
 		this.mCanvas_Watch.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
@@ -152,6 +156,8 @@ export default class HUDPanel extends HUDPanel_Generate {
 		this.mCanvas_Ark.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
 		this.mCanvas_Set.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
 		this.mCanvas_Avatar.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
+		UIService.getUI(RankPanel).mOpenRoomRankImage.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
+		UIService.getUI(ChatPanel).mOpenShareImage.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
 	}
 	public showLottery() {
 		this.mCanvas_Watch.visibility = (mw.SlateVisibility.Collapsed);
@@ -169,6 +175,8 @@ export default class HUDPanel extends HUDPanel_Generate {
 		this.mCanvas_Ark.visibility = (mw.SlateVisibility.Collapsed);
 		this.mCanvas_Set.visibility = (mw.SlateVisibility.Collapsed);
 		this.mCanvas_Avatar.visibility = (mw.SlateVisibility.Collapsed);
+		UIService.getUI(RankPanel).mOpenRoomRankImage.visibility = (mw.SlateVisibility.Collapsed);
+		UIService.getUI(ChatPanel).mOpenShareImage.visibility = (mw.SlateVisibility.Collapsed);
 	}
 	public hideLottery() {
 		this.mCanvas_Watch.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
@@ -185,6 +193,8 @@ export default class HUDPanel extends HUDPanel_Generate {
 		this.mCanvas_Ark.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
 		this.mCanvas_Set.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
 		this.mCanvas_Avatar.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
+		UIService.getUI(RankPanel).mOpenRoomRankImage.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
+		UIService.getUI(ChatPanel).mOpenShareImage.visibility = (mw.SlateVisibility.SelfHitTestInvisible);
 	}
 	public setHallTime(stime: string) {
 		this.mText_CountDown.text = (stime);

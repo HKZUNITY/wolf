@@ -7,6 +7,9 @@ import { ArkData, ArkModuleC, ArkModuleS } from "./Module/ArkModule/ArkModule";
 import { BagModuleData } from "./Module/BagModule/BagData";
 import { BagModuleC } from "./Module/BagModule/BagModuleC";
 import { BagModuleS } from "./Module/BagModule/BagModuleS";
+import { CharacterData } from "./Module/CharacterModule/CharacterData";
+import { CharacterModuleC } from "./Module/CharacterModule/CharacterModuleC";
+import { CharacterModuleS } from "./Module/CharacterModule/CharacterModuleS";
 import DanMuModuleC from "./Module/DanMuModule/DanMuModuleC";
 import DanMuModuleS from "./Module/DanMuModule/DanMuModuleS";
 import { DoorModuleC } from "./Module/door/DoorModuleC";
@@ -130,6 +133,7 @@ export default class GameStart extends mw.Script {
         ModuleService.registerModule(ArkModuleS, ArkModuleC, ArkData);
         ModuleService.registerModule(MallModuleS, MallModuleC, MallData);
         ModuleService.registerModule(RankModuleS, RankModuleC, null);
+        ModuleService.registerModule(CharacterModuleS, CharacterModuleC, CharacterData);
     }
 
     private onUpdateCS(dt: number): void {
