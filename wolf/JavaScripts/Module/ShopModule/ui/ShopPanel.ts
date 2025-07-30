@@ -30,7 +30,7 @@ export default class ShopPanel extends ShopPanel_Generate {
 	private rowSpacing: number = 15;//行距
 	private columnSpacing: number = 10;//列距
 	private rowGoodsNum: number = 4;//一行放几个
-	private currentTabIndex: number = 0;//当前显示的标签
+	private currentTabIndex: number = 2;//当前显示的标签
 	private valuableBtnNum: number = 0;
 	private curItem: ShopItem;
 	private ownList: Array<ShopItem> = [];
@@ -462,8 +462,8 @@ export default class ShopPanel extends ShopPanel_Generate {
 	}
 	public showDefaltDetail() {
 		if (this.goodsBoxArr.length != 0) {
-			this.showItemDetail(this.goodsBoxArr[0].itemId, this.goodsBoxArr[0].itemState);
-			this.curItem = this.goodsBoxArr[0];
+			this.showItemDetail(this.goodsBoxArr[1].itemId, this.goodsBoxArr[1].itemState);
+			this.curItem = this.goodsBoxArr[1];
 		}
 	}
 	//清理页面
@@ -494,6 +494,8 @@ export default class ShopPanel extends ShopPanel_Generate {
 			let btn: mw.StaleButton = this.mCanvas_ItemTypes.getChildAt(i) as mw.StaleButton;
 			this.mTabGroupBtns.push(btn)
 		}
+		this.mTabGroupBtns[0].visibility = (mw.SlateVisibility.Collapsed);
+		this.mTabGroupBtns[4].visibility = (mw.SlateVisibility.Collapsed);
 		// BaseUI.getCanvasChildren(this.mCanvas_ItemTypes, mw.Button);
 		this.initBtnString();
 		this.setLan();

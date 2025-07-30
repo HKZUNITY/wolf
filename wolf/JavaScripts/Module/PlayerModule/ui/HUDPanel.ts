@@ -208,6 +208,7 @@ export default class HUDPanel extends HUDPanel_Generate {
 		this.mText_CountDown.text = ("" + curnum + "/" + Globals.startMin);
 	}
 	public setHallHeadImg(roleId: number) {
+		return;
 		this.mImg_HeadIcon.imageGuid = (GameConfig.Role.getElement(roleId).HeadPortrait.toString());
 	}
 	public setHallGoldNum(num: number) {

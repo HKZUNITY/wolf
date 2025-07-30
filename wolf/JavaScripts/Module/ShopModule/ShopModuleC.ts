@@ -97,8 +97,8 @@ export default class ShopModuleC extends ModuleC<ShopModuleS, ShopModuleData> {
         if (isOpen) {
             this.getShopPanel.show();
             if (showItem == false) {
-                this.getShopPanel.tabGroup.select(0);
-                this.getShopPanel.showGoods(0);
+                this.getShopPanel.tabGroup.select(2);
+                this.getShopPanel.showGoods(2);
                 this.getShopPanel.showDefaltDetail();
             }
             this.getHUDPanel.showShop();//其他UI隐藏
