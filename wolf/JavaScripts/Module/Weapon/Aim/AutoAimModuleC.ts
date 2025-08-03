@@ -301,34 +301,42 @@ export class AutoAimModuleC extends ModuleC<AutoAimModuleS, null> {
     }
     private onTriggerEnter(obj: mw.GameObject) {
         if (PlayerManagerExtesion.isCharacter(obj) || PlayerManagerExtesion.isNpc(obj)) {
+            console.error("添加准星展示1");
             /**重复的也不录入 */
             if (this.shootMap.get(obj)) {
                 return
             }
+            console.error("添加准星展示2");
             /**自己也不能进来 */
             if (obj.gameObjectId == this.curPlayer.character.gameObjectId) {
                 return
             }
+            console.error("添加准星展示3");
             /**不是对局玩家 */
             if ((this.isPlayerInMatch(obj.gameObjectId) || this.isAIModelInMatch(obj.gameObjectId)) == false) {
                 return
             }
+            console.error("添加准星展示4");
             /**死去ai不录入 */
             if (this.isDeadAi(obj.gameObjectId)) {
                 return
             }
+            console.error("添加准星展示5");
             /**死去玩家不录入 */
             if (this.isDeadPlayer(obj.gameObjectId)) {
                 return
             }
+            console.error("添加准星展示6");
             /**尸体模型不录入 */
             if (this.isDeadModel(obj.gameObjectId)) {
                 return
             }
+            console.error("添加准星展示7");
             /**隐身的玩家不录入 */
             if (this.stealthMap.has(obj.gameObjectId)) {
                 return;
             }
+            console.error("添加准星展示8");
             let button = this.getForesightPanel.getIdleButton();
 
             if (ModuleService.getModule(GameModuleC).getPlayerCamp() == Camp.Spy) {

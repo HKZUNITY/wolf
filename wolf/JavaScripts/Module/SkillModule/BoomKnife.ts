@@ -356,8 +356,10 @@ export default class BoomKnife implements BaseBullet {
         this.projectile.pause();
         this.projectile.gravityScale = 0;
         this.projectile.initialSpeed = this.getFlySpeed();
-        this.projectile.getRelatedGameObject().worldTransform.position = pos;
-        this.projectile.getRelatedGameObject().worldTransform.rotation = dir.toRotation();
+        if (this.projectile && this.projectile?.getRelatedGameObject()) {
+            this.projectile.getRelatedGameObject().worldTransform.position = pos;
+            this.projectile.getRelatedGameObject().worldTransform.rotation = dir.toRotation();
+        }
         // this.projectile.collisionLength = GameConfig.Weapon.getElement(20001).Distance;
         // this.projectile.collisionRadius = GameConfig.Weapon.getElement(20001).Distance;
         this.projectile.lifeSpan = this.distance / this.speed;

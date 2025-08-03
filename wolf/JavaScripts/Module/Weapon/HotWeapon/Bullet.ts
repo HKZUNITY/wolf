@@ -425,8 +425,10 @@ export class Projectile {
         // this.projectile.collisionLength = GameConfig.Weapon.getElement(20001).Distance;
         // this.projectile.collisionRadius = GameConfig.Weapon.getElement(20001).Distance;
         this.projectile.lifeSpan = this.distance / this.speed;
-        this.projectile.getRelatedGameObject().worldTransform.position = pos;
-        this.projectile.getRelatedGameObject().worldTransform.rotation = dir.toRotation();
+        if (this.projectile && this.projectile?.getRelatedGameObject()) {
+            this.projectile.getRelatedGameObject().worldTransform.position = pos;
+            this.projectile.getRelatedGameObject().worldTransform.rotation = dir.toRotation();
+        }
         // if (player) {
         //     this.projectile.bindPlayer(player);
         // }

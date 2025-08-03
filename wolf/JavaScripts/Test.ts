@@ -12,35 +12,55 @@ export default class Test extends Script {
                     if (character != Player.localPlayer.character) return;
                     if (mw.SystemUtil.isPIE) {
                         ExecutorManager.instance.pushAsyncExecutor(async () => {
-                            await TimeUtil.delaySecond(1);
-                            Player.localPlayer.character.setDescription((this.gameObject.parent as mw.Character).getDescription());
-                            await Player.localPlayer.character.asyncReady();
-                            Player.localPlayer.character.syncDescription();
-                            await TimeUtil.delaySecond(1);
+                            await this.a();
                         });
                         return;
                     }
                     if (this.isTest) {
                         ExecutorManager.instance.pushAsyncExecutor(async () => {
-                            Player.localPlayer.character.setDescription((this.gameObject.parent as mw.Character).getDescription());
-                            await Player.localPlayer.character.asyncReady();
-                            Player.localPlayer.character.syncDescription();
-                            await TimeUtil.delaySecond(1);
+                            await this.a();
                         });
                     } else {
                         UIService.getUI(AdsPanel).showRewardAd(() => {
                             this.isTest = true;
                             ExecutorManager.instance.pushAsyncExecutor(async () => {
-                                Player.localPlayer.character.setDescription((this.gameObject.parent as mw.Character).getDescription());
-                                await Player.localPlayer.character.asyncReady();
-                                Player.localPlayer.character.syncDescription();
-                                await TimeUtil.delaySecond(1);
+                                await this.a();
                             });
                         }, `看广告使用这个${this.gameObject.parent.name}山海经角色`, `不看`, `看广告`);
                     }
                 });
             });
+        } else if (mw.SystemUtil.isServer()) {
+            // 服务器端逻辑
+            Event.addClientListener("Test", (player: mw.Player) => {
+                let slot = player.character.description.advance.slotAndDecoration.slot;
+                for (let i = 0; i < slot.length; ++i) {
+                    for (let j = 0; j < slot[i].decoration.length; ++j) {
+                        let attachmentGameObject = slot[i].decoration[j]?.attachmentGameObject;
+                        if (!attachmentGameObject) continue;
+                        (attachmentGameObject as mw.Model)?.setCollision(mw.CollisionStatus.Off, true);
+                    }
+                }
+            });
         }
+    }
+
+    private async a(): Promise<void> {
+        Player.localPlayer.character.setDescription((this.gameObject.parent as mw.Character).getDescription());
+        await Player.localPlayer.character.asyncReady();
+        Player.localPlayer.character.syncDescription();
+        await TimeUtil.delaySecond(1);
+
+        let slot = Player.localPlayer.character.description.advance.slotAndDecoration.slot;
+        for (let i = 0; i < slot.length; ++i) {
+            for (let j = 0; j < slot[i].decoration.length; ++j) {
+                let attachmentGameObject = slot[i].decoration[j]?.attachmentGameObject;
+                if (!attachmentGameObject) continue;
+                (attachmentGameObject as mw.Model)?.setCollision(mw.CollisionStatus.Off, true);
+            }
+        }
+
+        Event.dispatchToServer("Test");
     }
 
     /**
