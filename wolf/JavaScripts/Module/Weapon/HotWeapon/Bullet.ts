@@ -416,41 +416,46 @@ export class Projectile {
         }
     }
     public fire(player: mw.Player, pos: mw.Vector, dir: mw.Vector) {
-        this.startPos = pos;
-        this.isFire = true;
-        this.projectile.pause();
-        this.projectile.gravityScale = this.gravity
-        // this.projectile.setLocationAndRotation(pos, rot);
-        this.projectile.initialSpeed = this.speed;
-        // this.projectile.collisionLength = GameConfig.Weapon.getElement(20001).Distance;
-        // this.projectile.collisionRadius = GameConfig.Weapon.getElement(20001).Distance;
-        this.projectile.lifeSpan = this.distance / this.speed;
-        if (this.projectile && this.projectile?.getRelatedGameObject()) {
-            this.projectile.getRelatedGameObject().worldTransform.position = pos;
-            this.projectile.getRelatedGameObject().worldTransform.rotation = dir.toRotation();
-        }
-        // if (player) {
-        //     this.projectile.bindPlayer(player);
-        // }
-        this.owner = player;
-        console.warn("传入的值" + pos + "===" + dir);
-        console.warn("位置和旋转" + this.projectile.getRelatedGameObject().worldTransform.position + "===" + this.projectile.getRelatedGameObject().worldTransform.rotation);
-        this.projectile.launch(dir);
-        if (this.weaponMesh) {
-            let rot = dir.toRotation();
-            rot = rot.add(new mw.Rotation(0, -90, 0));
-            this.weaponMesh.worldTransform.rotation = rot;
-            let config = GameConfig.Sound.getElement(10022);
-            SoundService.play3DSound(this.bulletLauchSound, pos, config.Count, config.Rate, { radius: config.InnerRadius, falloffDistance: config.FalloffDistance })
-            this.maxLastTimer = setTimeout(() => {
-                this.destroy(true)
-            }, this.maxLastTime * 1000);
-        }
-        else {
-            GeneralManager.rpcPlayEffectAtLocation(this.gunEffect, this.startPos, 1, this.gunEffectRot.toRotation(), this.gunEffectScale);
-            let config = GameConfig.Sound.getElement(10020);
-            SoundService.play3DSound(this.bulletLauchSound, this.startPos, config.Count, config.Rate, { radius: config.InnerRadius, falloffDistance: config.FalloffDistance })
+        try {
 
+            this.startPos = pos;
+            this.isFire = true;
+            this.projectile.pause();
+            this.projectile.gravityScale = this.gravity
+            // this.projectile.setLocationAndRotation(pos, rot);
+            this.projectile.initialSpeed = this.speed;
+            // this.projectile.collisionLength = GameConfig.Weapon.getElement(20001).Distance;
+            // this.projectile.collisionRadius = GameConfig.Weapon.getElement(20001).Distance;
+            this.projectile.lifeSpan = this.distance / this.speed;
+            if (this.projectile && this.projectile?.getRelatedGameObject()) {
+                this.projectile.getRelatedGameObject().worldTransform.position = pos;
+                this.projectile.getRelatedGameObject().worldTransform.rotation = dir.toRotation();
+            }
+            // if (player) {
+            //     this.projectile.bindPlayer(player);
+            // }
+            this.owner = player;
+            console.warn("传入的值" + pos + "===" + dir);
+            console.warn("位置和旋转" + this.projectile.getRelatedGameObject().worldTransform.position + "===" + this.projectile.getRelatedGameObject().worldTransform.rotation);
+            this.projectile.launch(dir);
+            if (this.weaponMesh) {
+                let rot = dir.toRotation();
+                rot = rot.add(new mw.Rotation(0, -90, 0));
+                this.weaponMesh.worldTransform.rotation = rot;
+                let config = GameConfig.Sound.getElement(10022);
+                SoundService.play3DSound(this.bulletLauchSound, pos, config.Count, config.Rate, { radius: config.InnerRadius, falloffDistance: config.FalloffDistance })
+                this.maxLastTimer = setTimeout(() => {
+                    this.destroy(true)
+                }, this.maxLastTime * 1000);
+            }
+            else {
+                GeneralManager.rpcPlayEffectAtLocation(this.gunEffect, this.startPos, 1, this.gunEffectRot.toRotation(), this.gunEffectScale);
+                let config = GameConfig.Sound.getElement(10020);
+                SoundService.play3DSound(this.bulletLauchSound, this.startPos, config.Count, config.Rate, { radius: config.InnerRadius, falloffDistance: config.FalloffDistance })
+
+            }
+        } catch (error) {
+            console.error("Error firing bullet:", error);
         }
     }
 }

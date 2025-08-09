@@ -1,4 +1,6 @@
-﻿import AdsPanel from "./Module/AdsModule/ui/AdsPanel";
+﻿import { AvatarDecora } from "./AvatarDecora";
+import AdsPanel from "./Module/AdsModule/ui/AdsPanel";
+import Mall from "./Module/MallModule/Mall";
 import ExecutorManager from "./WaitingQueue";
 
 @Component
@@ -31,36 +33,15 @@ export default class Test extends Script {
                 });
             });
         } else if (mw.SystemUtil.isServer()) {
-            // 服务器端逻辑
-            Event.addClientListener("Test", (player: mw.Player) => {
-                let slot = player.character.description.advance.slotAndDecoration.slot;
-                for (let i = 0; i < slot.length; ++i) {
-                    for (let j = 0; j < slot[i].decoration.length; ++j) {
-                        let attachmentGameObject = slot[i].decoration[j]?.attachmentGameObject;
-                        if (!attachmentGameObject) continue;
-                        (attachmentGameObject as mw.Model)?.setCollision(mw.CollisionStatus.Off, true);
-                    }
-                }
-            });
         }
     }
 
     private async a(): Promise<void> {
-        Player.localPlayer.character.setDescription((this.gameObject.parent as mw.Character).getDescription());
         await Player.localPlayer.character.asyncReady();
+        let npc = (this.gameObject.parent as mw.Character);
+        await npc.asyncReady();
+        Player.localPlayer.character.setDescription(npc.getDescription());
         Player.localPlayer.character.syncDescription();
-        await TimeUtil.delaySecond(1);
-
-        let slot = Player.localPlayer.character.description.advance.slotAndDecoration.slot;
-        for (let i = 0; i < slot.length; ++i) {
-            for (let j = 0; j < slot[i].decoration.length; ++j) {
-                let attachmentGameObject = slot[i].decoration[j]?.attachmentGameObject;
-                if (!attachmentGameObject) continue;
-                (attachmentGameObject as mw.Model)?.setCollision(mw.CollisionStatus.Off, true);
-            }
-        }
-
-        Event.dispatchToServer("Test");
     }
 
     /**

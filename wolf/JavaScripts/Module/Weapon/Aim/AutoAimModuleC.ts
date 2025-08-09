@@ -125,9 +125,11 @@ export class AutoAimModuleC extends ModuleC<AutoAimModuleS, null> {
                     hitResult.forEach((value) => {
                         if ((PlayerManagerExtesion.isCharacter(value.gameObject) || PlayerManagerExtesion.isNpc(value.gameObject))) {
                             res = value.position;
+                            console.error("AAAAAAAAAAAAAAAAAAAAAAAAAA");
                         }
                         if (PlayerManagerExtesion.isCharacter(value.gameObject.parent) || PlayerManagerExtesion.isNpc(value.gameObject.parent)) {
                             res = value.position;
+                            console.error("BBBBBBBBBBBBBBBBBBB");
                         }
                     })
                     callBack(res.clone());
@@ -222,7 +224,7 @@ export class AutoAimModuleC extends ModuleC<AutoAimModuleS, null> {
         let guid = this.localPlayer.character.gameObjectId;
         let loc = this.curPlayer.character.worldTransform.position;
         this.shootMap.forEach((value, obj) => {
-            let res = QueryUtil.lineTrace(loc, obj.worldTransform.position, true, false, [], false, false, this.localPlayer.character);
+            let res = QueryUtil.lineTrace(loc, obj.worldTransform.position, true, mw.SystemUtil.isPIE, [], false, false, this.localPlayer.character);
             let isShow = false;
             if (!enterMap.has(obj.gameObjectId) && !enterMap.has(guid)) {
                 isShow = true;
@@ -232,21 +234,20 @@ export class AutoAimModuleC extends ModuleC<AutoAimModuleS, null> {
             }
 
             if (isShow == true) {
-                res.every((hit, index) => {
-                    if (!hit.blockingHit) {
-                        return true;
+                let isHas: boolean = false;
+                res.forEach((value: mw.HitResult) => {
+                    if (PlayerManagerExtesion.isCharacter(value.gameObject)
+                        || PlayerManagerExtesion.isNpc(value.gameObject)
+                        || value.gameObject instanceof mw.Trigger) {
+                        isHas = true;
                     }
-                    if (PlayerManagerExtesion.isCharacter(hit.gameObject) || PlayerManagerExtesion.isNpc(hit.gameObject) || hit.gameObject instanceof mw.Trigger) {
-                        return true
-                    }
-                    isShow = false;
-                    return false;
-                })
+                });
+                isShow = isHas == false ? false : true;
             }
+
             if (isShow == true) {
                 value.visibility = mw.SlateVisibility.Visible;
-            }
-            else {
+            } else {
                 value.visibility = mw.SlateVisibility.Collapsed;
             }
         })
@@ -265,7 +266,6 @@ export class AutoAimModuleC extends ModuleC<AutoAimModuleS, null> {
         let buttonScale = button.size
         let res = originPos.add(new mw.Vector2(-buttonScale.x / 2, -buttonScale.y / 2))
         button.position = res
-
     }
 
     private triggerActive() {
@@ -301,42 +301,34 @@ export class AutoAimModuleC extends ModuleC<AutoAimModuleS, null> {
     }
     private onTriggerEnter(obj: mw.GameObject) {
         if (PlayerManagerExtesion.isCharacter(obj) || PlayerManagerExtesion.isNpc(obj)) {
-            console.error("添加准星展示1");
             /**重复的也不录入 */
             if (this.shootMap.get(obj)) {
                 return
             }
-            console.error("添加准星展示2");
             /**自己也不能进来 */
             if (obj.gameObjectId == this.curPlayer.character.gameObjectId) {
                 return
             }
-            console.error("添加准星展示3");
             /**不是对局玩家 */
             if ((this.isPlayerInMatch(obj.gameObjectId) || this.isAIModelInMatch(obj.gameObjectId)) == false) {
                 return
             }
-            console.error("添加准星展示4");
             /**死去ai不录入 */
             if (this.isDeadAi(obj.gameObjectId)) {
                 return
             }
-            console.error("添加准星展示5");
             /**死去玩家不录入 */
             if (this.isDeadPlayer(obj.gameObjectId)) {
                 return
             }
-            console.error("添加准星展示6");
             /**尸体模型不录入 */
             if (this.isDeadModel(obj.gameObjectId)) {
                 return
             }
-            console.error("添加准星展示7");
             /**隐身的玩家不录入 */
             if (this.stealthMap.has(obj.gameObjectId)) {
                 return;
             }
-            console.error("添加准星展示8");
             let button = this.getForesightPanel.getIdleButton();
 
             if (ModuleService.getModule(GameModuleC).getPlayerCamp() == Camp.Spy) {

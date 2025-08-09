@@ -1,8 +1,10 @@
-﻿import { GameGlobals, GamingState, Globals } from "../../Globals";
+﻿import { AvatarDecora } from "../../AvatarDecora";
+import { GameGlobals, GamingState, Globals } from "../../Globals";
 import { GameConfig } from "../../Tables/GameConfig";
 import { Tools } from "../../Tools";
 import GMHUD_Generate from "../../ui-generate/module/GMModule/GMHUD_generate";
 import GMItem_Generate from "../../ui-generate/module/GMModule/GMItem_generate";
+import Utils from "../../Utils";
 import { BagModuleS } from "../BagModule/BagModuleS";
 import FSMModuleS from "../FSMModule/FSMModuleS";
 import { GameModuleS } from "../GameModule/GameModuleS";
@@ -14,6 +16,18 @@ const GMConfig = [];
 export function AddGMCommand(cmd: GMData) {
     GMConfig.push(cmd);
 }
+
+AddGMCommand({
+    label: "山海经",
+    clientCmd: (player, value) => {
+    },
+    serverCmd: async (player, value) => {
+        await Utils.asyncDownloadAsset(value);
+        player.character.setDescription([value]);
+        AvatarDecora.clearAllDecora(player.character);
+        await player.character.asyncReady();
+    }
+});
 
 AddGMCommand({
     label: "Lv",

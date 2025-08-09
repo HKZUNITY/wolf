@@ -350,35 +350,39 @@ export default class BoomKnife implements BaseBullet {
     }
 
     public fire(player: mw.Player, pos: mw.Vector, dir: mw.Vector, skillId: number) {
+        try {
 
-        this.startPos = pos;
-        this.isFire = true;
-        this.projectile.pause();
-        this.projectile.gravityScale = 0;
-        this.projectile.initialSpeed = this.getFlySpeed();
-        if (this.projectile && this.projectile?.getRelatedGameObject()) {
-            this.projectile.getRelatedGameObject().worldTransform.position = pos;
-            this.projectile.getRelatedGameObject().worldTransform.rotation = dir.toRotation();
+            this.startPos = pos;
+            this.isFire = true;
+            this.projectile.pause();
+            this.projectile.gravityScale = 0;
+            this.projectile.initialSpeed = this.getFlySpeed();
+            if (this.projectile && this.projectile?.getRelatedGameObject()) {
+                this.projectile.getRelatedGameObject().worldTransform.position = pos;
+                this.projectile.getRelatedGameObject().worldTransform.rotation = dir.toRotation();
+            }
+            // this.projectile.collisionLength = GameConfig.Weapon.getElement(20001).Distance;
+            // this.projectile.collisionRadius = GameConfig.Weapon.getElement(20001).Distance;
+            this.projectile.lifeSpan = this.distance / this.speed;
+            // if (player) {
+            //     this.projectile.bindPlayer(player);
+            // }
+            this.owner = player;
+            this.skillId = skillId;
+
+            this.projectile.launch(dir);
+            let rot = dir.toRotation();
+            rot = rot.add(new mw.Rotation(0, -90, 0));
+            this.weaponMesh.worldTransform.rotation = rot;
+            console.warn("传入的值" + pos + "===" + rot);
+            console.warn("位置和旋转" + this.projectile.getRelatedGameObject().worldTransform.position + "===" + this.projectile.getRelatedGameObject().worldTransform.rotation);
+            let config = GameConfig.Sound.getElement(10022);
+            SoundService.play3DSound(this.knifeLauchSound, pos, config.Count, config.Rate, { radius: config.InnerRadius, falloffDistance: config.FalloffDistance })
+            this.maxLastTimer = setTimeout(() => {
+                this.destroy(true)
+            }, this.maxLastTime * 1000);
+        } catch (error) {
+            console.error("Error firing BoomKnife:", error);
         }
-        // this.projectile.collisionLength = GameConfig.Weapon.getElement(20001).Distance;
-        // this.projectile.collisionRadius = GameConfig.Weapon.getElement(20001).Distance;
-        this.projectile.lifeSpan = this.distance / this.speed;
-        // if (player) {
-        //     this.projectile.bindPlayer(player);
-        // }
-        this.owner = player;
-        this.skillId = skillId;
-
-        this.projectile.launch(dir);
-        let rot = dir.toRotation();
-        rot = rot.add(new mw.Rotation(0, -90, 0));
-        this.weaponMesh.worldTransform.rotation = rot;
-        console.warn("传入的值" + pos + "===" + rot);
-        console.warn("位置和旋转" + this.projectile.getRelatedGameObject().worldTransform.position + "===" + this.projectile.getRelatedGameObject().worldTransform.rotation);
-        let config = GameConfig.Sound.getElement(10022);
-        SoundService.play3DSound(this.knifeLauchSound, pos, config.Count, config.Rate, { radius: config.InnerRadius, falloffDistance: config.FalloffDistance })
-        this.maxLastTimer = setTimeout(() => {
-            this.destroy(true)
-        }, this.maxLastTime * 1000);
     }
 }

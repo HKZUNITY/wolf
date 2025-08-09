@@ -46,7 +46,7 @@ export class Globals {
     /**播放拿武器动作的时间ms */
     public static getWeaponTime: number = 0;
     /**人机最大人数 */
-    public static aiMax: number = 4;
+    public static aiMax: number = 0;
     /**多少人就不加人机了 */
     public static lowLimit: number = 5;//TODO:WFZ
     /**金钥匙的id */

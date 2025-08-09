@@ -8,7 +8,7 @@ export default class Mall {
         await this.setSlotByDataArrStr(toCharacter, slotDataArrStr);
     }
     private static slotSplit: string = "$"
-    private static getSlotDataArrStr(character: Character): string[] {
+    public static getSlotDataArrStr(character: Character): string[] {
         let slot = character.description.advance.slotAndDecoration.slot;
         let dataStrArr: string[] = [];
         for (let i = 0; i < slot.length; ++i) {
@@ -26,7 +26,7 @@ export default class Mall {
         return dataStrArr.length > 0 ? dataStrArr : null;
     }
 
-    private static async setSlotByDataArrStr(character: Character, strArr: string[]): Promise<void> {
+    public static async setSlotByDataArrStr(character: Character, strArr: string[]): Promise<void> {
         if (!strArr || strArr?.length == 0) return;
         for (let i = 0; i < strArr.length; ++i) {
             let [slotIndexStr, assetId, transform] = strArr[i].split(this.slotSplit);
@@ -42,6 +42,7 @@ export default class Mall {
         await Utils.asyncDownloadAsset(assetId);
         let model = await GameObject.asyncSpawn(assetId) as mw.Model;
         if (!model) return false;
+        model.setCollision(mw.CollisionStatus.Off, true);
         model.setCollision(mw.PropertyStatus.Off, true);
         if (model instanceof mw.Effect) {
             this.clearOneDecoraBySlotIndex(slotIndex, character);
