@@ -6,6 +6,7 @@ import { Tools } from "../../../Tools";
 import ChatPanel_Generate from "../../../ui-generate/module/DanMuModule/ChatPanel_generate";
 import SavePanel_Generate from "../../../ui-generate/module/ShareModule/SavePanel_generate";
 import SharePanel_Generate from "../../../ui-generate/module/ShareModule/SharePanel_generate";
+import { cubicBezier } from "../../../Utils";
 import { ChatData, ActionData } from "../DanMuData";
 import DanMuModuleC from "../DanMuModuleC";
 import ActionItem from "./ActionItem";
@@ -52,6 +53,7 @@ export default class ChatPanel extends ChatPanel_Generate {
 		this.closeActionList(false);
 		this.closeBagCanvas(false);
 		this.updateBagIcon(0);
+		this.initShakeMallTween();
 	}
 
 	private bindButton(): void {
@@ -385,6 +387,31 @@ export default class ChatPanel extends ChatPanel_Generate {
 		Tools.setWidgetVisibility(this.mBagCanvas, isOpen ? mw.SlateVisibility.SelfHitTestInvisible : mw.SlateVisibility.Collapsed);
 	}
 	//#endregion
+
+	public initShakeMallTween(): void {
+		let rightBigToLeftSmall = this.getShakeScaleTween(this.mOpenExpressionButton, 0.5, 20, -20, 1.5, 0.9);
+		let leftSamllToRightBig = this.getShakeScaleTween(this.mOpenExpressionButton, 0.5, -20, 20, 0.9, 1.5);
+
+		rightBigToLeftSmall.start().onComplete(() => {
+			TimeUtil.delaySecond(0.1).then(() => {
+				leftSamllToRightBig.start().onComplete(() => {
+					TimeUtil.delaySecond(0.1).then(() => {
+						rightBigToLeftSmall.start();
+					});
+				});
+			})
+		});
+	}
+
+	private getShakeScaleTween(widget: Widget, shakeScaleTime: number, startAngle: number, endAngle: number, startScale: number, endScale: number): mw.Tween<any> {
+		return new Tween({ angle: startAngle, scale: startScale })
+			.to({ angle: endAngle, scale: endScale }, shakeScaleTime * 1000)
+			.onUpdate((v) => {
+				widget.renderTransformAngle = v.angle;
+				widget.renderScale = new mw.Vector2(v.scale, v.scale);
+			})
+			.easing(cubicBezier(.22, .9, .28, .92));
+	}
 }
 
 export class SharePanel extends SharePanel_Generate {
