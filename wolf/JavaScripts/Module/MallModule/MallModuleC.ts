@@ -10,6 +10,7 @@ import Utils from "../../Utils";
 import ExecutorManager from "../../WaitingQueue";
 import { CharacterModuleC } from "../CharacterModule/CharacterModuleC";
 import DanMuModuleC from "../DanMuModule/DanMuModuleC";
+import { WishDataV0 } from "../WishModule/WishData";
 import Mall from "./Mall";
 import MallData, { AssetIdInfoData, Tab3Type, Tab2Type, TabType, ColorPickTab2Data, Tab1Type } from "./MallData";
 import MallModuleS from "./MallModuleS";
@@ -1853,5 +1854,13 @@ export default class MallModuleC extends ModuleC<MallModuleS, MallData> {
 
     public getCharacterDataUpAssetIdByKey(key: string): string {
         return this.getCharacterModuleC.getCharacterDataUpAssetIdByKey(key);
+    }
+
+    public async updateNickWish(wishDataV0: WishDataV0): Promise<void> {
+        await this.server.net_updateNickWish(wishDataV0);
+    }
+
+    public net_giveSuccess(): void {
+        Notice.showDownNotice(`好友帮你购买成功`);
     }
 }

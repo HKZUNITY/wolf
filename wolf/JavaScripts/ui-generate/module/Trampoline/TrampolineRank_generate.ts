@@ -3,7 +3,7 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/module/Trampoline/TrampolineRank.ui
- * TIME: 2025.07.28-23.31.48
+ * TIME: 2025.09.20-11.56.18
  */
  
 @UIBind('UI/module/Trampoline/TrampolineRank.ui')

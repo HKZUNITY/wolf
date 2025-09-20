@@ -3,7 +3,7 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/module/DanMuModule/ChatPanel.ui
- * TIME: 2025.07.28-23.31.44
+ * TIME: 2025.09.20-11.56.17
  */
  
 @UIBind('UI/module/DanMuModule/ChatPanel.ui')
@@ -323,6 +323,27 @@ export default class ChatPanel_Generate extends UIScript {
 		}
 		return this.mOpenShareTextBlock_Internal
 	}
+	private mOpenWishImage_Internal: mw.Image
+	public get mOpenWishImage(): mw.Image {
+		if(!this.mOpenWishImage_Internal&&this.uiWidgetBase) {
+			this.mOpenWishImage_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenWishImage') as mw.Image
+		}
+		return this.mOpenWishImage_Internal
+	}
+	private mOpenWishButton_Internal: mw.StaleButton
+	public get mOpenWishButton(): mw.StaleButton {
+		if(!this.mOpenWishButton_Internal&&this.uiWidgetBase) {
+			this.mOpenWishButton_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenWishImage/mOpenWishButton') as mw.StaleButton
+		}
+		return this.mOpenWishButton_Internal
+	}
+	private mOpenWishTextBlock_Internal: mw.TextBlock
+	public get mOpenWishTextBlock(): mw.TextBlock {
+		if(!this.mOpenWishTextBlock_Internal&&this.uiWidgetBase) {
+			this.mOpenWishTextBlock_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenWishImage/mOpenWishTextBlock') as mw.TextBlock
+		}
+		return this.mOpenWishTextBlock_Internal
+	}
 
 
 	protected onAwake() {
@@ -383,6 +404,13 @@ export default class ChatPanel_Generate extends UIScript {
 		this.mOpenShareButton.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
 		
 	
+		this.mOpenWishButton.onClicked.add(()=>{
+			Event.dispatchToLocal("PlayButtonClick", "mOpenWishButton");
+		});
+		this.initLanguage(this.mOpenWishButton);
+		this.mOpenWishButton.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
+		
+	
 		//按钮添加点击
 		
 		this.mUnloadButton.onClicked.add(()=>{
@@ -429,6 +457,9 @@ export default class ChatPanel_Generate extends UIScript {
 		
 	
 		this.initLanguage(this.mOpenShareTextBlock)
+		
+	
+		this.initLanguage(this.mOpenWishTextBlock)
 		
 	
 		//文本多语言

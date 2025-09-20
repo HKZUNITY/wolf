@@ -54,6 +54,9 @@ import { ColdWeaponModuleC } from "./Module/Weapon/ColdWeapon/ColdWeaponModuleC"
 import { ColdWeaponModuleS } from "./Module/Weapon/ColdWeapon/ColdWeaponModuleS";
 import { HotWeaponModuleC } from "./Module/Weapon/HotWeapon/HotWeaponModuleC";
 import { HotWeaponModuleS } from "./Module/Weapon/HotWeapon/HotWeaponModuleS";
+import { WishData } from "./Module/WishModule/WishData";
+import WishModuleC from "./Module/WishModule/WishModuleC";
+import WishModuleS from "./Module/WishModule/WishModuleS";
 import { GameConfig } from "./Tables/GameConfig";
 import { Tools } from "./Tools";
 
@@ -134,6 +137,7 @@ export default class GameStart extends mw.Script {
         ModuleService.registerModule(MallModuleS, MallModuleC, MallData);
         ModuleService.registerModule(RankModuleS, RankModuleC, null);
         ModuleService.registerModule(CharacterModuleS, CharacterModuleC, CharacterData);
+        ModuleService.registerModule(WishModuleS, WishModuleC, WishData);
     }
 
     private onUpdateCS(dt: number): void {

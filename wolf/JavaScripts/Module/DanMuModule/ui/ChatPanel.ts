@@ -7,6 +7,7 @@ import ChatPanel_Generate from "../../../ui-generate/module/DanMuModule/ChatPane
 import SavePanel_Generate from "../../../ui-generate/module/ShareModule/SavePanel_generate";
 import SharePanel_Generate from "../../../ui-generate/module/ShareModule/SharePanel_generate";
 import { cubicBezier } from "../../../Utils";
+import WishModuleC from "../../WishModule/WishModuleC";
 import { ChatData, ActionData } from "../DanMuData";
 import DanMuModuleC from "../DanMuModuleC";
 import ActionItem from "./ActionItem";
@@ -24,6 +25,14 @@ export default class ChatPanel extends ChatPanel_Generate {
 			this.danMuModuleC = ModuleService.getModule(DanMuModuleC);
 		}
 		return this.danMuModuleC;
+	}
+
+	private wishModuleC: WishModuleC = null;
+	private get getWishModuleC(): WishModuleC {
+		if (!this.wishModuleC) {
+			this.wishModuleC = ModuleService.getModule(WishModuleC);
+		}
+		return this.wishModuleC;
 	}
 
 	/** 
@@ -54,6 +63,7 @@ export default class ChatPanel extends ChatPanel_Generate {
 		this.closeBagCanvas(false);
 		this.updateBagIcon(0);
 		this.initShakeMallTween();
+		this.initShakeWishTween();
 	}
 
 	private bindButton(): void {
@@ -74,10 +84,15 @@ export default class ChatPanel extends ChatPanel_Generate {
 		this.mBackBagButton.onClicked.add(this.addCloseBagButton.bind(this));
 		this.mUnloadButton.onClicked.add(this.addUnloadButton.bind(this));
 		this.mOpenShareButton.onClicked.add(this.addOpenShareButton.bind(this));
+		this.mOpenWishButton.onClicked.add(this.addOpenWishButton.bind(this));
 	}
 
 	private addOpenShareButton(): void {
 		this.getDanMuModuleC.onOpenShareAction.call(1);
+	}
+
+	private addOpenWishButton(): void {
+		this.getWishModuleC.onOpenWishAction.call();
 	}
 
 	private addOpenChatButton(): void {
@@ -391,6 +406,21 @@ export default class ChatPanel extends ChatPanel_Generate {
 	public initShakeMallTween(): void {
 		let rightBigToLeftSmall = this.getShakeScaleTween(this.mOpenExpressionButton, 0.5, 20, -20, 1.5, 0.9);
 		let leftSamllToRightBig = this.getShakeScaleTween(this.mOpenExpressionButton, 0.5, -20, 20, 0.9, 1.5);
+
+		rightBigToLeftSmall.start().onComplete(() => {
+			TimeUtil.delaySecond(0.1).then(() => {
+				leftSamllToRightBig.start().onComplete(() => {
+					TimeUtil.delaySecond(0.1).then(() => {
+						rightBigToLeftSmall.start();
+					});
+				});
+			})
+		});
+	}
+
+	public initShakeWishTween(): void {
+		let rightBigToLeftSmall = this.getShakeScaleTween(this.mOpenWishButton, 0.5, 20, -20, 1.5, 0.9);
+		let leftSamllToRightBig = this.getShakeScaleTween(this.mOpenWishButton, 0.5, -20, 20, 0.9, 1.5);
 
 		rightBigToLeftSmall.start().onComplete(() => {
 			TimeUtil.delaySecond(0.1).then(() => {
