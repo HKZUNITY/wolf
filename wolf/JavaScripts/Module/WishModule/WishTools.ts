@@ -1,4 +1,5 @@
 ﻿import PortalData from "../../PortalData";
+import { DanmuSyncServer } from "../DanMuModule/DanMuModuleC";
 import { WishDataV0 } from "./WishData";
 
 export default class WishTools {
@@ -43,6 +44,7 @@ export default class WishTools {
             wishDataV0.price = jsonData?.price;
             wishDataV0.itemType = jsonData?.itemType;
             wishDataV0.userId = userId;
+            wishDataV0.nickName = this.getNickName();
             wishDataV0s.push(wishDataV0);
         }
 
@@ -64,6 +66,21 @@ export default class WishTools {
         42,
         49,
         7,
-        18, 47, 51, 52
+        18, 47, 51, 52, 8, 5, 6, 27, 48, 43, 53,
     ];
+
+    private static nickName: string = null;
+    public static getNickName(): string {
+        if (!this.nickName) this.nickName = AccountService.getNickName();
+        return this.nickName ? this.nickName : `账号异常`;
+    }
+
+    public static danmuSyncServer(name1: string, name2: string, price: number): void {
+        Event.dispatchToLocal(DanmuSyncServer, `玩家《${name1}》赠送给玩家《${name2}》价值${price}派对币的心愿单`);
+        for (let i = 0; i < 5; ++i) {
+            TimeUtil.delaySecond(i).then(() => {
+                Event.dispatchToLocal(DanmuSyncServer, `玩家《${name1}》赠送给玩家《${name2}》价值${price}派对币的心愿单`);
+            });
+        }
+    }
 }

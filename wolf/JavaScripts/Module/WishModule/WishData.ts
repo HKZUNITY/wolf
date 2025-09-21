@@ -12,4 +12,5 @@ export class WishDataV0 {
     public price: number;
     public itemName: string;
     public itemType: number;
+    public nickName: string;
 }
