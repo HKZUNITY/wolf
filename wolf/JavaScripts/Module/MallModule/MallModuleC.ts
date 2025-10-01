@@ -10,6 +10,7 @@ import Utils from "../../Utils";
 import ExecutorManager from "../../WaitingQueue";
 import { CharacterModuleC } from "../CharacterModule/CharacterModuleC";
 import DanMuModuleC from "../DanMuModule/DanMuModuleC";
+import GetWishPanel from "../WishModule/ui/GetWishPanel";
 import { WishDataV0 } from "../WishModule/WishData";
 import Mall from "./Mall";
 import MallData, { AssetIdInfoData, Tab3Type, Tab2Type, TabType, ColorPickTab2Data, Tab1Type } from "./MallData";
@@ -1856,11 +1857,12 @@ export default class MallModuleC extends ModuleC<MallModuleS, MallData> {
         return this.getCharacterModuleC.getCharacterDataUpAssetIdByKey(key);
     }
 
-    public async updateNickWish(wishDataV0: WishDataV0): Promise<void> {
-        await this.server.net_updateNickWish(wishDataV0);
+    public async updateNickWish(wishDataV0: WishDataV0, isGive: boolean): Promise<void> {
+        await this.server.net_updateNickWish(wishDataV0, isGive);
     }
 
-    public net_giveSuccess(): void {
-        Notice.showDownNotice(`好友帮你购买成功`);
+    public net_giveSuccess(wishDataV0: WishDataV0): void {
+        Notice.showDownNotice(`你的心愿单好友帮你购买成功`);
+        UIService.getUI(GetWishPanel).showGetWishPanel(wishDataV0);
     }
 }

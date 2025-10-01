@@ -15,6 +15,12 @@ export default class Nickname extends Script {
         this.initNickname();
     }
 
+    protected onDestroy(): void {
+        if (!SystemUtil.isClient()) return;
+        Utils.setWidgetVisibility(this.nickname.mWishBgImage, mw.SlateVisibility.Collapsed);
+        if (this.onClickWishPanel) this.onClickWishPanel.hide();
+    }
+
     private character: mw.Character = null;
     private nickname: Nickname_Generate = null;
     private nicknameWidget: mw.UIWidget = null;

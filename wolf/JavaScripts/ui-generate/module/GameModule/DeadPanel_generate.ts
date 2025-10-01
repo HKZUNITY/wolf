@@ -3,7 +3,7 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/module/GameModule/DeadPanel.ui
- * TIME: 2025.09.20-11.56.17
+ * TIME: 2025.10.01-11.57.00
  */
  
 @UIBind('UI/module/GameModule/DeadPanel.ui')

@@ -65,7 +65,7 @@ export default class WishModuleC extends ModuleC<WishModuleS, WishData> {
     private addRequestBuyAction(wishDataV0: WishDataV0): void {
         console.error(JSON.stringify(wishDataV0));
         ExecutorManager.instance.pushAsyncExecutor(async () => {
-            await this.getMallModuleC.updateNickWish(wishDataV0);
+            await this.getMallModuleC.updateNickWish(wishDataV0, false);
             this.getWishPanel.hide();
         });
     }
@@ -144,6 +144,10 @@ export default class WishModuleC extends ModuleC<WishModuleS, WishData> {
         let userId = wishDataV0.userId;
         let commodityId = wishDataV0.commodityId;
         let price = wishDataV0.price;
+        let iconGuid = wishDataV0.iconGuid;
+        let itemType = wishDataV0.itemType;
+        let nickName = WishTools.getNickName();
+        let prefabGuid = wishDataV0.prefabGuid;
         let cInfo: Commodity = {
             commodityId: commodityId,
             number: 1,
@@ -164,8 +168,13 @@ export default class WishModuleC extends ModuleC<WishModuleS, WishData> {
             clearTimeout(timeoutId);
             let tmpWishDataV0 = new WishDataV0();
             tmpWishDataV0.userId = userId;
+            tmpWishDataV0.price = price;
+            tmpWishDataV0.iconGuid = iconGuid;
+            tmpWishDataV0.itemType = itemType;
+            tmpWishDataV0.nickName = nickName;
+            tmpWishDataV0.prefabGuid = prefabGuid;
             WishTools.danmuSyncServer(WishTools.getNickName(), wishDataV0.nickName, price);
-            await this.getMallModuleC.updateNickWish(tmpWishDataV0);
+            await this.getMallModuleC.updateNickWish(tmpWishDataV0, true);
             await PortalData.cancelSendWishItemRequest([itemId], userId);
         }, async (status: number) => {
             clearTimeout(timeoutId);
