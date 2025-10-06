@@ -8,6 +8,7 @@ import ArkItem_Generate from "../../ui-generate/module/ArkModule/ArkItem_generat
 import ArkPanel_Generate from "../../ui-generate/module/ArkModule/ArkPanel_generate";
 import ChatPanel from "../DanMuModule/ui/ChatPanel";
 import { PlayerModuleC } from "../PlayerModule/PlayerModuleC";
+import { PlayerModuleS } from "../PlayerModule/PlayerModuleS";
 import HUDPanel from "../PlayerModule/ui/HUDPanel";
 
 const rewardDiamond: Map<string, { isLimit: boolean, icon: string, rewardCount: number, price: number, itemPos: mw.Vector2 }> = new Map<string, { isLimit: boolean, icon: string, rewardCount: number, price: number, itemPos: mw.Vector2 }>();
@@ -282,9 +283,21 @@ export class ArkModuleS extends ModuleS<ArkModuleC, ArkData> {
         mw.PurchaseService.onOrderDelivered.add(this.addShipOrder.bind(this));
     }
 
-    private addShipOrder(playerId: number, orderId: string, commodityId: string, amount: number, confirmOrder: (bReceived: boolean) => void): void {
+    private async addShipOrder(playerId: number, orderId: string, commodityId: string, amount: number, confirmOrder: (bReceived: boolean) => void): Promise<void> {
+        let player = await Player.asyncGetPlayer(playerId);
+        if (!player || !player?.playerId) return;
         //根据playerId和commodityId来处理购买逻辑
-        this.getClient(playerId).net_deliverGoods(commodityId, amount);
+        switch (commodityId) {
+            case `60TZ7pfYgyY0008AW`:
+                ModuleService.getModule(PlayerModuleS).addLv(100, player);
+                break;
+            case `5W1VBSJPpj20008AV`:
+                ModuleService.getModule(PlayerModuleS).addLv(10, player);
+                break;
+            default:
+                this.getClient(player).net_deliverGoods(commodityId, amount);
+                break;
+        }
         confirmOrder(true);//调用这个方法表示确认收货成功
     }
 

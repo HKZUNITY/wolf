@@ -778,6 +778,10 @@ export class PlayerModuleC extends ModuleC<PlayerModuleS, PlayerModuleData> {
             this.uiClickSoundId = SoundService.playSound(GameConfig.Assets.getElement(10001).Guid);
         });
     }
+
+    public addLv(addLv: number): void {
+        this.server.net_addLv(addLv * 1000);
+    }
 }
 
 class PlayerNameInfo {

@@ -227,7 +227,7 @@ export class PlayerModuleData extends Subdata {
         //     }
         // }
         this.level = Math.floor(exp / 1000);
-        this.save(false)
+        this.save(true);
         ModuleService.getModule(PlayerModuleS).updatePlayerLevel(playerId, this.level)
     }
     public getLevel() {

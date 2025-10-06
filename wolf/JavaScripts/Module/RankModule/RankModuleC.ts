@@ -170,6 +170,7 @@ export default class RankModuleC extends ModuleC<RankModuleS, RankData> {
         this.updateWorldDatas(worldUserIds, worldNames, worldScores);
         this.updateWorldIndex();
         this.getRankPanel.refreshRankPanel_World(this.worldDatas, this.curWorldIndex);
+        this.updateRankData();
     }
 
     public net_syncRoomWorldRankData(roomUserIds: string[], roomNames: string[], roomScores: number[], roomTimes: number[], roomTryOn: number[],

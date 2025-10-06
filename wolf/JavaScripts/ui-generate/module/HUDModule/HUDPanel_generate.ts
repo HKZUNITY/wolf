@@ -3,7 +3,7 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/module/HUDModule/HUDPanel.ui
- * TIME: 2025.10.01-11.57.00
+ * TIME: 2025.10.06-11.39.13
  */
  
 @UIBind('UI/module/HUDModule/HUDPanel.ui')
@@ -70,6 +70,13 @@ export default class HUDPanel_Generate extends UIScript {
 			this.mAddAdsButton_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_PlayerInf/AddAdsCanvas/mAddAdsButton') as mw.Button
 		}
 		return this.mAddAdsButton_Internal
+	}
+	private mAddLvButton_Internal: mw.Button
+	public get mAddLvButton(): mw.Button {
+		if(!this.mAddLvButton_Internal&&this.uiWidgetBase) {
+			this.mAddLvButton_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mCanvas_PlayerInf/AddLvImage/mAddLvButton') as mw.Button
+		}
+		return this.mAddLvButton_Internal
 	}
 	private mTaskCanvas_Internal: mw.Canvas
 	public get mTaskCanvas(): mw.Canvas {
@@ -495,6 +502,12 @@ export default class HUDPanel_Generate extends UIScript {
 		this.mAddAdsButton.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
 		
 	
+		this.mAddLvButton.onClicked.add(()=>{
+			Event.dispatchToLocal("PlayButtonClick", "mAddLvButton");
+		});
+		this.mAddLvButton.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
+		
+	
 		this.mGetButton.onClicked.add(()=>{
 			Event.dispatchToLocal("PlayButtonClick", "mGetButton");
 		});
@@ -570,6 +583,9 @@ export default class HUDPanel_Generate extends UIScript {
 	
 		//文本多语言
 		
+		this.initLanguage(this.uiWidgetBase.findChildByPath("RootCanvas/mCanvas_PlayerInf/AddLvImage/AddLvTextBlock") as any);
+		
+	
 	}
 	
 	/*初始化多语言*/

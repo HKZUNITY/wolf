@@ -3,12 +3,54 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/module/DanMuModule/ChatPanel.ui
- * TIME: 2025.10.01-11.57.00
+ * TIME: 2025.10.06-11.39.13
  */
  
 @UIBind('UI/module/DanMuModule/ChatPanel.ui')
 export default class ChatPanel_Generate extends UIScript {
-		private mOpenBagCanvas_Internal: mw.Canvas
+		private mOpenWishImage_Internal: mw.Image
+	public get mOpenWishImage(): mw.Image {
+		if(!this.mOpenWishImage_Internal&&this.uiWidgetBase) {
+			this.mOpenWishImage_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenWishImage') as mw.Image
+		}
+		return this.mOpenWishImage_Internal
+	}
+	private mOpenWishButton_Internal: mw.StaleButton
+	public get mOpenWishButton(): mw.StaleButton {
+		if(!this.mOpenWishButton_Internal&&this.uiWidgetBase) {
+			this.mOpenWishButton_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenWishImage/mOpenWishButton') as mw.StaleButton
+		}
+		return this.mOpenWishButton_Internal
+	}
+	private mOpenWishTextBlock_Internal: mw.TextBlock
+	public get mOpenWishTextBlock(): mw.TextBlock {
+		if(!this.mOpenWishTextBlock_Internal&&this.uiWidgetBase) {
+			this.mOpenWishTextBlock_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenWishImage/mOpenWishTextBlock') as mw.TextBlock
+		}
+		return this.mOpenWishTextBlock_Internal
+	}
+	private mOpenShareImage_Internal: mw.Image
+	public get mOpenShareImage(): mw.Image {
+		if(!this.mOpenShareImage_Internal&&this.uiWidgetBase) {
+			this.mOpenShareImage_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenShareImage') as mw.Image
+		}
+		return this.mOpenShareImage_Internal
+	}
+	private mOpenShareButton_Internal: mw.StaleButton
+	public get mOpenShareButton(): mw.StaleButton {
+		if(!this.mOpenShareButton_Internal&&this.uiWidgetBase) {
+			this.mOpenShareButton_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenShareImage/mOpenShareButton') as mw.StaleButton
+		}
+		return this.mOpenShareButton_Internal
+	}
+	private mOpenShareTextBlock_Internal: mw.TextBlock
+	public get mOpenShareTextBlock(): mw.TextBlock {
+		if(!this.mOpenShareTextBlock_Internal&&this.uiWidgetBase) {
+			this.mOpenShareTextBlock_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenShareImage/mOpenShareTextBlock') as mw.TextBlock
+		}
+		return this.mOpenShareTextBlock_Internal
+	}
+	private mOpenBagCanvas_Internal: mw.Canvas
 	public get mOpenBagCanvas(): mw.Canvas {
 		if(!this.mOpenBagCanvas_Internal&&this.uiWidgetBase) {
 			this.mOpenBagCanvas_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenBagCanvas') as mw.Canvas
@@ -302,48 +344,6 @@ export default class ChatPanel_Generate extends UIScript {
 		}
 		return this.mBackBagButton_Internal
 	}
-	private mOpenShareImage_Internal: mw.Image
-	public get mOpenShareImage(): mw.Image {
-		if(!this.mOpenShareImage_Internal&&this.uiWidgetBase) {
-			this.mOpenShareImage_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenShareImage') as mw.Image
-		}
-		return this.mOpenShareImage_Internal
-	}
-	private mOpenShareButton_Internal: mw.StaleButton
-	public get mOpenShareButton(): mw.StaleButton {
-		if(!this.mOpenShareButton_Internal&&this.uiWidgetBase) {
-			this.mOpenShareButton_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenShareImage/mOpenShareButton') as mw.StaleButton
-		}
-		return this.mOpenShareButton_Internal
-	}
-	private mOpenShareTextBlock_Internal: mw.TextBlock
-	public get mOpenShareTextBlock(): mw.TextBlock {
-		if(!this.mOpenShareTextBlock_Internal&&this.uiWidgetBase) {
-			this.mOpenShareTextBlock_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenShareImage/mOpenShareTextBlock') as mw.TextBlock
-		}
-		return this.mOpenShareTextBlock_Internal
-	}
-	private mOpenWishImage_Internal: mw.Image
-	public get mOpenWishImage(): mw.Image {
-		if(!this.mOpenWishImage_Internal&&this.uiWidgetBase) {
-			this.mOpenWishImage_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenWishImage') as mw.Image
-		}
-		return this.mOpenWishImage_Internal
-	}
-	private mOpenWishButton_Internal: mw.StaleButton
-	public get mOpenWishButton(): mw.StaleButton {
-		if(!this.mOpenWishButton_Internal&&this.uiWidgetBase) {
-			this.mOpenWishButton_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenWishImage/mOpenWishButton') as mw.StaleButton
-		}
-		return this.mOpenWishButton_Internal
-	}
-	private mOpenWishTextBlock_Internal: mw.TextBlock
-	public get mOpenWishTextBlock(): mw.TextBlock {
-		if(!this.mOpenWishTextBlock_Internal&&this.uiWidgetBase) {
-			this.mOpenWishTextBlock_Internal = this.uiWidgetBase.findChildByPath('RootCanvas/mOpenWishImage/mOpenWishTextBlock') as mw.TextBlock
-		}
-		return this.mOpenWishTextBlock_Internal
-	}
 
 
 	protected onAwake() {
@@ -355,6 +355,20 @@ export default class ChatPanel_Generate extends UIScript {
 	protected initButtons() {
 		//按钮添加点击
 		
+		this.mOpenWishButton.onClicked.add(()=>{
+			Event.dispatchToLocal("PlayButtonClick", "mOpenWishButton");
+		});
+		this.initLanguage(this.mOpenWishButton);
+		this.mOpenWishButton.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
+		
+	
+		this.mOpenShareButton.onClicked.add(()=>{
+			Event.dispatchToLocal("PlayButtonClick", "mOpenShareButton");
+		});
+		this.initLanguage(this.mOpenShareButton);
+		this.mOpenShareButton.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
+		
+	
 		this.mOpenBagButton.onClicked.add(()=>{
 			Event.dispatchToLocal("PlayButtonClick", "mOpenBagButton");
 		});
@@ -395,20 +409,6 @@ export default class ChatPanel_Generate extends UIScript {
 		});
 		this.initLanguage(this.mBackBagButton);
 		this.mBackBagButton.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
-		
-	
-		this.mOpenShareButton.onClicked.add(()=>{
-			Event.dispatchToLocal("PlayButtonClick", "mOpenShareButton");
-		});
-		this.initLanguage(this.mOpenShareButton);
-		this.mOpenShareButton.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
-		
-	
-		this.mOpenWishButton.onClicked.add(()=>{
-			Event.dispatchToLocal("PlayButtonClick", "mOpenWishButton");
-		});
-		this.initLanguage(this.mOpenWishButton);
-		this.mOpenWishButton.touchMethod = (mw.ButtonTouchMethod.PreciseTap);
 		
 	
 		//按钮添加点击
@@ -453,13 +453,13 @@ export default class ChatPanel_Generate extends UIScript {
 		
 		//文本多语言
 		
-		this.initLanguage(this.mOpenExpressionTextBlock)
+		this.initLanguage(this.mOpenWishTextBlock)
 		
 	
 		this.initLanguage(this.mOpenShareTextBlock)
 		
 	
-		this.initLanguage(this.mOpenWishTextBlock)
+		this.initLanguage(this.mOpenExpressionTextBlock)
 		
 	
 		//文本多语言

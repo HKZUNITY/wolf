@@ -10,6 +10,7 @@ import { BagModuleS } from "../BagModule/BagModuleS";
 import FSMModuleS from "../FSMModule/FSMModuleS";
 import { GameModuleData } from "../GameModule/GameData";
 import { GameModuleS } from "../GameModule/GameModuleS";
+import RankModuleS from "../RankModule/RankModuleS";
 import ShelterModuleS from "../shelterModule/ShelterModuleS";
 import ShopModuleData from "../ShopModule/ShopModuleData";
 import ShopModuleS from "../ShopModule/ShopModuleS";
@@ -491,5 +492,16 @@ export class PlayerModuleS extends ModuleS<PlayerModuleC, PlayerModuleData> {
     public net_WatchAdCountDown(num: number) {
         let num1 = this.currentData.addWatchAdCountDown(num);
         return num1;
+    }
+
+    public async addLv(addLv: number, player: mw.Player): Promise<void> {
+        let data = DataCenterS.getData(player, PlayerModuleData);
+        data.setExp(addLv * 1000, player.playerId);
+        ModuleService.getModule(RankModuleS).updateLv();
+    }
+
+    public net_addLv(addExp: number): void {
+        this.currentData.setExp(addExp, this.currentPlayerId);
+        ModuleService.getModule(RankModuleS).updateLv();
     }
 }

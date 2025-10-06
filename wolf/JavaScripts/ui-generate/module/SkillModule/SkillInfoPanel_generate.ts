@@ -3,7 +3,7 @@
  * WARNING: DO NOT MODIFY THIS FILE,MAY CAUSE CODE LOST.
  * AUTHOR: 爱玩游戏的小胖子
  * UI: UI/module/SkillModule/SkillInfoPanel.ui
- * TIME: 2025.10.01-11.57.01
+ * TIME: 2025.10.06-11.39.14
  */
  
 @UIBind('UI/module/SkillModule/SkillInfoPanel.ui')

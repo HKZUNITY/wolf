@@ -1,1 +1,1 @@
-{"version":1,"haveSkill":[10001],"nowEquipSkill":10001,"timeSkillArr":[]}
+{"version":1,"haveSkill":[10001,10005,10006,10007,10002,10003,10004],"nowEquipSkill":10002,"timeSkillArr":[{"skillId":10005,"time":1,"maxTime":99},{"skillId":10006,"time":1,"maxTime":99},{"skillId":10007,"time":5,"maxTime":99}]}

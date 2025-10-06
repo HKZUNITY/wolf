@@ -11,12 +11,14 @@ import { GameConfig } from "../../../Tables/GameConfig";
 import { Tools } from "../../../Tools";
 import HUDPanel_Generate from "../../../ui-generate/module/HUDModule/HUDPanel_generate";
 import AdsPanel from "../../AdsModule/ui/AdsPanel";
+import MallVipTipsPanel from "../../AdsModule/ui/MallVipTipsPanel";
 import { ArkModuleC } from "../../ArkModule/ArkModule";
 import DanMuModuleC from "../../DanMuModule/DanMuModuleC";
 import ChatPanel from "../../DanMuModule/ui/ChatPanel";
 import ExchangeModuleC from "../../ExchangeModule/ExchangeModuleC";
 import { LotteryModuleC } from "../../LotteryModule/LotteryModuleC";
 import { WatchModuleC } from "../../ProcModule/WatchModule";
+import RankModuleC from "../../RankModule/RankModuleC";
 import RankPanel from "../../RankModule/ui/RankPanel";
 import { SetPanel } from "../../SetModule/SetModule";
 import ShopModuleC from "../../ShopModule/ShopModuleC";
@@ -104,6 +106,24 @@ export default class HUDPanel extends HUDPanel_Generate {
 		});
 		this.mBtn_Avatar.onClicked.add(() => {
 			AvatarEditorService.asyncOpenAvatarEditorModule();
+		});
+		this.mAddLvButton.onClicked.add(() => {
+			UIService.getUI(MallVipTipsPanel).showTips(() => {
+				Tools.placeOrder(`60TZ7pfYgyY0008AW`, () => {
+
+				});
+			}, () => {
+				ModuleService.getModule(PlayerModuleC).addLv(1);
+			}, () => {
+				Tools.placeOrder(`5W1VBSJPpj20008AV`, () => {
+
+				});
+			},
+				`打赏作者，增加等级`,
+				`打赏作者\n看广告等级+1\n1000派对币等级+100`,
+				`1000派对币`,
+				`看广告`,
+				`100派对币`);
 		});
 	}
 

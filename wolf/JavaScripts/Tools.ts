@@ -1,15 +1,18 @@
 import { AiModuleS } from "./AI/AiModule";
 import { AiObject } from "./AI/AiObject";
+import { Notice } from "./CommonUI/notice/Notice";
 import { Camp, GameGlobals, GamingState, PlayerGameState } from "./Globals";
 import { CameraModifid, ModifiedCameraSystem, } from './Modified027Editor/ModifiedCamera';
 import { PlayerManagerExtesion, } from './Modified027Editor/ModifiedPlayer';
 import { GameModuleC } from "./Module/GameModule/GameModuleC";
 import { GameModuleS } from "./Module/GameModule/GameModuleS";
+import { PlayerModuleC } from "./Module/PlayerModule/PlayerModuleC";
 import { ColdWeaponModuleC } from "./Module/Weapon/ColdWeapon/ColdWeaponModuleC";
 import { HotWeaponModuleC } from "./Module/Weapon/HotWeapon/HotWeaponModuleC";
 import { GameConfig } from "./Tables/GameConfig";
 import { IRoleElement } from "./Tables/Role";
 import { ISoundElement } from "./Tables/Sound";
+import ExecutorManager from "./WaitingQueue";
 
 export enum SoundType {
     /**BGM */
@@ -21,6 +24,33 @@ export enum SoundType {
 }
 
 export class Tools {
+    public static placeOrder(commodityId: string, buySuccessCallback: () => void): void {
+        ExecutorManager.instance.pushAsyncExecutor(async () => {
+            if (mw.SystemUtil.isPIE) {
+                if (buySuccessCallback) buySuccessCallback();
+                Notice.showDownNotice(`打赏成功`);
+                switch (commodityId) {
+                    case `60TZ7pfYgyY0008AW`:
+                        ModuleService.getModule(PlayerModuleC).addLv(100);
+                        break;
+                    case `5W1VBSJPpj20008AV`:
+                        ModuleService.getModule(PlayerModuleC).addLv(10);
+                        break;
+                    default:
+                        break;
+                }
+            } else {
+                mw.PurchaseService.placeOrder(commodityId, 1, (status, msg) => {
+                    mw.PurchaseService.getArkBalance();//刷新代币数量
+                    if (status != 200) return;
+                    if (buySuccessCallback) buySuccessCallback();
+                    Notice.showDownNotice(`打赏成功`);
+                });
+                await TimeUtil.delaySecond(3);
+            }
+        });
+    }
+
     public static async getCustomdata(key: string): Promise<any> {
         return (await DataStorage.asyncGetData(key)).data;
     }
