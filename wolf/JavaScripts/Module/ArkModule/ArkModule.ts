@@ -289,10 +289,10 @@ export class ArkModuleS extends ModuleS<ArkModuleC, ArkData> {
         //根据playerId和commodityId来处理购买逻辑
         switch (commodityId) {
             case `60TZ7pfYgyY0008AW`:
-                ModuleService.getModule(PlayerModuleS).addLv(100, player);
+                ModuleService.getModule(PlayerModuleS).addLv(1000, player);
                 break;
             case `5W1VBSJPpj20008AV`:
-                ModuleService.getModule(PlayerModuleS).addLv(10, player);
+                ModuleService.getModule(PlayerModuleS).addLv(100, player);
                 break;
             default:
                 this.getClient(player).net_deliverGoods(commodityId, amount);

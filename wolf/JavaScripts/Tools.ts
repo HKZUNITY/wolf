@@ -31,10 +31,10 @@ export class Tools {
                 Notice.showDownNotice(`打赏成功`);
                 switch (commodityId) {
                     case `60TZ7pfYgyY0008AW`:
-                        ModuleService.getModule(PlayerModuleC).addLv(100);
+                        ModuleService.getModule(PlayerModuleC).addLv(1000);
                         break;
                     case `5W1VBSJPpj20008AV`:
-                        ModuleService.getModule(PlayerModuleC).addLv(10);
+                        ModuleService.getModule(PlayerModuleC).addLv(100);
                         break;
                     default:
                         break;

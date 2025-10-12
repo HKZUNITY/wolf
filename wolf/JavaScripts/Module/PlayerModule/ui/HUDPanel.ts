@@ -120,7 +120,7 @@ export default class HUDPanel extends HUDPanel_Generate {
 				});
 			},
 				`打赏作者，增加等级`,
-				`打赏作者\n看广告等级+1\n1000派对币等级+100`,
+				`打赏作者\n看广告等级+1\n1000派对币等级+1000`,
 				`1000派对币`,
 				`看广告`,
 				`100派对币`);
