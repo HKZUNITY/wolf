@@ -29,6 +29,7 @@ export default class MapChoosePanel extends MapChoosePanel_Generate {
 		this.canUpdate = false;
 		this.layer = UILayerTop;
 		this.initGroup();
+		this.visible = false;
 	}
 
 	showFinal(index: number) {
