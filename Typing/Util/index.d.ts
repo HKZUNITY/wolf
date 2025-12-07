@@ -228,6 +228,133 @@ declare namespace mw {
 }
 
 declare namespace mw {
+    /**
+     * @author si.wu
+     * @description 文件工具
+     * @groups 工具
+     * @networkStatus usage:双端
+     */
+    class FileUtil {
+        /**
+         * @author si.wu
+         * @description 文件是否存在
+         * @groups 文件
+         * @effect 调用端生效
+         * @param filePath usage:文件路径 range:符合正则表达式 ^[a-zA-Z0-9\-\_]+(\/[a-zA-Z0-9\-\_]*)*(\.\[a-zA-Z0-9]+)?$ 的字符串
+         * @return boolean 文件是否存在
+         */
+        static fileExists(filePath: string): boolean;
+        /**
+         * @author si.wu
+         * @description 读取文件内容 string
+         * @groups 文件
+         * @effect 调用端生效
+         * @param filePath usage:文件路径 range:符合正则表达式 ^[a-zA-Z0-9\-\_]+(\/[a-zA-Z0-9\-\_]*)*(\.\[a-zA-Z0-9]+)?$ 的字符串
+         * @return string 文件内容
+         */
+        static readFileToString(filePath: string): string | undefined;
+        /**
+         * @author si.wu
+         * @description 写入文件内容 string
+         * @groups 文件
+         * @effect 调用端生效
+         * @param filePath usage:文件路径 range:符合正则表达式 ^[a-zA-Z0-9\-\_]+(\/[a-zA-Z0-9\-\_]*)*(\.\[a-zA-Z0-9]+)?$ 的字符串
+         * @param content usage:文件内容 range:任意字符串
+         * @return boolean 写入结果
+         */
+        static writeStringToFile(filePath: string, content: string): boolean;
+        /**
+         * @author si.wu
+         * @description 添加文件内容 string
+         * @groups 文件
+         * @effect 调用端生效
+         * @param filePath usage:文件路径 range:符合正则表达式 ^[a-zA-Z0-9\-\_]+(\/[a-zA-Z0-9\-\_]*)*(\.\[a-zA-Z0-9]+)?$ 的字符串
+         * @param content usage:文件内容 range:任意字符串
+         * @return boolean 添加结果
+         */
+        static appendStringToFile(filePath: string, content: string): boolean;
+        /**
+         * @author si.wu
+         * @description 读取文件内容
+         * @groups 文件
+         * @effect 调用端生效
+         * @param filePath usage:文件路径 range:符合正则表达式 ^[a-zA-Z0-9\-\_]+(\/[a-zA-Z0-9\-\_]*)*(\.\[a-zA-Z0-9]+)?$ 的字符串
+         * @return ArrayBuffer 文件内容
+         */
+        static readFile(filePath: string): ArrayBuffer;
+        /**
+         * @author si.wu
+         * @description 写入文件内容
+         * @groups 文件
+         * @effect 调用端生效
+         * @param filePath usage:文件路径 range:符合正则表达式 ^[a-zA-Z0-9\-\_]+(\/[a-zA-Z0-9\-\_]*)*(\.\[a-zA-Z0-9]+)?$ 的字符串
+         * @param buffer usage:文件内容 range:任意 ArrayBuffer 数据
+         * @return boolean 写入结果
+         */
+        static writeFile(filePath: string, buffer: ArrayBuffer): boolean;
+        /**
+         * @author si.wu
+         * @description 添加文件内容
+         * @groups 文件
+         * @effect 调用端生效
+         * @param filePath usage:文件路径 range:符合正则表达式 ^[a-zA-Z0-9\-\_]+(\/[a-zA-Z0-9\-\_]*)*(\.\[a-zA-Z0-9]+)?$ 的字符串
+         * @param buffer usage:文件内容 range:任意 ArrayBuffer 数据
+         * @return boolean 添加结果
+         */
+        static appendFile(filePath: string, buffer: ArrayBuffer): boolean;
+        /**
+         * @author si.wu
+         * @description 删除文件
+         * @groups 文件
+         * @effect 调用端生效
+         * @param filePath usage:文件路径 range:符合正则表达式 ^[a-zA-Z0-9\-\_]+(\/[a-zA-Z0-9\-\_]*)*(\.\[a-zA-Z0-9]+)?$ 的字符串
+         * @return boolean 删除结果
+         */
+        static deleteFile(filePath: string): boolean;
+        /**
+         * @author yunhao.liao
+         * @description 选择文件
+         * @groups 文件
+         * @effect 调用端生效
+         * @return string 文件路径
+         */
+        static selectFile(): Promise<string>;
+        /**
+         * @author yunhao.liao
+         * @description 上传皮套
+         * @groups 文件
+         * @effect 调用端生效
+         * @param fbxPath usage:文件路径 range:有效的 FBX 文件路径字符串
+         * @param thumbnailImagePath usage:缩略图路径 range:有效的图片文件路径字符串
+         * @param sex usage:性别 range:布尔值，true 表示男性，false 表示女性
+         * @returns Promise<{result: mw.UploadLeatherSkeletalMeshResult, assetId: string}> 返回上传结果和资产ID
+         */
+        static uploadLeather(fbxPath: string, thumbnailImagePath: string, sex: boolean): Promise<{
+            result: number;
+            assetId: string;
+        }>;
+        /**
+         * @author yunhao.liao
+         * @description 复制文件到上传目录
+         * @groups 文件
+         * @effect 调用端生效
+         * @param sourcePath usage:源文件路径 range:有效的文件路径字符串
+         * @param fileExtension usage:文件扩展名 range:包含点号的扩展名字符串，例如 ".png"
+         * @param bOverwrite usage:是否覆盖 range:布尔值，true 表示覆盖同名文件，false 表示不覆盖
+         * @return string 文件路径
+         */
+        static copyFileToUploadDir(sourcePath: string, fileExtension: string, bOverwrite: boolean): string;
+        /**
+         * @author yunhao.liao
+         * @description 检查文件是否有效
+         * @groups 文件
+         * @effect 调用端生效
+         * @param filePath usage:文件路径 range:有效的文件路径字符串
+         * @param fileExtension usage:文件扩展名 range:包含点号的扩展名字符串，例如 ".png"
+         * @return boolean 是否有效
+         */
+        static checkLocalFileValid(filePath: string, fileExtension: string): boolean;
+    }
 }
 
 declare namespace mw {
@@ -3034,6 +3161,7 @@ declare namespace mw {
          * @param distance usage:检测距离 default:100000  range: 不做限制，type: 浮点数
          * @param multiTrace usage:是否获取多个GameObject default:false
          * @param onRay usage:是否开启射线显示效果 default:false
+         * @param ueChannels usage:指定检测的UE碰撞通道 default:[] type:整数数组
          * @returns 点击位置的物体
          * @example
          * 使用示例:创建一个名为ScreenExample的脚本，放置在对象栏中，打开脚本，将原本内容修改为如下内容，保存并运行游戏，获取触摸位置所对应的世界Object
@@ -3058,7 +3186,7 @@ declare namespace mw {
          * }
          * ```
          */
-        static getGameObjectByScreenPosition(sceneX: number, sceneY: number, distance?: number, multiTrace?: boolean, onRay?: boolean): Array<mw.HitResult>;
+        static getGameObjectByScreenPosition(sceneX: number, sceneY: number, distance?: number, multiTrace?: boolean, onRay?: boolean, ueChannels?: Array<number>): Array<mw.HitResult>;
         /**
          * @author baoqiang.han
          * @description 获取相机中心点所瞄准的世界位置
@@ -3930,6 +4058,60 @@ declare namespace mw {
         static onEnterFrame: mw.Action1<number>;
         /**
          * @author xiangkun.sun
+         * @description 预帧刷新事件(参数deltaTime)，在 preTick 时机执行
+         * @precautions 每次preTick自动执行所绑定的方法
+         * @example
+         * 使用示例:创建一个名为TimeExample的脚本，放置在对象栏中，打开脚本，将原本内容修改为如下内容，保存并运行游戏，会每帧在 preTick 时输出dt
+         * ```
+         * @Component
+         * export default class TimeExample extends Script {
+         *
+         *     protected onStart(): void {
+         *         this.test();
+         *     }
+         *
+         *     private async test(): Promise<void> {
+         *         if (!SystemUtil.isClient()) return;
+         *         TimeUtil.onPreEnterFrame.add(this.onPreEnterFrame, this);
+         *     }
+         *
+         *     private onPreEnterFrame(dt: number): void {
+         *         console.log("pre dt", dt);
+         *     }
+         *
+         * }
+         * ```
+         */
+        static onPreEnterFrame: mw.Action1<number>;
+        /**
+         * @author xiangkun.sun
+         * @description 后帧刷新事件(参数deltaTime)，在 postTick 时机执行
+         * @precautions 每次postTick自动执行所绑定的方法
+         * @example
+         * 使用示例:创建一个名为TimeExample的脚本，放置在对象栏中，打开脚本，将原本内容修改为如下内容，保存并运行游戏，会每帧在 postTick 时输出dt
+         * ```
+         * @Component
+         * export default class TimeExample extends Script {
+         *
+         *     protected onStart(): void {
+         *         this.test();
+         *     }
+         *
+         *     private async test(): Promise<void> {
+         *         if (!SystemUtil.isClient()) return;
+         *         TimeUtil.onPostEnterFrame.add(this.onPostEnterFrame, this);
+         *     }
+         *
+         *     private onPostEnterFrame(dt: number): void {
+         *         console.log("post dt", dt);
+         *     }
+         *
+         * }
+         * ```
+         */
+        static onPostEnterFrame: mw.Action1<number>;
+        /**
+         * @author xiangkun.sun
          * @description 是否输出每帧的执行时间
          */
         static traceFrameTime: boolean;
@@ -4789,5 +4971,27 @@ declare namespace mw {
          * ```
          */
         static get screenSize(): mw.Vector2;
+        /**
+         * @author ruichen.wang
+         * @description 截屏，只渲染指定actor
+         * @description 此方法仅在客户端调用生效。
+         * @groups 玩法
+         * @effect 只在客户端调用生效
+         * @param Width usage:width分辨率 range:不做限制 type: 整型
+         * @param Height usage:height分辨率 range:不做限制 type: 整型
+         * @param callback usage:回调
+         * @param fileName usage:512*512的透明png缩略图文件名 range:不做限制
+         * @param go usage:要渲染的对象的根节点
+         * @example
+         * 使用示例:调用方法
+         * ```
+         * mw.WindowUtil.screenShotWithMask(512, 512, (path) => {
+                    this.closeUI();
+                    this.openData.photoPath = path;
+                    this.openData.onfinish?.();
+                }, "PrefabCover", this.openData.prefabEntity.gameObject)
+         * ```
+         */
+        static screenShotWithMask(Width: number, Height: number, callback: (dataString: string) => void, fileName: string, go: mw.GameObject): void;
     }
 }

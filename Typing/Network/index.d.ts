@@ -186,4 +186,23 @@ declare namespace mw {
      * ```
      */
     function generalHttpRequest(response: HttpResponse, requestUrl: HttpRequestURL, param: string, jsonContent: any, requestType: HttpRequestType): boolean;
+    /**
+     * @author ruichen.wang
+     * @groups 玩法
+     * @description 通用 Http 请求，带自定义请求头
+     * @effect 调用端生效
+     * @param response usage:OnHttpResponse
+     * @param requestUrl usage:EHttpRequestURL
+     * @param param usage:string  range: 不做限制
+     * @param jsonContent usage:any
+     * @param headerContent usage:any 请求头
+     * @param requestType usage:0是Get 1是Post
+     * @returns bool
+     * @example
+     * 使用示例:发送Http请求
+     * ```
+     * generalHttpRequest(Response,Url,Param,JsonContent)
+     * ```
+     */
+    function generalHttpRequestWithHeader(response: HttpResponse, requestUrl: HttpRequestURL, param: string, jsonContent: any, headerContent: any, requestType: HttpRequestType): boolean;
 }
