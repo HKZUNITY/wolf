@@ -121,7 +121,48 @@ declare namespace mw {
         /** Pandora */
         Pandora = 10,
         /** Translation */
-        Translation = 11
+        Translation = 11,
+        /** Translation */
+        PlayerGateway = 12,
+        /** WebHub */
+        Web_Hub = 13
+    }
+    /**
+     * @author yingjie.zhong
+     * @description 不开放给用户,仅UGC内部使用的的URL枚举，需要与C++层的枚举对应
+     * @groups 玩法
+     */
+    enum HttpRequestURLExtension {
+        /** Release */
+        Release = 0,
+        /** Match */
+        Match = 1,
+        /** StringGuidMatch */
+        StringGuidMatch = 2,
+        /** ResourceAuditToB */
+        ResourceAuditToB = 3,
+        /** ResourceAuditToC */
+        ResourceAuditToC = 4,
+        /** ResourceManually */
+        ResourceManually = 5,
+        /** AthenaLogin */
+        AthenaLogin = 6,
+        /** PandoraPush */
+        PandoraPush = 7,
+        /** PandoraABTest */
+        PandoraABTest = 8,
+        /** Unify */
+        Unify = 9,
+        /** CdnUri */
+        CdnUri = 10,
+        /** Sequence */
+        Sequence = 11,
+        /** UnifyKV */
+        UnifyKV = 12,
+        /** PandoraCrashUpload */
+        PandoraCrashUpload = 13,
+        /** CharEditorSetProduct */
+        CharEditorSetProduct = 14
     }
     /**
      * @author junwen.hua
@@ -186,4 +227,23 @@ declare namespace mw {
      * ```
      */
     function generalHttpRequest(response: HttpResponse, requestUrl: HttpRequestURL, param: string, jsonContent: any, requestType: HttpRequestType): boolean;
+    /**
+     * @author ruichen.wang
+     * @groups 玩法
+     * @description 通用 Http 请求，带自定义请求头
+     * @effect 调用端生效
+     * @param response usage:OnHttpResponse
+     * @param requestUrl usage:EHttpRequestURL
+     * @param param usage:string  range: 不做限制
+     * @param jsonContent usage:any
+     * @param headerContent usage:any 请求头
+     * @param requestType usage:0是Get 1是Post
+     * @returns bool
+     * @example
+     * 使用示例:发送Http请求
+     * ```
+     * generalHttpRequest(Response,Url,Param,JsonContent)
+     * ```
+     */
+    function generalHttpRequestWithHeader(response: HttpResponse, requestUrl: HttpRequestURL, param: string, jsonContent: any, headerContent: any, requestType: HttpRequestType): boolean;
 }

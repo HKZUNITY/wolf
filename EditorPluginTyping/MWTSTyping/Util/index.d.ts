@@ -167,6 +167,57 @@ declare namespace mw {
          * @returns 转为本地资源后的资源ID
          * */
         static localizeOnlinePrefab(InAssetId: string, InPath: string): Promise<string>;
+        /**
+         * @groups 工具
+         * @author yongfei.zheng
+         * @groups 基础类型
+         * @description 将线上prefab资源解压到本地
+         * @effect 调用端生效
+         * @param InAssetId usage:资源 ID  range: 依据资源 ID 而定
+         * @param InPath usage:本地化路径  range: 依据路径 而定
+         * @returns 解压后路径
+         * */
+        static localizeOnlinePrefabUnpack(InAssetId: string, InPath: string): Promise<string>;
+        /**
+         * @groups 工具
+         * @author yongfei.zheng
+         * @groups 基础类型
+         * @description 加载本地资源
+         * @effect 调用端生效
+         * @param MetaPath usage:资源meta路径 range: 依据路径 而定
+         * @returns 资源ID
+         * */
+        static UGCReadLocalAssetMeta(MetaPath: string): string;
+        /**
+         * @groups 工具
+         * @author yongfei.zheng
+         * @groups 基础类型
+         * @description UGC导入预设后更新本地资源列表
+         * @effect 调用端生效
+         * */
+        static UGCUpdateLocalAssetList(): void;
+        /**
+         * @groups 工具
+         * @author yongfei.zheng
+         * @groups 基础类型
+         * @description 获取资源文件路径
+         * @effect 调用端生效
+         * @param InAssetId usage:资源 ID  range: 依据资源 ID 而定
+         * @returns 资源文件路径
+         * */
+        static GetAssetFilePath(InAssetId: string): string;
+        /**
+         * @groups 工具
+         * @author jinxin.yang
+         * @description 资源以更新方式批量下载并加载
+         * @description 此方式在加载未加载的资源时，会重新请求资源，如有更新会重新下载。
+         * @groups 基础类型
+         * @effect 调用端生效
+         * @param InAssetIds usage:资源 ID 列表
+         * @param InToServer usage:是否通知服务器也更新加载 default: 不向服务器通知 range: true/false
+         * @returns 下载失败将返回false
+        **/
+        static asyncDownloadAssetsUpdate(InAssetIds: string[], InToServer?: boolean): Promise<boolean>;
     }
 }
 
@@ -228,6 +279,193 @@ declare namespace mw {
 }
 
 declare namespace mw {
+    /**
+     * @author si.wu
+     * @description 文件工具
+     * @groups 工具
+     * @networkStatus usage:双端
+     */
+    class FileUtil {
+        /**
+         * @author si.wu
+         * @description 文件是否存在
+         * @groups 文件
+         * @effect 调用端生效
+         * @param filePath usage:文件路径 range:符合正则表达式 ^[a-zA-Z0-9\-\_]+(\/[a-zA-Z0-9\-\_]*)*(\.\[a-zA-Z0-9]+)?$ 的字符串
+         * @return boolean 文件是否存在
+         */
+        static fileExists(filePath: string): boolean;
+        /**
+         * @author si.wu
+         * @description 读取文件内容 string
+         * @groups 文件
+         * @effect 调用端生效
+         * @param filePath usage:文件路径 range:符合正则表达式 ^[a-zA-Z0-9\-\_]+(\/[a-zA-Z0-9\-\_]*)*(\.\[a-zA-Z0-9]+)?$ 的字符串
+         * @return string 文件内容
+         */
+        static readFileToString(filePath: string): string | undefined;
+        /**
+         * @author si.wu
+         * @description 写入文件内容 string
+         * @groups 文件
+         * @effect 调用端生效
+         * @param filePath usage:文件路径 range:符合正则表达式 ^[a-zA-Z0-9\-\_]+(\/[a-zA-Z0-9\-\_]*)*(\.\[a-zA-Z0-9]+)?$ 的字符串
+         * @param content usage:文件内容 range:任意字符串
+         * @return boolean 写入结果
+         */
+        static writeStringToFile(filePath: string, content: string): boolean;
+        /**
+         * @author si.wu
+         * @description 添加文件内容 string
+         * @groups 文件
+         * @effect 调用端生效
+         * @param filePath usage:文件路径 range:符合正则表达式 ^[a-zA-Z0-9\-\_]+(\/[a-zA-Z0-9\-\_]*)*(\.\[a-zA-Z0-9]+)?$ 的字符串
+         * @param content usage:文件内容 range:任意字符串
+         * @return boolean 添加结果
+         */
+        static appendStringToFile(filePath: string, content: string): boolean;
+        /**
+         * @author si.wu
+         * @description 读取文件内容
+         * @groups 文件
+         * @effect 调用端生效
+         * @param filePath usage:文件路径 range:符合正则表达式 ^[a-zA-Z0-9\-\_]+(\/[a-zA-Z0-9\-\_]*)*(\.\[a-zA-Z0-9]+)?$ 的字符串
+         * @return ArrayBuffer 文件内容
+         */
+        static readFile(filePath: string): ArrayBuffer;
+        /**
+         * @author si.wu
+         * @description 写入文件内容
+         * @groups 文件
+         * @effect 调用端生效
+         * @param filePath usage:文件路径 range:符合正则表达式 ^[a-zA-Z0-9\-\_]+(\/[a-zA-Z0-9\-\_]*)*(\.\[a-zA-Z0-9]+)?$ 的字符串
+         * @param buffer usage:文件内容 range:任意 ArrayBuffer 数据
+         * @return boolean 写入结果
+         */
+        static writeFile(filePath: string, buffer: ArrayBuffer): boolean;
+        /**
+         * @author si.wu
+         * @description 添加文件内容
+         * @groups 文件
+         * @effect 调用端生效
+         * @param filePath usage:文件路径 range:符合正则表达式 ^[a-zA-Z0-9\-\_]+(\/[a-zA-Z0-9\-\_]*)*(\.\[a-zA-Z0-9]+)?$ 的字符串
+         * @param buffer usage:文件内容 range:任意 ArrayBuffer 数据
+         * @return boolean 添加结果
+         */
+        static appendFile(filePath: string, buffer: ArrayBuffer): boolean;
+        /**
+         * @author si.wu
+         * @description 删除文件
+         * @groups 文件
+         * @effect 调用端生效
+         * @param filePath usage:文件路径 range:符合正则表达式 ^[a-zA-Z0-9\-\_]+(\/[a-zA-Z0-9\-\_]*)*(\.\[a-zA-Z0-9]+)?$ 的字符串
+         * @return boolean 删除结果
+         */
+        static deleteFile(filePath: string): boolean;
+        /**
+         * @author yunhao.liao
+         * @description 选择文件
+         * @groups 文件
+         * @effect 调用端生效
+         * @return string 文件路径
+         */
+        static selectFile(): Promise<string>;
+        /**
+         * @author fuqiang.yang
+         * @description 选择图片文件
+         * @param extra usage:辅助参数，暂用于文件类型过滤 range:IOS下需要传入PhotoLibrary或OnMyPhoneDocuments,其他平台下暂时可以忽略
+         * @groups 文件
+         * @effect 调用端生效
+         * @return string 文件路径
+         */
+        static selectPictureFile(extra: string): Promise<string>;
+        /**
+         * @author yunhao.liao
+         * @description 上传皮套
+         * @groups 文件
+         * @effect 调用端生效
+         * @param fbxPath usage:文件路径 range:有效的 FBX 文件路径字符串
+         * @param InUploadParams usage:上传参数 range:符合格式的 JSON 字符串
+         * @returns Promise<{result: mw.UploadLeatherSkeletalMeshResult, assetId: string}> 返回上传结果和资产ID
+         */
+        static uploadLeather(fbxPath: string, InUploadParams: string): Promise<{
+            result: number;
+            assetId: string;
+        }>;
+        /**
+         * @author fuqiang.yang
+         * @description 上传皮套人AI版，需要先下单才能使用该AI服务
+         * @groups 文件
+         * @effect 调用端生效
+         * @param promptPicFilePath usage:文件路径 range:有效的 FBX 文件路径字符串
+         * @param InUploadParams usage:上传参数 range:符合格式的 JSON 字符串
+         * @returns Promise<{result: mw.UploadLeatherSkeletalMeshResult, assetId: string}> 返回上传结果和资产ID
+         */
+        static uploadLeather_AI(promptPicFilePath: string, InUploadParams: string): Promise<{
+            result: number;
+            assetId: string;
+        }>;
+        /**
+         * @author fuqiang.yang
+         * @description 上传静态模型
+         * @groups 文件
+         * @effect 调用端生效
+         * @param fbxPath usage:文件路径 range:有效的 FBX 文件路径字符串
+         * @param InUploadParams usage:上传参数 range:符合格式的 JSON 字符串
+         * @returns Promise<{result: mw.UploadUgcStaticMeshResultType, assetId: string}> 返回上传结果和资产ID
+         */
+        static uploadStaticMesh(fbxPath: string, InUploadParams: string): Promise<{
+            result: number;
+            assetId: string;
+        }>;
+        /**
+         * @author fuqiang.yang
+         * @description 上传静态模型AI版，需要先下单才能使用该AI服务
+         * @groups 文件
+         * @effect 调用端生效
+         * @param promptPicFilePath usage:文件路径 range:有效的 FBX 文件路径字符串
+         * @param InUploadParams usage:上传参数 range:符合格式的 JSON 字符串
+         * @returns Promise<{result: mw.UploadUgcStaticMeshResultType, assetId: string}> 返回上传结果和资产ID
+         */
+        static uploadStaticMesh_AI(promptPicFilePath: string, InUploadParams: string): Promise<{
+            result: number;
+            assetId: string;
+        }>;
+        /**
+         * @author yunhao.liao
+         * @description 复制文件到上传目录
+         * @groups 文件
+         * @effect 调用端生效
+         * @param sourcePath usage:源文件路径 range:有效的文件路径字符串
+         * @param fileExtension usage:文件扩展名 range:包含点号的扩展名字符串，例如 ".png"
+         * @param bOverwrite usage:是否覆盖 range:布尔值，true 表示覆盖同名文件，false 表示不覆盖
+         * @return string 文件路径
+         */
+        static copyFileToUploadDir(sourcePath: string, fileExtension: string, bOverwrite: boolean): string;
+        /**
+         * @author yunhao.liao
+         * @description 检查文件是否有效
+         * @groups 文件
+         * @effect 调用端生效
+         * @param filePath usage:文件路径 range:有效的文件路径字符串
+         * @param fileExtension usage:文件扩展名 range:包含点号的扩展名字符串，例如 ".png"
+         * @return boolean 是否有效
+         */
+        static checkLocalFileValid(filePath: string, fileExtension: string): boolean;
+        /**
+         * @groups 工具
+         * @description 上传 Json 资源（快速上传），调用 mw.FastUploadJsonAsset
+         * @effect 调用端生效；异步请求
+         * @param InJsonString usage: 要上传的 Json 字符串 range:Json字符串
+         * @param InJsonAssetType usage: Json 资源类型 range:0=BonesEditData type: 枚举
+         * @param InUploadParams usage: 上传参数 range:Json字符串
+         * @returns {Promise<{result: number, assetId: string}>} 上传结果与资源ID
+         */
+        static fastUploadJsonAsset(InJsonString: string, InJsonAssetType: number, InUploadParams: string): Promise<{
+            result: number;
+            assetId: string;
+        }>;
+    }
 }
 
 declare namespace mw {
@@ -3931,6 +4169,60 @@ declare namespace mw {
         static onEnterFrame: mw.Action1<number>;
         /**
          * @author xiangkun.sun
+         * @description 预帧刷新事件(参数deltaTime)，在 preTick 时机执行
+         * @precautions 每次preTick自动执行所绑定的方法
+         * @example
+         * 使用示例:创建一个名为TimeExample的脚本，放置在对象栏中，打开脚本，将原本内容修改为如下内容，保存并运行游戏，会每帧在 preTick 时输出dt
+         * ```
+         * @Component
+         * export default class TimeExample extends Script {
+         *
+         *     protected onStart(): void {
+         *         this.test();
+         *     }
+         *
+         *     private async test(): Promise<void> {
+         *         if (!SystemUtil.isClient()) return;
+         *         TimeUtil.onPreEnterFrame.add(this.onPreEnterFrame, this);
+         *     }
+         *
+         *     private onPreEnterFrame(dt: number): void {
+         *         console.log("pre dt", dt);
+         *     }
+         *
+         * }
+         * ```
+         */
+        static onPreEnterFrame: mw.Action1<number>;
+        /**
+         * @author xiangkun.sun
+         * @description 后帧刷新事件(参数deltaTime)，在 postTick 时机执行
+         * @precautions 每次postTick自动执行所绑定的方法
+         * @example
+         * 使用示例:创建一个名为TimeExample的脚本，放置在对象栏中，打开脚本，将原本内容修改为如下内容，保存并运行游戏，会每帧在 postTick 时输出dt
+         * ```
+         * @Component
+         * export default class TimeExample extends Script {
+         *
+         *     protected onStart(): void {
+         *         this.test();
+         *     }
+         *
+         *     private async test(): Promise<void> {
+         *         if (!SystemUtil.isClient()) return;
+         *         TimeUtil.onPostEnterFrame.add(this.onPostEnterFrame, this);
+         *     }
+         *
+         *     private onPostEnterFrame(dt: number): void {
+         *         console.log("post dt", dt);
+         *     }
+         *
+         * }
+         * ```
+         */
+        static onPostEnterFrame: mw.Action1<number>;
+        /**
+         * @author xiangkun.sun
          * @description 是否输出每帧的执行时间
          */
         static traceFrameTime: boolean;
@@ -4140,6 +4432,46 @@ declare namespace mw {
         static getRealTimeContext(): {
             dt: number;
         };
+    }
+}
+
+declare namespace mw {
+    /**
+     * @author yingjie.zhong
+     * @description 拍照工具类。
+     * @description 提供高质量的截图功能，支持MSAA抗锯齿等高级特性。
+     * @groups 工具
+     * @networkStatus usage:客户端
+     * @example
+     * 使用示例:创建一个名为CaptureExample的脚本，放置在对象栏中，打开脚本，将原本内容修改为如下内容，保存并运行游戏，对当前角色进行截图。
+     * ```
+     * @Component
+     * export default class CaptureExample extends Script {
+     *
+     *     protected async onStart(): Promise<void> {
+     *         if (!SystemUtil.isClient()) return;
+     *
+     *         const character = await Player.asyncGetLocalPlayer().character;
+     *         const relativeLocation = new Vector(35, 0, 50);
+     *         const relativeRotation = new Rotation(0, 180, 0);
+     *         const resolution = new Vector2(512, 512);
+     *
+     *         const path = await CaptureUtil.asyncCaptureAvatarMSAA(
+     *             character,
+     *             relativeLocation,
+     *             relativeRotation,
+     *             resolution,
+     *             4,
+     *             true,
+     *             90,
+     *             "MyAvatar"
+     *         );
+     *         console.log(`截图保存路径: ${path}`);
+     *     }
+     * }
+     * ```
+     */
+    class CaptureUtil {
     }
 }
 
@@ -4790,5 +5122,28 @@ declare namespace mw {
          * ```
          */
         static get screenSize(): mw.Vector2;
+        /**
+         * @author ruichen.wang
+         * @description 截屏，只渲染指定actor
+         * @description 此方法仅在客户端调用生效。
+         * @groups 玩法
+         * @effect 只在客户端调用生效
+         * @param width usage:width分辨率 range:不做限制 type: 整型
+         * @param height usage:height分辨率 range:不做限制 type: 整型
+         * @param callback usage:回调
+         * @param fileName usage:512*512的透明png缩略图文件名 range:不做限制
+         * @param go usage:要渲染的对象的根节点
+         * @param fov usage:拍照相机的fov range:不做限制 default:45 type:
+         * @example
+         * 使用示例:调用方法
+         * ```
+         * mw.WindowUtil.screenShotWithMask(512, 512, (path) => {
+                    this.closeUI();
+                    this.openData.photoPath = path;
+                    this.openData.onfinish?.();
+                }, "PrefabCover", this.openData.prefabEntity.gameObject)
+         * ```
+         */
+        static screenShotWithMask(width: number, height: number, callback: (dataString: string) => void, fileName: string, go: mw.GameObject, fov?: number): void;
     }
 }

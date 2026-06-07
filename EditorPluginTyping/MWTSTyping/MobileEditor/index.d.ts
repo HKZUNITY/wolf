@@ -1,4 +1,18 @@
 ﻿declare namespace mw {
+    /**
+     * @description WebSocket服务端
+     */
+    class AsyncTaskMgr {
+        /**
+         * @description 添加异步任务
+         * @param task 任务函数
+         * @returns promise 对象
+         */
+        static addAsyncTask(task: () => void): Promise<void>;
+    }
+}
+
+declare namespace mw {
 }
 
 declare namespace mw {
@@ -281,7 +295,11 @@ declare namespace mw {
         /**
          * Server端不支持该功能
          */
-        UnsupportedOnServer = 7
+        UnsupportedOnServer = 7,
+        /**
+         * 音频文件超过限制大小
+         */
+        Overweight = 8
     }
 }
 
@@ -464,6 +482,98 @@ declare namespace mw {
 
 declare namespace mw {
     /**
+     * @author tangbin.zhang
+     * @groups 玩法/其他
+     * @description LineBatch 线条批处理类，用于在场景中绘制调试线条、点、曲线等
+     * @networkStatus usage:客户端
+     */
+    class LineBatch {
+        /**
+         * @description LineBatch Actor实例
+         */
+        private _lineBatchActor;
+        /**
+         * @description 构造函数
+         * @effect 只在客户端调用生效
+         */
+        constructor();
+        /**
+         * @description 绘制直线
+         * @effect 只在客户端调用生效
+         * @param uuid usage:线条唯一标识 range: 无
+         * @param start usage:起点坐标 range: 无
+         * @param end usage:终点坐标 range: 无
+         * @param color usage:线条颜色 range: 默认红色
+         * @param thickness usage:线条粗细 range: 默认1
+         * @param depth usage:深度优先级 range: 默认0
+         */
+        drawLine(uuid: string, start: mw.Vector, end: mw.Vector, color?: mw.LinearColor, thickness?: number, depth?: number): void;
+        /**
+         * @description 绘制点
+         * @effect 只在客户端调用生效
+         * @param uuid usage:点唯一标识 range: 无
+         * @param point usage:点坐标 range: 无
+         * @param color usage:点颜色 range: 默认红色
+         * @param size usage:点大小 range: 默认1
+         * @param depth usage:深度优先级 range: 默认0
+         */
+        drawPoint(uuid: string, point: mw.Vector, color?: mw.LinearColor, size?: number, depth?: number): void;
+        /**
+         * @description 绘制曲线
+         * @effect 只在客户端调用生效
+         * @param uuid usage:曲线唯一标识 range: 无
+         * @param points usage:曲线点数组 range: 无
+         * @param color usage:曲线颜色 range: 默认红色
+         * @param thickness usage:曲线粗细 range: 默认1
+         * @param depth usage:深度优先级 range: 默认0
+         * @param closed usage:是否闭合 range: 默认false
+         */
+        drawCurve(uuid: string, points: Array<mw.Vector>, color?: mw.LinearColor, thickness?: number, depth?: number, closed?: boolean): void;
+        /**
+         * @description 绘制样条曲线
+         * @effect 只在客户端调用生效
+         * @param uuid usage:样条曲线唯一标识 range: 无
+         * @param points usage:样条曲线点数组 range: 无
+         * @param color usage:样条曲线颜色 range: 默认红色
+         * @param segments usage:分段数 range: 默认16
+         * @param thickness usage:样条曲线粗细 range: 默认1
+         * @param depth usage:深度优先级 range: 默认0
+         * @param closed usage:是否闭合 range: 默认false
+         */
+        drawSpline(uuid: string, points: Array<mw.Vector>, color?: mw.LinearColor, segments?: number, thickness?: number, depth?: number, closed?: boolean): void;
+        /**
+         * @description 移除直线
+         * @effect 只在客户端调用生效
+         * @param uuid usage:线条唯一标识 range: 无
+         */
+        removeLine(uuid: string): void;
+        /**
+         * @description 移除点
+         * @effect 只在客户端调用生效
+         * @param uuid usage:点唯一标识 range: 无
+         */
+        removePoint(uuid: string): void;
+        /**
+         * @description 移除曲线、样条曲线
+         * @effect 只在客户端调用生效
+         * @param uuid usage:曲线唯一标识 range: 无
+         */
+        removeCurve(uuid: string): void;
+        /**
+         * @description 清除所有绘制内容
+         * @effect 只在客户端调用生效
+         */
+        clear(): void;
+        /**
+         * @description 销毁LineBatch实例
+         * @effect 只在客户端调用生效
+         */
+        destroy(): void;
+    }
+}
+
+declare namespace mw {
+    /**
     * @author tangbin.zhang
     * @description 上传GIF返回结果
     * @groups 数据处理
@@ -523,6 +633,13 @@ declare namespace mw {
      * @param name usage:名字
      * @param comment usage:资源描述
      * @param uploadTextureType usage:上传的贴图类型
+     * @param price usage:价格
+     * @param tabId usage:标签ID
+     * @param extraData usage:额外数据
+     * @param bizLine usage:业务线
+     * @param commonReqVO usage:拓展字段
+     * @param tags usage:tags
+     * @param bUseScaleProportionally usage:缩略图是否使用等比压缩
      * @returns {Promise<FastUploadTextureResult>} 上传贴图返回结果
      * @example
      * 使用示例：调用方法 新建一个脚本 NewScript
@@ -539,7 +656,7 @@ declare namespace mw {
      * }
      * ```
      */
-    function fastUploadTexture(texturePath: string, name: string, comment: string, uploadTextureType: mw.UploadTextureType): Promise<FastUploadTextureResult>;
+    function fastUploadTexture(texturePath: string, name: string, comment: string, uploadTextureType: mw.UploadTextureType, price?: number, tabId?: number[], extraData?: string, bizLine?: string, commonReqVO?: string, tags?: string, bUseScaleProportionally?: boolean): Promise<FastUploadTextureResult>;
     /**
     * @author boxin.liu
     * @description 上传贴图返回结果
@@ -632,6 +749,7 @@ declare namespace mw {
      * @param bizLine usage:业务线
      * @param commonReqVO usage:拓展字段
      * @param tags usage:tags
+     * @param bUseScaleProportionally usage:缩略图是否使用等比压缩
      * @returns {Promise<UploadPrefabResult>} 上传预制体返回结果
      * @example
      * 使用示例:调用方法 新建一个脚本 NewScript
@@ -648,7 +766,7 @@ declare namespace mw {
      * }
      * ```
      */
-    function fastUploadPrefab(assetId: string, imagePath: string, name: string, comment: string, isReplaceGameThumb?: boolean, price?: number, tabId?: number[], extraData?: string, bizLine?: string, commonReqVO?: string, tags?: string): Promise<UploadPrefabResult>;
+    function fastUploadPrefab(assetId: string, imagePath: string, name: string, comment: string, isReplaceGameThumb?: boolean, price?: number, tabId?: number[], extraData?: string, bizLine?: string, commonReqVO?: string, tags?: string, bUseScaleProportionally?: boolean): Promise<UploadPrefabResult>;
     /**
      * @author yingjie.zhong
      * @description 上传自定义数据包返回结果
@@ -809,12 +927,46 @@ declare namespace mw {
     function selectLocalAudioFiles(timeoutDurationInSecond: number, filters: string): Promise<SelectLocalFilesResult>;
     /**
      * @author fuqiang.yang
-     * @description 播放本地音频文件
+     * @description 检查当前音频文件是否支持本地预览和上传
+     * @groups 基础类型
+     * @effect 只在客户端调用生效
+     * @returns 支持与否
+     */
+    function checkAudioFileIsSupported(localAudioFilePath: string): boolean;
+    /**
+     * @author fuqiang.yang
+     * @description 获取本地文件大小
+     * @groups 基础类型
+     * @effect 双端调用生效
+     * @returns 文件不存在返回-1
+     */
+    function getLocalFileSizeInBytes(localFilePath: string): bigint;
+    /**
+     * @author fuqiang.yang
+     * @description 播放本地音频文件，同一时间只有一个音频播放实例
      * @groups 基础类型
      * @effect 只在客户端调用生效
      * @param localAudioFilePath 本地音频文件路径
+     * @param normalizedStartTime 归一化的起始播放时间
+     * @param normalizedEndTime 归一化的播放结束时间
+     * @param playbackCallback 播放进度回调
      */
-    function playLocalAudioFile(localAudioFilePath: string): void;
+    function playLocalAudioFile(localAudioFilePath: string, normalizedStartTime?: number, normalizedEndTime?: number, playbackCallback?: (currentNormalizedTime: number, currentPlaybackTime: number) => void): void;
+    /**
+     * @author fuqiang.yang
+     * @description 结束播放本地音频文件，同一时间只有一个音频播放实例
+     * @groups 基础类型
+     * @effect 只在客户端调用生效
+     */
+    function stopPlayingLocalAudioFile(): void;
+    /**
+     * @author fuqiang.yang
+     * @description 获取本地音频文件的播放时长，单位秒
+     * @groups 基础类型
+     * @effect 只在客户端调用生效
+     * @returns 发生错误时，返回值小于0
+     */
+    function getDurationOfLocalAudioFile(localAudioFilePath: string): number;
     /**
     * @author fuqiang.yang
     * @description 上传音频文件返回结果
@@ -836,6 +988,15 @@ declare namespace mw {
      * @param inRawSoundFilePath usage:本地音频文件
      * @param name usage:名字
      * @param comment usage:资源描述
+     * @param normalizedStartTime 归一化的起始播放时间
+     * @param normalizedEndTime 归一化的播放结束时间
+     * @param tabIds usage:标签ID
+     * @param price usage:价格
+     * @param extraData usage:额外数据
+     * @param bizLine usage:业务线
+     * @param commonReqVO usage:拓展字段
+     * @param tags usage:tags
+     * @param fileSizeLimitInBytes usage:文件大小限制 default:8421376
      * @returns {Promise<FastUploadRTFSoundResult>} 上传音频返回结果
      * @example
      * 使用示例：调用方法 新建一个脚本 NewScript
@@ -852,7 +1013,7 @@ declare namespace mw {
      * }
      * ```
      */
-    function fastUploadRTFSound(rawSoundFilePath: string, name: string, comment: string): Promise<FastUploadRTFSoundResult>;
+    function fastUploadRTFSound(rawSoundFilePath: string, name: string, comment: string, normalizedStartTime?: number, normalizedEndTime?: number, tabIds?: number[], price?: number, extraData?: string, bizLine?: string, commonReqVO?: string, tags?: string, fileSizeLimitInBytes?: number): Promise<FastUploadRTFSoundResult>;
     /**
      * @author yingjie.zhong
      * @description 获取新的Guid8
@@ -861,6 +1022,144 @@ declare namespace mw {
      * @returns 新的Guid8
      */
     function getNewGuid8(): string;
+    /**
+     * @author yingjie.zhong
+     * @description 获取新的Guid32
+     * @groups 基础类型
+     * @effect 调用端生效
+     * @returns 新的Guid32
+     */
+    function getNewGuid32(): string;
+    /**
+     * @author shuhan.liu
+     * @groups SCRIPTING
+     * @description 共创状态
+     * @effect 只在客户端调用生效
+     * @return 返回共创状态信息
+     */
+    function OnCocreationChangeState(callback: (info: string) => void): void;
+    /**
+     * @author shuhan.liu
+     * @groups SCRIPTING
+     * @description 是否是共创工程
+     * @effect 只在客户端调用生效
+     * @return 返回是否为共创工程
+     */
+    function bCocreation(): boolean;
+    /**
+     * @author shuhan.liu
+     * @groups SCRIPTING
+     * @description 获取共创工程信息
+     * @effect 只在客户端调用生效
+     * @return 返回共创工程信息
+     */
+    function asyncUGCCocreationInfo(): Promise<string>;
+    /**
+     * @author shuhan.liu
+     * @groups SCRIPTING
+     * @description 退出游戏
+     * @effect 只在客户端调用生效
+     */
+    function Quit(): void;
+    /**
+     * @description 存档结果类型
+     */
+    enum EUGCCreateArchiveResultType {
+        Default = 0,
+        /** 存档成功 */
+        Success = 1,
+        /** 当前工程路径错误 */
+        ProjectPathIncorrect = 2,
+        /** 配置文件不存在 */
+        ConfigNotExist = 3,
+        /** 压缩失败 */
+        CompressionFailed = 4,
+        /** 创建存档成功 */
+        CreateArchiveSuccess = 5,
+        /** 生成上传文件失败 */
+        GenerateUploadFileFailed = 6,
+        /** token无效, 身份验证失败 */
+        InvalidToken = 401,
+        /** 服务内部出问题 */
+        ServerError = 500,
+        /** 服务器数据解析失败 */
+        ServerDataDeserializeFailed = 501,
+        /** 存档正在上传中，请勿重复提交 */
+        RepeatedUpload = 800,
+        /** 本工程的云存档已经满了 */
+        ArchiveSlotExceeded = 801,
+        /** 云工程数量已经已经满了 */
+        ArchiveProjectNumExceeded = 802,
+        /** 上传文件为空 */
+        UploadedFileEmpty = 803,
+        /** 接收到的文件和传输的文件不一致 */
+        Sha1Inconsistent = 804,
+        /** 正在保存或上传 */
+        IsSavingOrCompressing = 805,
+        /** 传入槽位错误 */
+        SlotError = 806,
+        /** 存档FileId和工程FileId不一致 */
+        InconsistentFileid = 901
+    }
+    /**
+     * @author shuhan.liu
+     * @description 移动端编辑器创建并上传存档
+     * @groups 基础类型
+     * @effect 调用端生效
+     * @precautions 只在MobileEditor模式下调用生效
+     * @param slot 存档槽位,0、1槽位已占用，只能使用 >=2 槽位
+     * @param name 存档名称
+     * @param customData 自定义数据
+     * @param bSyncShare 是否同步共创槽位
+     * @returns 是否上传存档成功
+     */
+    function asyncUGCCreateAndUploadArchive(slot: number, name: string, customData: string, bSyncShare?: boolean): Promise<EUGCCreateArchiveResultType>;
+    /**
+     * @author shuhan.liu
+     * @description 更新记录最新模板版本
+     * @groups 基础类型
+     * @effect 调用端生效
+     * @precautions 只在MobileEditor模式下调用生效
+     */
+    function refreshServerTemplateVersion(): void;
+    /**
+     * @author shuhan.liu
+     * @description 移动端编辑器创建存档
+     * @groups 基础类型
+     * @effect 调用端生效
+     * @precautions 只在MobileEditor模式下调用生效
+     * @param slot 存档槽位,0、1槽位已占用，只能使用 >=2 槽位
+     * @param name 存档名称
+     * @param customData 自定义数据
+     * @param bSyncShare 是否同步共创槽位
+     * @returns 创建结果
+     */
+    function ugcCreateArchive(slot: number, name: string, customData: string, bSyncShare?: boolean): Promise<EUGCCreateArchiveResultType>;
+    /**
+     * @author shuhan.liu
+     * @description 年龄是否合规
+     * @groups 基础类型
+     * @effect 调用端生效
+     * @precautions 只在MobileEditor模式下调用生效
+     */
+    function isMeetTheAge(): boolean;
+    /**
+     * @author shuhan.liu
+     * @description 监听年龄合规
+     * @groups 基础类型
+     * @effect 调用端生效
+     * @precautions 只在MobileEditor模式下调用生效
+     * @returns 年龄合规提示代理
+     */
+    function notifyAgeNotMet(): mw.MulticastDelegate<(result: boolean) => void>;
+    /**
+     * @author shuhan.liu
+     * @description 移除监听年龄合规
+     * @groups 基础类型
+     * @effect 调用端生效
+     * @precautions 只在MobileEditor模式下调用生效
+     */
+    function notifyAgeNotMet_Remove(): void;
 }
 
 declare namespace mw {
@@ -948,4 +1247,70 @@ declare namespace mw {
      * @param key
      */
     function useUrlConfig(key: string): void;
+    /**
+     * @hidden
+     * @author changzun.li
+     * @description 获取当前加载的baseUrl
+     */
+    function getLoadedBaseUrl(): string;
+    /**
+     * @hidden
+     * @author changzun.li
+     * @description 浏览器中打开网页
+     */
+    function openBrowser(url: any): void;
+}
+
+/// <reference types="engine" />
+declare namespace mw {
+    // @ts-ignore
+    import * as UE from "ue";
+    /**
+     * @description WebSocket服务端
+     */
+    class WebSocketServer {
+        /**
+         * @description 监听指定端口
+         * @param port 监听端口
+         * @returns
+         */
+        start(port: number): boolean;
+        /**
+         * @description 关闭服务
+         */
+        close(): void;
+        /**
+         * @description 获取监听端口
+         */
+        get port(): number;
+        /**
+         * @description 客户端连接委托
+         */
+        onClientConnected: mw.MulticastDelegate<(connection: WebSocketConnection) => void>;
+        private mwServer;
+    }
+    /**
+     * @description WebSocket连接
+     */
+    class WebSocketConnection {
+        private mwConnection;
+        constructor(mwConnection: UE.MWWebSocketConnection);
+        /**
+         * 发送消息
+         * @param msg 发送消息
+         */
+        send(msg: string): void;
+        /**
+         * 关闭连接
+         */
+        close(): void;
+        /**
+         * @description 接收到消息委托
+         */
+        onMessage: mw.MulticastDelegate<(msg: string) => void>;
+        /**
+         * @description 连接关闭委托
+         */
+        onDisconnected: mw.MulticastDelegate<() => void>;
+    }
 }

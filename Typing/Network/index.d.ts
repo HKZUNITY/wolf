@@ -1,5 +1,6 @@
 ﻿declare namespace mw {
     /**
+     * @author si.wu
      * @groups 玩法/其他
      * @description HTTP请求信息的对象
      * @networkStatus usage:双端
@@ -15,6 +16,7 @@
         body?: string;
     }
     /**
+     * @author si.wu
      * @groups 玩法/其他
      * @description HTTP响应信息的对象
      * @networkStatus usage:双端
@@ -46,6 +48,7 @@
         json<T>(): Promise<T>;
     }
     /**
+     * @author si.wu
      * @description HTTP请求
      * @groups 玩法
      * @effect 调用端生效
@@ -55,6 +58,7 @@
      */
     function fetch(url: string, init?: RequestInit): Promise<Response>;
     /**
+     * @author si.wu
      * @description url转码
      * @groups 玩法
      * @effect 调用端生效
@@ -63,6 +67,7 @@
      */
     function urlEncode(str: string): string;
     /**
+     * @author si.wu
      * @description url解码
      * @groups 玩法
      * @effect 调用端生效
@@ -71,6 +76,7 @@
      */
     function urlDecode(str: string): string;
     /**
+     * @author si.wu
      * @description 获取 url 参数
      * @groups 玩法
      * @effect 调用端生效
@@ -82,10 +88,12 @@
 }
 
 /**
+ * @author junwen.hua
  * @description 暴露给用户使用的Http请求接口,用户可选的是网络身份(服务器,客户端)
  */
 declare namespace mw {
     /**
+     * @author junwen.hua
      * @description 开放给用户用的URL枚举，需要与C++层的枚举对应
      * @groups 玩法
      */
@@ -113,9 +121,51 @@ declare namespace mw {
         /** Pandora */
         Pandora = 10,
         /** Translation */
-        Translation = 11
+        Translation = 11,
+        /** Translation */
+        PlayerGateway = 12,
+        /** WebHub */
+        Web_Hub = 13
     }
     /**
+     * @author yingjie.zhong
+     * @description 不开放给用户,仅UGC内部使用的的URL枚举，需要与C++层的枚举对应
+     * @groups 玩法
+     */
+    enum HttpRequestURLExtension {
+        /** Release */
+        Release = 0,
+        /** Match */
+        Match = 1,
+        /** StringGuidMatch */
+        StringGuidMatch = 2,
+        /** ResourceAuditToB */
+        ResourceAuditToB = 3,
+        /** ResourceAuditToC */
+        ResourceAuditToC = 4,
+        /** ResourceManually */
+        ResourceManually = 5,
+        /** AthenaLogin */
+        AthenaLogin = 6,
+        /** PandoraPush */
+        PandoraPush = 7,
+        /** PandoraABTest */
+        PandoraABTest = 8,
+        /** Unify */
+        Unify = 9,
+        /** CdnUri */
+        CdnUri = 10,
+        /** Sequence */
+        Sequence = 11,
+        /** UnifyKV */
+        UnifyKV = 12,
+        /** PandoraCrashUpload */
+        PandoraCrashUpload = 13,
+        /** CharEditorSetProduct */
+        CharEditorSetProduct = 14
+    }
+    /**
+     * @author junwen.hua
      * @description 开发给用户用的Http请求类型枚举
      * @groups 玩法
      */
@@ -130,6 +180,7 @@ declare namespace mw {
         Post = 1
     }
     /**
+     * @author junwen.hua
      * @description Http请求的回调消息格式
      * @groups 基础类型
      * @precautions 无需主动销毁，生命周期由UObject管理
@@ -139,6 +190,7 @@ declare namespace mw {
      */
     type HttpResponse = (result: boolean, content: string, responseCode: number) => void;
     /**
+     * @author junwen.hua
      * @description 商城通信回调消息格式
      * @groups 基础类型
      * @param isSuccess usage: 通信结果
@@ -146,6 +198,7 @@ declare namespace mw {
      */
     type TransactionType = (isSuccess: boolean, content: string) => void;
     /**
+     * @author junwen.hua
      * @description Http请求接口
      * @groups 玩法
      * @effect 调用端生效
@@ -157,6 +210,7 @@ declare namespace mw {
      */
     function httpRequestTransmitData(response: HttpResponse, paramUrl: string, jsonContent: string, requestType: HttpRequestType): boolean;
     /**
+     * @author junwen.hua
      * @groups 玩法
      * @description 通用 Http 请求
      * @effect 调用端生效
@@ -173,4 +227,23 @@ declare namespace mw {
      * ```
      */
     function generalHttpRequest(response: HttpResponse, requestUrl: HttpRequestURL, param: string, jsonContent: any, requestType: HttpRequestType): boolean;
+    /**
+     * @author ruichen.wang
+     * @groups 玩法
+     * @description 通用 Http 请求，带自定义请求头
+     * @effect 调用端生效
+     * @param response usage:OnHttpResponse
+     * @param requestUrl usage:EHttpRequestURL
+     * @param param usage:string  range: 不做限制
+     * @param jsonContent usage:any
+     * @param headerContent usage:any 请求头
+     * @param requestType usage:0是Get 1是Post
+     * @returns bool
+     * @example
+     * 使用示例:发送Http请求
+     * ```
+     * generalHttpRequest(Response,Url,Param,JsonContent)
+     * ```
+     */
+    function generalHttpRequestWithHeader(response: HttpResponse, requestUrl: HttpRequestURL, param: string, jsonContent: any, headerContent: any, requestType: HttpRequestType): boolean;
 }

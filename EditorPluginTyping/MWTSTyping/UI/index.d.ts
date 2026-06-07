@@ -1078,6 +1078,85 @@ declare namespace mw {
 
 declare namespace mw {
     /**
+    * @author maohang.zeng
+    * @groups 界面/控件/调色板
+    * @description 调色板
+    * @networkStatus usage:客户端
+    */
+    class ColorPicker extends mw.Widget {
+        /**
+         * @groups 界面/控件/调色板
+         * @description 设置color picker的颜色
+         * @effect  只在客户端调用生效
+         * @param inColor usage:输入的颜色，Type.LinearColor类型，数据范围0~1
+         */
+        set color(inColor: mw.LinearColor);
+        /**
+         * @description 获取色相按钮的图片信息
+         * @effect  只在客户端调用生效
+         * @returns 返回色相按钮的图片信息
+         */
+        get hueButtonImageInfo(): mw.ImageInfo;
+        /**
+         * @description 获取颜色选择按钮的图片信息
+         * @effect  只在客户端调用生效
+         * @returns 返回颜色选择按钮的图片信息
+         */
+        get colorPaletteButtonImageInfo(): mw.ImageInfo;
+        /**
+         * @groups 界面/控件/调色板
+         * @description 设置色相模块高度
+         * @effect  只在客户端调用生效
+         * @param inHeight usage:输入的高度 default:0   range:设置合理的高度即可
+         */
+        set hueModuleHeight(inHeight: number);
+        /**
+         * @groups 界面/控件/调色板
+         * @description 设置模块间隔
+         * @effect  只在客户端调用生效
+         * @param inSpacing usage:输入的间隔 default:0   range:设置合理的间隔即可
+         */
+        set moduleSpacing(inSpacing: number);
+        /**
+         * @groups 界面/控件/调色板
+         * @description 设置色板模块高度
+         * @effect  只在客户端调用生效
+         * @param inHeight usage:输入的高度 default:0   range:设置合理的高度即可
+         */
+        set colorPaletteHeight(inHeight: number);
+        /**
+         * @groups 界面/控件/调色板
+         * @description 颜色改变时触发的代理
+         * @effect  只在客户端调用生效
+         * @returns 返回事件的代理
+         */
+        get onColorChanged(): mw.MulticastDelegate<(Content: mw.LinearColor) => void>;
+        /**
+         * @groups 界面/控件/调色板
+         * @description 颜色改变完成时触发的函数代理
+         * @effect  只在客户端调用生效
+         * @returns 返回事件的代理
+         */
+        get onColorChangeFinished(): mw.MulticastDelegate<(Content: mw.LinearColor) => void>;
+        /**
+         * @groups 界面/控件/调色板
+         * @description 点击时触发的代理
+         * @effect  只在客户端调用生效
+         * @returns 返回事件的代理
+         */
+        get onTouchStart(): mw.MulticastDelegate<(Content: mw.LinearColor) => void>;
+        /**
+         * @groups 界面/控件/调色板
+         * @description 点击完成时触发的代理函数
+         * @effect  只在客户端调用生效
+         * @returns 返回事件的代理
+         */
+        get onTouchFinished(): mw.MulticastDelegate<(Content: mw.LinearColor) => void>;
+    }
+}
+
+declare namespace mw {
+    /**
       * @author jie.wu
       * @groups 界面/事件
       * @description 拖拽事件数据传递类
@@ -5848,6 +5927,27 @@ declare namespace mw {
 
 declare namespace mw {
     /**
+     * @description Canvas刷新Guid返回信息类
+     * @class CanvasRefreshInfo
+     * @author yongfei.zheng
+     * @groups 界面
+     * @networkStatus usage:客户端
+     */
+    class CanvasRefreshInfo {
+        /**
+         * @description 额外需要处理的UI列表，存储UI标识符
+         */
+        ExtraUI: Array<string>;
+        /**
+         * @description 旧ID到新ID的映射表，用于UI元素ID变更时的追踪
+         */
+        OldIdToNewId: Map<string, string>;
+        /**
+         * @description 构造函数，初始化属性
+         */
+        constructor();
+    }
+    /**
      * @author jie.wu
      * @description 获取 UI 脚本
      * @groups 界面
@@ -5991,6 +6091,17 @@ declare namespace mw {
      * @returns 被影响了的ui文件名
      */
     function RefreshUnLoadUIGuidByDirectory(directroyPath: string, ignoreList: string[]): string[];
+    /**
+     *
+     * @author yongfei.zheng
+     * @description 更新指定目录下的UI文件Guid以及UI图层名
+     * @groups 界面
+     * @effect 调用端生效
+     * @param directroyPath usage: 本地文件夹路径 range: 从项目根目录开始的相对路径
+     * @param ignoreList usage: 白名单，白名单中的文件不会被更新 range: 指定目录下的文件名(有无后缀名皆可)
+     * @returns 刷新后的UI信息
+     */
+    function RefreshUnLoadUIByDirectory(directroyPath: string, ignoreList: string[]): CanvasRefreshInfo;
 }
 
 declare namespace mw {

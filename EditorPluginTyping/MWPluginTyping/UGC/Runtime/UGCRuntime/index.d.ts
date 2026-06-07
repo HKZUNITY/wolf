@@ -247,6 +247,264 @@ declare namespace UGC {
     function loadNpcData(character: mw.Character): void;
 }
 
+/**
+ * @description 文件操作工具类
+ * @groups 基础工具
+ */
+declare namespace UGC {
+    /**
+     * @description 文件操作结果枚举
+     */
+    enum FileOperationResult {
+        Success = 0,
+        FileNotFound = 1,
+        DirectoryNotFound = 2,
+        PermissionDenied = 3,
+        InvalidPath = 4,
+        FileExists = 5,
+        OutOfSizeLimit = 6,
+        NameIncludeIllegalText = 7,
+        OperationFailed = 8,
+        InvalidParameter = 9
+    }
+    /**
+     * @description 文件信息接口
+     */
+    interface FileInfo {
+        /** 文件名 */
+        name: string;
+        /** 文件路径 */
+        path: string;
+        /** 文件大小（字节） */
+        size: number;
+        /** 是否为目录 */
+        isDirectory: boolean;
+    }
+    /**
+     * @author Auto Generated
+     * @description 读取文件内容
+     * @groups 基础工具
+     * @effect 只在客户端调用生效
+     * @param filePath 文件路径（绝对路径）
+     * @returns Promise<string> 文件内容，如果文件不存在则返回空字符串
+     */
+    function readFile(filePath: string): Promise<string>;
+    /**
+     * @author Auto Generated
+     * @description 同步读取文件内容
+     * @groups 基础工具
+     * @effect 只在客户端调用生效
+     * @param filePath 文件路径（绝对路径）
+     * @returns 文件内容，如果文件不存在则返回空字符串
+     */
+    function readFileSync(filePath: string): string;
+    /**
+     * @author Auto Generated
+     * @description 写入文件内容
+     * @groups 基础工具
+     * @effect 只在客户端调用生效
+     * @param filePath 文件路径（绝对路径）
+     * @param content 文件内容
+     * @param append 是否追加模式，默认false（覆盖模式）
+     * @returns Promise<FileOperationResult> 操作结果
+     */
+    function writeFile(filePath: string, content: string, append?: boolean): Promise<FileOperationResult>;
+    /**
+     * @author Auto Generated
+     * @description 同步写入文件内容
+     * @groups 基础工具
+     * @effect 只在客户端调用生效
+     * @param filePath 文件路径（绝对路径）
+     * @param content 文件内容
+     * @param append 是否追加模式，默认false（覆盖模式）
+     * @returns 操作结果
+     */
+    function writeFileSync(filePath: string, content: string, append?: boolean): FileOperationResult;
+    /**
+     * @author Auto Generated
+     * @description 删除文件
+     * @groups 基础工具
+     * @effect 只在客户端调用生效
+     * @param filePath 文件路径（绝对路径）
+     * @returns 是否删除成功
+     */
+    function deleteFileAbs(filePath: string): boolean;
+    /**
+     * @author Auto Generated
+     * @description 检查文件是否存在
+     * @groups 基础工具
+     * @effect 只在客户端调用生效
+     * @param filePath 文件路径（绝对路径）
+     * @returns 文件是否存在
+     */
+    function fileExists(filePath: string): boolean;
+    /**
+     * @author Auto Generated
+     * @description 检查目录是否存在
+     * @groups 基础工具
+     * @effect 只在客户端调用生效
+     * @param dirPath 目录路径（绝对路径）
+     * @returns 目录是否存在
+     */
+    function directoryExists(dirPath: string): boolean;
+    /**
+     * @author Auto Generated
+     * @description 创建目录
+     * @groups 基础工具
+     * @effect 只在客户端调用生效
+     * @param dirPath 目录路径（绝对路径）
+     * @returns 是否创建成功
+     */
+    function createDirectory(dirPath: string): boolean;
+    /**
+     * @author Auto Generated
+     * @description 删除目录
+     * @groups 基础工具
+     * @effect 只在客户端调用生效
+     * @param dirPath 目录路径（绝对路径）
+     * @param recursive 是否删除子目录和文件，默认true，为false时，目录非空删除失败
+     * @returns 是否删除成功
+     */
+    function deleteDirectory(dirPath: string, recursive?: boolean): boolean;
+    /**
+     * @author Auto Generated
+     * @description 列出目录中的文件
+     * @groups 基础工具
+     * @effect 只在客户端调用生效
+     * @param dirPath 目录路径（绝对路径）
+     * @param recursive 是否递归列出子目录，默认false
+     * @returns 文件信息数组
+     */
+    function listFiles(dirPath: string, recursive?: boolean): FileInfo[];
+    /**
+     * @author Auto Generated
+     * @description 获取文件夹中的所有文件（不包括目录）
+     * @groups 基础工具
+     * @effect 只在客户端调用生效
+     * @param dirPath 目录路径（绝对路径）
+     * @param recursive 是否递归获取子目录中的文件，默认false
+     * @returns 文件信息数组（只包含文件，不包含目录）
+     */
+    function getAllFiles(dirPath: string, recursive?: boolean): FileInfo[];
+    /**
+     * @author Auto Generated
+     * @description 查找文件
+     * @groups 基础工具
+     * @effect 只在客户端调用生效
+     * @param dirPath 搜索目录路径（绝对路径）
+     * @param fileNamePattern 文件名匹配模式，支持通配符 * 和 ?，例如 "*.txt", "test*.*", "file?.log"
+     * @param recursive 是否递归搜索子目录，默认false
+     * @returns 匹配的文件信息数组
+     */
+    function findFiles(dirPath: string, fileNamePattern: string, recursive?: boolean): FileInfo[];
+    /**
+     * @author Auto Generated
+     * @description 复制文件
+     * @groups 基础工具
+     * @effect 只在客户端调用生效
+     * @param sourcePath 源文件路径（绝对路径）
+     * @param destPath 目标文件路径（绝对路径）
+     * @param overwrite 如果目标文件存在是否覆盖，默认true
+     * @returns 是否复制成功
+     */
+    function copyFile(sourcePath: string, destPath: string, overwrite?: boolean): boolean;
+    /**
+     * @author Auto Generated
+     * @description 复制整个目录
+     * @groups 基础工具
+     * @effect 只在客户端调用生效
+     * @param sourceDirPath 源目录路径（绝对路径）
+     * @param destDirPath 目标目录路径（绝对路径）
+     * @param overwrite 如果目标文件存在是否覆盖，默认true
+     * @returns 是否复制成功
+     */
+    function copyDirectory(sourceDirPath: string, destDirPath: string, overwrite?: boolean): boolean;
+    /**
+     * @author Auto Generated
+     * @description 移动文件（重命名）
+     * @groups 基础工具
+     * @effect 只在客户端调用生效
+     * @param sourcePath 源文件路径（绝对路径）
+     * @param destPath 目标文件路径（绝对路径）
+     * @param overwrite 如果目标文件存在是否覆盖，默认true
+     * @returns 是否移动成功
+     */
+    function moveFile(sourcePath: string, destPath: string, overwrite?: boolean): boolean;
+    /**
+     * @author Auto Generated
+     * @description 获取文件大小
+     * @groups 基础工具
+     * @effect 只在客户端调用生效
+     * @param filePath 文件路径（绝对路径）
+     * @returns 文件大小（字节），如果文件不存在返回-1
+     */
+    function getFileSize(filePath: string): number;
+    /**
+     * @author Auto Generated
+     * @description 读取文件为JSON对象
+     * @groups 基础工具
+     * @effect 只在客户端调用生效
+     * @param filePath 文件路径（绝对路径）
+     * @returns Promise<any> JSON对象，如果解析失败返回null
+     */
+    function readFileAsJSON(filePath: string): Promise<any>;
+    /**
+     * @author Auto Generated
+     * @description 同步读取文件为JSON对象
+     * @groups 基础工具
+     * @effect 只在客户端调用生效
+     * @param filePath 文件路径（绝对路径）
+     * @returns JSON对象，如果解析失败返回null
+     */
+    function readFileAsJSONSync(filePath: string): any;
+    /**
+     * @author Auto Generated
+     * @description 写入JSON对象到文件
+     * @groups 基础工具
+     * @effect 只在客户端调用生效
+     * @param filePath 文件路径（绝对路径）
+     * @param data JSON对象
+     * @param pretty 是否格式化输出，默认true
+     * @returns Promise<FileOperationResult> 操作结果
+     */
+    function writeFileAsJSON(filePath: string, data: any, pretty?: boolean): Promise<FileOperationResult>;
+    /**
+     * @author Auto Generated
+     * @description 同步写入JSON对象到文件
+     * @groups 基础工具
+     * @effect 只在客户端调用生效
+     * @param filePath 文件路径（绝对路径）
+     * @param data JSON对象
+     * @param pretty 是否格式化输出，默认true
+     * @returns 操作结果
+     */
+    function writeFileAsJSONSync(filePath: string, data: any, pretty?: boolean): FileOperationResult;
+    /**
+     * @author Auto Generated
+     * @description 追加内容到文件
+     * @groups 基础工具
+     * @effect 只在客户端调用生效
+     * @param filePath 文件路径（绝对路径）
+     * @param content 要追加的内容
+     * @returns Promise<FileOperationResult> 操作结果
+     */
+    function appendFile(filePath: string, content: string): Promise<FileOperationResult>;
+    /**
+     * @author Auto Generated
+     * @description 同步追加内容到文件
+     * @groups 基础工具
+     * @effect 只在客户端调用生效
+     * @param filePath 文件路径（绝对路径）
+     * @param content 要追加的内容
+     * @returns 操作结果
+     */
+    function appendFileSync(filePath: string, content: string): FileOperationResult;
+    function readNoteDataToString(filePath: string): string;
+    function readNoteDataToStdString(filePath: string): string;
+    function readBlocklyToString(filePath: string): string;
+    function WriteBlockly(content: string, filePath: string): boolean;
+}
+
 /// <reference types="extension" />
 declare namespace UGC {
     /**
@@ -561,6 +819,13 @@ declare namespace UGC {
      * @param name usage:名字
      * @param comment usage:资源描述
      * @param uploadTextureType usage:上传的贴图类型
+     * @param price usage:价格
+     * @param tabId usage:标签ID
+     * @param extraData usage:额外数据
+     * @param bizLine usage:业务线
+     * @param commonReqVO usage:拓展字段
+     * @param tags usage:tags
+     * @param bUseScaleProportionally usage:缩略图是否使用等比压缩
      * @returns {Promise<FastUploadTextureResult>} 上传贴图返回结果
      * @example
      * 使用示例：调用方法 新建一个脚本 NewScript
@@ -577,7 +842,7 @@ declare namespace UGC {
      * }
      * ```
      */
-    function fastUploadTexture(texturePath: string, name: string, comment: string, uploadTextureType: UGC.UploadTextureType): Promise<FastUploadTextureResult>;
+    function fastUploadTexture(texturePath: string, name: string, comment: string, uploadTextureType: UGC.UploadTextureType, price?: number, tabId?: number[], extraData?: string, bizLine?: string, commonReqVO?: string, tags?: string, bUseScaleProportionally?: boolean): Promise<FastUploadTextureResult>;
     /**
     * @author boxin.liu
     * @groups DATATYPE
@@ -701,6 +966,14 @@ declare namespace UGC {
     */
     function fastUploadCustom(assetId: string, imagePath: string, name: string, comment: string, isReplaceGameThumb?: boolean, price?: number, tabId?: number[], extraData?: string, bizLine?: string, commonReqVO?: string, tags?: string): Promise<UploadCustomResult>;
     /**
+     * @author yingjie.zhong
+     * @description 将MWCustom资源解压后的文件拷贝至工程目录下
+     * @groups 基础类型
+     * @param InAssetId usage:资源Id
+     * @effect 调用端生效
+     */
+    function copyMWCustomToSourcePath(InAssetId: string): void;
+    /**
      * @author tangbin.zhang
      * @groups 基础类型
      * @description 上传自定义数据预设
@@ -717,6 +990,7 @@ declare namespace UGC {
      * @param bizLine usage:业务线
      * @param commonReqVO usage:拓展字段
      * @param tags usage:tags
+     * @param bUseScaleProportionally usage:缩略图是否使用等比压缩
      * @returns {Promise<UploadPrefabResult>} 上传预制体返回结果
      * @example
      * 使用示例:调用方法 新建一个脚本 NewScript
@@ -733,7 +1007,30 @@ declare namespace UGC {
      * }
      * ```
      */
-    function fastUploadPrefab(assetId: string, imagePath: string, name: string, comment: string, isReplaceGameThumb?: boolean, price?: number, tabId?: number[], extraData?: string, bizLine?: string, commonReqVO?: string, tags?: string): Promise<UploadPrefabResult>;
+    function fastUploadPrefab(assetId: string, imagePath: string, name: string, comment: string, isReplaceGameThumb?: boolean, price?: number, tabId?: number[], extraData?: string, bizLine?: string, commonReqVO?: string, tags?: string, bUseScaleProportionally?: boolean): Promise<UploadPrefabResult>;
+    /**
+     * @author ruichen.wang
+     * @groups 基础类型
+     * @description 更新预制体Icon
+     * @effect 调用端生效
+     * @precautions 异步请求
+     * @param imagePath usage:本地Icon路径
+     * @returns {Promise<UploadPrefabResult>} 更新结果
+     * @example
+     * 使用示例:调用方法 新建一个脚本 NewScript
+     * ```
+     * @Component
+     * export default class NewScript extends Script {
+     *   //当脚本被实例后，会在第一帧更新前调用此函数
+     *   protected onStart(): void {
+     *     UGC.updatePrefabIcon('C:/icon.png').then(item =>{
+     *        console.log(item)
+     *     });
+     *   }
+     * }
+     * ```
+     */
+    function updatePrefabIcon(imagePath: string): Promise<UploadPrefabResult>;
     /**
      * @author tangbin.zhang
      * @groups 基础类型
@@ -1277,9 +1574,58 @@ declare namespace UGC {
      * @precautions 只在编辑模式下调用生效，标记的的源物体不要删除，否则会导致生成的 Asset 异常。
      * @param gameObjectId 根节点的 gameObjectId
      * @param bGenerateAsset 是否生成 Asset。标记过 true 的，在标记 false 或者源物体被删除后会删除资源。
+     * @param bManualDelete 是否手动删除。如果为 true，在源物体删除时，不会自动删除资源。default:false
      * @returns
      */
-    function setAutoCreateRuntimeAsset(gameObjectId: string, bGenerateAsset: boolean): string;
+    function setAutoCreateRuntimeAsset(gameObjectId: string, bGenerateAsset: boolean, bManualDelete?: boolean): string;
+    /**
+     * @author hexuan.zhang
+     * @description 绘制高密度区域
+     * @groups SCRIPTING
+     * @effect 只在客户端调用生效
+     * @param bDraw usage: 是否绘制高密度区域
+     */
+    function drawHighDensityArea(bDraw?: boolean): void;
+    /**
+     * @author hexuan.zhang
+     * @description 设置Actor权重
+     * @groups SCRIPTING
+     * @effect 只在客户端调用生效
+     * @param guid usage: Actor的GUID
+     * @param weight usage: 权重值
+     */
+    function setActorWeight(guid: string, weight: number): void;
+    /**
+     * @author hexuan.zhang
+     * @description 密度区域信息
+     * @groups DATATYPE
+     */
+    class DensityAreaInfo {
+        /** 区域中心点 */
+        center: mw.Vector;
+        /** 区域边界大小 */
+        size: mw.Vector;
+        /** 区域权重 */
+        weight: number;
+        guids: string[];
+        constructor(center?: mw.Vector, size?: mw.Vector, weight?: number);
+    }
+    /**
+     * @author hexuan.zhang
+     * @description 获取密度区域信息
+     * @groups SCRIPTING
+     * @effect 只在客户端调用生效
+     * @returns 密度区域信息数组
+     */
+    function getDensityArea(bonlyHighDensity?: boolean): DensityAreaInfo[];
+    /**
+     * @author hexuan.zhang
+     * @description 获取密度区域更新
+     * @groups SCRIPTING
+     * @effect 只在客户端调用生效
+     * @returns 是否更新
+     */
+    function getDensityAreaUpdate(): boolean;
     /**
      * @author dashan.wang
      * @description 序列化对象数据，撤销恢复用

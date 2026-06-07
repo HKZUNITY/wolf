@@ -39,6 +39,8 @@
         collisionEnabled?: boolean;
         /** @description 查询是否开启，默认开启 */
         queryEnabled?: boolean;
+        /** @description UGC Entity Serialize flag */
+        ugcCreateFlag?: number;
     }
     interface CloneInfo extends GameObjectInfo {
         /** @description 只包含序列化的对象 */
@@ -407,6 +409,64 @@ declare namespace mw {
          * 仅开启查询碰撞
          */
         QueryCollisionOnly = 4
+    }
+    /**
+     * @author yunhao.liao
+     * @description 碰撞通道
+     * @groups 基础类型
+    */
+    enum CollisionChannel {
+        /**
+         * 静态碰撞通道
+         */
+        WorldStatic = 0,
+        /**
+         * 动态碰撞通道
+         */
+        WorldDynamic = 1,
+        /**
+         * Pawn碰撞通道
+         */
+        Pawn = 2,
+        /**
+         * 可见性碰撞通道
+         */
+        Visibility = 3,
+        /**
+         * 相机碰撞通道
+         */
+        Camera = 4,
+        /**
+         * 物理体碰撞通道
+         */
+        PhysicsBody = 5,
+        /**
+         * 车辆碰撞通道
+         */
+        Vehicle = 6,
+        /**
+         * 可破坏碰撞通道
+         */
+        Destructible = 7
+    }
+    /**
+     * @author yunhao.liao
+     * @description 碰撞响应状态
+     * @groups 基础类型
+    */
+    enum CollisionResponse {
+        /**
+         * 忽略碰撞
+         */
+        Ignore = 0,
+        /**
+         * 重叠碰撞
+         */
+        Overlap = 1,
+        /**
+         * 阻塞碰撞
+         */
+        Block = 2
     }
     /**
      * @author maohang.zeng

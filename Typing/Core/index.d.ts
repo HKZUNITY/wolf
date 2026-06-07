@@ -4,6 +4,7 @@
 declare namespace mw {
     /**
      * @groups 基类
+     * @author si.wu
      * @description GameObject和Script的基类，定义基础能力
      * @networkStatus usage:双端
      */
@@ -33,6 +34,7 @@ declare namespace mw {
 
 declare namespace mw {
     /**
+     * @author si.wu
      * @groups 基础类型
      * @description 自定义属性类型
      */
@@ -54,36 +56,42 @@ declare namespace mw {
     class FunctionOption {
     }
     /**
+     * @author xiangkun.sun
      * @groups 基础类型
      * @description 多播
      * @effect 调用端生效
      */
     const Multicast: FunctionOption;
     /**
+     * @author xiangkun.sun
      * @groups 基础类型
      * @description 客户端
      * @effect 调用端生效
      */
     const Client: FunctionOption;
     /**
+     * @author xiangkun.sun
      * @groups 基础类型
      * @description 服务端
      * @effect 调用端生效
      */
     const Server: FunctionOption;
     /**
+     * @author xiangkun.sun
      * @groups 基础类型
      * @description 与Client Server配合实现RPC函数返回值
      * @effect 调用端生效
      */
     const Result: FunctionOption;
     /**
+     * @author xiangkun.sun
      * @groups 基础类型
      * @description 不可靠rpc
      * @effect 调用端生效
      */
     const Unreliable: FunctionOption;
     /**
+     * @author xiangkun.sun
      * @groups 基础类型
      * @description 将类声明为mwclass
      * @effect 调用端生效
@@ -92,6 +100,7 @@ declare namespace mw {
      */
     function Component<T extends typeof mw.Script>(component: T): T;
     /**
+     * @author xiangkun.sun
      * @groups 基础类型
      * @description 类型支持属性同步
      * @effect 调用端生效
@@ -100,6 +109,7 @@ declare namespace mw {
      */
     function Serializable<T extends ConstructorType>(type: T): T;
     /**
+     * @author xiangkun.sun
      * @groups 基础类型
      * @description 函数支持Rpc调用
      * @effect 调用端生效
@@ -108,6 +118,7 @@ declare namespace mw {
      */
     function RemoteFunction(...options: FunctionOption[]): (target: unknown, propertyKey: string, descriptor: PropertyDescriptor) => void;
     /**
+     * @author xiangkun.sun
      * @groups 基础类型
      * @description 属性支持同步
      * @effect 调用端生效
@@ -117,8 +128,12 @@ declare namespace mw {
     function Property(option?: mw.IPropertyOptions): (target: object, key: string) => void;
 }
 
+/// <reference types="engine" />
 declare namespace mw {
+    // @ts-ignore
+    import * as UE from "ue";
     /**
+     * @author xiangkun.sun
      * @groups 基类/场景所有物体基类
      * @description 场景中所有实体的基类
      * @description Model、Pawn、Camera、AdvancedVehicle、BlockingVolume等逻辑对象均继承自GameObject。
@@ -383,6 +398,12 @@ declare namespace mw {
          * @effect 双端物体服务端调用生效，单端物体调用端生效
          */
         stopMove(): void;
+        /**
+         * @description 设置物体是否同步变换
+         * @effect 只在服务端调用生效
+         * @param bRep usage:是否同步变换
+         */
+        setRepTransform(bRep: boolean): void;
         /**
          * @description 在指定时间内从当前缩放平滑变化至目标缩放
          * @effect 双端物体服务端调用生效，单端物体调用端生效
@@ -843,6 +864,14 @@ declare namespace mw {
          * ```
          */
         onCustomPropertyChange: Readonly<mw.MulticastDelegate<(path: string, value: unknown, oldValue: unknown) => void>>;
+        /**
+          * @description 销毁UE组件
+          * @groups 系统
+          * @effect 调用端生效
+          * @param ueComponent usage:要销毁的UE组件
+          * @returns 是否成功销毁
+          */
+        static destroyUEComponent<T extends UE.SceneComponent>(ueComponent: T): boolean;
     }
 }
 
@@ -867,6 +896,7 @@ declare namespace mw {
 declare namespace mw {
     /**
      * @hidden
+     * @author zhaoyang.hou
      * @groups 基类
      * @description 脚本管理类
      * @networkStatus usage:双端
@@ -886,6 +916,7 @@ declare namespace mw {
         static asyncFindScript(guid: string): Promise<Script>;
     }
     /**
+     * @author zhaoyang.hou
      * @groups 基类
      * @description 脚本的基类
      * @description -----------------------------
@@ -1084,6 +1115,7 @@ declare namespace mw {
         isRunningClient(): boolean;
     }
     /**
+     * @author zhaoyang.hou
      * @groups 基类
      * @networkStatus usage:双端
      * @description main脚本的基类
@@ -1109,6 +1141,7 @@ declare namespace mw {
     /**
      * @hidden
      * @groups 基础类型
+     * @author xiangkun.sun
      * @description 游戏窗口被激活事件
      * @effect 只在客户端调用生效
      * @param callback usage:回调事件
@@ -1117,6 +1150,7 @@ declare namespace mw {
     /**
      * @hidden
      * @groups 基础类型
+     * @author xiangkun.sun
      * @description 游戏窗口被挂起事件
      * @effect 只在客户端调用生效
      * @param callback usage:回调事件
@@ -1125,6 +1159,7 @@ declare namespace mw {
     /**
      * @hidden
      * @groups 基础类型
+     * @author xiangkun.sun
      * @description 获取游戏窗口激活状态
      * @effect 只在客户端调用生效
      * @returns 是否激活
@@ -1142,6 +1177,7 @@ declare namespace mw {
     /**
      * @hidden
      * @groups 基础类型
+     * @author xiangkun.sun
      * @description 用户属性范围和是否显示滑块
      */
     interface IRangeOptions {
@@ -1164,6 +1200,7 @@ declare namespace mw {
     }
     /**
      * @hidden
+     * @author xiangkun.sun
      * @groups 基础类型
      * @description 用户属性标记的参数选项
      */
@@ -1258,6 +1295,7 @@ declare namespace mw {
         value: unknown;
     }
     /**
+     * @author xiangkun.sun
      * @description 是否在编辑器里隐藏
      * @groups 基础类型
      */

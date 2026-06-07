@@ -608,6 +608,61 @@ declare namespace mw {
     }
 }
 
+/**
+ * @author shuhan.liu
+ * @description 存档上传服务
+ */
+declare namespace mw {
+    /**
+     * @author shuhan.liu
+     * @groups 服务/存档
+     * @description 上传存档结果信息
+     */
+    type UploadArchiveResultInfo = {
+        /** 上传结果 */
+        success: boolean;
+        /** 工程id */
+        projectId: string;
+        /** 槽位 */
+        slot: number;
+        /** 信息 */
+        msg: string;
+    };
+    /**
+     * @author shuhan.liu
+     * @groups 服务/存档
+     * @description 存档上传服务
+     * @networkStatus usage: 客户端
+     */
+    class ArchiveService {
+        /**
+         * @description 客户端存档上传完成的委托
+         */
+        static onArchiveUploadCompleted: mw.MulticastDelegate<(info: UploadArchiveResultInfo) => void>;
+        /**
+         * @author shuhan.liu
+         * @groups 服务/存档
+         * @description 初始化
+         * @effect 只在客户端调用生效
+         */
+        static init(): void;
+        /**
+         * @groups 服务/存档
+         * @description 异步上传存档是否支持
+         * @effect 只在客户端调用生效
+         * @returns 是否支持
+         */
+        static asyncGetUploadArchiveEnabled(): Promise<boolean>;
+        /**
+         * @author shuhan.liu
+         * @groups 服务/存档
+         * @description 通知客户端上传存档
+         * @effect 只在客户端调用生效
+         */
+        static noitfyUploadArchive(): void;
+    }
+}
+
 declare namespace mw {
     /**
      * @hidden
@@ -1878,6 +1933,113 @@ declare namespace mw {
  * 客户端是否支持某功能：https://meta.feishu.cn/wiki/DOa9w5YoTi3cY7kM5LRcJM6bnZj
  */
 /**
+ * ============== WARNING! WARNING! WARNING! =================
+ * 复刻了AvatarEditorService，下订单使用了不同的web API
+ * ============== WARNING! WARNING! WARNING! =================
+ */
+/**
+ * @author yongfei.zheng
+ * @description 素材商店物品购买服务
+ */
+declare namespace mw {
+    /**
+     * @author yongfei.zheng
+     * @groups 服务/货币
+     * @description 素材商店物品购买服务
+     * @networkStatus usage: 客户端
+     */
+    class AssetMarketItemService {
+        /**
+         * @groups 服务/货币
+         * @description 异步查询积分支付是否支持
+         * @effect 只在客户端调用生效
+         * @returns 是否支持
+         */
+        static asyncGetPointPayEnabled(): Promise<boolean>;
+        /**
+         * @groups 服务/货币
+         * @description 异步查询现金支付是否支持
+         * @effect 只在客户端调用生效
+         * @returns 是否支持
+         */
+        static asyncGetCashPayEnabled(): Promise<boolean>;
+        /**
+         * @groups 服务/货币
+         * @description 获取余额。会同时更新代币和积分的余额。
+         * @effect 只在客户端调用生效
+         */
+        static getAccountBalance(): void;
+        /**
+         * @groups 服务/货币
+         * @description 获取代币和积分余额更新的委托。购买成功后/充值成功后, 都会触发
+         * @effect 只在客户端调用生效
+         * @returns 代币余额更新的委托。coin对应代币余额，point对应积分余额
+         */
+        static get onAccountBalanceUpdated(): mw.MulticastDelegate<(balance: BalanceInfo) => void>;
+        /**
+         * @groups 服务/货币
+         * @description 下单商品并跳转支付，可以指定多个商品进行购买。如果需要携带额外信息（比如折扣token），可以加入到CommodityInfo.expand字段中
+         * @description status 含义：
+         * ```
+         * status = 200: 订单支付成功
+         * status = 408: 请求超时
+         * status = 409: 处理下单回调报错
+         * status = 410: 处理支付回调报错
+         * status = 501: 余额不足
+         * status = 502: 暂未开放购买
+         * status = 503: 参数类型错误
+         * status = 504: 用户取消
+         * status = 505: 轮询失败，未支付成功
+         * status = 506: 该版本不支持 payType
+         * status = 507: 未知异常，包括但不限于网络连接失败
+         * 其它：服务端返回的错误码，包括但不限于：下单，预支付，轮询等接口的报错
+         * ```
+         * @effect 只在客户端调用生效
+         * @param commodityList usage: 商品信息  range: 依据 商品数量 而定
+         * @param placeOrderResult usage: 订单状态回调
+         * @param status usage: 订单状态。<br> range: 取值范围和对应含义如下
+         * @param msg 描述订单状态或者错误信息。 range: 与status取值含义一致
+         */
+        static placeOrder(commodityList: CommodityInfo[], placeOrderResult: (status: number, msg: string, orderId: string) => void): void;
+        /**
+         * @groups 服务/货币
+         * @description 玩家数据服务完成发货后会触发的委托
+         * @effect 只在客户端调用生效
+         * @returns 订单发货的委托
+         */
+        static get onOrderDelivered(): mw.MulticastDelegate<(resp: ShipOrderResponse) => void>;
+        /**
+         * @groups 服务/货币
+         * @description 拉起充值页面
+         * @effect 只在客户端调用生效
+         */
+        static promptRecharge(): void;
+        /**
+         * @groups 服务/货币
+         * @description 玩家充值时会触发的委托
+         * @effect 只在客户端调用生效
+         * @returns 充值时会触发的委托
+         */
+        static get onRecharge(): mw.MulticastDelegate<(info: RechargeInfo) => void>;
+        /**
+         * @groups 服务/货币
+         * @description 角编商城状态发生变化时会触发的委托
+         * @effect 只在客户端调用生效
+         * @networkStatus usage:客户端
+         * @returns 角编商城状态发生变化时会触发的委托
+         */
+        static get AssetMarketItemSeviceDelegate(): mw.MulticastDelegate<(eventName: string, ...params: unknown[]) => void>;
+    }
+}
+
+/**
+ * 文档
+ * 技术方案: https://meta.feishu.cn/wiki/YWeQwk0v7ifFYekD66Sc35w4n0g
+ * Order-Service: https://meta.feishu.cn/wiki/wikcnR7x0n5tvba87HpRNtyGpMc
+ * 支付: https://meta.feishu.cn/docx/doxcnCDbagNZbBRDo7GRz0fLtYc
+ * 客户端是否支持某功能：https://meta.feishu.cn/wiki/DOa9w5YoTi3cY7kM5LRcJM6bnZj
+ */
+/**
  * @author huipeng.jia
  * @description Avatar商城的应用内购服务
  */
@@ -2110,6 +2272,27 @@ declare namespace mw {
         static asyncOpenAvatarEditorModule(extraInfo?: any): Promise<boolean>;
         /**
          * @groups 服务/货币
+         * @description 打开角编商城,同时打开赠礼卡片
+         * @effect 只在客户端调用生效
+         * @param ItemId usage: 赠品Id，目前认为MGS点击心愿单只会传入一个物品 [range: 注意ItemId由道具列表获得，商品为CommodityInfo]
+         * @param IsSelf usage: 检查主客态 default: false
+         * @param OtherUuid usage: 其他玩家的Uuid default: undefined [range: uuid]
+         * @param extraInfo usage: 额外的传参 default: undefined
+         * @returns 打开结果
+         */
+        static asyncOpenAvatarEditorModuleWitdGiftCard(ItemId: string, OtherUuid: string, IsSelf: boolean, extraInfo?: any): Promise<boolean>;
+        /**
+         *
+         * @groups 服务/货币
+         * @description 打开角编商城,同时打开赠礼卡片
+         * @effect 只在客户端调用生效
+         * @param OtherUuid usage: 其他玩家的Uuid default: undefined [range: uuid]
+         * @param extraInfo usage: 额外的传参 default: undefined
+         * @returns 打开结果
+         */
+        static asyncOpenAvatarEditorTryOn(OtherUuid: string, extraInfo?: any): Promise<boolean>;
+        /**
+         * @groups 服务/货币
          * @description 打开角编商城
          * @effect 只在客户端调用生效
          * @returns 异步void
@@ -2329,6 +2512,122 @@ declare namespace mw {
          * @param target usage: 目标对象(Player或NPC或GameObject)
          */
         static stopEffectFromHost(source: string, target: mw.Player | mw.GameObject): void;
+    }
+}
+
+/**
+ * 文档
+ * 技术方案: https://meta.feishu.cn/wiki/YWeQwk0v7ifFYekD66Sc35w4n0g
+ * Order-Service: https://meta.feishu.cn/wiki/wikcnR7x0n5tvba87HpRNtyGpMc
+ * 支付: https://meta.feishu.cn/docx/doxcnCDbagNZbBRDo7GRz0fLtYc
+ * 客户端是否支持某功能：https://meta.feishu.cn/wiki/DOa9w5YoTi3cY7kM5LRcJM6bnZj
+ */
+/**
+ * ============== WARNING! WARNING! WARNING! =================
+ * 复刻了AvatarEditorService，下订单使用了不同的web API
+ * ============== WARNING! WARNING! WARNING! =================
+ */
+/**
+ * @author huipeng.jia
+ * @description Avatar商城的应用内购服务
+ */
+declare namespace mw {
+    /**
+     * @author huipeng.jia
+     * @groups 服务/货币
+     * @description Avatar商城的应用内购服务
+     * @networkStatus usage: 客户端
+     */
+    class LeatherManPurchaseService {
+        /**
+         * @groups 服务/货币
+         * @description 异步查询积分支付是否支持
+         * @effect 只在客户端调用生效
+         * @returns 是否支持
+         */
+        static asyncGetPointPayEnabled(): Promise<boolean>;
+        /**
+         * @groups 服务/货币
+         * @description 异步查询现金支付是否支持
+         * @effect 只在客户端调用生效
+         * @returns 是否支持
+         */
+        static asyncGetCashPayEnabled(): Promise<boolean>;
+        /**
+         * @groups 服务/货币
+         * @description 获取余额。会同时更新代币和积分的余额。
+         * @effect 只在客户端调用生效
+         */
+        static getAccountBalance(): void;
+        /**
+         * @groups 服务/货币
+         * @description 获取代币和积分余额更新的委托。购买成功后/充值成功后, 都会触发
+         * @effect 只在客户端调用生效
+         * @returns 代币余额更新的委托。coin对应代币余额，point对应积分余额
+         */
+        static get onAccountBalanceUpdated(): mw.MulticastDelegate<(balance: BalanceInfo) => void>;
+        /**
+         * @groups 服务/货币
+         * @description 下单商品并跳转支付，可以指定多个商品进行购买。如果需要携带额外信息（比如折扣token），可以加入到CommodityInfo.expand字段中
+         * @description status 含义：
+         * ```
+         * status = 200: 订单支付成功
+         * status = 408: 请求超时
+         * status = 409: 处理下单回调报错
+         * status = 410: 处理支付回调报错
+         * status = 501: 余额不足
+         * status = 502: 暂未开放购买
+         * status = 503: 参数类型错误
+         * status = 504: 用户取消
+         * status = 505: 轮询失败，未支付成功
+         * status = 506: 该版本不支持 payType
+         * status = 507: 未知异常，包括但不限于网络连接失败
+         * 其它：服务端返回的错误码，包括但不限于：下单，预支付，轮询等接口的报错
+         * ```
+         * @effect 只在客户端调用生效
+         * @param commodityList usage: 商品信息  range: 依据 商品数量 而定
+         * @param placeOrderResult usage: 订单状态回调
+         * @param status usage: 订单状态。<br> range: 取值范围和对应含义如下
+         * @param msg 描述订单状态或者错误信息。 range: 与status取值含义一致
+         * @param onPlaceOrderComplete usage: 下单完成时（不含支付）触发，如果该回调返回false，则不再请求支付，且返回订单错误状态507。
+         */
+        static placeOrder(commodityList: CommodityInfo[], placeOrderResult: (status: number, msg: string, orderId: string) => void, onPlaceOrderComplete: (orderId: string) => Promise<boolean>): void;
+        /**
+         * @groups 服务/货币
+         * @description 玩家数据服务完成发货后会触发的委托
+         * @effect 只在客户端调用生效
+         * @returns 订单发货的委托
+         */
+        static get onOrderDelivered(): mw.MulticastDelegate<(resp: ShipOrderResponse) => void>;
+        /**
+         * @groups 服务/货币
+         * @description 拉起充值页面
+         * @effect 只在客户端调用生效
+         */
+        static promptRecharge(): void;
+        /**
+         * @groups 服务/货币
+         * @description 玩家充值时会触发的委托
+         * @effect 只在客户端调用生效
+         * @returns 充值时会触发的委托
+         */
+        static get onRecharge(): mw.MulticastDelegate<(info: RechargeInfo) => void>;
+        /**
+         * @groups 服务/货币
+         * @deprecated info:该接口已废弃，在该接口被删除前会仍保持可用，请尽快使用替换方案以免出现问题 since: 048 reason: 接口更新 replacement: 不要再用，新版请自己工程对接http请求
+         * @description 设置角色编辑器按钮可见性
+         * @effect 只在客户端调用生效
+         * @param visible usage: true表示可见，false不可见
+         */
+        static setAvatarEditorButtonVisible(visible: boolean): void;
+        /**
+         * @groups 服务/货币
+         * @description 角编商城状态发生变化时会触发的委托
+         * @effect 只在客户端调用生效
+         * @networkStatus usage:客户端
+         * @returns 角编商城状态发生变化时会触发的委托
+         */
+        static get leatherManServiceDelegate(): mw.MulticastDelegate<(eventName: string, ...params: unknown[]) => void>;
     }
 }
 
@@ -3270,6 +3569,9 @@ declare namespace mw {
          */
         static registerMGSChatMessageEvent(callback: MGSEvent): void;
     }
+}
+
+declare namespace mw {
 }
 
 declare namespace mw {
